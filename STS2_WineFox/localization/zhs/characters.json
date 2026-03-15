@@ -1,8 +1,8 @@
 {
   "WINE_FOX.title": "酒狐",
   "WINE_FOX.titleObject": "酒狐",
-  "WINE_FOX.description": "擅长挖掘与积累物资的狐族女仆，能把资源一步步转化成优势。",
-  "WINE_FOX.flavor": "来自异界的寡言女仆，带着工具、耐心与不容小觑的力量。",
+  "WINE_FOX.description": "来自异界的神秘女仆，擅长使用多种武器。",
+  "WINE_FOX.flavor": "来自异界的神秘女仆，擅长使用多种武器。",
   "WINE_FOX.selectMessage": "先把需要的东西准备好。",
   "WINE_FOX.victoryMessage": "收拾好了，继续前进吧。",
   "WINE_FOX.defeatMessage": "看来还需要更好的工具。",

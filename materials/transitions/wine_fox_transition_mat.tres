@@ -1,25 +1,3 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://nis836f1i8oe"]
-
-[ext_resource type="Texture2D" uid="uid://i41wu603k04n" path="res://images/ui/transitions/silent_transition.png" id="2_i0imf"]
-
-[sub_resource type="Shader" id="Shader_3ab6h"]
-code = "shader_type canvas_item;
-
-uniform sampler2D transitionTex;
-uniform float threshold : hint_range(0,1);
-
-void fragment() {
-    float falloff = 1.0 - texture(transitionTex, UV).r;
-    
-    // helps with falloff artifacts issues towards the transition extremes
-    float remap  = mix(-0.1, 1.1, threshold);
-    falloff = step(falloff, remap);
-    COLOR.a = falloff;
-}
-"
+[gd_resource type="ShaderMaterial" format=3 uid="uid://beicajr7c0nj4"]
 
 [resource]
-resource_local_to_scene = true
-shader = SubResource("Shader_3ab6h")
-shader_parameter/threshold = 0.0
-shader_parameter/transitionTex = ExtResource("2_i0imf")

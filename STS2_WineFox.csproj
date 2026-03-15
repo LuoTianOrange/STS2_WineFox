@@ -10,10 +10,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Sts2Dir>E:\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
+        <Sts2Dir>G:\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
         <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
-        <RitsuLibDir>..\sts-2-ritsulib</RitsuLibDir>
-        <GodotExe>E:\megadot-4.5.1-m.8-windows-x86_64-llvm-editor-csharp\MegaDot_v4.5.1-stable_mono_win64.exe</GodotExe>
+        <RitsuLibDir>..\STS2-RitsuLib</RitsuLibDir>
+        <GodotExe>H:/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
         <GodotExportPreset>BasicExport</GodotExportPreset>
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
@@ -40,21 +40,127 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="mod_manifest.json"/>
+        <Content Include="images\atlases\relic_atlas.sprites\hand_crank.tres" />
+        <Content Include="images\atlases\relic_outline_atlas.sprites\hand_crank.tres" />
+        <Content Include="images\packed\character_select\char_select_wine_fox.png" />
+        <Content Include="images\packed\character_select\char_select_wine_fox.png.import" />
+        <Content Include="images\packed\character_select\char_select_wine_fox_locked.png" />
+        <Content Include="images\packed\character_select\char_select_wine_fox_locked.png.import" />
+        <Content Include="images\packed\map\icons\map_marker_wine_fox.png" />
+        <Content Include="images\packed\map\icons\map_marker_wine_fox.png.import" />
+        <Content Include="images\relics\hand_crank.png" />
+        <Content Include="images\relics\hand_crank.png.import" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_paper.png" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_paper.png.import" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_point.png" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_point.png.import" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_rock.png" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_rock.png.import" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_scissors.png" />
+        <Content Include="images\ui\hands\multiplayer_hand_wine_fox_scissors.png.import" />
+        <Content Include="images\ui\top_panel\character_icon_wine_fox.png" />
+        <Content Include="images\ui\top_panel\character_icon_wine_fox.png.import" />
+        <Content Include="images\ui\top_panel\character_icon_wine_fox_outline.png" />
+        <Content Include="images\ui\top_panel\character_icon_wine_fox_outline.png.import" />
+        <Content Include="images\ui\transitions\silent_transition.png" />
+        <Content Include="images\ui\transitions\silent_transition.png.import" />
+        <Content Include="images\winefox\placeholder.png" />
+        <Content Include="images\winefox\placeholder.png.import" />
+        <Content Include="materials\transitions\wine_fox_transition_mat.tres" />
+        <Content Include="mod_manifest.json" />
+        <Content Include="scenes\screens\char_select\char_select_bg_wine_fox.tscn" />
+        <Content Include="scenes\ui\character_icons\wine_fox_icon.tscn" />
+        <Content Include="scenes\winefox\winefox.tscn" />
+        <Content Include="shaders\hsv.gdshader" />
+        <Content Include="shaders\hsv.gdshader.uid" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\cards.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\characters.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\powers.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\eng\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\cards.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\card_keywords.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\characters.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\powers.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\localization\zhs\relics.json" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
+        <Content Include="STS2_WineFox\mod_image.png.import" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove=".godot\**"/>
-        <None Remove=".godot\**"/>
-        <Content Remove=".godot\**"/>
-        <EmbeddedResource Remove=".godot\**"/>
+        <Compile Remove=".godot\**" />
+        <None Remove=".godot\**" />
+        <Content Remove=".godot\**" />
+        <EmbeddedResource Remove=".godot\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="STS2_WineFox\**"/>
-        <None Remove="STS2_WineFox\**"/>
-        <Content Remove="STS2_WineFox\**"/>
-        <EmbeddedResource Remove="STS2_WineFox\**"/>
+        <None Remove="STS2_WineFox\**" />
+        <Content Remove="STS2_WineFox\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="images\atlases\ui_atlas.sprites\card\" />
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
