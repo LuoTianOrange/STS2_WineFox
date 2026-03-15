@@ -1,0 +1,21 @@
+{
+  "STS2_WINEFOX-WOOD_POWER.title": "木板",
+  "STS2_WINEFOX-WOOD_POWER.description": "一块处理过的木板",
+  "STS2_WINEFOX-WOOD_POWER.smartDescription": "一块处理过的木板",
+  
+  "STS2_WINEFOX-STRESS_POWER.title": "应力",
+  "STS2_WINEFOX-STRESS_POWER.description": "手摇曲柄提供。获得物资时消耗1层，使该次获得的物资翻倍。",
+  "STS2_WINEFOX-STRESS_POWER.smartDescription": "获得物资时消耗1层，使该次获得的物资翻倍。",
+
+  "STS2_WINEFOX-DIGGING_POWER.title": "挖掘",
+  "STS2_WINEFOX-DIGGING_POWER.description": "提高采集效率。层数越高，每次挖掘的材料越多。",
+  "STS2_WINEFOX-DIGGING_POWER.smartDescription": "提高采集效率。层数越高，每次挖掘的材料越多。",
+
+  "STS2_WINEFOX-STONE_POWER.title": "圆石",
+  "STS2_WINEFOX-STONE_POWER.description": "坚硬的圆石，可用于合成。",
+  "STS2_WINEFOX-STONE_POWER.smartDescription": "坚硬的圆石，可用于合成。",
+
+  "STS2_WINEFOX-IRON_POWER.title": "铁锭",
+  "STS2_WINEFOX-IRON_POWER.description": "坚固的铁锭，可用于合成高级物品。",
+  "STS2_WINEFOX-IRON_POWER.smartDescription": "坚固的铁锭，可用于合成高级物品。"
+}

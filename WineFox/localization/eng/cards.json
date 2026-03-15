@@ -1,0 +1,14 @@
+{
+  "STS2_WINEFOX-WINE_FOX_STRIKE.title": "Strike",
+  "STS2_WINEFOX-WINE_FOX_STRIKE.description": "Deal {Damage} damage.",
+
+  "STS2_WINEFOX-WINE_FOX_DEFEND.title": "Defend",
+  "STS2_WINEFOX-WINE_FOX_DEFEND.description": "Gain {Block} Block.",
+
+  "STS2_WINEFOX-BASIC_MINE.title": "Basic Mine",
+  "STS2_WINEFOX-BASIC_MINE.description": "Gain 2 Planks and 2 Cobblestones.",
+
+  "STS2_WINEFOX-STONE_PICK.title": "Stone Pick",
+  "STS2_WINEFOX-STONE_PICK.description": "Gain {Digging} Digging."
+}
+

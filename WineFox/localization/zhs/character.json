@@ -1,0 +1,20 @@
+{
+  "STS2_WINEFOX-WINE_FOX.title": "酒狐",
+  "STS2_WINEFOX-WINE_FOX.description": "来自MC的神秘女仆，擅长使用多种武器。",
+  "STS2_WINEFOX-WINE_FOX.flavor": "角色背景风味文字",
+  "STS2_WINEFOX-WINE_FOX.selectMessage": "挖掘，合成，创造。",
+  "STS2_WINEFOX-WINE_FOX.victoryMessage": "赢了！",
+  "STS2_WINEFOX-WINE_FOX.defeatMessage": "输了！",
+  "STS2_WINEFOX-WINE_FOX.titleObject":"酒狐",
+  "STS2_WINEFOX-WINE_FOX.pronounObject":"她",
+  "STS2_WINEFOX-WINE_FOX.possessiveAdjective":"她的",
+  "STS2_WINEFOX-WINE_FOX.pronounPossessive":"她的",
+  "STS2_WINEFOX-WINE_FOX.pronounSubject":"她",
+  "STS2_WINEFOX-WINE_FOX.goldMonologue":"金色独白",
+  "STS2_WINEFOX-WINE_FOX.eventDeathPrevention":"事件死亡预防",
+  "STS2_WINEFOX-WINE_FOX.aromaPrinciple":"香气原理",
+  "STS2_WINEFOX-WINE_FOX.cardsModifierTitle":"卡牌修改",
+  "STS2_WINEFOX-WINE_FOX.cardsModifierDescription":"卡牌修改描述",
+  "STS2_WINEFOX-WINE_FOX.banter.alive.endTurnPing":"回合结束时的对话",
+  "STS2_WINEFOX-WINE_FOX.banter.dead.endTurnPing":"回合结束时的对话（死亡）"
+}

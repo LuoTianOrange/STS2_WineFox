@@ -1,0 +1,22 @@
+{
+  "STS2_WINEFOX-WOOD_POWER.title": "Plank",
+  "STS2_WINEFOX-WOOD_POWER.description": "A processed wooden plank.",
+  "STS2_WINEFOX-WOOD_POWER.smartDescription": "A processed wooden plank.",
+
+  "STS2_WINEFOX-STRESS_POWER.title": "Stress",
+  "STS2_WINEFOX-STRESS_POWER.description": "Provided by the Hand Crank. When gaining materials, consume 1 stack to double the amount gained.",
+  "STS2_WINEFOX-STRESS_POWER.smartDescription": "When gaining materials, consume 1 stack to double the amount gained.",
+
+  "STS2_WINEFOX-DIGGING_POWER.title": "Digging",
+  "STS2_WINEFOX-DIGGING_POWER.description": "Improves mining efficiency. The higher the stacks, the more materials gathered per dig.",
+  "STS2_WINEFOX-DIGGING_POWER.smartDescription": "Improves mining efficiency. The higher the stacks, the more materials gathered per dig.",
+
+  "STS2_WINEFOX-STONE_POWER.title": "Cobblestone",
+  "STS2_WINEFOX-STONE_POWER.description": "A hard cobblestone, usable in crafting.",
+  "STS2_WINEFOX-STONE_POWER.smartDescription": "A hard cobblestone, usable in crafting.",
+
+  "STS2_WINEFOX-IRON_POWER.title": "Iron Ingot",
+  "STS2_WINEFOX-IRON_POWER.description": "A sturdy iron ingot, usable in crafting advanced items.",
+  "STS2_WINEFOX-IRON_POWER.smartDescription": "A sturdy iron ingot, usable in crafting advanced items."
+}
+

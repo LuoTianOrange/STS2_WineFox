@@ -1,0 +1,13 @@
+{
+  "STS2_WINEFOX-WINE_FOX_STRIKE.title": "打击",
+  "STS2_WINEFOX-WINE_FOX_STRIKE.description": "造成 {Damage} 点伤害。",
+
+  "STS2_WINEFOX-WINE_FOX_DEFEND.title": "防御",
+  "STS2_WINEFOX-WINE_FOX_DEFEND.description": "获得 {Block} 点格挡。",
+
+  "STS2_WINEFOX-BASIC_MINE.title": "基础采掘",
+  "STS2_WINEFOX-BASIC_MINE.description": "获得2块木板和2个圆石。",
+
+  "STS2_WINEFOX-STONE_PICK.title": "石镐",
+  "STS2_WINEFOX-STONE_PICK.description": "获得 {Digging} 层挖掘。"
+}

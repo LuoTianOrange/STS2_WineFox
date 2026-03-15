@@ -1,0 +1,21 @@
+{
+  "STS2_WINEFOX-WINE_FOX.title": "Wine Fox",
+  "STS2_WINEFOX-WINE_FOX.titleObject": "Wine Fox",
+  "STS2_WINEFOX-WINE_FOX.description": "A mysterious maid from MC, proficient with many weapons.",
+  "STS2_WINEFOX-WINE_FOX.flavor": "Character background flavor text.",
+  "STS2_WINEFOX-WINE_FOX.selectMessage": "Dig, craft, create.",
+  "STS2_WINEFOX-WINE_FOX.victoryMessage": "Victory!",
+  "STS2_WINEFOX-WINE_FOX.defeatMessage": "Defeated!",
+  "STS2_WINEFOX-WINE_FOX.pronounObject": "her",
+  "STS2_WINEFOX-WINE_FOX.possessiveAdjective": "her",
+  "STS2_WINEFOX-WINE_FOX.pronounPossessive": "hers",
+  "STS2_WINEFOX-WINE_FOX.pronounSubject": "she",
+  "STS2_WINEFOX-WINE_FOX.goldMonologue": "Gold monologue.",
+  "STS2_WINEFOX-WINE_FOX.eventDeathPrevention": "Event death prevention text.",
+  "STS2_WINEFOX-WINE_FOX.aromaPrinciple": "Aroma principle text.",
+  "STS2_WINEFOX-WINE_FOX.cardsModifierTitle": "Cards Modifier",
+  "STS2_WINEFOX-WINE_FOX.cardsModifierDescription": "Cards modifier description.",
+  "STS2_WINEFOX-WINE_FOX.banter.alive.endTurnPing": "End turn banter.",
+  "STS2_WINEFOX-WINE_FOX.banter.dead.endTurnPing": "End turn banter (dead)."
+}
+

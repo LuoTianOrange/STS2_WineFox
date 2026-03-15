@@ -1,0 +1,113 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+    </PropertyGroup>
+
+    <!-- OS Detection -->
+    <PropertyGroup>
+        <IsWindows>false</IsWindows>
+        <IsLinux>false</IsLinux>
+        <IsOSX>false</IsOSX>
+        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
+        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
+        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
+    </PropertyGroup>
+
+    <!-- Windows -->
+    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
+        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
+        <Sts2Path Condition="'$(Sts2Path)' == ''">G:/SteamLibrary/steamapps/common/Slay the Spire 2</Sts2Path>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
+        <GodotPath Condition="'$(GodotPath)' == ''">H:/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>G:/SteamLibrary/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="sts2">
+            <HintPath>G:/SteamLibrary/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll</HintPath>
+            <Private>false</Private>
+            <Publicize>False</Publicize> <!--Allows private/protected field references but may cause errors.-->
+        </Reference>
+
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.1.3" PrivateAssets="All" />
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.0.6" />
+        <AdditionalFiles Include="WineFox/localization/**/*.json"/>
+        <PackageReference Update="Godot.SourceGenerators" Version="4.7.0-dev.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="STS2_WineFox/**"/>
+        <Compile Remove="materials/**"/>
+        <Compile Remove="shaders/**"/>
+        <Compile Remove="images/**"/>
+        <EmbeddedResource Remove="STS2_WineFox/**"/>
+        <EmbeddedResource Remove="materials/**"/>
+        <EmbeddedResource Remove="shaders/**"/>
+        <EmbeddedResource Remove="images/**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include=".gitignore"/>
+        <None Include="mod_manifest.json"/>
+        <None Include="project.godot"/>
+        <None Include="STS2_WineFox/**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.5.0-beta.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Cards\Common\" />
+      <Folder Include="Cards\Rare\" />
+      <Folder Include="Cards\Uncommon\" />
+      <Folder Include="images\atlases\ui_atlas.sprites\card\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="images\winefox\character_icon_winefox.png" />
+      <Content Include="images\winefox\character_icon_winefox.png.import" />
+      <Content Include="images\winefox\char_select_winefox.png" />
+      <Content Include="images\winefox\char_select_winefox.png.import" />
+      <Content Include="images\winefox\char_select_winefox_locked.png" />
+      <Content Include="images\winefox\char_select_winefox_locked.png.import" />
+      <Content Include="images\winefox\map_marker_winefox.png" />
+      <Content Include="images\winefox\map_marker_winefox.png.import" />
+      <Content Include="images\winefox\placeholder.png" />
+      <Content Include="images\winefox\placeholder.png.import" />
+      <Content Include="WineFox\localization\zhs\powers.json" />
+      <Content Include="WineFox\mod_image.png" />
+      <Content Include="WineFox\mod_image.png.import" />
+    </ItemGroup>
+
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+        <Message Text="Copying .dll to mods folder." Importance="high"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Sts2Path)/mods/$(MSBuildProjectName)/"/>
+        <Message Text="Copying BaseLib to mods folder." Importance="high"/>
+        <ItemGroup>
+            <BaseLibFiles Include="packages/alchyr.sts2.baselib/**/lib/**/BaseLib.dll;packages/alchyr.sts2.baselib/**/Content/BaseLib.pck"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(Sts2Path)/mods/"/>
+    </Target>
+
+    <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(Sts2Path)/mods/$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue"/>
+    </Target>
+
+    <Target Name="GodotPublishSkipped" AfterTargets="Publish" Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')">
+        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>
+    </Target>
+</Project>
