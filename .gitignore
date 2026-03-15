@@ -10,3 +10,4 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+godot.log

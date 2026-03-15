@@ -1,5 +1,5 @@
 {
-  "HAND_CRANK.title": "Hand Crank",
-  "HAND_CRANK.description": "At the start of your turn, gain [blue]1[/blue] [gold]Stress[/gold].",
-  "HAND_CRANK.flavor": "A stubborn crank from another world. The harder it turns, the more pressure it builds."
+  "STS2_WINE_FOX_RELIC_HAND_CRANK.title": "Hand Crank",
+  "STS2_WINE_FOX_RELIC_HAND_CRANK.description": "At the start of your turn, gain [blue]1[/blue] [gold]Stress[/gold].",
+  "STS2_WINE_FOX_RELIC_HAND_CRANK.flavor": "A stubborn crank from another world. The harder it turns, the more pressure it builds."
 }
