@@ -19,7 +19,7 @@ namespace STS2_WineFox.Content.Descriptors
                 "res://scenes/screens/char_select/char_select_bg_wine_fox.tscn",
                 "res://images/packed/character_select/char_select_wine_fox.png",
                 "res://images/packed/character_select/char_select_wine_fox_locked.png",
-                "res://materials/transitions/wine_fox_transition_mat.tres",
+                "res://materials/transitions/silent_transition_mat.tres",
                 "res://images/packed/map/icons/map_marker_wine_fox.png"))
             .WithVfx(new(
                 "res://scenes/vfx/card_trail_silent.tscn",

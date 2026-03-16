@@ -1,8 +1,8 @@
 {
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Wine Fox",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.titleObject": "Wine Fox",
-  "STS2_WINE_FOX_CHARACTER_WINE_FOX.description": "A fox maid who digs for materials, builds momentum, and turns resources into advantage.",
-  "STS2_WINE_FOX_CHARACTER_WINE_FOX.flavor": "A quiet maid from another world, carrying tools, discipline, and more strength than she first lets on.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.description": "A mysterious maid from another world, skilled in using a variety of tools.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.flavor": "A mysterious maid from another world, skilled in using a variety of tools.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.selectMessage": "Let's gather what we need.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.victoryMessage": "All set. Let's move on.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.defeatMessage": "I still need better tools.",
