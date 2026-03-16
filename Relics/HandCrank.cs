@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
@@ -12,6 +13,12 @@ namespace STS2_WineFox.Relics
     {
         // 标记是否有待消耗的应力（用于跨越同步/异步边界）
         private bool _pendingStressConsume;
+
+        public override RelicAssetProfile AssetProfile => new(
+            "res://images/relics/sts2_wine_fox_relic_hand_crank.png",
+            "res://images/relics/sts2_wine_fox_relic_hand_crank.png",
+            "res://images/relics/sts2_wine_fox_relic_hand_crank.png");
+
         public override RelicRarity Rarity => RelicRarity.Starter;
 
         // ① 每回合开始时获得 1 层应力
