@@ -46,15 +46,6 @@
         <EmbeddedResource Remove=".godot\**" />
     </ItemGroup>
 
-    <ItemGroup>
-        <None Remove="STS2_WineFox\**" />
-        <Content Remove="STS2_WineFox\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="images\atlases\ui_atlas.sprites\card\" />
-    </ItemGroup>
-
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
         <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>
         <MakeDir Directories="$(ModOutputDir)"/>
