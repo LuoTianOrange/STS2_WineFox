@@ -12,12 +12,10 @@ namespace STS2_WineFox.Cards.Basic
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await WineFoxActions.LostMaterial<WoodPower,StonePower>(this, 2m,2m);
-
-            // 获得 StonePick 卡牌加入手牌
-            // var stonePick = CardScope.CreateCard<StonePick>(Owner);
-            // var result = await CardPileCmd.Add(stonePick, PileType.Hand);
-            // CardCmd.PreviewCardPileAdd(result);
+            await WineFoxActions.LostMaterial<WoodPower, StonePower>(this, 2m, 2m);
+            
+            var stonePick = Owner.RunState.CreateCard<StonePick>(Owner);
+            await CardPileCmd.AddGeneratedCardToCombat(stonePick, PileType.Hand, true);
         }
 
         protected override void OnUpgrade()

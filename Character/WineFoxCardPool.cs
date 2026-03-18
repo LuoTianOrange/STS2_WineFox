@@ -22,6 +22,7 @@ namespace STS2_WineFox.Character
             typeof(WineFoxStrike),
             typeof(WineFoxDefend),
             typeof(BasicMine),
+            typeof(BaseCraft)
         ];
     }
 }
