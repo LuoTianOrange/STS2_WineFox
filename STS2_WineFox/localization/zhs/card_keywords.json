@@ -1,4 +1,8 @@
 {
   "STS2_WINEFOX-DIGGING.title": "挖掘",
-  "STS2_WINEFOX-DIGGING.description": "当你打出攻击时,获得资源。"
+  "STS2_WINEFOX-DIGGING.description": "当你打出攻击时,获得资源。",
+  "STS2_WINEFOX-WOOD.title": "木板",
+  "STS2_WINEFOX-WOOD.description": "一种基础材料，可用于合成。",
+  "STS2_WINEFOX-STONE.title": "圆石",
+  "STS2_WINEFOX-STONE.description": "一种基础材料，可用于合成。"
 }

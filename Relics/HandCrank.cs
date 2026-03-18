@@ -21,12 +21,9 @@ namespace STS2_WineFox.Relics
 
         public override RelicRarity Rarity => RelicRarity.Starter;
 
-        // ① 每回合开始时获得 1 层应力
-        public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        // ① 每次战斗开始时获得 1 层应力
+        public override async Task BeforeCombatStart()
         {
-            if (player != Owner)
-                return;
-
             Flash();
             await PowerCmd.Apply<StressPower>(Owner.Creature, 1m, Owner.Creature, null);
         }

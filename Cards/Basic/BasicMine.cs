@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Basic
         CardRarity.Basic, TargetType.Self)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Digging];
+            [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
         
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

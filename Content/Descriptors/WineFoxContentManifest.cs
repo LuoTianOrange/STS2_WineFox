@@ -33,6 +33,8 @@ namespace STS2_WineFox.Content.Descriptors
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
         [
             KeywordRegistrationEntry.Card(WineFoxKeywords.Digging, "STS2_WINEFOX-DIGGING"),
+            KeywordRegistrationEntry.Card(WineFoxKeywords.Wood, "STS2_WINEFOX-WOOD"),
+            KeywordRegistrationEntry.Card(WineFoxKeywords.Stone, "STS2_WINEFOX-STONE"),
         ];
     }
 }
