@@ -1,6 +1,7 @@
 ﻿using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using STS2_WineFox.Cards.Basic;
+using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Content.Descriptors;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Scaffolding.Characters;
@@ -30,7 +31,8 @@ namespace STS2_WineFox.Character
             typeof(WineFoxDefend),
             typeof(WineFoxDefend),
             typeof(BasicMine),
-            typeof(BaseCraft)
+            typeof(BaseCraft),
+            typeof(FullAttack)
         ];
 
         protected override IEnumerable<Type> StartingRelicTypes => [typeof(HandCrank)];

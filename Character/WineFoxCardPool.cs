@@ -1,5 +1,6 @@
 ﻿using Godot;
 using STS2_WineFox.Cards.Basic;
+using STS2_WineFox.Cards.Common;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
@@ -22,7 +23,8 @@ namespace STS2_WineFox.Character
             typeof(WineFoxStrike),
             typeof(WineFoxDefend),
             typeof(BasicMine),
-            typeof(BaseCraft)
+            typeof(BaseCraft),
+            typeof(FullAttack)
         ];
     }
 }

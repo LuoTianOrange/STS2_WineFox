@@ -8,5 +8,7 @@
   "STS2_WINE_FOX_CARD_STONE_PICK.title": "石镐",
   "STS2_WINE_FOX_CARD_STONE_PICK.description": "获得 {Digging:diff()} 层 [gold]挖掘[/gold]。",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.title": "基础合成",
-  "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "消耗 2 层[gold]木板[/gold] 和 2 层[gold]圆石[/gold]，获得 [gold]石镐[/gold]。"
+  "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "消耗 2 层[gold]木板[/gold] 和 2 层[gold]圆石[/gold]，获得 [gold]石镐[/gold]。",
+  "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力一击",
+  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。每消耗1层对随机一名敌人造成{Damage}点伤害。"
 }

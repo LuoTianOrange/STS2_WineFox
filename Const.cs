@@ -45,6 +45,7 @@ public static class Const
         public const string CardWineFoxStrike = Root + "/cards/card_winefoxstrike.png";
         public const string CardBaseCraft = Root + "/cards/card_basecraft.png";
         public const string CardBaseMine = Root + "/cards/card_basemine.png";
+        public const string CardFullAttack = Root + "/cards/card_fullattack.png";
     }
 
     public static class Audio

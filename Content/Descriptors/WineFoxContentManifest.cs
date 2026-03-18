@@ -1,5 +1,6 @@
 using STS2_WineFox.Cards;
 using STS2_WineFox.Cards.Basic;
+using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Cards.Token;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
@@ -20,6 +21,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, BasicMine>(),
             new CardRegistrationEntry<WineFoxCardPool, BaseCraft>(),
             new CardRegistrationEntry<WineFoxCardPool,StonePick>(),
+            new CardRegistrationEntry<WineFoxCardPool,FullAttack>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
 
