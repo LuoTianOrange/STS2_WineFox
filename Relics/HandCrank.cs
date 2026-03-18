@@ -15,9 +15,9 @@ namespace STS2_WineFox.Relics
         private bool _pendingStressConsume;
 
         public override RelicAssetProfile AssetProfile => new(
-            "res://images/relics/sts2_wine_fox_relic_hand_crank.png",
-            "res://images/relics/sts2_wine_fox_relic_hand_crank.png",
-            "res://images/relics/sts2_wine_fox_relic_hand_crank.png");
+            Const.Paths.HandCrankRelicIcon,
+            Const.Paths.HandCrankRelicIcon,
+            Const.Paths.HandCrankRelicIcon);
 
         public override RelicRarity Rarity => RelicRarity.Starter;
 

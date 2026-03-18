@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5der1ck84ixn"]
+
+[ext_resource type="Texture2D" uid="uid://dxvi16vlwottg" path="res://STS2_WineFox/ui/top_panel/character_icon_wine_fox.png" id="1_s81sc"]
+
+[node name="CharacterIcon" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_s81sc")
+expand_mode = 1
+stretch_mode = 5

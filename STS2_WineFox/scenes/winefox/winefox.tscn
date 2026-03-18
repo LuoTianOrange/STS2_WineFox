@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://dko5d4f0w75dk"]
+
+[ext_resource type="Script" path="res://Character/WineFoxCreatureVisuals.cs" id="1_visuals"]
+[ext_resource type="Texture2D" path="res://STS2_WineFox/winefox/placeholder.png" id="2_portrait"]
+
+[node name="WineFox" type="Node2D"]
+script = ExtResource("1_visuals")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(16, -18)
+
+[node name="Shadow" type="Polygon2D" parent="Visuals"]
+modulate = Color(0.243137, 0.113725, 0.223529, 0.22)
+position = Vector2(8, -4)
+polygon = PackedVector2Array(-74, 0, -58, -10, -28, -18, 0, -20, 28, -18, 58, -10, 74, 0, 58, 10, 28, 16, 0, 18, -28, 16, -58, 10)
+
+[node name="Portrait" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -122)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_portrait")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -122.0
+offset_top = -244.0
+offset_right = 122.0
+offset_bottom = 12.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -146)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -302)

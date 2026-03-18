@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwpk7tgwd3wtw"
-path="res://.godot/imported/sts2_wine_fox_power_stone_power.png-0a82ac06c8894d707405d60150e36c14.ctex"
+uid="uid://k23xvk0c5yxe"
+path="res://.godot/imported/multiplayer_hand_wine_fox_scissors.png-c242c0ef345e5d1717a6d1314fa0a20a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/winefox/sts2_wine_fox_power_stone_power.png"
-dest_files=["res://.godot/imported/sts2_wine_fox_power_stone_power.png-0a82ac06c8894d707405d60150e36c14.ctex"]
+source_file="res://STS2_WineFox/ui/hands/multiplayer_hand_wine_fox_scissors.png"
+dest_files=["res://.godot/imported/multiplayer_hand_wine_fox_scissors.png-c242c0ef345e5d1717a6d1314fa0a20a.ctex"]
 
 [params]
 

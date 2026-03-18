@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cf4enmw0hyuoj"]
+
+[ext_resource type="Texture2D" uid="uid://dm0qxdbltnalv" path="res://STS2_WineFox/winefox/cake.png" id="1_mu1n0"]
+
+[resource]
+atlas = ExtResource("1_mu1n0")

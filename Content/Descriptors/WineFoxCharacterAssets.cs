@@ -10,19 +10,19 @@ namespace STS2_WineFox.Content.Descriptors
         internal static CharacterAssetProfile Profile { get; } = BaseProfile
             .WithScenes(BaseProfile.Scenes! with
             {
-                VisualsPath = "res://scenes/winefox/winefox.tscn",
+                VisualsPath = Const.Paths.CharacterVisualsScene,
             })
             .WithUi(new(
-                "res://images/ui/top_panel/character_icon_wine_fox.png",
-                "res://images/ui/top_panel/character_icon_wine_fox_outline.png",
-                "res://scenes/ui/character_icons/wine_fox_icon.tscn",
-                "res://scenes/screens/char_select/char_select_bg_wine_fox.tscn",
-                "res://images/packed/character_select/char_select_wine_fox.png",
-                "res://images/packed/character_select/char_select_wine_fox_locked.png",
-                "res://materials/transitions/silent_transition_mat.tres",
-                "res://images/packed/map/icons/map_marker_wine_fox.png"))
+                Const.Paths.CharacterIcon,
+                Const.Paths.CharacterIconOutline,
+                Const.Paths.CharacterIconScene,
+                Const.Paths.CharacterSelectBgScene,
+                Const.Paths.CharacterSelectIcon,
+                Const.Paths.CharacterSelectLockedIcon,
+                Const.Paths.DefaultTransitionMaterial,
+                Const.Paths.MapMarker))
             .WithVfx(new(
-                "res://scenes/vfx/card_trail_silent.tscn",
+                Const.Paths.DefaultTrailScene,
                 new(
                     new Color(0.9529412f, 0.5294118f, 0.7607843f, 0.55f),
                     82f,
@@ -35,10 +35,10 @@ namespace STS2_WineFox.Content.Descriptors
                     new Color(1f, 0.9568627f, 0.9843137f, 0.9f),
                     new Vector2(0.82f, 0.82f))))
             .WithAudio(new(
-                "event:/sfx/characters/silent/silent_select",
-                "event:/sfx/ui/wipe_silent",
-                "event:/sfx/characters/silent/silent_attack",
-                "event:/sfx/characters/silent/silent_cast",
-                "event:/sfx/characters/silent/silent_die"));
+                Const.Audio.CharacterSelect,
+                Const.Audio.CharacterTransition,
+                Const.Audio.Attack,
+                Const.Audio.Cast,
+                Const.Audio.Death));
     }
 }

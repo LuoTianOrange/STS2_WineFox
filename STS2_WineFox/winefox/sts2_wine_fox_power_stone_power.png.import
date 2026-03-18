@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nffdkaxuetaf"
-path="res://.godot/imported/sts2_wine_fox_power_wood_power.png-58695e6325f18117de4cc59857717b9f.ctex"
+uid="uid://dwpk7tgwd3wtw"
+path="res://.godot/imported/sts2_wine_fox_power_stone_power.png-915c57c241ef9ac68518ac50ff4f8927.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/winefox/sts2_wine_fox_power_wood_power.png"
-dest_files=["res://.godot/imported/sts2_wine_fox_power_wood_power.png-58695e6325f18117de4cc59857717b9f.ctex"]
+source_file="res://STS2_WineFox/winefox/sts2_wine_fox_power_stone_power.png"
+dest_files=["res://.godot/imported/sts2_wine_fox_power_stone_power.png-915c57c241ef9ac68518ac50ff4f8927.ctex"]
 
 [params]
 
