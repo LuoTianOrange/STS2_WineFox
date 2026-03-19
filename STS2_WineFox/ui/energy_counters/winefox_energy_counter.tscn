@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://0x37uehu4fpq"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Texture2D" uid="uid://dxfudhta8etfo" path="res://STS2_WineFox/ui/energy_counters/energy_counter_wine_fox.png" id="1_mw7o8"]
-
-[sub_resource type="FontVariation" id="FontVariation_x0k5t"]
-spacing_glyph = 2
+[ext_resource type="Script" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
+[ext_resource type="Texture2D" path="res://STS2_WineFox/ui/energy_counters/energy_counter_wine_fox.png" id="2_orb"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/energy_counters/energy_burst/energy_orb_shine.png" id="3_burst_back_tex"]
+[ext_resource type="Texture2D" path="res://images/ui/combat/energy_counters/energy_burst/energy_orb_burst.png" id="4_burst_front_tex"]
+[ext_resource type="Script" path="res://Scripts/WineFoxCounterLabel.cs" id="5_label_script"]
 
 [node name="WineFoxEnergyCounter" type="Control"]
 layout_mode = 3
@@ -11,8 +12,25 @@ anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 128.0
 pivot_offset = Vector2(64, 64)
+script = ExtResource("1_counter_script")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="BurstBack" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+emitting = false
+amount = 1
+one_shot = true
+local_coords = true
+texture = ExtResource("3_burst_back_tex")
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
 
 [node name="Layers" type="Control" parent="."]
 unique_name_in_owner = true
@@ -32,9 +50,86 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_mw7o8")
+texture = ExtResource("2_orb")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("2_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("2_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer4" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer5" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BurstFront" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+local_coords = true
+texture = ExtResource("4_burst_front_tex")
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -54,8 +149,8 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 16
 theme_override_constants/shadow_outline_size = 16
-theme_override_fonts/font = SubResource("FontVariation_x0k5t")
 theme_override_font_sizes/font_size = 36
 text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_label_script")
