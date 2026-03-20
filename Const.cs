@@ -42,6 +42,7 @@ public static class Const
         public const string DiggingPowerIcon = Root + "/powers/digging.png";
         public const string SteamPowerIcon = Root + "/powers/steam_power.png";
         public const string SteamPowerBigIcon = Root + "/powers/steam_power.png";
+        public const string StoneSwordPowerIcon = Root + "/powers/stone_sword_power.png";
         //Card
         public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
         public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -52,6 +53,7 @@ public static class Const
         public const string CardMiningGems = Root + "/cards/card_mininggems.png";
         public const string CardPlantTrees = Root + "/cards/card_planttrees.png";
         public const string CardSteamEngine = Root + "/cards/card_steamengine.png";
+        public const string CardStoneSword = Root + "/cards/card_stonesword.png";
     }
 
     public static class Audio

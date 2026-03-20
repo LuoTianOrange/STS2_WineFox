@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lwkem7a5dcaf"
-path="res://.godot/imported/card_winefoxstrike.png-054a59066463b3987287d581c26453f8.ctex"
+uid="uid://dmb1kf1xve1mh"
+path="res://.godot/imported/stone_sword_power.png-9d25bd93642be50fa689dd5a252e63a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/cards/card_winefoxstrike.png"
-dest_files=["res://.godot/imported/card_winefoxstrike.png-054a59066463b3987287d581c26453f8.ctex"]
+source_file="res://STS2_WineFox/powers/stone_sword_power.png"
+dest_files=["res://.godot/imported/stone_sword_power.png-9d25bd93642be50fa689dd5a252e63a6.ctex"]
 
 [params]
 

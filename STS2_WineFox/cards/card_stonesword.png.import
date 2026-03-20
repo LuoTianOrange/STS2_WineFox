@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brq6nnkw8c3d2"
-path="res://.godot/imported/stone_pickaxe.png-ae746d3e0b08f8c928b25ceb44464513.ctex"
+uid="uid://i8wfv5sp6iux"
+path="res://.godot/imported/card_stonesword.png-1d72823621c4872d3300d71e895a4b13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/powers/stone_pickaxe.png"
-dest_files=["res://.godot/imported/stone_pickaxe.png-ae746d3e0b08f8c928b25ceb44464513.ctex"]
+source_file="res://STS2_WineFox/cards/card_stonesword.png"
+dest_files=["res://.godot/imported/card_stonesword.png-1d72823621c4872d3300d71e895a4b13.ctex"]
 
 [params]
 
