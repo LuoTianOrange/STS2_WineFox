@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://dmhvq6t83wly0"]
 
-[ext_resource type="Script" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
-[ext_resource type="Texture2D" path="res://STS2_WineFox/ui/energy_counters/energy_counter_wine_fox.png" id="2_orb"]
-[ext_resource type="Texture2D" path="res://images/ui/combat/energy_counters/energy_burst/energy_orb_shine.png" id="3_burst_back_tex"]
-[ext_resource type="Texture2D" path="res://images/ui/combat/energy_counters/energy_burst/energy_orb_burst.png" id="4_burst_front_tex"]
-[ext_resource type="Script" path="res://Scripts/WineFoxCounterLabel.cs" id="5_label_script"]
+[ext_resource type="Script" uid="uid://cd0wi5by6hqup" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
+[ext_resource type="Texture2D" uid="uid://bd728ay2duur4" path="res://STS2_WineFox/ui/energy_counters/energy_orb_shine.png" id="2_f7eh7"]
+[ext_resource type="Texture2D" uid="uid://dxfudhta8etfo" path="res://STS2_WineFox/ui/energy_counters/energy_counter_wine_fox.png" id="2_orb"]
+[ext_resource type="Texture2D" uid="uid://c73iimjk4x5qq" path="res://STS2_WineFox/ui/energy_counters/energy_orb_burst.png" id="4_af300"]
+[ext_resource type="Script" uid="uid://c20236jl0ixgh" path="res://Scripts/WineFoxCounterLabel.cs" id="5_label_script"]
 
 [node name="WineFoxEnergyCounter" type="Control"]
 layout_mode = 3
@@ -21,9 +21,9 @@ unique_name_in_owner = true
 position = Vector2(64, 64)
 emitting = false
 amount = 1
+texture = ExtResource("2_f7eh7")
 one_shot = true
 local_coords = true
-texture = ExtResource("3_burst_back_tex")
 gravity = Vector2(0, 0)
 angular_velocity_min = 30.0
 angular_velocity_max = 30.0
@@ -65,6 +65,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +79,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,10 +121,10 @@ unique_name_in_owner = true
 position = Vector2(64, 64)
 emitting = false
 amount = 1
+texture = ExtResource("4_af300")
 lifetime = 0.5
 one_shot = true
 local_coords = true
-texture = ExtResource("4_burst_front_tex")
 gravity = Vector2(0, 0)
 angular_velocity_min = 30.0
 angular_velocity_max = 30.0
@@ -154,3 +156,6 @@ text = "3/3"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_label_script")
+AutoSizeEnabled = null
+MinFontSize = null
+MaxFontSize = null
