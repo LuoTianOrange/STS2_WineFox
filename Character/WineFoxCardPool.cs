@@ -33,6 +33,7 @@ namespace STS2_WineFox.Character
             typeof(PlantTrees),
             typeof(SteamEngine),
             typeof(MechanicalDrill),
+            typeof(MechanicalSaw),
             //Token
             typeof(StonePickaxe),
             typeof(StoneSword),

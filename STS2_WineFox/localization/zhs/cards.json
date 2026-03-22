@@ -29,7 +29,9 @@
   "STS2_WINE_FOX_CARD_IRON_PICKAXE.title": "铁镐",
   "STS2_WINE_FOX_CARD_IRON_PICKAXE.description": "接下来 {Times:diff()} 次获得资源时，额外获得 [blue]2[/blue] 个[gold]铁锭[/gold]。\n消耗 1 个[gold]木板[/gold]和 3 个[gold]铁锭[/gold]。",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.title": "钻石剑",
-  "STS2_WINE_FOX_CARD_DIAMOND_SWORD.description": "每回合前 {Echoes:diff()} 张攻击牌额外打出一次。"
+  "STS2_WINE_FOX_CARD_DIAMOND_SWORD.description": "每回合前 {Echoes:diff()} 张攻击牌额外打出一次。",
+  "STS2_WINE_FOX_CARD_MECHANICAL_SAW.title": "动力锯",
+  "STS2_WINE_FOX_CARD_MECHANICAL_SAW.description": "消耗 1 应力，对所有敌人造成 {Damage:diff()} 点伤害。"
   
   
   

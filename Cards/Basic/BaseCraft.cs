@@ -39,6 +39,7 @@ namespace STS2_WineFox.Cards.Basic
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
             if (Owner.Creature.CombatState is not { } combatState)
                 return;
 

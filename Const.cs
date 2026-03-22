@@ -65,6 +65,8 @@ public static class Const
         public const string CardWoodenSword = Root + "/cards/card_woodensword.png";
         public const string CardIronPickaxe = Root + "/cards/card_ironpickaxe.png";
         public const string CardDiamondSword = Root + "/cards/card_diamondsword.png";
+        public const string CardMechanicalSaw = Root + "/cards/card_mechanicalsaw.png";
+        
     }
 
     public static class Audio
