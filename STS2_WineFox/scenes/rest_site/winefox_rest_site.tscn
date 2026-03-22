@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://fc5x7hciyofl"]
+
+[ext_resource type="Script" uid="uid://chitdernefodb" path="res://Scripts/WineFoxRestSite.cs" id="1_f8q18"]
+[ext_resource type="Texture2D" uid="uid://dnf7glm48u2jv" path="res://STS2_WineFox/winefox/winefox_rest.png" id="2_p6k48"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sij4"]
+atlas = ExtResource("2_p6k48")
+
+[node name="winefoxRestSite" type="Node2D"]
+position = Vector2(-2, 42)
+scale = Vector2(0.45, 0.45)
+script = ExtResource("1_f8q18")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(82.22222, -182.22223)
+texture = SubResource("AtlasTexture_2sij4")
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -155.0
+offset_top = -351.0
+offset_right = 266.0
+offset_bottom = 332.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 209.209
+offset_top = -317.103
+offset_right = 209.209
+offset_bottom = -317.103
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -73.6836
+offset_top = -324.997
+offset_right = -73.6836
+offset_bottom = -324.997

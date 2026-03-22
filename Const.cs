@@ -16,8 +16,8 @@ public static class Const
         public const string EnergyIconCake = Root + "/winefox/cake.png";
         public const string CharacterVisualsScene = ScenesRoot + "/winefox/winefox.tscn";
         public const string CharacterIconScene = ScenesRoot + "/ui/character_icons/wine_fox_icon.tscn";
-        public const string CharacterSelectBgScene = ScenesRoot + "/screens/char_select/char_select_bg_wine_fox.tscn";
-
+        public const string CharacterSelectBgScene = ScenesRoot + "/char_select/char_select_bg_wine_fox.tscn";
+        public const string CharacterRestSiteAnimScene = ScenesRoot + "/rest_site/winefox_rest_site.tscn";
         public const string CharacterIcon = Root + "/winefox/character_icon_wine_fox.png";
         public const string CharacterIconOutline = Root + "/winefox/character_icon_wine_fox_outline.png";
         public const string CharacterSelectIcon = Root + "/packed/character_select/char_select_wine_fox.png";
