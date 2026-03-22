@@ -7,14 +7,14 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token
 {
-    public class StonePickaxe() : WineFoxCard(0, CardType.Power,
+    public class StonePickaxe() : WineFoxCard(0, CardType.Skill,
         CardRarity.Token, TargetType.Self, showInCardLibrary: false, autoAdd: false)
     {
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardStonePickaxe,
             Const.Paths.CardStonePickaxe);
         
-        // public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];

@@ -1,53 +1,67 @@
-﻿using STS2_WineFox.Cards.Token;
+﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Token;
 using STS2_WineFox.Powers;
 
 namespace STS2_WineFox.Cards
 {
-    // 一个合成配方
+    public record CraftCost(Type PowerType, decimal Amount);
+
     public record CraftRecipe(
-        string Name,
-        Dictionary<Type, int> Requirements, // PowerType → 所需数量
-        Type ResultCardType // 合成后加入手牌的卡牌类型
+        Func<CombatState, Player, CardModel> Factory,
+        params CraftCost[] Costs
     )
     {
-        // 判断当前材料是否满足合成条件
-        public bool CanCraft( /* AbstractCreature player */)
+        public bool CanCraft(Creature creature)
         {
-            foreach (var (powerType, required) in Requirements)
+            foreach (var cost in Costs)
             {
-                // TODO: 根据 BaseLib API 获取 player 对应 power 的 stacks
-                // int current = player.GetPower(powerType)?.Amount ?? 0;
-                // if (current < required) return false;
+                var power = creature.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType);
+                var amount = power != null ? (decimal)power.Amount : 0m;
+                if (amount < cost.Amount) return false;
             }
-
             return true;
         }
 
-        // 消耗材料
-        public async Task ConsumeMaterials( /* AbstractCreature player */)
+        public async Task ConsumeMaterials(CardModel card)
         {
-            foreach (var (powerType, amount) in Requirements)
+            var owner = card.Owner.Creature;
+            foreach (var cost in Costs)
             {
-                // TODO: await Actions.ReducePower(player, powerType, amount);
+                var power = owner.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType);
+                if (power != null)
+                    await PowerCmd.ModifyAmount(power, -cost.Amount, null, card);
             }
         }
     }
 
-// 全局配方注册表（静态）
     public static class CraftRecipeRegistry
     {
-        public static readonly List<CraftRecipe> All =
+        public static readonly IReadOnlyList<CraftRecipe> All =
         [
-            // 石镐：1块木板(=2木棍) + 3圆石
+            //石镐
             new(
-                "石镐",
-                new()
-                {
-                    { typeof(WoodPower), 2 },
-                    { typeof(StonePower), 3 },
-                },
-                typeof(StonePickaxe) // 后续实现
+                (state, owner) => state.CreateCard<StonePickaxe>(owner),
+                new CraftCost(typeof(WoodPower),  2m),
+                new CraftCost(typeof(StonePower), 2m)
             ),
+            //石剑
+            new(
+                (state, owner) => state.CreateCard<StoneSword>(owner),
+                new CraftCost(typeof(WoodPower),  1m),
+                new CraftCost(typeof(StonePower), 2m)
+            ),
+            //铁甲
+            new(
+                (state, owner) => state.CreateCard<IronArmor>(owner),
+                new CraftCost(typeof(IronPower),  8m)
+            ),
+            //木剑
+            new((state, owner) => state.CreateCard<WoodenSword>(owner),
+                new CraftCost(typeof(WoodPower),  2m))
         ];
     }
 }
