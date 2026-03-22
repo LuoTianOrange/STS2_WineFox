@@ -18,7 +18,9 @@ namespace STS2_WineFox.Cards.Basic
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
-
+        
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
+        
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardBaseCraft,
             Const.Paths.CardBaseCraft
@@ -48,7 +50,7 @@ namespace STS2_WineFox.Cards.Basic
 
             var options = new List<CardModel>
             {
-                combatState.CreateCard<StonePick>(Owner),
+                combatState.CreateCard<StonePickaxe>(Owner),
                 combatState.CreateCard<StoneSword>(Owner),
                 combatState.CreateCard<IronArmor>(Owner)
             };

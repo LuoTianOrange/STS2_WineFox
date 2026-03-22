@@ -46,7 +46,7 @@ namespace STS2_WineFox.Cards
                     { typeof(WoodPower), 2 },
                     { typeof(StonePower), 3 },
                 },
-                typeof(StonePick) // 后续实现
+                typeof(StonePickaxe) // 后续实现
             ),
         ];
     }

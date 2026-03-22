@@ -32,17 +32,18 @@ public static class Const
         public const string DefaultTransitionMaterial = "res://materials/transitions/silent_transition_mat.tres";
         public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
         //Power
-        public const string WoodPowerIcon = Root + "/powers/sts2_wine_fox_power_wood_power.png";
-        public const string WoodPowerBigIcon = Root + "/powers/sts2_wine_fox_power_wood_power.png";
+        public const string WoodPowerIcon = Root + "/powers/wood_power.png";
+        public const string WoodPowerBigIcon = Root + "/powers/wood_power.png";
         public const string PlantPowerIcon = Root + "/powers/plant_power.png";
-        public const string StonePowerIcon = Root + "/powers/sts2_wine_fox_power_stone_power.png";
-        public const string StonePowerBigIcon = Root + "/powers/sts2_wine_fox_power_stone_power.png";
+        public const string StonePowerIcon = Root + "/powers/stone_power.png";
+        public const string StonePowerBigIcon = Root + "/powers/stone_power.png";
         public const string StressPowerIcon = Root + "/powers/stress_power.png";
         public const string StressPowerBigIcon = Root + "/powers/stress_power.png";
         public const string DiggingPowerIcon = Root + "/powers/digging.png";
         public const string SteamPowerIcon = Root + "/powers/steam_power.png";
         public const string SteamPowerBigIcon = Root + "/powers/steam_power.png";
         public const string StoneSwordPowerIcon = Root + "/powers/stone_sword_power.png";
+        public const string IronPowerIcon = Root + "/powers/iron_power.png";
         //Card
         public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
         public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -55,6 +56,7 @@ public static class Const
         public const string CardSteamEngine = Root + "/cards/card_steamengine.png";
         public const string CardStoneSword = Root + "/cards/card_stonesword.png";
         public const string CardIronArmor = Root + "/cards/card_ironarmor.png";
+        public const string CardMechanicalDrill = Root + "/cards/card_mechanicaldrill.png";
     }
 
     public static class Audio

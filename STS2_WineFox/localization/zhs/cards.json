@@ -5,8 +5,8 @@
   "STS2_WINE_FOX_CARD_WINE_FOX_DEFEND.description": "获得 {Block:diff()} 点格挡。",
   "STS2_WINE_FOX_CARD_BASIC_MINE.title": "基础采掘",
   "STS2_WINE_FOX_CARD_BASIC_MINE.description": "获得 {Wood:diff()} [gold]木板[/gold] 和 {Stone:diff()} [gold]圆石[/gold]。",
-  "STS2_WINE_FOX_CARD_STONE_PICK.title": "石镐",
-  "STS2_WINE_FOX_CARD_STONE_PICK.description": "每次攻击时，额外获得[blue]1[/blue]块[gold]木板[/gold]和[blue]1[/blue]个[gold]圆石[/gold]。",
+  "STS2_WINE_FOX_CARD_STONE_PICKAXE.title": "石镐",
+  "STS2_WINE_FOX_CARD_STONE_PICKAXE.description": "每次攻击时，额外获得 [blue]1[/blue] [gold]木板[/gold]和 [blue]1[/blue] [gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.title": "基础合成",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "根据拥有的[gold]木板[/gold]，[gold]圆石[/gold]，[gold]铁锭[/gold]层数，[gold]选择[/gold]获得一张卡牌并消耗对应材料。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力一击",
@@ -21,5 +21,8 @@
   "STS2_WINE_FOX_CARD_STONE_SWORD.description": "获得 {Strength:diff()} 层[gold]力量[/gold]。接下来两个回合开始时，每回合-2层[gold]力量[/gold]。",
   "STS2_WINE_FOX_CARD_IRON_ARMOR.title": "铁甲",
   "STS2_WINE_FOX_CARD_IRON_ARMOR.description": "获得 {Armor:diff()} 层[gold]覆甲[/gold]。",
-  "STS2_WINE_FOX_CHOOSE_CRAFT": "选择一张要合成的卡牌"
+  "STS2_WINE_FOX_CHOOSE_CRAFT": "选择一张要合成的卡牌",
+  "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.title": "动力钻头",
+  "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.description": "获得 {Iron:diff()} 层[gold]铁锭[/gold]。如果消耗了[gold]应力[/gold]，返还 2 点能量。"
+  
 }

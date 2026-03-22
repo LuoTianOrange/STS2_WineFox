@@ -2,7 +2,7 @@
 
 **版本**：0.1.0  
 **游戏**：Slay the Spire 2  
-**框架**：[STS2-RitsuLib](https://github.com/Ritsu-Dev/STS2-RitsuLib)
+**框架**：[STS2-RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib)
 
 WineFox（酒狐）是一个自定义角色 Mod，围绕**材料合成**与**资源管理**的玩法设计。通过采集木板、圆石等材料，利用合成、挖掘等机制打出强力组合。
 

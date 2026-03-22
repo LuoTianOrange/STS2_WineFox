@@ -18,7 +18,10 @@ namespace STS2_WineFox.Cards.Token
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardStoneSword,
             Const.Paths.CardStoneSword);
-
+        
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Strength];
+        
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

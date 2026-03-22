@@ -32,7 +32,7 @@ namespace STS2_WineFox.Character
             typeof(PlantTrees),
             typeof(SteamEngine),
             //Token
-            typeof(StonePick),
+            typeof(StonePickaxe),
             typeof(StoneSword),
             typeof(IronArmor),
         ];

@@ -1,7 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Basic;
@@ -33,19 +32,14 @@ namespace STS2_WineFox.Cards.DynamicVars
             if (card.Owner?.Creature == null)
                 return BaseValue;
 
-            var amount = BaseValue;
-
             if (!runGlobalHooks || card.CombatState == null)
-                return amount;
+                return BaseValue;
+            
+            var hasStress = card.Owner.Creature.Powers
+                .OfType<StressPower>()
+                .Any(p => p.Amount > 0);
 
-            return Hook.ModifyPowerAmountGiven(
-                card.CombatState,
-                ModelDb.Power<TPower>(),
-                card.Owner.Creature,
-                amount,
-                card.Owner.Creature,
-                card,
-                out _);
+            return hasStress ? BaseValue * 2 : BaseValue;
         }
     }
 }

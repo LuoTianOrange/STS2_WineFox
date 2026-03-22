@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nffdkaxuetaf"
-path="res://.godot/imported/sts2_wine_fox_power_wood_power.png-011c589a5fba4162ee58d69ea537e00f.ctex"
+uid="uid://c6t4gfgbcqfi8"
+path="res://.godot/imported/card_mechanicaldrill.png-77302778fbe8385055af1cea40b6add8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/powers/sts2_wine_fox_power_wood_power.png"
-dest_files=["res://.godot/imported/sts2_wine_fox_power_wood_power.png-011c589a5fba4162ee58d69ea537e00f.ctex"]
+source_file="res://STS2_WineFox/cards/card_mechanicaldrill.png"
+dest_files=["res://.godot/imported/card_mechanicaldrill.png-77302778fbe8385055af1cea40b6add8.ctex"]
 
 [params]
 

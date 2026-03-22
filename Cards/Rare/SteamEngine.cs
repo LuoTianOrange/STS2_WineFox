@@ -9,8 +9,8 @@ namespace STS2_WineFox.Cards.Rare
 {
     public class SteamEngine() : WineFoxCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        // protected override IEnumerable<string> RegisteredKeywordIds =>
-        //     [WineFoxKeywords.Steam,WineFoxKeywords.Stress];
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stress];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Steam", 1m)];
