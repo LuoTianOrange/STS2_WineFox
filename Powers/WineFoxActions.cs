@@ -6,6 +6,8 @@ namespace STS2_WineFox.Powers
 {
     public static class WineFoxActions
     {
+        public static bool IsSwordEchoing { get; set; }
+        
         /// <summary>
         ///     获得单种材料（来源为卡牌）。若有应力则翻倍；触发铁镐效果。
         /// </summary>

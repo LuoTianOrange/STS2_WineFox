@@ -2,8 +2,8 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token
@@ -13,7 +13,7 @@ namespace STS2_WineFox.Cards.Token
         showInCardLibrary: false, autoAdd: false)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(4m, ValueProp.Move), new("Vigorous", 4m), new("Turns", 2m)];
+            [new DamageVar(6m, ValueProp.Move), new("Vigorous", 4m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
@@ -34,12 +34,14 @@ namespace STS2_WineFox.Cards.Token
                     .Targeting(target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
-
-            await PowerCmd.Apply<WoodenSwordPower>(
-                Owner.Creature, 1m, Owner.Creature, this);
+            
+            await PowerCmd.Apply<VigorPower>(
+                Owner.Creature, DynamicVars["Vigorous"].BaseValue, Owner.Creature, this);
         }
 
-
-        protected override void OnUpgrade() { }
+        protected override void OnUpgrade()
+        {
+            DynamicVars["Vigorous"].UpgradeValueBy(2m);
+        }
     }
 }

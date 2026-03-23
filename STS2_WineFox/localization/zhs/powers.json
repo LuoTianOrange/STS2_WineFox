@@ -34,7 +34,11 @@
   "STS2_WINE_FOX_POWER_DIAMOND_POWER.smartDescription": "珍贵的[gold]钻石[/gold]，可用于高级合成。",
   "STS2_WINE_FOX_POWER_DIAMOND_SWORD_POWER.title": "武器：钻石剑",
   "STS2_WINE_FOX_POWER_DIAMOND_SWORD_POWER.description": "每回合前 [blue]{Amount}[/blue] 张攻击牌额外打出一次。",
-  "STS2_WINE_FOX_POWER_DIAMOND_SWORD_POWER.smartDescription": "每回合前 [blue]{Amount}[/blue] 张攻击牌额外打出一次。"
+  "STS2_WINE_FOX_POWER_DIAMOND_SWORD_POWER.smartDescription": "每回合前 [blue]{Amount}[/blue] 张攻击牌额外打出一次。",
+  "STS2_WINE_FOX_POWER_IRON_SWORD_POWER.title": "武器：铁剑",
+  "STS2_WINE_FOX_POWER_IRON_SWORD_POWER.description": "接下来 [blue]{Amount}[/blue] 张攻击牌额外打出一次。",
+  "STS2_WINE_FOX_POWER_IRON_SWORD_POWER.smartDescription": "接下来 [blue]{Amount}[/blue] 张攻击牌额外打出一次。"
+  
   
   
   

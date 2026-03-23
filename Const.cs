@@ -48,7 +48,7 @@ public static class Const
         public const string IronPickaxePowerIcon = Root + "/powers/iron_pickaxe_power.png";
         public const string DiamondPowerIcon = Root + "/powers/diamond_power.png";
         public const string DiamondSwordPowerIcon = Root + "/powers/diamond_sword_power.png";
-        
+        public const string IronSwordPowerIcon = Root + "/powers/iron_sword_power.png";
         //Card
         public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
         public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -66,7 +66,7 @@ public static class Const
         public const string CardIronPickaxe = Root + "/cards/card_ironpickaxe.png";
         public const string CardDiamondSword = Root + "/cards/card_diamondsword.png";
         public const string CardMechanicalSaw = Root + "/cards/card_mechanicalsaw.png";
-        
+        public const string CardIronSword = Root + "/cards/card_ironsword.png";
     }
 
     public static class Audio

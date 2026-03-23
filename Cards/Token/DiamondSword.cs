@@ -13,7 +13,7 @@ namespace STS2_WineFox.Cards.Token
         showInCardLibrary: false, autoAdd: false)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new("Echoes", 1m)];
+            [new DamageVar(20m, ValueProp.Move), new("Echoes", 1m)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         public override CardAssetProfile AssetProfile => new(

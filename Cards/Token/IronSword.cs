@@ -2,27 +2,25 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps; // ← StrengthPower
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token
 {
-    public class StoneSword() : WineFoxCard(
+    public class IronSword() : WineFoxCard(
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy,
         showInCardLibrary: false, autoAdd: false)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new("Strength", 1m)];
+            [new DamageVar(14m, ValueProp.Move), new("Echoes", 1m)];
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
         public override CardAssetProfile AssetProfile => new(
-            Const.Paths.CardStoneSword,
-            Const.Paths.CardStoneSword);
-        
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Strength];
-        
+            Const.Paths.CardIronSword,
+            Const.Paths.CardIronSword);
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
@@ -37,14 +35,13 @@ namespace STS2_WineFox.Cards.Token
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<StrengthPower>(
-                Owner.Creature, DynamicVars["Strength"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronSwordPower>(
+                Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
         }
-
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Strength"].UpgradeValueBy(1m);
+            DynamicVars["Echoes"].UpgradeValueBy(1m);
         }
     }
 }
