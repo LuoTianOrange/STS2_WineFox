@@ -2,7 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models.Powers;  // VigorPower
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers

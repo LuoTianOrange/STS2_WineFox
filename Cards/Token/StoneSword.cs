@@ -2,18 +2,19 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;          // ← StrengthPower
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps; // ← StrengthPower
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token
 {
     public class StoneSword() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.Self,
+        0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy,
         showInCardLibrary: false, autoAdd: false)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Strength", 4m)];
+            [new DamageVar(6m, ValueProp.Move), new("Strength", 4m)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardStoneSword,
@@ -26,14 +27,22 @@ namespace STS2_WineFox.Cards.Token
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            // ① 原生力量 +4（与游戏所有力量相关联动自动生效）
+            var target = play.Target
+                         ?? Owner.Creature.CombatState?.Enemies.FirstOrDefault(e => e.IsAlive);
+
+            if (target != null)
+                await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                    .FromCard(this)
+                    .Targeting(target)
+                    .WithHitFx("vfx/vfx_attack_slash")
+                    .Execute(choiceContext);
+
             await PowerCmd.Apply<StrengthPower>(
                 Owner.Creature, DynamicVars["Strength"].BaseValue, Owner.Creature, this);
-
-            // ② 挂上倒计时（2 回合后各扣 2 力量）
             await PowerCmd.Apply<StoneSwordPower>(
                 Owner.Creature, 2m, Owner.Creature, this);
         }
+
 
         protected override void OnUpgrade()
         {
