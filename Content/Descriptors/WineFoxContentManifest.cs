@@ -40,6 +40,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, AlterPath>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
+            new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
 
             new PowerRegistrationEntry<StressPower>(),
             new PowerRegistrationEntry<DiggingPower>(),

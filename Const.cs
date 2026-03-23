@@ -28,12 +28,13 @@ namespace STS2_WineFox
 
             public const string MapMarker = Root + "/packed/map/icons/map_marker_wine_fox.png";
 
-            public const string HandCrankRelicIcon = Root + "/relics/sts2_wine_fox_relic_hand_crank.png";
-
             public const string DefaultTransitionMaterial = "res://materials/transitions/silent_transition_mat.tres";
 
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
-
+            //Relics
+            public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
+            public const string MaidBackpackRelicIcon = Root + "/relics/relic_maid_backpack.png";
+            
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
             public const string WoodPowerBigIcon = Root + "/powers/wood_power.png";

@@ -14,6 +14,7 @@ namespace STS2_WineFox.Character
         protected override IEnumerable<Type> RelicTypes =>
         [
             typeof(HandCrank),
+            typeof(MaidBackpack),
         ];
     }
 }
