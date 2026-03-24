@@ -1,54 +1,30 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using STS2_WineFox.Cards.Token;
+using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
     public class DiamondSwordPower : WineFoxPower
     {
-        private bool _diamondSwordPlayedThisTurn;
-        private bool _powerWasActiveAtTurnStart;
-        private int _usedThisTurn;
-
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.DiamondSwordPowerIcon);
 
-        protected override Task OnAfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
         {
-            if (player.Creature != Owner) return Task.CompletedTask;
-            _powerWasActiveAtTurnStart = Amount > 0;
-            _usedThisTurn = 0;
-            _diamondSwordPlayedThisTurn = false;
-            return Task.CompletedTask;
-        }
-
-        public override async Task AfterCardPlayed(
-            PlayerChoiceContext choiceContext, CardPlay cardPlay)
-        {
-            if (cardPlay.Card.Owner?.Creature != Owner) return;
-            if (cardPlay.Card.Type != CardType.Attack) return;
-            if (WineFoxActions.IsSwordEchoing) return;
-            if (_usedThisTurn >= Amount) return;
-
-            if (cardPlay.Card is DiamondSword && !_diamondSwordPlayedThisTurn)
-            {
-                _diamondSwordPlayedThisTurn = true;
-                if (!_powerWasActiveAtTurnStart)
-                    return;
-                
-            }
-
-            _usedThisTurn++;
-            WineFoxActions.IsSwordEchoing = true;
-            Flash();
-            await CardCmd.AutoPlay(choiceContext, cardPlay.Card, cardPlay.Target);
-            WineFoxActions.IsSwordEchoing = false;
+            return card.Owner.Creature != Owner
+                   || card.Type is not CardType.Attack
+                   || CombatManager.Instance.History.CardPlaysStarted.Count(e =>
+                       e.Actor == Owner
+                       && e.CardPlay.Card.Type is CardType.Attack
+                       && e.CardPlay.IsFirstInSeries
+                       && e.HappenedThisTurn(CombatState)) >= Amount
+                ? playCount
+                : playCount + 1;
         }
     }
 }
