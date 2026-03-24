@@ -1,4 +1,5 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+﻿<Project Sdk="Godot.NET.Sdk/4.6.1">
+    <Import Project="local.props" Condition="Exists('local.props')" />
     <PropertyGroup>
         <RootNamespace>STS2_WineFox</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
@@ -10,10 +11,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Sts2Dir>G:\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
         <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
         <RitsuLibDir>..\STS2-RitsuLib</RitsuLibDir>
-        <GodotExe>H:/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
         <GodotExportPreset>BasicExport</GodotExportPreset>
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
@@ -25,18 +24,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all"/>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false"/>
+        <Publicize Include="sts2" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false" />
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True"/>
-        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True"/>
-        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True"/>
-        <Reference Include="STS2-RitsuLib" HintPath="$(RitsuLibDir)\.godot\mono\temp\bin\Debug\STS2-RitsuLib.dll" Private="True"/>
+        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True" />
+        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True" />
+        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True" />
+        <Reference Include="STS2-RitsuLib" HintPath="$(RitsuLibDir)\.godot\mono\temp\bin\Debug\STS2-RitsuLib.dll" Private="True" />
     </ItemGroup>
 
     <ItemGroup>
@@ -46,22 +45,25 @@
         <EmbeddedResource Remove=".godot\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="local.props" />
+      <None Include="local.props.template" />
+    </ItemGroup>
+
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
-        <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(MSBuildProjectDirectory)\mod_manifest.json" DestinationFolder="$(ModOutputDir)"/>
+        <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high" />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)" />
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\mod_manifest.json" DestinationFolder="$(ModOutputDir)" />
     </Target>
 
     <Target Name="Export Mod PCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotExe)')">
-        <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Exec
-            Command='&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;'
-            EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <Message Text="Exporting mod PCK with MegaDot..." Importance="high" />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1" />
     </Target>
 
     <Target Name="Warn Missing Godot" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and !Exists('$(GodotExe)')">
-        <Warning Text="Godot executable not found at $(GodotExe). Skipped PCK export."/>
+        <Warning Text="Godot executable not found at $(GodotExe). Skipped PCK export." />
     </Target>
 </Project>
