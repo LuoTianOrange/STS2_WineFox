@@ -17,7 +17,7 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.IronSwordPowerIcon);
 
-        public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        protected override Task OnAfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
             if (player.Creature != Owner) return Task.CompletedTask;
             _ironSwordPlayedThisTurn = false; // 每回合重置，避免跨回合误判

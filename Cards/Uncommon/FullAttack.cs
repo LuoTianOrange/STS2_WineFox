@@ -55,7 +55,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 await PowerCmd.ModifyAmount(woodPower, -(decimal)woodAmount, null, this);
             if (stonePower != null && stoneAmount > 0)
                 await PowerCmd.ModifyAmount(stonePower, -(decimal)stoneAmount, null, this);
-
+            WineFoxActions.MaterialConsumeCountThisTurn++;
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(totalHits)
                 .FromCard(this)

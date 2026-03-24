@@ -31,6 +31,7 @@ namespace STS2_WineFox.Cards.Common
             if (woodPower == null) return;
 
             await PowerCmd.ModifyAmount(woodPower, -2m, null, this);
+            WineFoxActions.MaterialConsumeCountThisTurn++;
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }

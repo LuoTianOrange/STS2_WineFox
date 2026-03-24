@@ -14,7 +14,7 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.StoneArmorPowerIcon);
 
-        public override async Task AfterPlayerTurnStart(
+        protected override async Task OnAfterPlayerTurnStart(
             PlayerChoiceContext choiceContext, Player player)
         {
             if (player.Creature != Owner) return;

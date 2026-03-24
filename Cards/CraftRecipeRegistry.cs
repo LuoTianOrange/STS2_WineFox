@@ -29,6 +29,8 @@ namespace STS2_WineFox.Cards
 
         public async Task ConsumeMaterials(CardModel card)
         {
+            WineFoxActions.MaterialConsumeCountThisTurn++;
+            
             var owner = card.Owner.Creature;
             foreach (var cost in Costs)
             {

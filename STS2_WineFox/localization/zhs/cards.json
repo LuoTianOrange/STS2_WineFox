@@ -41,7 +41,9 @@
   "STS2_WINE_FOX_CARD_POWER_UP.title": "换挡，加速，起飞",
   "STS2_WINE_FOX_CARD_POWER_UP.description": "获得 {Stress:diff()} 层应力。抽 {Cards:diff()} 张牌。",
   "STS2_WINE_FOX_CARD_IRON_ZOMBIE.title": "\"白色僵尸\"",
-  "STS2_WINE_FOX_CARD_IRON_ZOMBIE.description": "造成 {Damage:diff()} 点伤害，获得 [blue]{Iron:diff()}[/blue] 个铁锭。"
+  "STS2_WINE_FOX_CARD_IRON_ZOMBIE.description": "造成 {Damage:diff()} 点伤害，获得 [blue]{Iron:diff()}[/blue] 个铁锭。",
+  "STS2_WINE_FOX_CARD_CRUSHING_WHEEL.title": "粉碎轮组",
+  "STS2_WINE_FOX_CARD_CRUSHING_WHEEL.description": "对所有敌人造成 {Damage:diff()} 点伤害。每在本回合消耗过一次材料，这张卡的费用就-1。"
   
   
   

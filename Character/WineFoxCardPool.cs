@@ -37,6 +37,7 @@ namespace STS2_WineFox.Character
             typeof(AlterPath),
             typeof(PowerUp),
             typeof(IronZombie),
+            typeof(CrushingWheel),
             
             //Token
             typeof(StonePickaxe),

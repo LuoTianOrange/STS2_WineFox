@@ -41,6 +41,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, StoneArmor>(),
             new CardRegistrationEntry<WineFoxCardPool, PowerUp>(),
             new CardRegistrationEntry<WineFoxCardPool, IronZombie>(),
+            new CardRegistrationEntry<WineFoxCardPool, CrushingWheel>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
