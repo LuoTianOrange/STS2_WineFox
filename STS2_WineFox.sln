@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 18.5.11612.153 insiders
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STS2_WineFox", "STS2_WineFox.csproj", "{A6C4A365-81D6-4463-BC62-161C0EDEECE4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1C5926B0-56F9-D89F-2238-25C5782B5E1B} = {1C5926B0-56F9-D89F-2238-25C5782B5E1B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STS2-RitsuLib", "STS2-RitsuLib\STS2-RitsuLib.csproj", "{1C5926B0-56F9-D89F-2238-25C5782B5E1B}"
 EndProject
@@ -29,5 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74559B41-4D63-4F87-80C9-7B627244E6F5}
 	EndGlobalSection
 EndGlobal

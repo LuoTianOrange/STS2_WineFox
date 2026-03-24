@@ -1,4 +1,4 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.6.1">
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="local.props" Condition="Exists('local.props')" />
     <PropertyGroup>
         <RootNamespace>STS2_WineFox</RootNamespace>
@@ -12,7 +12,6 @@
 
     <PropertyGroup>
         <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
-        <RitsuLibDir>..\STS2-RitsuLib</RitsuLibDir>
         <GodotExportPreset>BasicExport</GodotExportPreset>
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
@@ -35,19 +34,24 @@
         <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True" />
         <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True" />
         <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True" />
-        <Reference Include="STS2-RitsuLib" HintPath="$(RitsuLibDir)\.godot\mono\temp\bin\Debug\STS2-RitsuLib.dll" Private="True" />
     </ItemGroup>
 
     <ItemGroup>
         <Compile Remove=".godot\**" />
+        <Compile Remove="STS2-RitsuLib\**" />
         <None Remove=".godot\**" />
         <Content Remove=".godot\**" />
         <EmbeddedResource Remove=".godot\**" />
+        <EmbeddedResource Remove="STS2-RitsuLib\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="local.props" />
       <None Include="local.props.template" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="STS2-RitsuLib\STS2-RitsuLib.csproj" />
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
