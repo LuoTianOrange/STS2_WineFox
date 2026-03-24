@@ -14,6 +14,7 @@ namespace STS2_WineFox.Character
         public override string Title => Const.EnergyColorName;
 
         public override string EnergyColorName => Const.EnergyColorName;
+        public override string? BigEnergyIconPath => Const.Paths.EnergyIconCake;
         public override string? TextEnergyIconPath => Const.Paths.EnergyIconCake;
         public override string CardFrameMaterialPath => "card_frame_orange";
 

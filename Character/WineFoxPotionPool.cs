@@ -7,6 +7,7 @@ namespace STS2_WineFox.Character
     public class WineFoxPotionPool : TypeListPotionPoolModel
     {
         public override string EnergyColorName => Const.EnergyColorName;
+        public override string? BigEnergyIconPath => Const.Paths.EnergyIconCake;
         public override string? TextEnergyIconPath => Const.Paths.EnergyIconCake;
         public override Color LabOutlineColor => WineFox.Color;
 
