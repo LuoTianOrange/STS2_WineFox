@@ -1,3 +1,4 @@
+using STS2_WineFox.Character;
 using STS2_WineFox.Content.Descriptors;
 using STS2RitsuLib;
 
@@ -9,6 +10,7 @@ namespace STS2_WineFox.Content
         {
             RitsuLibFramework.CreateContentPack(Const.ModId)
                 .Manifest(WineFoxContentManifest.ContentEntries, WineFoxContentManifest.KeywordEntries)
+                .Story<WineFoxModStory>()
                 .Apply();
         }
     }

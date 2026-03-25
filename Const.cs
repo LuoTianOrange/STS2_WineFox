@@ -55,6 +55,8 @@ namespace STS2_WineFox
             public const string StoneArmorPowerIcon = Root + "/powers/stone_armor_power.png";
             public const string IronSwordPowerIcon = Root + "/powers/iron_sword_power.png";
             public const string RepairPowerIcon = Root + "/powers/repair_power.png";
+            public const string RadiationLeakIcon = Root + "/powers/radiation_leak_power.png";
+            public const string EasyPeasyPowerIcon = Root + "/powers/easy_peasy_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
@@ -79,8 +81,9 @@ namespace STS2_WineFox
             public const string CardPowerUp = Root + "/cards/card_powerup.png";
             public const string CardIronZombie = Root + "/cards/card_ironzombie.png";
             public const string CardCrushingWheel = Root + "/cards/card_crushingwheel.png";
-            public const string CardEnmergencyRepair = Root + "/cards/card_test.png";
+            public const string CardEnmergencyRepair = Root + "/cards/card_enmergency_repair.png";
             public const string CardLightAssault = Root + "/cards/card_test.png";
+            public const string CardEasyPeasy = Root + "/cards/card_test.png";
             
         }
 

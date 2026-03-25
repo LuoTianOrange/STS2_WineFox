@@ -40,6 +40,7 @@ namespace STS2_WineFox.Character
             typeof(CrushingWheel),
             typeof(EnmergencyRepair),
             typeof(LightAssault),
+            typeof(EasyPeasy),
             
             //Token
             typeof(StonePickaxe),

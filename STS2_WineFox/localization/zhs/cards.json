@@ -47,9 +47,7 @@
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.title": "紧急修复",
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.description": "造成 {Damage:diff()} 伤害，获得 {Block:diff()} 格挡，在下个回合开始时获得 2 [gold]应力[/gold]。",
   "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.title": "轻装突击",
-  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成 {Damage:diff()} 点伤害。你每有 1 份[gold]材料[/gold]，这张牌的伤害就降低 1 点。"
-  
-  
-  
-  
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成 {Damage:diff()} 点伤害。你每有 1 份[gold]材料[/gold]，这张牌的伤害就降低 1 点。",
+  "STS2_WINE_FOX_CARD_EASY_PEASY.title": "轻而易举",
+  "STS2_WINE_FOX_CARD_EASY_PEASY.description": "每回合开始时获得 {EasyPeasy:diff()} 费，额外抽 {EasyPeasy:diff()} 张牌。每回合开始时将 1 张[gold]晕眩[/gold]加入你的[gold]手牌[/gold]，每回合增加1。"
 }

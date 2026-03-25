@@ -16,6 +16,8 @@ namespace STS2_WineFox.Cards
         public const string Plating = "plating";
         public const string Diamond = "diamond";
         public const string Material =  "material";
+        public const string RadiationLeak = "radiation_leak";
+        public const string EasyPeasy = "easypeasy";
 
         extension(CardModel card)
         {
@@ -57,6 +59,16 @@ namespace STS2_WineFox.Cards
             public bool IsDiamond()
             {
                 return card.HasModKeyword(Diamond);
+            }
+
+            public bool IsRadiationLeak()
+            {
+                return card.HasModKeyword(RadiationLeak);
+            }
+            
+            public bool IsEasyPeasy()
+            {
+                return card.HasModKeyword(EasyPeasy);
             }
         }
     }

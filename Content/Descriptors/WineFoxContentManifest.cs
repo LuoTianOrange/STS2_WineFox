@@ -44,6 +44,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, CrushingWheel>(),
             new CardRegistrationEntry<WineFoxCardPool, EnmergencyRepair>(),
             new CardRegistrationEntry<WineFoxCardPool, LightAssault>(),
+            new CardRegistrationEntry<WineFoxCardPool, EasyPeasy>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
@@ -63,6 +64,8 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<IronSwordPower>(),
             new PowerRegistrationEntry<StoneArmorPower>(),
             new PowerRegistrationEntry<RepairPower>(),
+            new PowerRegistrationEntry<RadiationLeakPower>(),
+            new PowerRegistrationEntry<EasyPeasyPower>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =

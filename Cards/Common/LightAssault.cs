@@ -10,13 +10,13 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Common;
 
 public class LightAssault() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<string> RegisteredKeywordIds =>
         [WineFoxKeywords.Material];
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        ModCardVars.Computed("Damage", 14m, CalcDamage)
+        ModCardVars.Computed("Damage", 13m, CalcDamage)
     ];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLightAssault);
@@ -41,13 +41,13 @@ public class LightAssault() : WineFoxCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Damage"].UpgradeValueBy(4m);
+        DynamicVars["Damage"].UpgradeValueBy(3m);
     }
 
     private static decimal CalcDamage(CardModel? card)
     {
-        if (card == null) return 14m;
-        if (!card.DynamicVars.TryGetValue("Damage", out var dynamicVar)) return 14m;
+        if (card == null) return 13m;
+        if (!card.DynamicVars.TryGetValue("Damage", out var dynamicVar)) return 13m;
 
         var creature = card._owner?.Creature;
         if (creature == null) return dynamicVar.BaseValue;

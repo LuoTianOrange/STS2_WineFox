@@ -43,7 +43,13 @@
   "STS2_WINE_FOX_POWER_STONE_ARMOR_POWER.smartDescription": "每回合开始时，失去 [blue]{Amount}[/blue] 点敏捷。",
   "STS2_WINE_FOX_POWER_REPAIR_POWER.title": "修复",
   "STS2_WINE_FOX_POWER_REPAIR_POWER.description": "下回合开始时，获得 [blue]1[/blue] 层[gold]应力[/gold]。",
-  "STS2_WINE_FOX_POWER_REPAIR_POWER.smartDescription": "下回合开始时，获得 [blue]{Amount}[/blue] 层[gold]应力[/gold]。"
+  "STS2_WINE_FOX_POWER_REPAIR_POWER.smartDescription": "下回合开始时，获得 [blue]{Amount}[/blue] 层[gold]应力[/gold]。",
+  "STS2_WINE_FOX_POWER_RADIATION_LEAK_POWER.title": "坏了坏了",
+  "STS2_WINE_FOX_POWER_RADIATION_LEAK_POWER.description": "回合开始时，将 1 张[gold]晕眩[/gold]加入你的手牌，每回合增加1。",
+  "STS2_WINE_FOX_POWER_RADIATION_LEAK_POWER.smartDescription": "回合开始时，将 {Amount} 张晕眩加入你的手牌，每回合增加1。",
+  "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.title": "核电，轻而易举啊",
+  "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.description": "回合开始时，获得 1 费用，抽 1 张卡。",
+  "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.smartDescription": "回合开始时，获得 {Amount} 费用，抽 {Amount} 张卡。"
   
   
   
