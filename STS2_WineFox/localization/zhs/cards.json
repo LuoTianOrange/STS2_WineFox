@@ -10,7 +10,7 @@
   "STS2_WINE_FOX_CARD_BASE_CRAFT.title": "基础合成",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "获得 {Block:diff()} 点格挡。根据拥有的[gold]木板[/gold]，[gold]圆石[/gold]，[gold]铁锭[/gold]层数，[gold]选择[/gold]获得一张卡牌并消耗对应材料。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力倾泻",
-  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。\n每消耗1个对随机一名敌人造成{Damage}点伤害。(共造成{Hits:diff()}次伤害)",
+  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。\n对随机一名敌人造成{Damage:diff()}点伤害。{InCombat:\n(命中{Hits:diff()}次)|}",
   "STS2_WINE_FOX_CARD_MINING_GEMS.title": "挖掘宝石",
   "STS2_WINE_FOX_CARD_MINING_GEMS.description": "获得 {Diamond:diff()} 个[gold]钻石[/gold]。",
   "STS2_WINE_FOX_CARD_PLANT_TREES.title": "种植树木",
@@ -43,8 +43,11 @@
   "STS2_WINE_FOX_CARD_IRON_ZOMBIE.title": "\"白色僵尸\"",
   "STS2_WINE_FOX_CARD_IRON_ZOMBIE.description": "造成 {Damage:diff()} 点伤害，获得 [blue]{Iron:diff()}[/blue] 个铁锭。",
   "STS2_WINE_FOX_CARD_CRUSHING_WHEEL.title": "粉碎轮组",
-  "STS2_WINE_FOX_CARD_CRUSHING_WHEEL.description": "对所有敌人造成 {Damage:diff()} 点伤害。每在本回合消耗过一次材料，这张卡的费用就-1。"
-  
+  "STS2_WINE_FOX_CARD_CRUSHING_WHEEL.description": "对所有敌人造成 {Damage:diff()} 点伤害。每在本回合消耗过一次[gold]材料[/gold]，这张卡的费用就-1。",
+  "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.title": "紧急修复",
+  "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.description": "造成 {Damage:diff()} 伤害，获得 {Block:diff()} 格挡，在下个回合开始时获得 2 [gold]应力[/gold]。",
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.title": "轻装突击",
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成 {Damage:diff()} 点伤害。你每有 1 份[gold]材料[/gold]，这张牌的伤害就降低 1 点。"
   
   
   

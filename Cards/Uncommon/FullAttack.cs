@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
@@ -17,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(4m, ValueProp.Move),
+            ModCardVars.Computed("Damage", 4m, CalcDamage),
             ModCardVars.Computed("Hits", 0m, CalcHits),
         ];
 
@@ -40,23 +39,21 @@ namespace STS2_WineFox.Cards.Uncommon
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            // 记录当前资源数量
             var woodPower = owner.Powers.OfType<WoodPower>().FirstOrDefault();
             var stonePower = owner.Powers.OfType<StonePower>().FirstOrDefault();
             var woodAmount = woodPower?.Amount ?? 0;
             var stoneAmount = stonePower?.Amount ?? 0;
             var totalHits = woodAmount + stoneAmount;
 
-
             if (totalHits <= 0) return;
 
-            // 消耗所有资源
             if (woodPower != null && woodAmount > 0)
                 await PowerCmd.ModifyAmount(woodPower, -(decimal)woodAmount, null, this);
             if (stonePower != null && stoneAmount > 0)
                 await PowerCmd.ModifyAmount(stonePower, -(decimal)stoneAmount, null, this);
             WineFoxActions.MaterialConsumeCountThisTurn++;
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+
+            await DamageCmd.Attack(DynamicVars["Damage"].BaseValue)
                 .WithHitCount(totalHits)
                 .FromCard(this)
                 .TargetingRandomOpponents(combatState)
@@ -69,11 +66,24 @@ namespace STS2_WineFox.Cards.Uncommon
             AddKeyword(CardKeyword.Retain);
         }
 
+        private static decimal CalcDamage(CardModel? card)
+        {
+            if (card == null) return 4m;
+            if (!card.DynamicVars.TryGetValue("Damage", out var dynamicVar)) return 4m;
+
+            var creature = card._owner?.Creature;
+            if (creature == null) return dynamicVar.BaseValue;
+
+            var hits = CalcHits(card);
+            return hits > 0
+                ? dynamicVar.BaseValue * hits
+                : dynamicVar.BaseValue;
+        }
+
         private static decimal CalcHits(CardModel? card)
         {
             var creature = card?._owner?.Creature;
-            if (creature == null)
-                return 0m;
+            if (creature == null) return 0m;
 
             var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
             var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;

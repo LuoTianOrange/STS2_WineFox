@@ -40,7 +40,10 @@
   "STS2_WINE_FOX_POWER_IRON_SWORD_POWER.smartDescription": "接下来 [blue]{Amount}[/blue] 张攻击牌额外打出一次。",
   "STS2_WINE_FOX_POWER_STONE_ARMOR_POWER.title": "装备：砖石甲",
   "STS2_WINE_FOX_POWER_STONE_ARMOR_POWER.description": "每回合开始时，失去 [blue]1[/blue] 点敏捷。",
-  "STS2_WINE_FOX_POWER_STONE_ARMOR_POWER.smartDescription": "每回合开始时，失去 [blue]{Amount}[/blue] 点敏捷。"
+  "STS2_WINE_FOX_POWER_STONE_ARMOR_POWER.smartDescription": "每回合开始时，失去 [blue]{Amount}[/blue] 点敏捷。",
+  "STS2_WINE_FOX_POWER_REPAIR_POWER.title": "修复",
+  "STS2_WINE_FOX_POWER_REPAIR_POWER.description": "下回合开始时，获得 [blue]1[/blue] 层[gold]应力[/gold]。",
+  "STS2_WINE_FOX_POWER_REPAIR_POWER.smartDescription": "下回合开始时，获得 [blue]{Amount}[/blue] 层[gold]应力[/gold]。"
   
   
   

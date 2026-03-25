@@ -15,6 +15,7 @@ namespace STS2_WineFox.Cards
         public const string Strength = "strength";
         public const string Plating = "plating";
         public const string Diamond = "diamond";
+        public const string Material =  "material";
 
         extension(CardModel card)
         {

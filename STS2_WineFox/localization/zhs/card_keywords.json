@@ -18,5 +18,7 @@
   "STS2_WINEFOX-PLATING.title": "覆甲",
   "STS2_WINEFOX-PLATING.description": "在你的回合结束时获得格挡。[gold]覆甲[/gold]会在你的回合开始时减少[blue]1[/blue]层。",
   "STS2_WINEFOX-DIAMOND.title": "钻石",
-  "STS2_WINEFOX-DIAMOND.description": "一种高级材料，可用于合成。"
+  "STS2_WINEFOX-DIAMOND.description": "一种高级材料，可用于合成。",
+  "STS2_WINEFOX-MATERIAL.title": "材料",
+  "STS2_WINEFOX-MATERIAL.description": "包括[gold]木板[/gold]、[gold]圆石[/gold]、[gold]铁锭[/gold]、[gold]金锭[/gold]和[gold]钻石[/gold]。"
 }

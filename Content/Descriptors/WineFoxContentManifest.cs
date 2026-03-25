@@ -42,6 +42,8 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, PowerUp>(),
             new CardRegistrationEntry<WineFoxCardPool, IronZombie>(),
             new CardRegistrationEntry<WineFoxCardPool, CrushingWheel>(),
+            new CardRegistrationEntry<WineFoxCardPool, EnmergencyRepair>(),
+            new CardRegistrationEntry<WineFoxCardPool, LightAssault>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
@@ -59,7 +61,8 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<DiamondPower>(),
             new PowerRegistrationEntry<DiamondSwordPower>(),
             new PowerRegistrationEntry<IronSwordPower>(),
-            new PowerRegistrationEntry<StoneArmorPower>()
+            new PowerRegistrationEntry<StoneArmorPower>(),
+            new PowerRegistrationEntry<RepairPower>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
@@ -82,6 +85,7 @@ namespace STS2_WineFox.Content.Descriptors
                 "res://images/powers/strength_power.png"),
             KeywordRegistrationEntry.Card(WineFoxKeywords.Plating, "STS2_WINEFOX-PLATING",
                 "res://images/powers/plating_power.png"),
+            KeywordRegistrationEntry.Card(WineFoxKeywords.Material, "STS2_WINEFOX-MATERIAL")
         ];
     }
 }

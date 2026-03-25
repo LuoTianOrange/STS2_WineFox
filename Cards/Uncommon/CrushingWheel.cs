@@ -12,29 +12,29 @@ namespace STS2_WineFox.Cards.Uncommon;
 public class CrushingWheel() : WineFoxCard(
     3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
-    // 已追踪进费用的合成次数（用于回合结束后撤销）
+    protected override IEnumerable<string> RegisteredKeywordIds =>
+        [WineFoxKeywords.Material];
+    
     private int _craftCountTracked;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(21m, ValueProp.Move)];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCrushingWheel);
-
-    // 回合开始：撤销上一回合的降费，重置追踪值
+    
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature != Owner?.Creature) return Task.CompletedTask;
 
         if (_craftCountTracked > 0)
-            EnergyCost.AddThisCombat(_craftCountTracked); // 撤销降费
+            EnergyCost.AddThisCombat(_craftCountTracked);
 
         _craftCountTracked = 0;
-        // 如无任何 WineFoxPower 存活，此处兜底重置计数器
+
         WineFoxActions.MaterialConsumeCountThisTurn = 0;
         return Task.CompletedTask;
     }
-
-    // 每次有卡打出后：检测是否有新的合成发生，有则降费
+    
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner) return Task.CompletedTask;
