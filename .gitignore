@@ -10,4 +10,6 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+local.props
+!local.props.template
 godot.log
