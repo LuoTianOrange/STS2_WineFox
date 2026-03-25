@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
-    <Import Project="local.props" Condition="Exists('local.props')" />
+    <Import Project=".\local.props" Condition="Exists('.\local.props')" />
     <PropertyGroup>
         <RootNamespace>STS2_WineFox</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
@@ -16,6 +16,10 @@
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
     </PropertyGroup>
+
+	<Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
+		<Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' \ 'GodotExe' for your local environment."/>
+	</Target>
 
     <PropertyGroup>
         <RunPckExport Condition="'$(RunPckExport)' == '' and '$(DesignTimeBuild)' != 'true'">true</RunPckExport>
