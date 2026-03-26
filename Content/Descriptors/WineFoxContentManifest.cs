@@ -48,6 +48,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, AllItem>(),
             new CardRegistrationEntry<WineFoxCardPool, LessHoliday>(),
             new CardRegistrationEntry<WineFoxCardPool, RiclearPowerPlant>(),
+            new CardRegistrationEntry<WineFoxCardPool, Alternator>(),
 
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),

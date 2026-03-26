@@ -86,6 +86,7 @@ namespace STS2_WineFox
             public const string CardEasyPeasy = Root + "/cards/card_easy_peasy.png";
             public const string CardAllItem = Root + "/cards/card_allitem.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
+            public const string CardAlternator = Root + "/cards/card_alternator.png";
             
         }
 

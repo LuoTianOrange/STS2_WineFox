@@ -44,6 +44,7 @@ namespace STS2_WineFox.Character
             typeof(LessHoliday),
             typeof(AllItem),
             typeof(RiclearPowerPlant),
+            typeof(Alternator),
             
             //Token
             typeof(StonePickaxe),

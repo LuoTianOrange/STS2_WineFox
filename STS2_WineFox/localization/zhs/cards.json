@@ -10,7 +10,7 @@
   "STS2_WINE_FOX_CARD_BASE_CRAFT.title": "基础合成",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "获得 {Block:diff()} 点格挡。根据拥有的[gold]木板[/gold]，[gold]圆石[/gold]，[gold]铁锭[/gold]层数，[gold]选择[/gold]获得一张卡牌并消耗对应材料。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力倾泻",
-  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。\n每消耗 1 个材料对随机一名敌人造成{Damage:diff()}点伤害。{InCombat:\n(命中{Hits:diff()}次)|}",
+  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。\n每消耗 1 个材料对随机敌人造成{Damage:diff()}点伤害。{InCombat:\n(命中{Hits:diff()}次)|}",
   "STS2_WINE_FOX_CARD_MINING_GEMS.title": "挖掘宝石",
   "STS2_WINE_FOX_CARD_MINING_GEMS.description": "获得 {Diamond:diff()} 个[gold]钻石[/gold]。",
   "STS2_WINE_FOX_CARD_PLANT_TREES.title": "种植树木",
@@ -55,5 +55,7 @@
   "STS2_WINE_FOX_CARD_LESS_HOLIDAY.title": "996",
   "STS2_WINE_FOX_CARD_LESS_HOLIDAY.description": "每回合开始时获得 {Steam:diff()} [gold]应力[/gold]。",
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.title": "河电站",
-  "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.description": "获得 {Block:diff()} 点格挡，获得 2 应力。"
+  "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.description": "获得 {Block:diff()} 点格挡，获得 2 应力。",
+  "STS2_WINE_FOX_CARD_ALTERNATOR.title": "交流发电机",
+  "STS2_WINE_FOX_CARD_ALTERNATOR.description": "消耗 1 应力，获得 {Energy:diff()} 点费用。"
 }

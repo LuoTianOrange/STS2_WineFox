@@ -9,10 +9,10 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class RiclearPowerPlant() : WineFoxCard(
-    1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new BlockVar(13, ValueProp.Move),new("Steam", 2m)];
+        [new BlockVar(13, ValueProp.Move),new("Stress", 2m)];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRiclearPowerPlant);
 
@@ -22,7 +22,7 @@ public class RiclearPowerPlant() : WineFoxCard(
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         await PowerCmd.Apply<SteamPower>(
-            Owner.Creature, DynamicVars["Steam"].BaseValue, Owner.Creature, this);
+            Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
