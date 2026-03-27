@@ -55,7 +55,31 @@ namespace STS2_WineFox.Commands
 
             await TryTriggerIronPickaxe(owner, card);
         }
+        
+        public static async Task GainAllMaterials(Creature creature, decimal amount)
+        {
+            if (creature == null) throw new ArgumentNullException(nameof(creature));
 
+            var stress = creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+
+            if (stress == null)
+            {
+                await PowerCmd.Apply<WoodPower>(creature, amount, creature, null);
+                await PowerCmd.Apply<StonePower>(creature, amount, creature, null);
+                await PowerCmd.Apply<IronPower>(creature, amount, creature, null);
+                await PowerCmd.Apply<DiamondPower>(creature, amount, creature, null);
+            }
+            else
+            {
+                await PowerCmd.Apply<WoodPower>(creature, amount * 2, creature, null);
+                await PowerCmd.Apply<StonePower>(creature, amount * 2, creature, null);
+                await PowerCmd.Apply<IronPower>(creature, amount * 2, creature, null);
+                await PowerCmd.Apply<DiamondPower>(creature, amount * 2, creature, null);
+
+                await PowerCmd.Apply<StressPower>(creature, -1m, creature, null);
+            }
+        }
+        
         public static async Task LoseMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount, decimal secondAmount)
             where TFirst : MaterialPower
             where TSecond : MaterialPower

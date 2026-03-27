@@ -61,5 +61,9 @@
   "STS2_WINE_FOX_CARD_NOTHING.title": "空手打击",
   "STS2_WINE_FOX_CARD_NOTHING.description": "造成{Damage:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.title": "木镐",
-  "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.description": "下个回合开始时，获得{Energy:energyIcons()}，抽{Cards:diff()}张卡。"
+  "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.description": "下个回合开始时，获得{Energy:energyIcons()}，抽{Cards:diff()}张卡。",
+  "STS2_WINE_FOX_CARD_WOODEN_ARMOR.title": "木甲",
+  "STS2_WINE_FOX_CARD_WOODEN_ARMOR.description": "获得 {Block:diff()} 点格挡。",
+  "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.title": "下界合金镐",
+  "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.description": "每在同一个回合内打出 2 张牌，就获得木板、石头、铁、钻石各 1 个。"
 }

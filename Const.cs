@@ -57,6 +57,7 @@ namespace STS2_WineFox
             public const string RepairPowerIcon = Root + "/powers/repair_power.png";
             public const string RadiationLeakIcon = Root + "/powers/radiation_leak_power.png";
             public const string EasyPeasyPowerIcon = Root + "/powers/easy_peasy_power.png";
+            public const string NetheritePickaxePowerIcon = Root + "/powers/netherite_pickaxe_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
@@ -89,7 +90,8 @@ namespace STS2_WineFox
             public const string CardAlternator = Root + "/cards/card_alternator.png";
             public const string CardNothing = Root + "/cards/card_test.png";
             public const string CardWoodenPickaxe = Root + "/cards/card_woodenpickaxe.png";
-            
+            public const string CardWoodenArmor = Root + "/cards/card_woodenarmor.png";
+            public const string CardNetheritePickaxe = Root + "/cards/card_netherite_pickaxe.png";
         }
 
         public static class Audio

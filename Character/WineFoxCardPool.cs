@@ -1,4 +1,5 @@
 ﻿using Godot;
+using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Basic;
 using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Cards.Rare;
@@ -44,6 +45,7 @@ namespace STS2_WineFox.Character
             typeof(AllItem),
             typeof(RiclearPowerPlant),
             typeof(Alternator),
+            typeof(NetheritePickaxe)
         ];
     }
 }

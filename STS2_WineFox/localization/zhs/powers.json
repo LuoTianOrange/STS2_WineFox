@@ -49,7 +49,10 @@
   "STS2_WINE_FOX_POWER_RADIATION_LEAK_POWER.smartDescription": "回合开始时，将 {Amount} 张晕眩加入你的手牌，每回合增加 1 层。",
   "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.title": "核电，轻而易举啊",
   "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.description": "回合开始时，获得 1 费用，抽 1 张卡。",
-  "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.smartDescription": "回合开始时，获得 {Amount} 费用，抽 {Amount} 张卡。"
+  "STS2_WINE_FOX_POWER_EASY_PEASY_POWER.smartDescription": "回合开始时，获得 {Amount} 费用，抽 {Amount} 张卡。",
+  "STS2_WINE_FOX_POWER_NETHERITE_PICKAXE_POWER.title": "工具：下界合金镐",
+  "STS2_WINE_FOX_POWER_NETHERITE_PICKAXE_POWER.description": "每在同一个回合内打出 2 张牌，就获得木板、石头、铁、钻石各 1 个。",
+  "STS2_WINE_FOX_POWER_NETHERITE_PICKAXE_POWER.smartDescription": "每在同一个回合内打出 2 张牌，就获得木板、石头、铁、钻石各 1 个。"
   
   
   

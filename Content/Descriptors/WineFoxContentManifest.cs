@@ -1,4 +1,5 @@
 using STS2_WineFox.Cards;
+using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Basic;
 using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Cards.Rare;
@@ -43,6 +44,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, LessHoliday>(),
             new CardRegistrationEntry<WineFoxCardPool, RiclearPowerPlant>(),
             new CardRegistrationEntry<WineFoxCardPool, Alternator>(),
+            new CardRegistrationEntry<WineFoxCardPool, NetheritePickaxe>(),
             
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
@@ -55,6 +57,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, StoneArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, Nothing>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, WoodenPickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, WoodenArmor>(),
 
             //RelicPool
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
@@ -78,6 +81,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<RepairPower>(),
             new PowerRegistrationEntry<RadiationLeakPower>(),
             new PowerRegistrationEntry<EasyPeasyPower>(),
+            new PowerRegistrationEntry<NetheritePickaxePower>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
