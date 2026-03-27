@@ -1,11 +1,4 @@
 ﻿using Godot;
-using STS2_WineFox.Cards.Ancient;
-using STS2_WineFox.Cards.Basic;
-using STS2_WineFox.Cards.Common;
-using STS2_WineFox.Cards.Rare;
-using STS2_WineFox.Cards.Uncommon;
-
-
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
