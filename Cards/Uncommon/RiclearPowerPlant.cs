@@ -21,7 +21,7 @@ public class RiclearPowerPlant() : WineFoxCard(
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        await PowerCmd.Apply<SteamPower>(
+        await PowerCmd.Apply<StressPower>(
             Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
     }
 

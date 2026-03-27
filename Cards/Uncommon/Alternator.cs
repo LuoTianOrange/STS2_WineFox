@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class Alternator() : WineFoxCard(
-    1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new ("Stress",1),new EnergyVar(2)];

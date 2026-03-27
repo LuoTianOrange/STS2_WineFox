@@ -82,5 +82,7 @@
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.title": "空置域",
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.description": "获得{Block:diff()}点格挡。获得{StonePower:diff()}[gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.title": "「W」思索",
-  "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.description": "查看抽牌堆顶端3张牌，选择其中1张加入手牌，并附加重放和消耗。"
+  "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.description": "查看抽牌堆顶端3张牌，选择其中1张加入手牌，并附加重放和消耗。",
+  "STS2_WINE_FOX_CARD_BACKUP_CRAFTING.title": "备用工作台",
+  "STS2_WINE_FOX_CARD_BACKUP_CRAFTING.description": "[gold]合成[/gold]。"
 }

@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -28,14 +29,7 @@ namespace STS2_WineFox.Cards.Rare
             
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
             
-            await PowerCmd.Apply<WoodPower>(
-                Owner.Creature, DynamicVars["Wood"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<StonePower>(
-                Owner.Creature, DynamicVars["Stone"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<IronPower>(
-                Owner.Creature, DynamicVars["Iron"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<DiamondPower>(
-                Owner.Creature, DynamicVars["Diamond"].BaseValue, Owner.Creature, this);
+            await MaterialCmd.GainAllMaterials(Owner.Creature, 1m);
         }
 
         protected override void OnUpgrade()
