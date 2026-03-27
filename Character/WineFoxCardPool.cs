@@ -1,9 +1,13 @@
+﻿<<<<<<< HEAD
 ﻿using Godot;
 using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Basic;
 using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Cards.Rare;
 using STS2_WineFox.Cards.Uncommon;
+=======
+using Godot;
+>>>>>>> a074605203110ecc1ffc480bc270dd3486e5abe1
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
@@ -21,31 +25,5 @@ namespace STS2_WineFox.Character
         public override Color DeckEntryCardColor => new("d2a15a");
         public override Color EnergyOutlineColor => new("8d4b24");
         public override bool IsColorless => false;
-
-        protected override IEnumerable<Type> CardTypes =>
-        [
-            typeof(WineFoxStrike),
-            typeof(WineFoxDefend),
-            typeof(BasicMine),
-            typeof(BaseCraft),
-            typeof(FullAttack),
-            typeof(MiningGems),
-            typeof(PlantTrees),
-            typeof(SteamEngine),
-            typeof(MechanicalDrill),
-            typeof(MechanicalSaw),
-            typeof(AlterPath),
-            typeof(PowerUp),
-            typeof(IronZombie),
-            typeof(CrushingWheel),
-            typeof(EnmergencyRepair),
-            typeof(LightAssault),
-            typeof(EasyPeasy),
-            typeof(LessHoliday),
-            typeof(AllItem),
-            typeof(RiclearPowerPlant),
-            typeof(Alternator),
-            typeof(NetheritePickaxe)
-        ];
     }
 }
