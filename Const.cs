@@ -100,6 +100,7 @@ namespace STS2_WineFox
             public const string CardMilk = Root + "/cards/card_test.png";
             public const string CardVacantDomain = Root + "/cards/card_vacantdomain.png";
             public const string CardRecordPlayer = Root + "/cards/card_record_player.png";
+            public const string CardPressWToThink = Root + "/cards/card_press_w_to_think.png";
         }
 
         public static class Audio

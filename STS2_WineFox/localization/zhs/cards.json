@@ -22,6 +22,7 @@
   "STS2_WINE_FOX_CARD_IRON_ARMOR.title": "铁甲",
   "STS2_WINE_FOX_CARD_IRON_ARMOR.description": "获得{Armor:diff()}层[gold]覆甲[/gold]。\n(8个[gold]铁锭[/gold])",
   "STS2_WINE_FOX_CHOOSE_CRAFT": "选择一张要合成的卡牌",
+  "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK_CHOOSE":"选择一张牌加入你的手牌",
   "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.title": "动力钻头",
   "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.description": "获得{Iron:diff()}个[gold]铁锭[/gold]。如果花费了[gold]应力[/gold]，返还 2 点能量。",
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.title": "木剑",
@@ -79,5 +80,7 @@
   "STS2_WINE_FOX_CARD_MILK.title": "牛奶",
   "STS2_WINE_FOX_CARD_MILK.description": "<占位>消除你身上的所有BUFF和DEBUFF。",
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.title": "空置域",
-  "STS2_WINE_FOX_CARD_VACANT_DOMAIN.description": "获得{Block:diff()}点格挡。获得{StonePower:diff()}[gold]圆石[/gold]。"
+  "STS2_WINE_FOX_CARD_VACANT_DOMAIN.description": "获得{Block:diff()}点格挡。获得{StonePower:diff()}[gold]圆石[/gold]。",
+  "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.title": "「W」思索",
+  "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.description": "查看抽牌堆顶端3张牌，选择其中1张加入手牌，并附加重放和消耗。"
 }
