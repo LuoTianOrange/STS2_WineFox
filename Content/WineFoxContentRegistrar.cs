@@ -10,6 +10,7 @@ namespace STS2_WineFox.Content
         {
             RitsuLibFramework.CreateContentPack(Const.ModId)
                 .Manifest(WineFoxContentManifest.ContentEntries, WineFoxContentManifest.KeywordEntries)
+                //.Custom(WineFoxPlaceholders.Register)
                 .Story<WineFoxModStory>()
                 .Apply();
         }
