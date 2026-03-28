@@ -1,19 +1,49 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2_WineFox.Commands;
 
 namespace STS2_WineFox.Cards.Rare;
 
 public class SpinningHand() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    4, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
+    protected override IEnumerable<string> RegisteredKeywordIds =>
+        [WineFoxKeywords.Craft];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(26m, ValueProp.Move)];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpinningHand);
+
+    private int _appliedConsumesThisCombat;
+
+
+    public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    {
+        if (cardPlay.Card.Owner != Owner) 
+            return Task.CompletedTask;
+
+        var ownerCreature = Owner?.Creature;
+        if (ownerCreature == null)
+            return Task.CompletedTask;
+
+        var totalConsumed = CraftCmd.GetMaterialConsumeCountThisCombat(ownerCreature);
+
+        var delta = totalConsumed - _appliedConsumesThisCombat;
+        if (delta <= 0)
+            return Task.CompletedTask;
+
+        EnergyCost.AddThisCombat(-delta);
+
+        _appliedConsumesThisCombat = totalConsumed;
+        return Task.CompletedTask;
+    }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -28,8 +58,30 @@ public class SpinningHand() : WineFoxCard(
             .Execute(choiceContext);
     }
 
+    public override Task AfterCardEnteredCombat(CardModel card)
+    {
+        if (card != this || IsClone)
+            return Task.CompletedTask;
+
+        var ownerCreature = Owner?.Creature;
+        if (ownerCreature == null)
+            return Task.CompletedTask;
+
+        var totalConsumed = CraftCmd.GetMaterialConsumeCountThisCombat(ownerCreature);
+        if (totalConsumed <= 0)
+            return Task.CompletedTask;
+
+        var delta = totalConsumed - _appliedConsumesThisCombat;
+        if (delta <= 0)
+            return Task.CompletedTask;
+
+        EnergyCost.AddThisCombat(-delta);
+        _appliedConsumesThisCombat = totalConsumed;
+        return Task.CompletedTask;
+    }
+
     protected override void OnUpgrade()
     {
-
+        DynamicVars.Damage.UpgradeValueBy(6m);
     }
 }
