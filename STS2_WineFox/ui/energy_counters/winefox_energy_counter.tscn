@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmhvq6t83wly0"]
+[gd_scene load_steps=12 format=3 uid="uid://dmhvq6t83wly0"]
 
 [ext_resource type="Script" uid="uid://cd0wi5by6hqup" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
+[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://STS2_WineFox/winefox/canvas_item_material_additive_shared.tres" id="2_8p52p"]
 [ext_resource type="Texture2D" uid="uid://bd728ay2duur4" path="res://STS2_WineFox/ui/energy_counters/energy_orb_shine.png" id="2_f7eh7"]
-[ext_resource type="Texture2D" uid="uid://dxfudhta8etfo" path="res://STS2_WineFox/ui/energy_counters/energy_counter_wine_fox.png" id="2_orb"]
+[ext_resource type="Texture2D" uid="uid://e8fs7kuseag3" path="res://STS2_WineFox/winefox/energy/齿轮底部.png" id="3_8p52p"]
+[ext_resource type="Texture2D" uid="uid://cieom5lah0435" path="res://STS2_WineFox/winefox/energy/齿轮2.png" id="4_12wpb"]
 [ext_resource type="Texture2D" uid="uid://c73iimjk4x5qq" path="res://STS2_WineFox/ui/energy_counters/energy_orb_burst.png" id="4_af300"]
+[ext_resource type="Texture2D" uid="uid://coj7tv13kn7q5" path="res://STS2_WineFox/winefox/energy/齿轮3.png" id="5_go76q"]
 [ext_resource type="Script" uid="uid://c20236jl0ixgh" path="res://Scripts/WineFoxCounterLabel.cs" id="5_label_script"]
+[ext_resource type="Texture2D" uid="uid://bwew255q1h53a" path="res://STS2_WineFox/winefox/energy/齿轮顶部.png" id="6_wvfbx"]
+
+[sub_resource type="Gradient" id="Gradient_12wpb"]
+offsets = PackedFloat32Array(0, 0.5014493, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_go76q"]
+offsets = PackedFloat32Array(0, 0.51304346, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.7826087, 0.7826087, 0.7826087, 1, 0, 0, 0, 1)
 
 [node name="WineFoxEnergyCounter" type="Control"]
 layout_mode = 3
@@ -18,6 +30,7 @@ metadata/_edit_group_ = true
 
 [node name="BurstBack" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
+material = ExtResource("2_8p52p")
 position = Vector2(64, 64)
 emitting = false
 amount = 1
@@ -31,6 +44,8 @@ radial_accel_max = 10.0
 angle_max = 260.0
 scale_amount_min = 0.45
 scale_amount_max = 0.45
+color = Color(0.5372549, 0.40392157, 0.23921569, 1)
+color_ramp = SubResource("Gradient_12wpb")
 
 [node name="Layers" type="Control" parent="."]
 unique_name_in_owner = true
@@ -47,10 +62,26 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_orb")
+texture = ExtResource("3_8p52p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer4" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_wvfbx")
 expand_mode = 1
 stretch_mode = 5
 
@@ -65,59 +96,40 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -0.4399996
+offset_top = -0.43999833
+offset_right = 0.22164917
+offset_bottom = 0.22164917
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.645, 0.645)
 pivot_offset = Vector2(64, 64)
 mouse_filter = 2
-texture = ExtResource("2_orb")
+texture = ExtResource("4_12wpb")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.475, 0.475)
 pivot_offset = Vector2(64, 64)
 mouse_filter = 2
-texture = ExtResource("2_orb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Layer4" type="TextureRect" parent="Layers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_orb")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Layer5" type="TextureRect" parent="Layers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_orb")
+texture = ExtResource("5_go76q")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="BurstFront" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
+material = ExtResource("2_8p52p")
 position = Vector2(64, 64)
 emitting = false
 amount = 1
@@ -132,6 +144,8 @@ radial_accel_max = 10.0
 angle_max = 260.0
 scale_amount_min = 0.45
 scale_amount_max = 0.45
+color = Color(0.5372549, 0.40392157, 0.23921569, 1)
+color_ramp = SubResource("Gradient_go76q")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -146,7 +160,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
-theme_override_colors/font_outline_color = Color(0.7607843, 0.30980393, 0.015686275, 1)
+theme_override_colors/font_outline_color = Color(0.3529412, 0.25490198, 0.12941177, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 16
@@ -159,3 +173,4 @@ script = ExtResource("5_label_script")
 AutoSizeEnabled = null
 MinFontSize = null
 MaxFontSize = null
+theme_override_colors/font_outline_color = Color(0.3529412, 0.25490198, 0.12941177, 1)

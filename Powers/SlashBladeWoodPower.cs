@@ -22,14 +22,26 @@ namespace STS2_WineFox.Powers
         
         public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
         {
-            SlashBladeWoodPower slashbladewoodpower = this;
-            
-            if (card.Owner.Creature != slashbladewoodpower.Owner)
+            if (card?.Owner == null)
                 return;
-            
-            slashbladewoodpower.Flash();
+
+            var drawerCreature = card.Owner.Creature;
+
+            var combatState = drawerCreature.CombatState;
+            if (fromHandDraw
+                || drawerCreature != Owner
+                || combatState == null
+                || combatState.CurrentSide != drawerCreature.Side)
+            {
+                return;
+            }
+
+            Flash();
             int vigorToGain = Amount;
-            
+
+            if (vigorToGain <= 0)
+                vigorToGain = (int)DynamicVars["Vigorous"].BaseValue;
+
             await PowerCmd.Apply<VigorPower>(Owner, vigorToGain, Owner, null);
         }
     }

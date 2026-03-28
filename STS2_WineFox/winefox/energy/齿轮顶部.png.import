@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da8ygs5cwsp76"
-path="res://.godot/imported/multiplayer_hand_wine_fox_paper.png-3669597dd6328ae83927c7b486bfa23b.ctex"
+uid="uid://bwew255q1h53a"
+path="res://.godot/imported/齿轮顶部.png-159aed1b75465b3b9194a9c2a768fbf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/ui/hands/multiplayer_hand_wine_fox_paper.png"
-dest_files=["res://.godot/imported/multiplayer_hand_wine_fox_paper.png-3669597dd6328ae83927c7b486bfa23b.ctex"]
+source_file="res://STS2_WineFox/winefox/energy/齿轮顶部.png"
+dest_files=["res://.godot/imported/齿轮顶部.png-159aed1b75465b3b9194a9c2a768fbf1.ctex"]
 
 [params]
 

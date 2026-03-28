@@ -13,7 +13,7 @@ namespace STS2_WineFox
             public const string Root = "res://STS2_WineFox";
             public const string ScenesRoot = Root + "/scenes";
 
-            public const string EnergyIconCake = Root + "/winefox/cake.png";
+            public const string EnergyIconCake = Root + "/winefox/winefox_energy_icon.png";
             public const string CharacterVisualsScene = ScenesRoot + "/winefox/winefox.tscn";
             public const string CharacterIconScene = ScenesRoot + "/ui/character_icons/wine_fox_icon.tscn";
             public const string CharacterSelectBgScene = ScenesRoot + "/char_select/char_select_bg_wine_fox.tscn";
