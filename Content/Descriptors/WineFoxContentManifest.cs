@@ -54,6 +54,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, VacantDomain>(),
             new CardRegistrationEntry<WineFoxCardPool, PressWToThink>(),
             new CardRegistrationEntry<WineFoxCardPool, BackupCrafting>(),
+            new CardRegistrationEntry<WineFoxCardPool, TicTacToeGrid>(),
             
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),

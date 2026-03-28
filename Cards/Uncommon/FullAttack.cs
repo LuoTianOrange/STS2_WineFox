@@ -86,7 +86,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
             var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
             var iron = creature.Powers.OfType<IronPower>().FirstOrDefault()?.Amount ?? 0;
-            var diamond = creature.Powers.OfType<IronPower>().FirstOrDefault()?.Amount ?? 0;
+            var diamond = creature.Powers.OfType<DiamondPower>().FirstOrDefault()?.Amount ?? 0;
             return wood + stone  + iron + diamond;
         }
     }

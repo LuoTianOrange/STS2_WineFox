@@ -64,7 +64,7 @@
   "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.title": "木镐",
   "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.description": "下个回合开始时，获得{Energy:energyIcons()}，抽{Cards:diff()}张卡。\n(4个[gold]木板[/gold])",
   "STS2_WINE_FOX_CARD_WOODEN_ARMOR.title": "木甲",
-  "STS2_WINE_FOX_CARD_WOODEN_ARMOR.description": "获得 {Block:diff()} 点格挡。\n(4个[gold]木板[/gold])",
+  "STS2_WINE_FOX_CARD_WOODEN_ARMOR.description": "获得{Block:diff()}点格挡。\n(4个[gold]木板[/gold])",
   "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.title": "下界合金镐",
   "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.description": "每在同一个回合内打出1张牌，就获得木板、圆石、铁、钻石各1个。",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石形态",
@@ -72,7 +72,7 @@
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "盾击",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "<占位>对所有敌人造成2倍于你格挡的伤害，然后清除你的所有格挡。抽1张牌。",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.title": "飞转的手",
-  "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "<占位>对所有敌人造成 26 点伤害，本场战斗中每合成一次，这张牌的费用就减少1。",
+  "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "<占位>对所有敌人造成26点伤害，本场战斗中每合成一次，这张牌的费用就减少1。",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "生产记录",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.description": "<占位>你在战斗中临时加入的牌获得保留。",
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.title": "唱片机",
@@ -84,5 +84,7 @@
   "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.title": "「W」思索",
   "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.description": "查看抽牌堆顶端3张牌，选择其中1张加入手牌，并附加重放和消耗。",
   "STS2_WINE_FOX_CARD_BACKUP_CRAFTING.title": "备用工作台",
-  "STS2_WINE_FOX_CARD_BACKUP_CRAFTING.description": "[gold]合成[/gold]。"
+  "STS2_WINE_FOX_CARD_BACKUP_CRAFTING.description": "[gold]合成[/gold]。",
+  "STS2_WINE_FOX_CARD_TIC_TAC_TOE_GRID.title": "井字格",
+  "STS2_WINE_FOX_CARD_TIC_TAC_TOE_GRID.description": "造成{Damage:diff()}点伤害。\n[gold]合成[/gold]。"
 }
