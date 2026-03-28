@@ -14,6 +14,7 @@ namespace STS2_WineFox.Content.Descriptors
                 // EnergyCounterPath = Const.Paths.CustomEnergyCounterPath,
                 RestSiteAnimPath = Const.Paths.CharacterRestSiteAnimScene,
                 MerchantAnimPath = Const.Paths.CharacterMerchantAnimScene,
+                
             })
             .WithUi(new(
                 Const.Paths.CharacterIcon,
@@ -24,6 +25,12 @@ namespace STS2_WineFox.Content.Descriptors
                 Const.Paths.CharacterSelectLockedIcon,
                 Const.Paths.DefaultTransitionMaterial,
                 Const.Paths.MapMarker))
+            .WithMultiplayer(new(
+                Const.Paths.ArmPointingTexturePath,
+                Const.Paths.ArmRockTexturePath,
+                Const.Paths.ArmPaperTexturePath,
+                Const.Paths.ArmScissorsTexturePath
+            ))
             .WithVfx(new(
                 Const.Paths.DefaultTrailScene,
                 new(
