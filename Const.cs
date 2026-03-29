@@ -39,6 +39,7 @@ namespace STS2_WineFox
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
+            public const string DeployerRelicIcon = Root + "/relics/relic_deployer.png";
             public const string MaidBackpackRelicIcon = Root + "/relics/relic_maid_backpack.png";
             
             //Power
@@ -67,7 +68,6 @@ namespace STS2_WineFox
             public const string BrushStoneFormPowerIcon = Root + "/powers/brush_stone_form_power.png";
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
-
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -105,7 +105,7 @@ namespace STS2_WineFox
             public const string CardShieldAttack = Root + "/cards/card_test.png";
             public const string CardSpinningHand = Root + "/cards/card_test.png";
             public const string CardProductionDocument = Root + "/cards/card_test.png";
-            public const string CardMilk = Root + "/cards/card_test.png";
+            public const string CardMilk = Root + "/cards/card_milk.png";
             public const string CardVacantDomain = Root + "/cards/card_vacantdomain.png";
             public const string CardRecordPlayer = Root + "/cards/card_record_player.png";
             public const string CardPressWToThink = Root + "/cards/card_press_w_to_think.png";

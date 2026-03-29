@@ -19,4 +19,5 @@ namespace STS2_WineFox.Relics
             await PowerCmd.Apply<StressPower>(Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, null);
         }
     }
+    
 }

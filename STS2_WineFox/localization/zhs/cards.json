@@ -10,7 +10,7 @@
   "STS2_WINE_FOX_CARD_BASE_CRAFT.title": "基础合成",
   "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "[gold]合成[/gold]。\n获得 {Block:diff()} 点格挡。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力倾泻",
-  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "花费所有[gold]材料[/gold]。\n每花费1个材料对随机敌人造成{Damage:diff()}点伤害。{InCombat:\n(命中{Hits:diff()}次)|}",
+  "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "花费所有[gold]材料[/gold]。\n每花费1个材料就对指定敌人造成{Damage:diff()}点伤害。\n(共造成{TotalDamage:diff()}点伤害)",
   "STS2_WINE_FOX_CARD_MINING_GEMS.title": "挖掘宝石",
   "STS2_WINE_FOX_CARD_MINING_GEMS.description": "获得{Diamond:diff()}个[gold]钻石[/gold]。",
   "STS2_WINE_FOX_CARD_PLANT_TREES.title": "种植树木",

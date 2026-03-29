@@ -19,11 +19,9 @@ public class BrushStoneFormPower : WineFoxPower
         if (player.Creature != Owner) return;
         
         Flash();
-        var stonesToGain = 2m * Amount;
-        if (stonesToGain > 0)
-        {
-            await PowerCmd.Apply<StonePower>(Owner, stonesToGain, Owner, null);
-        }
-        await PowerCmd.Apply<BrushStoneFormPower>(Owner, 1m, Owner, null);
+
+        await PowerCmd.Apply<StonePower>(Owner, Amount, Owner, null);
+
+        await PowerCmd.Apply<BrushStoneFormPower>(Owner, 2m, Owner, null);
     }
 }

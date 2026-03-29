@@ -75,6 +75,7 @@ namespace STS2_WineFox.Content.Descriptors
             //RelicPool
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
+            new RelicRegistrationEntry<WineFoxRelicPool, Deployer>(),
 
             //Power
             new PowerRegistrationEntry<StressPower>(),
