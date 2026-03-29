@@ -66,6 +66,7 @@ namespace STS2_WineFox
             public const string NetheritePickaxePowerIcon = Root + "/powers/netherite_pickaxe_power.png";
             public const string BrushStoneFormPowerIcon = Root + "/powers/brush_stone_form_power.png";
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
+            public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";

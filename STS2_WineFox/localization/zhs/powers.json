@@ -58,5 +58,8 @@
   "STS2_WINE_FOX_POWER_BRUSH_STONE_FORM_POWER.smartDescription": "在你的回合开始时获得{Amount}[gold]圆石[/gold]，增加1层刷石形态。",
   "STS2_WINE_FOX_POWER_SLASH_BLADE_WOOD_POWER.title": "拔刀剑:无铭刀「木偶」",
   "STS2_WINE_FOX_POWER_SLASH_BLADE_WOOD_POWER.description": "每当你在回合中抽1张牌，获得[blue]{Amount}[/blue]层[gold]活力[/gold]",
-  "STS2_WINE_FOX_POWER_SLASH_BLADE_WOOD_POWER.smartDescription": "每当你在回合中抽1张牌，获得[blue]{Amount}[/blue]层[gold]活力[/gold]"
+  "STS2_WINE_FOX_POWER_SLASH_BLADE_WOOD_POWER.smartDescription": "每当你在回合中抽1张牌，获得[blue]{Amount}[/blue]层[gold]活力[/gold]",
+  "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.title": "生产记录",
+  "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.description": "你在战斗中临时加入的牌获得保留。",
+  "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.smartDescription": "你在战斗中临时加入的牌获得保留。"
 }

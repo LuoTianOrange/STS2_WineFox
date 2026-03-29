@@ -97,6 +97,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<NetheritePickaxePower>(),
             new PowerRegistrationEntry<BrushStoneFormPower>(),
             new PowerRegistrationEntry<SlashBladeWoodPower>(),
+            new PowerRegistrationEntry<ProductionDocumentPower>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
