@@ -80,7 +80,7 @@
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.title": "唱片机",
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.description": "消耗1[gold]钻石[/gold]，获得{RitualPower:diff()}层仪式。",
   "STS2_WINE_FOX_CARD_MILK.title": "牛奶",
-  "STS2_WINE_FOX_CARD_MILK.description": "<占位>消除你身上的所有BUFF和DEBUFF。",
+  "STS2_WINE_FOX_CARD_MILK.description": "消除你身上的所有{IfUpgraded:show:DEBUFF|BUFF和DEBUFF}。",
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.title": "空置域",
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.description": "获得{Block:diff()}点格挡。获得{StonePower:diff()}[gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK.title": "「W」思索",
