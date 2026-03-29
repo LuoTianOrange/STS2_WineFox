@@ -2,17 +2,21 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {
-    public class LessHoliday() : WineFoxCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public class LessHoliday() : WineFoxCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLessHoliday);
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [ HoverTipFactory.FromCard<WorkWork>(IsUpgraded) ];
+        
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
