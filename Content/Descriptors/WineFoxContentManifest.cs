@@ -57,6 +57,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, TicTacToeGrid>(),
             new CardRegistrationEntry<WineFoxCardPool, Traditionalist>(),
             new CardRegistrationEntry<WineFoxCardPool, SlashBladeWood>(),
+            new CardRegistrationEntry<WineFoxCardPool, DripstoneTrap>(),
             
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
@@ -76,6 +77,9 @@ namespace STS2_WineFox.Content.Descriptors
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
             new RelicRegistrationEntry<WineFoxRelicPool, Deployer>(),
+            
+            //UpdateRelic
+            new TouchOfOrobasRefinementRegistrationEntry<HandCrank,Deployer>(),
 
             //Power
             new PowerRegistrationEntry<StressPower>(),

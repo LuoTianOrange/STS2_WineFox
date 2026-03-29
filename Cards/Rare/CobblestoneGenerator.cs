@@ -12,7 +12,7 @@ public class CobblestoneGenerator() : WineFoxCard(
     2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new ("BrushStoneFormPower",1m)];
+        [new ("BrushStoneFormPower",2m)];
     protected override IEnumerable<string> RegisteredKeywordIds =>
         [WineFoxKeywords.Stone];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];

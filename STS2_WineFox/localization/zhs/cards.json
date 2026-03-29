@@ -92,5 +92,7 @@
   "STS2_WINE_FOX_CARD_TRADITIONALIST.title": "传统派",
   "STS2_WINE_FOX_CARD_TRADITIONALIST.description": "花费2[gold]木板[/gold]。\n[gold]合成[/gold]。\n抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.title": "拔刀剑:无铭刀「木偶」",
-  "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.description": "每当你在回合中抽1张牌，获得{SlashBladeWoodPower:diff()}层[gold]活力[/gold]"
+  "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.description": "每当你在回合中抽1张牌，获得{SlashBladeWoodPower:diff()}层[gold]活力[/gold]",
+  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.title": "石锥陷阱",
+  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "消耗所有[gold]圆石[/gold]，每消耗一个就对随机敌人造成2点伤害，施加1层[gold]易伤[/gold]。"
 }

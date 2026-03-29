@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgpyhp72pof1l"
-path="res://.godot/imported/card_basecraft.png-fefa356dd689be8da0019e0429f24471.ctex"
+uid="uid://bdbljhru6dpoa"
+path="res://.godot/imported/card_dripstone_trap.png-223cf17e8ff3b86a660a203ef3b2d77d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/cards/card_basecraft.png"
-dest_files=["res://.godot/imported/card_basecraft.png-fefa356dd689be8da0019e0429f24471.ctex"]
+source_file="res://STS2_WineFox/cards/card_dripstone_trap.png"
+dest_files=["res://.godot/imported/card_dripstone_trap.png-223cf17e8ff3b86a660a203ef3b2d77d.ctex"]
 
 [params]
 

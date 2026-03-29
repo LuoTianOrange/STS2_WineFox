@@ -115,6 +115,7 @@ namespace STS2_WineFox
             public const string CardLessHoliday = Root + "/cards/card_less_holiday.png";
             public const string CardTraditionalist = Root + "/cards/card_traditionalist.png";
             public const string CardSlashBladeWood = Root + "/cards/card_slash_blade_wood.png";
+            public const string CardDripstoneTrap = Root + "/cards/card_dripstone_trap.png";
         }
 
         public static class Audio
