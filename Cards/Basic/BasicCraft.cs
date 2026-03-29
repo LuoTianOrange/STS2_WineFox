@@ -8,7 +8,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Basic
 {
-    public class BaseCraft() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public class BasicCraft() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft, WineFoxKeywords.Material];
@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Basic
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBaseCraft);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBasicCraft);
 
         protected override bool IsPlayable =>
             CraftCmd.CanCraftAny(Owner.Creature);

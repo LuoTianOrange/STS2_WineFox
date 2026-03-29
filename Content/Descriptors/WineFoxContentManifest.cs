@@ -26,7 +26,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, WineFoxStrike>(),
             new CardRegistrationEntry<WineFoxCardPool, WineFoxDefend>(),
             new CardRegistrationEntry<WineFoxCardPool, BasicMine>(),
-            new CardRegistrationEntry<WineFoxCardPool, BaseCraft>(),
+            new CardRegistrationEntry<WineFoxCardPool, BasicCraft>(),
             new CardRegistrationEntry<WineFoxCardPool, FullAttack>(),
             new CardRegistrationEntry<WineFoxCardPool, MiningGems>(),
             new CardRegistrationEntry<WineFoxCardPool, PlantTrees>(),

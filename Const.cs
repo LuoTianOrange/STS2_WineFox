@@ -72,7 +72,7 @@ namespace STS2_WineFox
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
             public const string CardWineFoxStrike = Root + "/cards/card_winefoxstrike.png";
-            public const string CardBaseCraft = Root + "/cards/card_basecraft.png";
+            public const string CardBasicCraft = Root + "/cards/card_basiccraft.png";
             public const string CardBaseMine = Root + "/cards/card_basemine.png";
             public const string CardFullAttack = Root + "/cards/card_fullattack.png";
             public const string CardMiningGems = Root + "/cards/card_mininggems.png";
