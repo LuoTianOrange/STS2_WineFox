@@ -8,10 +8,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Rare;
 
 public class ShieldAttack() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(6m, ValueProp.Move)];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
@@ -19,16 +17,32 @@ public class ShieldAttack() : WineFoxCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        var owner = Owner;
+
+        var creature = owner.Creature;
+
+        var combatState = creature.CombatState;
+        if (combatState is not { }) return;
+
+        var block = creature.Block;
+        var damage = block * 2m;
+
+        await DamageCmd.Attack(damage)
             .FromCard(this)
-            .Targeting(play.Target)
+            .TargetingAllOpponents(combatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
+        if (block > 0m)
+        {
+            await CreatureCmd.LoseBlock(creature, block);
+        }
+
+        await CardPileCmd.Draw(choiceContext, 1m, owner);
     }
 
     protected override void OnUpgrade()
     {
-
+        EnergyCost.UpgradeBy(-1);
     }
 }
