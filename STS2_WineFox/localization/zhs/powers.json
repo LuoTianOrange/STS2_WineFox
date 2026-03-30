@@ -64,5 +64,8 @@
   "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.smartDescription": "你在战斗中临时加入的牌获得保留。",
   "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.title": "装备：钻石甲",
   "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.description": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。",
-  "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.smartDescription": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。"
+  "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.smartDescription": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。",
+  "STS2_WINE_FOX_POWER_BURNING_POWER.title": "烧伤",
+  "STS2_WINE_FOX_POWER_BURNING_POWER.description": "烧伤的生物会在自身回合开始时失去生命。烧伤层数每回合减半(向上取整)。",
+  "STS2_WINE_FOX_POWER_BURNING_POWER.smartDescription": "在{OnPlayer:你的回合|其回合}开始时失去[blue]{Amount}[/blue]点生命，然后将[gold]烧伤[/gold]层数减半(向上取整)"
 }

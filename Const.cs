@@ -69,6 +69,7 @@ namespace STS2_WineFox
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
             public const string DiamondArmorPowerIcon = Root + "/powers/diamond_armor_power.png";
+            public const string BurningIcon = Root + "/powers/burning_power.png";
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";

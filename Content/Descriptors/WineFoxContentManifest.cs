@@ -112,6 +112,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<SlashBladeWoodPower>(),
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
+            new PowerRegistrationEntry<BurningPower>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
