@@ -9,11 +9,14 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class WorkbenchBackpack() : WineFoxCard(
-    1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new EnergyVar(2)];
+        [new EnergyVar(1)];
 
+    protected override IEnumerable<string> RegisteredKeywordIds =>
+        [WineFoxKeywords.Craft];
+    
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWorkbenchBackpack);
 
     protected override async Task OnPlay(
@@ -23,10 +26,12 @@ public class WorkbenchBackpack() : WineFoxCard(
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
         await CraftCmd.CraftIntoHand(choiceContext, this);
+        
+        EnergyCost.AddThisCombat(-1);
     }
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

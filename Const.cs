@@ -68,6 +68,7 @@ namespace STS2_WineFox
             public const string BrushStoneFormPowerIcon = Root + "/powers/brush_stone_form_power.png";
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
+            public const string DiamondArmorPowerIcon = Root + "/powers/diamond_armor_power.png";
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -120,6 +121,8 @@ namespace STS2_WineFox
             public const string CardWorkbenchBackpack = Root + "/cards/card_workbench_backpack.png";
             public const string CardRegroup = Root + "/cards/card_regroup.png";
             public const string CardChangeEquipment = Root + "/cards/card_change_equipment.png";
+            public const string CardDiamondArmor = Root + "/cards/card_diamond_armor.png";
+            public const string CardFoxBite = Root + "/cards/card_fox_bite.png";
         }
 
         public static class Audio

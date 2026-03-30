@@ -15,7 +15,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class DripstoneTrap() : WineFoxCard(
-    2, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
+    2, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

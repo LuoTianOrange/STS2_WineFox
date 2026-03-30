@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Rare;
 
 public class EasyPeasy() : WineFoxCard(
-    1, CardType.Power, CardRarity.Rare, TargetType.None)
+    0, CardType.Power, CardRarity.Rare, TargetType.None)
 {
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEasyPeasy);

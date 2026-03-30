@@ -61,5 +61,8 @@
   "STS2_WINE_FOX_POWER_SLASH_BLADE_WOOD_POWER.smartDescription": "每当你在回合中抽1张牌，获得[blue]{Amount}[/blue]层[gold]活力[/gold]",
   "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.title": "生产记录",
   "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.description": "你在战斗中临时加入的牌获得保留。",
-  "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.smartDescription": "你在战斗中临时加入的牌获得保留。"
+  "STS2_WINE_FOX_POWER_PRODUCTION_DOCUMENT_POWER.smartDescription": "你在战斗中临时加入的牌获得保留。",
+  "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.title": "装备：钻石甲",
+  "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.description": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。",
+  "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.smartDescription": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。"
 }

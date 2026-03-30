@@ -14,7 +14,7 @@ public class ChangeEquipment() : WineFoxCard(
     0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [ new CardsVar(2) ];
+        [ new CardsVar(2),new ("Shuffle",2m) ];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardChangeEquipment);
 
@@ -27,7 +27,8 @@ public class ChangeEquipment() : WineFoxCard(
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);
 
         var handCards = PileType.Hand.GetPile(owner).Cards;
-        var toSelect = Math.Min(2, handCards.Count);
+        var shuffleCount = (int)DynamicVars["Shuffle"].BaseValue;
+        var toSelect = Math.Min(shuffleCount, handCards.Count);
         if (toSelect <= 0) return;
 
         var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE");
@@ -45,5 +46,6 @@ public class ChangeEquipment() : WineFoxCard(
     protected override void OnUpgrade()
     {
         DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars["Shuffle"].UpgradeValueBy(1m);
     }
 }
