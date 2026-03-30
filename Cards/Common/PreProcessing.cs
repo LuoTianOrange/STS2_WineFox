@@ -26,6 +26,7 @@ public class PreProcessing() : WineFoxCard(
     {
         await MaterialCmd.GainMaterial<WoodPower>(this, DynamicVars["Wood"].BaseValue);
         await MaterialCmd.GainMaterial<StonePower>(this, DynamicVars["Stone"].BaseValue);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
     }
 
     protected override void OnUpgrade()
