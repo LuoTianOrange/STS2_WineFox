@@ -59,6 +59,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, SlashBladeWood>(),
             new CardRegistrationEntry<WineFoxCardPool, DripstoneTrap>(),
             new CardRegistrationEntry<WineFoxCardPool, PreProcessing>(),
+            new CardRegistrationEntry<WineFoxCardPool, WorkbenchBackpack>(),
             
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
