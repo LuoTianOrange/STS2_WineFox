@@ -119,6 +119,7 @@ namespace STS2_WineFox
             public const string CardPreProcessing = Root + "/cards/card_pre_processing.png";
             public const string CardWorkbenchBackpack = Root + "/cards/card_workbench_backpack.png";
             public const string CardRegroup = Root + "/cards/card_regroup.png";
+            public const string CardChangeEquipment = Root + "/cards/card_change_equipment.png";
         }
 
         public static class Audio

@@ -101,5 +101,8 @@
   "STS2_WINE_FOX_CARD_WORKBENCH_BACKPACK.description":"获得{Energy:energyIcons()}，\n[gold]合成[/gold]。",
   "STS2_WINE_FOX_CARD_REGROUP.title":"重整旗鼓",
   "STS2_WINE_FOX_CARD_REGROUP.description":"抽{Cards:diff()}张牌。将弃牌堆中的1张牌放入你的手牌。",
-  "STS2_WINE_FOX_CARD_REGROUP_CHOOSE":"选择一张要从弃牌堆中加入手牌的牌"
+  "STS2_WINE_FOX_CARD_REGROUP_CHOOSE":"选择一张要从弃牌堆中加入手牌的牌",
+  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.title":"更换装备",
+  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.description":"抽{Cards:diff()}张牌，选择手牌中2张牌洗回[gold]抽牌堆[/gold]。",
+  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE":"选择2张要洗回抽牌堆的牌"
 }
