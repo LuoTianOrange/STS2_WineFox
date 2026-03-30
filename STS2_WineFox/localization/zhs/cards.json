@@ -110,5 +110,7 @@
   "STS2_WINE_FOX_CARD_FOX_BITE.title":"狐咬",
   "STS2_WINE_FOX_CARD_FOX_BITE.description":"给予{Debuff:diff()}层[gold]虚弱[/gold]。\n给予{Debuff:diff()}层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_MAID_SUPPORT.title":"女仆的援护",
-  "STS2_WINE_FOX_CARD_MAID_SUPPORT.description":"为所有玩家添加{Armor:diff()}层[gold]覆甲[/gold]，{Thorns:diff()}点[gold]荆棘[/gold]。"
+  "STS2_WINE_FOX_CARD_MAID_SUPPORT.description":"为所有玩家添加{Armor:diff()}层[gold]覆甲[/gold]，{Thorns:diff()}点[gold]荆棘[/gold]。",
+  "STS2_WINE_FOX_CARD_FORGING.title":"锻造",
+  "STS2_WINE_FOX_CARD_FORGING.description":"获得{Block:diff()}格挡。\n获得所有[gold]材料[/gold]两个。\n[gold]合成[/gold]两次。"
 }
