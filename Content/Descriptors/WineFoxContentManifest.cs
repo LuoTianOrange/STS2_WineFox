@@ -6,6 +6,7 @@ using STS2_WineFox.Cards.Rare;
 using STS2_WineFox.Cards.Token;
 using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
+using STS2_WineFox.Enchantments;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Keywords;
@@ -65,7 +66,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, FoxBite>(),
             new CardRegistrationEntry<WineFoxCardPool, MaidSupport>(),
             new CardRegistrationEntry<WineFoxCardPool, Forging>(),
-            
+
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, StoneSword>(),
@@ -85,9 +86,9 @@ namespace STS2_WineFox.Content.Descriptors
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
             new RelicRegistrationEntry<WineFoxRelicPool, Deployer>(),
-            
+
             //UpdateRelic
-            new TouchOfOrobasRefinementRegistrationEntry<HandCrank,Deployer>(),
+            new TouchOfOrobasRefinementRegistrationEntry<HandCrank, Deployer>(),
 
             //Power
             new PowerRegistrationEntry<StressPower>(),
@@ -113,6 +114,9 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
             new PowerRegistrationEntry<BurningPower>(),
+
+            // Enchantment
+            new EnchantmentRegistrationEntry<FireAspect>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
