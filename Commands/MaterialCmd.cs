@@ -110,7 +110,8 @@ namespace STS2_WineFox.Commands
                 return;
 
             power.Flash();
-            await GainMaterial<IronPower>(creature, 2m);
+            
+            await GainMaterial<IronPower>(creature, 3m);
 
             await PowerCmd.ModifyAmount(power, -1m, null, card);
             if (power.Amount <= 0m)

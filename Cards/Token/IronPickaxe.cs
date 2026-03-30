@@ -27,7 +27,7 @@ namespace STS2_WineFox.Cards.Token
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Times"].UpgradeValueBy(1m); // 2 → 3
+            DynamicVars["Times"].UpgradeValueBy(1m);
         }
     }
 }

@@ -123,6 +123,7 @@ namespace STS2_WineFox
             public const string CardChangeEquipment = Root + "/cards/card_change_equipment.png";
             public const string CardDiamondArmor = Root + "/cards/card_diamond_armor.png";
             public const string CardFoxBite = Root + "/cards/card_fox_bite.png";
+            public const string CardMaidSupport = Root + "/cards/card_maid_support.png";
         }
 
         public static class Audio

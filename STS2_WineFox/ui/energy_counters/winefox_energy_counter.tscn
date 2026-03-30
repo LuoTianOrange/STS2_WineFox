@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmhvq6t83wly0"]
+[gd_scene load_steps=14 format=3 uid="uid://dmhvq6t83wly0"]
 
 [ext_resource type="Script" uid="uid://cd0wi5by6hqup" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
 [ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://STS2_WineFox/winefox/canvas_item_material_additive_shared.tres" id="2_8p52p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://coj7tv13kn7q5" path="res://STS2_WineFox/winefox/energy/齿轮3.png" id="5_go76q"]
 [ext_resource type="Script" uid="uid://c20236jl0ixgh" path="res://Scripts/WineFoxCounterLabel.cs" id="5_label_script"]
 [ext_resource type="Texture2D" uid="uid://bwew255q1h53a" path="res://STS2_WineFox/winefox/energy/齿轮顶部.png" id="6_wvfbx"]
+[ext_resource type="FontFile" uid="uid://y0jbxb7bhgdp" path="res://STS2_WineFox/fonts/kreon_bold.ttf" id="9_12wpb"]
 
 [sub_resource type="Gradient" id="Gradient_12wpb"]
 offsets = PackedFloat32Array(0, 0.5014493, 1)
@@ -17,6 +18,10 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="Gradient" id="Gradient_go76q"]
 offsets = PackedFloat32Array(0, 0.51304346, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.7826087, 0.7826087, 0.7826087, 1, 0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_go76q"]
+base_font = ExtResource("9_12wpb")
+spacing_glyph = 2
 
 [node name="WineFoxEnergyCounter" type="Control"]
 layout_mode = 3
@@ -165,6 +170,7 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 16
 theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_go76q")
 theme_override_font_sizes/font_size = 36
 text = "3/3"
 horizontal_alignment = 1
@@ -173,4 +179,3 @@ script = ExtResource("5_label_script")
 AutoSizeEnabled = null
 MinFontSize = null
 MaxFontSize = null
-theme_override_colors/font_outline_color = Color(0.3529412, 0.25490198, 0.12941177, 1)

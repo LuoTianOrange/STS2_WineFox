@@ -15,7 +15,7 @@ public class WoodenPickaxe() : WineFoxCard(
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenPickaxe);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new EnergyVar(1), new CardsVar(2)];
+        [new EnergyVar(2), new CardsVar(1)];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -34,6 +34,6 @@ public class WoodenPickaxe() : WineFoxCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Energy.UpgradeValueBy(1m);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

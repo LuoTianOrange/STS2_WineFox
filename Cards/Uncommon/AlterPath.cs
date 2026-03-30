@@ -7,15 +7,15 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Common
+namespace STS2_WineFox.Cards.Uncommon
 {
     public class AlterPath() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Common, TargetType.None)
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         public override bool GainsBlock => true;
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new BlockVar(5, ValueProp.Move), new CardsVar(3)];
+            [new BlockVar(5, ValueProp.Move), new CardsVar(2)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAlterPath);
 

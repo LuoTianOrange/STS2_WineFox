@@ -89,6 +89,11 @@ namespace STS2_WineFox.Cards
                 new CraftCost(typeof(DiamondPower), 2m),
                 new CraftCost(typeof(WoodPower), 1m)
             ),
+            //钻石甲
+            new(
+                (state, owner) => state.CreateCard<DiamondArmor>(owner),
+                new CraftCost(typeof(DiamondPower), 8m)
+            ),
         ];
     }
 }

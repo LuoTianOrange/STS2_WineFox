@@ -37,5 +37,6 @@ public class IronZombie() : WineFoxCard(
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars["Iron"].UpgradeValueBy(1m);
     }
 }
