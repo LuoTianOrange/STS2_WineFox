@@ -1,7 +1,7 @@
 using System.Reflection;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Content;
 using STS2RitsuLib;
 
@@ -28,6 +28,7 @@ namespace STS2_WineFox
 
             try
             {
+                MaterialPowerRegistry.RegisterWineFoxDefaults();
                 RitsuLibFramework.EnsureGodotScriptsRegistered(Assembly.GetExecutingAssembly(), Logger);
                 WineFoxContentRegistrar.RegisterAll();
                 IsModActive = true;

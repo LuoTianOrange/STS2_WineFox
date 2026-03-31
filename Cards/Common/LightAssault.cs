@@ -7,55 +7,57 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Common;
-
-public class LightAssault() : WineFoxCard(
-    0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+namespace STS2_WineFox.Cards.Common
 {
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        [WineFoxKeywords.Material];
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        ModCardVars.Computed("Damage", 13m, CalcDamage)
-    ];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLightAssault);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class LightAssault() : WineFoxCard(
+        0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Material];
 
-        var totalMaterials = Owner.Creature.Powers
-            .OfType<MaterialPower>()
-            .Sum(p => (decimal)p.Amount);
-        var damage = Math.Max(0m, DynamicVars["Damage"].BaseValue - totalMaterials);
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            ModCardVars.Computed("Damage", 13m, CalcDamage),
+        ];
 
-        await DamageCmd.Attack(damage)
-            .FromCard(this)
-            .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-    }
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLightAssault);
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Damage"].UpgradeValueBy(3m);
-    }
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
 
-    private static decimal CalcDamage(CardModel? card)
-    {
-        if (card == null) return 13m;
-        if (!card.DynamicVars.TryGetValue("Damage", out var dynamicVar)) return 13m;
+            var totalMaterials = Owner.Creature.Powers
+                .OfType<MaterialPower>()
+                .Sum(p => (decimal)p.Amount);
+            var damage = Math.Max(0m, DynamicVars["Damage"].BaseValue - totalMaterials);
 
-        var creature = card._owner?.Creature;
-        if (creature == null) return dynamicVar.BaseValue;
+            await DamageCmd.Attack(damage)
+                .FromCard(this)
+                .Targeting(play.Target)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext);
+        }
 
-        var totalMaterials = creature.Powers
-            .OfType<MaterialPower>()
-            .Sum(p => (decimal)p.Amount);
+        protected override void OnUpgrade()
+        {
+            DynamicVars["Damage"].UpgradeValueBy(3m);
+        }
 
-        return Math.Max(0m, dynamicVar.BaseValue - totalMaterials);
+        private static decimal CalcDamage(CardModel? card)
+        {
+            if (card == null) return 13m;
+            if (!card.DynamicVars.TryGetValue("Damage", out var dynamicVar)) return 13m;
+
+            var creature = card._owner?.Creature;
+            if (creature == null) return dynamicVar.BaseValue;
+
+            var totalMaterials = creature.Powers
+                .OfType<MaterialPower>()
+                .Sum(p => (decimal)p.Amount);
+
+            return Math.Max(0m, dynamicVar.BaseValue - totalMaterials);
+        }
     }
 }

@@ -9,15 +9,15 @@ namespace STS2_WineFox.Relics
     {
         public override RelicRarity Rarity => RelicRarity.Uncommon;
         public override bool HasUponPickupEffect => true;
-        
+
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.MaidBackpackRelicIcon);
 
         public override async Task AfterObtained()
         {
             Flash();
-            
+
             await PlayerCmd.GainMaxPotionCount(2, Owner);
-            
+
             while (Owner.HasOpenPotionSlots)
             {
                 var potion = PotionFactory

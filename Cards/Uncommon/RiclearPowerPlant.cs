@@ -6,27 +6,28 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon;
-
-public class RiclearPowerPlant() : WineFoxCard(
-    2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+namespace STS2_WineFox.Cards.Uncommon
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new BlockVar(13, ValueProp.Move),new("Stress", 2m)];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRiclearPowerPlant);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class RiclearPowerPlant() : WineFoxCard(
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        await PowerCmd.Apply<StressPower>(
-            Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
-    }
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new BlockVar(13, ValueProp.Move), new("Stress", 2m)];
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Block"].UpgradeValueBy(3m);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRiclearPowerPlant);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+            await PowerCmd.Apply<StressPower>(
+                Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars["Block"].UpgradeValueBy(3m);
+        }
     }
 }

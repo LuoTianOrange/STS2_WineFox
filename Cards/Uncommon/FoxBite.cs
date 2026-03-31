@@ -1,43 +1,43 @@
-﻿using System;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon;
-
-public class FoxBite() : WineFoxCard(
-    2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+namespace STS2_WineFox.Cards.Uncommon
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [ new IntVar("Debuff", 4m) ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFoxBite);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class FoxBite() : WineFoxCard(
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new IntVar("Debuff", 4m)];
 
-        var owner = Owner?.Creature;
-        if (owner == null) return;
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
-        var target = play.Target;
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFoxBite);
 
-        var amount = DynamicVars["Debuff"].BaseValue;
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
 
-        await PowerCmd.Apply<WeakPower>(target, amount, owner, this);
+            var owner = Owner?.Creature;
+            if (owner == null) return;
 
-        await PowerCmd.Apply<VulnerablePower>(target, amount, owner, this);
-    }
+            var target = play.Target;
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Debuff"].UpgradeValueBy(3m);
+            var amount = DynamicVars["Debuff"].BaseValue;
+
+            await PowerCmd.Apply<WeakPower>(target, amount, owner, this);
+
+            await PowerCmd.Apply<VulnerablePower>(target, amount, owner, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars["Debuff"].UpgradeValueBy(3m);
+        }
     }
 }

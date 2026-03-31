@@ -3,22 +3,23 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Powers;
-
-public class ProductionDocumentPower : WineFoxPower
+namespace STS2_WineFox.Powers
 {
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-    public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ProductionDocumentPowerIcon);
-
-    public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public class ProductionDocumentPower : WineFoxPower
     {
-        if (card.Owner?.Creature != Owner) return Task.CompletedTask;
+        public override PowerType Type => PowerType.Buff;
+        public override PowerStackType StackType => PowerStackType.Counter;
+        public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ProductionDocumentPowerIcon);
 
-        if (!addedByPlayer && !card.IsClone) return Task.CompletedTask;
+        public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        {
+            if (card.Owner?.Creature != Owner) return Task.CompletedTask;
 
-        card.AddKeyword(CardKeyword.Retain);
+            if (!addedByPlayer && !card.IsClone) return Task.CompletedTask;
 
-        return Task.CompletedTask;
+            card.AddKeyword(CardKeyword.Retain);
+
+            return Task.CompletedTask;
+        }
     }
 }

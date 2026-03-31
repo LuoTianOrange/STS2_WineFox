@@ -35,7 +35,7 @@ namespace STS2_WineFox.Cards
         [
             //空手打击
             new((state, owner) => state.CreateCard<Nothing>(owner)),
-            
+
             //木镐
             new((state, owner) => state.CreateCard<WoodenPickaxe>(owner),
                 new CraftCost(typeof(WoodPower), 4m)
@@ -43,12 +43,12 @@ namespace STS2_WineFox.Cards
             //木剑
             new((state, owner) => state.CreateCard<WoodenSword>(owner),
                 new CraftCost(typeof(WoodPower), 3m)
-            ),           
+            ),
             //木甲
             new((state, owner) => state.CreateCard<WoodenArmor>(owner),
                 new CraftCost(typeof(WoodPower), 4m)
             ),
-            
+
             //石镐
             new(
                 (state, owner) => state.CreateCard<StonePickaxe>(owner),
@@ -65,7 +65,7 @@ namespace STS2_WineFox.Cards
             new((state, owner) => state.CreateCard<StoneArmor>(owner),
                 new CraftCost(typeof(StonePower), 8m)
             ),
-            
+
             //铁镐
             new(
                 (state, owner) => state.CreateCard<IronPickaxe>(owner),
@@ -82,7 +82,7 @@ namespace STS2_WineFox.Cards
                 (state, owner) => state.CreateCard<IronArmor>(owner),
                 new CraftCost(typeof(IronPower), 8m)
             ),
-            
+
             //钻石剑
             new(
                 (state, owner) => state.CreateCard<DiamondSword>(owner),

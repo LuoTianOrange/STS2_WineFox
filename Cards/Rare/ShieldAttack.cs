@@ -1,48 +1,43 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Rare;
-
-public class ShieldAttack() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+namespace STS2_WineFox.Cards.Rare
 {
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class ShieldAttack() : WineFoxCard(
+        1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        var owner = Owner;
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
-        var creature = owner.Creature;
-
-        var combatState = creature.CombatState;
-        if (combatState is not { }) return;
-
-        var block = creature.Block;
-        var damage = block * 2m;
-
-        await DamageCmd.Attack(damage)
-            .FromCard(this)
-            .TargetingAllOpponents(combatState)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-
-        if (block > 0m)
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
         {
-            await CreatureCmd.LoseBlock(creature, block);
+            var owner = Owner;
+
+            var creature = owner.Creature;
+
+            var combatState = creature.CombatState;
+            if (combatState is null) return;
+
+            var block = creature.Block;
+            var damage = block * 2m;
+
+            await DamageCmd.Attack(damage)
+                .FromCard(this)
+                .TargetingAllOpponents(combatState)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext);
+
+            if (block > 0m) await CreatureCmd.LoseBlock(creature, block);
+
+            await CardPileCmd.Draw(choiceContext, 1m, owner);
         }
 
-        await CardPileCmd.Draw(choiceContext, 1m, owner);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
+        protected override void OnUpgrade()
+        {
+            EnergyCost.UpgradeBy(-1);
+        }
     }
 }

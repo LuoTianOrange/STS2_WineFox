@@ -6,8 +6,8 @@ namespace STS2_WineFox.Relics
     public class Deployer : HandCrank
     {
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.DeployerRelicIcon);
-        
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Stress", 3m),];
+            [new("Stress", 3m)];
     }
 }

@@ -11,8 +11,12 @@
   "STS2_WINE_FOX_CARD_BASE_CRAFT.description": "消耗 2 层{Wood} [gold]木板[/gold] 和 2 层 {Stone} [gold]圆石[/gold]，获得 [gold]石镐[/gold]。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力一击",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.description": "消耗所有[gold]木板[/gold]和[gold]圆石[/gold]。每消耗1层对随机一名敌人造成{Damage}点伤害。",
-  "STS2_WINE_FOX_CARD_MINING_GEMS.title": "挖掘宝石",
-  "STS2_WINE_FOX_CARD_MINING_GEMS.description": "消耗 1 层[gold]挖掘[/gold]，获得 1 个[gold]钻石[/gold]。",
-  "STS2_WINE_FOX_CARD_PLANT_TREES.title": "种植树木",
-  "STS2_WINE_FOX_CARD_PLANT_TREES.description": "每回合开始时，获得 2 层[gold]木板[/gold]。"
+  "STS2_WINE_FOX_CARD_MINING_GEMS.title": "Mining Gems",
+  "STS2_WINE_FOX_CARD_MINING_GEMS.description": "Gain {Diamond:diff()} [gold]Diamond[/gold].",
+  "STS2_WINE_FOX_CARD_ALL_ITEM.title": "All Items",
+  "STS2_WINE_FOX_CARD_ALL_ITEM.description": "Gain {Energy:energyIcons()}. Draw {Cards:diff()} cards. Gain {Wood:diff()} [gold]Wood[/gold], {Stone:diff()} [gold]Stone[/gold], {Iron:diff()} [gold]Iron[/gold], and {Diamond:diff()} [gold]Diamond[/gold].",
+  "STS2_WINE_FOX_CARD_FORGING.title": "Forging",
+  "STS2_WINE_FOX_CARD_FORGING.description": "Gain {Block:diff()} Block.\nGain {Materials:diff()} of each [gold]Material[/gold].\n[gold]Craft[/gold] twice.",
+  "STS2_WINE_FOX_CARD_PLANT_TREES.title": "Plant Trees",
+  "STS2_WINE_FOX_CARD_PLANT_TREES.description": "Gain {Block:diff()} Block. Next turn, gain {Plant:diff()} [gold]Wood[/gold]."
 }

@@ -5,39 +5,20 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using STS2RitsuLib.Utils;
 using STS2_WineFox.Cards;
+using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands
 {
     public static class CraftCmd
     {
-        private sealed class CraftTracker
+        private static readonly AttachedState<Creature, CraftTracker> Trackers = new(() => new());
+
+        public static bool CanCraftAny(Creature creature)
         {
-            public CombatState? CombatState { get; private set; }
-            public object? TurnToken { get; set; }
-            public int CraftsThisTurn { get; set; }
-            public int CraftsThisCombat { get; set; }
-            public int MaterialConsumesThisTurn { get; set; }
-            public int MaterialConsumesThisCombat { get; set; }
-
-            public void ResetForCombat(CombatState? combatState)
-            {
-                CombatState = combatState;
-                TurnToken = null;
-                CraftsThisTurn = 0;
-                CraftsThisCombat = 0;
-                MaterialConsumesThisTurn = 0;
-                MaterialConsumesThisCombat = 0;
-            }
+            return CraftRecipeRegistry.All.Any(recipe => recipe.CanCraft(creature));
         }
-
-        private static readonly AttachedState<Creature, CraftTracker> Trackers = new(() => new CraftTracker());
-
-        public static bool CanCraftAny(Creature creature) =>
-            CraftRecipeRegistry.All.Any(recipe => recipe.CanCraft(creature));
 
         public static IReadOnlyList<CraftOption> GetOptions(CombatState state, Player owner)
         {
@@ -50,10 +31,13 @@ namespace STS2_WineFox.Commands
                 .ToList();
         }
 
-        public static CardSelectorPrefs CreateSelectionPrefs() =>
-            new(new LocString("cards", "STS2_WINE_FOX_CHOOSE_CRAFT"), 1);
+        public static CardSelectorPrefs CreateSelectionPrefs()
+        {
+            return new(new("cards", "STS2_WINE_FOX_CHOOSE_CRAFT"), 1);
+        }
 
-        public static async Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, CardModel source, CardSelectorPrefs? prefs = null)
+        public static async Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, CardModel source,
+            CardSelectorPrefs? prefs = null)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(source);
@@ -72,7 +56,8 @@ namespace STS2_WineFox.Commands
             return selectedOption.Card;
         }
 
-        public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, CardModel source, CardSelectorPrefs? prefs = null)
+        public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, CardModel source,
+            CardSelectorPrefs? prefs = null)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(source);
@@ -128,48 +113,73 @@ namespace STS2_WineFox.Commands
             tracker.MaterialConsumesThisCombat++;
         }
 
-        public static bool HasCraftedThisTurn(Creature creature) =>
-            GetCraftCountThisTurn(creature) > 0;
+        public static bool HasCraftedThisTurn(Creature creature)
+        {
+            return GetCraftCountThisTurn(creature) > 0;
+        }
 
-        public static bool HasCraftedThisTurn(Player player) =>
-            HasCraftedThisTurn(player.Creature);
+        public static bool HasCraftedThisTurn(Player player)
+        {
+            return HasCraftedThisTurn(player.Creature);
+        }
 
-        public static int GetCraftCountThisTurn(Creature creature) =>
-            GetTracker(creature).CraftsThisTurn;
+        public static int GetCraftCountThisTurn(Creature creature)
+        {
+            return GetTracker(creature).CraftsThisTurn;
+        }
 
-        public static int GetCraftCountThisTurn(Player player) =>
-            GetCraftCountThisTurn(player.Creature);
+        public static int GetCraftCountThisTurn(Player player)
+        {
+            return GetCraftCountThisTurn(player.Creature);
+        }
 
-        public static int GetCraftCountThisCombat(Creature creature) =>
-            GetTracker(creature).CraftsThisCombat;
+        public static int GetCraftCountThisCombat(Creature creature)
+        {
+            return GetTracker(creature).CraftsThisCombat;
+        }
 
-        public static int GetCraftCountThisCombat(Player player) =>
-            GetCraftCountThisCombat(player.Creature);
+        public static int GetCraftCountThisCombat(Player player)
+        {
+            return GetCraftCountThisCombat(player.Creature);
+        }
 
-        public static bool HasConsumedMaterialThisTurn(Creature creature) =>
-            GetMaterialConsumeCountThisTurn(creature) > 0;
+        public static bool HasConsumedMaterialThisTurn(Creature creature)
+        {
+            return GetMaterialConsumeCountThisTurn(creature) > 0;
+        }
 
-        public static bool HasConsumedMaterialThisTurn(Player player) =>
-            HasConsumedMaterialThisTurn(player.Creature);
+        public static bool HasConsumedMaterialThisTurn(Player player)
+        {
+            return HasConsumedMaterialThisTurn(player.Creature);
+        }
 
-        public static int GetMaterialConsumeCountThisTurn(Creature creature) =>
-            GetTracker(creature).MaterialConsumesThisTurn;
+        public static int GetMaterialConsumeCountThisTurn(Creature creature)
+        {
+            return GetTracker(creature).MaterialConsumesThisTurn;
+        }
 
-        public static int GetMaterialConsumeCountThisTurn(Player player) =>
-            GetMaterialConsumeCountThisTurn(player.Creature);
+        public static int GetMaterialConsumeCountThisTurn(Player player)
+        {
+            return GetMaterialConsumeCountThisTurn(player.Creature);
+        }
 
-        public static int GetMaterialConsumeCountThisCombat(Creature creature) =>
-            GetTracker(creature).MaterialConsumesThisCombat;
+        public static int GetMaterialConsumeCountThisCombat(Creature creature)
+        {
+            return GetTracker(creature).MaterialConsumesThisCombat;
+        }
 
-        public static int GetMaterialConsumeCountThisCombat(Player player) =>
-            GetMaterialConsumeCountThisCombat(player.Creature);
+        public static int GetMaterialConsumeCountThisCombat(Player player)
+        {
+            return GetMaterialConsumeCountThisCombat(player.Creature);
+        }
 
         public static async Task<bool> TryConsumeMaterials(CardModel source, CraftRecipe recipe)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(recipe);
 
-            var owner = source.Owner?.Creature ?? throw new InvalidOperationException("Craft source has no owner creature.");
+            var owner = source.Owner?.Creature ??
+                        throw new InvalidOperationException("Craft source has no owner creature.");
             if (!recipe.CanCraft(owner))
                 return false;
 
@@ -210,6 +220,26 @@ namespace STS2_WineFox.Commands
                     continue;
 
                 option.Card.RemoveFromState();
+            }
+        }
+
+        private sealed class CraftTracker
+        {
+            public CombatState? CombatState { get; private set; }
+            public object? TurnToken { get; set; }
+            public int CraftsThisTurn { get; set; }
+            public int CraftsThisCombat { get; set; }
+            public int MaterialConsumesThisTurn { get; set; }
+            public int MaterialConsumesThisCombat { get; set; }
+
+            public void ResetForCombat(CombatState? combatState)
+            {
+                CombatState = combatState;
+                TurnToken = null;
+                CraftsThisTurn = 0;
+                CraftsThisCombat = 0;
+                MaterialConsumesThisTurn = 0;
+                MaterialConsumesThisCombat = 0;
             }
         }
     }

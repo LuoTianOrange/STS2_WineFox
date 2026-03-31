@@ -1,5 +1,4 @@
 ﻿using Godot;
-using MegaCrit.Sts2.Core.Commands;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -19,6 +18,5 @@ namespace STS2_WineFox.Character
             typeof(Deployer),
             typeof(MaidBackpack),
         ];
-        
     }
 }

@@ -9,8 +9,10 @@ namespace STS2_WineFox.Relics
     public class HandCrank : WineFoxRelic
     {
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.HandCrankRelicIcon);
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Stress", 1m),];
+            [new("Stress", 1m)];
+
         public override RelicRarity Rarity => RelicRarity.Starter;
 
         public override async Task BeforeCombatStart()
@@ -19,5 +21,4 @@ namespace STS2_WineFox.Relics
             await PowerCmd.Apply<StressPower>(Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, null);
         }
     }
-    
 }
