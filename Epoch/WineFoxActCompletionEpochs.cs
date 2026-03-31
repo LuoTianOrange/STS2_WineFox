@@ -27,9 +27,9 @@ namespace STS2_WineFox.Epoch
 
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
 
-        public override EpochEra Era => EpochEra.Seeds3;
+        public override EpochEra Era => EpochEra.Peace0;
 
-        public override int EraPosition => 0;
+        public override int EraPosition => 3;
     }
 
     /// <summary>
