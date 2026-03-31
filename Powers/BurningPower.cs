@@ -25,13 +25,9 @@ namespace STS2_WineFox.Powers
             if (damage <= 0)
                 return [];
 
-            var triggerSide = Owner.Side == CombatSide.Player
-                ? CombatSide.Enemy
-                : CombatSide.Player;
-
             return HealthBarForecasts
                 .FromRight(context, new("FF7A00"))
-                .AtSideTurnStart(triggerSide, damage)
+                .AtSideTurnStart(Owner.Side, damage)
                 .Build();
         }
 
@@ -57,7 +53,7 @@ namespace STS2_WineFox.Powers
 
         public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
         {
-            if (side == Owner.Side) return;
+            if (side != Owner.Side) return;
 
             Flash();
 
