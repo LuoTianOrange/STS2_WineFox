@@ -8,12 +8,21 @@ namespace STS2_WineFox.Powers
 {
     public class BrushStoneFormPower : WineFoxPower
     {
+        private const int Increment = 2;
+
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
 
+        public override PowerAssetProfile AssetProfile => Icons(Const.Paths.BrushStoneFormPowerIcon);
+
+        public override int DisplayAmount => GetInternalData<Data>().Amount;
+
         public override bool IsInstanced => true;
 
-        public override PowerAssetProfile AssetProfile => Icons(Const.Paths.BrushStoneFormPowerIcon);
+        protected override object InitInternalData()
+        {
+            return new Data();
+        }
 
         protected override async Task OnAfterPlayerTurnStart(
             PlayerChoiceContext choiceContext, Player player)
@@ -22,9 +31,17 @@ namespace STS2_WineFox.Powers
 
             Flash();
 
+            var data = GetInternalData<Data>();
             await PowerCmd.Apply<StonePower>(Owner, Amount, Owner, null);
+            data.Amount += Increment;
+            InvokeDisplayAmountChanged();
+        }
 
-            await PowerCmd.Apply<BrushStoneFormPower>(Owner, 2m, Owner, null);
+        private class Data
+        {
+            public int Amount;
+
+            public int Increment;
         }
     }
 }
