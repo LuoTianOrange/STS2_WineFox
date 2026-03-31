@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Content;
 using STS2RitsuLib;
+using STS2RitsuLib.Unlocks;
 
 namespace STS2_WineFox
 {
@@ -28,6 +29,9 @@ namespace STS2_WineFox
 
             try
             {
+                if (Const.IgnoreEpochRequirements)
+                    ModUnlockRegistry.SetEpochRequirementsIgnoredForMod(Const.ModId);
+
                 MaterialPowerRegistry.RegisterWineFoxDefaults();
                 RitsuLibFramework.EnsureGodotScriptsRegistered(Assembly.GetExecutingAssembly(), Logger);
                 WineFoxContentRegistrar.RegisterAll();

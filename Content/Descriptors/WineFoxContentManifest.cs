@@ -137,7 +137,69 @@ namespace STS2_WineFox.Content.Descriptors
             new EnchantmentRegistrationEntry<SweepingEdge>(),
         ];
 
-        /// <summary>Flat list for <see cref="ModContentPackBuilder.ContentManifest" /> (order = registration order).</summary>
+        private static readonly Type[] EpochCardPackTypes =
+        [
+            typeof(AlterPath),
+            typeof(EnmergencyRepair),
+            typeof(IronZombie),
+            typeof(LightAssault),
+            typeof(MechanicalSaw),
+            typeof(PlantTrees),
+            typeof(CrushingWheel),
+            typeof(FullAttack),
+            typeof(MechanicalDrill),
+            typeof(PowerUp),
+            typeof(MiningGems),
+            typeof(SteamEngine),
+        ];
+
+        private static readonly Type[] EpochAct1CardTypes =
+        [
+            typeof(EasyPeasy),
+            typeof(FoxBite),
+            typeof(ShieldAttack),
+        ];
+
+        private static readonly Type[] EpochAct3CardTypes =
+        [
+            typeof(SpinningHand),
+            typeof(VacantDomain),
+            typeof(MaidSupport),
+        ];
+
+        private static readonly Type[] EpochVictoryCardTypes =
+        [
+            typeof(Traditionalist),
+            typeof(RecordPlayer),
+            typeof(WorkbenchBackpack),
+        ];
+
+        private static readonly Type[] EpochEliteCardTypes =
+        [
+            typeof(AllItem),
+            typeof(LessHoliday),
+            typeof(Alternator),
+        ];
+
+        private static readonly Type[] EpochBossCardTypes =
+        [
+            typeof(CobblestoneGenerator),
+            typeof(NetheritePickaxe),
+            typeof(RiclearPowerPlant),
+        ];
+
+        private static readonly Type[] EpochAscensionOneCardTypes =
+        [
+            typeof(SlashBladeWood),
+            typeof(DripstoneTrap),
+            typeof(Forging),
+        ];
+
+        private static readonly Lazy<IReadOnlyList<IModContentPackEntry>> PackEntriesLazy = new(CreatePackEntries);
+
+        /// <summary>
+        ///     Flat list for <see cref="ModContentPackBuilder.ContentManifest" /> (order = registration order).
+        /// </summary>
         public static IReadOnlyList<IContentRegistrationEntry> ContentEntries { get; } =
             Concat(
                 CharacterAndSharedPoolEntries,
@@ -171,31 +233,55 @@ namespace STS2_WineFox.Content.Descriptors
             KeywordRegistrationEntry.Card(WineFoxKeywords.Craft, "STS2_WINEFOX-CRAFT"),
         ];
 
-        /// <summary>Timeline + unlock rules; same logical manifest, different registry surfaces.</summary>
-        public static IReadOnlyList<IModContentPackEntry> PackEntries { get; } =
-        [
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxCharacterEpoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxCardEpoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct1Epoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct2Epoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct3Epoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxVictoryEpoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxEliteEpoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxBossEpoch>(),
-            new StoryEpochPackEntry<WineFoxModStory, WineFoxAscensionOneEpoch>(),
-            new StoryPackEntry<WineFoxModStory>(),
-            new RequireEpochPackEntry<WineFox, WineFoxCharacterEpoch>(),
-            new UnlockEpochAfterWinAsPackEntry<Ironclad, WineFoxCharacterEpoch>(),
-            new UnlockEpochAfterWinAsPackEntry<WineFox, WineFoxVictoryEpoch>(),
-            new UnlockEpochAfterEliteVictoriesPackEntry<WineFox, WineFoxEliteEpoch>(),
-            new UnlockEpochAfterBossVictoriesPackEntry<WineFox, WineFoxBossEpoch>(),
-            new UnlockEpochAfterAscensionOneWinPackEntry<WineFox, WineFoxAscensionOneEpoch>(),
-            new RevealAscensionAfterEpochPackEntry<WineFox, WineFoxVictoryEpoch>(),
-        ];
+        /// <summary>
+        ///     Timeline: <see cref="TimelineColumnPackEntry{TStory}" /> for column order and per-epoch unlock bindings;
+        ///     explicit card type arrays live at the bottom of this file (<c>Epoch*Types</c>).
+        /// </summary>
+        public static IReadOnlyList<IModContentPackEntry> PackEntries => PackEntriesLazy.Value;
 
         public static IReadOnlyList<T> Concat<T>(params IEnumerable<T>[] chunks)
         {
             return chunks.SelectMany(static c => c).ToArray();
+        }
+
+        // TimelineColumn epoch-slot API cheat sheet (cards / relics / potions). Uncomment and wire types + ContentEntries as needed.
+        //
+        // Cards
+        //   · Whole pool behind character epoch: RequireAllCardsInPool<WineFoxCardPool>() (used on character epoch above)
+        //   · Explicit list + pack-declared unlock data: Cards(EpochXxxCardTypes)
+        //   · Whole pool into ModEpochGatedContentRegistry: CardsFromPool<WineFoxCardPool>()
+        // Relics
+        //   · Whole pool, RequireEpoch only: RequireAllRelicsInPool<WineFoxRelicPool>()
+        //   · Explicit: Relics(types); pool + registry: RelicsFromPool<WineFoxRelicPool>() (Act2 above)
+        // Potions (register potions first: SharedPotionPool + PotionRegistrationEntry<TPool,TPotion> in ContentEntries)
+        //   · Whole pool gated: .Epoch<WineFoxSomeEpoch>(e => e.RequireAllPotionsInPool<WineFoxPotionPool>())
+        //   · Explicit types: .Epoch<WineFoxSomeEpoch>(e => e.Potions(new[] { typeof(MyPotionA), typeof(MyPotionB) }))
+        //   · Timeline potion splash: epoch subclasses PotionUnlockEpochTemplate + PotionTypes, same types as Potions/RequireEpoch
+        // Alternatively: ModContentPackBuilder chain .RequireEpoch<TPotion, TEpoch>() per potion (outside TimelineColumn)
+        private static IReadOnlyList<IModContentPackEntry> CreatePackEntries()
+        {
+            return
+            [
+                new TimelineColumnPackEntry<WineFoxModStory>(c => c
+                    .Epoch<WineFoxCharacterEpoch>(e => e.RequireAllCardsInPool<WineFoxCardPool>())
+                    .Epoch<WineFoxCardEpoch>(e => e.Cards(EpochCardPackTypes))
+                    .Epoch<WineFoxAct1Epoch>(e => e.Cards(EpochAct1CardTypes))
+                    .Epoch<WineFoxAct2Epoch>(e => e.RelicsFromPool<WineFoxRelicPool>())
+                    .Epoch<WineFoxAct3Epoch>(e => e.Cards(EpochAct3CardTypes))
+                    .Epoch<WineFoxVictoryEpoch>(e => e.Cards(EpochVictoryCardTypes))
+                    .Epoch<WineFoxEliteEpoch>(e => e.Cards(EpochEliteCardTypes))
+                    .Epoch<WineFoxBossEpoch>(e => e.Cards(EpochBossCardTypes))
+                    .Epoch<WineFoxAscensionOneEpoch>(e => e.Cards(EpochAscensionOneCardTypes))
+                    .RegisterStory()),
+                new RequireEpochPackEntry<WineFox, WineFoxCharacterEpoch>(),
+                new UnlockEpochAfterWinAsPackEntry<Ironclad, WineFoxCharacterEpoch>(),
+                new UnlockEpochAfterRunAsPackEntry<WineFox, WineFoxCardEpoch>(),
+                new UnlockEpochAfterWinAsPackEntry<WineFox, WineFoxVictoryEpoch>(),
+                new UnlockEpochAfterEliteVictoriesPackEntry<WineFox, WineFoxEliteEpoch>(),
+                new UnlockEpochAfterBossVictoriesPackEntry<WineFox, WineFoxBossEpoch>(),
+                new UnlockEpochAfterAscensionOneWinPackEntry<WineFox, WineFoxAscensionOneEpoch>(),
+                new RevealAscensionAfterEpochPackEntry<WineFox, WineFoxVictoryEpoch>(),
+            ];
         }
     }
 }

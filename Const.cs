@@ -6,6 +6,12 @@ namespace STS2_WineFox
         public const string Name = "WineFox";
         public const string Version = "0.1.0";
 
+        /// <summary>
+        ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
+        ///     timeline progress).
+        /// </summary>
+        public const bool IgnoreEpochRequirements = true;
+
         public const string EnergyColorName = "winefox";
 
         public static class Paths
@@ -132,7 +138,7 @@ namespace STS2_WineFox
             public const string CardEquivalentExchange = Root + "/cards/card_equivalent_exchange.png";
             public const string CardQuickShelter = Root + "/cards/card_quick_shelter.png";
             public const string CardBlueprintPrinting = Root + "/cards/card_blueprint_printing.png";
-            
+
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
             public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/sweeping_edge_icon.png";

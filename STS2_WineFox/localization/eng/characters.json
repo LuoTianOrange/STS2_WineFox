@@ -17,5 +17,5 @@
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierDescription": "Mine [gold]Planks[/gold] and [gold]Cobblestones[/gold], use [gold]Digging[/gold] to increase yields, and let [gold]Stress[/gold] double key gains.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.alive.endTurnPing": "Your turn.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.dead.endTurnPing": "I'm down. Finish it for me.",
-  "STS2_WINE_FOX_CHARACTER_WINE_FOX.unlockText": "Play a single run with [pink]{Prerequisite}[/pink] to unlock this character."
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.unlockText": "Win a run as [pink]{Prerequisite}[/pink] to unlock this character."
 }

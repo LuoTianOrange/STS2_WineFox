@@ -1,5 +1,6 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Models.Characters;
 using STS2_WineFox.Cards.Basic;
 using STS2_WineFox.Content.Descriptors;
 using STS2_WineFox.Relics;
@@ -35,6 +36,8 @@ namespace STS2_WineFox.Character
         ];
 
         protected override IEnumerable<Type> StartingRelicTypes => [typeof(HandCrank)];
+
+        protected override Type UnlocksAfterRunAsType => typeof(Ironclad);
 
         public override List<string> GetArchitectAttackVfx()
         {

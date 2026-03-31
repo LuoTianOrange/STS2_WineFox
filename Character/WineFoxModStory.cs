@@ -4,7 +4,11 @@ using STS2RitsuLib.Timeline.Scaffolding;
 namespace STS2_WineFox.Character
 {
     /// <summary>
-    ///     WineFox timeline story; epoch order is registered via <c>StoryEpochPackEntry&lt;WineFoxModStory, …&gt;</c>.
+    ///     WineFox timeline story; epoch order is registered via
+    ///     <see>
+    ///         <cref>TimelineColumnPackEntry{WineFoxModStory}</cref>
+    ///     </see>
+    ///     .
     /// </summary>
     public class WineFoxModStory : ModStoryTemplate
     {
