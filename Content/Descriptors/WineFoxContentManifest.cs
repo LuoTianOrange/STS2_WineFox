@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Models.Characters;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Basic;
@@ -7,6 +8,7 @@ using STS2_WineFox.Cards.Token;
 using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
+using STS2_WineFox.Epoch;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Keywords;
@@ -14,16 +16,22 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Content.Descriptors
 {
+    /// <summary>
+    ///     All declarative registrations for this mod: ModelDb content (split by kind), keywords (separate registry), and
+    ///     pack steps (timeline + unlocks). Apply order should be content → keywords → pack (unlocks need models registered).
+    /// </summary>
     internal static class WineFoxContentManifest
     {
         private const string Root = "res://STS2_WineFox";
 
-        public static IReadOnlyList<IContentRegistrationEntry> ContentEntries { get; } =
+        private static readonly IContentRegistrationEntry[] CharacterAndSharedPoolEntries =
         [
             new CharacterRegistrationEntry<WineFox>(),
             new SharedCardPoolRegistrationEntry<WineFoxTokenCardPool>(),
+        ];
 
-            //CharacterCardPool
+        private static readonly IContentRegistrationEntry[] CharacterCardPoolEntries =
+        [
             new CardRegistrationEntry<WineFoxCardPool, WineFoxStrike>(),
             new CardRegistrationEntry<WineFoxCardPool, WineFoxDefend>(),
             new CardRegistrationEntry<WineFoxCardPool, BasicMine>(),
@@ -68,8 +76,10 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, Forging>(),
             new CardRegistrationEntry<WineFoxCardPool, EquivalentExchange>(),
             new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
+        ];
 
-            //TokenCardPool
+        private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
+        [
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, StoneSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, IronArmor>(),
@@ -83,16 +93,18 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, WoodenArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, DiamondArmor>(),
+        ];
 
-            //RelicPool
+        private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =
+        [
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
             new RelicRegistrationEntry<WineFoxRelicPool, Deployer>(),
-
-            //UpdateRelic
             new TouchOfOrobasRefinementRegistrationEntry<HandCrank, Deployer>(),
+        ];
 
-            //Power
+        private static readonly IContentRegistrationEntry[] PowerEntries =
+        [
             new PowerRegistrationEntry<StressPower>(),
             new PowerRegistrationEntry<DiggingPower>(),
             new PowerRegistrationEntry<WoodPower>(),
@@ -116,11 +128,23 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
             new PowerRegistrationEntry<BurningPower>(),
+        ];
 
-            // Enchantment
+        private static readonly IContentRegistrationEntry[] EnchantmentEntries =
+        [
             new EnchantmentRegistrationEntry<FireAspect>(),
             new EnchantmentRegistrationEntry<SweepingEdge>(),
         ];
+
+        /// <summary>Flat list for <see cref="ModContentPackBuilder.ContentManifest" /> (order = registration order).</summary>
+        public static IReadOnlyList<IContentRegistrationEntry> ContentEntries { get; } =
+            Concat(
+                CharacterAndSharedPoolEntries,
+                CharacterCardPoolEntries,
+                TokenCardPoolEntries,
+                RelicAndOrobasEntries,
+                PowerEntries,
+                EnchantmentEntries);
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
         [
@@ -145,5 +169,32 @@ namespace STS2_WineFox.Content.Descriptors
             KeywordRegistrationEntry.Card(WineFoxKeywords.Material, "STS2_WINEFOX-MATERIAL"),
             KeywordRegistrationEntry.Card(WineFoxKeywords.Craft, "STS2_WINEFOX-CRAFT"),
         ];
+
+        /// <summary>Timeline + unlock rules; same logical manifest, different registry surfaces.</summary>
+        public static IReadOnlyList<IModContentPackEntry> PackEntries { get; } =
+        [
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxCharacterEpoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxCardEpoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct1Epoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct2Epoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxAct3Epoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxVictoryEpoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxEliteEpoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxBossEpoch>(),
+            new StoryEpochPackEntry<WineFoxModStory, WineFoxAscensionOneEpoch>(),
+            new StoryPackEntry<WineFoxModStory>(),
+            new RequireEpochPackEntry<WineFox, WineFoxCharacterEpoch>(),
+            new UnlockEpochAfterWinAsPackEntry<Ironclad, WineFoxCharacterEpoch>(),
+            new UnlockEpochAfterWinAsPackEntry<WineFox, WineFoxVictoryEpoch>(),
+            new UnlockEpochAfterEliteVictoriesPackEntry<WineFox, WineFoxEliteEpoch>(),
+            new UnlockEpochAfterBossVictoriesPackEntry<WineFox, WineFoxBossEpoch>(),
+            new UnlockEpochAfterAscensionOneWinPackEntry<WineFox, WineFoxAscensionOneEpoch>(),
+            new RevealAscensionAfterEpochPackEntry<WineFox, WineFoxVictoryEpoch>(),
+        ];
+
+        public static IReadOnlyList<T> Concat<T>(params IEnumerable<T>[] chunks)
+        {
+            return chunks.SelectMany(static c => c).ToArray();
+        }
     }
 }

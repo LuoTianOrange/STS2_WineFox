@@ -1,4 +1,3 @@
-using STS2_WineFox.Character;
 using STS2_WineFox.Content.Descriptors;
 using STS2RitsuLib;
 
@@ -8,10 +7,12 @@ namespace STS2_WineFox.Content
     {
         internal static void RegisterAll()
         {
+            // Order: ModelDb content → ModKeywordRegistry → timeline/unlocks (RequireEpoch needs character registered).
             RitsuLibFramework.CreateContentPack(Const.ModId)
-                .Manifest(WineFoxContentManifest.ContentEntries, WineFoxContentManifest.KeywordEntries)
+                .ContentManifest(WineFoxContentManifest.ContentEntries)
+                .KeywordManifest(WineFoxContentManifest.KeywordEntries)
+                .PackManifest(WineFoxContentManifest.PackEntries)
                 //.Custom(WineFoxPlaceholders.Register)
-                .Story<WineFoxModStory>()
                 .Apply();
         }
     }

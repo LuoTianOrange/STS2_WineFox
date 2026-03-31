@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Timeline;
+using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Cards.Common;
 using STS2_WineFox.Cards.Rare;
 using STS2_WineFox.Cards.Uncommon;
@@ -8,9 +8,13 @@ namespace STS2_WineFox.Epoch
 {
     public class WineFoxCardEpoch : CardUnlockEpochTemplate
     {
-        public override string Id => "WineFoxCardEpoch";
+        public override string Id => WineFoxTimelineKeys.CardEpochId;
+
+        public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
+
         public override EpochEra Era => EpochEra.Seeds0;
-        public override int EraPosition => 0;
+
+        public override int EraPosition => 1;
 
         protected override IEnumerable<Type> CardTypes =>
         [
