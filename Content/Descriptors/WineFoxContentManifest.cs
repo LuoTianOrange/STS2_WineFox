@@ -77,6 +77,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, EquivalentExchange>(),
             new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
             new CardRegistrationEntry<WineFoxCardPool, BlueprintPrinting>(),
+            new CardRegistrationEntry<WineFoxCardPool, StressResponse>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =

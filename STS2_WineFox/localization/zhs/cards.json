@@ -120,5 +120,7 @@
   "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.title":"蓝图打印",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费5个[gold]木板[/gold]和5个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]保留[/gold]、[gold]消耗[/gold]的复制品加入手牌。",
-  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌"
+  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌",
+  "STS2_WINE_FOX_CARD_STRESS_RESPONSE.title":"应激",
+  "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，{Energy:diff()}点能量并抽2张牌。"
 }

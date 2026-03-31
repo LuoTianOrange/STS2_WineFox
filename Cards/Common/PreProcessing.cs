@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -11,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Common
 {
     public class PreProcessing() : WineFoxCard(
-        1, CardType.Attack, CardRarity.Common, TargetType.Self)
+        0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         public override bool GainsBlock => true;
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
