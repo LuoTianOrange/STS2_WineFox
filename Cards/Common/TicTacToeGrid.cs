@@ -6,36 +6,38 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Common;
-
-public class TicTacToeGrid() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+namespace STS2_WineFox.Cards.Common
 {
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        [WineFoxKeywords.Craft];
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(8m, ValueProp.Move)];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardTicTacToeGrid);
-
-    protected override bool IsPlayable =>
-        CraftCmd.CanCraftAny(Owner.Creature);
-    
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class TicTacToeGrid() : WineFoxCard(
+        1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-        await CraftCmd.CraftIntoHand(choiceContext, this);
-    }
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Craft];
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new DamageVar(8m, ValueProp.Move)];
+
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardTicTacToeGrid);
+
+        protected override bool IsPlayable =>
+            CraftCmd.CanCraftAny(Owner.Creature);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this)
+                .Targeting(play.Target)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext);
+            await CraftCmd.CraftIntoHand(choiceContext, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars.Damage.UpgradeValueBy(3m);
+        }
     }
 }

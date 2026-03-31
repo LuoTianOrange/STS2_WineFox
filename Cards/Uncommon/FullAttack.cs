@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -20,7 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(4m, ValueProp.Move),
-            ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage)
+            ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFullAttack);
@@ -95,10 +94,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var baseDamage = card.DynamicVars.TryGetValue("Damage", out var dv) ? dv.BaseValue : 0m;
 
             var creature = card._owner?.Creature;
-            if (creature == null)
-            {
-                return baseDamage;
-            }
+            if (creature == null) return baseDamage;
 
             var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
             var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;

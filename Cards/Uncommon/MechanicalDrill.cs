@@ -1,8 +1,9 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
@@ -13,7 +14,10 @@ namespace STS2_WineFox.Cards.Uncommon
             [WineFoxKeywords.Iron, WineFoxKeywords.Stress];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Iron", 2m)];
+        [
+            ModCardVars.Computed("Iron", 2m, _ => DynamicVars["Iron"].BaseValue,
+                WineFoxCardVarFactory.StressDoubledDynamicVar("Iron")),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMechanicalDrill);
 

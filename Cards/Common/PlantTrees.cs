@@ -1,9 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Common
@@ -16,7 +18,11 @@ namespace STS2_WineFox.Cards.Common
             [WineFoxKeywords.Wood];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new BlockVar(5, ValueProp.Move), new("Plant", 4m)];
+        [
+            new BlockVar(5, ValueProp.Move),
+            ModCardVars.Computed("Plant", 4m, _ => DynamicVars["Plant"].BaseValue,
+                WineFoxCardVarFactory.StressDoubledDynamicVar("Plant")),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPlantTrees);
 
@@ -25,8 +31,11 @@ namespace STS2_WineFox.Cards.Common
             CardPlay play)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-            await PowerCmd.Apply<PlantPower>(
-                Owner.Creature, DynamicVars["Plant"].BaseValue, Owner.Creature, this);
+            var woodNextTurn = await MaterialCmd.ResolveCardMaterialAmountWithStressAsync(
+                Owner.Creature,
+                this,
+                DynamicVars["Plant"].BaseValue);
+            await PowerCmd.Apply<PlantPower>(Owner.Creature, woodNextTurn, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

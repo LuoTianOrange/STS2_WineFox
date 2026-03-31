@@ -8,7 +8,9 @@ namespace STS2_WineFox.Powers
     public abstract class WineFoxPower : ModPowerTemplate
     {
         protected static PowerAssetProfile Icons(string iconPath, string? bigIconPath = null)
-            => new(iconPath, bigIconPath ?? iconPath);
+        {
+            return new(iconPath, bigIconPath ?? iconPath);
+        }
 
         public sealed override Task AfterPlayerTurnStartEarly(
             PlayerChoiceContext choiceContext, Player player)
@@ -27,6 +29,8 @@ namespace STS2_WineFox.Powers
 
         protected virtual Task OnAfterPlayerTurnStart(
             PlayerChoiceContext choiceContext, Player player)
-            => Task.CompletedTask;
+        {
+            return Task.CompletedTask;
+        }
     }
 }

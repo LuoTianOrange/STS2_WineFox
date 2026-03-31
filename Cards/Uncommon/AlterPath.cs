@@ -14,6 +14,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override bool GainsBlock => true;
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(5, ValueProp.Move), new CardsVar(2)];
 

@@ -1,5 +1,11 @@
 {
   "STS2_WINE_FOX_RELIC_HAND_CRANK.title": "Hand Crank",
-  "STS2_WINE_FOX_RELIC_HAND_CRANK.description": "At the start of your turn, gain [blue]1[/blue] [gold]Stress[/gold].",
-  "STS2_WINE_FOX_RELIC_HAND_CRANK.flavor": "A stubborn crank from another world. It is said that once you see it, you will want to keep turning it."
+  "STS2_WINE_FOX_RELIC_HAND_CRANK.description": "At the start of each combat, gain [blue]{Stress}[/blue] [gold]Stress[/gold].",
+  "STS2_WINE_FOX_RELIC_HAND_CRANK.flavor": "A mysterious relic from another world. It is said that once you see it, you will want to keep turning it.",
+  "STS2_WINE_FOX_RELIC_MAID_BACKPACK.title": "Maid Backpack",
+  "STS2_WINE_FOX_RELIC_MAID_BACKPACK.description": "When picked up, gain [blue]2[/blue] [gold]Potion Slots[/gold] and fill all empty slots with random potions.",
+  "STS2_WINE_FOX_RELIC_MAID_BACKPACK.flavor": "A tiny backpack with remarkable capacity, stuffed with all kinds of food prepared by its owner.",
+  "STS2_WINE_FOX_RELIC_DEPLOYER.title": "Hand of God",
+  "STS2_WINE_FOX_RELIC_DEPLOYER.description": "At the start of each combat, gain [blue]{Stress}[/blue] [gold]Stress[/gold].",
+  "STS2_WINE_FOX_RELIC_DEPLOYER.flavor": "A mysterious relic from another world. It provides even more Stress than the Hand Crank."
 }

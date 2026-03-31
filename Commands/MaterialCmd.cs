@@ -7,86 +7,101 @@ namespace STS2_WineFox.Commands
 {
     public static class MaterialCmd
     {
+        /// <summary>
+        ///     Resolves material amount for a delayed effect granted by a card (e.g. Plant): applies stress
+        ///     doubling and consumption now, like <see cref="DodgeAndRoll" /> locking block for next turn.
+        ///     The returned value should be stored on a power and granted later without going through
+        ///     <see cref="MaterialCmd" /> again.
+        /// </summary>
+        public static async Task<decimal> ResolveCardMaterialAmountWithStressAsync(
+            Creature creature,
+            CardModel card,
+            decimal baseAmount)
+        {
+            ArgumentNullException.ThrowIfNull(creature);
+            ArgumentNullException.ThrowIfNull(card);
+
+            if (baseAmount <= 0m)
+                return 0m;
+
+            var stress = creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            if (stress == null)
+                return baseAmount;
+
+            await PowerCmd.Apply<StressPower>(creature, -1m, creature, card);
+            return baseAmount * 2m;
+        }
+
         public static async Task GainMaterial<T>(CardModel card, decimal amount)
             where T : MaterialPower
         {
             ArgumentNullException.ThrowIfNull(card);
 
-            var owner = card.Owner?.Creature ?? throw new InvalidOperationException("Material source has no owner creature.");
-            await GainMaterial<T>(owner, amount);
-            await TryTriggerIronPickaxe(owner, card);
-        }
-
-        public static async Task GainMaterial<T>(Creature creature, decimal amount)
-            where T : MaterialPower
-        {
-            var stress = creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
-
-            if (stress == null)
-            {
-                await PowerCmd.Apply<T>(creature, amount, creature, null);
+            if (amount <= 0m)
                 return;
-            }
 
-            await PowerCmd.Apply<T>(creature, amount * 2, creature, null);
-            await PowerCmd.Apply<StressPower>(creature, -1m, creature, null);
+            await CommitCardMaterialGains(card, [(typeof(T), amount)]);
         }
 
-        public static async Task GainMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount, decimal secondAmount)
+        public static async Task GainMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount,
+            decimal secondAmount)
             where TFirst : MaterialPower
             where TSecond : MaterialPower
         {
             ArgumentNullException.ThrowIfNull(card);
 
-            var owner = card.Owner?.Creature ?? throw new InvalidOperationException("Material source has no owner creature.");
-            var stress = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            var gains = new List<(Type Type, decimal Amount)>(2);
+            if (firstAmount > 0m)
+                gains.Add((typeof(TFirst), firstAmount));
+            if (secondAmount > 0m)
+                gains.Add((typeof(TSecond), secondAmount));
 
-            if (stress == null)
-            {
-                await PowerCmd.Apply<TFirst>(owner, firstAmount, owner, card);
-                await PowerCmd.Apply<TSecond>(owner, secondAmount, owner, card);
-            }
-            else
-            {
-                await PowerCmd.Apply<TFirst>(owner, firstAmount * 2, owner, card);
-                await PowerCmd.Apply<TSecond>(owner, secondAmount * 2, owner, card);
-                await PowerCmd.Apply<StressPower>(owner, -1m, owner, card);
-            }
+            if (gains.Count == 0)
+                return;
 
-            await TryTriggerIronPickaxe(owner, card);
+            await CommitCardMaterialGains(card, gains);
         }
-        
-        public static async Task GainAllMaterials(Creature creature, decimal amount)
+
+        /// <summary>
+        ///     From a played card: one stress check for the whole batch, then one iron pickaxe check.
+        /// </summary>
+        public static async Task GainAllMaterials(CardModel card, decimal amountPerType)
         {
-            if (creature == null) throw new ArgumentNullException(nameof(creature));
+            ArgumentNullException.ThrowIfNull(card);
 
-            var stress = creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            if (amountPerType <= 0m)
+                return;
 
-            if (stress == null)
-            {
-                await PowerCmd.Apply<WoodPower>(creature, amount, creature, null);
-                await PowerCmd.Apply<StonePower>(creature, amount, creature, null);
-                await PowerCmd.Apply<IronPower>(creature, amount, creature, null);
-                await PowerCmd.Apply<DiamondPower>(creature, amount, creature, null);
-            }
-            else
-            {
-                await PowerCmd.Apply<WoodPower>(creature, amount * 2, creature, null);
-                await PowerCmd.Apply<StonePower>(creature, amount * 2, creature, null);
-                await PowerCmd.Apply<IronPower>(creature, amount * 2, creature, null);
-                await PowerCmd.Apply<DiamondPower>(creature, amount * 2, creature, null);
+            var gains = MaterialPowerRegistry.RegisteredMaterialTypes
+                .Select(t => (t, amountPerType))
+                .ToList();
 
-                await PowerCmd.Apply<StressPower>(creature, -1m, creature, null);
-            }
+            await CommitCardMaterialGains(card, gains);
         }
-        
-        public static async Task LoseMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount, decimal secondAmount)
+
+        /// <summary>
+        ///     From powers / non-card sources: no stress; still runs one iron pickaxe check after all materials.
+        /// </summary>
+        public static async Task GainAllMaterialsFromNonCard(Creature creature, decimal amountPerType)
+        {
+            ArgumentNullException.ThrowIfNull(creature);
+
+            if (amountPerType <= 0m)
+                return;
+
+            await MaterialPowerRegistry.ApplyAll(creature, amountPerType, null);
+            await TryTriggerIronPickaxe(creature, null);
+        }
+
+        public static async Task LoseMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount,
+            decimal secondAmount)
             where TFirst : MaterialPower
             where TSecond : MaterialPower
         {
             ArgumentNullException.ThrowIfNull(card);
 
-            var owner = card.Owner?.Creature ?? throw new InvalidOperationException("Material source has no owner creature.");
+            var owner = card.Owner?.Creature ??
+                        throw new InvalidOperationException("Material source has no owner creature.");
 
             var firstPower = owner.Powers.OfType<TFirst>()
                 .FirstOrDefault(power => power.Amount >= firstAmount);
@@ -100,7 +115,29 @@ namespace STS2_WineFox.Commands
             await PowerCmd.ModifyAmount(secondPower, -secondAmount, null, card);
         }
 
-        private static async Task TryTriggerIronPickaxe(Creature creature, CardModel card)
+        private static async Task CommitCardMaterialGains(CardModel card,
+            IReadOnlyList<(Type Type, decimal Amount)> gains)
+        {
+            var owner = card.Owner?.Creature ??
+                        throw new InvalidOperationException("Material source has no owner creature.");
+
+            var filtered = gains.Where(g => g.Amount > 0m).ToList();
+            if (filtered.Count == 0)
+                return;
+
+            var stress = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            var mult = stress != null ? 2m : 1m;
+
+            if (stress != null)
+                await PowerCmd.Apply<StressPower>(owner, -1m, owner, card);
+
+            foreach (var (type, amount) in filtered)
+                await MaterialPowerRegistry.Apply(owner, type, amount * mult, card);
+
+            await TryTriggerIronPickaxe(owner, card);
+        }
+
+        private static async Task TryTriggerIronPickaxe(Creature creature, CardModel? card)
         {
             var power = creature.Powers
                 .OfType<IronPickaxePower>()
@@ -110,8 +147,8 @@ namespace STS2_WineFox.Commands
                 return;
 
             power.Flash();
-            
-            await GainMaterial<IronPower>(creature, 3m);
+
+            await PowerCmd.Apply<IronPower>(creature, 3m, creature, card);
 
             await PowerCmd.ModifyAmount(power, -1m, null, card);
             if (power.Amount <= 0m)

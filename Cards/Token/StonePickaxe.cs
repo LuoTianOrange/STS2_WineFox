@@ -26,16 +26,12 @@ namespace STS2_WineFox.Cards.Token
             CardPlay play)
         {
             await PowerCmd.Apply<DiggingPower>(Owner.Creature, DynamicVars["Digging"].BaseValue, Owner.Creature, this);
-            
-            if (IsUpgraded)
-            {
-                await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, 1m, 1m);
-            }
+
+            if (IsUpgraded) await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, 1m, 1m);
         }
 
         protected override void OnUpgrade()
         {
-            
         }
     }
 }

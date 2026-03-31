@@ -27,8 +27,8 @@ namespace STS2_WineFox
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
             public const string ArmPaperTexturePath = Root + "/winefox/arm/winefox_paper.png";
             public const string ArmScissorsTexturePath = Root + "/winefox/arm/winefox_scissors.png";
-            
-            
+
+
             public const string CharacterSelectLockedIcon =
                 Root + "/winefox/char_select_wine_fox_locked.png";
 
@@ -37,11 +37,12 @@ namespace STS2_WineFox
             public const string DefaultTransitionMaterial = "res://materials/transitions/silent_transition_mat.tres";
 
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
+
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
             public const string DeployerRelicIcon = Root + "/relics/relic_deployer.png";
             public const string MaidBackpackRelicIcon = Root + "/relics/relic_maid_backpack.png";
-            
+
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
             public const string WoodPowerBigIcon = Root + "/powers/wood_power.png";
@@ -69,7 +70,9 @@ namespace STS2_WineFox
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
             public const string DiamondArmorPowerIcon = Root + "/powers/diamond_armor_power.png";
+
             public const string BurningIcon = Root + "/powers/burning_power.png";
+
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -88,7 +91,7 @@ namespace STS2_WineFox
             public const string CardDiamondSword = Root + "/cards/card_diamondsword.png";
             public const string CardMechanicalSaw = Root + "/cards/card_mechanicalsaw.png";
             public const string CardIronSword = Root + "/cards/card_ironsword.png";
-            public const string CardAlterPath =  Root + "/cards/card_alterpath.png";
+            public const string CardAlterPath = Root + "/cards/card_alterpath.png";
             public const string CardStoneArmor = Root + "/cards/card_stonearmor.png";
             public const string CardPowerUp = Root + "/cards/card_powerup.png";
             public const string CardIronZombie = Root + "/cards/card_ironzombie.png";

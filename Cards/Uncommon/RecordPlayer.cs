@@ -6,34 +6,36 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon;
-
-public class RecordPlayer() : WineFoxCard(
-    1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+namespace STS2_WineFox.Cards.Uncommon
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new ("RitualPower",2m)];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRecordPlayer);
-
-    protected override bool IsPlayable =>
-        Owner.Creature.Powers.OfType<DiamondPower>().Any(p => (decimal)p.Amount >= 1);
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class RecordPlayer() : WineFoxCard(
+        1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        var diamondPower = Owner.Creature.Powers
-            .OfType<DiamondPower>()
-            .FirstOrDefault(p => (decimal)p.Amount >= 1);
-        if (diamondPower == null) return;
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new("RitualPower", 2m)];
 
-        await PowerCmd.ModifyAmount(diamondPower, -1m, null, this);  
-        await PowerCmd.Apply<RitualPower>(
-            Owner.Creature, DynamicVars["RitualPower"].BaseValue, Owner.Creature, this);
-    }
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRecordPlayer);
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars["RitualPower"].UpgradeValueBy(1m);
+        protected override bool IsPlayable =>
+            Owner.Creature.Powers.OfType<DiamondPower>().Any(p => (decimal)p.Amount >= 1);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            var diamondPower = Owner.Creature.Powers
+                .OfType<DiamondPower>()
+                .FirstOrDefault(p => (decimal)p.Amount >= 1);
+            if (diamondPower == null) return;
+
+            await PowerCmd.ModifyAmount(diamondPower, -1m, null, this);
+            await PowerCmd.Apply<RitualPower>(
+                Owner.Creature, DynamicVars["RitualPower"].BaseValue, Owner.Creature, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars["RitualPower"].UpgradeValueBy(1m);
+        }
     }
 }
