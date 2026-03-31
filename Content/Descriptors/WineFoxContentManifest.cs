@@ -67,6 +67,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, MaidSupport>(),
             new CardRegistrationEntry<WineFoxCardPool, Forging>(),
             new CardRegistrationEntry<WineFoxCardPool, EquivalentExchange>(),
+            new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
 
             //TokenCardPool
             new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),

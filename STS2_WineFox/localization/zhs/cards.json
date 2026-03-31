@@ -115,5 +115,7 @@
   "STS2_WINE_FOX_CARD_FORGING.description":"获得{Block:diff()}格挡。\n每种[gold]材料[/gold]各获得{Materials:diff()}个。\n[gold]合成[/gold]两次。",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.title":"等价交换",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.description":"选择任意手牌[gold]消耗[/gold]，根据[gold]消耗[/gold]卡牌的等级获得资源。{IfUpgraded:show:\n如果消耗的卡升级过，获得资源翻倍。|}",
-  "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE":"选择要消耗的牌"
+  "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE":"选择要消耗的牌",
+  "STS2_WINE_FOX_CARD_QUICK_SHELTER.title":"速成掩体",
+  "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。"
 }

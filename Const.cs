@@ -130,6 +130,7 @@ namespace STS2_WineFox
             public const string CardMaidSupport = Root + "/cards/card_maid_support.png";
             public const string CardForging = Root + "/cards/card_forgeing.png";
             public const string CardEquivalentExchange = Root + "/cards/card_equivalent_exchange.png";
+            public const string CardQuickShelter = Root + "/cards/card_quick_shelter.png";
             
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
