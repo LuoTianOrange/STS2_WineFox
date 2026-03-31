@@ -117,5 +117,8 @@
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.description":"选择任意手牌[gold]消耗[/gold]，根据[gold]消耗[/gold]卡牌的等级获得资源。{IfUpgraded:show:\n如果消耗的卡升级过，获得资源翻倍。|}",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE":"选择要消耗的牌",
   "STS2_WINE_FOX_CARD_QUICK_SHELTER.title":"速成掩体",
-  "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。"
+  "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。",
+  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.title":"蓝图打印",
+  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费5个[gold]木板[/gold]和5个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]保留[/gold]、[gold]消耗[/gold]的复制品加入手牌。",
+  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌"
 }
