@@ -9,9 +9,8 @@ namespace STS2_WineFox.Enchantments
 {
     public class FireAspect : WineFoxEnchantmentsPool
     {
-        public override EnchantmentAssetProfile AssetProfile => new("");
+        public override EnchantmentAssetProfile AssetProfile => new(Const.Paths.EnchantmentFireAspectIcon);
 
-        // 如果你想在卡面显示数量可以改为 true 并提供 CanonicalVars
         public override bool ShowAmount => false;
 
         public override bool CanEnchantCardType(CardType cardType)
