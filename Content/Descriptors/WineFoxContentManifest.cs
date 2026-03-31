@@ -78,6 +78,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
             new CardRegistrationEntry<WineFoxCardPool, BlueprintPrinting>(),
             new CardRegistrationEntry<WineFoxCardPool, StressResponse>(),
+            new CardRegistrationEntry<WineFoxCardPool, MassProduction>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -130,6 +131,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
             new PowerRegistrationEntry<BurningPower>(),
+            new PowerRegistrationEntry<MassProductionPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] EnchantmentEntries =

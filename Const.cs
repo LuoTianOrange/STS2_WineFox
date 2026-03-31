@@ -76,6 +76,7 @@ namespace STS2_WineFox
             public const string SlashBladeWoodPowerIcon = Root + "/powers/slash_blade_wood_power.png";
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
             public const string DiamondArmorPowerIcon = Root + "/powers/diamond_armor_power.png";
+            public const string MassProductionPowerIcon = Root + "/powers/mass_production_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -139,6 +140,7 @@ namespace STS2_WineFox
             public const string CardQuickShelter = Root + "/cards/card_quick_shelter.png";
             public const string CardBlueprintPrinting = Root + "/cards/card_blueprint_printing.png";
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";
+            public const string CardMassProduction = Root + "/cards/card_mass_production.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

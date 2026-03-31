@@ -3,7 +3,6 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
 {
-    // 临时复用 Silent 的完整奖励池，避免在自定义非基础卡不足时奖励生成失败。
     public class WineFoxCardPool : TypeListCardPoolModel
     {
         public override string Title => Const.EnergyColorName;
