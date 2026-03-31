@@ -1,4 +1,6 @@
 ﻿{
-  "STS2_WINE_FOX_ENCHANTMENT_FIREASPECT.title":"火焰附加",
-  "STS2_WINE_FOX_ENCHANTMENT_FIREASPECT.description":"当你造成伤害后，追加5层[gold]烧伤[/gold]。"
+  "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.title":"火焰附加",
+  "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.description":"当你造成伤害后，追加5层[gold]烧伤[/gold]。",
+  "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.title":"横扫之刃",
+    "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.description":"对其他敌人造成这次伤害的一半伤害。"
 }

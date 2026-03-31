@@ -126,6 +126,10 @@ namespace STS2_WineFox
             public const string CardFoxBite = Root + "/cards/card_fox_bite.png";
             public const string CardMaidSupport = Root + "/cards/card_maid_support.png";
             public const string CardForging = Root + "/cards/card_forgeing.png";
+            
+            //Enchantments
+            public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
+            public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/fire_aspect_icon.png";
         }
 
         public static class Audio

@@ -117,6 +117,7 @@ namespace STS2_WineFox.Content.Descriptors
 
             // Enchantment
             new EnchantmentRegistrationEntry<FireAspect>(),
+            new EnchantmentRegistrationEntry<SweepingEdge>(),
         ];
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =
