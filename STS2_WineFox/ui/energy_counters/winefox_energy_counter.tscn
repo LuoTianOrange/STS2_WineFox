@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmhvq6t83wly0"]
+[gd_scene load_steps=15 format=3 uid="uid://dmhvq6t83wly0"]
 
 [ext_resource type="Script" uid="uid://cd0wi5by6hqup" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_counter_script"]
+[ext_resource type="Script" uid="uid://bwm8p2vfxk7nq" path="res://Scripts/WineFoxEnergyVfxParticles.cs" id="10_wfvfx_particles"]
 [ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://STS2_WineFox/winefox/canvas_item_material_additive_shared.tres" id="2_8p52p"]
 [ext_resource type="Texture2D" uid="uid://bd728ay2duur4" path="res://STS2_WineFox/ui/energy_counters/energy_orb_shine.png" id="2_f7eh7"]
 [ext_resource type="Texture2D" uid="uid://e8fs7kuseag3" path="res://STS2_WineFox/winefox/energy/齿轮底部.png" id="3_8p52p"]
@@ -23,6 +24,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0.7826087, 0.7826087, 0.7826087, 1, 0, 0, 
 base_font = ExtResource("9_12wpb")
 spacing_glyph = 2
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfvfx_stub"]
+particle_flag_disable_z = true
+emission_shape = 0
+gravity = Vector3(0, 0, 0)
+
 [node name="WineFoxEnergyCounter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -32,6 +38,20 @@ pivot_offset = Vector2(64, 64)
 script = ExtResource("1_counter_script")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="EnergyVfxBack" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+script = ExtResource("10_wfvfx_particles")
+
+[node name="BackGpuParticles" type="GPUParticles2D" parent="EnergyVfxBack"]
+visible = false
+emitting = false
+amount = 1
+lifetime = 0.01
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wfvfx_stub")
 
 [node name="BurstBack" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -151,6 +171,20 @@ scale_amount_min = 0.45
 scale_amount_max = 0.45
 color = Color(0.5372549, 0.40392157, 0.23921569, 1)
 color_ramp = SubResource("Gradient_go76q")
+
+[node name="EnergyVfxFront" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+script = ExtResource("10_wfvfx_particles")
+
+[node name="FrontGpuParticles" type="GPUParticles2D" parent="EnergyVfxFront"]
+visible = false
+emitting = false
+amount = 1
+lifetime = 0.01
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wfvfx_stub")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
