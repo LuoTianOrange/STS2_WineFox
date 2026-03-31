@@ -13,8 +13,8 @@
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.goldMonologue": "A little extra funding never hurts.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.eventDeathPrevention": "Not yet. I can still keep going.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.aromaPrinciple": "A good brew needs patience, balance, and pressure.",
-  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierTitle": "Crafting",
-  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierDescription": "Mine [gold]Planks[/gold] and [gold]Cobblestones[/gold], use [gold]Digging[/gold] to increase yields, and let [gold]Stress[/gold] double key gains.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierTitle": "Wine Fox Cards",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierDescription": "Wine Fox cards will now appear in rewards and shops.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.alive.endTurnPing": "Your turn.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.dead.endTurnPing": "I'm down. Finish it for me.",
   "STS2_WINE_FOX_CHARACTER_WINE_FOX.unlockText": "Win a run as [pink]{Prerequisite}[/pink] to unlock this character."
