@@ -79,8 +79,10 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
             new CardRegistrationEntry<WineFoxCardPool, BlueprintPrinting>(),
             new CardRegistrationEntry<WineFoxCardPool, StressResponse>(),
-            // new CardRegistrationEntry<WineFoxCardPool, MassProduction>(),
+            new CardRegistrationEntry<WineFoxCardPool, MassProduction>(),
             new CardRegistrationEntry<WineFoxCardPool, WirelessTerminal>(),
+            new CardRegistrationEntry<WineFoxCardPool, SnowBallOverwhelming>(),
+            new CardRegistrationEntry<WineFoxCardPool, HellGift>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -98,6 +100,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, WoodenArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, DiamondArmor>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, GoldenSword>(),
         ];
 
         private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =
@@ -133,7 +136,9 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
             new PowerRegistrationEntry<BurningPower>(),
-            // new PowerRegistrationEntry<MassProductionPower>(),
+            new PowerRegistrationEntry<GoldenSwordPower>(),
+            new PowerRegistrationEntry<MassProductionPower>(),
+            new PowerRegistrationEntry<SnowBallOverwhelmingPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

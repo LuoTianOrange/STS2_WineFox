@@ -77,6 +77,8 @@ namespace STS2_WineFox
             public const string ProductionDocumentPowerIcon = Root + "/powers/production_document_power.png";
             public const string DiamondArmorPowerIcon = Root + "/powers/diamond_armor_power.png";
             public const string MassProductionPowerIcon = Root + "/powers/mass_production_power.png";
+            public const string GoldenSwordPowerIcon = Root + "/powers/golden_sword_power.png";
+            public const string SnowBallOverwhelmingPowerIcon = Root + "/powers/snow_ball_overwhelming_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
  
@@ -142,6 +144,9 @@ namespace STS2_WineFox
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";
             public const string CardMassProduction = Root + "/cards/card_mass_production.png";
             public const string CardWirelessTerminal = Root + "/cards/card_wireless_terminal.png";
+            public const string CardGoldenSword = Root + "/cards/card_golden_sword.png";
+            public const string CardHellGift = Root + "/cards/card_hell_gift.png";
+            public const string CardSnowBallOverwhelming = Root + "/cards/card_snow_ball_overwhelming.png";
             
 
             //Enchantments

@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Ancient
 
         protected override void OnUpgrade()
         {
-            AddKeyword(CardKeyword.Retain);
+            AddKeyword(CardKeyword.Innate);
         }
     }
 }

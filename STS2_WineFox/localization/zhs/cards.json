@@ -128,5 +128,11 @@
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title":"量产",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title":"无线终端",
-  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[purple]绝[/purple][red]对[/red][gold]天[/gold][green]马[/green][blue]行[/blue][blue]空[/blue][purple]的[/purple][red]想[/red][gold]象[/gold][green]能[/green][blue]力[/blue]来使用它"
+  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[purple]绝[/purple][red]对[/red][gold]天[/gold][green]马[/green][blue]行[/blue][blue]空[/blue][purple]的[/purple][red]想[/red][gold]象[/gold][green]能[/green][blue]力[/blue]来使用它",
+  "STS2_WINE_FOX_CARD_HELL_GIFT.title": "地狱馈赠",
+  "STS2_WINE_FOX_CARD_HELL_GIFT.description": "将一张随机[gold]{IfUpgraded:show:升级过的|}[/gold]金质装备卡牌加入你的[gold]手牌[/gold]。",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "金剑",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得1费{IfUpgraded:show:|，所有攻击牌获得[gold]虚无[/gold]}。",
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "雪球糊脸",
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "{IfUpgraded:show:造成{Damage:diff()}点伤害。|造成{Damage:diff()}点伤害两次。\n|}本回合打出的下一张[gold]技能牌[/gold]费用变为0。"
 }
