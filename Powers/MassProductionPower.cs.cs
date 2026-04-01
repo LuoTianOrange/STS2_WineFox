@@ -1,12 +1,8 @@
-using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
@@ -33,16 +29,15 @@ namespace STS2_WineFox.Powers
 
             var teammates = combatState
                 .GetTeammatesOf(Owner)
-                .Where(c => !ReferenceEquals(c, Owner) && c.IsPlayer && c.IsAlive)
+                .Where(c => !ReferenceEquals(c, Owner) && c is { IsPlayer: true, IsAlive: true })
                 .ToList();
 
-            if (teammates.Count == 0)
-            {
-                return;
-            }
+            if (teammates.Count == 0) return;
 
             foreach (var teammate in teammates)
             {
+                if (teammate.Player == null) continue;
+
                 var clone = card.CreateClone();
 
                 combatState.RemoveCard(clone);
@@ -54,10 +49,7 @@ namespace STS2_WineFox.Powers
                     CardCmd.PreviewCardPileAdd(instance);
             }
 
-            await PowerCmd.ModifyAmount(this, -1m, null, card);
-
-            if (Amount <= 0m)
-                await PowerCmd.Remove(this);
+            await PowerCmd.Decrement(this);
         }
     }
 }

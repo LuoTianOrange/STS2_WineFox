@@ -1,6 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -30,6 +31,18 @@ namespace STS2_WineFox.Cards
                 CraftCmd.ObserveTurnStarted(choiceContext, player);
 
             return Task.CompletedTask;
+        }
+
+        protected override void AddExtraArgsToDescription(LocString description)
+        {
+            base.AddExtraArgsToDescription(description);
+            var suffix = "";
+            if (Pile == null
+                && CraftRecipeRegistry.TryGetRecipe(GetType(), out var recipe)
+                && recipe.Costs.Length > 0)
+                suffix = CraftRecipeFormatting.ToPreviewSuffix(recipe);
+
+            description.Add("CraftRecipeSuffix", suffix);
         }
 
         protected static CardAssetProfile Art(string portraitPath)
