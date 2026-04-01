@@ -1,5 +1,6 @@
-﻿using System.Linq;
+using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -44,10 +45,13 @@ namespace STS2_WineFox.Powers
             {
                 var clone = card.CreateClone();
 
+                combatState.RemoveCard(clone);
+                combatState.AddCard(clone, teammate.Player);
 
                 var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
 
-                CardCmd.PreviewCardPileAdd(instance);
+                if (LocalContext.IsMe(teammate))
+                    CardCmd.PreviewCardPileAdd(instance);
             }
 
             await PowerCmd.ModifyAmount(this, -1m, null, card);
