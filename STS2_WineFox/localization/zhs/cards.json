@@ -124,5 +124,7 @@
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.title":"应激",
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，{Energy:diff()}点能量并抽2张牌。",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title":"量产",
-  "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。"
+  "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。",
+  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title":"无线终端",
+  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[purple]绝[/purple][red]对[/red][gold]天[/gold][green]马[/green][blue]行[/blue][blue]空[/blue][purple]的[/purple][red]想[/red][gold]象[/gold][green]能[/green][blue]力[/blue]来使用它"
 }

@@ -79,7 +79,7 @@ namespace STS2_WineFox
             public const string MassProductionPowerIcon = Root + "/powers/mass_production_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
-
+ 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -141,6 +141,8 @@ namespace STS2_WineFox
             public const string CardBlueprintPrinting = Root + "/cards/card_blueprint_printing.png";
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";
             public const string CardMassProduction = Root + "/cards/card_mass_production.png";
+            public const string CardWirelessTerminal = Root + "/cards/card_wireless_terminal.png";
+            
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

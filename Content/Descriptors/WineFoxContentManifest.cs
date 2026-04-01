@@ -9,6 +9,7 @@ using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
 using STS2_WineFox.Epoch;
+using STS2_WineFox.Potions;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Keywords;
@@ -78,7 +79,8 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, QuickShelter>(),
             new CardRegistrationEntry<WineFoxCardPool, BlueprintPrinting>(),
             new CardRegistrationEntry<WineFoxCardPool, StressResponse>(),
-            new CardRegistrationEntry<WineFoxCardPool, MassProduction>(),
+            // new CardRegistrationEntry<WineFoxCardPool, MassProduction>(),
+            new CardRegistrationEntry<WineFoxCardPool, WirelessTerminal>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -131,9 +133,14 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ProductionDocumentPower>(),
             new PowerRegistrationEntry<DiamondArmorPower>(),
             new PowerRegistrationEntry<BurningPower>(),
-            new PowerRegistrationEntry<MassProductionPower>(),
+            // new PowerRegistrationEntry<MassProductionPower>(),
         ];
 
+        private static readonly IContentRegistrationEntry[] PotionEntries =
+        [
+            // new PotionRegistrationEntry<WineFoxPotionPool,GoldenApple>()
+        ];
+        
         private static readonly IContentRegistrationEntry[] EnchantmentEntries =
         [
             new EnchantmentRegistrationEntry<FireAspect>(),
@@ -210,6 +217,7 @@ namespace STS2_WineFox.Content.Descriptors
                 TokenCardPoolEntries,
                 RelicAndOrobasEntries,
                 PowerEntries,
+                PotionEntries,
                 EnchantmentEntries);
 
         public static IReadOnlyList<KeywordRegistrationEntry> KeywordEntries { get; } =

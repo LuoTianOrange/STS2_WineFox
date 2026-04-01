@@ -28,7 +28,11 @@ namespace STS2_WineFox.Cards.Uncommon
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            await PowerCmd.Apply<StressPower>(owner, -1m, owner, this);
+            var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
+            if (stressPower != null)
+            {
+                await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+            }
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)

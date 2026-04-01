@@ -61,8 +61,8 @@ namespace STS2_WineFox.Cards.Uncommon
                 .FirstOrDefault();
 
             if (selected == null) return;
-
-            for (int i = 0; i < 2; i++)
+            int copies = DynamicVars.Cards.IntValue;
+            for (int i = 0; i < copies; i++)
             {
                 var clone = selected.CreateClone();
 
