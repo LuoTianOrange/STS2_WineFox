@@ -134,5 +134,5 @@
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "金剑",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得1费{IfUpgraded:show:|，所有攻击牌获得[gold]虚无[/gold]}。",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "雪球糊脸",
-  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "{IfUpgraded:show:造成{Damage:diff()}点伤害。|造成{Damage:diff()}点伤害两次。\n|}本回合打出的下一张[gold]技能牌[/gold]费用变为0。"
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "造成{Damage:diff()}点伤害{IfUpgraded:show:两次|}。\n本回合打出的下一张[gold]技能牌[/gold]费用变为0。"
 }

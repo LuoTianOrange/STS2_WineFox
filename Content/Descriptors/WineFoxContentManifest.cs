@@ -87,19 +87,19 @@ namespace STS2_WineFox.Content.Descriptors
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
         [
-            new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, StoneSword>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, IronArmor>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, WoodenSword>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, IronPickaxe>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, DiamondSword>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, IronSword>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, StoneArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, Nothing>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, WoodenPickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, WoodenSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, WoodenArmor>(),
-            new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, StonePickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, StoneSword>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, StoneArmor>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, IronPickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, IronSword>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, IronArmor>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, DiamondSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, DiamondArmor>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenSword>(),
         ];
 
