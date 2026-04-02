@@ -76,5 +76,9 @@
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.smartDescription": "你每打出两张攻击牌就获得[blue]1[/blue]费{AppliesEthereal:choose(1):，所有攻击牌获得[gold]虚无[/gold]。|}",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.title": "雪球糊脸",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.description": "本回合打出的下一张技能牌费用变为0。",
-  "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.smartDescription": "本回合打出的下一张[gold]技能牌[/gold]费用变为0。"
+  "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.smartDescription": "本回合打出的下一张[gold]技能牌[/gold]费用变为0。",
+  "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.title": "工具：钻石镐",
+  "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.description": "你合成的每张牌都将升级。",
+  "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.smartDescription": "你合成的每张牌都将升级。"
+  
 }
