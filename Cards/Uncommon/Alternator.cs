@@ -22,10 +22,11 @@ namespace STS2_WineFox.Cards.Uncommon
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
+            var stressPower = Owner.Creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            if (stressPower == null) return;
+
             var energyToGain = (decimal)DynamicVars.Energy.IntValue;
-
-            await PowerCmd.Apply<StressPower>(Owner.Creature, -1, Owner.Creature, this);
-
+            await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
             await PlayerCmd.GainEnergy(energyToGain, Owner);
         }
 
