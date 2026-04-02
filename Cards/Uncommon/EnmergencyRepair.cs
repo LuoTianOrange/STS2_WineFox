@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon
 {
     public class EnmergencyRepair() : WineFoxCard(
-        2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+        1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         public override bool GainsBlock => true;
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
@@ -18,7 +18,7 @@ namespace STS2_WineFox.Cards.Uncommon
             [WineFoxKeywords.Stress];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new BlockVar(7, ValueProp.Move), new("Repair", 2m)];
+            [new DamageVar(6m, ValueProp.Move), new BlockVar(5, ValueProp.Move), new("Repair", 2m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnmergencyRepair);
 
@@ -41,8 +41,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
-            DynamicVars.Block.UpgradeValueBy(3m);
+            DynamicVars.Damage.UpgradeValueBy(2m);
+            DynamicVars.Block.UpgradeValueBy(2m);
         }
     }
 }

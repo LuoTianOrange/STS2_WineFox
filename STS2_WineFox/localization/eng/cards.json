@@ -34,7 +34,7 @@
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.title": "Diamond Sword",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.description": "Deal {Damage:diff()} damage.\nThe first {Echoes:diff()} [gold]Attack[/gold] cards you play each turn are played an additional time.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_MECHANICAL_SAW.title": "Mechanical Saw",
-  "STS2_WINE_FOX_CARD_MECHANICAL_SAW.description": "Spend 1 Stress. Deal {Damage:diff()} damage to all enemies.",
+  "STS2_WINE_FOX_CARD_MECHANICAL_SAW.description": "Deal {Damage:diff()} damage to all enemies. Spend 1 [gold]Stress[/gold] to deal {BonusDamage:diff()} bonus damage.",
   "STS2_WINE_FOX_CARD_IRON_SWORD.title": "Iron Sword",
   "STS2_WINE_FOX_CARD_IRON_SWORD.description": "Deal {Damage:diff()} damage.\nThe next {Echoes:diff()} [gold]Attack[/gold] cards you play are played an additional time.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_ALTER_PATH.title": "Change Course",

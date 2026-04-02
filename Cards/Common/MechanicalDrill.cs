@@ -6,9 +6,9 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Common
 {
-    public class MechanicalDrill() : WineFoxCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public class MechanicalDrill() : WineFoxCard(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Iron, WineFoxKeywords.Stress];

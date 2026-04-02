@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Rare
             var handCards = PileType.Hand.GetPile(owner).Cards;
             if (handCards.Count == 0) return;
 
-            var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
+            var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 3);
             var selectedList = await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs);
             var chosen = selectedList.FirstOrDefault();
             if (chosen == null) return;

@@ -14,12 +14,9 @@ namespace STS2_WineFox.Cards.Uncommon
             [WineFoxKeywords.Stress];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(15m, ValueProp.Move)];
+            [new DamageVar(8m, ValueProp.Move), new IntVar("BonusDamage", 7m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMechanicalSaw);
-
-        protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<StressPower>().Any(p => (decimal)p.Amount > 0);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -29,9 +26,12 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner.CombatState is not { } combatState) return;
 
             var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
-            if (stressPower != null) await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+            var damage = DynamicVars.Damage.BaseValue;
 
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            if (stressPower != null) await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+                damage += DynamicVars["BonusDamage"].BaseValue;
+
+            await DamageCmd.Attack(damage)
                 .FromCard(this)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
@@ -40,7 +40,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(5m); // 15 → 20
+            DynamicVars.Damage.UpgradeValueBy(3m);
+            DynamicVars["BonusDamage"].UpgradeValueBy(2m);
         }
     }
 }

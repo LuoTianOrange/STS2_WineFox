@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon
 {
     public class AlterPath() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+        0, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         public override bool GainsBlock => true;
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
@@ -41,6 +41,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override void OnUpgrade()
         {
             DynamicVars["Block"].UpgradeValueBy(3m);
+            DynamicVars["Cards"].UpgradeValueBy(1);
         }
     }
 }

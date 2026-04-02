@@ -6,7 +6,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Rare
 {
     public class ShieldAttack() : WineFoxCard(
-        1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+        0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
