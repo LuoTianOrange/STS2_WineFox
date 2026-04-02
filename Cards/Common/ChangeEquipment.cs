@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -36,9 +36,7 @@ namespace STS2_WineFox.Cards.Common
             if (selected.Count == 0) return;
 
             foreach (var card in selected)
-                await CardPileCmd.Add(card, PileType.Draw);
-
-            await CardPileCmd.Shuffle(choiceContext, owner);
+                await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Random);
         }
 
         protected override void OnUpgrade()
