@@ -36,11 +36,10 @@ namespace STS2_WineFox.Powers
 
             if (teammates.Count == 0) return;
 
-            var copies = (int)Amount;
+            var copies = Amount;
             if (copies <= 0) return;
 
             for (var i = 0; i < copies; i++)
-            {
                 foreach (var teammate in teammates)
                 {
                     if (teammate.Player == null) continue;
@@ -55,7 +54,6 @@ namespace STS2_WineFox.Powers
                     if (LocalContext.IsMe(teammate))
                         CardCmd.PreviewCardPileAdd(instance);
                 }
-            }
         }
 
         public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

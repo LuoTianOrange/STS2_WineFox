@@ -81,7 +81,7 @@ namespace STS2_WineFox
             public const string SnowBallOverwhelmingPowerIcon = Root + "/powers/snow_ball_overwhelming_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
- 
+
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
@@ -147,7 +147,7 @@ namespace STS2_WineFox
             public const string CardGoldenSword = Root + "/cards/card_golden_sword.png";
             public const string CardHellGift = Root + "/cards/card_hell_gift.png";
             public const string CardSnowBallOverwhelming = Root + "/cards/card_snow_ball_overwhelming.png";
-            
+
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

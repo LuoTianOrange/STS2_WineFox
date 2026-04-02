@@ -1,6 +1,5 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -20,7 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
         [
             new CalculationBaseVar(0m),
             new ExtraDamageVar(4m),
-            new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => GetTotalMaterials(card)),
+            new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) => GetTotalMaterials(card)),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFullAttack);

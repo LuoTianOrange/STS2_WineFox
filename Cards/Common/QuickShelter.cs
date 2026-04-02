@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -15,19 +14,19 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
-        
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
-        
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(10m, ValueProp.Move),
-            new CardsVar(1)
+            new CardsVar(1),
         ];
 
         protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<WoodPower>().Any(p => (decimal)p.Amount >= 1m) &&
-            Owner.Creature.Powers.OfType<StonePower>().Any(p => (decimal)p.Amount >= 1m);
-        
+            Owner.Creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m) &&
+            Owner.Creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuickShelter);
 
         protected override async Task OnPlay(
@@ -40,10 +39,7 @@ namespace STS2_WineFox.Cards.Common
             var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m);
             var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
 
-            if (!hasWood || !hasStone)
-            {
-                return;
-            }
+            if (!hasWood || !hasStone) return;
 
             await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, 1m, 1m);
 

@@ -1,8 +1,8 @@
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using STS2RitsuLib.Scaffolding.Content;
 using STS2_WineFox.Commands;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {

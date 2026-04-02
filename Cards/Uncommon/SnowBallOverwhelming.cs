@@ -6,37 +6,36 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon;
-
-public class SnowBallOverwhelming() : WineFoxCard(
-    1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+namespace STS2_WineFox.Cards.Uncommon
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(3m, ValueProp.Move), new IntVar("Hits", 1m)];
-
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSnowBallOverwhelming);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class SnowBallOverwhelming() : WineFoxCard(
+        1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        ArgumentNullException.ThrowIfNull(play.Target, nameof(play.Target));
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new DamageVar(3m, ValueProp.Move), new IntVar("Hits", 1m)];
 
-        var hits = DynamicVars["Hits"].IntValue;
-        for (var i = 0; i < hits; i++)
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSnowBallOverwhelming);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
-                .Targeting(play.Target)
-                .WithHitFx("vfx/vfx_attack_slash")
-                .Execute(choiceContext);
+            ArgumentNullException.ThrowIfNull(play.Target, nameof(play.Target));
+
+            var hits = DynamicVars["Hits"].IntValue;
+            for (var i = 0; i < hits; i++)
+                await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                    .FromCard(this)
+                    .Targeting(play.Target)
+                    .WithHitFx("vfx/vfx_attack_slash")
+                    .Execute(choiceContext);
+
+            await PowerCmd.Apply<SnowBallOverwhelmingPower>(Owner.Creature, 1m, Owner.Creature, this);
         }
 
-        await PowerCmd.Apply<SnowBallOverwhelmingPower>(Owner.Creature, 1m, Owner.Creature, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Hits"].UpgradeValueBy(1m);
+        protected override void OnUpgrade()
+        {
+            DynamicVars["Hits"].UpgradeValueBy(1m);
+        }
     }
 }

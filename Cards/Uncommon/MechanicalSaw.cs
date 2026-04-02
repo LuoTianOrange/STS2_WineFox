@@ -29,10 +29,7 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner.CombatState is not { } combatState) return;
 
             var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
-            if (stressPower != null)
-            {
-                await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
-            }
+            if (stressPower != null) await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)

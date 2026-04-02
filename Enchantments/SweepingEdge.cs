@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
@@ -29,15 +28,11 @@ namespace STS2_WineFox.Enchantments
             if (ownerCreature == null) return;
             if (ownerCreature.CombatState is not { } combatState) return;
 
-            decimal baseDamage = 0m;
+            var baseDamage = 0m;
             if (cardPlay.Card.DynamicVars.TryGetValue("Damage", out var dv))
-            {
                 baseDamage = dv.BaseValue;
-            }
             else
-            {
                 return;
-            }
 
             var halfDamage = Math.Ceiling(baseDamage * 0.5m);
             if (halfDamage <= 0m) return;
@@ -46,13 +41,11 @@ namespace STS2_WineFox.Enchantments
             if (others == null || others.Count == 0) return;
 
             foreach (var enemy in others)
-            {
                 await DamageCmd.Attack(halfDamage)
                     .FromCard(cardPlay.Card)
                     .Targeting(enemy)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(context);
-            }
         }
     }
 }

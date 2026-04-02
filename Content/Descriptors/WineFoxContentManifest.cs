@@ -9,7 +9,6 @@ using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
 using STS2_WineFox.Epoch;
-using STS2_WineFox.Potions;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Keywords;
@@ -145,7 +144,7 @@ namespace STS2_WineFox.Content.Descriptors
         [
             // new PotionRegistrationEntry<WineFoxPotionPool,GoldenApple>()
         ];
-        
+
         private static readonly IContentRegistrationEntry[] EnchantmentEntries =
         [
             new EnchantmentRegistrationEntry<FireAspect>(),
