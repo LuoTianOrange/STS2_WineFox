@@ -4,23 +4,26 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon;
-
-public class MassProduction() : WineFoxCard(
-    2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+namespace STS2_WineFox.Cards.Uncommon
 {
-    public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMassProduction);
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    public class MassProduction() : WineFoxCard(
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        var owner = Owner;
-        await PowerCmd.Apply<MassProductionPower>(owner.Creature, 1m, owner.Creature, this);
-    }
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMassProduction);
 
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
+        public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            var owner = Owner;
+            await PowerCmd.Apply<MassProductionPower>(owner.Creature, 1m, owner.Creature, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            EnergyCost.UpgradeBy(-1);
+        }
     }
 }
