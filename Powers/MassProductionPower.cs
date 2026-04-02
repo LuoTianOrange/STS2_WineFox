@@ -36,19 +36,25 @@ namespace STS2_WineFox.Powers
 
             if (teammates.Count == 0) return;
 
-            foreach (var teammate in teammates)
+            var copies = (int)Amount;
+            if (copies <= 0) return;
+
+            for (var i = 0; i < copies; i++)
             {
-                if (teammate.Player == null) continue;
+                foreach (var teammate in teammates)
+                {
+                    if (teammate.Player == null) continue;
 
-                var clone = card.CreateClone();
+                    var clone = card.CreateClone();
 
-                combatState.RemoveCard(clone);
-                combatState.AddCard(clone, teammate.Player);
+                    combatState.RemoveCard(clone);
+                    combatState.AddCard(clone, teammate.Player);
 
-                var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
+                    var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
 
-                if (LocalContext.IsMe(teammate))
-                    CardCmd.PreviewCardPileAdd(instance);
+                    if (LocalContext.IsMe(teammate))
+                        CardCmd.PreviewCardPileAdd(instance);
+                }
             }
         }
 

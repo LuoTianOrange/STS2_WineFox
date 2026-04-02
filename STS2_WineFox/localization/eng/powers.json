@@ -71,6 +71,9 @@
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.title": "Weapon: Golden Sword",
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.description": "For every 2 Attack cards you play, gain 1 Energy. All Attack cards gain Ethereal.",
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.smartDescription": "For every 2 Attack cards you play, gain [blue]1[/blue] Energy{AppliesEthereal:choose(1):. All Attack cards gain [gold]Ethereal[/gold].|}",
+  "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.title": "Mass Production",
+  "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.description": "This turn, cards you craft are copied to other players.",
+  "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.smartDescription": "This turn, cards you craft are copied to other players [blue]{Amount}[/blue] copies each.",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.title": "Snowball to the Face",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.description": "The next Skill you play this turn costs 0.",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.smartDescription": "The next [gold]Skill[/gold] you play this turn costs 0."
