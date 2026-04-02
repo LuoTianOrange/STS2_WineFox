@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
     public class EquivalentExchange() : WineFoxCard(
         0, CardType.Skill, CardRarity.Rare, TargetType.None)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust,CardKeyword.Innate];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Innate];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEquivalentExchange);
 
@@ -22,22 +22,18 @@ namespace STS2_WineFox.Cards.Rare
         {
             var owner = Owner;
 
-            var handCards = PileType.Hand.GetPile(owner).Cards
-                .Where(c => c != this)
-                .ToList();
-
-            if (handCards.Count == 0) return;
+            var handCount = PileType.Hand.GetPile(owner).Cards.Count;
+            if (handCount == 0) return;
 
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 0, handCards.Count);
-
-            var selected = (await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs)).ToList();
+            var prefs = new CardSelectorPrefs(prompt, 0, handCount);
+            var selected = (await CardSelectCmd.FromHandForDiscard(choiceContext, owner, prefs, null, this)).ToList();
             if (selected.Count == 0) return;
 
-            var stoneTotal = 0m; // 白卡 -> 圆石
-            var ironTotal = 0m; // 蓝卡 -> 铁 
-            var diamondTotal = 0m; // 金卡 -> 钻石
-            var woodTotal = 0m; // 诅咒/状态/其他 -> 木板
+            var stoneTotal = 0m;
+            var ironTotal = 0m;
+            var diamondTotal = 0m;
+            var woodTotal = 0m;
 
             foreach (var card in selected)
             {
@@ -65,7 +61,6 @@ namespace STS2_WineFox.Cards.Rare
                 await CardPileCmd.Add(card, PileType.Exhaust);
             }
 
-            // 发放累加的资源（按 MaterialCmd 约定）
             if (stoneTotal > 0m)
                 await MaterialCmd.GainMaterial<StonePower>(this, stoneTotal);
             if (ironTotal > 0m)

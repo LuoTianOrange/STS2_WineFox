@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using STS2_WineFox.Cards.Token;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -21,12 +22,13 @@ namespace STS2_WineFox.Cards.Rare
         {
             var owner = Owner;
 
-            var handCards = PileType.Hand.GetPile(owner).Cards;
-            if (handCards.Count == 0) return;
+            var handCount = PileType.Hand.GetPile(owner).Cards.Count;
+            if (handCount == 0) return;
 
-            var maxSelect = Math.Min(3, handCards.Count);
-            var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 0, maxSelect);
-            var selectedList = await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs);
+            var maxSelect = Math.Min(3, handCount);
+            var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_LESS_HOLIDAY_CHOOSE");
+            var prefs = new CardSelectorPrefs(prompt, 0, maxSelect);
+            var selectedList = await CardSelectCmd.FromHandForDiscard(choiceContext, owner, prefs, null, this);
 
             foreach (var chosen in selectedList)
             {
