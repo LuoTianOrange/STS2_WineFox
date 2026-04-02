@@ -6,8 +6,8 @@ using STS2_WineFox.Powers;
 namespace STS2_WineFox.Commands
 {
     /// <summary>
-    ///     Extensible registry of material power types for <see cref="MaterialCmd" /> batch gains (e.g.
-    ///     <see cref="MaterialCmd.GainAllMaterials" />). WineFox registers its defaults in <see cref="Main.Initialize" />.
+    ///     Extensible registry of material power types for <see cref="MaterialCmd" /> batch gains.
+    ///     WineFox registers its defaults in <see cref="Main.Initialize" />.
     ///     Addon mods should call <see cref="Register{T}" /> from their mod initializer; registration order defines
     ///     <c>GainAll</c> apply order. Duplicate registrations for the same type are ignored.
     /// </summary>
@@ -18,7 +18,7 @@ namespace STS2_WineFox.Commands
         private static readonly List<Entry> Entries = [];
 
         /// <summary>
-        ///     Snapshot of registered types in registration order (used by <see cref="MaterialCmd.GainAllMaterials" />).
+        ///     Snapshot of registered types in registration order.
         /// </summary>
         public static IReadOnlyList<Type> RegisteredMaterialTypes
         {

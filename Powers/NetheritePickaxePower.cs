@@ -89,7 +89,7 @@ namespace STS2_WineFox.Powers
                 var amountPerTrigger = (decimal)Amount;
                 var totalAmount = amountPerTrigger * triggers;
 
-                await MaterialCmd.GainAllMaterialsFromNonCard(ownerCreature, totalAmount);
+                await MaterialCmd.GainAllMaterials(ownerCreature, totalAmount, false);
 
                 d.TriggerCount += triggers;
                 InvokeDisplayAmountChanged();

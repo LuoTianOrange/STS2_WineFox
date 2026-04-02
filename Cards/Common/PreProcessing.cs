@@ -39,7 +39,8 @@ namespace STS2_WineFox.Cards.Common
                 this,
                 DynamicVars["Wood"].BaseValue,
                 DynamicVars["Stone"].BaseValue);
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+            if (IsUpgraded)
+                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         }
 
         protected override void OnUpgrade()

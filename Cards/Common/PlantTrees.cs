@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Common
             CardPlay play)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-            var woodNextTurn = await MaterialCmd.ResolveCardMaterialAmountWithStressAsync(
+            var woodNextTurn = await MaterialCmd.ResolveCardMaterialAmount(
                 Owner.Creature,
                 this,
                 DynamicVars["Plant"].BaseValue);

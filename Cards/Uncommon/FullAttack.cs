@@ -1,12 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
-using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
@@ -18,26 +18,14 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(4m, ValueProp.Move),
-            ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage),
+            new CalculationBaseVar(0m),
+            new ExtraDamageVar(4m),
+            new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => GetTotalMaterials(card)),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFullAttack);
 
-        protected override bool IsPlayable
-        {
-            get
-            {
-                var creature = Owner?.Creature;
-                if (creature == null) return false;
-
-                var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
-                var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
-                var iron = creature.Powers.OfType<IronPower>().FirstOrDefault()?.Amount ?? 0;
-                var diamond = creature.Powers.OfType<DiamondPower>().FirstOrDefault()?.Amount ?? 0;
-                return wood + stone + iron + diamond > 0;
-            }
-        }
+        protected override bool IsPlayable => GetTotalMaterials(this) > 0;
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -72,10 +60,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             CraftCmd.RecordMaterialConsume(ownerCreature);
 
-            var baseDamage = DynamicVars["Damage"].BaseValue;
-            var damage = baseDamage * totalMaterials;
-
-            await DamageCmd.Attack(damage)
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage)
                 .FromCard(this)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
@@ -87,24 +72,16 @@ namespace STS2_WineFox.Cards.Uncommon
             AddKeyword(CardKeyword.Retain);
         }
 
-        private static decimal CalcTotalDamage(CardModel? card)
+        private static decimal GetTotalMaterials(CardModel? card)
         {
-            if (card == null) return 0m;
-
-            var baseDamage = card.DynamicVars.TryGetValue("Damage", out var dv) ? dv.BaseValue : 0m;
-
-            var creature = card._owner?.Creature;
-            if (creature == null) return baseDamage;
+            var creature = card?.Owner?.Creature;
+            if (creature == null) return 0m;
 
             var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
             var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
             var iron = creature.Powers.OfType<IronPower>().FirstOrDefault()?.Amount ?? 0;
             var diamond = creature.Powers.OfType<DiamondPower>().FirstOrDefault()?.Amount ?? 0;
-            var totalMaterials = wood + stone + iron + diamond;
-
-            if (totalMaterials <= 0) return 0m;
-
-            return baseDamage * totalMaterials;
+            return wood + stone + iron + diamond;
         }
     }
 }

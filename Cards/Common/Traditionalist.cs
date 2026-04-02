@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Common
 {
     public class Traditionalist() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Common, TargetType.None)
+        0, CardType.Skill, CardRarity.Common, TargetType.None)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];

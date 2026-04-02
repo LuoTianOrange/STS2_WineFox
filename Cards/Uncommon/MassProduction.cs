@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class MassProduction() : WineFoxCard(
-    1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [ new IntVar("Charges", 1m) ];
