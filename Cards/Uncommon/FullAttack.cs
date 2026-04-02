@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -48,6 +48,10 @@ namespace STS2_WineFox.Cards.Uncommon
 
             if (totalMaterials <= 0) return;
 
+            var damage =
+                DynamicVars.CalculationBase.BaseValue
+                + DynamicVars.ExtraDamage.BaseValue * totalMaterials;
+
             if (woodPower != null && woodAmount > 0)
                 await PowerCmd.ModifyAmount(woodPower, -(decimal)woodAmount, null, this);
             if (stonePower != null && stoneAmount > 0)
@@ -59,7 +63,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             CraftCmd.RecordMaterialConsume(ownerCreature);
 
-            await DamageCmd.Attack(DynamicVars.CalculatedDamage)
+            await DamageCmd.Attack(damage)
                 .FromCard(this)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
