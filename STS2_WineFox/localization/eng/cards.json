@@ -96,7 +96,7 @@
   "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.title": "Slash Blade: Nameless Blade \"Wooden Puppet\"",
   "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.description": "Whenever you draw a card during your turn, gain {SlashBladeWoodPower:diff()} [gold]Vigor[/gold].",
   "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.title": "Dripstone Trap",
-  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "Consume all [gold]Cobblestone[/gold]. For each one consumed, deal 2 damage to a random enemy and apply 1 [gold]Vulnerable[/gold].",
+  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "Consume all [gold]Cobblestone[/gold]. For each one consumed, deal {Damage:diff()} damage to a random enemy and apply 1 [gold]Vulnerable[/gold].",
   "STS2_WINE_FOX_CARD_PRE_PROCESSING.title": "Preprocessing",
   "STS2_WINE_FOX_CARD_PRE_PROCESSING.description": "{IfUpgraded:show:Gain {Block} Block.\n|}Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold].",
   "STS2_WINE_FOX_CARD_WORKBENCH_BACKPACK.title": "Workbench Backpack",
@@ -114,5 +114,11 @@
   "STS2_WINE_FOX_CARD_MAID_SUPPORT.title": "Maid's Support",
   "STS2_WINE_FOX_CARD_MAID_SUPPORT.description": "Add {Armor:diff()} [gold]Plating[/gold] and {Thorns:diff()} [gold]Thorns[/gold] to all players.",
   "STS2_WINE_FOX_CARD_FORGING.title": "Forging",
-  "STS2_WINE_FOX_CARD_FORGING.description": "Gain {Block:diff()} Block.\nGain {Materials:diff()} of each [gold]Material[/gold].\n[gold]Craft[/gold] twice."
+  "STS2_WINE_FOX_CARD_FORGING.description": "Gain {Block:diff()} Block.\nGain {Materials:diff()} of each [gold]Material[/gold].\n[gold]Craft[/gold] twice.",
+  "STS2_WINE_FOX_CARD_HELL_GIFT.title": "Hell's Gift",
+  "STS2_WINE_FOX_CARD_HELL_GIFT.description": "Add a random [gold]{IfUpgraded:show:upgraded |}[/gold]golden equipment card to your [gold]hand[/gold].",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "Golden Sword",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "For every 2 [gold]Attack[/gold] cards you play, gain 1 Energy.{IfUpgraded:show:| All [gold]Attack[/gold] cards gain [gold]Ethereal[/gold].}",
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "Snowball to the Face",
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "Deal {Damage:diff()} damage{IfUpgraded:show: twice|}.\nThe next [gold]Skill[/gold] you play this turn costs 0."
 }

@@ -96,7 +96,7 @@
   "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.title": "拔刀剑:无铭刀「木偶」",
   "STS2_WINE_FOX_CARD_SLASH_BLADE_WOOD.description": "每当你在回合中抽1张牌，获得{SlashBladeWoodPower:diff()}层[gold]活力[/gold]",
   "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.title": "石锥陷阱",
-  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "消耗所有[gold]圆石[/gold]，每消耗一个就对随机敌人造成2点伤害，施加1层[gold]易伤[/gold]。",
+  "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "消耗所有[gold]圆石[/gold]，每消耗一个就对随机敌人造成{Damage:diff()}点伤害，施加1层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_PRE_PROCESSING.title":"预处理",
   "STS2_WINE_FOX_CARD_PRE_PROCESSING.description":"{IfUpgraded:show:获得{Block}点格挡。\n|}获得{Wood:diff()}[gold]木板[/gold]与{Stone:diff()}[gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_WORKBENCH_BACKPACK.title":"工作台背包",
@@ -132,7 +132,7 @@
   "STS2_WINE_FOX_CARD_HELL_GIFT.title": "地狱馈赠",
   "STS2_WINE_FOX_CARD_HELL_GIFT.description": "将一张随机[gold]{IfUpgraded:show:升级过的|}[/gold]金质装备卡牌加入你的[gold]手牌[/gold]。",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "金剑",
-  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得1费{IfUpgraded:show:|，所有攻击牌获得[gold]虚无[/gold]}。",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得1费{IfUpgraded:show:|，所有[gold]攻击牌[/gold]获得[gold]虚无[/gold]。}",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "雪球糊脸",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "造成{Damage:diff()}点伤害{IfUpgraded:show:两次|}。\n本回合打出的下一张[gold]技能牌[/gold]费用变为0。"
 }

@@ -1,9 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Token;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers;
@@ -18,6 +21,8 @@ public class GoldenSwordPower : WineFoxPower
 
     private bool _noEthereal;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("AppliesEthereal", 1m)];
+
     public override int DisplayAmount
     {
         get
@@ -29,14 +34,18 @@ public class GoldenSwordPower : WineFoxPower
 
     protected override object InitInternalData() => new Data();
 
-    public void SetNoEthereal()
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        _noEthereal = true;
+        _noEthereal = cardSource is GoldenSword { IsUpgraded: true };
+        DynamicVars["AppliesEthereal"].BaseValue = _noEthereal ? 0m : 1m;
+        if (!_noEthereal)
+            ApplyEtherealToHand();
+        InvokeDisplayAmountChanged();
+        return Task.CompletedTask;
     }
 
-    public void ApplyEtherealToHand()
+    private void ApplyEtherealToHand()
     {
-        if (_noEthereal) return;
         var player = Owner.Player;
         if (player == null) return;
 

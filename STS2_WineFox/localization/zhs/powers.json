@@ -73,7 +73,7 @@
   "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.smartDescription": "当你在本回合合成时，将1张合成物的复制品分给你的每个队友。",
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.title": "武器：金剑",
   "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.description": "你每打出两张攻击牌就获得1费，所有攻击牌获得虚无。",
-  "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.smartDescription": "你每打出两张攻击牌就获得[blue]1[/blue]费，所有攻击牌获得虚无。",
+  "STS2_WINE_FOX_POWER_GOLDEN_SWORD_POWER.smartDescription": "你每打出两张攻击牌就获得[blue]1[/blue]费{AppliesEthereal:choose(1):，所有攻击牌获得[gold]虚无[/gold]。|}",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.title": "雪球糊脸",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.description": "本回合打出的下一张技能牌费用变为0。",
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.smartDescription": "本回合打出的下一张[gold]技能牌[/gold]费用变为0。"

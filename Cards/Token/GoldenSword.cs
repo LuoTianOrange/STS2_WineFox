@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Scaffolding.Content;
@@ -16,18 +16,6 @@ public class GoldenSword() : WineFoxCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var creature = Owner.Creature;
-        var appliedPower = await PowerCmd.Apply<GoldenSwordPower>(creature, 1m, creature, this);
-        if (appliedPower == null) return;
-
-        if (IsUpgraded)
-            appliedPower.SetNoEthereal();
-        else
-            appliedPower.ApplyEtherealToHand();
-    }
-
-    protected override void OnUpgrade()
-    {
-        
+        await PowerCmd.Apply<GoldenSwordPower>(Owner.Creature, 1m, Owner.Creature, this);
     }
 }
