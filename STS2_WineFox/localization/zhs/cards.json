@@ -56,7 +56,7 @@
   "STS2_WINE_FOX_CARD_ALL_ITEM.title": "全物品仓库",
   "STS2_WINE_FOX_CARD_ALL_ITEM.description": "获得{Energy:energyIcons()}。抽{Cards:diff()}张牌。获得{Wood:diff()}[gold]木板[/gold]、{Stone:diff()}[gold]圆石[/gold]、{Iron:diff()}[gold]铁锭[/gold]、{Diamond:diff()}[gold]钻石[/gold]。",
   "STS2_WINE_FOX_CARD_LESS_HOLIDAY.title": "996",
-  "STS2_WINE_FOX_CARD_LESS_HOLIDAY.description": "[gold]选择[/gold]你手牌中的一张牌[gold]变化[/gold]为[gold]{IfUpgraded:show:加班加点+|加班加点}[/gold]。",
+  "STS2_WINE_FOX_CARD_LESS_HOLIDAY.description": "[gold]选择[/gold]你手牌中的最多3张牌[gold]变化[/gold]为[gold]{IfUpgraded:show:加班加点+|加班加点}[/gold]。",
   "STS2_WINE_FOX_CARD_WORK_WORK.title": "加班加点",
   "STS2_WINE_FOX_CARD_WORK_WORK.description": "获得1[gold]应力[/gold]。{IfUpgraded:show:\n抽1张牌。|}",
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.title": "河电站",

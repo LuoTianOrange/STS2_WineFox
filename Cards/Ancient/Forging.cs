@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Ancient
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Materials")),
         ];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate, CardKeyword.Retain];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardForging);
 

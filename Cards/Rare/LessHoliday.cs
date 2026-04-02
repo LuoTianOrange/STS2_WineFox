@@ -24,14 +24,16 @@ namespace STS2_WineFox.Cards.Rare
             var handCards = PileType.Hand.GetPile(owner).Cards;
             if (handCards.Count == 0) return;
 
-            var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 3);
+            var maxSelect = Math.Min(3, handCards.Count);
+            var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 0, maxSelect);
             var selectedList = await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs);
-            var chosen = selectedList.FirstOrDefault();
-            if (chosen == null) return;
 
-            var result = await CardCmd.TransformTo<WorkWork>(chosen);
-
-            if (IsUpgraded && result.HasValue) CardCmd.Upgrade(result.Value.cardAdded);
+            foreach (var chosen in selectedList)
+            {
+                var result = await CardCmd.TransformTo<WorkWork>(chosen);
+                if (IsUpgraded && result.HasValue)
+                    CardCmd.Upgrade(result.Value.cardAdded);
+            }
         }
 
         protected override void OnUpgrade()

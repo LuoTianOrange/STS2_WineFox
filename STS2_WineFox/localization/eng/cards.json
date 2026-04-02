@@ -56,7 +56,7 @@
   "STS2_WINE_FOX_CARD_ALL_ITEM.title": "All-Item Warehouse",
   "STS2_WINE_FOX_CARD_ALL_ITEM.description": "Gain {Energy:energyIcons()}. Draw {Cards:diff()} cards. Gain {Wood:diff()} [gold]Plank[/gold], {Stone:diff()} [gold]Cobblestone[/gold], {Iron:diff()} [gold]Iron Ingot[/gold], and {Diamond:diff()} [gold]Diamond[/gold].",
   "STS2_WINE_FOX_CARD_LESS_HOLIDAY.title": "996",
-  "STS2_WINE_FOX_CARD_LESS_HOLIDAY.description": "[gold]Transform[/gold] a card in your hand into [gold]{IfUpgraded:show:Work Overtime+|Work Overtime}[/gold].",
+  "STS2_WINE_FOX_CARD_LESS_HOLIDAY.description": "[gold]Transform[/gold] 3 cards in your hand into [gold]{IfUpgraded:show:Work Overtime+|Work Overtime}[/gold].",
   "STS2_WINE_FOX_CARD_WORK_WORK.title": "Work Overtime",
   "STS2_WINE_FOX_CARD_WORK_WORK.description": "Gain 1 [gold]Stress[/gold].{IfUpgraded:show:\nDraw 1 card.|}",
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.title": "Hydroelectric Plant",
