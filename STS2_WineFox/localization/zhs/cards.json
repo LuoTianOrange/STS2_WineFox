@@ -50,7 +50,7 @@
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.title": "紧急修复",
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.description": "造成{Damage:diff()}伤害，获得{Block:diff()}格挡，在下个回合开始时获得2[gold]应力[/gold]。",
   "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.title": "轻装突击",
-  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成{Damage:diff()}点伤害。你每有1份[gold]材料[/gold]，这张牌的伤害就降低1点。",
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成{Damage:diff()}点伤害。你每有2份[gold]材料[/gold]，这张牌的伤害就降低1点。",
   "STS2_WINE_FOX_CARD_EASY_PEASY.title": "轻而易举",
   "STS2_WINE_FOX_CARD_EASY_PEASY.description": "每回合开始时获得{Energy:energyIcons()}，额外抽{EasyPeasy:diff()}张牌。每回合开始时将1张[gold]晕眩[/gold]加入你的[gold]手牌[/gold]，每回合增加1。",
   "STS2_WINE_FOX_CARD_ALL_ITEM.title": "全物品仓库",
@@ -75,7 +75,7 @@
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石形态",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.description": "在你的回合开始时获得2[gold]圆石[/gold]，每回合增加2。",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "盾击",
-  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "对所有敌人造成2倍于你格挡的伤害，然后清除你的所有格挡。抽1张牌。",
+  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "对所有敌人造成{Damage:diff()}倍于你格挡的伤害，然后清除你的所有格挡。抽1张牌。",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.title": "飞转的手",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "对所有敌人造成{Damage:diff()}点伤害，本场战斗中每[gold]合成[/gold]一次，这张牌的费用就减少1。",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "生产记录",
@@ -137,5 +137,7 @@
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "雪球糊脸",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "造成{Damage:diff()}点伤害{IfUpgraded:show:两次|}。\n本回合打出的下一张[gold]技能牌[/gold]费用变为0。",
   "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.title": "钻石镐",
-  "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.description": "你合成的每张牌都将升级。{CraftRecipeSuffix}"
+  "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.description": "你合成的每张牌都将升级。[gold]{IfUpgraded:show:\n合成。|}[/gold]{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.title": "金镐",
+  "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.description": "每次你获得材料，就获得等量[gold]格挡[/gold]并对随机敌人造成{IfUpgraded:show:3|2}倍等量伤害。"
 }

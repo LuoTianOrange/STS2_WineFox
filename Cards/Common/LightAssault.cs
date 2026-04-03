@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Common
             var totalMaterials = Owner.Creature.Powers
                 .OfType<MaterialPower>()
                 .Sum(p => (decimal)p.Amount);
-            var damage = Math.Max(0m, DynamicVars["Damage"].BaseValue - totalMaterials);
+            var damage = Math.Max(0m, DynamicVars["Damage"].BaseValue - Math.Floor(totalMaterials / 2m));
 
             await DamageCmd.Attack(damage)
                 .FromCard(this)
@@ -57,7 +57,7 @@ namespace STS2_WineFox.Cards.Common
                 .OfType<MaterialPower>()
                 .Sum(p => (decimal)p.Amount);
 
-            return Math.Max(0m, dynamicVar.BaseValue - totalMaterials);
+            return Math.Max(0m, dynamicVar.BaseValue - Math.Floor(totalMaterials / 2m));
         }
     }
 }

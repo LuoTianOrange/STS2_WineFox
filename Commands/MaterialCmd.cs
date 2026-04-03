@@ -202,6 +202,8 @@ namespace STS2_WineFox.Commands
                 await MaterialPowerRegistry.Apply(creature, type, amount * mult, card);
 
             await TryTriggerIronPickaxe(creature, card);
+            var totalGained = filtered.Sum(g => g.Amount) * mult;
+            await TryTriggerGoldenPickaxe(creature, totalGained);
         }
 
         private static async Task<bool> TryTriggerStressPower(Creature creature)
@@ -231,6 +233,14 @@ namespace STS2_WineFox.Commands
             await PowerCmd.ModifyAmount(power, -1m, null, card);
             if (power.Amount <= 0m)
                 await PowerCmd.Remove(power);
+        }
+        
+        private static async Task TryTriggerGoldenPickaxe(Creature creature, decimal totalGained)
+        {
+            var power = creature.Powers.OfType<GoldenPickaxePower>().FirstOrDefault();
+            if (power == null) return;
+
+            await power.TriggerOnMaterialGain(totalGained);
         }
     }
 }

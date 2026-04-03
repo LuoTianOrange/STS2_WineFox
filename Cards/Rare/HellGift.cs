@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token;
 using STS2RitsuLib.Scaffolding.Content;
@@ -14,6 +15,11 @@ namespace STS2_WineFox.Cards.Rare
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardHellGift);
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromCard<GoldenSword>(IsUpgraded),
+            HoverTipFactory.FromCard<GoldenPickaxe>(IsUpgraded),
+            ];
+        
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
@@ -22,11 +28,10 @@ namespace STS2_WineFox.Cards.Rare
             if (owner.Creature.CombatState is not { } combatState) return;
             if (CombatState == null) return;
 
-            // 所有金质 Token 牌的创建工厂 —— 新增金质牌时在此补充
             Func<CardModel>[] goldenCardCreators =
             [
                 () => CombatState.CreateCard<GoldenSword>(owner),
-                // () => CombatState.CreateCard<GoldenPickaxe>(owner),
+                () => CombatState.CreateCard<GoldenPickaxe>(owner),
                 // () => CombatState.CreateCard<GoldenAxe>(owner),
                 // () => CombatState.CreateCard<GoldenArmor>(owner),
             ];

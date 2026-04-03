@@ -79,6 +79,8 @@
   "STS2_WINE_FOX_POWER_SNOW_BALL_OVERWHELMING_POWER.smartDescription": "本回合打出的下一张[gold]技能牌[/gold]费用变为0。",
   "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.title": "工具：钻石镐",
   "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.description": "你合成的每张牌都将升级。",
-  "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.smartDescription": "你合成的每张牌都将升级。"
-  
+  "STS2_WINE_FOX_POWER_DIAMOND_PICKAXE_POWER.smartDescription": "你合成的每张牌都将升级。",
+  "STS2_WINE_FOX_POWER_GOLDEN_PICKAXE_POWER.title": "工具：金镐",
+  "STS2_WINE_FOX_POWER_GOLDEN_PICKAXE_POWER.description": "每次你获得[gold]材料[gold]，就获得等量格挡并对随机敌人造成{Amount}倍等量伤害。",
+  "STS2_WINE_FOX_POWER_GOLDEN_PICKAXE_POWER.smartDescription": "每次你获得[gold]材料[/gold]，就获得等量格挡并对随机敌人造成[gold]{Amount}[/gold]倍等量伤害。"
 }
