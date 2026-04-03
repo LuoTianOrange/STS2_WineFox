@@ -38,7 +38,7 @@
   "STS2_WINE_FOX_CARD_IRON_SWORD.title": "Iron Sword",
   "STS2_WINE_FOX_CARD_IRON_SWORD.description": "Deal {Damage:diff()} damage.\nThe next {Echoes:diff()} [gold]Attack[/gold] cards you play are played an additional time.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_ALTER_PATH.title": "Change Course",
-  "STS2_WINE_FOX_CARD_ALTER_PATH.description": "Spend 2 [gold]Plank[/gold]. Gain {Block:diff()} Block and draw 3 cards.",
+  "STS2_WINE_FOX_CARD_ALTER_PATH.description": "Spend 2 [gold]Plank[/gold]. Gain {Block:diff()} Block and draw {Cards:diff()} cards.",
   "STS2_WINE_FOX_CARD_STONE_ARMOR.title": "Stone Armor",
   "STS2_WINE_FOX_CARD_STONE_ARMOR.description": "Gain 7 [gold]Plating[/gold]. At the start of each turn, lose 1 Dexterity.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_POWER_UP.title": "Shift, Accelerate, Take Off",

@@ -38,7 +38,7 @@
   "STS2_WINE_FOX_CARD_IRON_SWORD.title": "铁剑",
   "STS2_WINE_FOX_CARD_IRON_SWORD.description": "造成{Damage:diff()}点伤害。\n下{Echoes:diff()}张[gold]攻击[/gold]牌额外打出一次。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_ALTER_PATH.title": "另辟蹊径",
-  "STS2_WINE_FOX_CARD_ALTER_PATH.description": "花费2木板，获得{Block:diff()}点格挡，抽3张牌。",
+  "STS2_WINE_FOX_CARD_ALTER_PATH.description": "花费2木板，获得{Block:diff()}点格挡，抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_STONE_ARMOR.title": "砖石甲",
   "STS2_WINE_FOX_CARD_STONE_ARMOR.description": "获得7层[gold]覆甲[/gold]，每回合开始时失去1点敏捷。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_POWER_UP.title": "换挡，加速，起飞",
