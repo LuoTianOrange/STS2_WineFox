@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -36,12 +36,14 @@ namespace STS2_WineFox.Cards.Uncommon
             const decimal woodCost = 5m;
             const decimal stoneCost = 5m;
 
-            var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= woodCost);
-            var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= stoneCost);
+            if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
+            {
+                var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= woodCost);
+                var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= stoneCost);
+                if (!hasWood || !hasStone) return;
+            }
 
-            if (!hasWood || !hasStone) return;
-
-            await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, woodCost, stoneCost);
+            await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, woodCost, stoneCost, play);
 
             var handCards = PileType.Hand.GetPile(owner).Cards
                 .Where(c => c != this)

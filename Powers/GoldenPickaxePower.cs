@@ -1,20 +1,22 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
-    public class GoldenPickaxePower : WineFoxPower
+    public class GoldenPickaxePower : MaterialReactivePower
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.GoldenPickaxePowerIcon);
-        
-        public async Task TriggerOnMaterialGain(decimal totalAmount)
+
+        public override async Task AfterMaterialGain(MaterialGainEvent evt)
         {
-            if (totalAmount <= 0m) return;
+            var totalAmount = evt.TotalAmount;
+            if (evt.Creature != Owner || totalAmount <= 0m) return;
 
             Flash();
 
@@ -34,7 +36,7 @@ namespace STS2_WineFox.Powers
                 totalAmount * Amount,
                 ValueProp.Move,
                 Owner,
-                null);
+                evt.SourceCard);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -35,10 +35,13 @@ namespace STS2_WineFox.Cards.Common
             var ownerCreature = Owner.Creature;
             if (ownerCreature.CombatState is null) return;
 
-            var woodPower = ownerCreature.Powers.OfType<WoodPower>().FirstOrDefault();
-            if (woodPower == null || woodPower.Amount < 2m) return;
+            if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
+            {
+                var woodPower = ownerCreature.Powers.OfType<WoodPower>().FirstOrDefault();
+                if (woodPower == null || woodPower.Amount < 2m) return;
+            }
 
-            await PowerCmd.ModifyAmount(woodPower, -2m, null, this);
+            await MaterialCmd.LoseMaterial<WoodPower>(this, 2m, play);
             await CraftCmd.CraftIntoHand(choiceContext, this);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }

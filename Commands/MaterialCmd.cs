@@ -1,13 +1,19 @@
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Cards.FreePlay;
+using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands
 {
     public static class MaterialCmd
     {
+        private static readonly AttachedState<CardModel, MaterialConsumeSeriesState> MaterialConsumeSeriesStates =
+            new(() => new());
+
         /// <summary>
         ///     Resolves material amount for a delayed effect granted by a card (e.g. Plant): applies stress
         ///     doubling and consumption now, like <see cref="DodgeAndRoll" /> locking block for next turn.
@@ -141,44 +147,225 @@ namespace STS2_WineFox.Commands
             if (amountPerType <= 0m)
                 return;
 
+            var appliedStressMultiplier = false;
             if (applyStress && await TryTriggerStressPower(creature))
+            {
                 amountPerType *= 2m;
+                appliedStressMultiplier = true;
+            }
 
+            var deltas = MaterialPowerRegistry.RegisteredMaterialTypes
+                .Select(type => new MaterialDelta(type, amountPerType))
+                .ToList();
+            var gainEvent = new MaterialGainEvent
+            {
+                Creature = creature,
+                SourceCard = null,
+                Deltas = deltas,
+                TotalAmount = deltas.Sum(d => d.Amount),
+                AppliedStressMultiplier = appliedStressMultiplier,
+            };
+            await MaterialEventFlow.DispatchBeforeGain(gainEvent);
             await MaterialPowerRegistry.ApplyAll(creature, amountPerType, null);
-            await TryTriggerIronPickaxe(creature, null);
+            await MaterialEventFlow.DispatchAfterGain(gainEvent);
+            await MaterialEventFlow.DispatchAfterResolved(new()
+            {
+                Creature = gainEvent.Creature,
+                SourceCard = gainEvent.SourceCard,
+                Deltas = gainEvent.Deltas,
+                TotalAmount = gainEvent.TotalAmount,
+                Kind = MaterialChangeKind.Gain,
+                AppliedStressMultiplier = gainEvent.AppliedStressMultiplier,
+            });
         }
 
-        public static async Task LoseMaterial<T>(CardModel card, decimal amount)
+        public static async Task<decimal> ConsumeAllMaterialsForSeries(CardModel card, CardPlay play)
+        {
+            ArgumentNullException.ThrowIfNull(card);
+            ArgumentNullException.ThrowIfNull(play);
+
+            var owner = card.Owner?.Creature ??
+                        throw new InvalidOperationException("Material source has no owner creature.");
+            var state = EnsureSeriesState(card, play);
+
+            if (play.IsFirstInSeries)
+            {
+                var entries = MaterialPowerRegistry.RegisteredMaterialTypes
+                    .Select(type =>
+                    {
+                        var power = owner.Powers.FirstOrDefault(p => p.GetType() == type);
+                        var amount = power?.Amount ?? 0m;
+                        return (Type: type, Power: power, Amount: amount);
+                    })
+                    .Where(entry => entry.Amount > 0m)
+                    .ToList();
+                var totalAmount = entries.Sum(entry => entry.Amount);
+
+                state.AllMaterialsAmount = totalAmount;
+                state.HasAllMaterialsSnapshot = true;
+
+                if (state.IsFreePlay || totalAmount <= 0m) return totalAmount;
+                {
+                    var consumeEvent = new MaterialConsumeEvent
+                    {
+                        Creature = owner,
+                        SourceCard = card,
+                        Deltas = entries.Select(entry => new MaterialDelta(entry.Type, entry.Amount)).ToList(),
+                        TotalAmount = totalAmount,
+                    };
+                    await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
+                    foreach (var entry in entries)
+                        if (entry.Power != null)
+                            await PowerCmd.ModifyAmount(entry.Power, -entry.Amount, null, card);
+                    await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+                    await MaterialEventFlow.DispatchAfterResolved(new()
+                    {
+                        Creature = consumeEvent.Creature,
+                        SourceCard = consumeEvent.SourceCard,
+                        Deltas = consumeEvent.Deltas,
+                        TotalAmount = consumeEvent.TotalAmount,
+                        Kind = MaterialChangeKind.Consume,
+                        AppliedStressMultiplier = false,
+                    });
+                    CraftCmd.RecordMaterialConsume(owner);
+                }
+
+                return totalAmount;
+            }
+
+            if (state.IsFreePlay)
+                return GetTotalMaterials(owner);
+
+            return state.HasAllMaterialsSnapshot ? state.AllMaterialsAmount : 0m;
+        }
+
+        public static async Task<decimal> ConsumeAllMaterialOfTypeForSeries<T>(CardModel card, CardPlay play)
             where T : MaterialPower
         {
             ArgumentNullException.ThrowIfNull(card);
+            ArgumentNullException.ThrowIfNull(play);
+
+            var owner = card.Owner?.Creature ??
+                        throw new InvalidOperationException("Material source has no owner creature.");
+            var state = EnsureSeriesState(card, play);
+            var materialType = typeof(T);
+
+            if (play.IsFirstInSeries)
+            {
+                var power = owner.Powers.OfType<T>().FirstOrDefault();
+                var amount = power?.Amount ?? 0m;
+                state.MaterialTypeAmounts[materialType] = amount;
+
+                if (state.IsFreePlay || amount <= 0m || power == null) return amount;
+                var consumeEvent = new MaterialConsumeEvent
+                {
+                    Creature = owner,
+                    SourceCard = card,
+                    Deltas = [new(materialType, amount)],
+                    TotalAmount = amount,
+                };
+                await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
+                await PowerCmd.ModifyAmount(power, -amount, null, card);
+                await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+                await MaterialEventFlow.DispatchAfterResolved(new()
+                {
+                    Creature = consumeEvent.Creature,
+                    SourceCard = consumeEvent.SourceCard,
+                    Deltas = consumeEvent.Deltas,
+                    TotalAmount = consumeEvent.TotalAmount,
+                    Kind = MaterialChangeKind.Consume,
+                    AppliedStressMultiplier = false,
+                });
+                CraftCmd.RecordMaterialConsume(owner);
+
+                return amount;
+            }
+
+            if (state.IsFreePlay)
+                return owner.Powers.OfType<T>().FirstOrDefault()?.Amount ?? 0m;
+
+            return state.MaterialTypeAmounts.GetValueOrDefault(materialType, 0m);
+        }
+
+        public static async Task LoseMaterial<T>(CardModel card, decimal amount, CardPlay? play = null)
+            where T : MaterialPower
+        {
+            ArgumentNullException.ThrowIfNull(card);
+            if (amount <= 0m)
+                return;
+
+            if (!ShouldConsumeOnPlay(play))
+                return;
 
             var owner = card.Owner?.Creature ??
                         throw new InvalidOperationException("Material source has no owner creature.");
 
+            var consumeEvent = new MaterialConsumeEvent
+            {
+                Creature = owner,
+                SourceCard = card,
+                Deltas = [new(typeof(T), amount)],
+                TotalAmount = amount,
+            };
+            await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
             await PowerCmd.Apply<T>(owner, -amount, owner, card);
+            await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+            await MaterialEventFlow.DispatchAfterResolved(new()
+            {
+                Creature = consumeEvent.Creature,
+                SourceCard = consumeEvent.SourceCard,
+                Deltas = consumeEvent.Deltas,
+                TotalAmount = consumeEvent.TotalAmount,
+                Kind = MaterialChangeKind.Consume,
+                AppliedStressMultiplier = false,
+            });
+            CraftCmd.RecordMaterialConsume(owner);
         }
 
         public static async Task LoseMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount,
-            decimal secondAmount)
+            decimal secondAmount, CardPlay? play = null)
             where TFirst : MaterialPower
             where TSecond : MaterialPower
         {
             ArgumentNullException.ThrowIfNull(card);
+            if (firstAmount <= 0m || secondAmount <= 0m)
+                return;
+
+            if (!ShouldConsumeOnPlay(play))
+                return;
 
             var owner = card.Owner?.Creature ??
                         throw new InvalidOperationException("Material source has no owner creature.");
 
             var firstPower = owner.Powers.OfType<TFirst>()
-                .FirstOrDefault(power => power.Amount >= 0);
+                .FirstOrDefault(power => power.Amount >= firstAmount);
             var secondPower = owner.Powers.OfType<TSecond>()
-                .FirstOrDefault(power => power.Amount >= 0);
+                .FirstOrDefault(power => power.Amount >= secondAmount);
 
             if (firstPower == null || secondPower == null)
                 return;
 
+            var consumeEvent = new MaterialConsumeEvent
+            {
+                Creature = owner,
+                SourceCard = card,
+                Deltas = [new(typeof(TFirst), firstAmount), new(typeof(TSecond), secondAmount)],
+                TotalAmount = firstAmount + secondAmount,
+            };
+            await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
             await PowerCmd.Apply<TFirst>(owner, -firstAmount, owner, card);
             await PowerCmd.Apply<TSecond>(owner, -secondAmount, owner, card);
+            await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+            await MaterialEventFlow.DispatchAfterResolved(new()
+            {
+                Creature = consumeEvent.Creature,
+                SourceCard = consumeEvent.SourceCard,
+                Deltas = consumeEvent.Deltas,
+                TotalAmount = consumeEvent.TotalAmount,
+                Kind = MaterialChangeKind.Consume,
+                AppliedStressMultiplier = false,
+            });
+            CraftCmd.RecordMaterialConsume(owner);
         }
 
         private static Task CommitCardMaterialGains(CardModel card,
@@ -198,12 +385,33 @@ namespace STS2_WineFox.Commands
 
             var mult = applyStress && await TryTriggerStressPower(creature) ? 2m : 1m;
 
-            foreach (var (type, amount) in filtered)
-                await MaterialPowerRegistry.Apply(creature, type, amount * mult, card);
+            var resolvedDeltas = filtered
+                .Select(g => new MaterialDelta(g.Type, g.Amount * mult))
+                .ToList();
+            var totalGained = resolvedDeltas.Sum(d => d.Amount);
+            var gainEvent = new MaterialGainEvent
+            {
+                Creature = creature,
+                SourceCard = card,
+                Deltas = resolvedDeltas,
+                TotalAmount = totalGained,
+                AppliedStressMultiplier = mult > 1m,
+            };
+            await MaterialEventFlow.DispatchBeforeGain(gainEvent);
 
-            await TryTriggerIronPickaxe(creature, card);
-            var totalGained = filtered.Sum(g => g.Amount) * mult;
-            await TryTriggerGoldenPickaxe(creature, totalGained);
+            foreach (var delta in resolvedDeltas)
+                await MaterialPowerRegistry.Apply(creature, delta.MaterialType, delta.Amount, card);
+
+            await MaterialEventFlow.DispatchAfterGain(gainEvent);
+            await MaterialEventFlow.DispatchAfterResolved(new()
+            {
+                Creature = gainEvent.Creature,
+                SourceCard = gainEvent.SourceCard,
+                Deltas = gainEvent.Deltas,
+                TotalAmount = gainEvent.TotalAmount,
+                Kind = MaterialChangeKind.Gain,
+                AppliedStressMultiplier = gainEvent.AppliedStressMultiplier,
+            });
         }
 
         private static async Task<bool> TryTriggerStressPower(Creature creature)
@@ -216,31 +424,53 @@ namespace STS2_WineFox.Commands
             return true;
         }
 
-
-        private static async Task TryTriggerIronPickaxe(Creature creature, CardModel? card)
+        private static MaterialConsumeSeriesState EnsureSeriesState(CardModel card, CardPlay play)
         {
-            var power = creature.Powers
-                .OfType<IronPickaxePower>()
-                .FirstOrDefault(p => p.Amount > 0);
+            var state = MaterialConsumeSeriesStates.GetOrCreate(card);
+            if (play.IsFirstInSeries || !state.Initialized)
+                state.Reset(IsFreePlay(play));
 
-            if (power == null)
-                return;
-
-            power.Flash();
-
-            await PowerCmd.Apply<IronPower>(creature, 3m, creature, card);
-
-            await PowerCmd.ModifyAmount(power, -1m, null, card);
-            if (power.Amount <= 0m)
-                await PowerCmd.Remove(power);
+            return state;
         }
-        
-        private static async Task TryTriggerGoldenPickaxe(Creature creature, decimal totalGained)
-        {
-            var power = creature.Powers.OfType<GoldenPickaxePower>().FirstOrDefault();
-            if (power == null) return;
 
-            await power.TriggerOnMaterialGain(totalGained);
+        private static bool ShouldConsumeOnPlay(CardPlay? play)
+        {
+            if (play == null)
+                return true;
+
+            return play.IsFirstInSeries && !IsFreePlay(play);
+        }
+
+        public static bool IsFreePlay(CardPlay play)
+        {
+            return play.IsAutoPlay || FreePlayBindingRegistry.IsFreeForPlay(play);
+        }
+
+        private static decimal GetTotalMaterials(Creature creature)
+        {
+            return creature.Powers
+                .OfType<MaterialPower>()
+                .Sum(p => p.Amount);
+        }
+
+        private sealed class MaterialConsumeSeriesState
+        {
+            public bool Initialized { get; private set; }
+
+            // ReSharper disable once MemberHidesStaticFromOuterClass
+            public bool IsFreePlay { get; private set; }
+            public bool HasAllMaterialsSnapshot { get; set; }
+            public decimal AllMaterialsAmount { get; set; }
+            public Dictionary<Type, decimal> MaterialTypeAmounts { get; } = new();
+
+            public void Reset(bool isFreePlay)
+            {
+                Initialized = true;
+                IsFreePlay = isFreePlay;
+                HasAllMaterialsSnapshot = false;
+                AllMaterialsAmount = 0m;
+                MaterialTypeAmounts.Clear();
+            }
         }
     }
 }

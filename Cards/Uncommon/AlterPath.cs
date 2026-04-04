@@ -27,13 +27,15 @@ namespace STS2_WineFox.Cards.Uncommon
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            var woodPower = Owner.Creature.Powers
-                .OfType<WoodPower>()
-                .FirstOrDefault(p => (decimal)p.Amount >= 2);
-            if (woodPower == null) return;
+            if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
+            {
+                var woodPower = Owner.Creature.Powers
+                    .OfType<WoodPower>()
+                    .FirstOrDefault(p => (decimal)p.Amount >= 2);
+                if (woodPower == null) return;
+            }
 
-            await PowerCmd.ModifyAmount(woodPower, -2m, null, this);
-            CraftCmd.RecordMaterialConsume(Owner.Creature);
+            await MaterialCmd.LoseMaterial<WoodPower>(this, 2m, play);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }

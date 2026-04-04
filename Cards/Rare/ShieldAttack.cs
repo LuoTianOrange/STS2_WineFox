@@ -11,7 +11,8 @@ namespace STS2_WineFox.Cards.Rare
         0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new ("Attack",2m)];
+            [new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered)];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
         protected override async Task OnPlay(
@@ -26,15 +27,14 @@ namespace STS2_WineFox.Cards.Rare
             if (combatState is null) return;
 
             var block = creature.Block;
-            var damage = block * DynamicVars["Attack"].BaseValue;
+            var damage = block * DynamicVars.Damage.BaseValue;
 
-            await CreatureCmd.Damage(
-                choiceContext,
-                combatState.Enemies.Where(e => e.IsAlive),
-                damage,
-                ValueProp.Unpowered,
-                creature,
-                this);
+            await DamageCmd.Attack(damage)
+                .FromCard(this)
+                .TargetingAllOpponents(combatState)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Unpowered()
+                .Execute(choiceContext);
 
             if (block > 0m) await CreatureCmd.LoseBlock(creature, block);
 
@@ -43,7 +43,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Attack"].UpgradeValueBy(1m);
+            DynamicVars.Damage.UpgradeValueBy(1m);
         }
     }
 }

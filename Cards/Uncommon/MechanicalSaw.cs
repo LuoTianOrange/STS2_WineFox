@@ -2,14 +2,20 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
     public class MechanicalSaw() : WineFoxCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
+        private static readonly AttachedState<CardModel, StressConsumeSeriesState> StressConsumeSeriesStates =
+            new(() => new());
+
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Stress];
 
@@ -25,10 +31,27 @@ namespace STS2_WineFox.Cards.Uncommon
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
             var damage = DynamicVars.Damage.BaseValue;
+            var state = StressConsumeSeriesStates.GetOrCreate(this);
+            var consumedStressThisSeries = state.ConsumedStress;
 
-            if (stressPower != null) await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+            if (play.IsFirstInSeries)
+            {
+                consumedStressThisSeries = false;
+                if (!MaterialCmd.IsFreePlay(play))
+                {
+                    var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
+                    if (stressPower != null)
+                    {
+                        await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+                        consumedStressThisSeries = true;
+                    }
+                }
+
+                state.ConsumedStress = consumedStressThisSeries;
+            }
+
+            if (consumedStressThisSeries)
                 damage += DynamicVars["BonusDamage"].BaseValue;
 
             await DamageCmd.Attack(damage)
@@ -42,6 +65,11 @@ namespace STS2_WineFox.Cards.Uncommon
         {
             DynamicVars.Damage.UpgradeValueBy(3m);
             DynamicVars["BonusDamage"].UpgradeValueBy(2m);
+        }
+
+        private sealed class StressConsumeSeriesState
+        {
+            public bool ConsumedStress { get; set; }
         }
     }
 }

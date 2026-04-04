@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -43,15 +43,9 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner == null) return;
             if (owner.CombatState is not { } combatState) return;
 
-            var stonePower = owner.Powers.OfType<StonePower>().FirstOrDefault();
-            var stoneAmountDecimal = stonePower?.Amount ?? 0m;
+            var stoneAmountDecimal = await MaterialCmd.ConsumeAllMaterialOfTypeForSeries<StonePower>(this, play);
             var totalHits = (int)stoneAmountDecimal;
             if (totalHits <= 0) return;
-
-            if (stonePower != null && stoneAmountDecimal > 0m)
-                await PowerCmd.ModifyAmount(stonePower, -stoneAmountDecimal, null, this);
-
-            CraftCmd.RecordMaterialConsume(owner);
 
             for (var i = 0; i < totalHits; i++)
             {

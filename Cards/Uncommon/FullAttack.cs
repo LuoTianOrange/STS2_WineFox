@@ -34,34 +34,15 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var ownerCreature = Owner?.Creature;
             if (ownerCreature == null) return;
-            if (ownerCreature.CombatState is not { } combatState) return;
+            if (ownerCreature.CombatState is not { } _) return;
 
-            var woodPower = ownerCreature.Powers.OfType<WoodPower>().FirstOrDefault();
-            var stonePower = ownerCreature.Powers.OfType<StonePower>().FirstOrDefault();
-            var ironPower = ownerCreature.Powers.OfType<IronPower>().FirstOrDefault();
-            var diamondPower = ownerCreature.Powers.OfType<DiamondPower>().FirstOrDefault();
-            var woodAmount = woodPower?.Amount ?? 0;
-            var stoneAmount = stonePower?.Amount ?? 0;
-            var ironAmount = ironPower?.Amount ?? 0;
-            var diamondAmount = diamondPower?.Amount ?? 0;
-            var totalMaterials = woodAmount + stoneAmount + ironAmount + diamondAmount;
+            var totalMaterials = await MaterialCmd.ConsumeAllMaterialsForSeries(this, play);
 
             if (totalMaterials <= 0) return;
 
             var damage =
                 DynamicVars.CalculationBase.BaseValue
                 + DynamicVars.ExtraDamage.BaseValue * totalMaterials;
-
-            if (woodPower != null && woodAmount > 0)
-                await PowerCmd.ModifyAmount(woodPower, -(decimal)woodAmount, null, this);
-            if (stonePower != null && stoneAmount > 0)
-                await PowerCmd.ModifyAmount(stonePower, -(decimal)stoneAmount, null, this);
-            if (ironPower != null && ironAmount > 0)
-                await PowerCmd.ModifyAmount(ironPower, -(decimal)ironAmount, null, this);
-            if (diamondPower != null && diamondAmount > 0)
-                await PowerCmd.ModifyAmount(diamondPower, -(decimal)diamondAmount, null, this);
-
-            CraftCmd.RecordMaterialConsume(ownerCreature);
 
             await DamageCmd.Attack(damage)
                 .FromCard(this)
@@ -80,11 +61,9 @@ namespace STS2_WineFox.Cards.Uncommon
             var creature = card?.Owner?.Creature;
             if (creature == null) return 0m;
 
-            var wood = creature.Powers.OfType<WoodPower>().FirstOrDefault()?.Amount ?? 0;
-            var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
-            var iron = creature.Powers.OfType<IronPower>().FirstOrDefault()?.Amount ?? 0;
-            var diamond = creature.Powers.OfType<DiamondPower>().FirstOrDefault()?.Amount ?? 0;
-            return wood + stone + iron + diamond;
+            return creature.Powers
+                .OfType<MaterialPower>()
+                .Sum(p => p.Amount);
         }
     }
 }

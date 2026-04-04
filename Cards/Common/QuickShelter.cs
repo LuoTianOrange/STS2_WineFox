@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -36,12 +36,14 @@ namespace STS2_WineFox.Cards.Common
             var owner = Owner;
 
             var creature = owner.Creature;
-            var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m);
-            var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
+            if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
+            {
+                var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m);
+                var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
+                if (!hasWood || !hasStone) return;
+            }
 
-            if (!hasWood || !hasStone) return;
-
-            await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, 1m, 1m);
+            await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, 1m, 1m, play);
 
             await CreatureCmd.GainBlock(creature, DynamicVars.Block, play);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);
