@@ -443,7 +443,11 @@ namespace STS2_WineFox.Commands
 
         public static bool IsFreePlay(CardPlay play)
         {
-            return play.IsAutoPlay || FreePlayBindingRegistry.IsFreeForPlay(play);
+            var resolution = FreePlayBindingRegistry.Resolve(play);
+            return resolution.IsAutoPlayNoSpend
+                   || resolution.IsCardBindingFree
+                   || resolution.IsDualResourceModelFree
+                   || resolution.IsRegisteredDetectorFree;
         }
 
         private static decimal GetTotalMaterials(Creature creature)
