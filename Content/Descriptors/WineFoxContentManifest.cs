@@ -109,6 +109,7 @@ namespace STS2_WineFox.Content.Descriptors
             new RelicRegistrationEntry<WineFoxRelicPool, HandCrank>(),
             new RelicRegistrationEntry<WineFoxRelicPool, MaidBackpack>(),
             new RelicRegistrationEntry<WineFoxRelicPool, Deployer>(),
+            new ArchaicToothTranscendenceRegistrationEntry<BasicCraft, Forging>(),
             new TouchOfOrobasRefinementRegistrationEntry<HandCrank, Deployer>(),
         ];
 
