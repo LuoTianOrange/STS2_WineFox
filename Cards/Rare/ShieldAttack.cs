@@ -2,14 +2,19 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Cards.Rare
 {
     public class ShieldAttack() : WineFoxCard(
         0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
+        private static readonly AttachedState<CardModel, ShieldAttackSeriesState> SeriesStates =
+            new(() => new());
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered)];
 
@@ -26,8 +31,17 @@ namespace STS2_WineFox.Cards.Rare
             var combatState = creature.CombatState;
             if (combatState is null) return;
 
-            var block = creature.Block;
-            var damage = block * DynamicVars.Damage.BaseValue;
+            var state = SeriesStates.GetOrCreate(this);
+            var damage = state.Damage;
+            var blockToLose = 0m;
+
+            if (play.IsFirstInSeries)
+            {
+                var block = creature.Block;
+                damage = block * DynamicVars.Damage.BaseValue;
+                state.Damage = damage;
+                blockToLose = block;
+            }
 
             await DamageCmd.Attack(damage)
                 .FromCard(this)
@@ -36,7 +50,7 @@ namespace STS2_WineFox.Cards.Rare
                 .Unpowered()
                 .Execute(choiceContext);
 
-            if (block > 0m) await CreatureCmd.LoseBlock(creature, block);
+            if (blockToLose > 0m) await CreatureCmd.LoseBlock(creature, blockToLose);
 
             await CardPileCmd.Draw(choiceContext, 1m, owner);
         }
@@ -44,6 +58,11 @@ namespace STS2_WineFox.Cards.Rare
         protected override void OnUpgrade()
         {
             DynamicVars.Damage.UpgradeValueBy(1m);
+        }
+
+        private sealed class ShieldAttackSeriesState
+        {
+            public decimal Damage { get; set; }
         }
     }
 }
