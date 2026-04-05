@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,9 +32,11 @@ namespace STS2_WineFox.Cards.Rare
 
             foreach (var chosen in selectedList)
             {
-                var result = await CardCmd.TransformTo<WorkWork>(chosen);
-                if (IsUpgraded && result.HasValue)
-                    CardCmd.Upgrade(result.Value.cardAdded);
+                var replacement = chosen.CardScope.CreateCard<WorkWork>(chosen.Owner);
+                if (IsUpgraded)
+                    CardCmd.Upgrade(replacement);
+
+                await CardCmd.Transform(chosen, replacement);
             }
         }
 

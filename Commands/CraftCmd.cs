@@ -15,6 +15,23 @@ namespace STS2_WineFox.Commands
     {
         private static readonly AttachedState<Creature, CraftTracker> Trackers = new(() => new());
 
+        /// <summary>
+        ///     Marks a card as the product of <see cref="CraftIntoHand" /> so effects like Mass Production only mirror crafted cards.
+        /// </summary>
+        private static readonly AttachedState<CardModel, bool> CraftHandProductMarkers = new(() => false);
+
+        internal static void MarkCraftHandProduct(CardModel card)
+        {
+            ArgumentNullException.ThrowIfNull(card);
+            CraftHandProductMarkers.Set(card, true);
+        }
+
+        internal static bool IsCraftHandProduct(CardModel card)
+        {
+            ArgumentNullException.ThrowIfNull(card);
+            return CraftHandProductMarkers.TryGetValue(card, out var v) && v;
+        }
+
         public static bool CanCraftAny(Creature creature)
         {
             return CraftRecipeRegistry.All.Any(recipe => recipe.CanCraft(creature));
@@ -52,6 +69,7 @@ namespace STS2_WineFox.Commands
                 return null;
             }
 
+            MarkCraftHandProduct(selectedOption.Card);
             await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
             return selectedOption.Card;
         }

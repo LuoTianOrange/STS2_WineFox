@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
@@ -21,6 +22,8 @@ namespace STS2_WineFox.Powers
             if (!addedByPlayer) return;
 
             if (card.IsClone) return;
+
+            if (!CraftCmd.IsCraftHandProduct(card)) return;
 
             if (card.Owner?.Creature != Owner) return;
 
