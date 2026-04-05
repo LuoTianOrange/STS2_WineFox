@@ -6,8 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox;
 using STS2_WineFox.Cards;
-using STS2_WineFox.Powers;
 using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands
@@ -60,6 +60,14 @@ namespace STS2_WineFox.Commands
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(source);
 
+            var owner = source.Owner ??
+                        throw new InvalidOperationException("Craft source has no owning player.");
+
+            var combatState = owner.Creature.CombatState ??
+                              throw new InvalidOperationException("Craft source is not in combat.");
+
+            await InvokeCraftListeners(combatState, model => model.BeforeCraftIntoHandStart(choiceContext, owner, source));
+
             var selectedOption = await SelectOption(choiceContext, source, prefs);
             if (selectedOption == null)
                 return null;
@@ -70,9 +78,16 @@ namespace STS2_WineFox.Commands
                 return null;
             }
 
-            TryUpgradeWithDiamondPickaxe(source.Owner?.Creature, selectedOption.Card);
             MarkCraftHandProduct(selectedOption.Card);
+
+            await InvokeCraftListeners(combatState,
+                model => model.BeforeCraftProductAddToCombat(owner, selectedOption.Card));
+
             await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
+
+            await InvokeCraftListeners(combatState,
+                model => model.AfterCraftProductAddToCombat(owner, selectedOption.Card));
+
             return selectedOption.Card;
         }
 
@@ -193,15 +208,6 @@ namespace STS2_WineFox.Commands
             return GetMaterialConsumeCountThisCombat(player.Creature);
         }
 
-        private static void TryUpgradeWithDiamondPickaxe(Creature? creature, CardModel card)
-        {
-            if (creature == null) return;
-            if (!creature.Powers.OfType<DiamondPickaxePower>().Any()) return;
-            if (!CraftRecipeRegistry.TryGetRecipe(card.GetType(), out _)) return;
-
-            CardCmd.Upgrade(card);
-        }
-        
         public static async Task<bool> TryConsumeMaterials(CardModel source, CraftRecipe recipe)
         {
             ArgumentNullException.ThrowIfNull(source);
@@ -249,6 +255,19 @@ namespace STS2_WineFox.Commands
                     continue;
 
                 option.Card.RemoveFromState();
+            }
+        }
+
+        private static async Task InvokeCraftListeners(CombatState combatState,
+            Func<ICraftIntoHandListener, Task> invoke)
+        {
+            foreach (var model in combatState.IterateHookListeners())
+            {
+                if (model is not ICraftIntoHandListener listener)
+                    continue;
+
+                await invoke(listener);
+                model.InvokeExecutionFinished();
             }
         }
 
