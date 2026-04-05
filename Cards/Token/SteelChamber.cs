@@ -15,6 +15,12 @@ public class SteelChamber() : WineFoxCard(
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSteelChamber);
 
+    protected override PileType GetResultPileType()
+    {
+        var result = base.GetResultPileType();
+        return result != PileType.Discard ? result : PileType.Hand;
+    }
+    
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
@@ -34,9 +40,6 @@ public class SteelChamber() : WineFoxCard(
                     .Execute(choiceContext);
             }
         }
-
-        // 返回手牌
-        await CardPileCmd.Add(this, PileType.Hand);
     }
 
     protected override void OnUpgrade()

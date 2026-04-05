@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon;
 
 public class Bucket() : WineFoxCard(
-    1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
 {
     public override bool GainsBlock => true;
 
@@ -36,7 +36,9 @@ public class Bucket() : WineFoxCard(
 
         await PowerCmd.Apply<BlockNextTurnPower>(creature, blockAmount.BaseValue, creature, this);
 
-        // 对所有敌人施加虚弱
+        foreach (var ally in combatState.GetTeammatesOf(creature).Where(c => c.IsAlive))
+            await PowerCmd.Apply<WeakPower>(ally, weakAmount, creature, this);
+
         foreach (var enemy in combatState.Enemies.Where(e => e.IsAlive))
             await PowerCmd.Apply<WeakPower>(enemy, weakAmount, creature, this);
     }

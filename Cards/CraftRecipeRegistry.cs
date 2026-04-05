@@ -106,6 +106,13 @@ namespace STS2_WineFox.Cards
                 (state, owner) => state.CreateCard<DiamondArmor>(owner),
                 new CraftCost(typeof(DiamondPower), 8m)
             ),
+            //盾牌
+            new(
+                typeof(Shield),
+                (state, owner) => state.CreateCard<Shield>(owner),
+                new CraftCost(typeof(WoodPower), 6m),
+                new CraftCost(typeof(IronPower), 1m)
+            ),
         ];
 
         private static readonly Dictionary<Type, CraftRecipe> ByProductType = BuildByProductType();

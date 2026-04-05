@@ -1,6 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -14,20 +13,10 @@ namespace STS2_WineFox.Cards.Rare
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWirelessTerminal);
 
-        public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
-            CardModel card,
-            bool isAutoPlay,
-            ResourceInfo resources,
-            PileType pileType,
-            CardPilePosition position)
+        protected override PileType GetResultPileType()
         {
-            if (!ReferenceEquals(card, this))
-                return (pileType, position);
-
-            if (pileType == PileType.Discard)
-                return (PileType.Hand, CardPilePosition.Top);
-
-            return (pileType, position);
+            var result = base.GetResultPileType();
+            return result != PileType.Discard ? result : PileType.Hand;
         }
 
         protected override async Task OnPlay(

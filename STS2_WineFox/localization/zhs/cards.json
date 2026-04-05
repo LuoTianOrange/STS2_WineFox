@@ -141,9 +141,11 @@
   "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.title": "金镐",
   "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.description": "每次你获得材料，就获得等量[gold]格挡[/gold]并对随机敌人造成{IfUpgraded:show:3|2}倍等量伤害。",
   "STS2_WINE_FOX_CARD_BUCKET.title": "水桶",
-  "STS2_WINE_FOX_CARD_BUCKET.description": "获得{Block:diff()}点格挡。下回合开始时再获得{Block:diff()}点格挡。对所有敌人施加{Weak:diff()}层虚弱。",
+  "STS2_WINE_FOX_CARD_BUCKET.description": "获得{Block:diff()}点格挡。下回合开始时再获得{Block:diff()}点格挡。对所有单位施加{Weak:diff()}层虚弱。",
   "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.title": "时代变了",
-  "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.description": "消耗所有[gold]铁锭[/gold]，将一张{IfUpgraded:show:【钢铁枪膛+】|【钢铁枪膛】}加入你的手牌。",
+  "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.description": "消耗所有[gold]铁锭[/gold]，将一张攻击次数等同于消耗铁锭数的{IfUpgraded:show:【钢铁枪膛+】|【钢铁枪膛】}加入你的手牌。",
   "STS2_WINE_FOX_CARD_STEEL_CHAMBER.title": "钢铁枪膛",
-  "STS2_WINE_FOX_CARD_STEEL_CHAMBER.description": "造成{Damage:diff()}点伤害{Hits}次。将这张牌返回你的手牌。"
+  "STS2_WINE_FOX_CARD_STEEL_CHAMBER.description": "造成{Damage:diff()}点伤害{Hits}次。将这张牌返回你的手牌。",
+  "STS2_WINE_FOX_CARD_SHIELD.title": "盾牌",
+  "STS2_WINE_FOX_CARD_SHIELD.description": "选择一名角色在本回合获得{Dex:diff()}点敏捷。{IfUpgraded:show:本回合|本回合与下一回合}无法再打出这张牌。{CraftRecipeSuffix}"
 }

@@ -105,6 +105,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenPickaxe>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, SteelChamber>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, Shield>(),
         ];
 
         private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =
@@ -146,6 +147,9 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<MassProductionPower>(),
             new PowerRegistrationEntry<SnowBallOverwhelmingPower>(),
             new PowerRegistrationEntry<GoldenPickaxePower>(),
+            new PowerRegistrationEntry<ShieldCooldownPower>(),
+            new PowerRegistrationEntry<ShieldDexPower>(),
+            
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =
