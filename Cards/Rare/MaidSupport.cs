@@ -15,6 +15,8 @@ namespace STS2_WineFox.Cards.Rare
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMaidSupport);
 
+        public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
