@@ -25,9 +25,7 @@ namespace STS2_WineFox.Powers
             var combatState = Owner.CombatState;
             if (combatState == null) return;
 
-            var enemy = combatState.Enemies
-                .Where(e => e.IsAlive)
-                .MinBy(_ => Random.Shared.Next());
+            var enemy = combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
             if (enemy == null) return;
 
             await CreatureCmd.Damage(
