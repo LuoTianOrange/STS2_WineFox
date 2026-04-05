@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands
@@ -69,6 +70,7 @@ namespace STS2_WineFox.Commands
                 return null;
             }
 
+            TryUpgradeWithDiamondPickaxe(source.Owner?.Creature, selectedOption.Card);
             MarkCraftHandProduct(selectedOption.Card);
             await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
             return selectedOption.Card;
@@ -191,6 +193,15 @@ namespace STS2_WineFox.Commands
             return GetMaterialConsumeCountThisCombat(player.Creature);
         }
 
+        private static void TryUpgradeWithDiamondPickaxe(Creature? creature, CardModel card)
+        {
+            if (creature == null) return;
+            if (!creature.Powers.OfType<DiamondPickaxePower>().Any()) return;
+            if (!CraftRecipeRegistry.TryGetRecipe(card.GetType(), out _)) return;
+
+            CardCmd.Upgrade(card);
+        }
+        
         public static async Task<bool> TryConsumeMaterials(CardModel source, CraftRecipe recipe)
         {
             ArgumentNullException.ThrowIfNull(source);

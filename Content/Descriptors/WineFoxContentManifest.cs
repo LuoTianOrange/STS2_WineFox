@@ -83,6 +83,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, SnowBallOverwhelming>(),
             new CardRegistrationEntry<WineFoxCardPool, HellGift>(),
             new CardRegistrationEntry<WineFoxCardPool, Bucket>(),
+            new CardRegistrationEntry<WineFoxCardPool, NoMoreFalchion>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -103,6 +104,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenPickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, SteelChamber>(),
         ];
 
         private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =
