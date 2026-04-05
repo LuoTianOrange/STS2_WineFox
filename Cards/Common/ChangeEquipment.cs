@@ -24,15 +24,15 @@ namespace STS2_WineFox.Cards.Common
 
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);
 
-            var handCards = PileType.Hand.GetPile(owner).Cards;
+            var handCount = PileType.Hand.GetPile(owner).Cards.Count;
             var shuffleCount = (int)DynamicVars["Shuffle"].BaseValue;
-            var toSelect = Math.Min(shuffleCount, handCards.Count);
+            var toSelect = Math.Min(shuffleCount, handCount);
             if (toSelect <= 0) return;
 
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE");
             var prefs = new CardSelectorPrefs(prompt, toSelect);
 
-            var selected = (await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs)).ToList();
+            var selected = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this)).ToList();
             if (selected.Count == 0) return;
 
             foreach (var card in selected)
