@@ -82,6 +82,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, WirelessTerminal>(),
             new CardRegistrationEntry<WineFoxCardPool, SnowBallOverwhelming>(),
             new CardRegistrationEntry<WineFoxCardPool, HellGift>(),
+            new CardRegistrationEntry<WineFoxCardPool, Bucket>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =

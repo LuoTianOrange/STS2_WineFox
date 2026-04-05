@@ -151,6 +151,7 @@ namespace STS2_WineFox
             public const string CardSnowBallOverwhelming = Root + "/cards/card_snow_ball_overwhelming.png";
             public const string CardDiamondPickaxe = Root + "/cards/card_diamond_pickaxe.png";
             public const string CardGoldenPickaxe = Root + "/cards/card_golden_pickaxe.png";
+            public const string CardBucket = Root + "/cards/card_bucket.png";
 
 
             //Enchantments

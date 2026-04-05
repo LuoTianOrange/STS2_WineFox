@@ -133,11 +133,13 @@
   "STS2_WINE_FOX_CARD_HELL_GIFT.title": "地狱馈赠",
   "STS2_WINE_FOX_CARD_HELL_GIFT.description": "将一张随机[gold]{IfUpgraded:show:升级过的|}[/gold]金质装备卡牌加入你的[gold]手牌[/gold]。",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "金剑",
-  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得1费{IfUpgraded:show:|，所有[gold]攻击牌[/gold]获得[gold]虚无[/gold]。}",
+  "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "你每打出两张[gold]攻击牌[/gold]就获得{Energy:energyIcons()}{IfUpgraded:show:|，所有[gold]攻击牌[/gold]获得[gold]虚无[/gold]。}",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "雪球糊脸",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "造成{Damage:diff()}点伤害{IfUpgraded:show:两次|}。\n本回合打出的下一张[gold]技能牌[/gold]费用变为0。",
   "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.title": "钻石镐",
   "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.description": "你合成的每张牌都将升级。[gold]{IfUpgraded:show:\n合成。|}[/gold]{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.title": "金镐",
-  "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.description": "每次你获得材料，就获得等量[gold]格挡[/gold]并对随机敌人造成{IfUpgraded:show:3|2}倍等量伤害。"
+  "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.description": "每次你获得材料，就获得等量[gold]格挡[/gold]并对随机敌人造成{IfUpgraded:show:3|2}倍等量伤害。",
+  "STS2_WINE_FOX_CARD_BUCKET.title": "水桶",
+  "STS2_WINE_FOX_CARD_BUCKET.description": "获得{Block:diff()}点格挡。下回合开始时再获得{Block:diff()}点格挡。对所有敌人施加{Weak:diff()}层虚弱。"
 }

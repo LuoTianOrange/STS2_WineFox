@@ -13,6 +13,7 @@ namespace STS2_WineFox.Cards.Uncommon
     public class BlueprintPrinting() : WineFoxCard(
         1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
 

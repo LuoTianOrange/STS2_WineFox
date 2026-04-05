@@ -120,5 +120,7 @@
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "Golden Sword",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.description": "For every 2 [gold]Attack[/gold] cards you play, gain 1 Energy.{IfUpgraded:show:| All [gold]Attack[/gold] cards gain [gold]Ethereal[/gold].}",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "Snowball to the Face",
-  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "Deal {Damage:diff()} damage{IfUpgraded:show: twice|}.\nThe next [gold]Skill[/gold] you play this turn costs 0."
+  "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "Deal {Damage:diff()} damage{IfUpgraded:show: twice|}.\nThe next [gold]Skill[/gold] you play this turn costs 0.",
+  "STS2_WINE_FOX_CARD_BUCKET.title": "Bucket",
+  "STS2_WINE_FOX_CARD_BUCKET.description": "Gain {Block:diff()} Block. At the start of your next turn, gain {Block:diff()} Block. Apply {Weak:diff()} Weak to all enemies."
 }
