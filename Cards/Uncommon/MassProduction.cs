@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using STS2_WineFox.Cards;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -12,6 +13,9 @@ namespace STS2_WineFox.Cards.Uncommon
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMassProduction);
 
         public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Craft];
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
