@@ -75,7 +75,7 @@
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石形态",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.description": "在你的回合开始时获得2[gold]圆石[/gold]，每回合增加2。",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "盾击",
-  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "对所有敌人造成{Damage:diff()}倍于你格挡的伤害，然后清除你的所有格挡。抽1张牌。",
+  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "对所有敌人造成{Damage:diff()}倍于你格挡的伤害[gold]{InCombat:(共计:{TotalDamage}点)|}[/gold]，然后清除你的所有格挡。抽1张牌。",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.title": "飞转的手",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "对所有敌人造成{Damage:diff()}点伤害，本场战斗中每[gold]合成[/gold]一次，这张牌的费用就减少1。",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "生产记录",

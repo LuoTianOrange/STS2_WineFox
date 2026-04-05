@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Utils;
 
@@ -16,7 +17,9 @@ namespace STS2_WineFox.Cards.Rare
             new(() => new());
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered)];
+            [new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered),
+                ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage),
+            ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
@@ -60,6 +63,15 @@ namespace STS2_WineFox.Cards.Rare
             DynamicVars.Damage.UpgradeValueBy(1m);
         }
 
+        private static decimal CalcTotalDamage(CardModel? card)
+        {
+            if (card == null) return 0m;
+            if (!card.DynamicVars.TryGetValue("Damage", out var damageVar)) return 0m;
+            var creature = card._owner?.Creature;
+            if (creature == null) return 0m;
+            return creature.Block * damageVar.BaseValue;
+        }
+        
         private sealed class ShieldAttackSeriesState
         {
             public decimal Damage { get; set; }
