@@ -12,7 +12,8 @@ public class NoMoreFalchion() : WineFoxCard(
     2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
+    protected override IEnumerable<string> RegisteredKeywordIds =>
+        [WineFoxKeywords.Iron];
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [HoverTipFactory.FromCard<SteelChamber>(IsUpgraded)];
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNoMoreFalchion);

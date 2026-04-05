@@ -71,7 +71,7 @@
   "STS2_WINE_FOX_CARD_WOODEN_ARMOR.title": "木甲",
   "STS2_WINE_FOX_CARD_WOODEN_ARMOR.description": "获得{Block:diff()}点格挡。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.title": "下界合金镐",
-  "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.description": "每在同一个回合内打出1张牌，就获得[gold]木板[/gold]、[gold]圆石[/gold]、[gold]铁锭[/gold][gold]钻石[/gold]各1个。",
+  "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.description": "在同一个回合内每打出2张牌，就获得[gold]木板[/gold]、[gold]圆石[/gold]、[gold]铁锭[/gold]和[gold]钻石[/gold]各1个。",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石形态",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.description": "在你的回合开始时获得2[gold]圆石[/gold]，每回合增加2。",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "盾击",
@@ -143,7 +143,7 @@
   "STS2_WINE_FOX_CARD_BUCKET.title": "水桶",
   "STS2_WINE_FOX_CARD_BUCKET.description": "获得{Block:diff()}点格挡。下回合开始时再获得{Block:diff()}点格挡。对所有敌人施加{Weak:diff()}层虚弱。",
   "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.title": "时代变了",
-  "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.description": "消耗所有[gold]铁[/gold]，将一张{IfUpgraded:show:【钢铁枪膛+】|【钢铁枪膛】}加入你的手牌。",
+  "STS2_WINE_FOX_CARD_NO_MORE_FALCHION.description": "消耗所有[gold]铁锭[/gold]，将一张{IfUpgraded:show:【钢铁枪膛+】|【钢铁枪膛】}加入你的手牌。",
   "STS2_WINE_FOX_CARD_STEEL_CHAMBER.title": "钢铁枪膛",
   "STS2_WINE_FOX_CARD_STEEL_CHAMBER.description": "造成{Damage:diff()}点伤害{Hits}次。将这张牌返回你的手牌。"
 }

@@ -32,6 +32,7 @@ namespace STS2_WineFox.Cards.Rare
 
             foreach (var chosen in selectedList)
             {
+                if(chosen.CardScope ==  null) continue;
                 var replacement = chosen.CardScope.CreateCard<WorkWork>(chosen.Owner);
                 if (IsUpgraded)
                     CardCmd.Upgrade(replacement);
