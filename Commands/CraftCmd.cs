@@ -235,6 +235,67 @@ namespace STS2_WineFox.Commands
             RecordCraft(owner);
             return true;
         }
+        
+        public static async Task<bool> TryConsumeMaterials(Creature owner, CraftRecipe recipe)
+        {
+            ArgumentNullException.ThrowIfNull(owner);
+            ArgumentNullException.ThrowIfNull(recipe);
+        
+            if (!recipe.CanCraft(owner))
+                return false;
+        
+            var powersToConsume = new List<(PowerModel Power, decimal Amount)>();
+            foreach (var cost in recipe.Costs)
+            {
+                var power = owner.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType);
+                if (power == null || power.Amount < cost.Amount)
+                    return false;
+                powersToConsume.Add((power, cost.Amount));
+            }
+        
+            foreach (var (power, amount) in powersToConsume)
+                await PowerCmd.ModifyAmount(power, -amount, null, null);
+        
+            RecordMaterialConsume(owner);
+            RecordCraft(owner);
+            return true;
+        }
+        
+        public static async Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, Player owner,
+            CardSelectorPrefs? prefs = null)
+        {
+            ArgumentNullException.ThrowIfNull(choiceContext);
+            ArgumentNullException.ThrowIfNull(owner);
+        
+            var combatState = owner.Creature.CombatState ??
+                              throw new InvalidOperationException("Player is not in combat.");
+        
+            var options = GetOptions(combatState, owner);
+            if (options.Count == 0)
+                return null;
+        
+            var selectedCard = (await CardSelectCmd.FromSimpleGrid(
+                choiceContext,
+                options.Select(option => option.Card).ToList(),
+                owner,
+                prefs ?? CreateSelectionPrefs())).FirstOrDefault();
+        
+            var selectedOption = options.FirstOrDefault(option => ReferenceEquals(option.Card, selectedCard));
+            CleanupUnselectedOptions(options, selectedOption);
+        
+            if (selectedOption == null)
+                return null;
+        
+            if (!await TryConsumeMaterials(owner.Creature, selectedOption.Recipe))
+            {
+                selectedOption.Card.RemoveFromState();
+                return null;
+            }
+        
+            MarkCraftHandProduct(selectedOption.Card);
+            await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
+            return selectedOption.Card;
+        }
 
         private static CraftTracker GetTracker(Creature creature)
         {
