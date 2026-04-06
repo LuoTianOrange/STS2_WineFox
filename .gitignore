@@ -7,7 +7,6 @@ bin/
 publish/
 Properties/
 packages/
-.editorconfig
 *cs.uid
 *.user
 local.props
