@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Commands;
@@ -20,8 +20,8 @@ namespace STS2_WineFox.Powers
             if (!CraftCmd.CanCraftAny(Owner)) return;
 
             Flash();
-            for (var i = 0; i < (int)Amount; i++)
-                await CraftCmd.CraftIntoHand(choiceContext, player);
+            for (var i = 0; i < Amount; i++)
+                await CraftCmd.CraftIntoHand(choiceContext, Owner, Owner);
         }
     }
 }

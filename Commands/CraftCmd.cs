@@ -6,8 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox;
 using STS2_WineFox.Cards;
+using STS2_WineFox.Hooks;
 using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands
@@ -17,7 +17,8 @@ namespace STS2_WineFox.Commands
         private static readonly AttachedState<Creature, CraftTracker> Trackers = new(() => new());
 
         /// <summary>
-        ///     Marks a card as the product of <see cref="CraftIntoHand" /> so effects like Mass Production only mirror crafted cards.
+        ///     Marks a card as the product of <see cref="CraftIntoHand" /> so effects like Mass Production only mirror crafted
+        ///     cards.
         /// </summary>
         private static readonly AttachedState<CardModel, bool> CraftHandProductMarkers = new(() => false);
 
@@ -54,25 +55,33 @@ namespace STS2_WineFox.Commands
             return new(new("cards", "STS2_WINE_FOX_CHOOSE_CRAFT"), 1);
         }
 
-        public static async Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, CardModel source,
+        /// <summary>
+        ///     以 <paramref name="crafter" /> 为主体执行合成；<paramref name="applier" /> / <paramref name="cardSource" /> 用于钩子与材料变动的来源转发（与
+        ///     <c>PowerCmd</c> 一致）。<paramref name="cardSource" /> 省略时为 <c>null</c>（如能力触发的合成）。
+        /// </summary>
+        public static async Task<CardModel?> CraftIntoHand(
+            PlayerChoiceContext choiceContext,
+            Creature crafter,
+            Creature? applier,
+            CardModel? cardSource = null,
             CardSelectorPrefs? prefs = null)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
-            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(crafter);
 
-            var owner = source.Owner ??
-                        throw new InvalidOperationException("Craft source has no owning player.");
+            var owner = crafter.Player ??
+                        throw new InvalidOperationException("Creature cannot craft without a player.");
 
-            var combatState = owner.Creature.CombatState ??
-                              throw new InvalidOperationException("Craft source is not in combat.");
+            var combatState = crafter.CombatState ??
+                              throw new InvalidOperationException("Crafter is not in combat.");
 
-            await InvokeCraftListeners(combatState, model => model.BeforeCraftIntoHandStart(choiceContext, owner, source));
+            await CraftHook.BeforeCraftIntoHand(combatState, choiceContext, crafter, applier, cardSource);
 
-            var selectedOption = await SelectOption(choiceContext, source, prefs);
+            var selectedOption = await SelectOption(choiceContext, owner, prefs);
             if (selectedOption == null)
                 return null;
 
-            if (!await TryConsumeMaterials(source, selectedOption.Recipe))
+            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource))
             {
                 selectedOption.Card.RemoveFromState();
                 return null;
@@ -80,25 +89,35 @@ namespace STS2_WineFox.Commands
 
             MarkCraftHandProduct(selectedOption.Card);
 
-            await InvokeCraftListeners(combatState,
-                model => model.BeforeCraftProductAddToCombat(owner, selectedOption.Card));
+            await CraftHook.BeforeCraftProductAddToCombat(combatState, crafter, selectedOption.Card);
 
             await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
 
-            await InvokeCraftListeners(combatState,
-                model => model.AfterCraftProductAddToCombat(owner, selectedOption.Card));
+            await CraftHook.AfterCraftProductAddToCombat(combatState, crafter, selectedOption.Card);
 
             return selectedOption.Card;
         }
 
-        public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, CardModel source,
+        /// <summary>由打出卡牌触发合成时调用；转发为以 <c>cardSource.Owner.Creature</c> 为主体，<c>applier</c> 与 <c>cardSource</c> 与卡牌打出一致。</summary>
+        public static Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, CardModel cardSource,
+            CardSelectorPrefs? prefs = null)
+        {
+            ArgumentNullException.ThrowIfNull(cardSource);
+
+            var owner = cardSource.Owner ??
+                        throw new InvalidOperationException("Craft card has no owning player.");
+
+            var crafter = owner.Creature;
+            return CraftIntoHand(choiceContext, crafter, crafter, cardSource, prefs);
+        }
+
+        public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, Player owner,
             CardSelectorPrefs? prefs = null)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
-            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(owner);
 
-            var owner = source.Owner;
-            if (owner?.Creature.CombatState is not { } combatState)
+            if (owner.Creature.CombatState is not { } combatState)
                 return null;
 
             var options = GetOptions(combatState, owner);
@@ -208,20 +227,26 @@ namespace STS2_WineFox.Commands
             return GetMaterialConsumeCountThisCombat(player.Creature);
         }
 
-        public static async Task<bool> TryConsumeMaterials(CardModel source, CraftRecipe recipe)
+        /// <summary>
+        ///     消耗 <paramref name="crafter" /> 身上的配方材料；来源参数转发至 <c>PowerCmd.ModifyAmount</c>。<paramref name="cardSource" />
+        ///     省略时为 <c>null</c>。
+        /// </summary>
+        public static async Task<bool> TryConsumeMaterials(
+            Creature crafter,
+            CraftRecipe recipe,
+            Creature? applier,
+            CardModel? cardSource = null)
         {
-            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(crafter);
             ArgumentNullException.ThrowIfNull(recipe);
 
-            var owner = source.Owner?.Creature ??
-                        throw new InvalidOperationException("Craft source has no owner creature.");
-            if (!recipe.CanCraft(owner))
+            if (!recipe.CanCraft(crafter))
                 return false;
 
             var powersToConsume = new List<(PowerModel Power, decimal Amount)>();
             foreach (var cost in recipe.Costs)
             {
-                var power = owner.Powers.FirstOrDefault(power => power.GetType() == cost.PowerType);
+                var power = crafter.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType);
                 if (power == null || power.Amount < cost.Amount)
                     return false;
 
@@ -229,72 +254,11 @@ namespace STS2_WineFox.Commands
             }
 
             foreach (var (power, amount) in powersToConsume)
-                await PowerCmd.ModifyAmount(power, -amount, null, source);
+                await PowerCmd.ModifyAmount(power, -amount, applier, cardSource);
 
-            RecordMaterialConsume(owner);
-            RecordCraft(owner);
+            RecordMaterialConsume(crafter);
+            RecordCraft(crafter);
             return true;
-        }
-        
-        public static async Task<bool> TryConsumeMaterials(Creature owner, CraftRecipe recipe)
-        {
-            ArgumentNullException.ThrowIfNull(owner);
-            ArgumentNullException.ThrowIfNull(recipe);
-        
-            if (!recipe.CanCraft(owner))
-                return false;
-        
-            var powersToConsume = new List<(PowerModel Power, decimal Amount)>();
-            foreach (var cost in recipe.Costs)
-            {
-                var power = owner.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType);
-                if (power == null || power.Amount < cost.Amount)
-                    return false;
-                powersToConsume.Add((power, cost.Amount));
-            }
-        
-            foreach (var (power, amount) in powersToConsume)
-                await PowerCmd.ModifyAmount(power, -amount, null, null);
-        
-            RecordMaterialConsume(owner);
-            RecordCraft(owner);
-            return true;
-        }
-        
-        public static async Task<CardModel?> CraftIntoHand(PlayerChoiceContext choiceContext, Player owner,
-            CardSelectorPrefs? prefs = null)
-        {
-            ArgumentNullException.ThrowIfNull(choiceContext);
-            ArgumentNullException.ThrowIfNull(owner);
-        
-            var combatState = owner.Creature.CombatState ??
-                              throw new InvalidOperationException("Player is not in combat.");
-        
-            var options = GetOptions(combatState, owner);
-            if (options.Count == 0)
-                return null;
-        
-            var selectedCard = (await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                options.Select(option => option.Card).ToList(),
-                owner,
-                prefs ?? CreateSelectionPrefs())).FirstOrDefault();
-        
-            var selectedOption = options.FirstOrDefault(option => ReferenceEquals(option.Card, selectedCard));
-            CleanupUnselectedOptions(options, selectedOption);
-        
-            if (selectedOption == null)
-                return null;
-        
-            if (!await TryConsumeMaterials(owner.Creature, selectedOption.Recipe))
-            {
-                selectedOption.Card.RemoveFromState();
-                return null;
-            }
-        
-            MarkCraftHandProduct(selectedOption.Card);
-            await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
-            return selectedOption.Card;
         }
 
         private static CraftTracker GetTracker(Creature creature)
@@ -316,19 +280,6 @@ namespace STS2_WineFox.Commands
                     continue;
 
                 option.Card.RemoveFromState();
-            }
-        }
-
-        private static async Task InvokeCraftListeners(CombatState combatState,
-            Func<ICraftIntoHandListener, Task> invoke)
-        {
-            foreach (var model in combatState.IterateHookListeners())
-            {
-                if (model is not ICraftIntoHandListener listener)
-                    continue;
-
-                await invoke(listener);
-                model.InvokeExecutionFinished();
             }
         }
 
