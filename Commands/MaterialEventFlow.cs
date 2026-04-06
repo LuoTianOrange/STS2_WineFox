@@ -112,6 +112,8 @@ namespace STS2_WineFox.Commands
 
             foreach (var listener in listeners)
                 await listener.AfterMaterialResolved(evt);
+
+            CraftCmd.RecordMaterialResolved(evt);
         }
     }
 }

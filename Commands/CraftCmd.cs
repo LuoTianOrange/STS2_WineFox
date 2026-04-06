@@ -147,6 +147,7 @@ namespace STS2_WineFox.Commands
             tracker.TurnToken = choiceContext;
             tracker.CraftsThisTurn = 0;
             tracker.MaterialConsumesThisTurn = 0;
+            tracker.MaterialGainsThisTurn = 0;
         }
 
         public static void RecordCraft(Creature creature)
@@ -158,13 +159,27 @@ namespace STS2_WineFox.Commands
             tracker.CraftsThisCombat++;
         }
 
-        public static void RecordMaterialConsume(Creature creature)
+        /// <summary>
+        ///     由 <see cref="MaterialEventFlow.DispatchAfterResolved" /> 在每次材料结算后调用；勿在业务代码中重复调用。
+        /// </summary>
+        internal static void RecordMaterialResolved(MaterialResolvedEvent evt)
         {
-            ArgumentNullException.ThrowIfNull(creature);
+            ArgumentNullException.ThrowIfNull(evt);
 
-            var tracker = GetTracker(creature);
-            tracker.MaterialConsumesThisTurn++;
-            tracker.MaterialConsumesThisCombat++;
+            var tracker = GetTracker(evt.Creature);
+            switch (evt.Kind)
+            {
+                case MaterialChangeKind.Consume:
+                    tracker.MaterialConsumesThisTurn++;
+                    tracker.MaterialConsumesThisCombat++;
+                    break;
+                case MaterialChangeKind.Gain:
+                    tracker.MaterialGainsThisTurn++;
+                    tracker.MaterialGainsThisCombat++;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(evt), evt.Kind, null);
+            }
         }
 
         public static bool HasCraftedThisTurn(Creature creature)
@@ -227,6 +242,36 @@ namespace STS2_WineFox.Commands
             return GetMaterialConsumeCountThisCombat(player.Creature);
         }
 
+        public static bool HasGainedMaterialThisTurn(Creature creature)
+        {
+            return GetMaterialGainCountThisTurn(creature) > 0;
+        }
+
+        public static bool HasGainedMaterialThisTurn(Player player)
+        {
+            return HasGainedMaterialThisTurn(player.Creature);
+        }
+
+        public static int GetMaterialGainCountThisTurn(Creature creature)
+        {
+            return GetTracker(creature).MaterialGainsThisTurn;
+        }
+
+        public static int GetMaterialGainCountThisTurn(Player player)
+        {
+            return GetMaterialGainCountThisTurn(player.Creature);
+        }
+
+        public static int GetMaterialGainCountThisCombat(Creature creature)
+        {
+            return GetTracker(creature).MaterialGainsThisCombat;
+        }
+
+        public static int GetMaterialGainCountThisCombat(Player player)
+        {
+            return GetMaterialGainCountThisCombat(player.Creature);
+        }
+
         /// <summary>
         ///     消耗 <paramref name="crafter" /> 身上的配方材料；来源参数转发至 <c>PowerCmd.ModifyAmount</c>。<paramref name="cardSource" />
         ///     省略时为 <c>null</c>。
@@ -253,10 +298,32 @@ namespace STS2_WineFox.Commands
                 powersToConsume.Add((power, cost.Amount));
             }
 
+            var deltas = powersToConsume
+                .Select(entry => new MaterialDelta(entry.Power.GetType(), entry.Amount))
+                .ToList();
+            var totalAmount = deltas.Sum(d => d.Amount);
+            var consumeEvent = new MaterialConsumeEvent
+            {
+                Creature = crafter,
+                SourceCard = cardSource,
+                Deltas = deltas,
+                TotalAmount = totalAmount,
+            };
+
+            await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
             foreach (var (power, amount) in powersToConsume)
                 await PowerCmd.ModifyAmount(power, -amount, applier, cardSource);
+            await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+            await MaterialEventFlow.DispatchAfterResolved(new()
+            {
+                Creature = crafter,
+                SourceCard = cardSource,
+                Deltas = deltas,
+                TotalAmount = totalAmount,
+                Kind = MaterialChangeKind.Consume,
+                AppliedStressMultiplier = false,
+            });
 
-            RecordMaterialConsume(crafter);
             RecordCraft(crafter);
             return true;
         }
@@ -291,6 +358,8 @@ namespace STS2_WineFox.Commands
             public int CraftsThisCombat { get; set; }
             public int MaterialConsumesThisTurn { get; set; }
             public int MaterialConsumesThisCombat { get; set; }
+            public int MaterialGainsThisTurn { get; set; }
+            public int MaterialGainsThisCombat { get; set; }
 
             public void ResetForCombat(CombatState? combatState)
             {
@@ -300,6 +369,8 @@ namespace STS2_WineFox.Commands
                 CraftsThisCombat = 0;
                 MaterialConsumesThisTurn = 0;
                 MaterialConsumesThisCombat = 0;
+                MaterialGainsThisTurn = 0;
+                MaterialGainsThisCombat = 0;
             }
         }
     }

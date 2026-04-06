@@ -227,7 +227,6 @@ namespace STS2_WineFox.Commands
                         Kind = MaterialChangeKind.Consume,
                         AppliedStressMultiplier = false,
                     });
-                    CraftCmd.RecordMaterialConsume(owner);
                 }
 
                 return totalAmount;
@@ -276,7 +275,6 @@ namespace STS2_WineFox.Commands
                     Kind = MaterialChangeKind.Consume,
                     AppliedStressMultiplier = false,
                 });
-                CraftCmd.RecordMaterialConsume(owner);
 
                 return amount;
             }
@@ -319,7 +317,6 @@ namespace STS2_WineFox.Commands
                 Kind = MaterialChangeKind.Consume,
                 AppliedStressMultiplier = false,
             });
-            CraftCmd.RecordMaterialConsume(owner);
         }
 
         public static async Task LoseMaterials<TFirst, TSecond>(CardModel card, decimal firstAmount,
@@ -365,7 +362,6 @@ namespace STS2_WineFox.Commands
                 Kind = MaterialChangeKind.Consume,
                 AppliedStressMultiplier = false,
             });
-            CraftCmd.RecordMaterialConsume(owner);
         }
 
         private static Task CommitCardMaterialGains(CardModel card,

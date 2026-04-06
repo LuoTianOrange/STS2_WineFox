@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using System;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -61,14 +62,18 @@ namespace STS2_WineFox.Cards.Rare
                 await CardPileCmd.Add(card, PileType.Exhaust);
             }
 
+            var gains = new List<(Type Type, decimal Amount)>(4);
             if (stoneTotal > 0m)
-                await MaterialCmd.GainMaterial<StonePower>(this, stoneTotal);
+                gains.Add((typeof(StonePower), stoneTotal));
             if (ironTotal > 0m)
-                await MaterialCmd.GainMaterial<IronPower>(this, ironTotal);
+                gains.Add((typeof(IronPower), ironTotal));
             if (diamondTotal > 0m)
-                await MaterialCmd.GainMaterial<DiamondPower>(this, diamondTotal);
+                gains.Add((typeof(DiamondPower), diamondTotal));
             if (woodTotal > 0m)
-                await MaterialCmd.GainMaterial<WoodPower>(this, woodTotal);
+                gains.Add((typeof(WoodPower), woodTotal));
+
+            if (gains.Count > 0)
+                await MaterialCmd.GainMaterials(this, gains);
         }
 
         protected override void OnUpgrade()
