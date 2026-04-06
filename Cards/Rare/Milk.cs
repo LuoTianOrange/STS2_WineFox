@@ -1,8 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using STS2_WineFox.Powers;
+using STS2_WineFox.Utils;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
@@ -27,10 +26,7 @@ namespace STS2_WineFox.Cards.Rare
             await CreatureCmd.TriggerAnim(creature, "Cast", castDelay);
             VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_flying_slash");
 
-            var powersSnapshot = creature.Powers.ToList();
-
-            foreach (var power in powersSnapshot.Where(power => power is not MaterialPower)
-                         .Where(power => power.Type == PowerType.Debuff)) await PowerCmd.Remove(power);
+            await MilkCleanseHelper.Cleanse(creature, creature, this);
         }
 
         protected override void OnUpgrade()
