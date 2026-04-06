@@ -151,7 +151,6 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<ShieldCooldownPower>(),
             new PowerRegistrationEntry<ShieldDexPower>(),
             new PowerRegistrationEntry<AutoCrafterPower>(),
-            
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

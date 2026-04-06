@@ -16,10 +16,11 @@ namespace STS2_WineFox.Cards.Rare
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardHellGift);
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromCard<GoldenSword>(IsUpgraded),
+        [
+            HoverTipFactory.FromCard<GoldenSword>(IsUpgraded),
             HoverTipFactory.FromCard<GoldenPickaxe>(IsUpgraded),
-            ];
-        
+        ];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

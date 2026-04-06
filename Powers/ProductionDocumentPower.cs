@@ -11,11 +11,10 @@ namespace STS2_WineFox.Powers
 {
     public class ProductionDocumentPower : WineFoxPower
     {
+        private readonly HashSet<CardModel> _trackedCards = new();
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ProductionDocumentPowerIcon);
-
-        private readonly HashSet<CardModel> _trackedCards = new();
 
         public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
         {

@@ -17,9 +17,10 @@ namespace STS2_WineFox.Cards.Rare
             new(() => new());
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered),
-                ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage),
-            ];
+        [
+            new DamageVar(2m, ValueProp.Move | ValueProp.Unpowered),
+            ModCardVars.Computed("TotalDamage", 0m, CalcTotalDamage),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShieldAttack);
 
@@ -71,7 +72,7 @@ namespace STS2_WineFox.Cards.Rare
             if (creature == null) return 0m;
             return creature.Block * damageVar.BaseValue;
         }
-        
+
         private sealed class ShieldAttackSeriesState
         {
             public decimal Damage { get; set; }

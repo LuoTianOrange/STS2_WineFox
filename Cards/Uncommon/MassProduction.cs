@@ -1,7 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using STS2_WineFox.Cards;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 

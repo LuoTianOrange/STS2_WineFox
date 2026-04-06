@@ -18,10 +18,10 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         public override bool IsInstanced => true;
 
-        
+
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.GoldenSwordPowerIcon);
 
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new("AppliesEthereal", 1m),new EnergyVar(1)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new("AppliesEthereal", 1m), new EnergyVar(1)];
 
         public override int DisplayAmount
         {

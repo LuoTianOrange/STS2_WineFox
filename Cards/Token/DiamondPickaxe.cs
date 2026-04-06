@@ -10,7 +10,7 @@ namespace STS2_WineFox.Cards.Token
         0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDiamondPickaxe);
 
         protected override async Task OnPlay(

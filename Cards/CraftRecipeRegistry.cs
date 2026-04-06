@@ -85,7 +85,7 @@ namespace STS2_WineFox.Cards
                 (state, owner) => state.CreateCard<IronArmor>(owner),
                 new CraftCost(typeof(IronPower), 8m)
             ),
-            
+
             //钻石镐
             new(
                 typeof(DiamondPickaxe),
