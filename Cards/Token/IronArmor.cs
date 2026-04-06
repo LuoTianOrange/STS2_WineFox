@@ -26,6 +26,7 @@ namespace STS2_WineFox.Cards.Token
 
         protected override void OnUpgrade()
         {
+            DynamicVars["Armor"].UpgradeValueBy(2m);
         }
     }
 }

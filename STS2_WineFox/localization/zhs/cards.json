@@ -40,7 +40,7 @@
   "STS2_WINE_FOX_CARD_ALTER_PATH.title": "另辟蹊径",
   "STS2_WINE_FOX_CARD_ALTER_PATH.description": "花费2木板，获得{Block:diff()}点格挡，抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_STONE_ARMOR.title": "砖石甲",
-  "STS2_WINE_FOX_CARD_STONE_ARMOR.description": "获得7层[gold]覆甲[/gold]，每回合开始时失去1点敏捷。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_STONE_ARMOR.description": "获得{Armor:diff()}层[gold]覆甲[/gold]，每回合开始时失去1点敏捷。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_POWER_UP.title": "换挡，加速，起飞",
   "STS2_WINE_FOX_CARD_POWER_UP.description": "获得{Stress:diff()}层应力。抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_IRON_ZOMBIE.title": "\"白色僵尸\"",
