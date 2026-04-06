@@ -148,6 +148,8 @@ namespace STS2_WineFox.Commands
             tracker.CraftsThisTurn = 0;
             tracker.MaterialConsumesThisTurn = 0;
             tracker.MaterialGainsThisTurn = 0;
+            tracker.MaterialConsumedAmountThisTurn = 0m;
+            tracker.MaterialGainedAmountThisTurn = 0m;
         }
 
         public static void RecordCraft(Creature creature)
@@ -167,15 +169,20 @@ namespace STS2_WineFox.Commands
             ArgumentNullException.ThrowIfNull(evt);
 
             var tracker = GetTracker(evt.Creature);
+            var amount = evt.TotalAmount;
             switch (evt.Kind)
             {
                 case MaterialChangeKind.Consume:
                     tracker.MaterialConsumesThisTurn++;
                     tracker.MaterialConsumesThisCombat++;
+                    tracker.MaterialConsumedAmountThisTurn += amount;
+                    tracker.MaterialConsumedAmountThisCombat += amount;
                     break;
                 case MaterialChangeKind.Gain:
                     tracker.MaterialGainsThisTurn++;
                     tracker.MaterialGainsThisCombat++;
+                    tracker.MaterialGainedAmountThisTurn += amount;
+                    tracker.MaterialGainedAmountThisCombat += amount;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(evt), evt.Kind, null);
@@ -242,6 +249,26 @@ namespace STS2_WineFox.Commands
             return GetMaterialConsumeCountThisCombat(player.Creature);
         }
 
+        public static decimal GetMaterialConsumedAmountThisTurn(Creature creature)
+        {
+            return GetTracker(creature).MaterialConsumedAmountThisTurn;
+        }
+
+        public static decimal GetMaterialConsumedAmountThisTurn(Player player)
+        {
+            return GetMaterialConsumedAmountThisTurn(player.Creature);
+        }
+
+        public static decimal GetMaterialConsumedAmountThisCombat(Creature creature)
+        {
+            return GetTracker(creature).MaterialConsumedAmountThisCombat;
+        }
+
+        public static decimal GetMaterialConsumedAmountThisCombat(Player player)
+        {
+            return GetMaterialConsumedAmountThisCombat(player.Creature);
+        }
+
         public static bool HasGainedMaterialThisTurn(Creature creature)
         {
             return GetMaterialGainCountThisTurn(creature) > 0;
@@ -270,6 +297,26 @@ namespace STS2_WineFox.Commands
         public static int GetMaterialGainCountThisCombat(Player player)
         {
             return GetMaterialGainCountThisCombat(player.Creature);
+        }
+
+        public static decimal GetMaterialGainedAmountThisTurn(Creature creature)
+        {
+            return GetTracker(creature).MaterialGainedAmountThisTurn;
+        }
+
+        public static decimal GetMaterialGainedAmountThisTurn(Player player)
+        {
+            return GetMaterialGainedAmountThisTurn(player.Creature);
+        }
+
+        public static decimal GetMaterialGainedAmountThisCombat(Creature creature)
+        {
+            return GetTracker(creature).MaterialGainedAmountThisCombat;
+        }
+
+        public static decimal GetMaterialGainedAmountThisCombat(Player player)
+        {
+            return GetMaterialGainedAmountThisCombat(player.Creature);
         }
 
         /// <summary>
@@ -360,6 +407,10 @@ namespace STS2_WineFox.Commands
             public int MaterialConsumesThisCombat { get; set; }
             public int MaterialGainsThisTurn { get; set; }
             public int MaterialGainsThisCombat { get; set; }
+            public decimal MaterialConsumedAmountThisTurn { get; set; }
+            public decimal MaterialConsumedAmountThisCombat { get; set; }
+            public decimal MaterialGainedAmountThisTurn { get; set; }
+            public decimal MaterialGainedAmountThisCombat { get; set; }
 
             public void ResetForCombat(CombatState? combatState)
             {
@@ -371,6 +422,10 @@ namespace STS2_WineFox.Commands
                 MaterialConsumesThisCombat = 0;
                 MaterialGainsThisTurn = 0;
                 MaterialGainsThisCombat = 0;
+                MaterialConsumedAmountThisTurn = 0m;
+                MaterialConsumedAmountThisCombat = 0m;
+                MaterialGainedAmountThisTurn = 0m;
+                MaterialGainedAmountThisCombat = 0m;
             }
         }
     }
