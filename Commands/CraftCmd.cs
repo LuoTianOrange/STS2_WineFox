@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -150,6 +151,8 @@ namespace STS2_WineFox.Commands
             tracker.MaterialGainsThisTurn = 0;
             tracker.MaterialConsumedAmountThisTurn = 0m;
             tracker.MaterialGainedAmountThisTurn = 0m;
+            tracker.MaterialConsumedByTypeThisTurn.Clear();
+            tracker.MaterialGainedByTypeThisTurn.Clear();
         }
 
         public static void RecordCraft(Creature creature)
@@ -177,16 +180,41 @@ namespace STS2_WineFox.Commands
                     tracker.MaterialConsumesThisCombat++;
                     tracker.MaterialConsumedAmountThisTurn += amount;
                     tracker.MaterialConsumedAmountThisCombat += amount;
+                    AddByType(tracker.MaterialConsumedByTypeThisTurn, tracker.MaterialConsumedByTypeThisCombat,
+                        evt.Deltas);
                     break;
                 case MaterialChangeKind.Gain:
                     tracker.MaterialGainsThisTurn++;
                     tracker.MaterialGainsThisCombat++;
                     tracker.MaterialGainedAmountThisTurn += amount;
                     tracker.MaterialGainedAmountThisCombat += amount;
+                    AddByType(tracker.MaterialGainedByTypeThisTurn, tracker.MaterialGainedByTypeThisCombat,
+                        evt.Deltas);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(evt), evt.Kind, null);
             }
+        }
+
+        private static void AddByType(
+            Dictionary<Type, decimal> turnByType,
+            Dictionary<Type, decimal> combatByType,
+            IReadOnlyList<MaterialDelta> deltas)
+        {
+            foreach (var d in deltas)
+            {
+                if (d.Amount == 0m)
+                    continue;
+
+                turnByType[d.MaterialType] = turnByType.GetValueOrDefault(d.MaterialType) + d.Amount;
+                combatByType[d.MaterialType] = combatByType.GetValueOrDefault(d.MaterialType) + d.Amount;
+            }
+        }
+
+        /// <summary>内部字典的快照，调用方无法修改 <see cref="CraftTracker" /> 中的累计。</summary>
+        private static IReadOnlyDictionary<Type, decimal> SnapshotMaterialByType(Dictionary<Type, decimal> source)
+        {
+            return new ReadOnlyDictionary<Type, decimal>(new Dictionary<Type, decimal>(source));
         }
 
         public static bool HasCraftedThisTurn(Creature creature)
@@ -320,6 +348,58 @@ namespace STS2_WineFox.Commands
         }
 
         /// <summary>
+        ///     按材料 Power 类型分别累计的消耗量（本回合），只读快照。
+        /// </summary>
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialConsumedAmountsByTypeThisTurn(Creature creature)
+        {
+            return SnapshotMaterialByType(GetTracker(creature).MaterialConsumedByTypeThisTurn);
+        }
+
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialConsumedAmountsByTypeThisTurn(Player player)
+        {
+            return GetMaterialConsumedAmountsByTypeThisTurn(player.Creature);
+        }
+
+        /// <summary>
+        ///     按材料 Power 类型分别累计的消耗量（本场战斗），只读快照。
+        /// </summary>
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialConsumedAmountsByTypeThisCombat(Creature creature)
+        {
+            return SnapshotMaterialByType(GetTracker(creature).MaterialConsumedByTypeThisCombat);
+        }
+
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialConsumedAmountsByTypeThisCombat(Player player)
+        {
+            return GetMaterialConsumedAmountsByTypeThisCombat(player.Creature);
+        }
+
+        /// <summary>
+        ///     按材料 Power 类型分别累计的获得量（本回合），只读快照。
+        /// </summary>
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialGainedAmountsByTypeThisTurn(Creature creature)
+        {
+            return SnapshotMaterialByType(GetTracker(creature).MaterialGainedByTypeThisTurn);
+        }
+
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialGainedAmountsByTypeThisTurn(Player player)
+        {
+            return GetMaterialGainedAmountsByTypeThisTurn(player.Creature);
+        }
+
+        /// <summary>
+        ///     按材料 Power 类型分别累计的获得量（本场战斗），只读快照。
+        /// </summary>
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialGainedAmountsByTypeThisCombat(Creature creature)
+        {
+            return SnapshotMaterialByType(GetTracker(creature).MaterialGainedByTypeThisCombat);
+        }
+
+        public static IReadOnlyDictionary<Type, decimal> GetMaterialGainedAmountsByTypeThisCombat(Player player)
+        {
+            return GetMaterialGainedAmountsByTypeThisCombat(player.Creature);
+        }
+
+        /// <summary>
         ///     消耗 <paramref name="crafter" /> 身上的配方材料；来源参数转发至 <c>PowerCmd.ModifyAmount</c>。<paramref name="cardSource" />
         ///     省略时为 <c>null</c>。
         /// </summary>
@@ -412,6 +492,11 @@ namespace STS2_WineFox.Commands
             public decimal MaterialGainedAmountThisTurn { get; set; }
             public decimal MaterialGainedAmountThisCombat { get; set; }
 
+            public Dictionary<Type, decimal> MaterialConsumedByTypeThisTurn { get; } = new();
+            public Dictionary<Type, decimal> MaterialConsumedByTypeThisCombat { get; } = new();
+            public Dictionary<Type, decimal> MaterialGainedByTypeThisTurn { get; } = new();
+            public Dictionary<Type, decimal> MaterialGainedByTypeThisCombat { get; } = new();
+
             public void ResetForCombat(CombatState? combatState)
             {
                 CombatState = combatState;
@@ -426,6 +511,10 @@ namespace STS2_WineFox.Commands
                 MaterialConsumedAmountThisCombat = 0m;
                 MaterialGainedAmountThisTurn = 0m;
                 MaterialGainedAmountThisCombat = 0m;
+                MaterialConsumedByTypeThisTurn.Clear();
+                MaterialConsumedByTypeThisCombat.Clear();
+                MaterialGainedByTypeThisTurn.Clear();
+                MaterialGainedByTypeThisCombat.Clear();
             }
         }
     }
