@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token
@@ -11,7 +12,7 @@ namespace STS2_WineFox.Cards.Token
         0, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Armor", 7m)];
+            [new("Armor", 7m),new("IronArmor", 1m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIronArmor);
@@ -22,6 +23,8 @@ namespace STS2_WineFox.Cards.Token
         {
             await PowerCmd.Apply<PlatingPower>(
                 Owner.Creature, DynamicVars["Armor"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronArmorPower>(
+                Owner.Creature, DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

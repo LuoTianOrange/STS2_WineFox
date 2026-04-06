@@ -88,5 +88,8 @@
   "STS2_WINE_FOX_POWER_SHIELD_COOLDOWN_POWER.smartDescription": "无法打出盾牌。还剩{Amount}回合。",
   "STS2_WINE_FOX_POWER_AUTO_CRAFTER_POWER.title": "自动合成器",
   "STS2_WINE_FOX_POWER_AUTO_CRAFTER_POWER.description": "当你的回合开始时，[gold]合成[/gold]。",
-  "STS2_WINE_FOX_POWER_AUTO_CRAFTER_POWER.smartDescription": "当你的回合开始时，[gold]合成[/gold]{Amount}次。"
+  "STS2_WINE_FOX_POWER_AUTO_CRAFTER_POWER.smartDescription": "当你的回合开始时，[gold]合成[/gold]{Amount}次。",
+  "STS2_WINE_FOX_POWER_IRON_ARMOR_POWER.title": "装备：铁甲",
+  "STS2_WINE_FOX_POWER_IRON_ARMOR_POWER.description": "当你的回合开始时，获得{Amount}层[gold]覆甲[/gold]。",
+  "STS2_WINE_FOX_POWER_IRON_ARMOR_POWER.smartDescription": "当你的回合开始时，获得{Amount}层[gold]覆甲[/gold]。"
 }

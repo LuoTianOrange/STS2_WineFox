@@ -84,6 +84,7 @@ namespace STS2_WineFox
             public const string ShieldCooldownPowerIcon = Root + "/powers/shield_cooldown_power.png";
             public const string ShieldDexPowerIcon = Root + "/powers/shield_dex_power.png";
             public const string AutoCrafterPowerIcon = Root + "/powers/auto_crafter_power.png";
+            public const string IronArmorPowerIcon = Root + "/powers/iron_armor_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -159,6 +160,7 @@ namespace STS2_WineFox
             public const string CardNoMoreFalchion = Root + "/cards/card_no_more_falchion.png";
             public const string CardShield = Root + "/cards/card_shield.png";
             public const string CardAutoCrafter = Root + "/cards/card_auto_crafter.png";
+            public const string CardPaybackTime = Root + "/cards/card_payback_time.png";
 
 
             //Enchantments

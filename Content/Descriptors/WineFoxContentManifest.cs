@@ -85,6 +85,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, Bucket>(),
             new CardRegistrationEntry<WineFoxCardPool, NoMoreFalchion>(),
             new CardRegistrationEntry<WineFoxCardPool, AutoCrafter>(),
+            new CardRegistrationEntry<WineFoxCardPool, PaybackTime>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -126,6 +127,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<PlantPower>(),
             new PowerRegistrationEntry<StonePower>(),
             new PowerRegistrationEntry<IronPower>(),
+            new PowerRegistrationEntry<IronArmorPower>(),
             new PowerRegistrationEntry<SteamPower>(),
             new PowerRegistrationEntry<StoneSwordPower>(),
             new PowerRegistrationEntry<WoodenSwordPower>(),

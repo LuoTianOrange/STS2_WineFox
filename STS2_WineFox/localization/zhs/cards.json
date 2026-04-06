@@ -20,7 +20,7 @@
   "STS2_WINE_FOX_CARD_STONE_SWORD.title": "石剑",
   "STS2_WINE_FOX_CARD_STONE_SWORD.description": "造成{Damage:diff()}点伤害。\n获得{StrengthPower:diff()}层[gold]力量[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_IRON_ARMOR.title": "铁甲",
-  "STS2_WINE_FOX_CARD_IRON_ARMOR.description": "获得{Armor:diff()}层[gold]覆甲[/gold]。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_IRON_ARMOR.description": "获得{Armor:diff()}层[gold]覆甲[/gold]。每回合获得{IronArmor}层[gold]覆甲[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CHOOSE_CRAFT": "选择一张要合成的卡牌",
   "STS2_WINE_FOX_CRAFT_RECIPE_JOIN": ",",
   "STS2_WINE_FOX_CRAFT_RECIPE_SEGMENT": "{Amount}个[gold]{Material}[/gold]",
@@ -149,5 +149,7 @@
   "STS2_WINE_FOX_CARD_SHIELD.title": "盾牌",
   "STS2_WINE_FOX_CARD_SHIELD.description": "选择一名角色在本回合获得{Dex:diff()}点敏捷。{IfUpgraded:show:本回合|本回合与下一回合}无法再打出这张牌。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.title": "自动合成器",
-  "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "当你的回合开始时，[gold]合成[/gold]。"
+  "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "当你的回合开始时，[gold]合成[/gold]。",
+  "STS2_WINE_FOX_CARD_PAYBACK_TIME.title": "清算时间",
+  "STS2_WINE_FOX_CARD_PAYBACK_TIME.description": "造成{Damage:diff()}点伤害。在本场对战中你每获得一份[gold]材料[/gold]，额外造成{BonusDamage:diff()}点伤害。{InCombat:\n（共造成{TotalDamage:diff()}点伤害）|}"
 }

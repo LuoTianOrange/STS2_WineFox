@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            RemoveKeyword(CardKeyword.Exhaust);
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }
