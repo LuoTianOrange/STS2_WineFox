@@ -11,17 +11,27 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon
 {
     public class HammerStrike() : WineFoxCard(
-        3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+        4, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new CalculationBaseVar(24m),
+            new CalculationBaseVar(14m),
             new ExtraDamageVar(1m),
             new IntVar("Multiplier", 3m),
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier(StrengthBonusScaledByMultiplier),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardHammerStrike);
+
+        public override Task AfterCardRetained(CardModel card)
+        {
+            if (!ReferenceEquals(card, this)) return Task.CompletedTask;
+
+            EnergyCost.AddThisCombat(-1);
+            return Task.CompletedTask;
+        }
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -38,11 +48,12 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
+            DynamicVars.CalculationBase.UpgradeValueBy(1m);
             DynamicVars["Multiplier"].UpgradeValueBy(2m); // 3 → 5
         }
 
         private static decimal StrengthAmount(Creature? creature) =>
-            creature == null ? 0m : (decimal)creature.GetPowerAmount<StrengthPower>();
+            creature == null ? 0m : creature.GetPowerAmount<StrengthPower>();
 
         private static decimal StrengthBonusScaledByMultiplier(CardModel card, Creature? _)
         {

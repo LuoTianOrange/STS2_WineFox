@@ -155,7 +155,7 @@
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "森罗物语：炒锅",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "抽{Cards:diff()}张牌。选择{Transform:diff()}张手牌[gold]变化[/gold]。",
   "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "重锤下砸",
-  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "造成{CalculatedDamage:diff()}点伤害，[gold]力量[/gold]效果的伤害加成变为{Multiplier:diff()}倍。",
+  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "造成{CalculatedDamage:diff()}点伤害，[gold]力量[/gold]效果的伤害加成变为{Multiplier:diff()}倍。这张牌每被保留一回合，费用就减1",
   "STS2_WINE_FOX_CARD_QUICK_ATTACK.title": "快速攻击",
   "STS2_WINE_FOX_CARD_QUICK_ATTACK.description":"造成{Damage:diff()}点伤害{Hits}次。"
 }
