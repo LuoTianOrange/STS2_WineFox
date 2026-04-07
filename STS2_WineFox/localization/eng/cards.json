@@ -50,7 +50,7 @@
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.title": "Emergency Repair",
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.description": "Deal {Damage:diff()} damage, gain {Block:diff()} Block, and gain 2 [gold]Stress[/gold] at the start of next turn.",
   "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.title": "Light Assault",
-  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "Deal {Damage:diff()} damage. This card deals 1 less damage for every 2 [gold]Materials[/gold] you have.",
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "Deal {CalculatedDamage:diff()} damage. This card deals 1 less damage for every 2 [gold]Materials[/gold] you have.",
   "STS2_WINE_FOX_CARD_EASY_PEASY.title": "Easy Peasy",
   "STS2_WINE_FOX_CARD_EASY_PEASY.description": "Gain {Energy:energyIcons()}. Draw {EasyPeasy:diff()} additional cards at the start of each turn. Add 1 [gold]Dazed[/gold] to your [gold]hand[/gold] at the start of each turn, increasing by 1 each turn.",
   "STS2_WINE_FOX_CARD_ALL_ITEM.title": "All-Item Warehouse",
@@ -155,5 +155,5 @@
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "Kaleidoscope: Wok",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "Draw {Cards:diff()} cards. Choose {Transform:diff()} cards in your hand to [gold]Transform[/gold].",
   "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "Hammer Strike",
-  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "Deal {TotalDamage:diff()} damage. [gold]Strength[/gold] damage bonuses are multiplied by {Multiplier:diff()}."
+  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "Deal {CalculatedDamage:diff()} damage. [gold]Strength[/gold] damage bonuses are multiplied by {Multiplier:diff()}."
 }

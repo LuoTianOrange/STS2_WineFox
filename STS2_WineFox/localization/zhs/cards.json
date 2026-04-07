@@ -50,7 +50,7 @@
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.title": "紧急修复",
   "STS2_WINE_FOX_CARD_ENMERGENCY_REPAIR.description": "造成{Damage:diff()}伤害，获得{Block:diff()}格挡，在下个回合开始时获得2[gold]应力[/gold]。",
   "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.title": "轻装突击",
-  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成{Damage:diff()}点伤害。你每有2份[gold]材料[/gold]，这张牌的伤害就降低1点。",
+  "STS2_WINE_FOX_CARD_LIGHT_ASSAULT.description": "造成{CalculatedDamage:diff()}点伤害。你每有2份[gold]材料[/gold]，这张牌的伤害就降低1点。",
   "STS2_WINE_FOX_CARD_EASY_PEASY.title": "轻而易举",
   "STS2_WINE_FOX_CARD_EASY_PEASY.description": "每回合开始时获得{Energy:energyIcons()}，额外抽{EasyPeasy:diff()}张牌。每回合开始时将1张[gold]晕眩[/gold]加入你的[gold]手牌[/gold]，每回合增加1。",
   "STS2_WINE_FOX_CARD_ALL_ITEM.title": "全物品仓库",
@@ -155,5 +155,5 @@
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "森罗物语：炒锅",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "抽{Cards:diff()}张牌。选择{Transform:diff()}张手牌[gold]变化[/gold]。",
   "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "重锤下砸",
-  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "造成{TotalDamage:diff()}点伤害，[gold]力量[/gold]效果的伤害加成变为{Multiplier:diff()}倍。"
+  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "造成{CalculatedDamage:diff()}点伤害，[gold]力量[/gold]效果的伤害加成变为{Multiplier:diff()}倍。"
 }
