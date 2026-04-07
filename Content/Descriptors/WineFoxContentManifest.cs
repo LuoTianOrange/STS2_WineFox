@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Basic;
@@ -293,15 +294,18 @@ namespace STS2_WineFox.Content.Descriptors
             return
             [
                 new TimelineColumnPackEntry<WineFoxModStory>(c => c
-                    .Epoch<WineFoxCharacterEpoch>(e => e.RequireAllCardsInPool<WineFoxCardPool>())
-                    .Epoch<WineFoxCardEpoch>(e => e.Cards(EpochCardPackTypes))
-                    .Epoch<WineFoxAct1Epoch>(e => e.Cards(EpochAct1CardTypes))
-                    .Epoch<WineFoxAct2Epoch>(e => e.RelicsFromPool<WineFoxRelicPool>())
-                    .Epoch<WineFoxAct3Epoch>(e => e.Cards(EpochAct3CardTypes))
-                    .Epoch<WineFoxVictoryEpoch>(e => e.Cards(EpochVictoryCardTypes))
-                    .Epoch<WineFoxEliteEpoch>(e => e.Cards(EpochEliteCardTypes))
-                    .Epoch<WineFoxBossEpoch>(e => e.Cards(EpochBossCardTypes))
-                    .Epoch<WineFoxAscensionOneEpoch>(e => e.Cards(EpochAscensionOneCardTypes))
+                    .Epoch<WineFoxCharacterEpoch>(e => e.AutoTimelineSlotBeforeColumn(EpochEra.Seeds0)
+                        .RequireAllCardsInPool<WineFoxCardPool>())
+                    .Epoch<WineFoxCardEpoch>(e => e.AutoTimelineSlot(EpochEra.Seeds0).Cards(EpochCardPackTypes))
+                    .Epoch<WineFoxAct1Epoch>(e => e.AutoTimelineSlot(EpochEra.Blight1).Cards(EpochAct1CardTypes))
+                    .Epoch<WineFoxAct2Epoch>(e =>
+                        e.AutoTimelineSlot(EpochEra.Peace0).RelicsFromPool<WineFoxRelicPool>())
+                    .Epoch<WineFoxAct3Epoch>(e => e.AutoTimelineSlot(EpochEra.Seeds2).Cards(EpochAct3CardTypes))
+                    .Epoch<WineFoxVictoryEpoch>(e => e.AutoTimelineSlot(EpochEra.Blight2).Cards(EpochVictoryCardTypes))
+                    .Epoch<WineFoxEliteEpoch>(e => e.AutoTimelineSlot(EpochEra.Prehistoria2).Cards(EpochEliteCardTypes))
+                    .Epoch<WineFoxBossEpoch>(e => e.AutoTimelineSlot(EpochEra.Flourish0).Cards(EpochBossCardTypes))
+                    .Epoch<WineFoxAscensionOneEpoch>(e => e.AutoTimelineSlot(EpochEra.Invitation5)
+                        .Cards(EpochAscensionOneCardTypes))
                     .RegisterStory()),
                 new RequireEpochPackEntry<WineFox, WineFoxCharacterEpoch>(),
                 new UnlockEpochAfterWinAsPackEntry<Ironclad, WineFoxCharacterEpoch>(),

@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Content.Descriptors;
 using STS2RitsuLib.Timeline.Scaffolding;
 
@@ -12,9 +11,5 @@ namespace STS2_WineFox.Epoch
         public override string Id => WineFoxTimelineKeys.CardEpochId;
 
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
-
-        public override EpochEra Era => EpochEra.Seeds0;
-
-        public override int EraPosition => 1;
     }
 }

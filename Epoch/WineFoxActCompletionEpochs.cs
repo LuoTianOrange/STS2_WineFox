@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Timeline;
 using STS2RitsuLib.Timeline.Scaffolding;
 
 namespace STS2_WineFox.Epoch
@@ -12,10 +11,6 @@ namespace STS2_WineFox.Epoch
         public override string Id => WineFoxTimelineKeys.ActCompletionEpochId(0);
 
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
-
-        public override EpochEra Era => EpochEra.Blight1;
-
-        public override int EraPosition => 1;
     }
 
     /// <summary>
@@ -26,10 +21,6 @@ namespace STS2_WineFox.Epoch
         public override string Id => WineFoxTimelineKeys.ActCompletionEpochId(1);
 
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
-
-        public override EpochEra Era => EpochEra.Peace0;
-
-        public override int EraPosition => 3;
     }
 
     /// <summary>
@@ -40,9 +31,5 @@ namespace STS2_WineFox.Epoch
         public override string Id => WineFoxTimelineKeys.ActCompletionEpochId(2);
 
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
-
-        public override EpochEra Era => EpochEra.Seeds2;
-
-        public override int EraPosition => 1;
     }
 }
