@@ -87,6 +87,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, NoMoreFalchion>(),
             new CardRegistrationEntry<WineFoxCardPool, AutoCrafter>(),
             new CardRegistrationEntry<WineFoxCardPool, PaybackTime>(),
+            new CardRegistrationEntry<WineFoxCardPool, KaleidoscopePot>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
