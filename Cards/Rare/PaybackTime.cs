@@ -1,11 +1,11 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Commands;
-using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare;
@@ -15,9 +15,9 @@ public class PaybackTime() : WineFoxCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(2m,ValueProp.Move),
-        new IntVar("BonusDamage", 2m),
-        ModCardVars.Computed("TotalDamage", 2m, CalcTotalDamage),
+        new CalculationBaseVar(2m),
+        new ExtraDamageVar(2m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(MaterialGainedMultiplier),
     ];
 
     public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPaybackTime);
@@ -31,10 +31,7 @@ public class PaybackTime() : WineFoxCard(
         var creature = Owner.Creature;
         if (creature.CombatState is null) return;
 
-        var gained = CraftCmd.GetMaterialGainedAmountThisCombat(creature);
-        var damage = DynamicVars.Damage.BaseValue + DynamicVars["BonusDamage"].BaseValue * gained;
-
-        await DamageCmd.Attack(damage)
+        await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .FromCard(this)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -47,14 +44,9 @@ public class PaybackTime() : WineFoxCard(
         EnergyCost.UpgradeBy(-1);
     }
 
-    private static decimal CalcTotalDamage(CardModel? card)
+    private static decimal MaterialGainedMultiplier(CardModel card, Creature? _)
     {
-        if (card == null) return 0m;
-        if (!card.DynamicVars.TryGetValue("Damage", out var dmg)) return 0m;
-        if (!card.DynamicVars.TryGetValue("BonusDamage", out var bonus)) return 0m;
         var creature = card._owner?.Creature;
-        if (creature == null) return dmg.BaseValue;
-        var gained = CraftCmd.GetMaterialGainedAmountThisCombat(creature);
-        return dmg.BaseValue + bonus.BaseValue * gained;
+        return creature == null ? 0m : CraftCmd.GetMaterialGainedAmountThisCombat(creature);
     }
 }

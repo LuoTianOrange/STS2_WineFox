@@ -151,5 +151,9 @@
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.title": "Auto Crafter",
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "At the start of your turn, [gold]Craft[/gold].",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.title": "Payback Time",
-  "STS2_WINE_FOX_CARD_PAYBACK_TIME.description": "Deal {Damage:diff()} damage. Deal {BonusDamage:diff()} bonus damage for each [gold]Material[/gold] you have gained this combat.{InCombat:\n(Deals {TotalDamage:diff()} damage total)|}"
+  "STS2_WINE_FOX_CARD_PAYBACK_TIME.description": "Deal {CalculationBase:diff()} damage. Deal {ExtraDamage:diff()} bonus damage for each [gold]Material[/gold] you have gained this combat.{InCombat:\n(Deals {CalculatedDamage:diff()} damage total)|}",
+  "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "Kaleidoscope: Wok",
+  "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "Draw {Cards:diff()} cards. Choose {Transform:diff()} cards in your hand to [gold]Transform[/gold].",
+  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "Hammer Strike",
+  "STS2_WINE_FOX_CARD_HAMMER_STRIKE.description": "Deal {TotalDamage:diff()} damage. [gold]Strength[/gold] damage bonuses are multiplied by {Multiplier:diff()}."
 }
