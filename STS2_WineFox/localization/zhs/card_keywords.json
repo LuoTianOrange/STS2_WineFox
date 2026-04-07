@@ -22,5 +22,7 @@
   "STS2_WINEFOX-MATERIAL.title": "材料",
   "STS2_WINEFOX-MATERIAL.description": "包括[gold]木板[/gold]、[gold]圆石[/gold]、[gold]铁锭[/gold]和[gold]钻石[/gold]。",
   "STS2_WINEFOX-CRAFT.title": "合成",
-  "STS2_WINEFOX-CRAFT.description": "根据拥有的[gold]材料[/gold]数量，展示并花费对应[gold]材料[/gold][gold]选择[/gold]一张卡牌。\n镐:1木板3材料\n剑:1木板2材料\n甲:8材料"
+  "STS2_WINEFOX-CRAFT.description": "根据拥有的[gold]材料[/gold]数量，展示并花费对应[gold]材料[/gold][gold]选择[/gold]一张卡牌。\n镐:1木板3材料\n剑:1木板2材料\n甲:8材料",
+  "STS2_WINEFOX-EXCHANGE.title": "交换",
+  "STS2_WINEFOX-EXCHANGE.description": "白卡=圆石,蓝卡=铁锭\n金卡=钻石,诅咒/状态=木板"
 }

@@ -88,6 +88,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, AutoCrafter>(),
             new CardRegistrationEntry<WineFoxCardPool, PaybackTime>(),
             new CardRegistrationEntry<WineFoxCardPool, KaleidoscopePot>(),
+            new CardRegistrationEntry<WineFoxCardPool, HammerStrike>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -263,6 +264,7 @@ namespace STS2_WineFox.Content.Descriptors
                 "res://images/powers/plating_power.png"),
             KeywordRegistrationEntry.Card(WineFoxKeywords.Material, "STS2_WINEFOX-MATERIAL"),
             KeywordRegistrationEntry.Card(WineFoxKeywords.Craft, "STS2_WINEFOX-CRAFT"),
+            KeywordRegistrationEntry.Card(WineFoxKeywords.Exchange, "STS2_WINEFOX-EXCHANGE"),
         ];
 
         /// <summary>

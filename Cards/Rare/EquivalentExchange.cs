@@ -12,7 +12,9 @@ namespace STS2_WineFox.Cards.Rare
     public class EquivalentExchange() : WineFoxCard(
         0, CardType.Skill, CardRarity.Rare, TargetType.None)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Innate];
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Exchange];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEquivalentExchange);
 

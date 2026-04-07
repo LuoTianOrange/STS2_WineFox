@@ -162,6 +162,7 @@ namespace STS2_WineFox
             public const string CardAutoCrafter = Root + "/cards/card_auto_crafter.png";
             public const string CardPaybackTime = Root + "/cards/card_payback_time.png";
             public const string CardKaleidoscopePot = Root + "/cards/card_kaleidoscope_pot.png";
+            public const string CardHammerStrike = Root + "/cards/card_hammer_strike.png";
 
 
             //Enchantments
