@@ -1,8 +1,9 @@
 ﻿{
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.ancient": "想离开这个世界？",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.next": "回答",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.ancient": "你又回来了。",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.char": "主人，等着我",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.next": "继续",
-  "THE_ARCHITECT.talk.WINEFOX.0-attack": "Both"
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.ancient": "想离开这个世界？",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.next": "回答",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-attack": "Both",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "你又回来了。",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.next": "继续",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-1r.char": "主人，等着我",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both"
 }

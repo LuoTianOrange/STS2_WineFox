@@ -1,6 +1,9 @@
 {
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.ancient": "You came back again.",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.next": "Continue",
-  "THE_ARCHITECT.talk.WINEFOX.0-0r.char": "Master, wait for me.",
-  "THE_ARCHITECT.talk.WINEFOX.0-attack": "Both"
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.ancient": "Thinking of leaving this world?",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.next": "Answer",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-attack": "Both",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "You came back again.",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.next": "Continue",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-1r.char": "Master, wait for me.",
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both"
 }

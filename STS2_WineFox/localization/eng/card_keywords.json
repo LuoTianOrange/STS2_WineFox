@@ -20,7 +20,7 @@
   "STS2_WINEFOX-DIAMOND.title": "Diamond",
   "STS2_WINEFOX-DIAMOND.description": "An advanced material used for crafting.",
   "STS2_WINEFOX-MATERIAL.title": "Material",
-  "STS2_WINEFOX-MATERIAL.description": "Includes [gold]Plank[/gold], [gold]Cobblestone[/gold], [gold]Iron Ingot[/gold], [gold]Gold Ingot[/gold], and [gold]Diamond[/gold].",
+  "STS2_WINEFOX-MATERIAL.description": "Includes [gold]Plank[/gold], [gold]Cobblestone[/gold], [gold]Iron Ingot[/gold], and [gold]Diamond[/gold].",
   "STS2_WINEFOX-CRAFT.title": "Craft",
   "STS2_WINEFOX-CRAFT.description": "Based on how many [gold]Materials[/gold] you have, show the available options, spend the matching [gold]Materials[/gold], and [gold]choose[/gold] a card."
 }
