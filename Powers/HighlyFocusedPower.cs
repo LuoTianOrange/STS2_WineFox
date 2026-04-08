@@ -1,0 +1,19 @@
+﻿using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Cards.Uncommon;
+using STS2RitsuLib.Scaffolding.Content;
+using STS2RitsuLib.Scaffolding.Content.Patches;
+
+namespace STS2_WineFox.Powers
+{
+    public class HighlyFocusedPower : TemporaryStrengthPower, IModPowerAssetOverrides
+    {
+        public override AbstractModel OriginModel => ModelDb.Card<HighlyFocused>();
+
+        public PowerAssetProfile AssetProfile =>
+            new(Const.Paths.HighlyFocusedPowerIcon, Const.Paths.HighlyFocusedPowerIcon);
+
+        public string? CustomIconPath => AssetProfile.IconPath;
+        public string? CustomBigIconPath => AssetProfile.BigIconPath;
+    }
+}

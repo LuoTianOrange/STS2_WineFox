@@ -94,6 +94,8 @@
   "STS2_WINE_FOX_POWER_IRON_ARMOR_POWER.smartDescription": "当你的回合开始时，获得{Amount}层[gold]覆甲[/gold]。",
   "STS2_WINE_FOX_POWER_NETHERITE_CHEST_PLATE_POWER.title": "装备:下界合金甲",
   "STS2_WINE_FOX_POWER_NETHERITE_CHEST_PLATE_POWER.description": "获得格挡时，如果你有[gold]覆甲[/gold]，翻倍你获得的格挡。",
-  "STS2_WINE_FOX_POWER_NETHERITE_CHEST_PLATE_POWER.smartDescription": "获得格挡时，如果你有[gold]覆甲[/gold]，翻倍你获得的格挡。"
-  
+  "STS2_WINE_FOX_POWER_NETHERITE_CHEST_PLATE_POWER.smartDescription": "获得格挡时，如果你有[gold]覆甲[/gold]，翻倍你获得的格挡。",
+  "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.title": "高度专注",
+  "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.description": "在本回合翻倍你已有的力量。",
+  "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.smartDescription": "在本回合翻倍你已有的力量。"
 }
