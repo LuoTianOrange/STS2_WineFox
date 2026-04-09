@@ -87,6 +87,7 @@ namespace STS2_WineFox
             public const string IronArmorPowerIcon = Root + "/powers/iron_armor_power.png";
             public const string NetheriteChestPlatePowerIcon = Root + "/powers/netherite_chest_plate_power.png";
             public const string HighlyFocusedPowerIcon = Root + "/powers/highly_focused_power.png";
+            public const string GoldenArmorPowerIcon = Root + "/powers/golden_armor_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -170,6 +171,7 @@ namespace STS2_WineFox
             public const string CardHighlyFocused = Root + "/cards/card_highly_focused.png";
             public const string CardSweetDream = Root + "/cards/card_sweet_dream.png";
             public const string CardFullForceCollision = Root + "/cards/card_full_force_collision.png";
+            public const string CardGoldenArmor = Root + "/cards/card_golden_armor.png";
 
 
             //Enchantments

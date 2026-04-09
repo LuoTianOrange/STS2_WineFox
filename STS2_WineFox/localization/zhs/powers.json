@@ -97,5 +97,8 @@
   "STS2_WINE_FOX_POWER_NETHERITE_CHEST_PLATE_POWER.smartDescription": "获得格挡时，如果你有[gold]覆甲[/gold]，翻倍你获得的格挡。",
   "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.title": "高度专注",
   "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.description": "在本回合翻倍你已有的力量。",
-  "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.smartDescription": "在本回合翻倍你已有的力量。"
+  "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.smartDescription": "在本回合翻倍你已有的力量。",
+  "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.title": "装备:金甲",
+  "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.description": "当你失去缓冲时，回复等同于你应受到伤害的生命值。",
+  "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.smartDescription": "当你失去缓冲时，回复等同于你应受到伤害的生命值。"
 }

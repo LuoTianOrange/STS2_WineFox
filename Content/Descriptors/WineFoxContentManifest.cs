@@ -119,6 +119,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, WorkWork>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenSword>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenPickaxe>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, GoldenArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, SteelChamber>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, Shield>(),
         ];
@@ -169,6 +170,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<NetheriteChestPlatePower>(),
             new PowerRegistrationEntry<HighlyFocusedPower>(),
             new PowerRegistrationEntry<HighlyFocusedTrackerPower>(),
+            new PowerRegistrationEntry<GoldenArmorPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

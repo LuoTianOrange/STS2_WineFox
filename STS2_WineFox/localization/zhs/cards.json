@@ -165,5 +165,7 @@
   "STS2_WINE_FOX_CARD_SWEET_DREAM.title": "甜蜜的梦",
   "STS2_WINE_FOX_CARD_SWEET_DREAM.description": "将所有手牌洗入抽牌堆，抽取等量的牌。",
   "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.title": "全力冲撞",
-  "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.description": "造成{Damage:diff()}点伤害，将一张[gold]眩晕[/gold]放入抽牌堆。"
+  "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.description": "造成{Damage:diff()}点伤害，将一张[gold]眩晕[/gold]放入抽牌堆。",
+  "STS2_WINE_FOX_CARD_GOLDEN_ARMOR.title": "金甲",
+  "STS2_WINE_FOX_CARD_GOLDEN_ARMOR.description": "获得{Buffer:diff()}层[gold]缓冲[/gold]，1层[gold]人工制品[/gold]。当你失去缓冲时，回复等同于你应受到伤害的生命值。"
 }
