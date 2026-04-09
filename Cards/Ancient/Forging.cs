@@ -20,8 +20,8 @@ namespace STS2_WineFox.Cards.Ancient
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(10m, ValueProp.Move),
-            ModCardVars.Computed("Materials", 2m, _ => DynamicVars["Materials"].BaseValue,
-                WineFoxCardVarFactory.StressDoubledDynamicVar("Materials")),
+            // ModCardVars.Computed("Materials", 2m, _ => DynamicVars["Materials"].BaseValue,
+            //     WineFoxCardVarFactory.StressDoubledDynamicVar("Materials")),
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
@@ -36,7 +36,7 @@ namespace STS2_WineFox.Cards.Ancient
 
             await CreatureCmd.GainBlock(owner.Creature, DynamicVars.Block, play);
 
-            await MaterialCmd.GainAllMaterials(this, DynamicVars["Materials"].BaseValue);
+            // await MaterialCmd.GainAllMaterials(this, DynamicVars["Materials"].BaseValue);
 
             await CraftCmd.CraftIntoHand(choiceContext, this);
             await CraftCmd.CraftIntoHand(choiceContext, this);
@@ -44,7 +44,7 @@ namespace STS2_WineFox.Cards.Ancient
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Block.UpgradeValueBy(3m);
+            DynamicVars.Block.UpgradeValueBy(5m);
             EnergyCost.UpgradeBy(-1);
         }
     }

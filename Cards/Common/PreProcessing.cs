@@ -14,7 +14,6 @@ namespace STS2_WineFox.Cards.Common
         0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         public override bool GainsBlock => true;
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];

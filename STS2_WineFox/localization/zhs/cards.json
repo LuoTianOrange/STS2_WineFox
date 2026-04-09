@@ -115,7 +115,7 @@
   "STS2_WINE_FOX_CARD_MAID_SUPPORT.title":"女仆的援护",
   "STS2_WINE_FOX_CARD_MAID_SUPPORT.description":"为所有玩家添加{Armor:diff()}层[gold]覆甲[/gold]，{Thorns:diff()}点[gold]荆棘[/gold]。",
   "STS2_WINE_FOX_CARD_FORGING.title":"锻造",
-  "STS2_WINE_FOX_CARD_FORGING.description":"获得{Block:diff()}格挡。\n每种[gold]材料[/gold]各获得{Materials:diff()}个。\n[gold]合成[/gold]两次。",
+  "STS2_WINE_FOX_CARD_FORGING.description":"获得{Block:diff()}格挡。\n[gold]合成[/gold]两次。",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.title":"等价交换",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.description":"选择任意手牌[gold]消耗[/gold]，根据[gold]消耗[/gold]卡牌的等级获得资源。{IfUpgraded:show:\n如果消耗的卡升级过，获得资源翻倍。|}",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE":"选择要[gold]消耗[/gold]的牌",
@@ -163,5 +163,7 @@
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.title": "高度专注",
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.description": "在本回合翻倍你已有的力量。",
   "STS2_WINE_FOX_CARD_SWEET_DREAM.title": "甜蜜的梦",
-  "STS2_WINE_FOX_CARD_SWEET_DREAM.description": "将所有手牌洗入抽牌堆，抽取等量的牌。"
+  "STS2_WINE_FOX_CARD_SWEET_DREAM.description": "将所有手牌洗入抽牌堆，抽取等量的牌。",
+  "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.title": "全力冲撞",
+  "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.description": "造成{Damage:diff()}点伤害，将一张[gold]眩晕[/gold]放入抽牌堆。"
 }

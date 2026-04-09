@@ -98,6 +98,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, NetheriteChestPlate>(),
             new CardRegistrationEntry<WineFoxCardPool, HighlyFocused>(),
             new CardRegistrationEntry<WineFoxCardPool, SweetDream>(),
+            new CardRegistrationEntry<WineFoxCardPool, FullForceCollision>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
