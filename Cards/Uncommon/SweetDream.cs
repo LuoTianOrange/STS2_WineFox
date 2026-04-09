@@ -23,14 +23,13 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var handCards = PileType.Hand.GetPile(owner).Cards.ToList();
             var count = handCards.Count;
+            if (count == 0)
+                return;
 
             foreach (var card in handCards)
-                await CardPileCmd.Add(card, PileType.Draw);
+                await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Random);
 
-            await CardPileCmd.Shuffle(choiceContext, owner);
-
-            if (count > 0)
-                await CardPileCmd.Draw(choiceContext, count, owner);
+            await CardPileCmd.Draw(choiceContext, count, owner);
         }
 
         protected override void OnUpgrade()
