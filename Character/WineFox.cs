@@ -1,9 +1,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models.Characters;
-using STS2_WineFox.Cards.Basic;
 using STS2_WineFox.Content.Descriptors;
-using STS2_WineFox.Relics;
 using STS2RitsuLib.Scaffolding.Characters;
 
 namespace STS2_WineFox.Character
@@ -20,22 +18,6 @@ namespace STS2_WineFox.Character
         public override CharacterAssetProfile AssetProfile => WineFoxCharacterAssets.Profile;
         public override float AttackAnimDelay => 0.15f;
         public override float CastAnimDelay => 0.25f;
-
-        protected override IEnumerable<Type> StartingDeckTypes =>
-        [
-            typeof(WineFoxStrike),
-            typeof(WineFoxStrike),
-            typeof(WineFoxStrike),
-            typeof(WineFoxStrike),
-            typeof(WineFoxDefend),
-            typeof(WineFoxDefend),
-            typeof(WineFoxDefend),
-            typeof(WineFoxDefend),
-            typeof(BasicMine),
-            typeof(BasicCraft),
-        ];
-
-        protected override IEnumerable<Type> StartingRelicTypes => [typeof(HandCrank)];
 
         protected override Type UnlocksAfterRunAsType => typeof(Ironclad);
 

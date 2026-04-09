@@ -27,7 +27,12 @@ namespace STS2_WineFox.Content.Descriptors
 
         private static readonly IContentRegistrationEntry[] CharacterAndSharedPoolEntries =
         [
-            new CharacterRegistrationEntry<WineFox>(),
+            new CharacterRegistrationEntry<WineFox>()
+                .AddStartingCard<WineFoxStrike>(4)
+                .AddStartingCard<WineFoxDefend>(4)
+                .AddStartingCard<BasicMine>()
+                .AddStartingCard<BasicCraft>()
+                .AddStartingRelic<HandCrank>(),
             new SharedCardPoolRegistrationEntry<WineFoxTokenCardPool>(),
         ];
 

@@ -1,5 +1,4 @@
 ﻿using Godot;
-using STS2_WineFox.Relics;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
@@ -11,12 +10,5 @@ namespace STS2_WineFox.Character
         public override string? BigEnergyIconPath => Const.Paths.EnergyIconCake;
         public override string? TextEnergyIconPath => Const.Paths.EnergyIconCake;
         public override Color LabOutlineColor => WineFox.Color;
-
-        protected override IEnumerable<Type> RelicTypes =>
-        [
-            typeof(HandCrank),
-            typeof(Deployer),
-            typeof(MaidBackpack),
-        ];
     }
 }
