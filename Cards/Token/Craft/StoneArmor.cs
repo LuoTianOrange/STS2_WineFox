@@ -6,16 +6,17 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.Craft
 {
-    public class IronArmor() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.Self)
+    public class StoneArmor() : WineFoxCard(
+        0, CardType.Skill, CardRarity.Token, TargetType.None)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Armor", 7m),new("IronArmor", 1m)];
+            [new("Armor", 7m), new("StoneArmor", 1m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIronArmor);
+
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStoneArmor);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -23,8 +24,9 @@ namespace STS2_WineFox.Cards.Token
         {
             await PowerCmd.Apply<PlatingPower>(
                 Owner.Creature, DynamicVars["Armor"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<IronArmorPower>(
-                Owner.Creature, DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
+
+            await PowerCmd.Apply<StoneArmorPower>(
+                Owner.Creature, DynamicVars["StoneArmor"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

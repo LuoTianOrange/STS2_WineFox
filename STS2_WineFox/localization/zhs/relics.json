@@ -7,5 +7,8 @@
   "STS2_WINE_FOX_RELIC_MAID_BACKPACK.flavor": "小小的背包大大的容量，塞满了主人准备的各种食物。",
   "STS2_WINE_FOX_RELIC_DEPLOYER.title": "神之手",
   "STS2_WINE_FOX_RELIC_DEPLOYER.description": "在每场战斗开始时，获得[blue]{Stress}[/blue]层[gold]应力[/gold]。",
-  "STS2_WINE_FOX_RELIC_DEPLOYER.flavor": "来自另一个世界的神秘遗物。提供比手摇曲柄更多的应力。"
+  "STS2_WINE_FOX_RELIC_DEPLOYER.flavor": "来自另一个世界的神秘遗物。提供比手摇曲柄更多的应力。",
+  "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK.title": "精妙背包",
+  "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK.description": "每场战斗开始额外抽取1张牌。提供额外的合成卡牌：背包升级。",
+  "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK.flavor": "看起来就很耐用的背包，可以添加各种升级来增加功能。"
 }

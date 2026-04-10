@@ -6,17 +6,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.Craft
 {
-    public class DiamondSword() : WineFoxCard(
+    public class IronSword() : WineFoxCard(
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(20m, ValueProp.Move), new("Echoes", 1m)];
+            [new DamageVar(14m, ValueProp.Move), new("Echoes", 1m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDiamondSword);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIronSword);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -32,14 +32,13 @@ namespace STS2_WineFox.Cards.Token
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<DiamondSwordPower>(
+            await PowerCmd.Apply<IronSwordPower>(
                 Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
         }
 
-
         protected override void OnUpgrade()
         {
-            DynamicVars["Echoes"].UpgradeValueBy(1m); // 1 → 2
+            DynamicVars["Echoes"].UpgradeValueBy(1m);
         }
     }
 }

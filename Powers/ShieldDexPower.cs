@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Cards.Token;
+using STS2_WineFox.Cards.Token.Craft;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Scaffolding.Content.Patches;
 

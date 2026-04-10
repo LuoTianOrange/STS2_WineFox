@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token;
+using STS2_WineFox.Cards.Token.Craft;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers

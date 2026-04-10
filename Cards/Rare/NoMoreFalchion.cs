@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2_WineFox.Cards.Token;
+using STS2_WineFox.Cards.Token.NoMoreFalchion;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 

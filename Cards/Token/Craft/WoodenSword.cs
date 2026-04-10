@@ -6,19 +6,17 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.Craft
 {
-    public class StoneSword() : WineFoxCard(
+    public class WoodenSword() : WineFoxCard(
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(2m)];
+            [new DamageVar(6m, ValueProp.Move), new("Vigorous", 4m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStoneSword);
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Strength];
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenSword);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -34,14 +32,13 @@ namespace STS2_WineFox.Cards.Token
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<StrengthPower>(
-                Owner.Creature, DynamicVars["StrengthPower"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<VigorPower>(
+                Owner.Creature, DynamicVars["Vigorous"].BaseValue, Owner.Creature, this);
         }
-
 
         protected override void OnUpgrade()
         {
-            DynamicVars["StrengthPower"].UpgradeValueBy(1m);
+            DynamicVars["Vigorous"].UpgradeValueBy(2m);
         }
     }
 }

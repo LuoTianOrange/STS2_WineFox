@@ -4,20 +4,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.HellGift
 {
-    public class DiamondPickaxe() : WineFoxCard(
+    public class GoldenPickaxe() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDiamondPickaxe);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardGoldenPickaxe);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<DiamondPickaxePower>(Owner.Creature, 1m, Owner.Creature, this);
+            var multiplier = IsUpgraded ? 3m : 2m;
+            await PowerCmd.Apply<GoldenPickaxePower>(Owner.Creature, multiplier, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

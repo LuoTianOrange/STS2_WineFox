@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards.Token;
+using STS2_WineFox.Cards.Token.HellGift;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
@@ -34,7 +34,7 @@ namespace STS2_WineFox.Cards.Rare
                 () => CombatState.CreateCard<GoldenSword>(owner),
                 () => CombatState.CreateCard<GoldenPickaxe>(owner),
                 // () => CombatState.CreateCard<GoldenAxe>(owner),
-                // () => CombatState.CreateCard<GoldenArmor>(owner),
+                () => CombatState.CreateCard<GoldenArmor>(owner),
             ];
 
             // 随机选一张

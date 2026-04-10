@@ -6,7 +6,7 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.Craft
 {
     public class StonePickaxe() : WineFoxCard(0, CardType.Power,
         CardRarity.Token, TargetType.Self, false)

@@ -3,19 +3,20 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.Craft
 {
-    public class Nothing() : WineFoxCard(
-        0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy
-    )
+    public class DiamondSword() : WineFoxCard(
+        0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(1m, ValueProp.Move)];
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new DamageVar(20m, ValueProp.Move), new("Echoes", 1m)];
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNothing);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDiamondSword);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -30,11 +31,15 @@ namespace STS2_WineFox.Cards.Token
                     .Targeting(target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
+
+            await PowerCmd.Apply<DiamondSwordPower>(
+                Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
         }
+
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(1m);
+            DynamicVars["Echoes"].UpgradeValueBy(1m); // 1 → 2
         }
     }
 }

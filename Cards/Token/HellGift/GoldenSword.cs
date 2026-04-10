@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token
+namespace STS2_WineFox.Cards.Token.HellGift
 {
     public class GoldenSword() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.None)
