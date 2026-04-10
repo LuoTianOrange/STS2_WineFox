@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token.Craft;
+using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Relics;
 
 namespace STS2_WineFox.Cards
 {
@@ -15,9 +17,12 @@ namespace STS2_WineFox.Cards
         Func<CombatState, Player, CardModel> Factory,
         params CraftCost[] Costs
     )
+    
     {
+        public Func<Creature, bool>? ExtraCondition { get; init; }
         public bool CanCraft(Creature creature)
         {
+            if (ExtraCondition != null && !ExtraCondition(creature)) return false;
             return !(from cost in Costs
                 let power = creature.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType)
                 let amount = power?.Amount ?? 0m
@@ -113,6 +118,21 @@ namespace STS2_WineFox.Cards
                 new CraftCost(typeof(WoodPower), 6m),
                 new CraftCost(typeof(IronPower), 1m)
             ),
+            //补货升级
+            new (
+                typeof(RestockUpgrade),
+                (state, owner) => state.CreateCard<RestockUpgrade>(owner),
+                new CraftCost(typeof(WoodPower), 8m),
+                new CraftCost(typeof(IronPower), 6m))
+            {
+                ExtraCondition = creature =>
+                {
+                    var player = creature.Player;
+                    if (player == null) return false;
+                    var backpack = player.Relics.OfType<SophisticatedBackpack>().FirstOrDefault();
+                    return backpack != null && !backpack.IsRestockUpgradeApplied;
+                }
+            },
         ];
 
         private static readonly Dictionary<Type, CraftRecipe> ByProductType = BuildByProductType();

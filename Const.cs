@@ -173,6 +173,7 @@ namespace STS2_WineFox
             public const string CardSweetDream = Root + "/cards/card_sweet_dream.png";
             public const string CardFullForceCollision = Root + "/cards/card_full_force_collision.png";
             public const string CardGoldenArmor = Root + "/cards/card_golden_armor.png";
+            public const string CardRestockUpgrade = Root + "/cards/card_restock_upgrade.png";
 
 
             //Enchantments

@@ -19,6 +19,7 @@ namespace STS2_WineFox.Cards.Rare
         [
             HoverTipFactory.FromCard<GoldenSword>(IsUpgraded),
             HoverTipFactory.FromCard<GoldenPickaxe>(IsUpgraded),
+            HoverTipFactory.FromCard<GoldenArmor>(IsUpgraded),
         ];
 
         protected override async Task OnPlay(

@@ -9,6 +9,7 @@ using STS2_WineFox.Cards.Token.Craft;
 using STS2_WineFox.Cards.Token.HellGift;
 using STS2_WineFox.Cards.Token.LessHoliday;
 using STS2_WineFox.Cards.Token.NoMoreFalchion;
+using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
@@ -125,6 +126,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, GoldenArmor>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, SteelChamber>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, Shield>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, RestockUpgrade>(),
         ];
 
         private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =
