@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token.Craft;
 using STS2_WineFox.Cards.Token.SophisticatedBackpack;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 
@@ -17,8 +18,8 @@ namespace STS2_WineFox.Cards
         Func<CombatState, Player, CardModel> Factory,
         params CraftCost[] Costs
     )
-    
     {
+        public CraftDeliveryMode DeliveryMode { get; init; } = CraftDeliveryMode.ToHand;
         public Func<Creature, bool>? ExtraCondition { get; init; }
         public bool CanCraft(Creature creature)
         {
@@ -125,6 +126,7 @@ namespace STS2_WineFox.Cards
                 new CraftCost(typeof(WoodPower), 8m),
                 new CraftCost(typeof(IronPower), 6m))
             {
+                DeliveryMode = RestockUpgrade.CraftProductDeliveryMode,
                 ExtraCondition = creature =>
                 {
                     var player = creature.Player;

@@ -1,26 +1,75 @@
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Commands;
 
 namespace STS2_WineFox
 {
     /// <summary>
-    ///     合成入手流程的生命周期，顺序上接近 <c>CardPileCmd.AddGeneratedCardToCombat</c>。
-    ///     与 <see cref="Hooks.CraftHook" /> 配合使用；参数语义与游戏内 Cmd / <c>Hook</c> 一致。
+    ///     通用合成生命周期监听器。一次合成会先进入 <see cref="BeforeCraft"/>，成功扣除材料并确定产物后，再按交付模式进入
+    ///     <see cref="BeforeCraftProductDelivered"/> / <see cref="AfterCraftProductDelivered"/>。
     /// </summary>
-    public interface ICraftIntoHandListener
+    public interface ICraftListener
     {
-        /// <summary>在选配方、扣材料之前触发（一次合成流程的起点）。</summary>
+        Task BeforeCraft(CraftExecutionContext context)
+        {
+            return Task.CompletedTask;
+        }
+
+        Task BeforeCraftProductDelivered(CraftExecutionContext context)
+        {
+            return Task.CompletedTask;
+        }
+
+        Task AfterCraftProductDelivered(CraftExecutionContext context)
+        {
+            return Task.CompletedTask;
+        }
+    }
+
+    /// <summary>
+    ///     兼容旧的“合成进手牌”监听接口；内部桥接到 <see cref="ICraftListener"/>。
+    /// </summary>
+    public interface ICraftIntoHandListener : ICraftListener
+    {
         Task BeforeCraftIntoHand(
             PlayerChoiceContext choiceContext,
             Creature crafter,
             Creature? applier,
-            CardModel? cardSource);
+            CardModel? cardSource)
+        {
+            return Task.CompletedTask;
+        }
 
-        /// <summary>材料已消耗、产物 <paramref name="product" /> 已存在，在 <c>AddGeneratedCardToCombat</c> 之前触发。</summary>
-        Task BeforeCraftProductAddToCombat(Creature crafter, CardModel product);
+        Task BeforeCraftProductAddToCombat(Creature crafter, CardModel product)
+        {
+            return Task.CompletedTask;
+        }
 
-        /// <summary>产物已通过 <c>AddGeneratedCardToCombat</c> 加入战斗堆叠之后触发。</summary>
-        Task AfterCraftProductAddToCombat(Creature crafter, CardModel product);
+        Task AfterCraftProductAddToCombat(Creature crafter, CardModel product)
+        {
+            return Task.CompletedTask;
+        }
+
+        Task ICraftListener.BeforeCraft(CraftExecutionContext context)
+        {
+            return BeforeCraftIntoHand(context.ChoiceContext, context.Crafter, context.Applier, context.SourceCard);
+        }
+
+        Task ICraftListener.BeforeCraftProductDelivered(CraftExecutionContext context)
+        {
+            if (context.Product == null)
+                return Task.CompletedTask;
+
+            return BeforeCraftProductAddToCombat(context.Crafter, context.Product);
+        }
+
+        Task ICraftListener.AfterCraftProductDelivered(CraftExecutionContext context)
+        {
+            if (context.Product == null)
+                return Task.CompletedTask;
+
+            return AfterCraftProductAddToCombat(context.Crafter, context.Product);
+        }
     }
 }

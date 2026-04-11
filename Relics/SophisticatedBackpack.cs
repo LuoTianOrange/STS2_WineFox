@@ -1,5 +1,9 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
+﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -7,6 +11,8 @@ namespace STS2_WineFox.Relics
 {
     public class SophisticatedBackpack : WineFoxRelic
     {
+        private bool _workbenchTriggeredThisTurn;
+
         public override RelicRarity Rarity => RelicRarity.Uncommon;
 
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.SophisticatedBackpack);
@@ -29,6 +35,27 @@ namespace STS2_WineFox.Relics
             if(player.Creature.CombatState == null) return count;
             if (player.Creature.CombatState.RoundNumber > 1) return count;
             return count + DynamicVars["DrawBonus"].BaseValue;
+        }
+
+        public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+        {
+            if (!IsRestockUpgradeApplied) return;
+            if (_workbenchTriggeredThisTurn) return;
+            if (cardPlay.Card?.Owner != Owner) return;
+            if (cardPlay.Card is not Cards.Uncommon.WorkbenchBackpack) return;
+
+            _workbenchTriggeredThisTurn = true;
+            Flash();
+            await CardPileCmd.Draw(context, 1, Owner);
+        }
+
+        public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+            CombatState combatState)
+        {
+            if (side == Owner.Creature.Side)
+                _workbenchTriggeredThisTurn = false;
+
+            return Task.CompletedTask;
         }
     }
 }

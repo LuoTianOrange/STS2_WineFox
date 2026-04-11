@@ -1,8 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards;
+using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
@@ -13,12 +12,13 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.None;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.DiamondPickaxePowerIcon);
 
-        public override Task BeforeCraftProductAddToCombat(Creature crafter, CardModel product)
+        public override Task BeforeCraftProductDelivered(CraftExecutionContext context)
         {
-            if (crafter != Owner) return Task.CompletedTask;
-            if (!CraftRecipeRegistry.TryGetRecipe(product.GetType(), out _)) return Task.CompletedTask;
+            if (context.Crafter != Owner) return Task.CompletedTask;
+            if (context.Product == null) return Task.CompletedTask;
+            if (!CraftRecipeRegistry.TryGetRecipe(context.Product.GetType(), out _)) return Task.CompletedTask;
 
-            CardCmd.Upgrade(product);
+            CardCmd.Upgrade(context.Product);
             return Task.CompletedTask;
         }
     }

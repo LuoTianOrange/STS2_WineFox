@@ -1,29 +1,23 @@
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
-    public abstract class WineFoxPower : ModPowerTemplate, ICraftIntoHandListener
+    public abstract class WineFoxPower : ModPowerTemplate, ICraftListener
     {
-        public virtual Task BeforeCraftIntoHand(
-            PlayerChoiceContext choiceContext,
-            Creature crafter,
-            Creature? applier,
-            CardModel? cardSource)
+        public virtual Task BeforeCraft(CraftExecutionContext context)
         {
             return Task.CompletedTask;
         }
 
-        public virtual Task BeforeCraftProductAddToCombat(Creature crafter, CardModel product)
+        public virtual Task BeforeCraftProductDelivered(CraftExecutionContext context)
         {
             return Task.CompletedTask;
         }
 
-        public virtual Task AfterCraftProductAddToCombat(Creature crafter, CardModel product)
+        public virtual Task AfterCraftProductDelivered(CraftExecutionContext context)
         {
             return Task.CompletedTask;
         }

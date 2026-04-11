@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Uncommon
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-            await CraftCmd.CraftIntoHand(choiceContext, this);
+            await CraftCmd.Craft(choiceContext, Owner.Creature, Owner.Creature, this);
 
             EnergyCost.AddThisCombat(-1);
         }

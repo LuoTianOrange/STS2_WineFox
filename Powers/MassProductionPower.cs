@@ -23,7 +23,8 @@ namespace STS2_WineFox.Powers
 
             if (card.IsClone) return;
 
-            if (!CraftCmd.IsCraftHandProduct(card)) return;
+            if (!CraftCmd.TryGetCraftDeliveryMode(card, out var deliveryMode) || deliveryMode != CraftDeliveryMode.ToHand)
+                return;
 
             if (card.Owner?.Creature != Owner) return;
 

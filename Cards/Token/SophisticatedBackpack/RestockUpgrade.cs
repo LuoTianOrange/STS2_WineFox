@@ -1,25 +1,30 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
 {
     public class RestockUpgrade() : WineFoxCard(
-        0, CardType.Power, CardRarity.Token, TargetType.None)
+        -1, CardType.Status, CardRarity.Token, TargetType.None, showInCardLibrary: false), ICraftChoiceEffect
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public static CraftDeliveryMode CraftProductDeliveryMode => CraftDeliveryMode.ImmediateEffect;
+
+        public override bool CanBeGeneratedInCombat => false;
+        public override int MaxUpgradeLevel => 0;
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRestockUpgrade);
 
-        protected override Task OnPlay(
-            PlayerChoiceContext choiceContext,
-            CardPlay play)
+        public Task OnCraftChosen(CraftExecutionContext context)
         {
-            var backpack = Owner.Relics.OfType<Relics.SophisticatedBackpack>().FirstOrDefault();
-            backpack?.ApplyRestockUpgrade();
+            TryApplyToBackpack(context.Crafter.Player);
             return Task.CompletedTask;
         }
 
-        protected override void OnUpgrade() { }
+        private static void TryApplyToBackpack(Player? player)
+        {
+            player?.Relics.OfType<Relics.SophisticatedBackpack>().FirstOrDefault()?.ApplyRestockUpgrade();
+        }
     }
 }

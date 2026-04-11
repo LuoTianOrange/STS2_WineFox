@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Hooks;
 using STS2RitsuLib.Utils;
@@ -16,23 +17,37 @@ namespace STS2_WineFox.Commands
     public static class CraftCmd
     {
         private static readonly AttachedState<Creature, CraftTracker> Trackers = new(() => new());
+        private static readonly AttachedState<CardModel, CraftProductInfo?> CraftProductMarkers = new(() => null);
 
-        /// <summary>
-        ///     Marks a card as the product of <see cref="CraftIntoHand" /> so effects like Mass Production only mirror crafted
-        ///     cards.
-        /// </summary>
-        private static readonly AttachedState<CardModel, bool> CraftHandProductMarkers = new(() => false);
-
-        internal static void MarkCraftHandProduct(CardModel card)
+        internal static void MarkCraftProduct(CardModel card, CraftDeliveryMode deliveryMode)
         {
             ArgumentNullException.ThrowIfNull(card);
-            CraftHandProductMarkers.Set(card, true);
+            CraftProductMarkers.Set(card, new CraftProductInfo(deliveryMode));
+        }
+
+        public static bool IsCraftProduct(CardModel card)
+        {
+            ArgumentNullException.ThrowIfNull(card);
+            return CraftProductMarkers.TryGetValue(card, out var info) && info != null;
         }
 
         internal static bool IsCraftHandProduct(CardModel card)
         {
+            return TryGetCraftDeliveryMode(card, out var deliveryMode) && deliveryMode == CraftDeliveryMode.ToHand;
+        }
+
+        public static bool TryGetCraftDeliveryMode(CardModel card, out CraftDeliveryMode deliveryMode)
+        {
             ArgumentNullException.ThrowIfNull(card);
-            return CraftHandProductMarkers.TryGetValue(card, out var v) && v;
+
+            if (CraftProductMarkers.TryGetValue(card, out var info) && info != null)
+            {
+                deliveryMode = info.DeliveryMode;
+                return true;
+            }
+
+            deliveryMode = default;
+            return false;
         }
 
         public static bool CanCraftAny(Creature creature)
@@ -56,47 +71,33 @@ namespace STS2_WineFox.Commands
             return new(new("cards", "STS2_WINE_FOX_CHOOSE_CRAFT"), 1);
         }
 
+        public static Task<CardModel?> Craft(
+            PlayerChoiceContext choiceContext,
+            Creature crafter,
+            Creature? applier,
+            CardModel? cardSource = null,
+            CardSelectorPrefs? prefs = null,
+            CraftDeliveryMode? deliveryModeOverride = null,
+            Creature? autoPlayTarget = null)
+        {
+            ArgumentNullException.ThrowIfNull(choiceContext);
+            ArgumentNullException.ThrowIfNull(crafter);
+
+            return CraftInternal(choiceContext, crafter, applier, cardSource, prefs, deliveryModeOverride, autoPlayTarget);
+        }
+
         /// <summary>
         ///     以 <paramref name="crafter" /> 为主体执行合成；<paramref name="applier" /> / <paramref name="cardSource" /> 用于钩子与材料变动的来源转发（与
         ///     <c>PowerCmd</c> 一致）。<paramref name="cardSource" /> 省略时为 <c>null</c>（如能力触发的合成）。
         /// </summary>
-        public static async Task<CardModel?> CraftIntoHand(
+        public static Task<CardModel?> CraftIntoHand(
             PlayerChoiceContext choiceContext,
             Creature crafter,
             Creature? applier,
             CardModel? cardSource = null,
             CardSelectorPrefs? prefs = null)
         {
-            ArgumentNullException.ThrowIfNull(choiceContext);
-            ArgumentNullException.ThrowIfNull(crafter);
-
-            var owner = crafter.Player ??
-                        throw new InvalidOperationException("Creature cannot craft without a player.");
-
-            var combatState = crafter.CombatState ??
-                              throw new InvalidOperationException("Crafter is not in combat.");
-
-            await CraftHook.BeforeCraftIntoHand(combatState, choiceContext, crafter, applier, cardSource);
-
-            var selectedOption = await SelectOption(choiceContext, owner, prefs);
-            if (selectedOption == null)
-                return null;
-
-            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource))
-            {
-                selectedOption.Card.RemoveFromState();
-                return null;
-            }
-
-            MarkCraftHandProduct(selectedOption.Card);
-
-            await CraftHook.BeforeCraftProductAddToCombat(combatState, crafter, selectedOption.Card);
-
-            await CardPileCmd.AddGeneratedCardToCombat(selectedOption.Card, PileType.Hand, true);
-
-            await CraftHook.AfterCraftProductAddToCombat(combatState, crafter, selectedOption.Card);
-
-            return selectedOption.Card;
+            return Craft(choiceContext, crafter, applier, cardSource, prefs, CraftDeliveryMode.ToHand);
         }
 
         /// <summary>由打出卡牌触发合成时调用；转发为以 <c>cardSource.Owner.Creature</c> 为主体，<c>applier</c> 与 <c>cardSource</c> 与卡牌打出一致。</summary>
@@ -194,6 +195,83 @@ namespace STS2_WineFox.Commands
                 default:
                     throw new ArgumentOutOfRangeException(nameof(evt), evt.Kind, null);
             }
+        }
+
+        private static async Task<CardModel?> CraftInternal(
+            PlayerChoiceContext choiceContext,
+            Creature crafter,
+            Creature? applier,
+            CardModel? cardSource,
+            CardSelectorPrefs? prefs,
+            CraftDeliveryMode? deliveryModeOverride,
+            Creature? autoPlayTarget)
+        {
+            var owner = crafter.Player ??
+                        throw new InvalidOperationException("Creature cannot craft without a player.");
+
+            var combatState = crafter.CombatState ??
+                              throw new InvalidOperationException("Crafter is not in combat.");
+
+            var selectedOption = await SelectOption(choiceContext, owner, prefs);
+            if (selectedOption == null)
+                return null;
+
+            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource))
+            {
+                selectedOption.Card.RemoveFromState();
+                return null;
+            }
+
+            var deliveryMode = deliveryModeOverride ?? selectedOption.Recipe.DeliveryMode;
+            var craftContext = new CraftExecutionContext
+            {
+                ChoiceContext = choiceContext,
+                Crafter = crafter,
+                Applier = applier,
+                SourceCard = cardSource,
+                Recipe = selectedOption.Recipe,
+                Product = selectedOption.Card,
+                DeliveryMode = deliveryMode,
+                AutoPlayTarget = autoPlayTarget,
+            };
+
+            await CraftHook.BeforeCraft(combatState, craftContext);
+            await DeliverCraftProduct(combatState, craftContext);
+            return selectedOption.Card;
+        }
+
+        private static async Task DeliverCraftProduct(CombatState combatState, CraftExecutionContext context)
+        {
+            var deliveryContext = context.Product is ICraftChoiceEffect
+                ? context with { DeliveryMode = CraftDeliveryMode.ImmediateEffect }
+                : context;
+
+            MarkCraftProduct(deliveryContext.Product, deliveryContext.DeliveryMode);
+            await CraftHook.BeforeCraftProductDelivered(combatState, deliveryContext);
+
+            switch (deliveryContext.DeliveryMode)
+            {
+                case CraftDeliveryMode.ToHand:
+                    await CardPileCmd.AddGeneratedCardToCombat(deliveryContext.Product, PileType.Hand, true);
+                    break;
+                case CraftDeliveryMode.AutoPlay:
+                    await CardCmd.AutoPlay(deliveryContext.ChoiceContext, deliveryContext.Product,
+                        deliveryContext.AutoPlayTarget);
+                    break;
+                case CraftDeliveryMode.ImmediateEffect:
+                    if (deliveryContext.Product is not ICraftChoiceEffect choiceEffect)
+                        throw new InvalidOperationException(
+                            $"Craft product {deliveryContext.Product.GetType().Name} does not implement {nameof(ICraftChoiceEffect)}.");
+
+                    await choiceEffect.OnCraftChosen(deliveryContext);
+                    if (deliveryContext.Product.CombatState != null)
+                        deliveryContext.Product.RemoveFromState();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            await CraftHook.AfterCraftProductDelivered(combatState, deliveryContext);
         }
 
         private static void AddByType(
@@ -476,6 +554,8 @@ namespace STS2_WineFox.Commands
                 option.Card.RemoveFromState();
             }
         }
+
+        private sealed record CraftProductInfo(CraftDeliveryMode DeliveryMode);
 
         private sealed class CraftTracker
         {
