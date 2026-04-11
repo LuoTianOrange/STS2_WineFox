@@ -4,7 +4,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
@@ -18,9 +21,10 @@ namespace STS2_WineFox.Relics
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.SophisticatedBackpack);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("DrawBonus", 1m), new("RestockApplied", 0m)];
+            [new("DrawBonus", 1m),new("RestockApplied", 0m), new("FeedingApplied", 0m)];
 
         public bool IsRestockUpgradeApplied => DynamicVars["RestockApplied"].BaseValue > 0m;
+        public bool IsFeedingUpgradeApplied => DynamicVars["FeedingApplied"].BaseValue > 0m;
 
         public void ApplyRestockUpgrade()
         {
@@ -29,6 +33,28 @@ namespace STS2_WineFox.Relics
             Flash();
         }
 
+        public void ApplyFeedingUpgrade()
+        {
+            DynamicVars["FeedingApplied"].BaseValue = 1m;
+            Flash();
+        }
+        
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips
+        {
+            get
+            {
+                if (IsRestockUpgradeApplied)
+                    yield return new HoverTip(
+                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.title"),
+                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.description"));
+                
+                if (IsFeedingUpgradeApplied)
+                    yield return new HoverTip(
+                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.title"),
+                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.description"));
+            }
+        }
+        
         public override decimal ModifyHandDraw(Player player, decimal count)
         {
             if (player != Owner) return count;
@@ -49,13 +75,18 @@ namespace STS2_WineFox.Relics
             await CardPileCmd.Draw(context, 1, Owner);
         }
 
-        public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
             CombatState combatState)
         {
-            if (side == Owner.Creature.Side)
-                _workbenchTriggeredThisTurn = false;
+            if (side != Owner.Creature.Side) return;
 
-            return Task.CompletedTask;
+            _workbenchTriggeredThisTurn = false;
+
+            if (IsFeedingUpgradeApplied)
+            {
+                Flash();
+                await PowerCmd.Apply<RegenPower>(Owner.Creature, 1m, Owner.Creature, null);
+            }
         }
     }
 }

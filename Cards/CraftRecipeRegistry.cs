@@ -135,6 +135,22 @@ namespace STS2_WineFox.Cards
                     return backpack != null && !backpack.IsRestockUpgradeApplied;
                 }
             },
+            //喂食升级
+            new(
+                typeof(FeedingUpgrade),
+                (state, owner) => state.CreateCard<FeedingUpgrade>(owner),
+                new CraftCost(typeof(DiamondPower), 3m),
+                new CraftCost(typeof(IronPower), 4m))
+            {
+                DeliveryMode = FeedingUpgrade.CraftProductDeliveryMode,
+                ExtraCondition = creature =>
+                {
+                    var player = creature.Player;
+                    if (player == null) return false;
+                    var backpack = player.Relics.OfType<SophisticatedBackpack>().FirstOrDefault();
+                    return backpack != null && !backpack.IsFeedingUpgradeApplied;
+                }
+            },
         ];
 
         private static readonly Dictionary<Type, CraftRecipe> ByProductType = BuildByProductType();
