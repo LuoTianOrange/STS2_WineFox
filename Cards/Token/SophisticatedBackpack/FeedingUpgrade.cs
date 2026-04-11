@@ -1,27 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
-using STS2_WineFox.Commands;
-using STS2RitsuLib.Scaffolding.Content;
+using STS2_WineFox.Relics.Backpack.Effects;
 
 namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
 {
-    public class FeedingUpgrade() : WineFoxCard(
-        -1, CardType.Status, CardRarity.Token, TargetType.None, showInCardLibrary: false), ICraftChoiceEffect
+    public class FeedingUpgrade() : BackpackUpgradeCardBase<FeedingBackpackEffect>(Const.Paths.CardFeedingUpgrade)
     {
-        public static CraftDeliveryMode CraftProductDeliveryMode => CraftDeliveryMode.ImmediateEffect;
-
-        public override bool CanBeGeneratedInCombat => false;
-        public override int MaxUpgradeLevel => 0;
-
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFeedingUpgrade);
-
-        public Task OnCraftChosen(CraftExecutionContext context)
+        protected override void ApplyUpgradeValues(Relics.SophisticatedBackpack backpack)
         {
-            context.Crafter.Player?.Relics
-                .OfType<Relics.SophisticatedBackpack>()
-                .FirstOrDefault()
-                ?.ApplyFeedingUpgrade();
-            return Task.CompletedTask;
+            backpack.DynamicVars[FeedingBackpackEffect.RegenVar].BaseValue += 1m;
         }
     }
 }

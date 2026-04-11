@@ -15,5 +15,6 @@ namespace STS2_WineFox.Commands
         public required CardModel Product { get; init; }
         public required CraftDeliveryMode DeliveryMode { get; init; }
         public Creature? AutoPlayTarget { get; init; }
+        public bool IsBonusCraft { get; init; }
     }
 }

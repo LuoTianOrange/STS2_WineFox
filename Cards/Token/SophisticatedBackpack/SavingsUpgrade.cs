@@ -2,11 +2,11 @@ using STS2_WineFox.Relics.Backpack.Effects;
 
 namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
 {
-    public class RestockUpgrade() : BackpackUpgradeCardBase<RestockBackpackEffect>(Const.Paths.CardRestockUpgrade)
+    public class SavingsUpgrade() : BackpackUpgradeCardBase<SavingsBackpackEffect>(Const.Paths.CardSavingsUpgrade)
     {
         protected override void ApplyUpgradeValues(Relics.SophisticatedBackpack backpack)
         {
-            backpack.DynamicVars[RestockBackpackEffect.AmountVar].BaseValue += 2m;
+            backpack.DynamicVars[SavingsBackpackEffect.GoldVar].BaseValue += 15m;
         }
     }
 }

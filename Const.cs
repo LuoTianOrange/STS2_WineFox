@@ -175,6 +175,10 @@ namespace STS2_WineFox
             public const string CardGoldenArmor = Root + "/cards/card_golden_armor.png";
             public const string CardRestockUpgrade = Root + "/cards/card_restock_upgrade.png";
             public const string CardFeedingUpgrade = Root + "/cards/card_feeding_upgrade.png";
+            public const string CardSmeltingUpgrade = Root + "/cards/card_test.png";
+            public const string CardCraftUpgrade = Root + "/cards/card_test.png";
+            public const string CardStonecutterUpgrade = Root + "/cards/card_test.png";
+            public const string CardSavingsUpgrade = Root + "/cards/card_test.png";
 
 
             //Enchantments

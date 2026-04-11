@@ -1,13 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token.Craft;
-using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
+using STS2_WineFox.Relics.Backpack;
 
 namespace STS2_WineFox.Cards
 {
@@ -20,15 +21,36 @@ namespace STS2_WineFox.Cards
     )
     {
         public CraftDeliveryMode DeliveryMode { get; init; } = CraftDeliveryMode.ToHand;
+        public CardMultiplayerConstraint MultiplayerConstraint { get; init; } = CardMultiplayerConstraint.None;
         public Func<Creature, bool>? ExtraCondition { get; init; }
+
         public bool CanCraft(Creature creature)
         {
+            if (!IsMultiplayerConstraintSatisfied(creature))
+                return false;
+
             if (ExtraCondition != null && !ExtraCondition(creature)) return false;
             return !(from cost in Costs
                 let power = creature.Powers.FirstOrDefault(p => p.GetType() == cost.PowerType)
                 let amount = power?.Amount ?? 0m
                 where amount < cost.Amount
                 select cost).Any();
+        }
+
+        private bool IsMultiplayerConstraintSatisfied(Creature creature)
+        {
+            if (MultiplayerConstraint == CardMultiplayerConstraint.None)
+                return true;
+
+            var runConstraint = creature.Player?.RunState.CardMultiplayerConstraint ?? CardMultiplayerConstraint.None;
+            return MultiplayerConstraint switch
+            {
+                CardMultiplayerConstraint.SingleplayerOnly =>
+                    runConstraint != CardMultiplayerConstraint.MultiplayerOnly,
+                CardMultiplayerConstraint.MultiplayerOnly =>
+                    runConstraint != CardMultiplayerConstraint.SingleplayerOnly,
+                _ => true,
+            };
         }
     }
 
@@ -119,38 +141,7 @@ namespace STS2_WineFox.Cards
                 new CraftCost(typeof(WoodPower), 6m),
                 new CraftCost(typeof(IronPower), 1m)
             ),
-            //补货升级
-            new (
-                typeof(RestockUpgrade),
-                (state, owner) => state.CreateCard<RestockUpgrade>(owner),
-                new CraftCost(typeof(WoodPower), 8m),
-                new CraftCost(typeof(IronPower), 6m))
-            {
-                DeliveryMode = RestockUpgrade.CraftProductDeliveryMode,
-                ExtraCondition = creature =>
-                {
-                    var player = creature.Player;
-                    if (player == null) return false;
-                    var backpack = player.Relics.OfType<SophisticatedBackpack>().FirstOrDefault();
-                    return backpack != null && !backpack.IsRestockUpgradeApplied;
-                }
-            },
-            //喂食升级
-            new(
-                typeof(FeedingUpgrade),
-                (state, owner) => state.CreateCard<FeedingUpgrade>(owner),
-                new CraftCost(typeof(DiamondPower), 3m),
-                new CraftCost(typeof(IronPower), 4m))
-            {
-                DeliveryMode = FeedingUpgrade.CraftProductDeliveryMode,
-                ExtraCondition = creature =>
-                {
-                    var player = creature.Player;
-                    if (player == null) return false;
-                    var backpack = player.Relics.OfType<SophisticatedBackpack>().FirstOrDefault();
-                    return backpack != null && !backpack.IsFeedingUpgradeApplied;
-                }
-            },
+            .. BuildBackpackUpgradeRecipes(),
         ];
 
         private static readonly Dictionary<Type, CraftRecipe> ByProductType = BuildByProductType();
@@ -166,6 +157,28 @@ namespace STS2_WineFox.Cards
         public static bool TryGetRecipe(Type cardType, [NotNullWhen(true)] out CraftRecipe? recipe)
         {
             return ByProductType.TryGetValue(cardType, out recipe);
+        }
+
+        private static IEnumerable<CraftRecipe> BuildBackpackUpgradeRecipes()
+        {
+            return SophisticatedBackpackUpgradeCatalog.All.Select(upgrade =>
+                new CraftRecipe(
+                    upgrade.ProductCardType,
+                    upgrade.Factory,
+                    upgrade.Costs.ToArray())
+                {
+                    DeliveryMode = upgrade.DeliveryMode,
+                    MultiplayerConstraint = upgrade.MultiplayerConstraint,
+                    ExtraCondition = creature =>
+                    {
+                        var player = creature.Player;
+                        if (player == null) return false;
+                        var backpack = player.Relics.OfType<SophisticatedBackpack>().FirstOrDefault();
+                        return backpack != null &&
+                               !backpack.HasEffect(
+                                   SophisticatedBackpackUpgradeCatalog.GetEffectType(upgrade.ProductCardType));
+                    },
+                });
         }
     }
 }

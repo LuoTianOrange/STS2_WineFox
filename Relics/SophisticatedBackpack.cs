@@ -1,92 +1,216 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Rooms;
+using STS2_WineFox.Commands;
+using STS2_WineFox.Relics.Backpack;
+using STS2_WineFox.Relics.Backpack.Effects;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
-    public class SophisticatedBackpack : WineFoxRelic
+    public class SophisticatedBackpack : WineFoxRelic, ICraftListener
     {
-        private bool _workbenchTriggeredThisTurn;
+        private readonly Dictionary<string, int> _effectStateInts = new();
 
         public override RelicRarity Rarity => RelicRarity.Uncommon;
 
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.SophisticatedBackpack);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("DrawBonus", 1m),new("RestockApplied", 0m), new("FeedingApplied", 0m)];
+            BuildCanonicalVars();
 
-        public bool IsRestockUpgradeApplied => DynamicVars["RestockApplied"].BaseValue > 0m;
-        public bool IsFeedingUpgradeApplied => DynamicVars["FeedingApplied"].BaseValue > 0m;
-
-        public void ApplyRestockUpgrade()
+        public Task BeforeCraft(CraftExecutionContext context)
         {
-            DynamicVars["DrawBonus"].BaseValue += 2m;
-            DynamicVars["RestockApplied"].BaseValue = 1m;
-            Flash();
+            return Task.CompletedTask;
         }
 
-        public void ApplyFeedingUpgrade()
+        public Task BeforeCraftProductDelivered(CraftExecutionContext context)
         {
-            DynamicVars["FeedingApplied"].BaseValue = 1m;
-            Flash();
+            return Task.CompletedTask;
         }
-        
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips
+
+        public async Task AfterCraftProductDelivered(CraftExecutionContext context)
         {
-            get
+            foreach (var effect in SophisticatedBackpackEffects.All)
             {
-                if (IsRestockUpgradeApplied)
-                    yield return new HoverTip(
-                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.title"),
-                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.description"));
-                
-                if (IsFeedingUpgradeApplied)
-                    yield return new HoverTip(
-                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.title"),
-                        new LocString("relics", "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.description"));
+                if (!HasEffect(effect))
+                    continue;
+
+                await effect.AfterCraftProductDelivered(this, context);
             }
         }
-        
-        public override decimal ModifyHandDraw(Player player, decimal count)
+
+        private IEnumerable<DynamicVar> BuildCanonicalVars()
         {
-            if (player != Owner) return count;
-            if(player.Creature.CombatState == null) return count;
-            if (player.Creature.CombatState.RoundNumber > 1) return count;
-            return count + DynamicVars["DrawBonus"].BaseValue;
+            var vars = new List<DynamicVar>
+            {
+                new SophisticatedBackpackDescriptionVar(() => SophisticatedBackpackEffects.BuildDescription(this)),
+            };
+
+            foreach (var effect in SophisticatedBackpackEffects.All)
+            {
+                foreach (var var in effect.CreateCanonicalVars())
+                    vars.Add(var.Clone());
+
+                vars.Add(new(
+                    SophisticatedBackpackEffects.EnabledVar(effect.GetType()),
+                    effect.EnabledByDefault ? 1m : 0m));
+            }
+
+            return vars;
         }
 
-        public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+        public bool HasEffect(ISophisticatedBackpackEffect effect)
         {
-            if (!IsRestockUpgradeApplied) return;
-            if (_workbenchTriggeredThisTurn) return;
-            if (cardPlay.Card?.Owner != Owner) return;
-            if (cardPlay.Card is not Cards.Uncommon.WorkbenchBackpack) return;
+            ArgumentNullException.ThrowIfNull(effect);
+            return HasEffect(effect.GetType());
+        }
 
-            _workbenchTriggeredThisTurn = true;
+        public bool HasEffect(Type effectType)
+        {
+            var enabledVar = SophisticatedBackpackEffects.EnabledVar(effectType);
+            if (!DynamicVars.TryGetValue(enabledVar, out var state))
+                return false;
+
+            return state.BaseValue > 0m;
+        }
+
+        public bool HasEffect<TEffect>() where TEffect : ISophisticatedBackpackEffect
+        {
+            return HasEffect(typeof(TEffect));
+        }
+
+        public bool TryApplyUpgrade(Type effectType, Action<SophisticatedBackpack>? onApplied = null)
+        {
+            if (!SophisticatedBackpackEffects.ByType.ContainsKey(effectType))
+                return false;
+
+            var enabledVar = SophisticatedBackpackEffects.EnabledVar(effectType);
+            if (DynamicVars[enabledVar].BaseValue > 0m)
+                return false;
+
+            DynamicVars[enabledVar].BaseValue = 1m;
+            onApplied?.Invoke(this);
+            RefreshDescriptionText();
+            InvokeDisplayAmountChanged();
             Flash();
-            await CardPileCmd.Draw(context, 1, Owner);
+            return true;
+        }
+
+        public override Task AfterObtained()
+        {
+            RefreshDescriptionText();
+            return Task.CompletedTask;
+        }
+
+        public bool TryApplyUpgrade<TEffect>(Action<SophisticatedBackpack>? onApplied = null)
+            where TEffect : ISophisticatedBackpackEffect
+        {
+            return TryApplyUpgrade(typeof(TEffect), onApplied);
+        }
+
+        public override decimal ModifyHandDraw(Player player, decimal count)
+        {
+            var result = count;
+            foreach (var effect in SophisticatedBackpackEffects.All)
+            {
+                if (!HasEffect(effect))
+                    continue;
+
+                result = effect.ModifyHandDraw(this, player, result);
+            }
+
+            return result;
         }
 
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
             CombatState combatState)
         {
-            if (side != Owner.Creature.Side) return;
-
-            _workbenchTriggeredThisTurn = false;
-
-            if (IsFeedingUpgradeApplied)
+            foreach (var effect in SophisticatedBackpackEffects.All)
             {
-                Flash();
-                await PowerCmd.Apply<RegenPower>(Owner.Creature, 1m, Owner.Creature, null);
+                if (!HasEffect(effect))
+                    continue;
+
+                await effect.BeforeSideTurnStart(this, choiceContext, side, combatState);
             }
+        }
+
+        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        {
+            foreach (var effect in SophisticatedBackpackEffects.All)
+            {
+                if (!HasEffect(effect))
+                    continue;
+
+                await effect.AfterTurnEnd(this, choiceContext, side);
+            }
+        }
+
+        public override async Task AfterCombatEnd(CombatRoom room)
+        {
+            _effectStateInts.Clear();
+
+            foreach (var effect in SophisticatedBackpackEffects.All)
+            {
+                if (!HasEffect(effect))
+                    continue;
+
+                await effect.AfterCombatEnd(this, room);
+            }
+        }
+
+        public int GetEffectStateInt(Type effectType, string key)
+        {
+            return _effectStateInts.GetValueOrDefault(StateKey(effectType, key), 0);
+        }
+
+        public int GetEffectStateInt<TEffect>(string key) where TEffect : ISophisticatedBackpackEffect
+        {
+            return GetEffectStateInt(typeof(TEffect), key);
+        }
+
+        public void SetEffectStateInt(Type effectType, string key, int value)
+        {
+            _effectStateInts[StateKey(effectType, key)] = value;
+        }
+
+        public void SetEffectStateInt<TEffect>(string key, int value) where TEffect : ISophisticatedBackpackEffect
+        {
+            SetEffectStateInt(typeof(TEffect), key, value);
+        }
+
+        public int IncrementEffectStateInt(Type effectType, string key, int delta = 1)
+        {
+            var stateKey = StateKey(effectType, key);
+            var value = _effectStateInts.GetValueOrDefault(stateKey, 0) + delta;
+            _effectStateInts[stateKey] = value;
+            return value;
+        }
+
+        public int IncrementEffectStateInt<TEffect>(string key, int delta = 1)
+            where TEffect : ISophisticatedBackpackEffect
+        {
+            return IncrementEffectStateInt(typeof(TEffect), key, delta);
+        }
+
+        private static string StateKey(Type effectType, string key)
+        {
+            return $"{effectType.FullName}:{key}";
+        }
+
+        public void RefreshDescriptionText()
+        {
+            if (DynamicVars[SophisticatedBackpackEffects.DescriptionVar] is SophisticatedBackpackDescriptionVar descriptionVar)
+            {
+                descriptionVar.Refresh();
+                return;
+            }
+
+            ((StringVar)DynamicVars[SophisticatedBackpackEffects.DescriptionVar]).StringValue =
+                SophisticatedBackpackEffects.BuildDescription(this);
         }
     }
 }

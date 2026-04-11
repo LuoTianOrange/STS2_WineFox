@@ -128,6 +128,10 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxTokenCardPool, Shield>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, RestockUpgrade>(),
             new CardRegistrationEntry<WineFoxTokenCardPool, FeedingUpgrade>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, SmeltingUpgrade>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, CraftUpgrade>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, StonecutterUpgrade>(),
+            new CardRegistrationEntry<WineFoxTokenCardPool, SavingsUpgrade>(),
         ];
 
         private static readonly IContentRegistrationEntry[] RelicAndOrobasEntries =

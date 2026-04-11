@@ -78,12 +78,14 @@ namespace STS2_WineFox.Commands
             CardModel? cardSource = null,
             CardSelectorPrefs? prefs = null,
             CraftDeliveryMode? deliveryModeOverride = null,
-            Creature? autoPlayTarget = null)
+            Creature? autoPlayTarget = null,
+            bool isBonusCraft = false)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(crafter);
 
-            return CraftInternal(choiceContext, crafter, applier, cardSource, prefs, deliveryModeOverride, autoPlayTarget);
+            return CraftInternal(choiceContext, crafter, applier, cardSource, prefs, deliveryModeOverride, autoPlayTarget,
+                isBonusCraft);
         }
 
         /// <summary>
@@ -204,7 +206,8 @@ namespace STS2_WineFox.Commands
             CardModel? cardSource,
             CardSelectorPrefs? prefs,
             CraftDeliveryMode? deliveryModeOverride,
-            Creature? autoPlayTarget)
+            Creature? autoPlayTarget,
+            bool isBonusCraft)
         {
             var owner = crafter.Player ??
                         throw new InvalidOperationException("Creature cannot craft without a player.");
@@ -216,7 +219,8 @@ namespace STS2_WineFox.Commands
             if (selectedOption == null)
                 return null;
 
-            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource))
+            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource,
+                    countTowardsCraftTracker: !isBonusCraft))
             {
                 selectedOption.Card.RemoveFromState();
                 return null;
@@ -233,6 +237,7 @@ namespace STS2_WineFox.Commands
                 Product = selectedOption.Card,
                 DeliveryMode = deliveryMode,
                 AutoPlayTarget = autoPlayTarget,
+                IsBonusCraft = isBonusCraft,
             };
 
             await CraftHook.BeforeCraft(combatState, craftContext);
@@ -485,7 +490,8 @@ namespace STS2_WineFox.Commands
             Creature crafter,
             CraftRecipe recipe,
             Creature? applier,
-            CardModel? cardSource = null)
+            CardModel? cardSource = null,
+            bool countTowardsCraftTracker = true)
         {
             ArgumentNullException.ThrowIfNull(crafter);
             ArgumentNullException.ThrowIfNull(recipe);
@@ -529,7 +535,8 @@ namespace STS2_WineFox.Commands
                 AppliedStressMultiplier = false,
             });
 
-            RecordCraft(crafter);
+            if (countTowardsCraftTracker)
+                RecordCraft(crafter);
             return true;
         }
 
