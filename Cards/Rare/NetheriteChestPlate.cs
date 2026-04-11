@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Rare;
 
 public class NetheriteChestPlate() : WineFoxCard(
-    1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new("Plating", 7m)];

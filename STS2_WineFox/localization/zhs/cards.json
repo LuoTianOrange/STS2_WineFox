@@ -107,7 +107,7 @@
   "STS2_WINE_FOX_CARD_REGROUP_CHOOSE":"选择一张要从弃牌堆中加入手牌的牌",
   "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.title":"更换装备",
   "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.description":"抽{Cards:diff()}张牌，选择手牌中{Cards:diff()}张牌洗回[gold]抽牌堆[/gold]。",
-  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE":"选择2张要洗回抽牌堆的牌",
+  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE":"选择{Cards:diff()}张要洗回抽牌堆的牌",
   "STS2_WINE_FOX_CARD_DIAMOND_ARMOR.title":"钻石甲",
   "STS2_WINE_FOX_CARD_DIAMOND_ARMOR.description":"获得{Armor:diff()}层[gold]覆甲[/gold]。如果回合结束时你还有[gold]覆甲[/gold]，就在本回合保留你的格挡。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_FOX_BITE.title":"狐咬",
