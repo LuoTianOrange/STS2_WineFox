@@ -179,5 +179,7 @@
   "STS2_WINE_FOX_CARD_STONECUTTER_UPGRADE.title": "精巧背包:切石机升级",
   "STS2_WINE_FOX_CARD_STONECUTTER_UPGRADE.description": "给[gold]精妙背包[/gold]提供额外效果:每三个回合将你的圆石翻倍。只能合成一次。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.title": "精巧背包:储蓄升级",
-  "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.description": "给[gold]精妙背包[/gold]提供额外效果:战斗结束时，额外获得15金币。只能合成一次。{CraftRecipeSuffix}"
+  "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.description": "给[gold]精妙背包[/gold]提供额外效果:战斗结束时，额外获得15金币。只能合成一次。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_WIND_CRANK.title": "摇曲柄",
+  "STS2_WINE_FOX_CARD_WIND_CRANK.description": "获得{StressPower:diff()}[gold]应力[/gold]，结束你的回合"
 }

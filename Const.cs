@@ -179,6 +179,7 @@ namespace STS2_WineFox
             public const string CardCraftUpgrade = Root + "/cards/card_test.png";
             public const string CardStonecutterUpgrade = Root + "/cards/card_test.png";
             public const string CardSavingsUpgrade = Root + "/cards/card_test.png";
+            public const string CardWindCrank = Root + "/cards/card_test.png";
 
 
             //Enchantments

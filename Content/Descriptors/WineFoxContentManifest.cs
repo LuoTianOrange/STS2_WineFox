@@ -103,6 +103,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, HighlyFocused>(),
             new CardRegistrationEntry<WineFoxCardPool, SweetDream>(),
             new CardRegistrationEntry<WineFoxCardPool, FullForceCollision>(),
+            new CardRegistrationEntry<WineFoxCardPool, WindCrank>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
