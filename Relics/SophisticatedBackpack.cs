@@ -1,9 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using System.Globalization;
+using System.Linq;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Relics.Backpack;
 using STS2_WineFox.Relics.Backpack.Effects;
@@ -21,6 +24,20 @@ namespace STS2_WineFox.Relics
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             BuildCanonicalVars();
+
+        [SavedProperty(SerializationCondition.SaveIfNotTypeDefault)]
+        public string? DynamicVarSaveData
+        {
+            get => BuildDynamicVarSaveData();
+            set => ApplyDynamicVarSaveData(value);
+        }
+
+        [SavedProperty(SerializationCondition.SaveIfNotTypeDefault)]
+        public string? EffectStateSaveData
+        {
+            get => BuildEffectStateSaveData();
+            set => ApplyEffectStateSaveData(value);
+        }
 
         public Task BeforeCraft(CraftExecutionContext context)
         {
@@ -211,6 +228,89 @@ namespace STS2_WineFox.Relics
 
             ((StringVar)DynamicVars[SophisticatedBackpackEffects.DescriptionVar]).StringValue =
                 SophisticatedBackpackEffects.BuildDescription(this);
+        }
+
+        private string? BuildDynamicVarSaveData()
+        {
+            var entries = new List<string>();
+            foreach (var effect in SophisticatedBackpackEffects.All)
+            {
+                var enabledVar = SophisticatedBackpackEffects.EnabledVar(effect.GetType());
+                if (!DynamicVars.TryGetValue(enabledVar, out var enabledState))
+                    continue;
+
+                var expectedEnabled = effect.EnabledByDefault ? 1m : 0m;
+                if (enabledState.BaseValue != expectedEnabled)
+                    entries.Add($"{enabledVar}={enabledState.BaseValue.ToString(CultureInfo.InvariantCulture)}");
+
+                foreach (var templateVar in effect.CreateCanonicalVars())
+                {
+                    if (!DynamicVars.TryGetValue(templateVar.Name, out var currentState))
+                        continue;
+
+                    if (currentState.BaseValue != templateVar.BaseValue)
+                        entries.Add($"{templateVar.Name}={currentState.BaseValue.ToString(CultureInfo.InvariantCulture)}");
+                }
+            }
+
+            return entries.Count > 0 ? string.Join(";", entries) : null;
+        }
+
+        private void ApplyDynamicVarSaveData(string? saveData)
+        {
+            if (string.IsNullOrWhiteSpace(saveData))
+                return;
+
+            foreach (var pair in saveData.Split(';', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var separator = pair.IndexOf('=');
+                if (separator <= 0 || separator >= pair.Length - 1)
+                    continue;
+
+                var varName = pair[..separator];
+                var rawValue = pair[(separator + 1)..];
+                if (!decimal.TryParse(rawValue, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
+                    continue;
+
+                if (DynamicVars.TryGetValue(varName, out var dynamicVar))
+                    dynamicVar.BaseValue = value;
+            }
+
+            RefreshDescriptionText();
+            InvokeDisplayAmountChanged();
+        }
+
+        private string? BuildEffectStateSaveData()
+        {
+            var entries = _effectStateInts
+                .Where(entry => entry.Value != 0)
+                .Select(entry => $"{entry.Key}={entry.Value.ToString(CultureInfo.InvariantCulture)}")
+                .ToList();
+            return entries.Count > 0 ? string.Join(";", entries) : null;
+        }
+
+        private void ApplyEffectStateSaveData(string? saveData)
+        {
+            _effectStateInts.Clear();
+            if (string.IsNullOrWhiteSpace(saveData))
+                return;
+
+            foreach (var pair in saveData.Split(';', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var separator = pair.LastIndexOf('=');
+                if (separator <= 0 || separator >= pair.Length - 1)
+                    continue;
+
+                var key = pair[..separator];
+                var rawValue = pair[(separator + 1)..];
+                if (!int.TryParse(rawValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value))
+                    continue;
+
+                if (value != 0)
+                    _effectStateInts[key] = value;
+            }
+
+            RefreshDescriptionText();
         }
     }
 }
