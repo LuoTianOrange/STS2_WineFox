@@ -2,5 +2,5 @@
   "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.title": "Fire Aspect",
   "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.description": "After you deal damage, apply 5 [gold]Burning[/gold].",
   "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.title": "Sweeping Edge",
-  "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.description": "Deal half this damage's damage to other enemies."
+  "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.description": "Deal damage equal to half of this hit's damage to other enemies."
 }
