@@ -107,7 +107,7 @@
   "STS2_WINE_FOX_CARD_REGROUP_CHOOSE": "Choose a card from your discard pile to add to your hand",
   "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.title": "Change Equipment",
   "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT.description": "Draw {Cards:diff()} cards, then shuffle {Cards:diff()} cards from your hand into your [gold]draw pile[/gold].",
-  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE": "Choose 2 cards to shuffle back into your draw pile",
+  "STS2_WINE_FOX_CARD_CHANGE_EQUIPMENT_CHOOSE": "Choose {Amount} cards to shuffle back into your draw pile",
   "STS2_WINE_FOX_CARD_DIAMOND_ARMOR.title": "Diamond Armor",
   "STS2_WINE_FOX_CARD_DIAMOND_ARMOR.description": "Gain {Armor:diff()} [gold]Plating[/gold]. If you still have [gold]Plating[/gold] at the end of turn, keep your Block this turn.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_FOX_BITE.title": "Fox Bite",

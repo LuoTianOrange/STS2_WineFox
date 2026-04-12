@@ -5,6 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Combat;
 using STS2RitsuLib.Combat.HealthBars;
@@ -14,6 +16,8 @@ namespace STS2_WineFox.Powers
 {
     public class BurningPower : WineFoxPower, IHealthBarForecastSource
     {
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BurnDamageVar()];
+
         public override PowerType Type => PowerType.Debuff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.BurningIcon);
@@ -29,7 +33,7 @@ namespace STS2_WineFox.Powers
             if (context.Creature != Owner)
                 return [];
 
-            var damage = CalculateDamageOnNextTrigger();
+            var damage = GetTickDamageAfterHooks();
             if (damage <= 0)
                 return [];
 
@@ -42,22 +46,7 @@ namespace STS2_WineFox.Powers
 
         public int CalculateDamageOnNextTrigger()
         {
-            var owner = Owner;
-            var combatState = owner.CombatState ??
-                              throw new InvalidOperationException("BurningPower owner is not in combat.");
-            var damage = Hook.ModifyDamage(
-                combatState.RunState,
-                combatState,
-                owner,
-                null,
-                Amount,
-                ValueProp.Unblockable | ValueProp.Unpowered,
-                null,
-                ModifyDamageHookType.All,
-                CardPreviewMode.None,
-                out _);
-
-            return (int)damage;
+            return GetTickDamageAfterHooks();
         }
 
         public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
@@ -66,10 +55,11 @@ namespace STS2_WineFox.Powers
 
             Flash();
 
+            var tickDamage = (decimal)GetTickDamageAfterHooks();
             await CreatureCmd.Damage(
                 new ThrowingPlayerChoiceContext(),
                 Owner,
-                Amount,
+                tickDamage,
                 ValueProp.Unblockable | ValueProp.Unpowered,
                 null,
                 null);
@@ -80,6 +70,66 @@ namespace STS2_WineFox.Powers
 
             if (newAmount <= 0m)
                 await PowerCmd.Remove(this);
+        }
+
+        private int GetTickDamageAfterHooks()
+        {
+            var owner = Owner;
+            var combatState = owner.CombatState ??
+                              throw new InvalidOperationException("BurningPower owner is not in combat.");
+            var damage = Hook.ModifyDamage(
+                combatState.RunState,
+                combatState,
+                owner,
+                null,
+                2m * Amount,
+                ValueProp.Unblockable | ValueProp.Unpowered,
+                null,
+                ModifyDamageHookType.All,
+                CardPreviewMode.None,
+                out _);
+
+            return (int)damage;
+        }
+
+        private sealed class BurnDamageVar : DynamicVar
+        {
+            public BurnDamageVar()
+                : base("BurnDamage", 0m)
+            {
+            }
+
+            public override void SetOwner(AbstractModel owner)
+            {
+                base.SetOwner(owner);
+                UpdateValues();
+            }
+
+            public override string ToString()
+            {
+                return Calculate().ToString();
+            }
+
+            protected override decimal GetBaseValueForIConvertible()
+            {
+                return Calculate();
+            }
+
+            private decimal Calculate()
+            {
+                return _owner is PowerModel power ? 2m * power.Amount : 0m;
+            }
+
+            private void UpdateValues()
+            {
+                if (_owner is not PowerModel power)
+                    return;
+
+                BaseValue = power.Amount;
+                var tick = Calculate();
+                PreviewValue = tick;
+                EnchantedValue = tick;
+            }
         }
     }
 }
