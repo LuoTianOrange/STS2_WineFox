@@ -30,7 +30,6 @@ namespace STS2_WineFox.Cards
         public static readonly string Plant = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, PlantKey);
         public static readonly string Steam = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SteamKey);
         public static readonly string Strength = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, StrengthKey);
-        public static readonly string Plating = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, PlatingKey);
         public static readonly string Diamond = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, DiamondKey);
         public static readonly string Material = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MaterialKey);
 

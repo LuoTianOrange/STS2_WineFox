@@ -44,6 +44,8 @@ namespace STS2_WineFox
 
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
 
+            public const string EventDesertPyramid = Root + "/events/desert_pyramid.png";
+            
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
             public const string DeployerRelicIcon = Root + "/relics/relic_deployer.png";

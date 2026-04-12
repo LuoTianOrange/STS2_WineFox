@@ -1,0 +1,16 @@
+{
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.title":"沙漠神殿",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.description":"你的眼前突然出现了一片沙漠，沙漠中间有一个神殿。沙粒正从天花板裂缝中滑落，空气中弥漫着古老与危险的气息。你看到了中央底部的深色砂岩平台，下方有一些宝箱和一个压力板。要下去看看吗？",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.THOROUGH_EXPLORATION.title":"下去看看",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.THOROUGH_EXPLORATION.description":"跳下去，失去6点生命值。",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.LEAVE.title":"离开这里",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.LEAVE.description":"太危险了，此地不宜久留。",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.CHEST_REWARDS.description":"有3个箱子，要打开哪个呢？",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.LEAVE.description":"什么也没有发生。",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST1.title":"打开第一个箱子",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST1.description":"获得遗物\"精妙背包\"。",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.title":"打开第二个箱子",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.description":"给1张攻击卡附魔\"火焰附加\"。",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.title":"打开第三个箱子",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.description":"给1张攻击卡附魔\"横扫之刃\"。"
+}

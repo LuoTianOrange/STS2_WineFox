@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Cards;
@@ -14,6 +15,7 @@ using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
 using STS2_WineFox.Epoch;
+using STS2_WineFox.Events;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2RitsuLib.Keywords;
@@ -145,6 +147,12 @@ namespace STS2_WineFox.Content.Descriptors
             new TouchOfOrobasRefinementRegistrationEntry<HandCrank, Deployer>(),
         ];
 
+        private static readonly IContentRegistrationEntry[] EventsEntries =
+        [
+            new ActEventRegistrationEntry<Overgrowth, DesertPyramid>(),
+            new ActEventRegistrationEntry<Underdocks, DesertPyramid>(),
+        ];
+
         private static readonly IContentRegistrationEntry[] PowerEntries =
         [
             new PowerRegistrationEntry<StressPower>(),
@@ -265,6 +273,7 @@ namespace STS2_WineFox.Content.Descriptors
                 CharacterCardPoolEntries,
                 TokenCardPoolEntries,
                 RelicAndOrobasEntries,
+                EventsEntries,
                 PowerEntries,
                 PotionEntries,
                 EnchantmentEntries);
