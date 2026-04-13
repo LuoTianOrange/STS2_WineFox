@@ -19,7 +19,7 @@ namespace STS2_WineFox.Relics
         private readonly Dictionary<string, int> _effectStateInts = new();
         private bool _pendingEffectFlash;
 
-        public override RelicRarity Rarity => RelicRarity.Uncommon;
+        public override RelicRarity Rarity => RelicRarity.Rare;
 
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.SophisticatedBackpack);
 

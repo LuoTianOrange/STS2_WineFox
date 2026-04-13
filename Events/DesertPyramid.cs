@@ -1,6 +1,8 @@
 ﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -9,14 +11,14 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Enchantments;
-using STS2_WineFox.Relics;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Events
 {
     public sealed class DesertPyramid : ModEventTemplate
     {
-        public override EventAssetProfile AssetProfile => new(InitialPortraitPath:Const.Paths.EventDesertPyramid);
+        public override EventAssetProfile AssetProfile => new(InitialPortraitPath: Const.Paths.EventDesertPyramid);
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new HpLossVar(6m)];
 
@@ -42,9 +44,28 @@ namespace STS2_WineFox.Events
         private async Task Chest1()
         {
             ArgumentNullException.ThrowIfNull(Owner);
-            await RelicCmd.Obtain<SophisticatedBackpack>(Owner);
-            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST1.description"));
+
+            var characterPool = Owner.Character.RelicPool;
+            var ownedIds = Owner.Relics.Select(r => r.Id).ToHashSet();
+
+            var candidates = characterPool.AllRelics
+                .Where(r => !ownedIds.Contains(r.Id))
+                .ToList();
+
+            if (candidates.Any())
+            {
+                var relic = Rng.NextItem(candidates);
+                await RelicCmd.Obtain(relic.ToMutable(), Owner);
+            }
+            else
+            {
+                var sharedRelic = RelicFactory.PullNextRelicFromFront(Owner, RelicRarity.Common);
+                await RelicCmd.Obtain(sharedRelic.ToMutable(), Owner);
+            }
+
+            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST1FINISH.description"));
         }
+
 
         private async Task Chest2()
         {
@@ -56,19 +77,19 @@ namespace STS2_WineFox.Events
                 enchantment,
                 1,
                 c => enchantment.CanEnchant(c),
-                new (CardSelectorPrefs.EnchantSelectionPrompt, 1)
+                new(CardSelectorPrefs.EnchantSelectionPrompt, 1)
             )).FirstOrDefault();
 
             if (card != null)
             {
                 CardCmd.Enchant<FireAspect>(card, 1m);
-                
+
                 var vfx = NCardEnchantVfx.Create(card);
                 if (vfx != null)
                     NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(vfx);
             }
 
-            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST2.description"));
+            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST2FINISH.description"));
         }
 
         private async Task Chest3()
@@ -81,19 +102,19 @@ namespace STS2_WineFox.Events
                 enchantment,
                 1,
                 c => enchantment.CanEnchant(c),
-                new (CardSelectorPrefs.EnchantSelectionPrompt, 1)
+                new(CardSelectorPrefs.EnchantSelectionPrompt, 1)
             )).FirstOrDefault();
 
             if (card != null)
             {
                 CardCmd.Enchant<SweepingEdge>(card, 1m);
-                
+
                 var vfx = NCardEnchantVfx.Create(card);
                 if (vfx != null)
                     NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(vfx);
             }
 
-            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST3.description"));
+            SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST2FINISH.description"));
         }
 
         private async Task ThoroughExploration()

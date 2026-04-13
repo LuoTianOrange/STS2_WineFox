@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Cards.Ancient;

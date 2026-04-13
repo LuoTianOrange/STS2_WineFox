@@ -45,7 +45,7 @@ namespace STS2_WineFox
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
 
             public const string EventDesertPyramid = Root + "/events/desert_pyramid.png";
-            
+
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
             public const string DeployerRelicIcon = Root + "/relics/relic_deployer.png";
@@ -177,11 +177,11 @@ namespace STS2_WineFox
             public const string CardGoldenArmor = Root + "/cards/card_golden_armor.png";
             public const string CardRestockUpgrade = Root + "/cards/card_restock_upgrade.png";
             public const string CardFeedingUpgrade = Root + "/cards/card_feeding_upgrade.png";
-            public const string CardSmeltingUpgrade = Root + "/cards/card_test.png";
-            public const string CardCraftUpgrade = Root + "/cards/card_test.png";
-            public const string CardStonecutterUpgrade = Root + "/cards/card_test.png";
-            public const string CardSavingsUpgrade = Root + "/cards/card_test.png";
-            public const string CardWindCrank = Root + "/cards/card_test.png";
+            public const string CardSmeltingUpgrade = Root + "/cards/card_smelting_upgrade.png";
+            public const string CardCraftUpgrade = Root + "/cards/card_craft_upgrade.png";
+            public const string CardStonecutterUpgrade = Root + "/cards/card_stonecutter_upgrade.png";
+            public const string CardSavingsUpgrade = Root + "/cards/card_savings_upgrade.png";
+            public const string CardWindCrank = Root + "/cards/card_wind_crank.png";
 
 
             //Enchantments
