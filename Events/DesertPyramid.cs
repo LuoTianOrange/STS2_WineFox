@@ -61,12 +61,12 @@ namespace STS2_WineFox.Events
                         break;
                 }
 
-            relic ??= TryPull(_ => true, rolledRarity);
+            relic ??= TryPull(RelicGrabBagPullCompat.PassAllRelics, rolledRarity);
 
             if (relic == null)
                 foreach (var r in NonRolledRewardRarities(rolledRarity))
                 {
-                    relic = TryPull(_ => true, r);
+                    relic = TryPull(RelicGrabBagPullCompat.PassAllRelics, r);
                     if (relic != null)
                         break;
                 }
@@ -85,7 +85,7 @@ namespace STS2_WineFox.Events
 
             RelicModel? TryPull(Func<RelicModel, bool> filter, RelicRarity r)
             {
-                var pulled = owner.RelicGrabBag.PullFromFront(r, filter, owner.RunState);
+                var pulled = RelicGrabBagPullCompat.PullFromFront(owner.RelicGrabBag, r, filter, owner.RunState);
                 if (pulled != null)
                     owner.RunState.SharedRelicGrabBag.Remove(pulled);
                 return pulled;
