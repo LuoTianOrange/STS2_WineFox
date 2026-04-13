@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Token.Craft
 {
     public class Shield() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.AnyAlly)
+        0, CardType.Skill, CardRarity.Token, TargetType.AnyPlayer)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -8,6 +9,8 @@ namespace STS2_WineFox.Enchantments
 {
     public class SweepingEdge : WineFoxEnchantmentsPool
     {
+        private bool _isSweeping;
+
         public override EnchantmentAssetProfile AssetProfile => new(Const.Paths.EnchantmentSweepingEdgeIcon);
 
         public override bool ShowAmount => true;
@@ -17,35 +20,42 @@ namespace STS2_WineFox.Enchantments
             return cardType == CardType.Attack;
         }
 
-        public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+        public override async Task AfterAttack(AttackCommand command)
         {
-            if (cardPlay.Card != Card) return;
+            if (_isSweeping || command.ModelSource != Card) return;
 
-            var explicitTarget = cardPlay.Target;
-            if (explicitTarget == null) return;
-
-            var ownerCreature = cardPlay.Card.Owner?.Creature;
+            var ownerCreature = Card?.Owner?.Creature;
             if (ownerCreature == null) return;
             if (ownerCreature.CombatState is not { } combatState) return;
 
-            var baseDamage = 0m;
-            if (cardPlay.Card.DynamicVars.TryGetValue("Damage", out var dv))
-                baseDamage = dv.BaseValue;
-            else
-                return;
+            if (!Card.DynamicVars.TryGetValue("Damage", out var dv)) return;
 
-            var halfDamage = Math.Ceiling(baseDamage * 0.5m);
+            var halfDamage = Math.Ceiling(dv.BaseValue * 0.5m);
             if (halfDamage <= 0m) return;
 
-            var others = combatState.HittableEnemies?.Where(e => !ReferenceEquals(e, explicitTarget)).ToList();
+            var hitTargets = new HashSet<Creature>();
+            foreach (var result in command.Results)
+                if (result.Receiver is { } receiver)
+                    hitTargets.Add(receiver);
+
+            var others = combatState.HittableEnemies?
+                .Where(e => !hitTargets.Contains(e)).ToList();
             if (others == null || others.Count == 0) return;
 
-            foreach (var enemy in others)
-                await DamageCmd.Attack(halfDamage)
-                    .FromCard(cardPlay.Card)
-                    .Targeting(enemy)
-                    .WithHitFx("vfx/vfx_attack_slash")
-                    .Execute(context);
+            _isSweeping = true;
+            try
+            {
+                foreach (var enemy in others)
+                    await DamageCmd.Attack(halfDamage)
+                        .FromCard(Card)
+                        .Targeting(enemy)
+                        .WithHitFx("vfx/vfx_attack_slash")
+                        .Execute(null);
+            }
+            finally
+            {
+                _isSweeping = false;
+            }
         }
     }
 }
