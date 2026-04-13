@@ -131,6 +131,9 @@ namespace STS2_WineFox.Relics
 
         public override decimal ModifyHandDraw(Player player, decimal count)
         {
+            if (player != Owner)
+                return count;
+
             var result = count;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {

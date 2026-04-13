@@ -55,5 +55,17 @@ namespace STS2_WineFox.Relics.Backpack.Effects
                 line.Add(backpack.DynamicVars[varName]);
             return line.GetFormattedText();
         }
+
+        protected static decimal WithFirstRoundOwnerHandDrawBonus(
+            SophisticatedBackpack backpack,
+            Player player,
+            decimal count,
+            decimal bonus)
+        {
+            if (player != backpack.Owner || player.Creature.CombatState.RoundNumber > 1)
+                return count;
+
+            return count + bonus;
+        }
     }
 }
