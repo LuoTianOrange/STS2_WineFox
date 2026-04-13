@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
     public class SpinningHand() : WineFoxCard(
         4, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        private int _appliedConsumesThisCombat;
+        private int _appliedCraftsThisCombat;
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];
@@ -32,15 +32,15 @@ namespace STS2_WineFox.Cards.Rare
             if (ownerCreature == null)
                 return Task.CompletedTask;
 
-            var totalConsumed = CraftCmd.GetMaterialConsumeCountThisCombat(ownerCreature);
+            var totalCrafts = CraftCmd.GetCraftCountThisCombat(ownerCreature);
 
-            var delta = totalConsumed - _appliedConsumesThisCombat;
+            var delta = totalCrafts - _appliedCraftsThisCombat;
             if (delta <= 0)
                 return Task.CompletedTask;
 
             EnergyCost.AddThisCombat(-delta);
 
-            _appliedConsumesThisCombat = totalConsumed;
+            _appliedCraftsThisCombat = totalCrafts;
             return Task.CompletedTask;
         }
 
@@ -66,16 +66,16 @@ namespace STS2_WineFox.Cards.Rare
             if (ownerCreature == null)
                 return Task.CompletedTask;
 
-            var totalConsumed = CraftCmd.GetMaterialConsumeCountThisCombat(ownerCreature);
-            if (totalConsumed <= 0)
+            var totalCrafts = CraftCmd.GetCraftCountThisCombat(ownerCreature);
+            if (totalCrafts <= 0)
                 return Task.CompletedTask;
 
-            var delta = totalConsumed - _appliedConsumesThisCombat;
+            var delta = totalCrafts - _appliedCraftsThisCombat;
             if (delta <= 0)
                 return Task.CompletedTask;
 
             EnergyCost.AddThisCombat(-delta);
-            _appliedConsumesThisCombat = totalConsumed;
+            _appliedCraftsThisCombat = totalCrafts;
             return Task.CompletedTask;
         }
 
