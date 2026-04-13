@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -12,9 +13,11 @@ namespace STS2_WineFox.Powers
     public class ProductionDocumentPower : WineFoxPower
     {
         private readonly HashSet<CardModel> _trackedCards = new();
+
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ProductionDocumentPowerIcon);
+
 
         public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
         {
@@ -37,7 +40,7 @@ namespace STS2_WineFox.Powers
             if (retainedCount <= 0) return;
 
             Flash();
-            await CreatureCmd.GainBlock(Owner, retainedCount * 2m, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner, retainedCount * Amount, ValueProp.Unpowered, null);
         }
     }
 }

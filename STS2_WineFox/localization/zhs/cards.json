@@ -79,7 +79,7 @@
   "STS2_WINE_FOX_CARD_SPINNING_HAND.title": "飞转的手",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "对所有敌人造成{Damage:diff()}点伤害，本场战斗中每[gold]合成[/gold]一次，这张牌的费用就减少1。",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "生产记录",
-  "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.description": "你在战斗中临时加入的牌获得[gold]保留[/gold]。",
+  "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.description": "你在战斗中临时加入的牌获得[gold]保留[/gold]。回合结束时每保留1张牌，你就获得{Block:diff()}点格挡。",
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.title": "唱片机",
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.description": "消耗1[gold]钻石[/gold]，获得{RitualPower:diff()}层仪式。",
   "STS2_WINE_FOX_CARD_MILK.title": "牛奶",

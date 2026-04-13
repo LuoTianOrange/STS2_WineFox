@@ -1,6 +1,8 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -11,6 +13,8 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardProductionDocument);
 
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(2m,ValueProp.Move)];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
@@ -19,14 +23,14 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await PowerCmd.Apply<ProductionDocumentPower>(
                 owner.Creature,
-                1m,
+                IsUpgraded ? 3m : 2m,
                 owner.Creature,
                 this);
         }
 
         protected override void OnUpgrade()
         {
-            EnergyCost.UpgradeBy(-1);
+            DynamicVars.Block.UpgradeValueBy(1m); // 2 → 3
         }
     }
 }

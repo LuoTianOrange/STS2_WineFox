@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {
-    public class LessHoliday() : WineFoxCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public class LessHoliday() : WineFoxCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLessHoliday);
 
