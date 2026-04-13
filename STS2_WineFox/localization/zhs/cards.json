@@ -72,7 +72,7 @@
   "STS2_WINE_FOX_CARD_WOODEN_ARMOR.description": "获得{Block:diff()}点格挡。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.title": "下界合金镐",
   "STS2_WINE_FOX_CARD_NETHERITE_PICKAXE.description": "在同一个回合内每打出2张牌，就获得[gold]木板[/gold]、[gold]圆石[/gold]、[gold]铁锭[/gold]和[gold]钻石[/gold]各1个。",
-  "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石形态",
+  "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "刷石机",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.description": "在你的回合开始时获得2[gold]圆石[/gold]，每回合增加2。",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "盾击",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "对所有敌人造成{Damage:diff()}倍于你当前[gold]格挡[/gold]的伤害。{InCombat:\n（造成{TotalDamage:diff()}点伤害）|}\n清除你的所有[gold]格挡[/gold]。\n抽1张牌。",
