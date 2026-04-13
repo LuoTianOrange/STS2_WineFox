@@ -6,7 +6,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
 {
     public abstract class BackpackUpgradeCardBase<TEffect>(string artPath) : WineFoxCard(
-        -1, CardType.Status, CardRarity.Token, TargetType.None, false), ICraftChoiceEffect
+        -1, CardType.Status, CardRarity.Token, TargetType.None), ICraftChoiceEffect
         where TEffect : ISophisticatedBackpackEffect
     {
         public override bool CanBeGeneratedInCombat => false;
