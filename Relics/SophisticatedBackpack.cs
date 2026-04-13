@@ -17,6 +17,7 @@ namespace STS2_WineFox.Relics
     public class SophisticatedBackpack : WineFoxRelic, ICraftListener
     {
         private readonly Dictionary<string, int> _effectStateInts = new();
+        private bool _pendingEffectFlash;
 
         public override RelicRarity Rarity => RelicRarity.Uncommon;
 
@@ -39,6 +40,20 @@ namespace STS2_WineFox.Relics
             set => ApplyEffectStateSaveData(value);
         }
 
+        public void NotifyBackpackEffectTriggered()
+        {
+            _pendingEffectFlash = true;
+        }
+
+        private void FlushPendingEffectFlash()
+        {
+            if (!_pendingEffectFlash)
+                return;
+
+            _pendingEffectFlash = false;
+            Flash();
+        }
+
         public Task BeforeCraft(CraftExecutionContext context)
         {
             return Task.CompletedTask;
@@ -51,6 +66,7 @@ namespace STS2_WineFox.Relics
 
         public async Task AfterCraftProductDelivered(CraftExecutionContext context)
         {
+            _pendingEffectFlash = false;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
                 if (!HasEffect(effect))
@@ -58,6 +74,8 @@ namespace STS2_WineFox.Relics
 
                 await effect.AfterCraftProductDelivered(this, context);
             }
+
+            FlushPendingEffectFlash();
         }
 
         private IEnumerable<DynamicVar> BuildCanonicalVars()
@@ -109,11 +127,13 @@ namespace STS2_WineFox.Relics
             if (DynamicVars[enabledVar].BaseValue > 0m)
                 return false;
 
+            _pendingEffectFlash = false;
             DynamicVars[enabledVar].BaseValue = 1m;
             onApplied?.Invoke(this);
             RefreshDescriptionText();
             InvokeDisplayAmountChanged();
-            Flash();
+            NotifyBackpackEffectTriggered();
+            FlushPendingEffectFlash();
             return true;
         }
 
@@ -134,6 +154,7 @@ namespace STS2_WineFox.Relics
             if (player != Owner)
                 return count;
 
+            _pendingEffectFlash = false;
             var result = count;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
@@ -143,12 +164,14 @@ namespace STS2_WineFox.Relics
                 result = effect.ModifyHandDraw(this, player, result);
             }
 
+            FlushPendingEffectFlash();
             return result;
         }
 
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
             CombatState combatState)
         {
+            _pendingEffectFlash = false;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
                 if (!HasEffect(effect))
@@ -156,10 +179,13 @@ namespace STS2_WineFox.Relics
 
                 await effect.BeforeSideTurnStart(this, choiceContext, side, combatState);
             }
+
+            FlushPendingEffectFlash();
         }
 
         public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
         {
+            _pendingEffectFlash = false;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
                 if (!HasEffect(effect))
@@ -167,12 +193,15 @@ namespace STS2_WineFox.Relics
 
                 await effect.AfterTurnEnd(this, choiceContext, side);
             }
+
+            FlushPendingEffectFlash();
         }
 
         public override async Task AfterCombatEnd(CombatRoom room)
         {
             _effectStateInts.Clear();
 
+            _pendingEffectFlash = false;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
                 if (!HasEffect(effect))
@@ -180,6 +209,8 @@ namespace STS2_WineFox.Relics
 
                 await effect.AfterCombatEnd(this, room);
             }
+
+            FlushPendingEffectFlash();
         }
 
         public int GetEffectStateInt(Type effectType, string key)

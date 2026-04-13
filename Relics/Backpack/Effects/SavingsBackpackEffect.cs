@@ -25,7 +25,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             if (goldAmount <= 0)
                 return Task.CompletedTask;
 
-            backpack.Flash();
+            backpack.NotifyBackpackEffectTriggered();
             room.AddExtraReward(backpack.Owner, new GoldReward(goldAmount, backpack.Owner));
             return Task.CompletedTask;
         }

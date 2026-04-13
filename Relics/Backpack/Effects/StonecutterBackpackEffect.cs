@@ -60,7 +60,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
 
             backpack.SetEffectStateInt<StonecutterBackpackEffect>(TurnCounter, 0);
             backpack.RefreshDescriptionText();
-            backpack.Flash();
+            backpack.NotifyBackpackEffectTriggered();
             await PowerCmd.Apply<StonePower>(backpack.Owner.Creature, currentStone, backpack.Owner.Creature, null);
         }
     }

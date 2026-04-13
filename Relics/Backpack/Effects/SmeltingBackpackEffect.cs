@@ -29,7 +29,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
         {
             if (side != backpack.Owner.Creature.Side) return;
 
-            backpack.Flash();
+            backpack.NotifyBackpackEffectTriggered();
             await PowerCmd.Apply<IronPower>(
                 backpack.Owner.Creature,
                 backpack.DynamicVars[IronVar].BaseValue,

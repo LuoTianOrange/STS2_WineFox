@@ -63,7 +63,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             var bonusCount = Math.Max(1, backpack.DynamicVars[BonusVar].IntValue);
             backpack.RefreshDescriptionText();
 
-            backpack.Flash();
+            backpack.NotifyBackpackEffectTriggered();
             for (var i = 0; i < bonusCount; i++)
                 await CraftCmd.Craft(context.ChoiceContext, context.Crafter, context.Applier, context.SourceCard,
                     isBonusCraft: true);

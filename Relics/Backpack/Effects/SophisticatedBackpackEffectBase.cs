@@ -65,6 +65,10 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             if (player != backpack.Owner || player.Creature.CombatState.RoundNumber > 1)
                 return count;
 
+            if (bonus == 0m)
+                return count;
+
+            backpack.NotifyBackpackEffectTriggered();
             return count + bonus;
         }
     }
