@@ -44,26 +44,71 @@ namespace STS2_WineFox.Events
         private async Task Chest1()
         {
             ArgumentNullException.ThrowIfNull(Owner);
+            var owner = Owner;
 
-            var characterPool = Owner.Character.RelicPool;
-            var ownedIds = Owner.Relics.Select(r => r.Id).ToHashSet();
+            owner.PopulateRelicGrabBagIfNecessary(owner.PlayerRng.Rewards);
 
-            var candidates = characterPool.AllRelics
-                .Where(r => !ownedIds.Contains(r.Id))
-                .ToList();
+            var characterRelicIds = owner.Character.RelicPool.AllRelics.Select(r => r.Id).ToHashSet();
 
-            if (candidates.Any())
-            {
-                var relic = Rng.NextItem(candidates);
-                await RelicCmd.Obtain(relic.ToMutable(), Owner);
-            }
-            else
-            {
-                var sharedRelic = RelicFactory.PullNextRelicFromFront(Owner, RelicRarity.Common);
-                await RelicCmd.Obtain(sharedRelic.ToMutable(), Owner);
-            }
+            var rolledRarity = RelicFactory.RollRarity(owner);
+            var relic = TryPull(InCharacterPool, rolledRarity);
+
+            if (relic == null)
+                foreach (var r in CharacterPoolTierFallbackRarities(rolledRarity))
+                {
+                    relic = TryPull(InCharacterPool, r);
+                    if (relic != null)
+                        break;
+                }
+
+            relic ??= TryPull(_ => true, rolledRarity);
+
+            if (relic == null)
+                foreach (var r in NonRolledRewardRarities(rolledRarity))
+                {
+                    relic = TryPull(_ => true, r);
+                    if (relic != null)
+                        break;
+                }
+
+            relic ??= RelicFactory.PullNextRelicFromFront(owner);
+
+            await RelicCmd.Obtain(relic.ToMutable(), owner);
 
             SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST1FINISH.description"));
+            return;
+
+            bool InCharacterPool(RelicModel r)
+            {
+                return characterRelicIds.Contains(r.Id);
+            }
+
+            RelicModel? TryPull(Func<RelicModel, bool> filter, RelicRarity r)
+            {
+                var pulled = owner.RelicGrabBag.PullFromFront(r, filter, owner.RunState);
+                if (pulled != null)
+                    owner.RunState.SharedRelicGrabBag.Remove(pulled);
+                return pulled;
+            }
+        }
+
+        private static IEnumerable<RelicRarity> CharacterPoolTierFallbackRarities(RelicRarity rolled)
+        {
+            switch (rolled)
+            {
+                case RelicRarity.Rare:
+                    yield return RelicRarity.Uncommon;
+                    yield return RelicRarity.Common;
+                    break;
+                case RelicRarity.Uncommon:
+                    yield return RelicRarity.Common;
+                    break;
+            }
+        }
+
+        private static IEnumerable<RelicRarity> NonRolledRewardRarities(RelicRarity rolled)
+        {
+            return new[] { RelicRarity.Common, RelicRarity.Uncommon, RelicRarity.Rare }.Where(r => r != rolled);
         }
 
 
