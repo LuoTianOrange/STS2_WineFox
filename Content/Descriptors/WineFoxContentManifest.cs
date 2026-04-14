@@ -107,6 +107,10 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, SweetDream>(),
             new CardRegistrationEntry<WineFoxCardPool, FullForceCollision>(),
             new CardRegistrationEntry<WineFoxCardPool, WindCrank>(),
+            new CardRegistrationEntry<WineFoxCardPool, ImprovisedWeapon>(),
+            new CardRegistrationEntry<WineFoxCardPool, RedemptionStrike>(),
+            new CardRegistrationEntry<WineFoxCardPool, AnticipateAdvantage>(),
+            new CardRegistrationEntry<WineFoxCardPool, Recuperate>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -193,6 +197,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<HighlyFocusedPower>(),
             new PowerRegistrationEntry<HighlyFocusedTrackerPower>(),
             new PowerRegistrationEntry<GoldenArmorPower>(),
+            new PowerRegistrationEntry<AnticipateAdvantageDexPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

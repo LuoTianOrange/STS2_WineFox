@@ -122,7 +122,7 @@
   "STS2_WINE_FOX_CARD_QUICK_SHELTER.title":"速成掩体",
   "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.title":"蓝图打印",
-  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费5个[gold]木板[/gold]和5个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]保留[/gold]、[gold]消耗[/gold]的复制品加入手牌。",
+  "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费{Wood:diff()}个[gold]木板[/gold]和{Stone:diff()}个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]消耗[/gold]的复制品加入手牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌",
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.title":"应激",
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，{Energy:diff()}点能量并抽2张牌。",
@@ -181,5 +181,14 @@
   "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.title": "精巧背包:储蓄升级",
   "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.description": "给[gold]精妙背包[/gold]提供额外效果:战斗结束时，额外获得15金币。只能合成一次。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_WIND_CRANK.title": "摇曲柄",
-  "STS2_WINE_FOX_CARD_WIND_CRANK.description": "获得{StressPower:diff()}[gold]应力[/gold]，结束你的回合"
+  "STS2_WINE_FOX_CARD_WIND_CRANK.description": "获得{StressPower:diff()}[gold]应力[/gold]，结束你的回合",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON_CHOOSE": "选择一张牌消耗",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON.title": "临时武器",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON.description": "造成{Damage:diff()}点伤害，消耗一张牌。",
+  "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.title": "救赎打击",
+  "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.description": "造成{Damage:diff()}点伤害。治疗所有玩家{Heal:diff()}点生命值。",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "预判先机",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "若选定的敌人意图为攻击，每有一个敌人，你就在本回合获得{Dex:diff()}点敏捷。",
+  "STS2_WINE_FOX_CARD_RECUPERATE.title": "休养生息",
+  "STS2_WINE_FOX_CARD_RECUPERATE.description": "抽{Cards:diff()}张牌。丢弃手中所有攻击牌{IfUpgraded:show:、诅咒、任务和状态牌|}。"
 }

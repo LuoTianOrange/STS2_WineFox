@@ -87,6 +87,7 @@ namespace STS2_WineFox
             public const string GoldenPickaxePowerIcon = Root + "/powers/golden_pickaxe_power.png";
             public const string ShieldCooldownPowerIcon = Root + "/powers/shield_cooldown_power.png";
             public const string ShieldDexPowerIcon = Root + "/powers/shield_dex_power.png";
+            public const string AnticipateAdvantageDexPowerIcon = Root + "/powers/anticipate_advantage_dex_power.png";
             public const string AutoCrafterPowerIcon = Root + "/powers/auto_crafter_power.png";
             public const string IronArmorPowerIcon = Root + "/powers/iron_armor_power.png";
             public const string NetheriteChestPlatePowerIcon = Root + "/powers/netherite_chest_plate_power.png";
@@ -183,6 +184,10 @@ namespace STS2_WineFox
             public const string CardStonecutterUpgrade = Root + "/cards/card_stonecutter_upgrade.png";
             public const string CardSavingsUpgrade = Root + "/cards/card_savings_upgrade.png";
             public const string CardWindCrank = Root + "/cards/card_wind_crank.png";
+            public const string CardImprovisedWeapon = Root + "/cards/card_improvised_weapon.png";
+            public const string CardRedemptionStrike = Root + "/cards/card_redemption_strike.png";
+            public const string CardAnticipateAdvantage = Root + "/cards/card_anticipate_advantage.png";
+            public const string CardRecuperate = Root + "/cards/card_recuperate.png";
 
 
             //Enchantments

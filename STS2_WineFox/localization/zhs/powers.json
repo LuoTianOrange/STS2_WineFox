@@ -100,5 +100,8 @@
   "STS2_WINE_FOX_POWER_HIGHLY_FOCUSED_TRACKER_POWER.smartDescription": "在本回合翻倍你已有的力量。",
   "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.title": "装备:金甲",
   "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.description": "当你失去缓冲时，回复等同于你应受到伤害的生命值。",
-  "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.smartDescription": "当你失去缓冲时，回复等同于你应受到伤害的生命值。"
+  "STS2_WINE_FOX_POWER_GOLDEN_ARMOR_POWER.smartDescription": "当你失去缓冲时，回复等同于你应受到伤害的生命值。",
+  "STS2_WINE_FOX_POWER_ANTICIPATE_ADVANTAGE_DEX_POWER.title": "预判先机",
+  "STS2_WINE_FOX_POWER_ANTICIPATE_ADVANTAGE_DEX_POWER.description": "本回合获得 [blue]{Amount}[/blue] 点敏捷，回合结束时消失。",
+  "STS2_WINE_FOX_POWER_ANTICIPATE_ADVANTAGE_DEX_POWER.smartDescription": "本回合获得 [blue]{Amount}[/blue] 点敏捷，回合结束时消失。"
 }

@@ -181,5 +181,14 @@
   "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.title": "Refined Backpack: Savings Upgrade",
   "STS2_WINE_FOX_CARD_SAVINGS_UPGRADE.description": "Grants your [gold]Sophisticated Backpack[/gold] an extra effect: at the end of combat, gain 15 additional Gold. Can only be crafted once.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_WIND_CRANK.title": "Wind Crank",
-  "STS2_WINE_FOX_CARD_WIND_CRANK.description": "Gain {StressPower:diff()} [gold]Stress[/gold]. End your turn"
+  "STS2_WINE_FOX_CARD_WIND_CRANK.description": "Gain {StressPower:diff()} [gold]Stress[/gold]. End your turn",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON_CHOOSE": "Choose a card to Exhaust",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON.title": "Improvised Weapon",
+  "STS2_WINE_FOX_CARD_IMPROVISED_WEAPON.description": "Deal {Damage:diff()} damage. Exhaust a card.",
+  "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.title": "Redemption Strike",
+  "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.description": "Deal {Damage:diff()} damage. Heal all characters for {Heal:diff()} HP.",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "Anticipate Advantage",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "If the targeted enemy intends to attack, gain {Dex:diff()} Dexterity this turn for each enemy.",
+  "STS2_WINE_FOX_CARD_RECUPERATE.title": "Recuperate",
+  "STS2_WINE_FOX_CARD_RECUPERATE.description": "Draw {Cards:diff()} cards. Discard all Attack cards in your hand{IfUpgraded:show:, as well as Curse, Quest, and Status cards|}. Exhaust."
 }

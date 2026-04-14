@@ -29,7 +29,6 @@ namespace STS2_WineFox.Cards.Common
         protected override void OnUpgrade()
         {
             DynamicVars["StressPower"].UpgradeValueBy(1m);
-            AddKeyword(CardKeyword.Retain);
         }
     }
 }

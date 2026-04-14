@@ -19,13 +19,13 @@ namespace STS2_WineFox.Cards.Uncommon
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new CardsVar(2)];
+            [new CardsVar(1),new("Wood",4m),new("Stone",4m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBlueprintPrinting);
 
         protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 5m) &&
-            Owner.Creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 5m);
+            Owner.Creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= DynamicVars["Wood"].BaseValue) &&
+            Owner.Creature.Powers.OfType<StonePower>().Any(p => p.Amount >= DynamicVars["Stone"].BaseValue);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -35,8 +35,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var creature = owner.Creature;
 
-            const decimal woodCost = 5m;
-            const decimal stoneCost = 5m;
+            const decimal woodCost = 4m;
+            const decimal stoneCost = 4m;
 
             if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
             {
@@ -65,8 +65,7 @@ namespace STS2_WineFox.Cards.Uncommon
             for (var i = 0; i < copies; i++)
             {
                 var clone = selected.CreateClone();
-
-                clone.AddKeyword(CardKeyword.Retain);
+                
                 clone.AddKeyword(CardKeyword.Exhaust);
 
                 clone.EnergyCost.AddThisCombat(-1);
