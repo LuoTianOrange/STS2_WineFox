@@ -34,6 +34,8 @@ namespace STS2_WineFox.Cards.Uncommon
             var energyGain = DynamicVars.Energy.IntValue;
             var cardsToDraw = DynamicVars.Cards.BaseValue;
 
+            await CreatureCmd.GainMaxHp(creature, maxHpGain);
+            
             await CreatureCmd.Damage(
                 choiceContext ?? new ThrowingPlayerChoiceContext(),
                 creature,
@@ -41,8 +43,6 @@ namespace STS2_WineFox.Cards.Uncommon
                 ValueProp.Unblockable | ValueProp.Unpowered,
                 null,
                 this);
-
-            await CreatureCmd.GainMaxHp(creature, maxHpGain);
 
             await PlayerCmd.GainEnergy(energyGain, owner);
 

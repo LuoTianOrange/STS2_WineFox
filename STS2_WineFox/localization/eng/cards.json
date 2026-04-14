@@ -190,5 +190,8 @@
   "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "Anticipate Advantage",
   "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "If the targeted enemy intends to attack, gain {Dex:diff()} Dexterity this turn for each enemy.",
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "Recuperate",
-  "STS2_WINE_FOX_CARD_RECUPERATE.description": "Draw {Cards:diff()} cards. Discard all Attack cards in your hand{IfUpgraded:show:, as well as Curse, Quest, and Status cards|}. Exhaust."
+  "STS2_WINE_FOX_CARD_RECUPERATE.description": "Draw {Cards:diff()} cards. Discard all Attack cards in your hand{IfUpgraded:show:, as well as Curse, Quest, and Status cards|}.",
+  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "Spirit Fox Form",
+  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "Remove all enemies' Artifact. Apply {Slow:diff()} Slow to all enemies."
+  
 }
