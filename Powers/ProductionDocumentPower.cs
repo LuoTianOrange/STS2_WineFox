@@ -12,8 +12,6 @@ namespace STS2_WineFox.Powers
 {
     public class ProductionDocumentPower : WineFoxPower
     {
-        private readonly HashSet<CardModel> _trackedCards = new();
-
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ProductionDocumentPowerIcon);
@@ -22,25 +20,18 @@ namespace STS2_WineFox.Powers
         public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
         {
             if (card.Owner?.Creature != Owner) return Task.CompletedTask;
-            if (!addedByPlayer && !card.IsClone) return Task.CompletedTask;
+            if (!addedByPlayer) return Task.CompletedTask;
 
             card.AddKeyword(CardKeyword.Retain);
-            _trackedCards.Add(card);
             return Task.CompletedTask;
         }
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterCardRetained(CardModel card)
         {
-            if (side != Owner.Side) return;
-            if (Owner.Player == null) return;
-
-            var handCards = PileType.Hand.GetPile(Owner.Player).Cards;
-            var retainedCount = handCards.Count(c => _trackedCards.Contains(c));
-
-            if (retainedCount <= 0) return;
+            if (card.Owner?.Creature != Owner) return;
 
             Flash();
-            await CreatureCmd.GainBlock(Owner, retainedCount * Amount, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         }
     }
 }
