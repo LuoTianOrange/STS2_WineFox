@@ -11,23 +11,22 @@ namespace STS2_WineFox.Cards.Uncommon
         0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Stress", 1), new EnergyVar(2)];
+            [new EnergyVar(1), new("BonusEnergy", 1m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAlternator);
-
-        protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<StressPower>().Any(p => (decimal)p.Amount > 0);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            var stressPower = Owner.Creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
-            if (stressPower == null) return;
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-            var energyToGain = (decimal)DynamicVars.Energy.IntValue;
-            await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
-            await PlayerCmd.GainEnergy(energyToGain, Owner);
+            var stressPower = Owner.Creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
+            if (stressPower != null)
+            {
+                await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+                await PlayerCmd.GainEnergy(DynamicVars["BonusEnergy"].BaseValue, Owner);
+            }
         }
 
         protected override void OnUpgrade()

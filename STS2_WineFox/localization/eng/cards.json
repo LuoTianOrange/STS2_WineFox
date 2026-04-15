@@ -63,7 +63,7 @@
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.title": "River Power Plant",
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.description": "Gain {Block:diff()} Block and gain 2 [gold]Stress[/gold].",
   "STS2_WINE_FOX_CARD_ALTERNATOR.title": "Alternator",
-  "STS2_WINE_FOX_CARD_ALTERNATOR.description": "Spend 1 [gold]Stress[/gold]. Gain {Energy:energyIcons()}.",
+  "STS2_WINE_FOX_CARD_ALTERNATOR.description": "Gain {Energy:energyIcons()}. Consume 1 [gold]Stress[/gold] to gain {BonusEnergy:diff()}.",
   "STS2_WINE_FOX_CARD_NOTHING.title": "Bare-Handed Strike",
   "STS2_WINE_FOX_CARD_NOTHING.description": "Deal {Damage:diff()} damage.",
   "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.title": "Wooden Pickaxe",

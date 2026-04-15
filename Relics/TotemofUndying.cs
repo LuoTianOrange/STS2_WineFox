@@ -18,7 +18,7 @@ namespace STS2_WineFox.Relics
         public override bool IsUsedUp => _wasUsed;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new HealVar(40m)];
+            [new HealVar(35m)];
 
         [SavedProperty]
         public bool WasUsed

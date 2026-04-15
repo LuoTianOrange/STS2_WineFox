@@ -199,6 +199,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<HighlyFocusedTrackerPower>(),
             new PowerRegistrationEntry<GoldenArmorPower>(),
             new PowerRegistrationEntry<AnticipateAdvantageDexPower>(),
+            new PowerRegistrationEntry<SpiritFoxFormPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

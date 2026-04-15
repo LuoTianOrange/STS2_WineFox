@@ -63,7 +63,7 @@
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.title": "河电站",
   "STS2_WINE_FOX_CARD_RICLEAR_POWER_PLANT.description": "获得{Block:diff()}点格挡，获得2应力。",
   "STS2_WINE_FOX_CARD_ALTERNATOR.title": "交流发电机",
-  "STS2_WINE_FOX_CARD_ALTERNATOR.description": "花费1应力，获得{Energy:energyIcons()}。",
+  "STS2_WINE_FOX_CARD_ALTERNATOR.description": "获得{Energy:energyIcons()}。消耗1层[gold]应力[/gold]，额外获得{BonusEnergy:diff()}。",
   "STS2_WINE_FOX_CARD_NOTHING.title": "空手打击",
   "STS2_WINE_FOX_CARD_NOTHING.description": "造成{Damage:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_WOODEN_PICKAXE.title": "木镐",
@@ -192,6 +192,6 @@
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "休养生息",
   "STS2_WINE_FOX_CARD_RECUPERATE.description": "抽{Cards:diff()}张牌。丢弃手中所有攻击牌{IfUpgraded:show:、诅咒、任务和状态牌|}。",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "灵狐形态",
-  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "去除所有敌人的[gold]人工制品[/gold]。对所有敌人施加{Slow:diff()}层[gold]缓慢[/gold]。"
+  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "每当你打出一张[gold]攻击牌[/gold]时，对目标施加{Slow:diff()}层[gold]缓慢[/gold]。"
   
 }

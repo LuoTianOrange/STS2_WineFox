@@ -93,6 +93,7 @@ namespace STS2_WineFox
             public const string NetheriteChestPlatePowerIcon = Root + "/powers/netherite_chest_plate_power.png";
             public const string HighlyFocusedPowerIcon = Root + "/powers/highly_focused_power.png";
             public const string GoldenArmorPowerIcon = Root + "/powers/golden_armor_power.png";
+            public const string SpiritFoxFormPowerIcon = Root + "/powers/spirit_fox_form_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
