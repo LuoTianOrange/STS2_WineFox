@@ -147,7 +147,7 @@
   "STS2_WINE_FOX_CARD_STEEL_CHAMBER.title": "钢铁枪膛",
   "STS2_WINE_FOX_CARD_STEEL_CHAMBER.description": "造成{Damage:diff()}点伤害{Hits}次。将这张牌返回你的手牌。",
   "STS2_WINE_FOX_CARD_SHIELD.title": "盾牌",
-  "STS2_WINE_FOX_CARD_SHIELD.description": "选择一名角色在本回合获得{Dex:diff()}点敏捷。此牌在{IfUpgraded:show:本回合|本回合与下一个回合}不能再次合成。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_SHIELD.description": "选择一名角色在本回合获得{Dex:diff()}点敏捷。此牌在{IfUpgraded:show:本回合|本回合与下一个回合}不能再次打出。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.title": "自动合成器",
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "当你的回合开始时，[gold]合成[/gold]。",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.title": "清算时间",

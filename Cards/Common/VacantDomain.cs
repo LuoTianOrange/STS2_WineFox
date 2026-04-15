@@ -13,8 +13,6 @@ namespace STS2_WineFox.Cards.Common
     public class VacantDomain() : WineFoxCard(
         3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
-
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Stone];
 
