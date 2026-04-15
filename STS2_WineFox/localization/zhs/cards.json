@@ -81,7 +81,7 @@
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "生产记录",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.description": "你在战斗中临时加入的牌获得[gold]保留[/gold]。回合结束时每保留1张牌，你就获得{Block:diff()}点格挡。",
   "STS2_WINE_FOX_CARD_RECORD_PLAYER.title": "唱片机",
-  "STS2_WINE_FOX_CARD_RECORD_PLAYER.description": "消耗1[gold]钻石[/gold]，获得{RitualPower:diff()}层仪式。",
+  "STS2_WINE_FOX_CARD_RECORD_PLAYER.description": "抽{Cards:diff()}张牌。消耗1[gold]钻石[/gold]，获得{RitualPower:diff()}层[gold]仪式[/gold]。",
   "STS2_WINE_FOX_CARD_MILK.title": "牛奶",
   "STS2_WINE_FOX_CARD_MILK.description": "消除你身上的所有负面效果。",
   "STS2_WINE_FOX_CARD_VACANT_DOMAIN.title": "空置域",
