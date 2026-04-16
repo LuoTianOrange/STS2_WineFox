@@ -4,10 +4,12 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
+    [RegisterPower]
     public class SpiritFoxFormPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;
@@ -52,18 +54,11 @@ namespace STS2_WineFox.Powers
                 yield break;
             }
 
-            if (cardPlay.Card.TargetType != TargetType.AllEnemies || Owner.CombatState is null)
-            {
-                yield break;
-            }
+            if (cardPlay.Card.TargetType != TargetType.AllEnemies || Owner.CombatState is null) yield break;
 
             foreach (var enemy in Owner.CombatState.HittableEnemies)
-            {
                 if (enemy.IsAlive && enemy.Side != Owner.Side)
-                {
                     yield return enemy;
-                }
-            }
         }
     }
 }

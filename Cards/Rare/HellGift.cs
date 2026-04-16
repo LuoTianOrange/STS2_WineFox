@@ -4,10 +4,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Token.HellGift;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class HellGift() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {

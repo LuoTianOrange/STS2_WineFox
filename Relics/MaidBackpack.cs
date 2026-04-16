@@ -1,10 +1,13 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Factories;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
+    [RegisterRelic(typeof(WineFoxRelicPool))]
     public class MaidBackpack : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Uncommon;

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Content;
 using STS2RitsuLib;
+using STS2RitsuLib.Interop;
 using STS2RitsuLib.Unlocks;
 
 namespace STS2_WineFox
@@ -32,9 +33,10 @@ namespace STS2_WineFox
                 if (Const.IgnoreEpochRequirements)
                     ModUnlockRegistry.SetEpochRequirementsIgnoredForMod(Const.ModId);
 
+                var assembly = Assembly.GetExecutingAssembly();
+                RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
+                ModTypeDiscoveryHub.RegisterModAssembly(Const.ModId, assembly);
                 MaterialPowerRegistry.RegisterWineFoxDefaults();
-                RitsuLibFramework.EnsureGodotScriptsRegistered(Assembly.GetExecutingAssembly(), Logger);
-                WineFoxContentRegistrar.RegisterAll();
                 IsModActive = true;
                 Logger.Info("Mod initialization complete - Mod is now ACTIVE");
             }

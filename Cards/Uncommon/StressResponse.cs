@@ -3,10 +3,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class StressResponse() : WineFoxCard(
         0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -35,7 +38,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var cardsToDraw = DynamicVars.Cards.BaseValue;
 
             await CreatureCmd.GainMaxHp(creature, maxHpGain);
-            
+
             await CreatureCmd.Damage(
                 choiceContext ?? new ThrowingPlayerChoiceContext(),
                 creature,

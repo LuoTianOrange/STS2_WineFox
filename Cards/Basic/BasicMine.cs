@@ -1,13 +1,18 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Cards.Ancient;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Basic
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
+    [RegisterCharacterStarterCard(typeof(WineFox))]
     public class BasicMine() : WineFoxCard(1, CardType.Skill,
         CardRarity.Basic, TargetType.Self)
     {

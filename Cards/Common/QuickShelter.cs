@@ -3,13 +3,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Common
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class QuickShelter() : WineFoxCard(
         1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -48,7 +51,7 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Wood"].UpgradeValueBy(1m);  // 1 → 2
+            DynamicVars["Wood"].UpgradeValueBy(1m); // 1 → 2
             DynamicVars["Stone"].UpgradeValueBy(1m); // 1 → 2
         }
     }

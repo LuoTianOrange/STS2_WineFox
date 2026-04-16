@@ -5,10 +5,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
+    [RegisterRelic(typeof(WineFoxRelicPool))]
     public class TotemofUndying : WineFoxRelic
     {
         public bool _wasUsed;
@@ -34,7 +37,9 @@ namespace STS2_WineFox.Relics
         }
 
         public override bool ShouldDieLate(Creature creature)
-            => creature != Owner.Creature || WasUsed;
+        {
+            return creature != Owner.Creature || WasUsed;
+        }
 
         public override async Task AfterPreventingDeath(Creature creature)
         {

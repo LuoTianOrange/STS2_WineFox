@@ -2,10 +2,12 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
+    [RegisterPower]
     public class ShieldCooldownPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Debuff;

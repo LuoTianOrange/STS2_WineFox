@@ -1,10 +1,12 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using STS2_WineFox.Commands;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
+    [RegisterPower]
     public class IronPickaxePower : MaterialReactivePower
     {
         public override PowerType Type => PowerType.Buff;

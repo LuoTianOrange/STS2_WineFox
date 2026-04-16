@@ -6,10 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Commands;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
+    [RegisterPower]
     public class MassProductionPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;
@@ -23,7 +25,8 @@ namespace STS2_WineFox.Powers
 
             if (card.IsClone) return;
 
-            if (!CraftCmd.TryGetCraftDeliveryMode(card, out var deliveryMode) || deliveryMode != CraftDeliveryMode.ToHand)
+            if (!CraftCmd.TryGetCraftDeliveryMode(card, out var deliveryMode) ||
+                deliveryMode != CraftDeliveryMode.ToHand)
                 return;
 
             if (card.Owner?.Creature != Owner) return;

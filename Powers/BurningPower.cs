@@ -10,10 +10,12 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Combat;
 using STS2RitsuLib.Combat.HealthBars;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
+    [RegisterPower]
     public class BurningPower : WineFoxPower, IHealthBarForecastSource
     {
         protected override IEnumerable<DynamicVar> CanonicalVars => [new BurnDamageVar()];

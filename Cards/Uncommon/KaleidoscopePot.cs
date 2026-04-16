@@ -3,15 +3,18 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class KaleidoscopePot() : WineFoxCard(
         1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new CardsVar(1),new("Transform",1)];
+            [new CardsVar(1), new("Transform", 1)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardKaleidoscopePot);
 
@@ -42,4 +45,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-

@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -7,13 +6,16 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Relics.Backpack;
 using STS2_WineFox.Relics.Backpack.Effects;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
+    [RegisterRelic(typeof(WineFoxRelicPool))]
     public class SophisticatedBackpack : WineFoxRelic, ICraftListener
     {
         private readonly Dictionary<string, int> _effectStateInts = new();
@@ -40,20 +42,6 @@ namespace STS2_WineFox.Relics
             set => ApplyEffectStateSaveData(value);
         }
 
-        public void NotifyBackpackEffectTriggered()
-        {
-            _pendingEffectFlash = true;
-        }
-
-        private void FlushPendingEffectFlash()
-        {
-            if (!_pendingEffectFlash)
-                return;
-
-            _pendingEffectFlash = false;
-            Flash();
-        }
-
         public Task BeforeCraft(CraftExecutionContext context)
         {
             return Task.CompletedTask;
@@ -76,6 +64,20 @@ namespace STS2_WineFox.Relics
             }
 
             FlushPendingEffectFlash();
+        }
+
+        public void NotifyBackpackEffectTriggered()
+        {
+            _pendingEffectFlash = true;
+        }
+
+        private void FlushPendingEffectFlash()
+        {
+            if (!_pendingEffectFlash)
+                return;
+
+            _pendingEffectFlash = false;
+            Flash();
         }
 
         private IEnumerable<DynamicVar> BuildCanonicalVars()
@@ -254,7 +256,8 @@ namespace STS2_WineFox.Relics
 
         public void RefreshDescriptionText()
         {
-            if (DynamicVars[SophisticatedBackpackEffects.DescriptionVar] is SophisticatedBackpackDescriptionVar descriptionVar)
+            if (DynamicVars[SophisticatedBackpackEffects.DescriptionVar] is SophisticatedBackpackDescriptionVar
+                descriptionVar)
             {
                 descriptionVar.Refresh();
                 return;
@@ -283,7 +286,8 @@ namespace STS2_WineFox.Relics
                         continue;
 
                     if (currentState.BaseValue != templateVar.BaseValue)
-                        entries.Add($"{templateVar.Name}={currentState.BaseValue.ToString(CultureInfo.InvariantCulture)}");
+                        entries.Add(
+                            $"{templateVar.Name}={currentState.BaseValue.ToString(CultureInfo.InvariantCulture)}");
                 }
             }
 

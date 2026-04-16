@@ -7,14 +7,18 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Enchantments;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Events
 {
+    [RegisterActEvent(typeof(Overgrowth))]
+    [RegisterActEvent(typeof(Underdocks))]
     public sealed class DesertPyramid : ModEventTemplate
     {
         public override EventAssetProfile AssetProfile => new(InitialPortraitPath: Const.Paths.EventDesertPyramid);

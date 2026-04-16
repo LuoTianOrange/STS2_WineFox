@@ -1,8 +1,14 @@
+using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Timeline.Scaffolding;
 
 namespace STS2_WineFox.Epoch
 {
+    [RegisterEpoch]
+    [RegisterStoryEpoch(typeof(WineFoxModStory))]
+    [AutoTimelineSlotBeforeColumn(EpochEra.Seeds0)]
+    [RequireAllCardsInPool(typeof(WineFoxCardPool))]
     public class WineFoxCharacterEpoch : CharacterUnlockEpochTemplate<WineFox>
     {
         public override string Id => WineFoxTimelineKeys.CharacterEpochId;

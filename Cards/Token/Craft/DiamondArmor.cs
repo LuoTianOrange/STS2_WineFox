@@ -3,11 +3,14 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
+    [RegisterCard(typeof(WineFoxTokenCardPool))]
     public class DiamondArmor() : WineFoxCard(
         0, CardType.Skill, CardRarity.Token, TargetType.None)
     {

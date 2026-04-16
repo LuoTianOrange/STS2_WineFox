@@ -4,12 +4,15 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class BlueprintPrinting() : WineFoxCard(
         1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -19,7 +22,7 @@ namespace STS2_WineFox.Cards.Uncommon
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new CardsVar(1),new("Wood",4m),new("Stone",4m)];
+            [new CardsVar(1), new("Wood", 4m), new("Stone", 4m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBlueprintPrinting);
 
@@ -65,7 +68,7 @@ namespace STS2_WineFox.Cards.Uncommon
             for (var i = 0; i < copies; i++)
             {
                 var clone = selected.CreateClone();
-                
+
                 clone.AddKeyword(CardKeyword.Exhaust);
 
                 clone.EnergyCost.AddThisCombat(-1);

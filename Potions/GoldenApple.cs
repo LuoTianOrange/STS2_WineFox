@@ -7,9 +7,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Potions
 {
+    [RegisterPotion(typeof(WineFoxPotionPool))]
     public class GoldenApple : PotionModel
     {
         public override PotionRarity Rarity => PotionRarity.Uncommon;

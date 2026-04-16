@@ -2,13 +2,16 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Common
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class GettingWood() : WineFoxCard(
         1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -32,7 +35,7 @@ namespace STS2_WineFox.Cards.Common
             var woodAmount = await MaterialCmd.ResolveCardMaterialAmount(
                 Owner.Creature, this, DynamicVars["Wood"].BaseValue);
 
-            await MaterialCmd.GainMaterial<WoodPower>(this, woodAmount, applyStress: false);
+            await MaterialCmd.GainMaterial<WoodPower>(this, woodAmount, false);
 
             await DamageCmd.Attack(woodAmount)
                 .FromCard(this)

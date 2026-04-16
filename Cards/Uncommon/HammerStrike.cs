@@ -6,10 +6,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class HammerStrike() : WineFoxCard(
         4, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -52,8 +55,10 @@ namespace STS2_WineFox.Cards.Uncommon
             DynamicVars["Multiplier"].UpgradeValueBy(2m); // 3 → 5
         }
 
-        private static decimal StrengthAmount(Creature? creature) =>
-            creature == null ? 0m : creature.GetPowerAmount<StrengthPower>();
+        private static decimal StrengthAmount(Creature? creature)
+        {
+            return creature == null ? 0m : creature.GetPowerAmount<StrengthPower>();
+        }
 
         private static decimal StrengthBonusScaledByMultiplier(CardModel card, Creature? _)
         {
