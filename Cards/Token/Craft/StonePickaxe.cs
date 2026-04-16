@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Token.Craft
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<DiggingPower>("Digging", 1m)];
+            [new PowerVar<DiggingPower>("Digging", 2m),new PowerVar<WoodPower>(2m),new PowerVar<StonePower>(2m)];
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -27,7 +27,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         {
             await PowerCmd.Apply<DiggingPower>(Owner.Creature, DynamicVars["Digging"].BaseValue, Owner.Creature, this);
 
-            if (IsUpgraded) await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, 1m, 1m);
+            if (IsUpgraded) await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, DynamicVars["WoodPower"].BaseValue, DynamicVars["StonePower"].BaseValue);
         }
 
         protected override void OnUpgrade()

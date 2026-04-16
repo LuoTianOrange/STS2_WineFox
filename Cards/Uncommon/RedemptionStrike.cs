@@ -5,10 +5,10 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Common
+namespace STS2_WineFox.Cards.Uncommon
 {
     public class RedemptionStrike() : WineFoxCard(
-        1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 

@@ -6,7 +6,7 @@
   "STS2_WINE_FOX_CARD_BASIC_MINE.title": "基础采掘",
   "STS2_WINE_FOX_CARD_BASIC_MINE.description": "获得 {Wood:diff()} [gold]木板[/gold] 和 {Stone:diff()} [gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_STONE_PICKAXE.title": "石镐",
-  "STS2_WINE_FOX_CARD_STONE_PICKAXE.description": "{IfUpgraded:show:立刻获得1个木板和1个圆石。\n|}每回合开始时，获得 [blue]1[/blue] 个[gold]木板[/gold]和 [blue]1[/blue] 个[gold]圆石[/gold]。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_STONE_PICKAXE.description": "{IfUpgraded:show:立刻获得{WoodPower:diff()}个[gold]木板[/gold]和{StonePower:diff()}个[gold]圆石[/gold]。\n|}每回合开始时，获得[blue]{Digging:diff()}[/blue]个[gold]木板[/gold]和[blue]{Digging:diff()}[/blue]个[gold]圆石[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_BASIC_CRAFT.title": "基础合成",
   "STS2_WINE_FOX_CARD_BASIC_CRAFT.description": "[gold]合成[/gold]。\n获得 {Block:diff()} 点格挡。",
   "STS2_WINE_FOX_CARD_FULL_ATTACK.title": "全力倾泻",
@@ -26,7 +26,7 @@
   "STS2_WINE_FOX_CRAFT_RECIPE_SEGMENT": "{Amount}个[gold]{Material}[/gold]",
   "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK_CHOOSE":"选择一张牌加入你的手牌",
   "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.title": "动力钻头",
-  "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.description": "获得{Iron:diff()}个[gold]铁锭[/gold]。如果花费了[gold]应力[/gold]，返还 2 点能量。",
+  "STS2_WINE_FOX_CARD_MECHANICAL_DRILL.description": "造成{Damage:diff()}点伤害，共{Hits}次。获得{Iron:diff()}个[gold]铁锭[/gold]。如果花费了[gold]应力[/gold]，返还 2 点能量。",
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.title": "木剑",
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.description": "造成{Damage:diff()}点伤害。\n获得{Vigorous:diff()}层[gold]活力[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_IRON_PICKAXE.title": "铁镐",
@@ -120,7 +120,7 @@
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE.description":"选择任意手牌[gold]消耗[/gold]，根据[gold]消耗[/gold]卡牌的等级获得资源。{IfUpgraded:show:\n如果消耗的卡升级过，获得资源翻倍。|}",
   "STS2_WINE_FOX_CARD_EQUIVALENT_EXCHANGE_CHOOSE":"选择要[gold]消耗[/gold]的牌",
   "STS2_WINE_FOX_CARD_QUICK_SHELTER.title":"速成掩体",
-  "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"花费1个[gold]木板[/gold]1个[gold]圆石[/gold]，获得{Block:diff()}点格挡，抽一张牌。",
+  "STS2_WINE_FOX_CARD_QUICK_SHELTER.description":"获得{Wood:diff()}个[gold]木板[/gold]和{Stone:diff()}个[gold]圆石[/gold]。获得{Block:diff()}点格挡。抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.title":"蓝图打印",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费{Wood:diff()}个[gold]木板[/gold]和{Stone:diff()}个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]消耗[/gold]的复制品加入手牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌",
@@ -188,12 +188,14 @@
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.title": "救赎打击",
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.description": "造成{Damage:diff()}点伤害。治疗所有玩家{Heal:diff()}点生命值。",
   "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "预判先机",
-  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "若选定的敌人意图为攻击，每有一个敌人，你就在本回合获得{Dex:diff()}点敏捷。",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "若有一名敌人意图为攻击，你就在本回合获得{Dex:diff()}点敏捷。",
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "休养生息",
   "STS2_WINE_FOX_CARD_RECUPERATE.description": "抽{Cards:diff()}张牌。丢弃手中所有攻击牌{IfUpgraded:show:、诅咒、任务和状态牌|}。",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "灵狐形态",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "每当你打出一张[gold]攻击牌[/gold]时，对目标施加{Slow:diff()}层[gold]缓慢[/gold]。",
   "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "获得木头",
-  "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "获得{Wood:diff()}个[gold]木板[/gold]。对敌人造成等同于本次获得[gold]木板[/gold]数的伤害。"
+  "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "获得{Wood:diff()}个[gold]木板[/gold]。对敌人造成等同于本次获得[gold]木板[/gold]数的伤害。",
+  "STS2_WINE_FOX_CARD_SCRATCH.title": "抓挠",
+  "STS2_WINE_FOX_CARD_SCRATCH.description": "造成[blue]X[/blue]点伤害，共[blue]2X[/blue]次。{IfUpgraded:show:（升级后：[blue]X+2[/blue]点伤害）|}"
   
 }

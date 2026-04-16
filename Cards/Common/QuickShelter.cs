@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Common
@@ -19,13 +20,13 @@ namespace STS2_WineFox.Cards.Common
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(10m, ValueProp.Move),
+            new BlockVar(5m, ValueProp.Move),
             new CardsVar(1),
+            ModCardVars.Computed("Wood", 1m, _ => DynamicVars["Wood"].BaseValue,
+                WineFoxCardVarFactory.StressDoubledDynamicVar("Wood")),
+            ModCardVars.Computed("Stone", 1m, _ => DynamicVars["Stone"].BaseValue,
+                WineFoxCardVarFactory.StressDoubledDynamicVar("Stone")),
         ];
-
-        protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m) &&
-            Owner.Creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuickShelter);
 
@@ -34,16 +35,12 @@ namespace STS2_WineFox.Cards.Common
             CardPlay play)
         {
             var owner = Owner;
-
             var creature = owner.Creature;
-            if (play.IsFirstInSeries && !MaterialCmd.IsFreePlay(play))
-            {
-                var hasWood = creature.Powers.OfType<WoodPower>().Any(p => p.Amount >= 1m);
-                var hasStone = creature.Powers.OfType<StonePower>().Any(p => p.Amount >= 1m);
-                if (!hasWood || !hasStone) return;
-            }
 
-            await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, 1m, 1m, play);
+            await MaterialCmd.GainMaterials<WoodPower, StonePower>(
+                this,
+                DynamicVars["Wood"].BaseValue,
+                DynamicVars["Stone"].BaseValue);
 
             await CreatureCmd.GainBlock(creature, DynamicVars.Block, play);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);
@@ -51,7 +48,8 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Block"].UpgradeValueBy(3m);
+            DynamicVars["Wood"].UpgradeValueBy(1m);  // 1 → 2
+            DynamicVars["Stone"].UpgradeValueBy(1m); // 1 → 2
         }
     }
 }

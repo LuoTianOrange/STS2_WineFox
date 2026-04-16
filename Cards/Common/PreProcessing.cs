@@ -13,17 +13,14 @@ namespace STS2_WineFox.Cards.Common
     public class PreProcessing() : WineFoxCard(
         0, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        public override bool GainsBlock => true;
-
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(0, ValueProp.Move),
-            ModCardVars.Computed("Wood", 3m, _ => DynamicVars["Wood"].BaseValue,
+            ModCardVars.Computed("Wood", 2m, _ => DynamicVars["Wood"].BaseValue,
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Wood")),
-            ModCardVars.Computed("Stone", 3m, _ => DynamicVars["Stone"].BaseValue,
+            ModCardVars.Computed("Stone", 2m, _ => DynamicVars["Stone"].BaseValue,
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Stone")),
         ];
 
@@ -44,7 +41,8 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Block.UpgradeValueBy(3m);
+            DynamicVars["Wood"].UpgradeValueBy(1m);
+            DynamicVars["Stone"].UpgradeValueBy(1m);
         }
     }
 }

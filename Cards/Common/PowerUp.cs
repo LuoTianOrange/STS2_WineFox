@@ -5,10 +5,10 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Common
 {
     public class PowerUp() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+        1, CardType.Skill, CardRarity.Common, TargetType.None)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(1), new("Stress", 1m)];
