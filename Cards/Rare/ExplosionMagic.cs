@@ -4,24 +4,25 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {
     /// <summary>
     ///     爆裂魔法 - 2 cost Skill Rare.
-    ///     所有敌人失去 32 点生命。失去 3 敏捷。
-    ///     升级：变为 40 点。
+    ///     给予所有敌人 24 层灼烧。失去 3 敏捷。
+    ///     升级：变为 30 层灼烧。
     /// </summary>
     public class ExplosionMagic() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Damage", 32m)];
+            [new IntVar("Burn", 24m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.FromPower<BurningPower>(),
             HoverTipFactory.FromPower<DexterityPower>(),
         ];
 
@@ -34,16 +35,10 @@ namespace STS2_WineFox.Cards.Rare
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            var damage = DynamicVars["Damage"].BaseValue;
+            var burn = DynamicVars["Burn"].BaseValue;
             foreach (var enemy in combatState.HittableEnemies.ToList())
             {
-                await CreatureCmd.Damage(
-                    choiceContext,
-                    enemy,
-                    damage,
-                    ValueProp.Unblockable | ValueProp.Unpowered,
-                    owner,
-                    this);
+                await PowerCmd.Apply<BurningPower>(enemy, burn, owner, this);
             }
 
             await PowerCmd.Apply<DexterityPower>(owner, -3m, owner, this);
@@ -51,8 +46,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Damage"].UpgradeValueBy(8m);
+            DynamicVars["Burn"].UpgradeValueBy(6m);
         }
     }
 }
-

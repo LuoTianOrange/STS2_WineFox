@@ -30,7 +30,6 @@ namespace STS2_WineFox.Powers
         {
             if (dealer != Owner) return;
             if (target.Side == Owner.Side) return;
-            if ((props & ValueProp.Unblockable) == 0) return;
 
             Flash();
             await CreatureCmd.GainBlock(target, 1m, ValueProp.Unpowered, null);

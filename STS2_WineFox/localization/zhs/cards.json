@@ -204,7 +204,7 @@
   "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.title": "间隙咏唱",
   "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.description": "每当你使敌人失去生命时，该敌人获得[blue]1[/blue]点格挡，你获得[blue]{Block:diff()}[/blue]点格挡。",
   "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.title": "爆裂魔法",
-  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "使所有敌人失去{Damage:diff()}点生命。失去[blue]3[/blue]点敏捷。",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "给予所有敌人{Burn:diff()}层[gold]烧伤[/gold]。失去[blue]3[/blue]点敏捷。",
   "STS2_WINE_FOX_CARD_EROSION.title": "溃蚀",
   "STS2_WINE_FOX_CARD_EROSION.description": "给予一名敌人{Stacks:diff()}层[gold]瓦解[/gold]。所有拥有[gold]瓦解[/gold]的敌人失去等同于其层数的生命。"
   

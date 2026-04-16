@@ -204,7 +204,7 @@
   "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.title": "Intermittent Chanting",
   "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.description": "Gain [gold]Tracking[/gold]. Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Block:diff()}[/blue] Block.",
   "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.title": "Explosion Magic",
-  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "Cause ALL enemies to lose {Damage:diff()} HP. Lose [blue]3[/blue] Dexterity.",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "Apply {Burn:diff()} [gold]Burning[/gold] to ALL enemies. Lose [blue]3[/blue] Dexterity.",
   "STS2_WINE_FOX_CARD_EROSION.title": "Erosion",
   "STS2_WINE_FOX_CARD_EROSION.description": "Apply {Stacks:diff()} [gold]Disintegration[/gold] to an enemy. ALL enemies with [gold]Disintegration[/gold] lose HP equal to their stacks."
   
