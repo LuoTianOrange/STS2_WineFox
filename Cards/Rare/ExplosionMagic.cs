@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
@@ -14,6 +16,7 @@ namespace STS2_WineFox.Cards.Rare
     ///     给予所有敌人 24 层灼烧。失去 3 敏捷。
     ///     升级：变为 30 层灼烧。
     /// </summary>
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class ExplosionMagic() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {

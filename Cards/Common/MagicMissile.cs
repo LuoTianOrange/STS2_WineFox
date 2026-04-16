@@ -3,6 +3,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Character;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Common
@@ -11,6 +13,7 @@ namespace STS2_WineFox.Cards.Common
     ///     魔法飞弹 - 1 cost Skill Common.
     ///     敌人失去 6 点生命 2 次。升级：变为 8 点。
     /// </summary>
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class MagicMissile() : WineFoxCard(
         1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {

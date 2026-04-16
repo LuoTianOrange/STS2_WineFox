@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
@@ -14,6 +15,7 @@ namespace STS2_WineFox.Powers
     ///     Whenever the owner causes an enemy to lose HP (Unblockable damage),
     ///     the target gains 1 block and the owner gains Amount block.
     /// </summary>
+    [RegisterPower]
     public class TrackingPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;

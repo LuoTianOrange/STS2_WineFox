@@ -2,7 +2,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
@@ -12,6 +14,7 @@ namespace STS2_WineFox.Cards.Uncommon
     ///     获得 TrackingPower（每当你使敌人失去生命时，敌人获得 1 点格挡，你获得 2 点格挡）。
     ///     升级：你获得 3 点格挡。
     /// </summary>
+    [RegisterCard(typeof(WineFoxCardPool))]
     public class IntermittentChanting() : WineFoxCard(
         1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
