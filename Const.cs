@@ -192,7 +192,13 @@ namespace STS2_WineFox
             public const string CardSpiritFoxForm = Root + "/cards/card_spirit_fox_form.png";
             public const string CardGettingWood = Root + "/cards/card_getting_wood.png";
             public const string CardScratch = Root + "/cards/card_scratch.png";
+            public const string CardMagicMissile = Root + "/cards/card_magic_missile.png";
+            public const string CardBarrierWave = Root + "/cards/card_barrier_wave.png";
+            public const string CardIntermittentChanting = Root + "/cards/card_intermittent_chanting.png";
+            public const string CardExplosionMagic = Root + "/cards/card_explosion_magic.png";
+            public const string CardErosion = Root + "/cards/card_erosion.png";
 
+            public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

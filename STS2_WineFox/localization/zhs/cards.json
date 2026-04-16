@@ -99,7 +99,7 @@
   "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.title": "石锥陷阱",
   "STS2_WINE_FOX_CARD_DRIPSTONE_TRAP.description": "消耗所有[gold]圆石[/gold]，每消耗一个就对随机敌人造成{Damage:diff()}点伤害，施加1层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_PRE_PROCESSING.title":"预处理",
-  "STS2_WINE_FOX_CARD_PRE_PROCESSING.description":"{IfUpgraded:show:获得{Block}点格挡。\n|}获得{Wood:diff()}[gold]木板[/gold]与{Stone:diff()}[gold]圆石[/gold]。",
+  "STS2_WINE_FOX_CARD_PRE_PROCESSING.description":"获得{Wood:diff()}个[gold]木板[/gold]与{Stone:diff()}个[gold]圆石[/gold]。",
   "STS2_WINE_FOX_CARD_WORKBENCH_BACKPACK.title":"工作台背包",
   "STS2_WINE_FOX_CARD_WORKBENCH_BACKPACK.description":"获得{Energy:energyIcons()}。\n[gold]合成[/gold]。\n将这张牌的费用减少1。",
   "STS2_WINE_FOX_CARD_REGROUP.title":"重整旗鼓",
@@ -196,6 +196,16 @@
   "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "获得木头",
   "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "获得{Wood:diff()}个[gold]木板[/gold]。对敌人造成等同于本次获得[gold]木板[/gold]数的伤害。",
   "STS2_WINE_FOX_CARD_SCRATCH.title": "抓挠",
-  "STS2_WINE_FOX_CARD_SCRATCH.description": "造成[blue]X[/blue]点伤害，共[blue]2X[/blue]次。{IfUpgraded:show:（升级后：[blue]X+2[/blue]点伤害）|}"
+  "STS2_WINE_FOX_CARD_SCRATCH.description": "造成{IfUpgraded:show:[blue]X+2[/blue]|[blue]X[/blue]}点伤害，共[blue]2X[/blue]次。",
+  "STS2_WINE_FOX_CARD_MAGIC_MISSILE.title": "魔法飞弹",
+  "STS2_WINE_FOX_CARD_MAGIC_MISSILE.description": "使一名敌人失去{Damage:diff()}点生命，共2次。",
+  "STS2_WINE_FOX_CARD_BARRIER_WAVE.title": "屏障波",
+  "STS2_WINE_FOX_CARD_BARRIER_WAVE.description": "使所有敌人失去{Damage:diff()}点生命。获得{Block:diff()}点格挡。",
+  "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.title": "间隙咏唱",
+  "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.description": "每当你使敌人失去生命时，该敌人获得[blue]1[/blue]点格挡，你获得[blue]{Block:diff()}[/blue]点格挡。",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.title": "爆裂魔法",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "使所有敌人失去{Damage:diff()}点生命。失去[blue]3[/blue]点敏捷。",
+  "STS2_WINE_FOX_CARD_EROSION.title": "溃蚀",
+  "STS2_WINE_FOX_CARD_EROSION.description": "给予一名敌人{Stacks:diff()}层[gold]瓦解[/gold]。所有拥有[gold]瓦解[/gold]的敌人失去等同于其层数的生命。"
   
 }

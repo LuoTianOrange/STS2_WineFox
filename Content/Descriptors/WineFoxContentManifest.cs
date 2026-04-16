@@ -114,6 +114,11 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, SpiritFoxForm>(),
             new CardRegistrationEntry<WineFoxCardPool, GettingWood>(),
             new CardRegistrationEntry<WineFoxCardPool, Scratch>(),
+            new CardRegistrationEntry<WineFoxCardPool, MagicMissile>(),
+            new CardRegistrationEntry<WineFoxCardPool, BarrierWave>(),
+            new CardRegistrationEntry<WineFoxCardPool, IntermittentChanting>(),
+            new CardRegistrationEntry<WineFoxCardPool, ExplosionMagic>(),
+            new CardRegistrationEntry<WineFoxCardPool, Erosion>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =
@@ -202,6 +207,7 @@ namespace STS2_WineFox.Content.Descriptors
             new PowerRegistrationEntry<GoldenArmorPower>(),
             new PowerRegistrationEntry<AnticipateAdvantageDexPower>(),
             new PowerRegistrationEntry<SpiritFoxFormPower>(),
+            new PowerRegistrationEntry<TrackingPower>(),
         ];
 
         private static readonly IContentRegistrationEntry[] PotionEntries =

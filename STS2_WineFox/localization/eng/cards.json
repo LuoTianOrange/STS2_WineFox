@@ -196,6 +196,16 @@
   "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "Getting Wood",
   "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "Gain {Wood:diff()} [gold]Plank[/gold]. Deal damage equal to the [gold]Plank[/gold] gained.",
   "STS2_WINE_FOX_CARD_SCRATCH.title": "Scratch",
-  "STS2_WINE_FOX_CARD_SCRATCH.description": "Deal [blue]X[/blue] damage [blue]2X[/blue] times.{IfUpgraded:show: (Upgraded: [blue]X+2[/blue] damage)|}"
+  "STS2_WINE_FOX_CARD_SCRATCH.description": "Deal [blue]X[/blue] damage [blue]2X[/blue] times.{IfUpgraded:show: (Upgraded: [blue]X+2[/blue] damage)|}",
+  "STS2_WINE_FOX_CARD_MAGIC_MISSILE.title": "Magic Missile",
+  "STS2_WINE_FOX_CARD_MAGIC_MISSILE.description": "Cause an enemy to lose {Damage:diff()} HP twice.",
+  "STS2_WINE_FOX_CARD_BARRIER_WAVE.title": "Barrier Wave",
+  "STS2_WINE_FOX_CARD_BARRIER_WAVE.description": "Cause ALL enemies to lose {Damage:diff()} HP. Gain {Block:diff()} Block.",
+  "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.title": "Intermittent Chanting",
+  "STS2_WINE_FOX_CARD_INTERMITTENT_CHANTING.description": "Gain [gold]Tracking[/gold]. Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Block:diff()}[/blue] Block.",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.title": "Explosion Magic",
+  "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "Cause ALL enemies to lose {Damage:diff()} HP. Lose [blue]3[/blue] Dexterity.",
+  "STS2_WINE_FOX_CARD_EROSION.title": "Erosion",
+  "STS2_WINE_FOX_CARD_EROSION.description": "Apply {Stacks:diff()} [gold]Disintegration[/gold] to an enemy. ALL enemies with [gold]Disintegration[/gold] lose HP equal to their stacks."
   
 }
