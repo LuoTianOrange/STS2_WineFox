@@ -190,6 +190,7 @@ namespace STS2_WineFox
             public const string CardAnticipateAdvantage = Root + "/cards/card_anticipate_advantage.png";
             public const string CardRecuperate = Root + "/cards/card_recuperate.png";
             public const string CardSpiritFoxForm = Root + "/cards/card_spirit_fox_form.png";
+            public const string CardGettingWood = Root + "/cards/card_getting_wood.png";
 
 
             //Enchantments

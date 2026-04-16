@@ -112,6 +112,7 @@ namespace STS2_WineFox.Content.Descriptors
             new CardRegistrationEntry<WineFoxCardPool, AnticipateAdvantage>(),
             new CardRegistrationEntry<WineFoxCardPool, Recuperate>(),
             new CardRegistrationEntry<WineFoxCardPool, SpiritFoxForm>(),
+            new CardRegistrationEntry<WineFoxCardPool, GettingWood>(),
         ];
 
         private static readonly IContentRegistrationEntry[] TokenCardPoolEntries =

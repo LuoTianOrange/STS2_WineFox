@@ -192,6 +192,8 @@
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "Recuperate",
   "STS2_WINE_FOX_CARD_RECUPERATE.description": "Draw {Cards:diff()} cards. Discard all Attack cards in your hand{IfUpgraded:show:, as well as Curse, Quest, and Status cards|}.",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "Spirit Fox Form",
-  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "Remove all enemies' Artifact. Apply {Slow:diff()} Slow to all enemies."
+  "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.description": "Remove all enemies' Artifact. Apply {Slow:diff()} Slow to all enemies.",
+  "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "Getting Wood",
+  "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "Gain {Wood:diff()} [gold]Plank[/gold]. Deal damage equal to the [gold]Plank[/gold] gained."
   
 }
