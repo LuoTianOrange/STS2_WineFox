@@ -1,6 +1,4 @@
-﻿// 文件：Potions/GoldenApple.cs
-
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Potions
 {
-    [RegisterPotion(typeof(WineFoxPotionPool))]
+    // [RegisterPotion(typeof(WineFoxPotionPool))]
     public class GoldenApple : PotionModel
     {
         public override PotionRarity Rarity => PotionRarity.Uncommon;
