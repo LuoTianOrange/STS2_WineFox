@@ -188,7 +188,7 @@
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.title": "救赎打击",
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.description": "造成{Damage:diff()}点伤害。治疗所有玩家{Heal:diff()}点生命值。",
   "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "预判先机",
-  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "若有一名敌人意图为攻击，你就在本回合获得{Dex:diff()}点敏捷。",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "如果一名敌人的意图为攻击，你就获得{Dex:diff()}点敏捷。",
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "休养生息",
   "STS2_WINE_FOX_CARD_RECUPERATE.description": "抽{Cards:diff()}张牌。丢弃手中所有攻击牌{IfUpgraded:show:、诅咒、任务和状态牌|}。",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "灵狐形态",
