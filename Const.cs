@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2-WineFox";
         public const string Name = "WineFox";
-        public const string Version = "0.1.0";
+        public const string Version = "1.1.12";
 
         /// <summary>
         ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
@@ -197,8 +197,17 @@ namespace STS2_WineFox
             public const string CardIntermittentChanting = Root + "/cards/card_intermittent_chanting.png";
             public const string CardExplosionMagic = Root + "/cards/card_explosion_magic.png";
             public const string CardErosion = Root + "/cards/card_erosion.png";
+            public const string CardMemory = Root + "/cards/card_memory.png";
+            public const string CardOtherworldCrossing = Root + "/cards/card_otherworld_crossing.png";
+            public const string CardPetrificationSpell = Root + "/cards/card_petrification_spell.png";
+            public const string CardLaunchPlatform = Root + "/cards/card_launch_platform.png";
+            public const string CardPlanningExpert = Root + "/cards/card_planning_expert.png";
 
             public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
+            public const string MemoryPowerIcon = Root + "/powers/memory_power.png";
+            public const string OtherworldCrossingPowerIcon = Root + "/powers/otherworld_crossing_power.png";
+            public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
+            public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

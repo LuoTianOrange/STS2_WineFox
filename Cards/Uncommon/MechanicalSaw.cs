@@ -43,10 +43,8 @@ namespace STS2_WineFox.Cards.Uncommon
                 consumedStressThisSeries = false;
                 if (!MaterialCmd.IsFreePlay(play))
                 {
-                    var stressPower = owner.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0m);
-                    if (stressPower != null)
+                    if (await StressCmd.ConsumeOne(owner, this))
                     {
-                        await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
                         consumedStressThisSeries = true;
                     }
                 }

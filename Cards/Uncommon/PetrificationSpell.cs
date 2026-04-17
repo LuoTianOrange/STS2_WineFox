@@ -1,11 +1,10 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -13,44 +12,38 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Uncommon
 {
     /// <summary>
-    ///     溃蚀 - 1 cost Skill Uncommon.
-    ///     给予 6 层瓦解（DisintegrationPower）。所有拥有瓦解的敌人失去与层数相同的生命。
-    ///     升级：变为 10 层。
+    ///     石化术 - 1 cost Skill Uncommon.
+    ///     获得 N 个圆石。使所有敌人失去等同于 N 的生命。
+    ///     升级：N 由 4 变为 6。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]
-    public class Erosion() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public class PetrificationSpell() : WineFoxCard(
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Stacks", 6m)];
+            [new IntVar("Stones", 4m)];
 
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        [
-            HoverTipFactory.FromPower<DemisePower>(),
-        ];
-
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardErosion);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPetrificationSpell);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
-
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            await PowerCmd.Apply<DemisePower>(play.Target, DynamicVars["Stacks"].BaseValue, owner, this);
+            var stones = DynamicVars["Stones"].BaseValue;
 
+            // Gain stones first (without stress multiplier so the HP loss is predictable)
+            await MaterialCmd.GainMaterial<StonePower>(owner, stones, sourceCard: this, applyStress: false);
+
+            // Enemies lose HP equal to stones gained from this card
             foreach (var enemy in combatState.HittableEnemies.ToList())
             {
-                var disintegration = enemy.Powers.OfType<DemisePower>().FirstOrDefault();
-                if (disintegration == null || disintegration.Amount <= 0m) continue;
-
                 await CreatureCmd.Damage(
                     choiceContext,
                     enemy,
-                    disintegration.Amount,
+                    stones,
                     ValueProp.Unblockable | ValueProp.Unpowered,
                     owner,
                     this);
@@ -59,7 +52,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Stacks"].UpgradeValueBy(4m);
+            DynamicVars["Stones"].UpgradeValueBy(2m);
         }
     }
 }

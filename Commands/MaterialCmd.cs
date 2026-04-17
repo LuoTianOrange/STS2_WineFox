@@ -410,14 +410,9 @@ namespace STS2_WineFox.Commands
             });
         }
 
-        private static async Task<bool> TryTriggerStressPower(Creature creature)
+        private static Task<bool> TryTriggerStressPower(Creature creature)
         {
-            var stress = creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
-            if (stress == null)
-                return false;
-
-            await PowerCmd.Apply<StressPower>(creature, -1m, creature, null);
-            return true;
+            return StressCmd.ConsumeOne(creature, null);
         }
 
         private static MaterialConsumeSeriesState EnsureSeriesState(CardModel card, CardPlay play)

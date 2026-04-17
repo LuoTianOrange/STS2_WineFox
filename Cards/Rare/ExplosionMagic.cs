@@ -13,15 +13,15 @@ namespace STS2_WineFox.Cards.Rare
 {
     /// <summary>
     ///     爆裂魔法 - 2 cost Skill Rare.
-    ///     给予所有敌人 24 层灼烧。失去 3 敏捷。
-    ///     升级：变为 30 层灼烧。
+    ///     给予所有敌人 12 层灼烧。失去 3 敏捷。
+    ///     升级：变为 15 层灼烧。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]
     public class ExplosionMagic() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Burn", 24m)];
+            [new IntVar("Burn", 12m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
@@ -49,7 +49,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Burn"].UpgradeValueBy(6m);
+            DynamicVars["Burn"].UpgradeValueBy(3m);
         }
     }
 }

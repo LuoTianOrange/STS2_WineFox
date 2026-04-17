@@ -66,7 +66,7 @@ namespace STS2_WineFox.Powers
                 null,
                 null);
 
-            var newAmount = Math.Floor(Amount / 2m);
+            var newAmount = Math.Ceiling(Amount / 2m);
             var reduction = Amount - newAmount;
             if (reduction > 0m) await PowerCmd.ModifyAmount(this, -reduction, null, null);
 

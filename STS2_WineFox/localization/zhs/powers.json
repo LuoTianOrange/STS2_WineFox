@@ -66,8 +66,8 @@
   "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.description": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。",
   "STS2_WINE_FOX_POWER_DIAMOND_ARMOR_POWER.smartDescription": "如果回合结束时你还有覆甲，就在本回合保留你的格挡。",
   "STS2_WINE_FOX_POWER_BURNING_POWER.title": "烧伤",
-  "STS2_WINE_FOX_POWER_BURNING_POWER.description": "烧伤的生物会在自身回合开始时失去生命。烧伤层数每回合减半(向下取整)。",
-  "STS2_WINE_FOX_POWER_BURNING_POWER.smartDescription": "在{OnPlayer:你的回合|其回合}开始时失去[blue]{BurnDamage}[/blue]点生命，然后将[gold]烧伤[/gold]层数减半(向下取整)",
+  "STS2_WINE_FOX_POWER_BURNING_POWER.description": "烧伤的生物会在自身回合开始时失去生命。烧伤层数每回合减半(向上取整)。",
+  "STS2_WINE_FOX_POWER_BURNING_POWER.smartDescription": "在{OnPlayer:你的回合|其回合}开始时失去[blue]{BurnDamage}[/blue]点生命，然后将[gold]烧伤[/gold]层数减半(向上取整)",
   "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.title": "量产",
   "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.description": "本回合中的合成产物将复制给其他玩家",
   "STS2_WINE_FOX_POWER_MASS_PRODUCTION_POWER.smartDescription": "本回合中的合成产物将复制给其他玩家[blue]{Amount}[/blue]张",
@@ -109,6 +109,21 @@
   "STS2_WINE_FOX_POWER_SPIRIT_FOX_FORM_POWER.smartDescription": "每当你打出一张攻击牌时，对目标施加1层[gold]缓慢[/gold]。",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.title": "间隙咏唱",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.description": "每当你使敌人失去生命时，该敌人获得[blue]1[/blue]点格挡，你获得[blue]{Amount}[/blue]点格挡。",
-  "STS2_WINE_FOX_POWER_TRACKING_POWER.smartDescription": "每当你使敌人失去生命时，该敌人获得[blue]1[/blue]点格挡，你获得[blue]{Amount}[/blue]点格挡。"
-  
+  "STS2_WINE_FOX_POWER_TRACKING_POWER.smartDescription": "每当你使敌人失去生命时，该敌人获得[blue]1[/blue]点格挡，你获得[blue]{Amount}[/blue]点格挡。",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER.title": "回忆",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER.description": "在你的回合开始时，将上一回合最后打出的技能牌的一张带有[gold]消耗[/gold]的复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER.smartDescription": "在你的回合开始时，将上一回合最后打出的技能牌的一张带有[gold]消耗[/gold]的复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER_UPGRADED.title": "回忆+",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER_UPGRADED.description": "在你的回合开始时，将上一回合最后打出的技能牌的一张带有[gold]消耗[/gold]，[gold]保留[/gold]的复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_MEMORY_POWER_UPGRADED.smartDescription": "在你的回合开始时，将上一回合最后打出的技能牌的一张带有[gold]消耗[/gold]，[gold]保留[/gold]的复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_POWER.title": "异界跨越",
+  "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_POWER.description": "每回合开始时，将手牌中每张牌的一张[gold]虚无[/gold][gold]消耗[/gold]复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_POWER.smartDescription": "每回合开始时，将手牌中每张牌的一张[gold]虚无[/gold][gold]消耗[/gold]复制品加入你的手牌。",
+  "STS2_WINE_FOX_POWER_LAUNCH_PLATFORM_POWER.title": "弹射置物台",
+  "STS2_WINE_FOX_POWER_LAUNCH_PLATFORM_POWER.description": "每回合第一次消耗[gold]应力[/gold]时，获得[blue]1[/blue]点能量。",
+  "STS2_WINE_FOX_POWER_LAUNCH_PLATFORM_POWER.smartDescription": "每回合第一次消耗[gold]应力[/gold]时，获得[blue]1[/blue]点能量。",
+  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.title": "规划专家",
+  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.description": "每当你打出一张[gold]技能牌[/gold]时，该牌获得[gold]保留[/gold]。",
+  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.smartDescription": "每当你打出一张[gold]技能牌[/gold]时，该牌获得[gold]保留[/gold]。"
+
 }
