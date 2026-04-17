@@ -152,6 +152,8 @@
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "当你的回合开始时，[gold]合成[/gold]。",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.title": "清算时间",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.description": "造成{CalculationBase:diff()}点伤害。在本场对战中你每获得一份[gold]材料[/gold]，额外造成{ExtraDamage:diff()}点伤害。{InCombat:\n（共造成{CalculatedDamage:diff()}点伤害）|}",
+  "STS2_WINE_FOX_CARD_BATCH_CRAFT.title": "批量合成",
+  "STS2_WINE_FOX_CARD_BATCH_CRAFT.description": "[gold]合成[/gold]。本次合成将获得[blue]X[/blue]{IfUpgraded:show:+1|}张牌。",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "森罗物语：炒锅",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "抽{Cards:diff()}张牌。选择{Transform:diff()}张手牌[gold]变化[/gold]。",
   "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "重锤下砸",

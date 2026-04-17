@@ -115,6 +115,87 @@ namespace STS2_WineFox.Commands
             return CraftIntoHand(choiceContext, crafter, crafter, cardSource, prefs);
         }
 
+        public static async Task<IReadOnlyList<CardModel>> CraftIntoHandMultipleFromSingleCost(
+            PlayerChoiceContext choiceContext,
+            Creature crafter,
+            Creature? applier,
+            int productCount,
+            int craftCount,
+            CardModel? cardSource = null,
+            CardSelectorPrefs? prefs = null)
+        {
+            ArgumentNullException.ThrowIfNull(choiceContext);
+            ArgumentNullException.ThrowIfNull(crafter);
+            ArgumentOutOfRangeException.ThrowIfLessThan(productCount, 0);
+            ArgumentOutOfRangeException.ThrowIfLessThan(craftCount, 0);
+
+            if (productCount == 0)
+                return [];
+
+            var owner = crafter.Player ??
+                        throw new InvalidOperationException("Creature cannot craft without a player.");
+
+            var combatState = crafter.CombatState ??
+                              throw new InvalidOperationException("Crafter is not in combat.");
+
+            var selectedOption = await SelectOption(choiceContext, owner, prefs);
+            if (selectedOption == null)
+                return [];
+
+            if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource,
+                    countTowardsCraftTracker: false))
+            {
+                selectedOption.Card.RemoveFromState();
+                return [];
+            }
+
+            var products = new List<CardModel>(productCount);
+
+            for (var i = 0; i < productCount; i++)
+            {
+                var product = i == 0
+                    ? selectedOption.Card
+                    : selectedOption.Recipe.Factory(combatState, owner);
+
+                products.Add(product);
+
+                var craftContext = new CraftExecutionContext
+                {
+                    ChoiceContext = choiceContext,
+                    Crafter = crafter,
+                    Applier = applier,
+                    SourceCard = cardSource,
+                    Recipe = selectedOption.Recipe,
+                    Product = product,
+                    DeliveryMode = selectedOption.Recipe.DeliveryMode,
+                    IsBonusCraft = true,
+                };
+
+                await CraftHook.BeforeCraft(combatState, craftContext);
+                await DeliverCraftProduct(combatState, craftContext);
+            }
+
+            RecordCraft(crafter, craftCount);
+            return products;
+        }
+
+        public static Task<IReadOnlyList<CardModel>> CraftIntoHandMultipleFromSingleCost(
+            PlayerChoiceContext choiceContext,
+            CardModel cardSource,
+            int productCount,
+            int craftCount,
+            CardSelectorPrefs? prefs = null)
+        {
+            ArgumentNullException.ThrowIfNull(cardSource);
+
+            var owner = cardSource.Owner ??
+                        throw new InvalidOperationException("Craft card has no owning player.");
+
+            var crafter = owner.Creature;
+            return CraftIntoHandMultipleFromSingleCost(choiceContext, crafter, crafter, productCount, craftCount,
+                cardSource, prefs);
+        }
+
         public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, Player owner,
             CardSelectorPrefs? prefs = null)
         {
@@ -158,13 +239,17 @@ namespace STS2_WineFox.Commands
             tracker.MaterialGainedByTypeThisTurn.Clear();
         }
 
-        public static void RecordCraft(Creature creature)
+        public static void RecordCraft(Creature creature, int amount = 1)
         {
             ArgumentNullException.ThrowIfNull(creature);
+            ArgumentOutOfRangeException.ThrowIfLessThan(amount, 0);
+
+            if (amount == 0)
+                return;
 
             var tracker = GetTracker(creature);
-            tracker.CraftsThisTurn++;
-            tracker.CraftsThisCombat++;
+            tracker.CraftsThisTurn += amount;
+            tracker.CraftsThisCombat += amount;
         }
 
         /// <summary>

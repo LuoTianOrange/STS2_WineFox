@@ -152,6 +152,8 @@
   "STS2_WINE_FOX_CARD_AUTO_CRAFTER.description": "At the start of your turn, [gold]Craft[/gold].",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.title": "Payback Time",
   "STS2_WINE_FOX_CARD_PAYBACK_TIME.description": "Deal {CalculationBase:diff()} damage. This combat, for each [gold]Material[/gold] you have gained, deal {ExtraDamage:diff()} additional damage.{InCombat:\n(Deals {CalculatedDamage:diff()} damage total)|}",
+  "STS2_WINE_FOX_CARD_BATCH_CRAFT.title": "Batch Craft",
+  "STS2_WINE_FOX_CARD_BATCH_CRAFT.description": "[gold]Craft[/gold]. Gain [blue]X[/blue]{IfUpgraded:show:+1|} copies of the crafted card.",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.title": "Kaleidoscope Tales: Wok",
   "STS2_WINE_FOX_CARD_KALEIDOSCOPE_POT.description": "Draw {Cards:diff()} cards. Choose {Transform:diff()} cards in your hand to [gold]change[/gold].",
   "STS2_WINE_FOX_CARD_HAMMER_STRIKE.title": "Hammer Slam",
