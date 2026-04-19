@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class NetheriteChestPlate() : WineFoxCard(
-        3, CardType.Power, CardRarity.Rare, TargetType.Self)
+        2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Plating", 7m)];

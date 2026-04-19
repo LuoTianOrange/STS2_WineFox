@@ -9,9 +9,9 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Rare
+namespace STS2_WineFox.Cards.Deleted
 {
-    [RegisterCard(typeof(WineFoxCardPool))]
+    // [RegisterCard(typeof(WineFoxCardPool))]
     public class EquivalentExchange() : WineFoxCard(
         0, CardType.Skill, CardRarity.Rare, TargetType.None)
     {

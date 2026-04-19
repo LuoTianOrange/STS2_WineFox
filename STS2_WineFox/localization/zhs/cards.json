@@ -161,7 +161,7 @@
   "STS2_WINE_FOX_CARD_QUICK_ATTACK.title": "快速攻击",
   "STS2_WINE_FOX_CARD_QUICK_ATTACK.description":"造成{Damage:diff()}点伤害{Hits}次。",
   "STS2_WINE_FOX_CARD_NETHERITE_CHEST_PLATE.title": "下界合金甲",
-  "STS2_WINE_FOX_CARD_NETHERITE_CHEST_PLATE.description": "获得 {Plating:diff()} 层[gold]覆甲[/gold]。\n获得格挡时，如果你有[gold]覆甲[/gold]，翻倍你获得的格挡。",
+  "STS2_WINE_FOX_CARD_NETHERITE_CHEST_PLATE.description": "获得{Plating:diff()}层[gold]覆甲[/gold]。\n翻倍你从[gold]覆甲[/gold]获得的格挡。",
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.title": "高度专注",
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.description": "在本回合翻倍你已有的力量。",
   "STS2_WINE_FOX_CARD_SWEET_DREAM.title": "甜蜜的梦",

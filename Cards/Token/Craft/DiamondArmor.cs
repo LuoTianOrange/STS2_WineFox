@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Token.Craft
 {
     [RegisterCard(typeof(WineFoxTokenCardPool))]
     public class DiamondArmor() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.None)
+        0, CardType.Power, CardRarity.Token, TargetType.None)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

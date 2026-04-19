@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class MaidSupport() : WineFoxCard(
-        2, CardType.Skill, CardRarity.Rare, TargetType.AnyPlayer)
+        2, CardType.Power, CardRarity.Rare, TargetType.AllAllies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Armor", 5m), new IntVar("Thorns", 2m)];

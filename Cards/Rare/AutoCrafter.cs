@@ -10,7 +10,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class AutoCrafter() : WineFoxCard(
-        1, CardType.Power, CardRarity.Rare, TargetType.Self)
+        0, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];

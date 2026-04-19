@@ -10,9 +10,9 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Deleted
 {
-    [RegisterCard(typeof(WineFoxCardPool))]
+    // [RegisterCard(typeof(WineFoxCardPool))]
     public class RecordPlayer() : WineFoxCard(
         1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {

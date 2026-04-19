@@ -34,7 +34,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Energy.UpgradeValueBy(1m);
+            DynamicVars["BonusEnergy"].UpgradeValueBy(1m);
         }
     }
 }

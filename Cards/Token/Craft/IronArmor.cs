@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Token.Craft
 {
     [RegisterCard(typeof(WineFoxTokenCardPool))]
     public class IronArmor() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.Self)
+        0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Armor", 7m), new("IronArmor", 1m)];
