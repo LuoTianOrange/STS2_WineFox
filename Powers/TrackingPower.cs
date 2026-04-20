@@ -22,10 +22,10 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.TrackingPowerIcon);
 
-        public override async Task BeforeDamageReceived(
+        public override async Task AfterDamageReceived(
             PlayerChoiceContext choiceContext,
             Creature target,
-            decimal amount,
+            DamageResult result,
             ValueProp props,
             Creature? dealer,
             CardModel? cardSource)

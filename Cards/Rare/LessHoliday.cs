@@ -4,8 +4,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Cards.Token.LessHoliday;
 using STS2_WineFox.Character;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -16,6 +19,11 @@ namespace STS2_WineFox.Cards.Rare
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLessHoliday);
 
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new ("SelectCount",2m),
+        ];
+        
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromCard<WorkWork>(IsUpgraded)];
 
@@ -28,7 +36,7 @@ namespace STS2_WineFox.Cards.Rare
             var handCount = PileType.Hand.GetPile(owner).Cards.Count;
             if (handCount == 0) return;
 
-            var maxSelect = Math.Min(3, handCount);
+            var maxSelect = Math.Min((int)DynamicVars["SelectCount"].BaseValue, handCount);
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_LESS_HOLIDAY_CHOOSE");
             var prefs = new CardSelectorPrefs(prompt, 0, maxSelect);
             var selectedList = await CardSelectCmd.FromHandForDiscard(choiceContext, owner, prefs, null, this);

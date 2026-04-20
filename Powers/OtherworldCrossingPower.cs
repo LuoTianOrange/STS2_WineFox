@@ -1,8 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -22,26 +24,31 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.OtherworldCrossingPowerIcon);
 
+        public override bool IsInstanced => true;
+        
         protected override async Task OnAfterPlayerTurnStart(
             PlayerChoiceContext choiceContext, Player player)
         {
             if (player.Creature != Owner) return;
 
-            var handCards = PileType.Hand.GetPile(player).Cards.ToList();
-            if (handCards.Count == 0) return;
+            if (PileType.Hand.GetPile(player).Cards.Count == 0) return;
 
             Flash();
-            foreach (var card in handCards)
-            {
-                var clone = card.CreateClone();
-                clone.AddKeyword(CardKeyword.Ethereal);
-                clone.AddKeyword(CardKeyword.Exhaust);
-                if (Amount >= 2m)
-                    clone.AddKeyword(CardKeyword.Innate);
+            
+            var prompt = new LocString("cards", "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_CHOOSE");
+            var prefs = new CardSelectorPrefs(prompt, 1);
 
-                var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
-                CardCmd.PreviewCardPileAdd(cardInstance);
-            }
+            var selected = (await CardSelectCmd.FromHandForDiscard(choiceContext, player, prefs, null, null))
+                .FirstOrDefault();
+
+            if (selected == null) return;
+
+            var clone = selected.CreateClone();
+            clone.AddKeyword(CardKeyword.Ethereal);
+            clone.AddKeyword(CardKeyword.Exhaust);
+
+            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
+            CardCmd.PreviewCardPileAdd(cardInstance);
         }
     }
 }

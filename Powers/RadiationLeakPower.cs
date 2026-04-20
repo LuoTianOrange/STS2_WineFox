@@ -24,7 +24,7 @@ namespace STS2_WineFox.Powers
 
             Flash();
 
-            for (var i = 0; i < Amount + 1; i++)
+            for (var i = 0; i < Amount; i++)
             {
                 var dazedCard = CombatState.CreateCard<Dazed>(player);
                 var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(dazedCard, PileType.Hand, true);

@@ -59,7 +59,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE");
             var prefs = new CardSelectorPrefs(prompt, 1);
 
-            var selected = (await CardSelectCmd.FromSimpleGrid(choiceContext, handCards, owner, prefs))
+            var selected = (await CardSelectCmd.FromHandForDiscard(choiceContext, owner, prefs, null, this))
                 .FirstOrDefault();
 
             if (selected == null) return;

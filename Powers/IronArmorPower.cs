@@ -12,7 +12,7 @@ namespace STS2_WineFox.Powers
     public class IronArmorPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.Counter;
+        public override PowerStackType StackType => PowerStackType.None;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.IronArmorPowerIcon);
 
@@ -22,7 +22,7 @@ namespace STS2_WineFox.Powers
             if (player.Creature != Owner) return;
 
             Flash();
-            await PowerCmd.Apply<PlatingPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<PlatingPower>(Owner, 1, Owner, null);
         }
     }
 }
