@@ -15,6 +15,8 @@ namespace STS2_WineFox.Cards.Rare
     public class SpiritFoxForm() : WineFoxCard(
         3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new IntVar("Slow", 1m)];
 
@@ -35,7 +37,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            AddKeyword(CardKeyword.Retain);
+            RemoveKeyword(CardKeyword.Ethereal);
         }
     }
 }

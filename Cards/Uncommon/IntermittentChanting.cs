@@ -2,10 +2,11 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
-using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using TrackingPower = STS2_WineFox.Powers.TrackingPower;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -28,6 +29,7 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             var creature = Owner.Creature;
+            await PowerCmd.Apply<WeakPower>(creature, 1m, creature, this);
             await PowerCmd.Apply<TrackingPower>(creature, DynamicVars["Block"].BaseValue, creature, this);
         }
 
