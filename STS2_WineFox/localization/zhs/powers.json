@@ -123,7 +123,7 @@
   "STS2_WINE_FOX_POWER_LAUNCH_PLATFORM_POWER.description": "每回合第一次消耗[gold]应力[/gold]时，获得[blue]1[/blue]点能量。",
   "STS2_WINE_FOX_POWER_LAUNCH_PLATFORM_POWER.smartDescription": "每回合第一次消耗[gold]应力[/gold]时，获得[blue]1[/blue]点能量。",
   "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.title": "规划专家",
-  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.description": "每当你打出一张[gold]技能牌[/gold]时，该牌获得[gold]保留[/gold]。",
-  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.smartDescription": "每当你打出一张[gold]技能牌[/gold]时，该牌获得[gold]保留[/gold]。"
+  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.description": "在回合结束时，会被弃入弃牌堆的[gold]技能牌[/gold]获得[gold]保留[/gold]。",
+  "STS2_WINE_FOX_POWER_PLANNING_EXPERT_POWER.smartDescription": "在回合结束时，会被弃入弃牌堆的[gold]技能牌[/gold]获得[gold]保留[/gold]。"
 
 }

@@ -75,7 +75,7 @@
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.title": "Cobblestone Form",
   "STS2_WINE_FOX_CARD_COBBLESTONE_GENERATOR.description": "At the start of your turn, gain 2 [gold]Cobblestone[/gold]; this amount increases by 2 each turn.",
   "STS2_WINE_FOX_CARD_SHIELD_ATTACK.title": "Shield Bash",
-  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "Deal {Damage:diff()} times your current [gold]Block[/gold] as damage to all enemies.{InCombat:\n(Deals {TotalDamage:diff()} damage)|}\nClear all your [gold]Block[/gold].\nDraw 1 card.",
+  "STS2_WINE_FOX_CARD_SHIELD_ATTACK.description": "Deal damage to all enemies equal to {BlockMultiplier:diff()} times your current [gold]Block[/gold].{InCombat:\n(Deals {TotalDamage:diff()} damage)|}\nClear all your [gold]Block[/gold].\nDraw {Cards:diff()} cards.",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.title": "Spinning Hand",
   "STS2_WINE_FOX_CARD_SPINNING_HAND.description": "Deal {Damage:diff()} damage to all enemies. This card costs 1 less for each time you [gold]Craft[/gold] this combat.",
   "STS2_WINE_FOX_CARD_PRODUCTION_DOCUMENT.title": "Production Log",

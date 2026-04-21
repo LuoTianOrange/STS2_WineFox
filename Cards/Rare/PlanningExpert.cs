@@ -10,7 +10,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     /// <summary>
     ///     规划专家 - 2 cost Power Rare.
-    ///     当你打出技能牌时，该牌获得保留。
+    ///     回合结束时将被弃置的技能牌获得本回合保留。
     ///     升级：变为1费。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]
