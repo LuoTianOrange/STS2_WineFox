@@ -20,6 +20,9 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(5, ValueProp.Move), new CardsVar(2)];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Wood];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAlterPath);
 
         protected override bool IsPlayable =>

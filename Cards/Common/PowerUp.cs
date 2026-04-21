@@ -16,6 +16,9 @@ namespace STS2_WineFox.Cards.Common
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(1), new("Stress", 1m)];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stress];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPowerUp);
 
         protected override async Task OnPlay(

@@ -22,6 +22,7 @@ namespace STS2_WineFox.Cards.Uncommon
         [
             new DamageVar(2m, ValueProp.Move),
             new IntVar("Hits", 3m),
+            new EnergyVar(1),
             ModCardVars.Computed("Iron", 3m, _ => DynamicVars["Iron"].BaseValue,
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Iron")),
         ];
@@ -47,7 +48,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await MaterialCmd.GainMaterial<IronPower>(this, DynamicVars["Iron"].BaseValue);
 
-            if (stressPower != null) Owner.PlayerCombatState?.Energy += 1;
+            if (stressPower != null) Owner.PlayerCombatState?.Energy += (int)DynamicVars.Energy._baseValue;
         }
 
         protected override void OnUpgrade()

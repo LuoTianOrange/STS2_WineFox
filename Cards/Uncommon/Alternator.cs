@@ -14,8 +14,11 @@ namespace STS2_WineFox.Cards.Uncommon
         0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new EnergyVar(1), new("BonusEnergy", 1m)];
+            [new EnergyVar(1), new("BonusEnergy", 1)];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stress];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAlternator);
 
         protected override async Task OnPlay(
@@ -34,7 +37,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars["BonusEnergy"].UpgradeValueBy(1m);
+            DynamicVars["BonusEnergy"].UpgradeValueBy(1);
         }
     }
 }

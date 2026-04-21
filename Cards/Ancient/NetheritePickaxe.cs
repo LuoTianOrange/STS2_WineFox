@@ -14,6 +14,9 @@ namespace STS2_WineFox.Cards.Ancient
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNetheritePickaxe);
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Wood, WineFoxKeywords.Stone, WineFoxKeywords.Iron, WineFoxKeywords.Diamond];
+        
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

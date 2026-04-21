@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -19,6 +20,9 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMemory);
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
+        
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

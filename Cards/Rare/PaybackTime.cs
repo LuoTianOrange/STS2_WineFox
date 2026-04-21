@@ -23,6 +23,9 @@ namespace STS2_WineFox.Cards.Rare
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier(MaterialGainedMultiplier),
         ];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Material];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPaybackTime);
 
         protected override async Task OnPlay(

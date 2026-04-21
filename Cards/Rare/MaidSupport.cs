@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
@@ -16,6 +17,9 @@ namespace STS2_WineFox.Cards.Rare
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Armor", 5m), new IntVar("Thorns", 2m)];
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromPower<PlatingPower>(),HoverTipFactory.FromPower<ThornsPower>()];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMaidSupport);
 
         public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

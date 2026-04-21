@@ -203,12 +203,14 @@ namespace STS2_WineFox
             public const string CardPetrificationSpell = Root + "/cards/card_petrification_spell.png";
             public const string CardLaunchPlatform = Root + "/cards/card_launch_platform.png";
             public const string CardPlanningExpert = Root + "/cards/card_planning_expert.png";
+            public const string CardLiberation = Root + "/cards/card_liberation.png";
 
             public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
             public const string MemoryPowerIcon = Root + "/powers/memory_power.png";
             public const string OtherworldCrossingPowerIcon = Root + "/powers/otherworld_crossing_power.png";
             public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
             public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
+            public const string LiberationPowerIcon = Root + "/powers/liberation_power.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

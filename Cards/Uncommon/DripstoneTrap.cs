@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -24,6 +25,11 @@ namespace STS2_WineFox.Cards.Uncommon
             ModCardVars.Computed("Hits", 0m, CalcHits),
         ];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stone];
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromPower<VulnerablePower>()];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDripstoneTrap);
 
         protected override bool IsPlayable

@@ -23,6 +23,9 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new IntVar("Stones", 4m)];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stone];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPetrificationSpell);
 
         protected override async Task OnPlay(

@@ -11,7 +11,7 @@ namespace STS2_WineFox.Powers
 {
     /// <summary>
     ///     Applied by LaunchPlatform (弹射置物台).
-    ///     First time you consume stress each turn, gain 1 energy.
+    ///     First time you consume stress each turn, gain Amount energy.
     /// </summary>
     [RegisterPower]
     public class LaunchPlatformPower : WineFoxPower, IStressConsumeListener
@@ -19,7 +19,7 @@ namespace STS2_WineFox.Powers
         private bool _usedThisTurn;
 
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.None;
+        public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.LaunchPlatformPowerIcon);
 
@@ -39,7 +39,7 @@ namespace STS2_WineFox.Powers
             Flash();
             var player = Owner.Player;
             if (player != null)
-                await PlayerCmd.GainEnergy(1m, player);
+                await PlayerCmd.GainEnergy(Amount, player);
         }
     }
 }

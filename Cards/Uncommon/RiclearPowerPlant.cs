@@ -17,6 +17,9 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(13, ValueProp.Move), new("Stress", 2m)];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Stress];
+        
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRiclearPowerPlant);
 
         protected override async Task OnPlay(
