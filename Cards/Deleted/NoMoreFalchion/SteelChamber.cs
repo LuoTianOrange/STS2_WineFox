@@ -7,9 +7,9 @@ using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Token.NoMoreFalchion
+namespace STS2_WineFox.Cards.Deleted.NoMoreFalchion
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    // [RegisterCard(typeof(WineFoxTokenCardPool))]
     public class SteelChamber() : WineFoxCard(
         1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
