@@ -1,5 +1,4 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,6 +31,7 @@ namespace STS2_WineFox.Powers
         {
             if (dealer != Owner) return;
             if (target.Side == Owner.Side) return;
+            if (result.UnblockedDamage <= 0) return;
 
             Flash();
             await CreatureCmd.GainBlock(target, 1m, ValueProp.Unpowered, null);
