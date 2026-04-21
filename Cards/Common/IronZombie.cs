@@ -18,8 +18,8 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(8m, ValueProp.Move),
-            ModCardVars.Computed("Iron", 1m, _ => DynamicVars["Iron"].BaseValue,
+            new DamageVar(6m, ValueProp.Move),
+            ModCardVars.Computed("Iron", 2m, _ => DynamicVars["Iron"].BaseValue,
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Iron")),
         ];
 
@@ -44,8 +44,7 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
-            DynamicVars["Iron"].UpgradeValueBy(1m);
+            DynamicVars.Damage.UpgradeValueBy(4m);
         }
     }
 }

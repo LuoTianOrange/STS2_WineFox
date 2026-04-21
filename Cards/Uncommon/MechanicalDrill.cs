@@ -47,7 +47,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await MaterialCmd.GainMaterial<IronPower>(this, DynamicVars["Iron"].BaseValue);
 
-            if (stressPower != null) Owner.PlayerCombatState?.Energy += 2;
+            if (stressPower != null) Owner.PlayerCombatState?.Energy += 1;
         }
 
         protected override void OnUpgrade()

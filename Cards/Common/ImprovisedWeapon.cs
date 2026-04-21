@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Common
         1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(10m, ValueProp.Move)];
+            [new DamageVar(8m, ValueProp.Move)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardImprovisedWeapon);
 

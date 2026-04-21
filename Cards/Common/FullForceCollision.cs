@@ -12,10 +12,10 @@ namespace STS2_WineFox.Cards.Common
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class FullForceCollision() : WineFoxCard(
-        1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(16m, ValueProp.Move)];
+            [new DamageVar(12m, ValueProp.Move)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFullForceCollision);
 
@@ -23,18 +23,18 @@ namespace STS2_WineFox.Cards.Common
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+            if (Owner.Creature.CombatState is not { } combatState) return;
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
-                .Targeting(play.Target)
+                .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
 
-            if (Owner.Creature.CombatState is not { } combatState) return;
 
             var dazed = combatState.CreateCard<Dazed>(Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(dazed, PileType.Draw, true);
+            var dazedInstance = await CardPileCmd.AddGeneratedCardToCombat(dazed, PileType.Draw, true);
+            CardCmd.PreviewCardPileAdd(dazedInstance);
         }
 
         protected override void OnUpgrade()
