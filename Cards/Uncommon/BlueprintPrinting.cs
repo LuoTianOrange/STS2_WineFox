@@ -50,16 +50,12 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await MaterialCmd.LoseMaterials<WoodPower, StonePower>(this, woodCost, stoneCost, play);
 
-            var handCards = PileType.Hand.GetPile(owner).Cards
-                .Where(c => c != this)
-                .ToList();
-
-            if (handCards.Count == 0) return;
+            if (PileType.Hand.GetPile(owner).Cards.Count(c => c != this) == 0) return;
 
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 1);
+            var prefs = new CardSelectorPrefs(prompt, 1, 1);
 
-            var selected = (await CardSelectCmd.FromHandForDiscard(choiceContext, owner, prefs, null, this))
+            var selected = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this))
                 .FirstOrDefault();
 
             if (selected == null) return;

@@ -36,9 +36,9 @@ namespace STS2_WineFox.Powers
             Flash();
             
             var prompt = new LocString("cards", "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 1);
+            var prefs = new CardSelectorPrefs(prompt, 1, 1);
 
-            var selected = (await CardSelectCmd.FromHandForDiscard(choiceContext, player, prefs, null, null))
+            var selected = (await CardSelectCmd.FromHand(choiceContext, player, prefs, null, this))
                 .FirstOrDefault();
 
             if (selected == null) return;
