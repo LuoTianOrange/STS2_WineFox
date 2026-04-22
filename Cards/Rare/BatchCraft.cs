@@ -9,7 +9,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class BatchCraft() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Rare, TargetType.None)
+        0, CardType.Skill, CardRarity.Rare, TargetType.None), ICraftingCard
     {
         protected override bool HasEnergyCostX => true;
 

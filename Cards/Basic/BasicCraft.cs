@@ -14,7 +14,8 @@ namespace STS2_WineFox.Cards.Basic
     [RegisterCard(typeof(WineFoxCardPool))]
     [RegisterCharacterStarterCard(typeof(WineFox))]
     [RegisterArchaicToothTranscendence(typeof(Forging))]
-    public class BasicCraft() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public class BasicCraft() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self),
+        ICraftingCard
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft, WineFoxKeywords.Material];

@@ -5,25 +5,24 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Cards.Token.LessHoliday;
 using STS2_WineFox.Character;
-using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
-    public class LessHoliday() : WineFoxCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public class LessHoliday() : WineFoxCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self),
+        ICraftingCard
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLessHoliday);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new ("SelectCount",2m),
+            new("SelectCount", 2m),
         ];
-        
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromCard<WorkWork>(IsUpgraded)];
 

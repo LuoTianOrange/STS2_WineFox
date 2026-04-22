@@ -9,7 +9,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class WirelessTerminal() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Rare, TargetType.None)
+        1, CardType.Skill, CardRarity.Rare, TargetType.None), ICraftingCard
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];

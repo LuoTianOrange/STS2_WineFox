@@ -9,7 +9,7 @@ namespace STS2_WineFox.Cards.Common
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class BackupCrafting() : WineFoxCard(
-        0, CardType.Skill, CardRarity.Common, TargetType.None)
+        0, CardType.Skill, CardRarity.Common, TargetType.None), ICraftingCard
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];

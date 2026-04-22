@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Ancient
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class Forging() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+        1, CardType.Skill, CardRarity.Ancient, TargetType.Self), ICraftingCard
     {
         public override bool GainsBlock => true;
 
