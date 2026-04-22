@@ -14,7 +14,7 @@ namespace STS2_WineFox.Cards.Uncommon
         0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new EnergyVar(1), new("BonusEnergy", 1)];
+            [new EnergyVar(1), new EnergyVar("BonusEnergy", 1)];
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Stress];
