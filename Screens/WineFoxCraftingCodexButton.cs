@@ -20,15 +20,13 @@ namespace STS2_WineFox.Screens
     ///             card (or power) tagged with <see cref="ICraftingCard" />.
     ///         </item>
     ///     </list>
-    ///     We deliberately leave <c>IconPath</c> unset so the button borrows the vanilla <c>%Deck</c>
-    ///     icon at runtime — that way the crafting-codex button reads visually as "another card pile
-    ///     sitting next to your deck" (same size, same texture, same count label), which is what the
-    ///     user asked for. Custom icons are still available to any other mod that <i>needs</i> branding;
-    ///     WineFox itself does not.
+    ///     The top-bar icon uses <see cref="Const.Paths.CraftingCodexTopBarButtonIcon" /> (sourced from
+    ///     the mod’s <c>ui/button_export.png</c> asset).
     /// </summary>
     [RegisterOwnedTopBarButton("crafting_codex",
         LocStem = "STS2_WINE_FOX_TOPBARBUTTON_CRAFTING_CODEX",
-        ButtonOrder = 0)]
+        ButtonOrder = 0,
+        IconPath = Const.Paths.CraftingCodexTopBarButtonIcon)]
     public sealed class WineFoxCraftingCodexButton : IModTopBarButtonHandler
     {
         public void OnClick(ModTopBarButtonContext ctx)

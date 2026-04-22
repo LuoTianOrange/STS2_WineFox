@@ -28,6 +28,7 @@ namespace STS2_WineFox
             public const string CharacterIconOutline = Root + "/winefox/character_icon_wine_fox_outline.png";
             public const string CharacterSelectIcon = Root + "/packed/character_select/char_select_wine_fox.png";
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
+            public const string CraftingCodexTopBarButtonIcon = Root + "/ui/button_export.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
