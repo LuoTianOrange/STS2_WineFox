@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lws88aanjldl"
-path="res://.godot/imported/button_export.png-9017d639f7506c0ced869673d954fda2.ctex"
+uid="uid://bf2vo0lglmdk3"
+path="res://.godot/imported/crafting_codex_top_bar_button.png-0ab3679cc29b6b45444c34917f99ce56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/ui/button_export.png"
-dest_files=["res://.godot/imported/button_export.png-9017d639f7506c0ced869673d954fda2.ctex"]
+source_file="res://STS2_WineFox/ui/crafting_codex_top_bar_button.png"
+dest_files=["res://.godot/imported/crafting_codex_top_bar_button.png-0ab3679cc29b6b45444c34917f99ce56.ctex"]
 
 [params]
 

@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardProductionDocument);
 
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(2m, ValueProp.Move)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(2m, ValueProp.Unpowered)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
