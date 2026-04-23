@@ -40,7 +40,7 @@ namespace STS2_WineFox.Relics
             Flash();
 
             var chosen = await CardSelectCmd.FromChooseACardScreen(
-                new BlockingPlayerChoiceContext(),
+                choiceContext,
                 options,
                 Owner);
 
