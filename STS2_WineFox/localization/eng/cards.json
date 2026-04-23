@@ -208,6 +208,12 @@
   "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.title": "Explosion Magic",
   "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "Apply {Burn:diff()} [gold]Burning[/gold] to ALL enemies. Lose [blue]3[/blue] Dexterity.",
   "STS2_WINE_FOX_CARD_EROSION.title": "Erosion",
-  "STS2_WINE_FOX_CARD_EROSION.description": "Apply {Stacks:diff()} [gold]Disintegration[/gold] to an enemy. ALL enemies with [gold]Disintegration[/gold] lose HP equal to their stacks."
+  "STS2_WINE_FOX_CARD_EROSION.description": "Apply {Stacks:diff()} [gold]Disintegration[/gold] to an enemy. ALL enemies with [gold]Disintegration[/gold] lose HP equal to their stacks.",
+
+  "STS2_WINE_FOX_CARD_OBTAIN_STRESS.title": "Obtain Stress",
+  "STS2_WINE_FOX_CARD_OBTAIN_STRESS.description": "Gain {Stress:diff()} [gold]Stress[/gold].",
+
+  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "Obtain Materials",
+  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}."
   
 }

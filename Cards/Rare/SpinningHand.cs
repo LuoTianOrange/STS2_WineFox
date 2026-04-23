@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Rare
             [WineFoxKeywords.Craft];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(26m, ValueProp.Move)];
+            [new DamageVar(20m, ValueProp.Move)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpinningHand);
 

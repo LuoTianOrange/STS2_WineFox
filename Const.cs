@@ -34,6 +34,8 @@ namespace STS2_WineFox
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
             public const string ArmPaperTexturePath = Root + "/winefox/arm/winefox_paper.png";
             public const string ArmScissorsTexturePath = Root + "/winefox/arm/winefox_scissors.png";
+            public const string CharacterDeathPortrait = Root + "/winefox/winefox_die.png";
+            public const string CharacterAlivePortrait = Root + "/winefox/winefox.tscn";
 
 
             public const string CharacterSelectLockedIcon =
@@ -205,6 +207,8 @@ namespace STS2_WineFox
             public const string CardLaunchPlatform = Root + "/cards/card_launch_platform.png";
             public const string CardPlanningExpert = Root + "/cards/card_planning_expert.png";
             public const string CardLiberation = Root + "/cards/card_liberation.png";
+            public const string CardObtainStress = Root + "/cards/card_wind_crank.png";
+            public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
 
             public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
             public const string MemoryPowerIcon = Root + "/powers/memory_power.png";

@@ -18,7 +18,7 @@ namespace STS2_WineFox.Cards.Rare
             [WineFoxKeywords.Iron];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(6m, ValueProp.Move), new IntVar("Hits", 2m)];
+            [new DamageVar(8m, ValueProp.Move), new IntVar("Hits", 1m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNoMoreFalchion);
 
@@ -58,7 +58,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(2m); // 6 → 8
+            DynamicVars.Damage.UpgradeValueBy(2m); // 8 → 10
         }
     }
 }
