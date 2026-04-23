@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -21,11 +22,14 @@ namespace STS2_WineFox.Cards.Uncommon
         1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Stones", 4m)];
+        [
+            ModCardVars.Computed("Stones", 4m, _ => DynamicVars["Stones"].BaseValue,
+                WineFoxCardVarFactory.StressDoubledDynamicVar("Stones")),
+        ];
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Stone];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPetrificationSpell);
 
         protected override async Task OnPlay(
@@ -36,17 +40,17 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner.CombatState is not { } combatState) return;
 
             var stones = DynamicVars["Stones"].BaseValue;
+            var hasStress = owner.Powers.OfType<StressPower>().Any(p => p.Amount > 0);
+            var damageAmount = stones * (hasStress ? 2m : 1m);
+            
+            await MaterialCmd.GainMaterial<StonePower>(this, DynamicVars["Stones"].BaseValue);
 
-            // Gain stones first (without stress multiplier so the HP loss is predictable)
-            await MaterialCmd.GainMaterial<StonePower>(owner, stones, sourceCard: this, applyStress: false);
-
-            // Enemies lose HP equal to stones gained from this card
             foreach (var enemy in combatState.HittableEnemies.ToList())
             {
                 await CreatureCmd.Damage(
                     choiceContext,
                     enemy,
-                    stones,
+                    damageAmount,
                     ValueProp.Unblockable | ValueProp.Unpowered,
                     owner,
                     this);
