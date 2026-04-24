@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -93,7 +94,7 @@ namespace STS2_WineFox.Powers
         }
 
         public override Task BeforeSideTurnStart(
-            PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+            PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
         {
             if (side != Owner.Side) return Task.CompletedTask;
 
@@ -104,7 +105,7 @@ namespace STS2_WineFox.Powers
             return Task.CompletedTask;
         }
 
-        public override Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
         {
             if (_noEthereal) return Task.CompletedTask;
             if (card?.Owner?.Creature != Owner) return Task.CompletedTask;

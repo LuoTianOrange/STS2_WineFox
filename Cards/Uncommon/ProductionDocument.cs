@@ -28,8 +28,7 @@ namespace STS2_WineFox.Cards.Uncommon
         {
             var owner = Owner;
 
-            await PowerCmd.Apply<ProductionDocumentPower>(
-                owner.Creature,
+            await PowerCmd.Apply<ProductionDocumentPower>(new ThrowingPlayerChoiceContext(), owner.Creature,
                 IsUpgraded ? 3m : 2m,
                 owner.Creature,
                 this);

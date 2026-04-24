@@ -25,14 +25,12 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<PlatingPower>(
-                Owner.Creature,
+            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
                 DynamicVars["Armor"].BaseValue,
                 Owner.Creature,
                 this);
 
-            await PowerCmd.Apply<DiamondArmorPower>(
-                Owner.Creature,
+            await PowerCmd.Apply<DiamondArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
                 1m,
                 Owner.Creature,
                 this);

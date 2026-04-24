@@ -22,7 +22,7 @@ namespace STS2_WineFox.Powers
             if (player.Creature != Owner) return;
 
             Flash();
-            await PowerCmd.Apply<StressPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         }
     }
 }

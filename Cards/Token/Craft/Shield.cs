@@ -34,10 +34,10 @@ namespace STS2_WineFox.Cards.Token.Craft
             if (!play.IsAutoPlay)
             {
                 var cooldown = IsUpgraded ? 1m : 2m;
-                await PowerCmd.Apply<ShieldCooldownPower>(creature, cooldown, creature, this);
+                await PowerCmd.Apply<ShieldCooldownPower>(new ThrowingPlayerChoiceContext(), creature, cooldown, creature, this);
             }
 
-            await PowerCmd.Apply<ShieldDexPower>(target, DynamicVars["Dex"].BaseValue, creature, this);
+            await PowerCmd.Apply<ShieldDexPower>(new ThrowingPlayerChoiceContext(), target, DynamicVars["Dex"].BaseValue, creature, this);
             if (IsUpgraded)
                 await CreatureCmd.GainBlock(target, DynamicVars["Block"].BaseValue, ValueProp.Move, null);
         }

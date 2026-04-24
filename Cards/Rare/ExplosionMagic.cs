@@ -41,10 +41,10 @@ namespace STS2_WineFox.Cards.Rare
             var burn = DynamicVars["Burn"].BaseValue;
             foreach (var enemy in combatState.HittableEnemies.ToList())
             {
-                await PowerCmd.Apply<BurningPower>(enemy, burn, owner, this);
+                await PowerCmd.Apply<BurningPower>(new ThrowingPlayerChoiceContext(), enemy, burn, owner, this);
             }
 
-            await PowerCmd.Apply<DexterityPower>(owner, -3m, owner, this);
+            await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), owner, -3m, owner, this);
         }
 
         protected override void OnUpgrade()

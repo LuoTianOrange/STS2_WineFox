@@ -35,8 +35,7 @@ namespace STS2_WineFox.Cards.Token.Craft
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<IronSwordPower>(
-                Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronSwordPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

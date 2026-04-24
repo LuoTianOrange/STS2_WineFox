@@ -36,7 +36,7 @@ namespace STS2_WineFox.Powers
             clone.AddKeyword(CardKeyword.Exhaust);
             ConfigureClone(clone);
 
-            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
+            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, player);
             CardCmd.PreviewCardPileAdd(cardInstance);
         }
 

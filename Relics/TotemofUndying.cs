@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -50,7 +51,7 @@ namespace STS2_WineFox.Relics
                 creature,
                 Math.Max(1m, creature.MaxHp * (DynamicVars.Heal.BaseValue / 100m)));
 
-            await PowerCmd.Apply<RegenPower>(creature, 10m, creature, null);
+            await PowerCmd.Apply<RegenPower>(new ThrowingPlayerChoiceContext(), creature, 10m, creature, null);
 
             await CreatureCmd.GainBlock(creature, 15m, ValueProp.Unpowered, null);
         }

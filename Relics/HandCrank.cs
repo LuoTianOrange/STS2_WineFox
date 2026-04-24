@@ -48,7 +48,7 @@ namespace STS2_WineFox.Relics
             await ((IDirectApply)chosen).Apply();
         }
 
-        protected virtual List<CardModel> CreateOptions(CombatState combatState)
+        protected virtual List<CardModel> CreateOptions(ICombatState combatState)
         {
             return
             [

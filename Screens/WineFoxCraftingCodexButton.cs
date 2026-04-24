@@ -24,7 +24,6 @@ namespace STS2_WineFox.Screens
     ///     the mod’s <c>ui/button_export.png</c> asset).
     /// </summary>
     [RegisterOwnedTopBarButton("crafting_codex",
-        LocStem = "STS2_WINE_FOX_TOPBARBUTTON_CRAFTING_CODEX",
         ButtonOrder = 0,
         IconPath = Const.Paths.CraftingCodexTopBarButtonIcon)]
     public sealed class WineFoxCraftingCodexButton : IModTopBarButtonHandler

@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Token.HandCrank
         
         public async Task Apply()
         {
-            await PowerCmd.Apply<StressPower>(Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
         }
 
         protected override async Task OnPlay(

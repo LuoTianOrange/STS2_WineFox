@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Powers;
 
@@ -59,7 +60,7 @@ namespace STS2_WineFox.Commands
 
                 Entries.Add(new(type,
                     async (creature, amount, sourceCard) =>
-                        await PowerCmd.Apply<T>(creature, amount, creature, sourceCard)));
+                        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), creature, amount, creature, sourceCard)));
             }
         }
 

@@ -51,7 +51,7 @@ namespace STS2_WineFox.Powers
             return GetTickDamageAfterHooks();
         }
 
-        public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+        public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
         {
             if (side != Owner.Side) return;
 
@@ -68,7 +68,7 @@ namespace STS2_WineFox.Powers
 
             var newAmount = Math.Ceiling(Amount / 2m);
             var reduction = Amount - newAmount;
-            if (reduction > 0m) await PowerCmd.ModifyAmount(this, -reduction, null, null);
+            if (reduction > 0m) await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -reduction, null, null);
 
             if (newAmount <= 0m)
                 await PowerCmd.Remove(this);

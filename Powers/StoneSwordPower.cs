@@ -22,8 +22,8 @@ namespace STS2_WineFox.Powers
             if (player.Creature != Owner) return;
 
             Flash();
-            await PowerCmd.Apply<StrengthPower>(Owner, -2m, Owner, null);
-            await PowerCmd.ModifyAmount(this, -1m, null, null);
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner, -2m, Owner, null);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, null);
 
             if (Amount <= 0m)
                 await PowerCmd.Remove(this);

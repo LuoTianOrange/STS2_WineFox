@@ -33,7 +33,7 @@ namespace STS2_WineFox.Cards.Uncommon
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<SnowBallOverwhelmingPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<SnowBallOverwhelmingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

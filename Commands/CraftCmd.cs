@@ -55,7 +55,7 @@ namespace STS2_WineFox.Commands
             return CraftRecipeRegistry.All.Any(recipe => recipe.CanCraft(creature));
         }
 
-        public static IReadOnlyList<CraftOption> GetOptions(CombatState state, Player owner)
+        public static IReadOnlyList<CraftOption> GetOptions(ICombatState state, Player owner)
         {
             ArgumentNullException.ThrowIfNull(state);
             ArgumentNullException.ThrowIfNull(owner);
@@ -330,7 +330,7 @@ namespace STS2_WineFox.Commands
             return selectedOption.Card;
         }
 
-        private static async Task DeliverCraftProduct(CombatState combatState, CraftExecutionContext context)
+        private static async Task DeliverCraftProduct(ICombatState combatState, CraftExecutionContext context)
         {
             var deliveryContext = context.Product is ICraftChoiceEffect
                 ? context with { DeliveryMode = CraftDeliveryMode.ImmediateEffect }
@@ -342,7 +342,8 @@ namespace STS2_WineFox.Commands
             switch (deliveryContext.DeliveryMode)
             {
                 case CraftDeliveryMode.ToHand:
-                    await CardPileCmd.AddGeneratedCardToCombat(deliveryContext.Product, PileType.Hand, true);
+                    await CardPileCmd.AddGeneratedCardToCombat(deliveryContext.Product, PileType.Hand,
+                        deliveryContext.Product.Owner);
                     break;
                 case CraftDeliveryMode.AutoPlay:
                     await CardCmd.AutoPlay(deliveryContext.ChoiceContext, deliveryContext.Product,
@@ -608,7 +609,7 @@ namespace STS2_WineFox.Commands
 
             await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
             foreach (var (power, amount) in powersToConsume)
-                await PowerCmd.ModifyAmount(power, -amount, applier, cardSource);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), power, -amount, applier, cardSource);
             await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
             await MaterialEventFlow.DispatchAfterResolved(new()
             {
@@ -651,7 +652,7 @@ namespace STS2_WineFox.Commands
 
         private sealed class CraftTracker
         {
-            public CombatState? CombatState { get; private set; }
+            public ICombatState? CombatState { get; private set; }
             public object? TurnToken { get; set; }
             public int CraftsThisTurn { get; set; }
             public int CraftsThisCombat { get; set; }
@@ -669,7 +670,7 @@ namespace STS2_WineFox.Commands
             public Dictionary<Type, decimal> MaterialGainedByTypeThisTurn { get; } = new();
             public Dictionary<Type, decimal> MaterialGainedByTypeThisCombat { get; } = new();
 
-            public void ResetForCombat(CombatState? combatState)
+            public void ResetForCombat(ICombatState? combatState)
             {
                 CombatState = combatState;
                 TurnToken = null;

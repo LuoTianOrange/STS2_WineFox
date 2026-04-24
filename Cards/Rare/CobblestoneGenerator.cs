@@ -26,7 +26,7 @@ namespace STS2_WineFox.Cards.Rare
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<BrushStoneFormPower>(Owner.Creature, DynamicVars["BrushStoneFormPower"].BaseValue,
+            await PowerCmd.Apply<BrushStoneFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["BrushStoneFormPower"].BaseValue,
                 Owner.Creature, this);
         }
 

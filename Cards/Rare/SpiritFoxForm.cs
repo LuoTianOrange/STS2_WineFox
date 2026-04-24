@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Rare
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<SpiritFoxFormPower>(Owner.Creature, DynamicVars["Slow"].BaseValue, Owner.Creature,
+            await PowerCmd.Apply<SpiritFoxFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Slow"].BaseValue, Owner.Creature,
                 this);
         }
 

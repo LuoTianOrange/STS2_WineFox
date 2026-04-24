@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -22,11 +23,11 @@ namespace STS2_WineFox.Enchantments
             return cardType == CardType.Attack;
         }
 
-        public override async Task AfterAttack(AttackCommand command)
+        public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
         {
-            if (_isSweeping || command.ModelSource != Card) return;
+            if (_isSweeping || command.ModelSource != Card || Card is null) return;
 
-            var ownerCreature = Card?.Owner?.Creature;
+            var ownerCreature = Card.Owner?.Creature;
             if (ownerCreature == null) return;
             if (ownerCreature.CombatState is not { } combatState) return;
 
@@ -52,7 +53,7 @@ namespace STS2_WineFox.Enchantments
                         .FromCard(Card)
                         .Targeting(enemy)
                         .WithHitFx("vfx/vfx_attack_slash")
-                        .Execute(null);
+                        .Execute(choiceContext);
             }
             finally
             {

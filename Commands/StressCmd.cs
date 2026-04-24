@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Powers;
 
@@ -29,7 +30,7 @@ namespace STS2_WineFox.Commands
             if (stress == null)
                 return false;
 
-            await PowerCmd.Apply<StressPower>(creature, -1m, creature, source);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), creature, -1m, creature, source);
 
             var listeners = creature.Powers.OfType<IStressConsumeListener>().ToList();
             foreach (var listener in listeners)

@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             var owner = Owner;
-            await PowerCmd.Apply<MassProductionPower>(owner.Creature, 1m, owner.Creature, this);
+            await PowerCmd.Apply<MassProductionPower>(new ThrowingPlayerChoiceContext(), owner.Creature, 1m, owner.Creature, this);
         }
 
         protected override void OnUpgrade()

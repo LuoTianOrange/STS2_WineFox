@@ -30,7 +30,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var stressPower = Owner.Creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
             if (stressPower != null)
             {
-                await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), stressPower, -1m, null, this);
                 await PlayerCmd.GainEnergy(DynamicVars["BonusEnergy"].BaseValue, Owner);
             }
         }

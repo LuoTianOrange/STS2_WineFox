@@ -26,7 +26,7 @@ namespace STS2_WineFox.Cards.Common
             CardPlay play)
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-            await PowerCmd.Apply<StressPower>(Owner.Creature, DynamicVars["StressPower"].BaseValue, Owner.Creature,
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["StressPower"].BaseValue, Owner.Creature,
                 this);
             PlayerCmd.EndTurn(Owner, false);
         }

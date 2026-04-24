@@ -22,7 +22,7 @@ namespace STS2_WineFox.Relics
             new("Iron", 3m)
         ];
 
-        protected override List<CardModel> CreateOptions(CombatState combatState)
+        protected override List<CardModel> CreateOptions(ICombatState combatState)
         {
             var stress = combatState.CreateCard(ModelDb.Card<ObtainStress>(), Owner);
             var materials = combatState.CreateCard(ModelDb.Card<ObtainMaterials>(), Owner);

@@ -29,7 +29,7 @@ namespace STS2_WineFox.Cards.Uncommon
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<OtherworldCrossingPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<OtherworldCrossingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

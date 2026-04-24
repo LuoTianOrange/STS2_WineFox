@@ -38,7 +38,7 @@ namespace STS2_WineFox.Cards.Common
                 Owner.Creature,
                 this,
                 DynamicVars["Plant"].BaseValue);
-            await PowerCmd.Apply<PlantPower>(Owner.Creature, woodNextTurn, Owner.Creature, this);
+            await PowerCmd.Apply<PlantPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, woodNextTurn, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

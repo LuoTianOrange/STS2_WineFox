@@ -27,7 +27,7 @@ namespace STS2_WineFox.Cards.Rare
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<PlanningExpertPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<PlanningExpertPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -66,7 +66,7 @@ namespace STS2_WineFox.Cards.Uncommon
                     .Targeting(target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
-                await PowerCmd.Apply<VulnerablePower>(target, 1m, owner, this);
+                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, 1m, owner, this);
             }
         }
 

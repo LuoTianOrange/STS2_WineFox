@@ -27,8 +27,7 @@ namespace STS2_WineFox.Cards.Uncommon
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<SlashBladeWoodPower>(
-                Owner.Creature,
+            await PowerCmd.Apply<SlashBladeWoodPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
                 DynamicVars["SlashBladeWoodPower"].BaseValue,
                 Owner.Creature,
                 this);

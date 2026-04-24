@@ -32,11 +32,11 @@ namespace STS2_WineFox.Cards.Uncommon
                 var existing = Owner.Creature.Powers.OfType<MemoryPower>().FirstOrDefault();
                 if (existing != null)
                     await PowerCmd.Remove(existing);
-                await PowerCmd.Apply<MemoryPowerUpgraded>(Owner.Creature, 1m, Owner.Creature, this);
+                await PowerCmd.Apply<MemoryPowerUpgraded>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
             }
             else
             {
-                await PowerCmd.Apply<MemoryPower>(Owner.Creature, 1m, Owner.Creature, this);
+                await PowerCmd.Apply<MemoryPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
             }
         }
 

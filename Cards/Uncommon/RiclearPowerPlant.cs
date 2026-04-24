@@ -27,8 +27,7 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-            await PowerCmd.Apply<StressPower>(
-                Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

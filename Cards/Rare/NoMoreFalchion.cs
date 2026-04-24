@@ -51,7 +51,7 @@ namespace STS2_WineFox.Cards.Rare
             var ironPower = Owner.Creature.Powers.OfType<IronPower>().FirstOrDefault(p => p.Amount > 0m);
             if (ironPower != null)
             {
-                await PowerCmd.ModifyAmount(ironPower, -1m, null, this);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), ironPower, -1m, null, this);
                 DynamicVars["Hits"].BaseValue += 1m;
             }
         }

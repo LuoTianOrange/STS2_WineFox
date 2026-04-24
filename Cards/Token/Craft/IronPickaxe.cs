@@ -24,8 +24,7 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<IronPickaxePower>(
-                Owner.Creature, DynamicVars["Times"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronPickaxePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Times"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

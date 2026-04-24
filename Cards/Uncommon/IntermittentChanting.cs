@@ -33,8 +33,8 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             var creature = Owner.Creature;
-            await PowerCmd.Apply<WeakPower>(creature, 1m, creature, this);
-            await PowerCmd.Apply<TrackingPower>(creature, DynamicVars["Block"].BaseValue, creature, this);
+            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
+            await PowerCmd.Apply<TrackingPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars["Block"].BaseValue, creature, this);
         }
 
         protected override void OnUpgrade()

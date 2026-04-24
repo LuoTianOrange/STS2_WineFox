@@ -34,7 +34,7 @@ namespace STS2_WineFox.Enchantments
             var explicitTarget = cardPlay.Target;
             if (explicitTarget != null)
             {
-                await PowerCmd.Apply<BurningPower>(explicitTarget, burnStacks, ownerCreature, cardPlay.Card);
+                await PowerCmd.Apply<BurningPower>(new ThrowingPlayerChoiceContext(), explicitTarget, burnStacks, ownerCreature, cardPlay.Card);
             }
             else
             {
@@ -42,7 +42,7 @@ namespace STS2_WineFox.Enchantments
                 var enemies = combatState?.HittableEnemies;
                 if (enemies != null)
                     foreach (var enemy in enemies)
-                        await PowerCmd.Apply<BurningPower>(enemy, burnStacks, ownerCreature, cardPlay.Card);
+                        await PowerCmd.Apply<BurningPower>(new ThrowingPlayerChoiceContext(), enemy, burnStacks, ownerCreature, cardPlay.Card);
             }
         }
     }

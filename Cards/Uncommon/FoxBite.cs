@@ -33,9 +33,9 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var amount = DynamicVars["Debuff"].BaseValue;
 
-            await PowerCmd.Apply<WeakPower>(target, amount, owner, this);
+            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, amount, owner, this);
 
-            await PowerCmd.Apply<VulnerablePower>(target, amount, owner, this);
+            await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, amount, owner, this);
         }
 
         protected override void OnUpgrade()

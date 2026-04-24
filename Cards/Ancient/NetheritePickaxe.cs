@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Ancient
             if (creature == null)
                 return;
 
-            var appliedPower = await PowerCmd.Apply<NetheritePickaxePower>(creature, 1m, creature, this);
+            var appliedPower = await PowerCmd.Apply<NetheritePickaxePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
             if (appliedPower != null) appliedPower.ExcludeCard(this);
         }
 

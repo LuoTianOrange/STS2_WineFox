@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -40,7 +41,7 @@ namespace STS2_WineFox.Utils
                     var amt = tsp.Amount;
                     var sign = tsp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
                     await PowerCmd.Remove(tsp);
-                    await PowerCmd.Apply<StrengthPower>(owner, -sign * amt, applierCreature, cardSource, true);
+                    await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
                     return;
                 }
                 case TemporaryDexterityPower tdp:
@@ -48,7 +49,7 @@ namespace STS2_WineFox.Utils
                     var amt = tdp.Amount;
                     var sign = tdp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
                     await PowerCmd.Remove(tdp);
-                    await PowerCmd.Apply<DexterityPower>(owner, -sign * amt, applierCreature, cardSource, true);
+                    await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
                     return;
                 }
                 case TemporaryFocusPower tfp:
@@ -56,7 +57,7 @@ namespace STS2_WineFox.Utils
                     var amt = tfp.Amount;
                     var sign = tfp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
                     await PowerCmd.Remove(tfp);
-                    await PowerCmd.Apply<FocusPower>(owner, -sign * amt, applierCreature, cardSource, true);
+                    await PowerCmd.Apply<FocusPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
                     return;
                 }
                 default:

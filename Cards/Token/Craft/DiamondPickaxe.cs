@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<DiamondPickaxePower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<DiamondPickaxePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

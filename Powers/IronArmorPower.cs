@@ -22,7 +22,7 @@ namespace STS2_WineFox.Powers
             if (player.Creature != Owner) return;
 
             Flash();
-            await PowerCmd.Apply<PlatingPower>(Owner, 1, Owner, null);
+            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);
         }
     }
 }

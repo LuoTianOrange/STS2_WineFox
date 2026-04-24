@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Token.HellGift
             CardPlay play)
         {
             var multiplier = IsUpgraded ? 3m : 2m;
-            await PowerCmd.Apply<GoldenPickaxePower>(Owner.Creature, multiplier, Owner.Creature, this);
+            await PowerCmd.Apply<GoldenPickaxePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, multiplier, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -24,10 +24,8 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<PlatingPower>(
-                Owner.Creature, DynamicVars["Armor"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<IronArmorPower>(
-                Owner.Creature, DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Armor"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

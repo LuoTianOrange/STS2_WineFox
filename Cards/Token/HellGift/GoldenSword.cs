@@ -22,7 +22,7 @@ namespace STS2_WineFox.Cards.Token.HellGift
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<GoldenSwordPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<GoldenSwordPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         }
     }
 }

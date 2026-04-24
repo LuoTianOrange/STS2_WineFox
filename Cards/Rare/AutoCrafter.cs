@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Rare
             var creature = Owner.Creature;
             var target = play.Target ?? creature;
 
-            await PowerCmd.Apply<AutoCrafterPower>(target, 1m, creature, this);
+            await PowerCmd.Apply<AutoCrafterPower>(new ThrowingPlayerChoiceContext(), target, 1m, creature, this);
         }
 
         protected override void OnUpgrade()

@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using STS2_WineFox.Powers;
@@ -216,7 +217,7 @@ namespace STS2_WineFox.Commands
                     await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
                     foreach (var entry in entries)
                         if (entry.Power != null)
-                            await PowerCmd.ModifyAmount(entry.Power, -entry.Amount, null, card);
+                            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), entry.Power, -entry.Amount, null, card);
                     await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
                     await MaterialEventFlow.DispatchAfterResolved(new()
                     {
@@ -264,7 +265,7 @@ namespace STS2_WineFox.Commands
                     TotalAmount = amount,
                 };
                 await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
-                await PowerCmd.ModifyAmount(power, -amount, null, card);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), power, -amount, null, card);
                 await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
                 await MaterialEventFlow.DispatchAfterResolved(new()
                 {
@@ -306,7 +307,7 @@ namespace STS2_WineFox.Commands
                 TotalAmount = amount,
             };
             await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
-            await PowerCmd.Apply<T>(owner, -amount, owner, card);
+            await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), owner, -amount, owner, card);
             await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
             await MaterialEventFlow.DispatchAfterResolved(new()
             {
@@ -350,8 +351,8 @@ namespace STS2_WineFox.Commands
                 TotalAmount = firstAmount + secondAmount,
             };
             await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
-            await PowerCmd.Apply<TFirst>(owner, -firstAmount, owner, card);
-            await PowerCmd.Apply<TSecond>(owner, -secondAmount, owner, card);
+            await PowerCmd.Apply<TFirst>(new ThrowingPlayerChoiceContext(), owner, -firstAmount, owner, card);
+            await PowerCmd.Apply<TSecond>(new ThrowingPlayerChoiceContext(), owner, -secondAmount, owner, card);
             await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
             await MaterialEventFlow.DispatchAfterResolved(new()
             {

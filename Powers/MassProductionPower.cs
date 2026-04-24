@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -19,9 +20,9 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.MassProductionPowerIcon);
 
-        public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+        public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
         {
-            if (!addedByPlayer) return;
+            if (creator == null) return;
 
             if (card.IsClone) return;
 
@@ -56,7 +57,7 @@ namespace STS2_WineFox.Powers
                     combatState.RemoveCard(clone);
                     combatState.AddCard(clone, teammate.Player);
 
-                    var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
+                    var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, teammate.Player);
 
                     if (LocalContext.IsMe(teammate))
                         CardCmd.PreviewCardPileAdd(instance);

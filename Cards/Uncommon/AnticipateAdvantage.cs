@@ -36,7 +36,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             if (!combatState.HittableEnemies.Any(e => e.Monster?.IntendsToAttack == true)) return;
 
-            await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars["Dex"].BaseValue,
+            await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Dex"].BaseValue,
                 Owner.Creature, this);
         }
 

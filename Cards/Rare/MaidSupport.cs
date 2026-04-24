@@ -39,8 +39,8 @@ namespace STS2_WineFox.Cards.Rare
 
             foreach (var teammate in teammates)
             {
-                await PowerCmd.Apply<PlatingPower>(teammate, armorAmount, owner.Creature, this);
-                await PowerCmd.Apply<ThornsPower>(teammate, thornsAmount, owner.Creature, this);
+                await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), teammate, armorAmount, owner.Creature, this);
+                await PowerCmd.Apply<ThornsPower>(new ThrowingPlayerChoiceContext(), teammate, thornsAmount, owner.Creature, this);
             }
         }
 

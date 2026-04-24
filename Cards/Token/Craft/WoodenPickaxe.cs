@@ -31,8 +31,8 @@ namespace STS2_WineFox.Cards.Token.Craft
             var energyNextTurn = DynamicVars.Energy.BaseValue;
             var cardsNextTurn = DynamicVars.Cards.BaseValue;
 
-            await PowerCmd.Apply<EnergyNextTurnPower>(creature, energyNextTurn, creature, this);
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(creature, cardsNextTurn, creature, this);
+            await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), creature, energyNextTurn, creature, this);
+            await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), creature, cardsNextTurn, creature, this);
         }
 
         protected override void OnUpgrade()

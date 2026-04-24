@@ -27,7 +27,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var creature = Owner.Creature;
             var strength = creature.GetPowerAmount<StrengthPower>();
 
-            await PowerCmd.Apply<HighlyFocusedTrackerPower>(creature, 1m, creature, this);
+            await PowerCmd.Apply<HighlyFocusedTrackerPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
 
             if (strength > 0m)
             {

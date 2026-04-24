@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<DiggingPower>(Owner.Creature, DynamicVars["Digging"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<DiggingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Digging"].BaseValue, Owner.Creature, this);
 
             if (IsUpgraded)
                 await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, DynamicVars["WoodPower"].BaseValue,

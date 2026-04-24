@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Uncommon
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<LaunchPlatformPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<LaunchPlatformPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

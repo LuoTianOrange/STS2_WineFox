@@ -47,7 +47,7 @@ namespace STS2_WineFox.Powers
             clone.AddKeyword(CardKeyword.Ethereal);
             clone.AddKeyword(CardKeyword.Exhaust);
 
-            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, true);
+            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, player);
             CardCmd.PreviewCardPileAdd(cardInstance);
         }
     }

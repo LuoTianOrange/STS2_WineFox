@@ -33,7 +33,7 @@ namespace STS2_WineFox.Powers
                 // 在施加之前记录敌人是否已经有缓慢
                 var hadSlow = target.Powers.OfType<SlowPower>().Any();
 
-                await PowerCmd.Apply<SlowPower>(target, Amount, Owner, null);
+                await PowerCmd.Apply<SlowPower>(new ThrowingPlayerChoiceContext(), target, Amount, Owner, null);
 
                 // 若敌人之前已有缓慢，额外 +1 SlowAmount（使本次出牌贡献翻倍为 +2）
                 if (!hadSlow) continue;

@@ -40,7 +40,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            await PowerCmd.Apply<DemisePower>(play.Target, DynamicVars["Stacks"].BaseValue, owner, this);
+            await PowerCmd.Apply<DemisePower>(new ThrowingPlayerChoiceContext(), play.Target, DynamicVars["Stacks"].BaseValue, owner, this);
 
             foreach (var enemy in combatState.HittableEnemies.ToList())
             {

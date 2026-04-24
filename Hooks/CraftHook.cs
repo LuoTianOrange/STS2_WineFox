@@ -8,7 +8,7 @@ namespace STS2_WineFox.Hooks
     /// </summary>
     public static class CraftHook
     {
-        public static async Task BeforeCraft(CombatState combatState, CraftExecutionContext context)
+        public static async Task BeforeCraft(ICombatState combatState, CraftExecutionContext context)
         {
             foreach (var model in combatState.IterateHookListeners())
             {
@@ -19,7 +19,7 @@ namespace STS2_WineFox.Hooks
             }
         }
 
-        public static async Task BeforeCraftProductDelivered(CombatState combatState, CraftExecutionContext context)
+        public static async Task BeforeCraftProductDelivered(ICombatState combatState, CraftExecutionContext context)
         {
             foreach (var model in combatState.IterateHookListeners())
             {
@@ -30,7 +30,7 @@ namespace STS2_WineFox.Hooks
             }
         }
 
-        public static async Task AfterCraftProductDelivered(CombatState combatState, CraftExecutionContext context)
+        public static async Task AfterCraftProductDelivered(ICombatState combatState, CraftExecutionContext context)
         {
             foreach (var model in combatState.IterateHookListeners())
             {

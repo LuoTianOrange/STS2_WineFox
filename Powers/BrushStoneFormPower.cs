@@ -39,7 +39,7 @@ namespace STS2_WineFox.Powers
 
             var data = GetInternalData<Data>();
             var amount = Amount + data.Amount;
-            await PowerCmd.Apply<StonePower>(Owner, amount, Owner, null);
+            await PowerCmd.Apply<StonePower>(new ThrowingPlayerChoiceContext(), Owner, amount, Owner, null);
             data.Amount += data.Increment;
             InvokeDisplayAmountChanged();
         }

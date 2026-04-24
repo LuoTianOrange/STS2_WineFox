@@ -35,8 +35,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 .Execute(choiceContext);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
-            await PowerCmd.Apply<RepairPower>(
-                Owner.Creature, DynamicVars["Repair"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RepairPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Repair"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

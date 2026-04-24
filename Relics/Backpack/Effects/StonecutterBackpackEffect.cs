@@ -38,7 +38,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             SophisticatedBackpack backpack,
             PlayerChoiceContext choiceContext,
             CombatSide side,
-            CombatState combatState)
+            ICombatState combatState)
         {
             if (side != backpack.Owner.Creature.Side) return;
 
@@ -61,7 +61,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             backpack.SetEffectStateInt<StonecutterBackpackEffect>(TurnCounter, 0);
             backpack.RefreshDescriptionText();
             backpack.NotifyBackpackEffectTriggered();
-            await PowerCmd.Apply<StonePower>(backpack.Owner.Creature, currentStone, backpack.Owner.Creature, null);
+            await PowerCmd.Apply<StonePower>(new ThrowingPlayerChoiceContext(), backpack.Owner.Creature, currentStone, backpack.Owner.Creature, null);
         }
     }
 }

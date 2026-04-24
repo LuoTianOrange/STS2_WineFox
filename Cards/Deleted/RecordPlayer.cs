@@ -49,8 +49,7 @@ namespace STS2_WineFox.Cards.Deleted
             }
 
             await MaterialCmd.LoseMaterial<DiamondPower>(this, 1m, play);
-            await PowerCmd.Apply<RitualPower>(
-                Owner.Creature, DynamicVars["RitualPower"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RitualPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["RitualPower"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
