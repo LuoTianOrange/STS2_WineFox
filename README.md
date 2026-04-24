@@ -482,4 +482,4 @@ STS2_WineFox/
 
 ## 鸣谢
 
-- [酒石酸菌](https://github.com/TartaricAcid/WineFoxModel)创作了可爱的酒狐
+- 感谢[酒石酸菌](https://github.com/TartaricAcid/WineFoxModel)创作了可爱的酒狐

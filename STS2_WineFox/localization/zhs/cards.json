@@ -233,6 +233,9 @@
   "STS2_WINE_FOX_CARD_OBTAIN_STRESS.description": "获得{Stress:diff()}层[gold]应力[/gold]。",
 
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "获得材料",
-  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "获得{Wood:diff()}个[gold]木板[/gold]，{Stone:diff()}个[gold]圆石[/gold]{IfUpgraded:show:和{Iron:diff()}个[gold]铁锭[/gold]}。"
+  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "获得{Wood:diff()}个[gold]木板[/gold]，{Stone:diff()}个[gold]圆石[/gold]{IfUpgraded:show:和{Iron:diff()}个[gold]铁锭[/gold]}。",
+
+  "STS2_WINE_FOX_CARD_NETHERITE_SWORD.title": "下界合金剑",
+  "STS2_WINE_FOX_CARD_NETHERITE_SWORD.description": "将你[gold]消耗牌堆[/gold]中的所有[gold]剑[/gold]{IfUpgraded:show:升级后}打出。"
   
 }
