@@ -31,29 +31,48 @@ namespace STS2_WineFox.Enchantments
             if (ownerCreature == null) return;
             if (ownerCreature.CombatState is not { } combatState) return;
 
-            if (!Card.DynamicVars.TryGetValue("Damage", out var dv)) return;
+            var pendingSweepDamage = new Dictionary<Creature, decimal>();
+            var hittableEnemies = combatState.HittableEnemies?.ToList();
+            if (hittableEnemies == null || hittableEnemies.Count == 0) return;
 
-            var halfDamage = Math.Ceiling(dv.BaseValue * 0.5m);
-            if (halfDamage <= 0m) return;
-
-            var hitTargets = new HashSet<Creature>();
             foreach (var result in command.Results)
-                if (result.Receiver is { } receiver)
-                    hitTargets.Add(receiver);
+            {
+                if (result.Receiver is not { } receiver) continue;
 
-            var others = combatState.HittableEnemies?
-                .Where(e => !hitTargets.Contains(e)).ToList();
-            if (others == null || others.Count == 0) return;
+                var resultDamage = result.TotalDamage + result.OverkillDamage;
+                if (resultDamage <= 0) continue;
+
+                var sweepDamage = Math.Ceiling(resultDamage * 0.5m);
+                if (sweepDamage <= 0m) continue;
+
+                foreach (var enemy in hittableEnemies)
+                {
+                    if (enemy == receiver) continue;
+
+                    if (pendingSweepDamage.TryGetValue(enemy, out var existingDamage))
+                        pendingSweepDamage[enemy] = existingDamage + sweepDamage;
+                    else
+                        pendingSweepDamage[enemy] = sweepDamage;
+                }
+            }
+
+            if (pendingSweepDamage.Count == 0) return;
 
             _isSweeping = true;
             try
             {
-                foreach (var enemy in others)
-                    await DamageCmd.Attack(halfDamage)
+                foreach (var (enemy, totalSweepDamage) in pendingSweepDamage)
+                {
+                    if (totalSweepDamage <= 0m) continue;
+                    if (!enemy.IsAlive) continue;
+
+                    await DamageCmd.Attack(totalSweepDamage)
+                        .Unpowered()
                         .FromCard(Card)
                         .Targeting(enemy)
                         .WithHitFx("vfx/vfx_attack_slash")
                         .Execute(choiceContext);
+                }
             }
             finally
             {
