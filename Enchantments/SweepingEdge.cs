@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -25,15 +26,16 @@ namespace STS2_WineFox.Enchantments
 
         public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
         {
-            if (_isSweeping || command.ModelSource != Card || Card is null) return;
+            if (_isSweeping || Card is null) return;
+            if (!IsAttackFromEnchantedCard(command)) return;
 
             var ownerCreature = Card.Owner?.Creature;
             if (ownerCreature == null) return;
             if (ownerCreature.CombatState is not { } combatState) return;
 
             var pendingSweepDamage = new Dictionary<Creature, decimal>();
-            var hittableEnemies = combatState.HittableEnemies?.ToList();
-            if (hittableEnemies == null || hittableEnemies.Count == 0) return;
+            var opponents = combatState.GetOpponentsOf(ownerCreature).Where(enemy => enemy.IsAlive).ToList();
+            if (opponents.Count == 0) return;
 
             foreach (var result in command.Results)
             {
@@ -45,7 +47,7 @@ namespace STS2_WineFox.Enchantments
                 var sweepDamage = Math.Ceiling(resultDamage * 0.5m);
                 if (sweepDamage <= 0m) continue;
 
-                foreach (var enemy in hittableEnemies)
+                foreach (var enemy in opponents)
                 {
                     if (enemy == receiver) continue;
 
@@ -78,6 +80,14 @@ namespace STS2_WineFox.Enchantments
             {
                 _isSweeping = false;
             }
+        }
+
+        private bool IsAttackFromEnchantedCard(AttackCommand command)
+        {
+            if (command.ModelSource == Card) return true;
+            if (command.ModelSource is not CardModel sourceCard) return false;
+
+            return sourceCard.Owner == Card.Owner && sourceCard.Id == Card.Id;
         }
     }
 }
