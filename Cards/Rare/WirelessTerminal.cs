@@ -14,7 +14,10 @@ namespace STS2_WineFox.Cards.Rare
         protected override IEnumerable<string> RegisteredKeywordIds =>
             [WineFoxKeywords.Craft];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWirelessTerminal);
+        public override CardAssetProfile AssetProfile => new(
+            Const.Paths.CardWirelessTerminal,
+            Const.Paths.CardWirelessTerminal,
+            FrameMaterialPath: Const.Paths.CardWirelessTerminalRainbowFrameMat);
 
         protected override PileType GetResultPileType()
         {

@@ -162,6 +162,10 @@ namespace STS2_WineFox
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";
             public const string CardMassProduction = Root + "/cards/card_mass_production.png";
             public const string CardWirelessTerminal = Root + "/cards/card_wireless_terminal.png";
+
+            public const string CardWirelessTerminalRainbowFrameMat =
+                Root + "/materials/wireless_terminal_frame_rainbow_mat.tres";
+
             public const string CardGoldenSword = Root + "/cards/card_golden_sword.png";
             public const string CardHellGift = Root + "/cards/card_hell_gift.png";
             public const string CardSnowBallOverwhelming = Root + "/cards/card_snow_ball_overwhelming.png";
@@ -221,10 +225,10 @@ namespace STS2_WineFox
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
             public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/sweeping_edge_icon.png";
-            
+
             //FMOD BANK
-            public const string WineFoxBank =  Root + "/sfx/characters/WineFox.bank";
-            public const string WineFoxGuidsFile =  Root + "/sfx/characters/WineFox.guids.txt";
+            public const string WineFoxBank = Root + "/sfx/characters/WineFox.bank";
+            public const string WineFoxGuidsFile = Root + "/sfx/characters/WineFox.guids.txt";
         }
 
         public static class Audio
