@@ -1,0 +1,7 @@
+{df3ed69a-9ded-4f0f-a378-2368fa99e6e3} bank:/WineFox
+{71d922fa-410f-4071-8efb-ae0fa8751dca} bank:/WineFoxMaster
+{e9c4022e-3074-0c33-08b2-24f159861b52} bank:/WineFoxMaster.strings
+{a080420e-7210-41ab-936a-d9a56e426f39} bus:/
+{91f2ef91-aed9-4044-aa4c-f8781ce0dd19} bus:/Reverb
+{e58218d5-4c04-40db-a854-2d1250df72b6} bus:/STS2 bus:/
+{1d19811c-ba7e-48a4-bdac-086077eed0b0} event:/sfx/wine_fox_select

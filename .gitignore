@@ -12,3 +12,5 @@ packages/
 local.props
 !local.props.template
 godot.log
+/FMOD/Build
+*.cache

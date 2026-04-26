@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ee4e85f5-87ba-4611-8bf7-a5a61d3425b8}">
+		<property name="assetPath">
+			<value>ai/death15.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>3.8259637188208617</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{64593b19-ba3c-45c9-81dc-1bf0efdf6d8b}</destination>
+		</relationship>
+	</object>
+</objects>

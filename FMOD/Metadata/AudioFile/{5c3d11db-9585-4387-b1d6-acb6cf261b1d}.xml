@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{5c3d11db-9585-4387-b1d6-acb6cf261b1d}">
+		<property name="assetPath">
+			<value>mode/torch1.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.78390022675736959</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{64593b19-ba3c-45c9-81dc-1bf0efdf6d8b}</destination>
+		</relationship>
+	</object>
+</objects>

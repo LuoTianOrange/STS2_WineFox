@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{34f8f5de-e48d-4287-9249-78c19b7ed26b}">
+		<property name="assetPath">
+			<value>ai/hurt_fire1.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.96680272108843535</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{64593b19-ba3c-45c9-81dc-1bf0efdf6d8b}</destination>
+		</relationship>
+	</object>
+</objects>

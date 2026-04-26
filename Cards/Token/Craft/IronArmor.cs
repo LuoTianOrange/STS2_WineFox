@@ -17,7 +17,6 @@ namespace STS2_WineFox.Cards.Token.Craft
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Armor", 7m), new("IronArmor", 1m)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIronArmor);
 
         protected override async Task OnPlay(

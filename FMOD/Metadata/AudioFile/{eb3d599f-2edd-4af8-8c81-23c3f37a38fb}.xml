@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{eb3d599f-2edd-4af8-8c81-23c3f37a38fb}">
+		<property name="assetPath">
+			<value>mode/attack10.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.57301587301587298</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{64593b19-ba3c-45c9-81dc-1bf0efdf6d8b}</destination>
+		</relationship>
+	</object>
+</objects>

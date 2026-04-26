@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerReturn" id="{e58218d5-4c04-40db-a854-2d1250df72b6}">
+		<property name="overridingInputFormat">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>STS2 bus:/</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{93f7385a-c52a-4573-b2f6-c3bfc9393af6}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{9d162988-4f6e-4343-9001-436d6f58d015}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{a080420e-7210-41ab-936a-d9a56e426f39}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{93f7385a-c52a-4573-b2f6-c3bfc9393af6}">
+		<relationship name="effects">
+			<destination>{67c056e4-414b-46cc-a7c1-d608923edff0}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{9d162988-4f6e-4343-9001-436d6f58d015}" />
+	<object class="MixerBusFader" id="{67c056e4-414b-46cc-a7c1-d608923edff0}" />
+</objects>

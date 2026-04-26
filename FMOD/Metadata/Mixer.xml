@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Mixer" id="{56db7907-bc66-41e2-83db-333fadb17078}">
+		<relationship name="masterBus">
+			<destination>{a080420e-7210-41ab-936a-d9a56e426f39}</destination>
+		</relationship>
+		<relationship name="snapshotList">
+			<destination>{5238e52a-9188-4586-b0f7-d7cf930a3ba3}</destination>
+		</relationship>
+		<relationship name="returns">
+			<destination>{91f2ef91-aed9-4044-aa4c-f8781ce0dd19}</destination>
+			<destination>{e58218d5-4c04-40db-a854-2d1250df72b6}</destination>
+			<destination>{b6906828-33f4-4a74-aaa3-6091791e90c9}</destination>
+			<destination>{1436119b-9a55-40aa-8787-e952cdbf548e}</destination>
+			<destination>{688f8eca-cdbe-4027-95fa-a2f8948803e2}</destination>
+			<destination>{6be56718-1dea-42a2-9a07-a057b0ad359b}</destination>
+			<destination>{5064afbf-a133-4250-8d8d-4230bd514e22}</destination>
+			<destination>{7abef0c0-254f-4886-939f-03a7cbfdacb1}</destination>
+			<destination>{5e818a99-f1dc-4c61-a795-6c3d991ebaee}</destination>
+			<destination>{052a678d-c27c-448b-8419-05af8989def1}</destination>
+		</relationship>
+	</object>
+</objects>

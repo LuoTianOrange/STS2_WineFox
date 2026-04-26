@@ -221,11 +221,15 @@ namespace STS2_WineFox
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
             public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/sweeping_edge_icon.png";
+            
+            //FMOD BANK
+            public const string WineFoxBank =  Root + "/sfx/characters/WineFox.bank";
+            public const string WineFoxGuidsFile =  Root + "/sfx/characters/WineFox.guids.txt";
         }
 
         public static class Audio
         {
-            public const string CharacterSelect = "event:/sfx/characters/silent/silent_select";
+            public const string CharacterSelect = "event:/sfx/wine_fox_select";
             public const string CharacterTransition = "event:/sfx/ui/wipe_silent";
             public const string Attack = "event:/sfx/characters/silent/silent_attack";
             public const string Cast = "event:/sfx/characters/silent/silent_cast";

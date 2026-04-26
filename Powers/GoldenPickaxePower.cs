@@ -34,7 +34,7 @@ namespace STS2_WineFox.Powers
                 new ThrowingPlayerChoiceContext(),
                 enemy,
                 totalAmount * Amount,
-                ValueProp.Move,
+                ValueProp.Unpowered,
                 Owner,
                 evt.SourceCard);
         }
