@@ -4,7 +4,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
     public class StonecutterUpgrade()
         : BackpackUpgradeCardBase<StonecutterBackpackEffect>(Const.Paths.CardStonecutterUpgrade)
     {

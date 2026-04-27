@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
     public class IronSword() : WineFoxCard(
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
@@ -35,7 +35,8 @@ namespace STS2_WineFox.Cards.Token.Craft
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
 
-            await PowerCmd.Apply<IronSwordPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronSwordPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Echoes"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
     public class StonePickaxe() : WineFoxCard(0, CardType.Power,
         CardRarity.Token, TargetType.Self, false)
     {
@@ -28,7 +28,8 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<DiggingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Digging"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<DiggingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Digging"].BaseValue, Owner.Creature, this);
 
             if (IsUpgraded)
                 await MaterialCmd.GainMaterials<WoodPower, StonePower>(this, DynamicVars["WoodPower"].BaseValue,

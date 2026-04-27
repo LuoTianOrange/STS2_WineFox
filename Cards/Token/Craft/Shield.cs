@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
     public class Shield() : WineFoxCard(
         0, CardType.Skill, CardRarity.Token, TargetType.AnyPlayer)
     {
@@ -34,10 +34,12 @@ namespace STS2_WineFox.Cards.Token.Craft
             if (!play.IsAutoPlay)
             {
                 var cooldown = IsUpgraded ? 1m : 2m;
-                await PowerCmd.Apply<ShieldCooldownPower>(new ThrowingPlayerChoiceContext(), creature, cooldown, creature, this);
+                await PowerCmd.Apply<ShieldCooldownPower>(new ThrowingPlayerChoiceContext(), creature, cooldown,
+                    creature, this);
             }
 
-            await PowerCmd.Apply<ShieldDexPower>(new ThrowingPlayerChoiceContext(), target, DynamicVars["Dex"].BaseValue, creature, this);
+            await PowerCmd.Apply<ShieldDexPower>(new ThrowingPlayerChoiceContext(), target,
+                DynamicVars["Dex"].BaseValue, creature, this);
             if (IsUpgraded)
                 await CreatureCmd.GainBlock(target, DynamicVars["Block"].BaseValue, ValueProp.Move, null);
         }

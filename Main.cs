@@ -1,10 +1,11 @@
 using System.Reflection;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
-using STS2_WineFox.Content;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
+using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
 using STS2RitsuLib.Unlocks;
 
@@ -16,7 +17,7 @@ namespace STS2_WineFox
         public static readonly Logger Logger = RitsuLibFramework.CreateLogger(Const.ModId);
 
         private static IDisposable? _winefoxBankDeferredInitSubscription;
-        
+
         public static bool IsModActive { get; private set; }
 
         public static void Initialize()
@@ -40,6 +41,18 @@ namespace STS2_WineFox
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 QueueWineFoxFmodBankAfterDeferredInitialization();
                 LoadWineFoxFmodBanksAligned();
+                var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
+                RitsuLibFramework.GetContentRegistry(Const.ModId)
+                    .RegisterCardLibraryCompendiumSharedPoolFilter<WineFoxCraftingCardPool>(
+                        "winefox_crafting",
+                        Const.Paths.CraftingCodexTopBarButtonIcon,
+                        [
+                            new()
+                            {
+                                ModCharacterModelIdEntry = wineFoxPublicEntry,
+                                Relation = CardLibraryCompendiumFilterInsertRelation.After,
+                            },
+                        ]);
                 ModTypeDiscoveryHub.RegisterModAssembly(Const.ModId, assembly);
                 MaterialPowerRegistry.RegisterWineFoxDefaults();
                 IsModActive = true;
@@ -52,7 +65,7 @@ namespace STS2_WineFox
                 IsModActive = false;
             }
         }
-        
+
         private static void QueueWineFoxFmodBankAfterDeferredInitialization()
         {
             if (_winefoxBankDeferredInitSubscription != null)

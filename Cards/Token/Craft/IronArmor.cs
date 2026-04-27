@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
-    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
     public class IronArmor() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
@@ -23,8 +23,10 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Armor"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<IronArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Armor"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<IronArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["IronArmor"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
