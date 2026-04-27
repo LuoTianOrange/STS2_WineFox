@@ -3,10 +3,12 @@ using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
+using STS2_WineFox.Patches;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
+using STS2RitsuLib.Patching.Core;
 using STS2RitsuLib.Unlocks;
 
 namespace STS2_WineFox
@@ -17,6 +19,7 @@ namespace STS2_WineFox
         public static readonly Logger Logger = RitsuLibFramework.CreateLogger(Const.ModId);
 
         private static IDisposable? _winefoxBankDeferredInitSubscription;
+        private static ModPatcher? _runtimePatcher;
 
         public static bool IsModActive { get; private set; }
 
@@ -39,6 +42,8 @@ namespace STS2_WineFox
 
                 var assembly = Assembly.GetExecutingAssembly();
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
+                if (!EnsureRequiredRuntimePatches())
+                    return;
                 QueueWineFoxFmodBankAfterDeferredInitialization();
                 LoadWineFoxFmodBanksAligned();
                 var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
@@ -64,6 +69,29 @@ namespace STS2_WineFox
                 Logger.Error($"Stack trace: {ex.StackTrace}");
                 IsModActive = false;
             }
+        }
+
+        private static bool EnsureRequiredRuntimePatches()
+        {
+            _runtimePatcher ??= CreateRuntimePatcher();
+            return RitsuLibFramework.ApplyRequiredPatcher(
+                _runtimePatcher,
+                DisableModOnRequiredPatcherFailure,
+                "WineFox required runtime patches failed; mod initialization aborted.");
+        }
+
+        private static ModPatcher CreateRuntimePatcher()
+        {
+            var patcher = RitsuLibFramework.CreatePatcher(Const.ModId, "runtime-effects", "runtime effects");
+            patcher.RegisterPatch<WineFoxCreatureLoseHpFlashPatch>();
+            patcher.RegisterPatch<WineFoxCreatureHitTriggerFlashPatch>();
+            patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
+            return patcher;
+        }
+
+        private static void DisableModOnRequiredPatcherFailure()
+        {
+            IsModActive = false;
         }
 
         private static void QueueWineFoxFmodBankAfterDeferredInitialization()
