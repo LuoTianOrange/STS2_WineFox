@@ -40,30 +40,33 @@ namespace STS2_WineFox.Cards.Uncommon
             if (options.Count == 0) return;
 
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 1, 1);
+            var prefs = new CardSelectorPrefs(prompt, 0, IsUpgraded ? options.Count : 1);
 
-            var selectedList = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
-            var chosen = selectedList.FirstOrDefault();
-            if (chosen == null) return;
-
-            if (!IsUpgraded && ReferenceEquals(chosen, this))
-                return;
-
-            var clone = chosen.CreateClone();
+            var selectedList = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, c => options.Contains(c), this)).ToList();
+            if (selectedList.Count == 0) return;
 
             var combatState = ownerCreature.CombatState;
-            if (combatState != null)
+
+            foreach (var chosen in selectedList)
             {
-                combatState.RemoveCard(clone);
-                combatState.AddCard(clone, target.Player);
+
+                if (!IsUpgraded && ReferenceEquals(chosen, this))
+                    continue;
+
+                var clone = chosen.CreateClone();
+
+                if (combatState != null)
+                {
+                    combatState.RemoveCard(clone);
+                    combatState.AddCard(clone, target.Player);
+                }
+
+                var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, target.Player);
+                if (LocalContext.IsMe(target))
+                    CardCmd.PreviewCardPileAdd(instance);
+
+                await CardPileCmd.Add(chosen, PileType.Exhaust);
             }
-
-            var instance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, target.Player);
-            if (LocalContext.IsMe(target))
-                CardCmd.PreviewCardPileAdd(instance);
-
-
-            await CardPileCmd.Add(chosen, PileType.Exhaust);
         }
 
         protected override void OnUpgrade()
