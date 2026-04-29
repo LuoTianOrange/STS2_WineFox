@@ -52,9 +52,8 @@ namespace STS2_WineFox.Cards.Uncommon
             var clone = chosen.CreateClone();
 
             var combatState = ownerCreature.CombatState;
-            if (combatState != null && target.Player != null)
+            if (combatState != null)
             {
-                clone.Owner = chosen.Owner;
                 combatState.RemoveCard(clone);
                 combatState.AddCard(clone, target.Player);
             }
