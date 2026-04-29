@@ -225,6 +225,8 @@ namespace STS2_WineFox
             public const string CardObtainStress = Root + "/cards/card_wind_crank.png";
             public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
             public const string CardHoardingHabit = Root + "/cards/card_hoarding_habit.png";
+            public const string CardLogistics = Root + "/cards/card_logistics.png";
+            public const string CardSweep = Root + "/cards/card_sweep.png";
             
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

@@ -240,5 +240,11 @@
 
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.title": "囤积习惯",
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "获得{Wood:diff()}个[gold]木头[/gold]和{Stone:diff()}个[gold]圆石[/gold]。在下个回合开始时获得{NextTurnMaterial:diff()}个[gold]木头[/gold]和{NextTurnMaterial:diff()}个[gold]圆石[/gold]。"
-  
+  ,
+  "STS2_WINE_FOX_CARD_LOGISTICS.title": "物流",
+  "STS2_WINE_FOX_CARD_LOGISTICS.description": "选择{IfUpgraded:show:任意|一}张手牌并将其[gold]消耗[/gold]，将该牌的一份复制品加入一名队友的手牌。",
+  "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "选择要消耗并送出的牌",
+
+  "STS2_WINE_FOX_CARD_SWEEP.title": "横扫",
+  "STS2_WINE_FOX_CARD_SWEEP.description": "对所有敌人造成{Damage:diff()}点伤害。如果你没有格挡，额外造成一次伤害。"
 }
