@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba82abjfs4mkh"
-path="res://.godot/imported/card_allitem.png-58db1cafa8d84460a0e830d1048250ab.ctex"
+uid="uid://y2mgun6fioxo"
+path="res://.godot/imported/hoarding_habit_power.png-7e0a39a2150faa380f9a4d6e440a3828.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/cards/card_allitem.png"
-dest_files=["res://.godot/imported/card_allitem.png-58db1cafa8d84460a0e830d1048250ab.ctex"]
+source_file="res://STS2_WineFox/powers/hoarding_habit_power.png"
+dest_files=["res://.godot/imported/hoarding_habit_power.png-7e0a39a2150faa380f9a4d6e440a3828.ctex"]
 
 [params]
 

@@ -32,7 +32,7 @@ namespace STS2_WineFox.Cards.Rare
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Diamond")),
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAllItem);
+        public override CardAssetProfile AssetProfile => IsUpgradable ? Art(Const.Paths.CardAllItemUpgraded) : Art(Const.Paths.CardAllItem);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,

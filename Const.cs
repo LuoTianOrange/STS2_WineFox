@@ -97,7 +97,15 @@ namespace STS2_WineFox
             public const string HighlyFocusedPowerIcon = Root + "/powers/highly_focused_power.png";
             public const string GoldenArmorPowerIcon = Root + "/powers/golden_armor_power.png";
             public const string SpiritFoxFormPowerIcon = Root + "/powers/spirit_fox_form_power.png";
+            public const string HoardingHabitPowerIcon = Root + "/powers/hoarding_habit_power.png";
+            public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
+            public const string MemoryPowerIcon = Root + "/powers/memory_power.png";
+            public const string OtherworldCrossingPowerIcon = Root + "/powers/otherworld_crossing_power.png";
+            public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
+            public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
+            public const string LiberationPowerIcon = Root + "/powers/liberation_power.png";
 
+            
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
             //Card
@@ -127,6 +135,7 @@ namespace STS2_WineFox
             public const string CardLightAssault = Root + "/cards/card_test.png";
             public const string CardEasyPeasy = Root + "/cards/card_easy_peasy.png";
             public const string CardAllItem = Root + "/cards/card_allitem.png";
+            public const string CardAllItemUpgraded = Root + "/cards/card_allitem_upgraded.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
             public const string CardAlternator = Root + "/cards/card_alternator.png";
             public const string CardNothing = Root + "/cards/card_test.png";
@@ -162,6 +171,7 @@ namespace STS2_WineFox
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";
             public const string CardMassProduction = Root + "/cards/card_mass_production.png";
             public const string CardWirelessTerminal = Root + "/cards/card_wireless_terminal.png";
+
 
             public const string CardWirelessTerminalRainbowFrameMat =
                 Root + "/materials/wireless_terminal_frame_rainbow_mat.tres";
@@ -214,14 +224,8 @@ namespace STS2_WineFox
             public const string CardLiberation = Root + "/cards/card_liberation.png";
             public const string CardObtainStress = Root + "/cards/card_wind_crank.png";
             public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
-
-            public const string TrackingPowerIcon = Root + "/powers/tracking_power.png";
-            public const string MemoryPowerIcon = Root + "/powers/memory_power.png";
-            public const string OtherworldCrossingPowerIcon = Root + "/powers/otherworld_crossing_power.png";
-            public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
-            public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
-            public const string LiberationPowerIcon = Root + "/powers/liberation_power.png";
-
+            public const string CardHoardingHabit = Root + "/cards/card_hoarding_habit.png";
+            
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
             public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/sweeping_edge_icon.png";
