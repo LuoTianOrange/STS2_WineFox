@@ -1,7 +1,17 @@
-{df3ed69a-9ded-4f0f-a378-2368fa99e6e3} bank:/WineFox
-{71d922fa-410f-4071-8efb-ae0fa8751dca} bank:/WineFoxMaster
-{e9c4022e-3074-0c33-08b2-24f159861b52} bank:/WineFoxMaster.strings
-{a080420e-7210-41ab-936a-d9a56e426f39} bus:/
-{91f2ef91-aed9-4044-aa4c-f8781ce0dd19} bus:/Reverb
-{e58218d5-4c04-40db-a854-2d1250df72b6} bus:/STS2 bus:/
-{1d19811c-ba7e-48a4-bdac-086077eed0b0} event:/sfx/wine_fox_select
+{5d95f0d5-57ba-451e-8d05-a41c9bc3813e} bank:/Master
+{c588d001-26c1-095c-0b4c-2ee26a3087a6} bank:/Master.strings
+{2cce7ce2-fb73-48cc-8a7d-980cf938b88f} bank:/WineFox
+{0684fe4d-66d7-41be-a5f0-466da530675d} bus:/
+{ca1c5ac8-b064-4ed2-9c80-2757ff201df2} bus:/Reverb
+{a080420e-7210-41ab-936a-d9a56e426f39} bus:/master
+{0fb36de9-e2e9-489c-a488-56a893fae658} bus:/master/ambience
+{47bdc362-622a-498b-8b21-f8d0c11bbb20} bus:/master/music
+{31a6a70e-1f02-4134-9316-869034f110cd} bus:/master/sfx
+{a8b8691f-cf86-426f-a12c-489c55e75218} bus:/master/sfx/Reverb
+{25843eb8-0f79-4253-aed6-bee1449d8e7e} bus:/master/sfx/chorus
+{9062adad-d974-41ef-b812-79c56bb6c25f} bus:/master/sfx_ducking_bass
+{bfa231d3-c7a0-4395-bb21-4afdf4149043} bus:/master/sfx_ducking_big
+{b5585158-533d-40b8-abe9-7a0deac80ea7} event:/sfx/wine_fox_select
+{06cefc2c-7055-44b5-af2e-7652cd2414d6} parameter:/Progress
+{a36ba432-c5b1-44ff-b5e4-12f654cfa067} parameter:/sfx_duck
+{9fd4e212-6c2e-4b45-8a4b-942284c71171} parameter:/sfx_duck_big

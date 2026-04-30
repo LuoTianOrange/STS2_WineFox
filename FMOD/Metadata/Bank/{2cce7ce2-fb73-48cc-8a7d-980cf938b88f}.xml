@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{2cce7ce2-fb73-48cc-8a7d-980cf938b88f}">
+		<property name="name">
+			<value>WineFox</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b4f8d078-fddc-4658-8a30-a499577f86e5}</destination>
+		</relationship>
+	</object>
+</objects>
