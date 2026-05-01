@@ -14,17 +14,6 @@ namespace STS2_WineFox.Cards
         TargetType target,
         bool showInCardLibrary = true) : ModCardTemplate(baseCost, type, rarity, target, showInCardLibrary)
     {
-        [Obsolete("The autoAdd parameter is no longer used and will be removed in a future version.")]
-        protected WineFoxCard(
-            int baseCost,
-            CardType type,
-            CardRarity rarity,
-            TargetType target,
-            bool showInCardLibrary,
-            bool autoAdd) : this(baseCost, type, rarity, target, showInCardLibrary)
-        {
-        }
-
         public sealed override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
         {
             if (Owner == player)
