@@ -18,7 +18,6 @@ namespace STS2_WineFox
     {
         public static readonly Logger Logger = RitsuLibFramework.CreateLogger(Const.ModId);
 
-        private static IDisposable? _winefoxBankDeferredInitSubscription;
         private static ModPatcher? _runtimePatcher;
 
         public static bool IsModActive { get; private set; }
@@ -44,8 +43,10 @@ namespace STS2_WineFox
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 if (!EnsureRequiredRuntimePatches())
                     return;
-                QueueWineFoxFmodBankAfterDeferredInitialization();
-                LoadWineFoxFmodBanksAligned();
+
+                FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
+                FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
+
                 var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
                 RitsuLibFramework.GetContentRegistry(Const.ModId)
                     .RegisterCardLibraryCompendiumSharedPoolFilter<WineFoxCraftingCardPool>(
@@ -94,41 +95,5 @@ namespace STS2_WineFox
             IsModActive = false;
         }
 
-        private static void QueueWineFoxFmodBankAfterDeferredInitialization()
-        {
-            if (_winefoxBankDeferredInitSubscription != null)
-                return;
-
-            _winefoxBankDeferredInitSubscription =
-                RitsuLibFramework.SubscribeLifecycle<DeferredInitializationCompletedEvent>(_ =>
-                {
-                    try
-                    {
-                        if (FmodStudioServer.TryGet() is null)
-                        {
-                            Logger.Warn("FmodServer singleton missing; skipped FMOD bank load.");
-                            return;
-                        }
-
-                        LoadWineFoxFmodBanksAligned();
-                    }
-                    finally
-                    {
-                        _winefoxBankDeferredInitSubscription?.Dispose();
-                        _winefoxBankDeferredInitSubscription = null;
-                    }
-                });
-        }
-
-        private static void LoadWineFoxFmodBanksAligned()
-        {
-            if (!FmodStudioServer.TryLoadBank(Const.Paths.WineFoxBank))
-            {
-                Logger.Warn($"Failed to load FMOD bank: {Const.Paths.WineFoxBank}");
-                return;
-            }
-
-            FmodStudioServer.TryLoadStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
-        }
     }
 }
