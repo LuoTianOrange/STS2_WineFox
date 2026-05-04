@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fcuocamiai2r"]
+[gd_scene load_steps=4 format=3 uid="uid://fcuocamiai2r"]
 
 [ext_resource type="Texture2D" uid="uid://ld4curlaovfq" path="res://STS2_WineFox/winefox/character.png" id="2_j8rvc"]
 [ext_resource type="Texture2D" uid="uid://cxet2gbswc6sk" path="res://STS2_WineFox/packed/map/icons/map_marker_wine_fox.png" id="2_marker"]
+[ext_resource type="Texture2D" uid="uid://b500ta4ilsbdo" path="res://STS2_WineFox/winefox/winefox_select_bg.jpg" id="3_4f6ch"]
 
 [node name="WineFoxBg" type="Control"]
 layout_mode = 3
@@ -86,10 +87,10 @@ stretch_mode = 5
 
 [node name="CharacterArt" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -63.0
-offset_right = 2104.0
+offset_left = -124.0
+offset_right = 2043.0
 offset_bottom = 1080.0
-texture = ExtResource("2_j8rvc")
+texture = ExtResource("3_4f6ch")
 expand_mode = 3
 stretch_mode = 5
 
