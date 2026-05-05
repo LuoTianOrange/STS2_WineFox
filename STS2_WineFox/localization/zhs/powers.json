@@ -130,6 +130,8 @@
   "STS2_WINE_FOX_POWER_LIBERATION_POWER.smartDescription": "回合结束时，触发你手牌中每张被[gold]保留[/gold]的牌。",
   "STS2_WINE_FOX_POWER_HOARDING_HABIT_POWER.title": "囤积习惯",
   "STS2_WINE_FOX_POWER_HOARDING_HABIT_POWER.description": "下回合开始时，获得1个[gold]木头[/gold]和1个[gold]圆石[/gold]。",
-  "STS2_WINE_FOX_POWER_HOARDING_HABIT_POWER.smartDescription": "下回合开始时，获得{Amount}个[gold]木头[/gold]和{Amount}个[gold]圆石[/gold]。"
-
+  "STS2_WINE_FOX_POWER_HOARDING_HABIT_POWER.smartDescription": "下回合开始时，获得{Amount}个[gold]木头[/gold]和{Amount}个[gold]圆石[/gold]。",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.title": "附魔金苹果",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.description": "你每次失去生命时，减少失去的生命值[blue]{Amount}[/blue]点。",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "你每次失去生命时，减少失去的生命值[blue]{Amount}[/blue]点。"
 }

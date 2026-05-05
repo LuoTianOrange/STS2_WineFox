@@ -106,5 +106,8 @@
   "STS2_WINE_FOX_POWER_ANTICIPATE_ADVANTAGE_DEX_POWER.smartDescription": "Gain [blue]{Amount}[/blue] Dexterity this turn. Expires at end of turn.",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.title": "Tracking",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.description": "Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Amount}[/blue] Block.",
-  "STS2_WINE_FOX_POWER_TRACKING_POWER.smartDescription": "Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Amount}[/blue] Block."
+  "STS2_WINE_FOX_POWER_TRACKING_POWER.smartDescription": "Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Amount}[/blue] Block.",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.title": "Enchanted Golden Apple",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.description": "Whenever you would lose HP, lose [blue]{Amount}[/blue] less.",
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "Whenever you would lose HP, lose [blue]{Amount}[/blue] less."
 }
