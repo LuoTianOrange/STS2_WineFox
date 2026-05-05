@@ -40,7 +40,7 @@ namespace STS2_WineFox.Cards.Common
             var owner = Owner.Creature;
             if (owner.CombatState is not { } combatState) return;
 
-            var damage = DynamicVars["Damage"].BaseValue;
+            var damage = WineFoxCardVarFactory.ResolveChantDamageForPlay(this, "Damage", null);
             foreach (var enemy in combatState.HittableEnemies.ToList())
                 await CreatureCmd.Damage(
                     choiceContext,

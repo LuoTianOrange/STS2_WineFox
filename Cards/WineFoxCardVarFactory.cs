@@ -1,9 +1,9 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 
@@ -44,15 +44,15 @@ namespace STS2_WineFox.Cards
             return ModCardVars.Computed(
                 name,
                 baseValue,
-                card => ResolveChantDamageAfterModifiers(
+                (card, target) => ResolveMagicDamageAfterModifiers(
                     card,
                     name,
                     CardPreviewMode.None,
-                    null,
-                    true,
+                    target,
+                    runGlobalHooks: true,
                     targetResolver),
                 (card, previewMode, target, runGlobalHooks) =>
-                    ResolveChantDamageAfterModifiers(
+                    ResolveMagicDamageAfterModifiers(
                         card,
                         name,
                         previewMode,
@@ -61,7 +61,18 @@ namespace STS2_WineFox.Cards
                         targetResolver));
         }
 
-        private static decimal ResolveChantDamageAfterModifiers(
+        internal static decimal ResolveChantDamageForPlay(CardModel card, string key, Creature? target)
+        {
+            return ResolveMagicDamageAfterModifiers(
+                card,
+                key,
+                CardPreviewMode.None,
+                target,
+                runGlobalHooks: true,
+                targetResolver: null);
+        }
+
+        private static decimal ResolveMagicDamageAfterModifiers(
             CardModel? card,
             string key,
             CardPreviewMode previewMode,
@@ -74,25 +85,11 @@ namespace STS2_WineFox.Cards
 
             var dealer = card._owner?.Creature;
             var baseDamage = damageVar.BaseValue;
-            var combatState = dealer?.CombatState;
-            if (dealer == null || combatState == null || !runGlobalHooks)
+            if (dealer == null || !runGlobalHooks)
                 return Math.Max(0m, baseDamage);
 
             var target = targetResolver?.Invoke(card, previewMode, previewTarget, runGlobalHooks) ?? previewTarget;
-            if (target == null && card.TargetType == TargetType.AnyEnemy)
-                target = combatState.HittableEnemies.FirstOrDefault();
-
-            return Hook.ModifyDamage(
-                card.Owner.RunState,
-                combatState,
-                target,
-                dealer,
-                baseDamage,
-                ValueProp.Unblockable | ValueProp.Unpowered,
-                card,
-                ModifyDamageHookType.All,
-                previewMode,
-                out _);
+            return MagicDamage.Resolve(card, baseDamage, target);
         }
 
         internal static DynamicVar BlockAmountVar(decimal baseValue, ValueProp props = ValueProp.Move)
