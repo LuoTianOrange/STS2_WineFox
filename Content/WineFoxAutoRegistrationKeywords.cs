@@ -53,5 +53,8 @@ namespace STS2_WineFox.Content
 
         [RegisterOwnedCardKeyword(WineFoxKeywords.ExchangeKey)]
         private sealed class Exchange;
+
+        [RegisterOwnedCardKeyword(WineFoxKeywords.ChantKey,IconPath = Const.Paths.ChantPowerIcon)]
+        private sealed class Chant;
     }
 }

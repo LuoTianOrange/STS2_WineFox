@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -11,7 +12,7 @@ namespace STS2_WineFox.Cards.Common
 {
     /// <summary>
     ///     屏障波 - 1 cost Skill Common.
-    ///     所有敌人失去 6 点生命，获得 5 点格挡。
+    ///     使所有敌人失去 5 点生命。获得 5 点格挡。获得 1 点[gold]吟唱[/gold]。
     ///     升级：敌人失去 9 点生命，获得 7 点格挡。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]
@@ -20,9 +21,15 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new IntVar("Damage", 6m),
-            new BlockVar(5m, ValueProp.Move),
+            WineFoxCardVarFactory.ChantDamageVar(
+                "Damage",
+                5m),
+            WineFoxCardVarFactory.PowerAmountVar<ChantPower>(1m),
+            WineFoxCardVarFactory.BlockAmountVar(5m),
         ];
+
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+            [WineFoxKeywords.Chant];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBarrierWave);
 
@@ -35,7 +42,6 @@ namespace STS2_WineFox.Cards.Common
 
             var damage = DynamicVars["Damage"].BaseValue;
             foreach (var enemy in combatState.HittableEnemies.ToList())
-            {
                 await CreatureCmd.Damage(
                     choiceContext,
                     enemy,
@@ -43,16 +49,18 @@ namespace STS2_WineFox.Cards.Common
                     ValueProp.Unblockable | ValueProp.Unpowered,
                     owner,
                     this);
-            }
 
-            await CreatureCmd.GainBlock(owner, DynamicVars.Block, play);
+            var chantToGain = WineFoxCardVarFactory.ChantScaledPowerAmount<ChantPower>(this);
+            var blockToGain = WineFoxCardVarFactory.ChantScaledAmount(this, "Block");
+
+            await PowerCmd.Apply<ChantPower>(choiceContext, owner, chantToGain, owner, this);
+            await CreatureCmd.GainBlock(owner, blockToGain, ValueProp.Move, play);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Damage"].UpgradeValueBy(3m);
+            DynamicVars["Damage"].UpgradeValueBy(4m);
             DynamicVars.Block.UpgradeValueBy(2m);
         }
     }
 }
-

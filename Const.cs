@@ -104,6 +104,7 @@ namespace STS2_WineFox
             public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
             public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
             public const string LiberationPowerIcon = Root + "/powers/liberation_power.png";
+            public const string ChantPowerIcon = Root + "/powers/chant_power.png";
 
             
             public const string BurningIcon = Root + "/powers/burning_power.png";

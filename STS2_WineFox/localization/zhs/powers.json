@@ -133,5 +133,9 @@
   "STS2_WINE_FOX_POWER_HOARDING_HABIT_POWER.smartDescription": "下回合开始时，获得{Amount}个[gold]木头[/gold]和{Amount}个[gold]圆石[/gold]。",
   "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.title": "附魔金苹果",
   "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.description": "你每次失去生命时，减少失去的生命值[blue]{Amount}[/blue]点。",
-  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "你每次失去生命时，减少失去的生命值[blue]{Amount}[/blue]点。"
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "你每次失去生命时，减少失去的生命值[blue]{Amount}[/blue]点。",
+  "STS2_WINE_FOX_POWER_CHANT_POWER.title": "吟唱",
+  "STS2_WINE_FOX_POWER_CHANT_POWER.description": "本回合内，提升失去生命的伤害。",
+  "STS2_WINE_FOX_POWER_CHANT_POWER.smartDescription": "本回合内，{Amount:cond:<0?降低|提升}失去生命的伤害[blue]{Amount:abs()}[/blue]点。"
+  
 }
