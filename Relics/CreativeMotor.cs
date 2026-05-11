@@ -35,12 +35,7 @@ namespace STS2_WineFox.Relics
 
             _usedThisTurn = true;
             Flash();
-            await PowerCmd.Apply<StressPower>(
-                new ThrowingPlayerChoiceContext(),
-                creature,
-                1m,
-                creature,
-                cardSource: null);
+            await PowerCmd.Apply<StressPower>(creature, 1m, creature, null);
         }
     }
 }

@@ -1,5 +1,13 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
-    <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
+    <Import Project=".\local.props" Condition="Exists('.\local.props')" />
+
+    <PropertyGroup Label="STS2 compile references (API signature pack)">
+        <Sts2ApiCompat>0.103.2</Sts2ApiCompat>
+        <Sts2ApiSignatureRoot Condition="'$(Sts2ApiSignatureRoot)' == ''">$(MSBuildThisFileDirectory)..\sts2-api-signatures</Sts2ApiSignatureRoot>
+        <Sts2ApiSignatureDir>$(Sts2ApiSignatureRoot)\$(Sts2ApiCompat)</Sts2ApiSignatureDir>
+        <Sts2DataDir>$(Sts2ApiSignatureDir)</Sts2DataDir>
+    </PropertyGroup>
+
     <PropertyGroup>
         <RootNamespace>STS2_WineFox</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
@@ -17,7 +25,22 @@
     </PropertyGroup>
 
     <Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
-        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' \ 'GodotExe' for your local environment."/>
+        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' \ 'GodotExe' for your local environment." />
+    </Target>
+
+    <Target Name="ValidateSts2ApiSignatures" BeforeTargets="ResolveAssemblyReferences">
+        <Error
+            Condition="!Exists('$(Sts2ApiSignatureRoot)')"
+            Text="Sts2ApiSignatureRoot does not exist: '$(Sts2ApiSignatureRoot)'. Clone sts2-api-signatures next to this repo, or set Sts2ApiSignatureRoot in local.props." />
+        <Error
+            Condition="Exists('$(Sts2ApiSignatureRoot)') and !Exists('$(Sts2ApiSignatureDir)\sts2.dll')"
+            Text="Missing expected signature file: '$(Sts2ApiSignatureDir)\sts2.dll'." />
+        <Error
+            Condition="Exists('$(Sts2ApiSignatureRoot)') and !Exists('$(Sts2ApiSignatureDir)\0Harmony.dll')"
+            Text="Missing expected signature file: '$(Sts2ApiSignatureDir)\0Harmony.dll'." />
+        <Error
+            Condition="Exists('$(Sts2ApiSignatureRoot)') and !Exists('$(Sts2ApiSignatureDir)\Steamworks.NET.dll')"
+            Text="Missing expected signature file: '$(Sts2ApiSignatureDir)\Steamworks.NET.dll'." />
     </Target>
 
     <PropertyGroup>
@@ -26,48 +49,43 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all"/>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all" />
+        <PackageReference Include="STS2.RitsuLib.Compat.0.103.2" Version="0.2.23" />
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false"/>
+        <Publicize Include="sts2" IncludeCompilerGeneratedMembers="false" IncludeVirtualMembers="false" />
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True"/>
-        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True"/>
-        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True"/>
+        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True" />
+        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True" />
+        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove=".godot\**"/>
-        <Compile Remove="STS2-RitsuLib\**"/>
-        <None Remove=".godot\**"/>
-        <Content Remove=".godot\**"/>
-        <EmbeddedResource Remove=".godot\**"/>
-        <EmbeddedResource Remove="STS2-RitsuLib\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="$(RitsuLibDir)\STS2-RitsuLib.csproj">
-            <AdditionalProperties>Sts2ApiCompat=0.103.2</AdditionalProperties>
-        </ProjectReference>
+        <Compile Remove=".godot\**" />
+        <Compile Remove="STS2-RitsuLib\**" />
+        <None Remove=".godot\**" />
+        <Content Remove=".godot\**" />
+        <EmbeddedResource Remove=".godot\**" />
+        <EmbeddedResource Remove="STS2-RitsuLib\**" />
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
-        <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(MSBuildProjectDirectory)\mod_manifest.json" DestinationFolder="$(ModOutputDir)"/>
+        <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high" />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)" />
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\mod_manifest.json" DestinationFolder="$(ModOutputDir)" />
     </Target>
 
     <Target Name="Export Mod PCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotExe)')">
-        <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
-        <MakeDir Directories="$(ModOutputDir)"/>
-        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <Message Text="Exporting mod PCK with MegaDot..." Importance="high" />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1" />
     </Target>
 
     <Target Name="Warn Missing Godot" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and !Exists('$(GodotExe)')">
-        <Warning Text="Godot executable not found at $(GodotExe). Skipped PCK export."/>
+        <Warning Text="Godot executable not found at $(GodotExe). Skipped PCK export." />
     </Target>
 </Project>
