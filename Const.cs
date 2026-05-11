@@ -55,6 +55,8 @@ namespace STS2_WineFox
             public const string MaidBackpackRelicIcon = Root + "/relics/relic_maid_backpack.png";
             public const string SophisticatedBackpack = Root + "/relics/relic_sophisticated_backpack.png";
             public const string TotemofUndyingRelicIcon = Root + "/relics/relic_totem_of_undying.png";
+            public const string CreativeMotorRelicIcon = Root + "/relics/relic_creative_motor.png";
+            public const string OrangeTigerCakeRelicIcon = Root + "/relics/relic_orange_tiger_cake.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
@@ -139,7 +141,7 @@ namespace STS2_WineFox
             public const string CardAllItemUpgraded = Root + "/cards/card_allitem_upgraded.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
             public const string CardAlternator = Root + "/cards/card_alternator.png";
-            public const string CardNothing = Root + "/cards/card_test.png";
+            public const string CardNothing = Root + "/cards/card_nothing.png";
             public const string CardWoodenPickaxe = Root + "/cards/card_woodenpickaxe.png";
             public const string CardWoodenArmor = Root + "/cards/card_woodenarmor.png";
             public const string CardNetheritePickaxe = Root + "/cards/card_netherite_pickaxe.png";

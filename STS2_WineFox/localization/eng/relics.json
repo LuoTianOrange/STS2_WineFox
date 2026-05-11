@@ -24,5 +24,11 @@
   "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.title": "Restock Upgrade",
   "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_RESTOCK.description": "At the start of each combat, draw [blue]2[/blue] additional cards.",
   "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.title": "Feeding Upgrade",
-  "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.description": "At the start of each turn, gain [blue]1[/blue] Regeneration."
+  "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.description": "At the start of each turn, gain [blue]1[/blue] Regeneration.",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.title": "Creative Motor",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.description": "The first time you lose [gold]Stress[/gold] each turn, gain [blue]1[/blue] [gold]Stress[/gold].",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.flavor": "It can spin all by itself!",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.title": "Orange Tiger Cake Roll",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.description": "When picked up, gain [blue]8[/blue] Max HP, [blue]2[/blue] random foods, [blue]1[/blue] card reward set, and [blue]50[/blue] Gold.",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "Wow! A golden legend, meow! Delicious little cake."
 }

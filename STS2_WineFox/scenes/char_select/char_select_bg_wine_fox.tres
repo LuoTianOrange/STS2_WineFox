@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://curh1aldwhahw"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://br058ndfmb68d" path="res://STS2_WineFox/scenes/char_select/酒狐选择界面.atlas" id="1_lcanq"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cr4hujrxk2gjs" path="res://STS2_WineFox/scenes/char_select/72.skel" id="2_kmcql"]
+
+[resource]
+atlas_res = ExtResource("1_lcanq")
+skeleton_file_res = ExtResource("2_kmcql")

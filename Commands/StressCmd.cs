@@ -36,6 +36,11 @@ namespace STS2_WineFox.Commands
             foreach (var listener in listeners)
                 await listener.OnStressConsumed(creature);
 
+            if (creature.Player != null)
+                foreach (var relic in creature.Player.Relics)
+                    if (relic is IStressConsumeListener listener)
+                        await listener.OnStressConsumed(creature);
+
             return true;
         }
     }

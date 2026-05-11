@@ -27,6 +27,12 @@
   "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_FEEDING.description": "每回合开始时，获得[blue]1[/blue]再生。",
   "STS2_WINE_FOX_RELIC_TOTEMOF_UNDYING.title": "不死图腾",
   "STS2_WINE_FOX_RELIC_TOTEMOF_UNDYING.description": "当你要被杀死时，免死并回复最大生命值的[blue]{Heal}%[/blue]，获得[blue]10[/blue]层再生和[blue]15[/blue]点格挡。（仅一次）",
-  "STS2_WINE_FOX_RELIC_TOTEMOF_UNDYING.flavor": "超越生死的救赎！酒狐，现在还不能倒下。"
+  "STS2_WINE_FOX_RELIC_TOTEMOF_UNDYING.flavor": "超越生死的救赎！酒狐，现在还不能倒下。",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.title": "创造马达",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.description": "每回合第一次失去[gold]应力[/gold]时，获得[blue]1[/blue]层[gold]应力[/gold]。",
+  "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.flavor": "它自己就可以转起来！",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.title": "橘子虎皮蛋糕卷",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.description": "拾取时获得[blue]8[/blue]点最大生命值、[blue]2[/blue]个随机食物、[blue]1[/blue]组卡牌奖励和[blue]50[/blue]金币。",
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "哇偶！金色传说喵！美味的小蛋糕。"
   
 }
