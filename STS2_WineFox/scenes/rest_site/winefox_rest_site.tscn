@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://fc5x7hciyofl"]
 
-[ext_resource type="Script" uid="uid://chitdernefodb" path="res://Scripts/WineFoxRestSite.cs" id="1_f8q18"]
+[ext_resource type="Script" uid="uid://dvfj1roil6fve" path="res://Scripts/WineFoxRestSite.cs" id="1_f8q18"]
 [ext_resource type="Texture2D" uid="uid://dnf7glm48u2jv" path="res://STS2_WineFox/winefox/winefox_rest.png" id="2_p6k48"]
-[ext_resource type="Script" uid="uid://drbo5mdan01uu" path="res://Scripts/WineFoxSelectionReticle.cs" id="3_f8q18"]
+[ext_resource type="Script" uid="uid://drwphpjvrbi1b" path="res://Scripts/WineFoxSelectionReticle.cs" id="3_f8q18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sij4"]
 atlas = ExtResource("2_p6k48")

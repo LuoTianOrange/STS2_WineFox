@@ -1,0 +1,19 @@
+﻿{
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.title": "Desert Temple",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.description": "A vast desert suddenly appears before you, with a temple at its center. Sand trickles from cracks in the ceiling, and the air feels ancient and dangerous. You spot a dark sandstone platform at the bottom with several chests and a pressure plate. Go down and take a look?",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.THOROUGH_EXPLORATION.title": "Go down",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.THOROUGH_EXPLORATION.description": "Jump down and lose 6 HP.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.LEAVE.title": "Leave",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.LEAVE.description": "Too dangerous. Better not stay here.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.CHEST_REWARDS.description": "There are 3 chests. Which one will you open?",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.LEAVE.description": "Nothing happens.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.CHEST1FINISH.description": "You open the chest. As expected, there's something good inside.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.CHEST2FINISH.description": "You find an enchanted book. The moment you touch the page, you feel stronger.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST1.title": "Open the first chest",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST1.description": "Gain a random relic.",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.title": "Open the second chest",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.description": "Enchant 1 Attack card with \"Fire Aspect\".",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.title": "Open the third chest",
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.description": "Enchant 1 Attack card with \"Sweeping Edge\"."
+}
+

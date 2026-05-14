@@ -1,7 +1,11 @@
 <Project>
+    <!--
+      Optional. If Sts2Dir is omitted, Sts2PathDiscovery.props (from RitsuLibDir) resolves it per OS.
+    -->
     <PropertyGroup>
         <Sts2Dir>Path\To\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
         <GodotExe>Path\To\Godot\Godot_version-stable_mono_win64.exe</GodotExe>
+        <RitsuLibDir>STS2-RitsuLib\</RitsuLibDir>
         <!-- Optional: signature repo root if not ../sts2-api-signatures relative to this csproj -->
         <!-- <Sts2ApiSignatureRoot>Path\To\sts2-api-signatures</Sts2ApiSignatureRoot> -->
     </PropertyGroup>

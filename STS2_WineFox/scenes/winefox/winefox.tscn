@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dko5d4f0w75dk"]
 
-[ext_resource type="Script" uid="uid://b2dldvnh58xel" path="res://Character/WineFoxCreatureVisuals.cs" id="1_visuals"]
+[ext_resource type="Script" uid="uid://bg8ellm8xi5g4" path="res://Character/WineFoxCreatureVisuals.cs" id="1_visuals"]
 [ext_resource type="Texture2D" uid="uid://cax3l8q286teh" path="res://STS2_WineFox/winefox/placeholder.png" id="2_portrait"]
 
 [node name="WineFox" type="Node2D"]

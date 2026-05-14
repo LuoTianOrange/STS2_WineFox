@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://begjjuc34h0fh"]
 
-[ext_resource type="Script" uid="uid://b7pa1sn2pywm0" path="res://Scripts/WineFoxMerchantCharacter.cs" id="1_pq1a8"]
+[ext_resource type="Script" uid="uid://b4cjnrr7of1ot" path="res://Scripts/WineFoxMerchantCharacter.cs" id="1_pq1a8"]
 [ext_resource type="Texture2D" uid="uid://b606wsp18k033" path="res://STS2_WineFox/winefox/winefox_shop.png" id="2_themk"]
 
 [node name="WinefoxShop" type="Node2D"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clrtvd3r5bj0t"
-path="res://.godot/imported/glistering_melon_slice.png-d2cb6b97bda6534d47da82717487a1a5.ctex"
+uid="uid://l5c64v7rcpjr"
+path="res://.godot/imported/card_arm_to_teeth.png-c6f5f122b843e7747899ef976a09dfeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/potions/foods/glistering_melon_slice.png"
-dest_files=["res://.godot/imported/glistering_melon_slice.png-d2cb6b97bda6534d47da82717487a1a5.ctex"]
+source_file="res://STS2_WineFox/cards/card_arm_to_teeth.png"
+dest_files=["res://.godot/imported/card_arm_to_teeth.png-c6f5f122b843e7747899ef976a09dfeb.ctex"]
 
 [params]
 

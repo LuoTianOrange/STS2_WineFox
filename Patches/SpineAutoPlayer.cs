@@ -1,32 +1,45 @@
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
-namespace STS2_WineFox.Patches;
-
-[GlobalClass]
-public partial class SpineAutoPlayer : Node
+namespace STS2_WineFox.Patches
 {
-	public override void _Ready()
-	{
-		var megaSprite = new MegaSprite(GetParent());
-		var skeleton = megaSprite.GetSkeleton();
-		if (skeleton == null) return;
+    [GlobalClass]
+    public partial class SpineAutoPlayer : Node
+    {
+        public override void _Ready()
+        {
+            try
+            {
+                TryPlayDefaultAnimation();
+            }
+            catch (Exception ex)
+            {
+                Main.Logger.Warn($"WineFox character select Spine autoplay failed: {ex}");
+            }
+        }
 
-		var animations = skeleton.GetData().GetAnimations();
-		if (animations.Count == 0) return;
+        private void TryPlayDefaultAnimation()
+        {
+            var megaSprite = new MegaSprite(GetParent());
+            var skeleton = megaSprite.GetSkeleton();
+            if (skeleton == null) return;
 
-		const string preferredAnimation = "idle";
-		var animationToPlay = new MegaAnimation(animations[0]).GetName();
+            var animations = skeleton.GetData().GetAnimations();
+            if (animations.Count == 0) return;
 
-		foreach (var animation in animations)
-		{
-			var name = new MegaAnimation(animation).GetName();
-			if (name != preferredAnimation) continue;
+            const string preferredAnimation = "idle";
+            var animationToPlay = new MegaAnimation(animations[0]).GetName();
 
-			animationToPlay = name;
-			break;
-		}
+            foreach (var animation in animations)
+            {
+                var name = new MegaAnimation(animation).GetName();
+                if (name != preferredAnimation) continue;
 
-		megaSprite.GetAnimationState().SetAnimation(animationToPlay);
-	}
+                animationToPlay = name;
+                break;
+            }
+
+            megaSprite.GetAnimationState().SetAnimation(animationToPlay);
+        }
+    }
 }

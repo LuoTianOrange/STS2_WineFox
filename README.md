@@ -486,6 +486,7 @@ STS2_WineFox/
 
 - 程序员：OLC，灯火橘
 - 数值策划，卡牌设计：IAmNotFood，明风OuO，晓月漓风，末影酱安德Channel
+- 卡面制作：灯火橘，钩ハ
 - 画师：穰雀，Linger铃
 
 

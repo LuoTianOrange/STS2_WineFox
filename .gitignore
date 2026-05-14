@@ -7,10 +7,11 @@ bin/
 publish/
 Properties/
 packages/
-*cs.uid
 *.user
 local.props
 !local.props.template
 godot.log
 /FMOD/Build
 *.cache
+.DS_Store
+AGENTS.md

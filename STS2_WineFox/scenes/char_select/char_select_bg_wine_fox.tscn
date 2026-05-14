@@ -1,8 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://fcuocamiai2r"]
+[gd_scene load_steps=10 format=3 uid="uid://c6rw7txbr6pl4"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://curh1aldwhahw" path="res://STS2_WineFox/scenes/char_select/char_select_bg_wine_fox.tres" id="2_4f6ch"]
-[ext_resource type="Texture2D" uid="uid://b500ta4ilsbdo" path="res://STS2_WineFox/winefox/winefox_select_bg.jpg" id="3_4f6ch"]
-[ext_resource type="Script" uid="uid://r8oea7xb23ht" path="res://Patches/SpineAutoPlayer.cs" id="3_vso88"]
+[ext_resource type="Script" uid="uid://brfjr1drkdvsh" path="res://Patches/SpineAutoPlayer.cs" id="3_vso88"]
+[ext_resource type="Texture2D" uid="uid://djuhwrcr6cgtq" path="res://STS2_WineFox/scenes/char_select/sakura.png" id="4_4m41m"]
+[ext_resource type="Shader" uid="uid://6ww4w3bhsllj" path="res://STS2_WineFox/shaders/sunlight_glow.gdshader" id="6_sunlight_shader"]
+[ext_resource type="Script" uid="uid://kr3o7m2v5oii" path="res://Scripts/SakuraWindController.cs" id="7_wind_ctrl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_525j6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m41m"]
+atlas = ExtResource("4_4m41m")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sakura"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 50, 0)
+angle_min = -70.99999
+angle_max = -9.399989
+direction = Vector3(0, 1, 0)
+spread = 12.493
+initial_velocity_min = 550.72
+initial_velocity_max = 666.67
+angular_velocity_min = -172.86002
+angular_velocity_max = 152.18999
+orbit_velocity_min = -0.049999908
+orbit_velocity_max = 0.050000098
+radial_velocity_min = -102.77002
+radial_velocity_max = 756.25995
+gravity = Vector3(0, 220, 0)
+scale_min = 0.7
+color = Color(1.177704, 1.0860615, 1.1181365, 0.8509804)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sunlight"]
+shader = ExtResource("6_sunlight_shader")
+shader_parameter/light_position = Vector2(0.53, 0.04)
+shader_parameter/glow_intensity = 0.442000020995
+shader_parameter/glow_radius = 1.2390000555926202
+shader_parameter/glow_falloff = 3.0170001195575002
+shader_parameter/chromatic_aberration = 0.0430000020425
+shader_parameter/rainbow_intensity = 0.2950000140125
+shader_parameter/rainbow_scale = 1.410000019475
+shader_parameter/rainbow_speed = 0.15200000722
+shader_parameter/flare_intensity = 0.2850000135375
+shader_parameter/flare_count = 6.0
+shader_parameter/flare_speed = 0.2
+shader_parameter/ray_intensity = 0.4130000196175
+shader_parameter/ray_count = 3.8150000387125003
+shader_parameter/ray_speed = 0.15
+shader_parameter/ray_width = 0.085
+shader_parameter/time_scale = 0.5
+shader_parameter/pulse_intensity = 0.1
+shader_parameter/pulse_speed = 0.8
 
 [node name="WineFoxBg" type="Control"]
 layout_mode = 3
@@ -19,16 +68,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CharacterArt" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -124.0
-offset_right = 2043.0
-offset_bottom = 1080.0
-texture = ExtResource("3_4f6ch")
-expand_mode = 3
-stretch_mode = 5
-
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_4f6ch")
 preview_skin = "default"
@@ -39,3 +78,36 @@ scale = Vector2(0.39, 0.39)
 
 [node name="NSpineAutoPlayer" type="Node" parent="SpineSprite"]
 script = ExtResource("3_vso88")
+
+[node name="SakuraParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_525j6")
+use_parent_material = true
+position = Vector2(960, -50)
+amount = 15
+texture = SubResource("AtlasTexture_4m41m")
+lifetime = 2.49
+preprocess = 4.0
+speed_scale = 0.8
+randomness = 1.0
+fixed_fps = 0
+visibility_rect = Rect2(-1000, -100, 2000, 1200)
+trail_lifetime = 0.08
+process_material = SubResource("ParticleProcessMaterial_sakura")
+
+[node name="SakuraWindController" type="Node" parent="." node_paths=PackedStringArray("Particles")]
+script = ExtResource("7_wind_ctrl")
+Particles = NodePath("../SakuraParticles")
+MouseInfluence = 50.0
+
+[node name="SunlightOverlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sunlight")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 44.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

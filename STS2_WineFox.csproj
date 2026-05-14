@@ -1,5 +1,6 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project=".\local.props" Condition="Exists('.\local.props')" />
+    <Import Project="$(RitsuLibDir)\Sts2PathDiscovery.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\Sts2PathDiscovery.props')" />
 
     <PropertyGroup Label="STS2 compile references (API signature pack)">
         <Sts2ApiCompat>0.103.2</Sts2ApiCompat>
@@ -17,10 +18,10 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>CS0436</NoWarn>
     </PropertyGroup>
-
     <PropertyGroup>
         <GodotExportPreset>BasicExport</GodotExportPreset>
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
+        <ModOutputDir Condition="'$(IsOSX)' == 'true'">$(Sts2Dir)\MacOS\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
     </PropertyGroup>
 

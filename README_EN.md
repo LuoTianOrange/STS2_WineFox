@@ -482,6 +482,8 @@ After building, the mod is automatically copied to `{STS2Dir}\mods\STS2_WineFox\
 
 - Numerical Planner, Card Design: IAmNotFood, 明风OuO, 晓月漓风, 末影酱安德Channel
 
+- Card Artwork Design：灯火橘，钩ハ
+
 - Artist: 穰雀, Linger铃
 
 ## Acknowledgements
