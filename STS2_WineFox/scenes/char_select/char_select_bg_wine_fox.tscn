@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6rw7txbr6pl4"]
+[gd_scene load_steps=12 format=3 uid="uid://c6rw7txbr6pl4"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://curh1aldwhahw" path="res://STS2_WineFox/scenes/char_select/char_select_bg_wine_fox.tres" id="2_4f6ch"]
 [ext_resource type="Script" uid="uid://brfjr1drkdvsh" path="res://Patches/SpineAutoPlayer.cs" id="3_vso88"]
 [ext_resource type="Texture2D" uid="uid://djuhwrcr6cgtq" path="res://STS2_WineFox/scenes/char_select/sakura.png" id="4_4m41m"]
 [ext_resource type="Shader" uid="uid://6ww4w3bhsllj" path="res://STS2_WineFox/shaders/sunlight_glow.gdshader" id="6_sunlight_shader"]
 [ext_resource type="Script" uid="uid://kr3o7m2v5oii" path="res://Scripts/SakuraWindController.cs" id="7_wind_ctrl"]
+[ext_resource type="Script" path="res://Scripts/ThrottledShaderViewport.cs" id="8_throttled_light"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_525j6"]
 
@@ -53,6 +54,9 @@ shader_parameter/time_scale = 0.5
 shader_parameter/pulse_intensity = 0.1
 shader_parameter/pulse_speed = 0.8
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sunlight_output"]
+blend_mode = 1
+
 [node name="WineFoxBg" type="Control"]
 layout_mode = 3
 anchors_preset = 8
@@ -90,7 +94,7 @@ lifetime = 2.49
 preprocess = 4.0
 speed_scale = 0.8
 randomness = 1.0
-fixed_fps = 0
+fixed_fps = 24
 visibility_rect = Rect2(-1000, -100, 2000, 1200)
 trail_lifetime = 0.08
 process_material = SubResource("ParticleProcessMaterial_sakura")
@@ -99,9 +103,28 @@ process_material = SubResource("ParticleProcessMaterial_sakura")
 script = ExtResource("7_wind_ctrl")
 Particles = NodePath("../SakuraParticles")
 MouseInfluence = 50.0
+UpdateInterval = 0.066
+BaseGravity = Vector2(0, 220)
 
-[node name="SunlightOverlay" type="ColorRect" parent="."]
+[node name="SunlightViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(640, 360)
+render_target_update_mode = 1
+
+[node name="SunlightViewportRect" type="ColorRect" parent="SunlightViewport"]
 material = SubResource("ShaderMaterial_sunlight")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SunlightOverlay" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_sunlight_output")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,3 +134,11 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="SunlightUpdateLimiter" type="Node" parent="." node_paths=PackedStringArray("LightViewport", "ShaderRect", "Output")]
+script = ExtResource("8_throttled_light")
+LightViewport = NodePath("../SunlightViewport")
+ShaderRect = NodePath("../SunlightViewport/SunlightViewportRect")
+Output = NodePath("../SunlightOverlay")
+RenderSize = Vector2i(640, 360)
+UpdatesPerSecond = 15.0

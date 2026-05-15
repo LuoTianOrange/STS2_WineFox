@@ -12,47 +12,48 @@ public partial class SakuraWindController : Node
     /// <summary>鼠标影响强度（0 = 无影响）</summary>
     [Export] public float MouseInfluence = 0.3f;
 
-    /// <summary>风向平滑插值速度</summary>
-    [Export] public float SmoothSpeed = 2.0f;
+    /// <summary>材质更新间隔，避免选人界面每帧写粒子材质。</summary>
+    [Export] public float UpdateInterval = 0.05f;
 
     /// <summary>基础重力方向</summary>
     [Export] public Vector2 BaseGravity = new(0, 20);
 
-    private Vector2 _currentGravity;
-    private Vector2 _targetGravity;
+    private ParticleProcessMaterial? _material;
+    private double _elapsed;
+    private Vector2 _lastGravity;
 
     public override void _Ready()
     {
-        _currentGravity = BaseGravity;
-        _targetGravity = BaseGravity;
+        _lastGravity = BaseGravity;
+        _material = Particles?.ProcessMaterial as ParticleProcessMaterial;
+        SetProcess(_material != null && MouseInfluence > 0f);
     }
 
     public override void _Process(double delta)
     {
-        if (Particles == null)
+        if (_material == null)
             return;
 
-        // 计算鼠标相对于屏幕中心的影响
-        var viewport = GetViewport();
-        var mousePos = viewport.GetMousePosition();
-        var screenSize = viewport.GetVisibleRect().Size;
-        var center = screenSize / 2;
+        _elapsed += delta;
+        if (_elapsed < UpdateInterval)
+            return;
 
-        // 鼠标在屏幕中心的水平偏移 (-1 ~ 1)
+        _elapsed = 0;
+        var viewport = GetViewport();
+        var screenSize = viewport.GetVisibleRect().Size;
+        if (screenSize.X <= 0)
+            return;
+
+        var mousePos = viewport.GetMousePosition();
+        var center = screenSize / 2;
         var normalizedX = (mousePos.X - center.X) / (screenSize.X / 2);
         normalizedX = Mathf.Clamp(normalizedX, -1f, 1f);
 
-        // 目标重力 = 基础重力 + 鼠标影响
-        _targetGravity = BaseGravity + new Vector2(normalizedX * MouseInfluence * 30f, 0);
+        var gravity = BaseGravity + new Vector2(normalizedX * MouseInfluence * 30f, 0);
+        if (_lastGravity.DistanceSquaredTo(gravity) < 0.25f)
+            return;
 
-        // 平滑插值
-        _currentGravity = _currentGravity.Lerp(_targetGravity, (float)delta * SmoothSpeed);
-
-        // 更新粒子系统的重力
-        if (Particles.ProcessMaterial is ParticleProcessMaterial material)
-        {
-            material.Gravity = new Vector3(_currentGravity.X, _currentGravity.Y, 0);
-            // Main.Logger.Info("gravity:" + _currentGravity.X);
-        }
+        _lastGravity = gravity;
+        _material.Gravity = new Vector3(gravity.X, gravity.Y, 0);
     }
 }

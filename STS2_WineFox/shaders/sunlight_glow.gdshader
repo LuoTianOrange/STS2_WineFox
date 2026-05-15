@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode blend_add;
+render_mode blend_disabled;
 
 // 太阳光晕透明叠加效果（强烈、动态、可调整）
 
