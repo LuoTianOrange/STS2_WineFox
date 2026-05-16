@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Character;
-using STS2_WineFox.Powers;
+using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -27,12 +27,9 @@ namespace STS2_WineFox.Cards.Uncommon
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-            var stressPower = Owner.Creature.Powers.OfType<StressPower>().FirstOrDefault(p => p.Amount > 0);
-            if (stressPower != null)
-            {
-                await PowerCmd.ModifyAmount(stressPower, -1m, null, this);
+            var consumed = await StressCmd.ConsumeOne(Owner.Creature, this);
+            if (consumed)
                 await PlayerCmd.GainEnergy(DynamicVars["BonusEnergy"].BaseValue, Owner);
-            }
         }
 
         protected override void OnUpgrade()
