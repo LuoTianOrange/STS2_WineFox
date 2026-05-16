@@ -125,7 +125,7 @@
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING.description":"花费{Wood:diff()}个[gold]木板[/gold]和{Stone:diff()}个[gold]原石[/gold]，选择手牌1张卡，将其{Cards:diff()}张费用-1、带有[gold]消耗[/gold]的复制品加入手牌。",
   "STS2_WINE_FOX_CARD_BLUEPRINT_PRINTING_CHOOSE":"选择要复制的牌",
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.title":"应激",
-  "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，{Energy:energyIcons()}并抽2张牌。",
+  "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，获得{Energy:energyIcons()}并抽2张牌。",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title":"量产",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title":"无线合成终端",
@@ -254,5 +254,8 @@
   "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "选择要消耗并送出的牌",
 
   "STS2_WINE_FOX_CARD_SWEEP.title": "横扫",
-  "STS2_WINE_FOX_CARD_SWEEP.description": "对所有敌人造成{Damage:diff()}点伤害。如果你没有格挡，额外造成一次伤害。"
+  "STS2_WINE_FOX_CARD_SWEEP.description": "对所有敌人造成{Damage:diff()}点伤害。如果你没有格挡，额外造成一次伤害。",
+
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "永恒旋律",
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "保留你的[gold]咏唱[/gold]一回合。{IfUpgraded:show:获得1点[gold]咏唱[/gold]。|}"
 }

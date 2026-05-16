@@ -109,6 +109,7 @@ namespace STS2_WineFox
             public const string ChantPowerIcon = Root + "/powers/chant_power.png";
             public const string ShardCopyPowerIcon = Root + "/powers/shard_copy_power.png";
             public const string ArmToTeethPowerIcon = Root + "/powers/arm_to_teeth_power.png";
+            public const string EternalMelodyPowerIcon = Root + "/powers/eternal_melody_power.png";
 
             
             public const string BurningIcon = Root + "/powers/burning_power.png";
@@ -234,8 +235,9 @@ namespace STS2_WineFox
             public const string CardLogistics = Root + "/cards/card_logistics.png";
             public const string CardSweep = Root + "/cards/card_test.png";
             public const string CardArmToTeeth = Root + "/cards/card_arm_to_teeth.png";
-            public const string CardEssenceReconstruction = Root + "/cards/card_test.png";
-            public const string CardMagicOverloaded = Root + "/cards/card_test.png";
+            public const string CardEssenceReconstruction = Root + "/cards/card_essence_reconstruction.png";
+            public const string CardMagicOverloaded = Root + "/cards/card_magic_overloaded.png";
+            public const string CardEternalMelody = Root + "/cards/card_eternal_melody.png";
             
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

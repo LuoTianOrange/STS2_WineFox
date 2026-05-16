@@ -14,7 +14,7 @@ namespace STS2_WineFox.Powers
         private bool _reacting;
 
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.None;
+        public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ShardCopyPowerIcon);
 
         public override async Task AfterPowerAmountChanged(
@@ -28,11 +28,14 @@ namespace STS2_WineFox.Powers
             if (power is not ChantPower) return;
             if (amount <= 0m) return;
 
+            var extraChant = Amount;
+            if (extraChant <= 0m) return;
+
             _reacting = true;
             try
             {
                 Flash();
-                await PowerCmd.Apply<ChantPower>(Owner, 1m, Owner, cardSource);
+                await PowerCmd.Apply<ChantPower>(Owner, extraChant, Owner, cardSource);
             }
             finally
             {

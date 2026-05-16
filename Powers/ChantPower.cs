@@ -33,6 +33,10 @@ namespace STS2_WineFox.Powers
         public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
         {
             if (side != Owner.Side) return;
+
+            if (Owner.GetPowerAmount<EternalMelodyRetentionPower>() > 0m && Amount > 0m)
+                return;
+
             await PowerCmd.Remove(this);
         }
     }

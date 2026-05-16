@@ -12,7 +12,7 @@ namespace STS2_WineFox.Powers
     public class ArmToTeethPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.None;
+        public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ArmToTeethPowerIcon);
 
         public override decimal ModifyDamageMultiplicative(
@@ -22,20 +22,18 @@ namespace STS2_WineFox.Powers
             Creature? dealer,
             CardModel? cardSource)
         {
-            if (!IsOwnerOrOwnedPet(dealer))
+            if (!props.IsPoweredAttack() ||
+                cardSource == null ||
+                !IsOwnerOrOwnedPet(dealer) ||
+                !HasActivePlating() ||
+                !HasActiveStrength())
                 return 1m;
 
-            if (!props.IsPoweredAttack())
-                return 1m;
-
-            if (cardSource == null)
-                return 1m;
-
-            if (!HasActivePlating() || !HasActiveStrength())
+            if (Amount <= 0m)
                 return 1m;
 
             Flash();
-            return 2m;
+            return Amount;
         }
 
         private bool IsOwnerOrOwnedPet(Creature? dealer)

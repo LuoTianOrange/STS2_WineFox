@@ -108,8 +108,8 @@
   "STS2_WINE_FOX_POWER_SPIRIT_FOX_FORM_POWER.description": "Whenever you play an [gold]Attack[/gold], apply 1 [gold]Slow[/gold] to the target.",
   "STS2_WINE_FOX_POWER_SPIRIT_FOX_FORM_POWER.smartDescription": "Whenever you play an [gold]Attack[/gold], apply 1 [gold]Slow[/gold] to the target.",
   "STS2_WINE_FOX_POWER_ARM_TO_TEETH_POWER.title": "Arm To Teeth",
-  "STS2_WINE_FOX_POWER_ARM_TO_TEETH_POWER.description": "When you have both [gold]Plating[/gold] and [gold]Strength[/gold], double the damage you deal.",
-  "STS2_WINE_FOX_POWER_ARM_TO_TEETH_POWER.smartDescription": "When you have both [gold]Plating[/gold] and [gold]Strength[/gold], double the damage you deal.",
+  "STS2_WINE_FOX_POWER_ARM_TO_TEETH_POWER.description": "When you have both [gold]Plating[/gold] and [gold]Strength[/gold], your Attack cards deal [blue]2[/blue]x damage.",
+  "STS2_WINE_FOX_POWER_ARM_TO_TEETH_POWER.smartDescription": "When you have both [gold]Plating[/gold] and [gold]Strength[/gold], your Attack cards deal [blue]{Amount}[/blue]x damage.",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.title": "Tracking",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.description": "Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Amount}[/blue] Block.",
   "STS2_WINE_FOX_POWER_TRACKING_POWER.smartDescription": "Whenever you cause an enemy to lose HP, that enemy gains [blue]1[/blue] Block and you gain [blue]{Amount}[/blue] Block.",
@@ -138,9 +138,12 @@
   "STS2_WINE_FOX_POWER_CHANT_POWER.description": "This turn, modify parts of effects on cards with Chant.",
   "STS2_WINE_FOX_POWER_CHANT_POWER.smartDescription": "This turn, {Amount:cond:<0?reduce|increase} parts of effects on cards with Chant by [blue]{Amount:abs()}[/blue].",
   "STS2_WINE_FOX_POWER_SHARD_COPY_POWER.title": "Mind Over Matter",
-  "STS2_WINE_FOX_POWER_SHARD_COPY_POWER.description": "Whenever you gain [gold]Chant[/gold], gain 1 additional [gold]Chant[/gold].",
-  "STS2_WINE_FOX_POWER_SHARD_COPY_POWER.smartDescription": "Whenever you gain [gold]Chant[/gold], gain 1 additional [gold]Chant[/gold].",
+  "STS2_WINE_FOX_POWER_SHARD_COPY_POWER.description": "Whenever you gain [gold]Chant[/gold], gain [blue]1[/blue] additional [gold]Chant[/gold].",
+  "STS2_WINE_FOX_POWER_SHARD_COPY_POWER.smartDescription": "Whenever you gain [gold]Chant[/gold], gain [blue]{Amount}[/blue] additional [gold]Chant[/gold].",
   "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.title": "Enchanted Golden Apple",
   "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.description": "Whenever you would lose HP, lose [blue]{Amount}[/blue] less.",
-  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "Whenever you would lose HP, lose [blue]{Amount}[/blue] less."
+  "STS2_WINE_FOX_POWER_HP_LOSS_REDUCTION_POWER.smartDescription": "Whenever you would lose HP, lose [blue]{Amount}[/blue] less.",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_RETENTION_POWER.title": "Eternal Melody",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_RETENTION_POWER.description": "At end of your turn, do not lose [gold]Chant[/gold].",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_RETENTION_POWER.smartDescription": "At end of your turn, do not lose [gold]Chant[/gold]."
 }

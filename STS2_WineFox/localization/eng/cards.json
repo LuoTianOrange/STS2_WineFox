@@ -254,5 +254,8 @@
   "STS2_WINE_FOX_CARD_OBTAIN_STRESS.description": "Gain {Stress:diff()} [gold]Stress[/gold].",
 
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "Obtain Materials",
-  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}."
+  "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}.",
+
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "Eternal Melody",
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "Retain your [gold]Chant[/gold] for 1 turn.{IfUpgraded:show: Gain 1 [gold]Chant[/gold].|}"
 }
