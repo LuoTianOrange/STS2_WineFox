@@ -1,9 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -18,64 +16,65 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.PlanningExpertPowerIcon);
 
-        protected override object? InitInternalData() => new List<CardModel>();
-
-        private List<CardModel> PendingDiscardSkills => GetInternalData<List<CardModel>>();
-
-        public override Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
+        public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
         {
-            var pending = PendingDiscardSkills;
-            pending.Clear();
+            TryGrantRetain(card);
 
-            if (player != Owner.Player || !Hook.ShouldFlush(player.Creature.CombatState, player))
+            return Task.CompletedTask;
+        }
+
+        public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPile, AbstractModel? source)
+        {
+            if (oldPile != PileType.Hand)
+                return Task.CompletedTask;
+            if (card.Pile?.Type != PileType.Discard)
                 return Task.CompletedTask;
 
-            var hand = PileType.Hand.GetPile(player);
-            foreach (var card in hand.Cards)
+            TryGrantRetain(card);
+            return Task.CompletedTask;
+        }
+
+        public override Task AfterFlush(
+            PlayerChoiceContext choiceContext,
+            Player player,
+            IReadOnlyCollection<CardModel> flushedCards,
+            IReadOnlyCollection<CardModel> retainedCards)
+        {
+            if (player.Creature != Owner)
+                return Task.CompletedTask;
+
+            foreach (var card in flushedCards)
             {
-                if (card.Type != CardType.Skill || card.ShouldRetainThisTurn)
+                if (!CanGrantRetain(card))
                     continue;
 
-                pending.Add(card);
+                TryGrantRetain(card);
             }
 
             return Task.CompletedTask;
         }
 
-        public override Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+        private void TryGrantRetain(CardModel card)
         {
-            if (side != CombatSide.Player)
-                return Task.CompletedTask;
+            if (!CanGrantRetain(card))
+                return;
 
-            var player = Owner.Player;
-            if (player == null)
-                return Task.CompletedTask;
+            card.AddKeyword(CardKeyword.Retain);
+            Flash();
+        }
 
-            var pending = PendingDiscardSkills;
-            if (pending.Count == 0)
-                return Task.CompletedTask;
+        private bool CanGrantRetain(CardModel card)
+        {
+            if (card.Owner.Creature != Owner)
+                return false;
+            if (card.Type != CardType.Skill)
+                return false;
+            if (card.HasBeenRemovedFromState)
+                return false;
+            if (card.Keywords.Contains(CardKeyword.Retain))
+                return false;
 
-            var any = false;
-            foreach (var card in pending)
-            {
-                if (!ReferenceEquals(card.Owner, player))
-                    continue;
-                if (card.HasBeenRemovedFromState)
-                    continue;
-                if (card.Type != CardType.Skill)
-                    continue;
-                if (card.Keywords.Contains(CardKeyword.Retain))
-                    continue;
-
-                card.AddKeyword(CardKeyword.Retain);
-                any = true;
-            }
-
-            pending.Clear();
-            if (any)
-                Flash();
-
-            return Task.CompletedTask;
+            return true;
         }
     }
 }

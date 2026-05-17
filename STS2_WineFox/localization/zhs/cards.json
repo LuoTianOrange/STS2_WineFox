@@ -30,7 +30,7 @@
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.title": "木剑",
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.description": "造成{Damage:diff()}点伤害。\n获得{Vigorous:diff()}层[gold]活力[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_IRON_PICKAXE.title": "铁镐",
-  "STS2_WINE_FOX_CARD_IRON_PICKAXE.description": "接下来{Times:diff()}次获得资源时，额外获得3个[gold]铁锭[/gold]。{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_IRON_PICKAXE.description": "接下来{Times:diff()}次获得资源时，额外获得{IfUpgraded:show:4|3}个[gold]铁锭[/gold]。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.title": "钻石剑",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.description": "造成{Damage:diff()}点伤害。\n每个回合的前{Echoes:diff()}张[gold]攻击[/gold]牌额外打出一次。{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_MECHANICAL_SAW.title": "动力锯",
@@ -204,7 +204,7 @@
   "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "获得木头",
   "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "获得{Wood:diff()}个[gold]木板[/gold]。对敌人造成等同于本次获得[gold]木板[/gold]数的伤害。",
   "STS2_WINE_FOX_CARD_SCRATCH.title": "抓挠",
-  "STS2_WINE_FOX_CARD_SCRATCH.description": "造成{IfUpgraded:show:[blue]X+2[/blue]|[blue]X[/blue]}点伤害，共[blue]2X[/blue]次。",
+  "STS2_WINE_FOX_CARD_SCRATCH.description": "造成{IfUpgraded:show:[blue]X+2[/blue]|[blue]X[/blue]}点伤害，共[blue]2X[/blue]次。{InCombat:\n（共造成{TotalDamage:diff()}点伤害）|}",
   "STS2_WINE_FOX_CARD_MAGIC_MISSILE.title": "魔法飞弹",
   "STS2_WINE_FOX_CARD_MAGIC_MISSILE.description": "使一名敌人失去[purple]{Damage:diff()}[/purple]点生命，共2次。\n获得{ChantPower:diff()}点[gold]咏唱[/gold]。",
   "STS2_WINE_FOX_CARD_BARRIER_WAVE.title": "屏障波",
@@ -232,7 +232,7 @@
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.description": "每回合第一次消耗[gold]应力[/gold]时，获得{Energy:energyIcons()}。",
 
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.title": "规划专家",
-  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "回合结束时，被丢弃的技能牌获得[gold]保留[/gold]。",
+  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "被丢弃的技能牌获得[gold]保留[/gold]。",
 
   "STS2_WINE_FOX_CARD_LIBERATION.title": "解放",
   "STS2_WINE_FOX_CARD_LIBERATION.description": "回合结束时，触发你手牌中每张被[gold]保留[/gold]的牌。",

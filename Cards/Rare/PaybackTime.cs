@@ -18,8 +18,8 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new CalculationBaseVar(2m),
-            new ExtraDamageVar(2m),
+            new CalculationBaseVar(1m),
+            new ExtraDamageVar(1m),
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier(MaterialGainedMultiplier),
         ];
 

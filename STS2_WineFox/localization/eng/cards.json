@@ -30,7 +30,7 @@
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.title": "Wooden Sword",
   "STS2_WINE_FOX_CARD_WOODEN_SWORD.description": "Deal {Damage:diff()} damage.\nGain {Vigorous:diff()} [gold]Vigor[/gold].{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_IRON_PICKAXE.title": "Iron Pickaxe",
-  "STS2_WINE_FOX_CARD_IRON_PICKAXE.description": "For the next {Times:diff()} times you gain resources, gain 3 additional [gold]Iron Ingot[/gold].{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_IRON_PICKAXE.description": "For the next {Times:diff()} times you gain resources, gain {IfUpgraded:show:4|3} additional [gold]Iron Ingot[/gold].{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.title": "Diamond Sword",
   "STS2_WINE_FOX_CARD_DIAMOND_SWORD.description": "Deal {Damage:diff()} damage.\nEach turn, the first {Echoes:diff()} [gold]Attack[/gold] cards are played an additional time.{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_MECHANICAL_SAW.title": "Mechanical Saw",
@@ -204,7 +204,7 @@
   "STS2_WINE_FOX_CARD_GETTING_WOOD.title": "Getting Wood",
   "STS2_WINE_FOX_CARD_GETTING_WOOD.description": "Gain {Wood:diff()} [gold]Plank[/gold]. Deal damage equal to the [gold]Plank[/gold] gained.",
   "STS2_WINE_FOX_CARD_SCRATCH.title": "Scratch",
-  "STS2_WINE_FOX_CARD_SCRATCH.description": "Deal [blue]X[/blue] damage [blue]2X[/blue] times.{IfUpgraded:show: (Upgraded: [blue]X+2[/blue] damage)|}",
+  "STS2_WINE_FOX_CARD_SCRATCH.description": "Deal [blue]X[/blue] damage [blue]2X[/blue] times.{IfUpgraded:show: (Upgraded: [blue]X+2[/blue] damage)|}{InCombat:\n(Deals {TotalDamage:diff()} damage total)|}",
   "STS2_WINE_FOX_CARD_MAGIC_MISSILE.title": "Magic Missile",
   "STS2_WINE_FOX_CARD_MAGIC_MISSILE.description": "Cause an enemy to lose [purple]{Damage:diff()}[/purple] HP twice.\nGain {ChantPower:diff()} [gold]Chant[/gold].",
   "STS2_WINE_FOX_CARD_BARRIER_WAVE.title": "Barrier Wave",
@@ -232,7 +232,7 @@
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.description": "The first time you spend [gold]Stress[/gold] each turn, gain {Energy:energyIcons()}.",
 
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.title": "Planning Expert",
-  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "At end of turn, discarded [gold]Skill[/gold] cards gain [gold]Retain[/gold].",
+  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "Discarded [gold]Skill[/gold] cards gain [gold]Retain[/gold], including end-of-turn discards.",
 
   "STS2_WINE_FOX_CARD_LIBERATION.title": "Liberation",
   "STS2_WINE_FOX_CARD_LIBERATION.description": "At end of turn, trigger each [gold]Retained[/gold] card in your hand.",

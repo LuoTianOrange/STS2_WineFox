@@ -24,13 +24,15 @@ namespace STS2_WineFox.Cards.Token.Craft
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<IronPickaxePower>(Owner.Creature,
-                DynamicVars["Times"].BaseValue, Owner.Creature, this);
+            var times = DynamicVars["Times"].BaseValue;
+            if (IsUpgraded)
+                await PowerCmd.Apply<IronPickaxePowerUpgraded>(Owner.Creature, times, Owner.Creature, this);
+            else
+                await PowerCmd.Apply<IronPickaxePower>(Owner.Creature, times, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Times"].UpgradeValueBy(1m);
         }
     }
 }

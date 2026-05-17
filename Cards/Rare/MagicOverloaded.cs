@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class MagicOverloaded() : WineFoxCard(
-        2, CardType.Power, CardRarity.Rare, TargetType.Self)
+        1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicOverloaded);
 
