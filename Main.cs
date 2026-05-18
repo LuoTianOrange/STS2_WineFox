@@ -19,6 +19,8 @@ namespace STS2_WineFox
         public static readonly Logger Logger = RitsuLibFramework.CreateLogger(Const.ModId);
 
         private static ModPatcher? _runtimePatcher;
+        private static ModPatcher? _deferredRuntimePatcher;
+        private static bool _deferredRuntimePatchesApplied;
 
         public static bool IsModActive { get; private set; }
 
@@ -84,12 +86,40 @@ namespace STS2_WineFox
         private static ModPatcher CreateRuntimePatcher()
         {
             var patcher = RitsuLibFramework.CreatePatcher(Const.ModId, "runtime-effects", "runtime effects");
-            patcher.RegisterPatch<WineFoxCreatureLoseHpFlashPatch>();
+            if (!IsAndroid())
+                patcher.RegisterPatch<WineFoxCreatureLoseHpFlashPatch>();
+            else
+                Logger.Warn("[WineFoxVfx] Skipping LoseHpInternal flash patch on Android; hit-trigger flash remains available.");
             patcher.RegisterPatch<WineFoxCreatureHitTriggerFlashPatch>();
             patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
-            patcher.RegisterPatch<WineFoxMerchantSellablePotionTargetingPatch>();
+            patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
             return patcher;
+        }
+
+        internal static void ApplyDeferredRuntimePatches()
+        {
+            if (_deferredRuntimePatchesApplied)
+                return;
+
+            _deferredRuntimePatcher ??= CreateDeferredRuntimePatcher();
+            _deferredRuntimePatchesApplied = RitsuLibFramework.ApplyRequiredPatcher(
+                _deferredRuntimePatcher,
+                DisableModOnRequiredPatcherFailure,
+                "WineFox deferred runtime patches failed; disabling mod functionality.");
+        }
+
+        private static ModPatcher CreateDeferredRuntimePatcher()
+        {
+            var patcher = RitsuLibFramework.CreatePatcher(Const.ModId, "runtime-effects-deferred",
+                "deferred runtime effects");
+            patcher.RegisterPatch<WineFoxMerchantSellablePotionTargetingPatch>();
+            return patcher;
+        }
+
+        private static bool IsAndroid()
+        {
+            return Godot.OS.GetName().Equals("Android", StringComparison.OrdinalIgnoreCase);
         }
 
         private static void DisableModOnRequiredPatcherFailure()

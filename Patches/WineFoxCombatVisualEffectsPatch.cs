@@ -11,7 +11,7 @@ namespace STS2_WineFox.Patches
     public class WineFoxCreatureLoseHpFlashPatch : IPatchMethod
     {
         public static string PatchId => "winefox_creature_lose_hp_flash";
-        public static bool IsCritical => true;
+        public static bool IsCritical => false;
         public static string Description => "Flashes red on damage when WineFox is in party";
 
         public static ModPatchTarget[] GetTargets()
@@ -35,7 +35,7 @@ namespace STS2_WineFox.Patches
     public class WineFoxCreatureDeathSmokePlaceholderPatch : IPatchMethod
     {
         public static string PatchId => "winefox_creature_death_smoke_placeholder";
-        public static bool IsCritical => true;
+        public static bool IsCritical => false;
         public static string Description => "Invokes death smoke placeholder when WineFox is in party";
 
         public static ModPatchTarget[] GetTargets()
@@ -56,7 +56,7 @@ namespace STS2_WineFox.Patches
     public class WineFoxCreatureHitTriggerFlashPatch : IPatchMethod
     {
         public static string PatchId => "winefox_creature_hit_trigger_flash";
-        public static bool IsCritical => true;
+        public static bool IsCritical => false;
         public static string Description => "Flashes red when Hit animation trigger is played";
 
         public static ModPatchTarget[] GetTargets()
