@@ -24,10 +24,10 @@ namespace STS2_WineFox.Cards.Rare
         {
             var owner = Owner.Creature;
 
-            await PowerCmd.Apply<EternalMelodyRetentionPower>(choiceContext, owner, 1m, owner, this);
+            await PowerCmd.Apply<EternalMelodyRetentionPower>(owner, 1m, owner, this);
 
             if (IsUpgraded)
-                await PowerCmd.Apply<ChantPower>(choiceContext, owner, 1m, owner, this);
+                await PowerCmd.Apply<ChantPower>(owner, 1m, owner, this);
         }
 
         protected override void OnUpgrade()
@@ -35,7 +35,6 @@ namespace STS2_WineFox.Cards.Rare
         }
     }
 }
-
 
 
 

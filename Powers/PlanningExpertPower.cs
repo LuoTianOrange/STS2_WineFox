@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -31,26 +30,6 @@ namespace STS2_WineFox.Powers
                 return Task.CompletedTask;
 
             TryGrantRetain(card);
-            return Task.CompletedTask;
-        }
-
-        public override Task AfterFlush(
-            PlayerChoiceContext choiceContext,
-            Player player,
-            IReadOnlyCollection<CardModel> flushedCards,
-            IReadOnlyCollection<CardModel> retainedCards)
-        {
-            if (player.Creature != Owner)
-                return Task.CompletedTask;
-
-            foreach (var card in flushedCards)
-            {
-                if (!CanGrantRetain(card))
-                    continue;
-
-                TryGrantRetain(card);
-            }
-
             return Task.CompletedTask;
         }
 
