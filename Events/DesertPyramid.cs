@@ -72,9 +72,8 @@ namespace STS2_WineFox.Events
             relic ??= TryPullAnyRewardRarity(RelicGrabBagPullCompat.PassAllRelics);
 
             relic ??= RelicFactory.PullNextRelicFromFront(owner);
-            await RelicCmd.Obtain(relic.ToMutable(), owner);
-
             SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST1FINISH.description"));
+            await RelicCmd.Obtain(relic.ToMutable(), owner);
             return;
 
             RelicModel? TryPullAnyRewardRarity(Func<RelicModel, bool> filter)
