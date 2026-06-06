@@ -145,7 +145,8 @@ namespace STS2_WineFox
             public const string CardAllItemUpgraded = Root + "/cards/card_allitem_upgraded.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
             public const string CardAlternator = Root + "/cards/card_alternator.png";
-            public const string CardNothing = Root + "/cards/card_nothing.png";
+            public const string CardEmptyStrikes = Root + "/cards/card_empty_strikes.png";
+            public const string CardEmptyParries = Root + "/cards/card_empty_parries.png";
             public const string CardWoodenPickaxe = Root + "/cards/card_woodenpickaxe.png";
             public const string CardWoodenArmor = Root + "/cards/card_woodenarmor.png";
             public const string CardNetheritePickaxe = Root + "/cards/card_netherite_pickaxe.png";

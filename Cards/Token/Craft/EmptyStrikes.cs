@@ -10,15 +10,15 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Token.Craft
 {
     [RegisterCard(typeof(WineFoxCraftingCardPool))]
-    public class Nothing() : WineFoxCard(
+    public class EmptyStrikes() : WineFoxCard(
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy
     )
     {
         protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(1m, ValueProp.Move)];
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Ethereal];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNothing);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEmptyStrikes);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,

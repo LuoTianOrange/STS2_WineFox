@@ -25,14 +25,16 @@ namespace STS2_WineFox.Cards.Rare
             CardPlay play)
         {
             var x = ResolveEnergyXValue();
-            if (x <= 0)
-                return;
+            var productCount = x <= 0
+                ? 1
+                : IsUpgraded ? x + 1 : x;
+            var craftCount = Math.Max(1, x);
 
             await CraftCmd.CraftIntoHandMultipleFromSingleCost(
                 choiceContext,
                 this,
-                IsUpgraded ? x + 1 : x,
-                x);
+                productCount,
+                craftCount);
         }
 
         protected override void OnUpgrade()

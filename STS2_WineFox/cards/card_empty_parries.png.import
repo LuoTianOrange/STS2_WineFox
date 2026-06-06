@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtmtrrwuei8d0"
-path="res://.godot/imported/card_nothing.png-276b6fa8f33b83ae50216b01e387ae4d.ctex"
+uid="uid://b8br74bvc7glf"
+path="res://.godot/imported/card_empty_parries.png-c21a324ecce523b979d0b0d9ef2ae6fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/cards/card_nothing.png"
-dest_files=["res://.godot/imported/card_nothing.png-276b6fa8f33b83ae50216b01e387ae4d.ctex"]
+source_file="res://STS2_WineFox/cards/card_empty_parries.png"
+dest_files=["res://.godot/imported/card_empty_parries.png-c21a324ecce523b979d0b0d9ef2ae6fb.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
