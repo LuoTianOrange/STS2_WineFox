@@ -216,8 +216,15 @@ namespace STS2_WineFox.Commands
                 prefs ?? CreateSelectionPrefs())).FirstOrDefault();
 
             var selectedOption = options.FirstOrDefault(option => ReferenceEquals(option.Card, selectedCard));
-            CleanupUnselectedOptions(options, selectedOption);
+            await CleanupUnselectedOptionsDeferred(options, selectedOption);
             return selectedOption;
+        }
+
+        private static async Task CleanupUnselectedOptionsDeferred(IEnumerable<CraftOption> options,
+            CraftOption? selectedOption)
+        {
+            await Task.Yield();
+            CleanupUnselectedOptions(options, selectedOption);
         }
 
         public static void ObserveTurnStarted(PlayerChoiceContext choiceContext, Player player)

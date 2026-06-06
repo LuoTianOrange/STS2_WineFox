@@ -26,9 +26,11 @@ namespace STS2_WineFox.Cards.Rare
         {
             var x = ResolveEnergyXValue();
             var productCount = x <= 0
-                ? 1
+                ? IsUpgraded ? 1 : 0
                 : IsUpgraded ? x + 1 : x;
-            var craftCount = Math.Max(1, x);
+            var craftCount = x <= 0
+                ? IsUpgraded ? 1 : 0
+                : x;
 
             await CraftCmd.CraftIntoHandMultipleFromSingleCost(
                 choiceContext,
