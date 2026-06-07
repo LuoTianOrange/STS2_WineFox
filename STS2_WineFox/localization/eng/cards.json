@@ -240,7 +240,7 @@
   "STS2_WINE_FOX_CARD_LIBERATION.description": "At the end of your turn, play a copy of each [gold]Retained[/gold] card in your [gold]Hand[/gold].",
 
   "STS2_WINE_FOX_CARD_NETHERITE_SWORD.title": "Netherite Sword",
-  "STS2_WINE_FOX_CARD_NETHERITE_SWORD.description": "{IfUpgraded:show: Upgrade and play|Play} all [gold]Sword[/gold] cards in your [gold]Exhaust Pile[/gold].",
+  "STS2_WINE_FOX_CARD_NETHERITE_SWORD.description": "{IfUpgraded:show: Upgrade and play|Play} all other [gold]Sword[/gold] cards in your [gold]Exhaust Pile[/gold].",
 
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.title": "Hoarding Habit",
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]. At the start of next turn, gain {NextTurnMaterial:diff()} [gold]Plank[/gold] and {NextTurnMaterial:diff()} [gold]Cobblestone[/gold].",
