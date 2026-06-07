@@ -55,7 +55,9 @@ namespace STS2_WineFox.Powers
             }
         }
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterTurnEndLate(
+            PlayerChoiceContext choiceContext,
+            CombatSide side)
         {
             if (side == Owner.Side)
                 await PowerCmd.Remove(this);

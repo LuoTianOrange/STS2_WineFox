@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -22,6 +23,9 @@ namespace STS2_WineFox.Cards.Token.Craft
         {
             await PowerCmd.Apply<DiamondPickaxePower>(Owner.Creature, 1m,
                 Owner.Creature, this);
+            
+            if (IsUpgraded)
+                await CraftCmd.CraftIntoHand(choiceContext, this);
         }
 
         protected override void OnUpgrade()

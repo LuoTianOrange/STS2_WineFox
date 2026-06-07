@@ -7,6 +7,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -17,9 +18,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(13, ValueProp.Move), new("Stress", 2m)];
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Stress];
-        
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRiclearPowerPlant);
 
         protected override async Task OnPlay(

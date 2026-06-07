@@ -5,6 +5,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Ancient
 {
@@ -14,9 +15,7 @@ namespace STS2_WineFox.Cards.Ancient
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNetheritePickaxe);
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Wood, WineFoxKeywords.Stone, WineFoxKeywords.Iron, WineFoxKeywords.Diamond];
-        
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword, WineFoxKeywords.DiamondKeyword];
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

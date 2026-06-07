@@ -1,9 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -11,9 +12,7 @@ namespace STS2_WineFox.Cards.Rare
     public class WirelessTerminal() : WineFoxCard(
         1, CardType.Skill, CardRarity.Rare, TargetType.None), ICraftingCard
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Craft];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardWirelessTerminal,
             Const.Paths.CardWirelessTerminal,

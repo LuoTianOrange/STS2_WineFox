@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgjbgybrbpklu"]
+
+[ext_resource type="PackedScene" uid="uid://io4twnf6i367" path="res://STS2_WineFox/scenes/vfx/Blocks/mc_block.tscn" id="1_q2he4"]
+[ext_resource type="Texture2D" uid="uid://c2ltjhhg8qht4" path="res://STS2_WineFox/images/mc_texture/Cobblestone_(texture)_JE5_BE3.png" id="2_0kjem"]
+[ext_resource type="Script" uid="uid://b8spfe5qv0nof" path="res://Scripts/Effects/VfxBasicMine.cs" id="3_vfxbm"]
+
+[node name="VfxBasicMine" type="Node2D"]
+script = ExtResource("3_vfxbm")
+
+[node name="WoodBlock1" parent="." instance=ExtResource("1_q2he4")]
+position = Vector2(-1, -92)
+
+[node name="WoodBlock2" parent="." instance=ExtResource("1_q2he4")]
+position = Vector2(16, -79)
+
+[node name="StoneBlock1" parent="." instance=ExtResource("1_q2he4")]
+position = Vector2(-33, -80)
+BlockTexture = ExtResource("2_0kjem")
+
+[node name="StoneBlock2" parent="." instance=ExtResource("1_q2he4")]
+position = Vector2(31, -85)
+BlockTexture = ExtResource("2_0kjem")

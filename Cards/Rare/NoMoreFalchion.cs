@@ -7,6 +7,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -14,9 +15,7 @@ namespace STS2_WineFox.Cards.Rare
     public class NoMoreFalchion() : WineFoxCard(
         1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Iron];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.IronKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(8m, ValueProp.Move), new IntVar("Hits", 1m)];
 

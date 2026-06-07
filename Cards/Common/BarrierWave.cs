@@ -5,10 +5,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -32,6 +34,7 @@ namespace STS2_WineFox.Cards.Common
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<ChantPower>()];
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MagicKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBarrierWave);
 
         protected override async Task OnPlay(
@@ -51,10 +54,10 @@ namespace STS2_WineFox.Cards.Common
                     owner,
                     this);
             
-            var blockToGain = WineFoxCardVarFactory.ChantScaledAmount(this, "Block");
+            var blockToGain = MagicBlock.Resolve(this, DynamicVars.Block.BaseValue);
 
             await PowerCmd.Apply<ChantPower>(owner, DynamicVars["ChantPower"].BaseValue, owner, this);
-            await CreatureCmd.GainBlock(owner, blockToGain, ValueProp.Move, play);
+            await CreatureCmd.GainBlock(owner, blockToGain, ValueProp.Move | ValueProp.Unpowered, play);
         }
 
         protected override void OnUpgrade()

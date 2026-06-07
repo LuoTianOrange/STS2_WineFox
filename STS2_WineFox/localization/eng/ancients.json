@@ -5,5 +5,38 @@
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "You came back again.",
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.next": "Continue",
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-1r.char": "Master, wait for me",
-  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both"
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both",
+
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "..out...sider...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "..another...resurrecting...power...how...marvelous...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "..the Architect...the true...culprit...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.next": "Continue",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.ancient": "..slay...him...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.next": "Continue",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-2r.ancient": "..and I...shall grant...a blessing...",
+
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "Little one from beyond this world, have you come seeking aid?",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "Child, let my flames light the road ahead!",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "Little one, little one who loves food...",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.next": "Continue",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.ancient": "I prepared even more for you...",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.next": "Continue",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-2r.ancient": "I hope you will enjoy what I made",
+
+  "PAEL.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.ancient": "Poor little one...",
+  "PAEL.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "Seek my father; he will surely answer your questions",
+
+  "OROBAS.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "A creature from beyond?? Pointy ears!! So adorable!!",
+  "OROBAS.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "Cutie!! Cutie!! These are for you!! Sparkly!!",
+
+  "NONUPEIPE.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "Traveler from another world, defeat the mad master of this place and you can return home",
+  "NONUPEIPE.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "Failed again? Perhaps your power has yet to adapt to this world. Try these",
+
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "Another little orange one!! You must be strong!",
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "What a strange weapon! Spar with me! Let me see what you can do!",
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "You truly are strong! So many weapons at your command! Take this!",
+
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "Traveler from another world! Got any curious trinkets from your world?",
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "Ah, you're back again. Let's trade treasures! Your world has so many things I've never seen - I want all of them in my collection!",
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "You definitely don't have goodies like these over there. Take them and give them a try!"
 }

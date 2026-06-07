@@ -8,6 +8,7 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -20,9 +21,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(5, ValueProp.Move), new CardsVar(2)];
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Wood];
-        
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAlterPath);
 
         protected override bool IsPlayable =>

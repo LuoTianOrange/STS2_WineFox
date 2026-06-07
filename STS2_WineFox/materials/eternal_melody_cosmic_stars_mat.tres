@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5pwmxx3fvjky"]
+
+[ext_resource type="Shader" path="res://STS2_WineFox/shaders/eternal_melody_cosmic_stars.gdshader" id="1_cosmos"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_cosmos")
+shader_parameter/star_density = 108.0
+shader_parameter/star_size = 0.024
+shader_parameter/twinkle_speed = 2.0
+shader_parameter/twinkle_interval = 2.6
+shader_parameter/twinkle_window = 0.22
+shader_parameter/twinkle_floor = 0.32
+shader_parameter/drift_speed = 0.028
+shader_parameter/glow_strength = 0.55
+shader_parameter/tint_strength = 0.2
+shader_parameter/breath_speed = 1.0
+shader_parameter/breath_intensity = 0.14
+shader_parameter/background_opacity = 0.9
+shader_parameter/frame_dark_tint = Vector3(0.005, 0.005, 0.008)
+shader_parameter/frame_luma_keep = 0.1
+shader_parameter/bg_color = Vector3(0, 0, 0)

@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -18,7 +19,9 @@ namespace STS2_WineFox.Powers
 
         private PlatingPower? GetPlating() => Owner.Powers.OfType<PlatingPower>().FirstOrDefault();
 
-        public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task BeforeTurnEndEarly(
+            PlayerChoiceContext choiceContext,
+            CombatSide side)
         {
             if (side != Owner.Side) return;
 

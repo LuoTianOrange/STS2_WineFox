@@ -1,0 +1,222 @@
+[gd_scene load_steps=10 format=3 uid="uid://doh4frxrhn7ni"]
+
+[ext_resource type="Script" uid="uid://5o1wtqtiwdxw" path="res://Scripts/Effects/VfxHoldNToPonder.cs" id="1_hynd3"]
+[ext_resource type="Texture2D" uid="uid://drbm2domneka6" path="res://STS2_WineFox/images/vfx/vfx_ponding_zhs.png" id="1_vm04m"]
+[ext_resource type="Texture2D" uid="uid://bikvnslrxbxq1" path="res://STS2_WineFox/images/vfx/vfx_ponding_eng.png" id="2_ebura"]
+[ext_resource type="Texture2D" uid="uid://huiqpki66rdh" path="res://STS2_WineFox/images/vfx/vfx_ponding_txt_zhs.png" id="2_quvsm"]
+[ext_resource type="Texture2D" uid="uid://cy00phn760f8a" path="res://STS2_WineFox/images/vfx/vfx_ponding_txt_eng.png" id="3_k4bwr"]
+[ext_resource type="Texture2D" uid="uid://bpo55uai6jsnj" path="res://STS2_WineFox/images/vfx/vfx_ponding_bar.png" id="3_r4xb4"]
+
+[sub_resource type="Animation" id="Animation_vm04m"]
+resource_name = "main"
+length = 4.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bar:region_rect:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.93333334, 3.2333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 203.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bar_BG:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 4.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 4.0333333, 4.5666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Text:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bar:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.0666666, 4.5666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_quvsm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bar:region_rect:size:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [203.315]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bar_BG:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Text:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bar:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4xb4"]
+_data = {
+&"RESET": SubResource("Animation_quvsm"),
+&"main": SubResource("Animation_vm04m")
+}
+
+[node name="VfxHoldWToPonder" type="Node2D" node_paths=PackedStringArray("NodeBG", "NodeText")]
+script = ExtResource("1_hynd3")
+NodeBG = NodePath("BG")
+NodeText = NodePath("Text")
+BGTexture_eng = ExtResource("2_ebura")
+TextTexture_eng = ExtResource("3_k4bwr")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_vm04m")
+
+[node name="Text" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-30, 10)
+texture = ExtResource("2_quvsm")
+
+[node name="Bar_BG" type="Sprite2D" parent="."]
+modulate = Color(0.08593253, 0.08593253, 0.08593253, 1)
+position = Vector2(-17, 8)
+texture = ExtResource("3_r4xb4")
+
+[node name="Bar" type="Sprite2D" parent="."]
+position = Vector2(-120, -9)
+texture = ExtResource("3_r4xb4")
+centered = false
+region_enabled = true
+region_rect = Rect2(-2, 2.5, 203.315, 33)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_r4xb4")
+}
+autoplay = "main"

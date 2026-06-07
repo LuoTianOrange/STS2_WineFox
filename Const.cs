@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2-WineFox";
         public const string Name = "WineFox";
-        public const string Version = "1.1.12";
+        public const string Version = "1.1.21";
 
         /// <summary>
         ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
@@ -20,7 +20,7 @@ namespace STS2_WineFox
             public const string ScenesRoot = Root + "/scenes";
 
             public const string EnergyIconCake = Root + "/winefox/winefox_energy_icon.png";
-            public const string CharacterVisualsScene = ScenesRoot + "/winefox/winefox.tscn";
+            public const string CharacterVisualsScene = ScenesRoot + "/combat/winefox_combat.tscn";
             public const string CharacterIconScene = ScenesRoot + "/ui/character_icons/wine_fox_icon.tscn";
             public const string CharacterSelectBgScene = ScenesRoot + "/char_select/char_select_bg_wine_fox.tscn";
             public const string CharacterRestSiteAnimScene = ScenesRoot + "/rest_site/winefox_rest_site.tscn";
@@ -35,7 +35,7 @@ namespace STS2_WineFox
             public const string ArmPaperTexturePath = Root + "/winefox/arm/winefox_paper.png";
             public const string ArmScissorsTexturePath = Root + "/winefox/arm/winefox_scissors.png";
             public const string CharacterDeathPortrait = Root + "/winefox/winefox_die.png";
-            public const string CharacterAlivePortrait = Root + "/winefox/winefox.tscn";
+            public const string CharacterAlivePortrait = ScenesRoot + "/combat/winefox_combat.tscn";
 
 
             public const string CharacterSelectLockedIcon =
@@ -110,8 +110,9 @@ namespace STS2_WineFox
             public const string ShardCopyPowerIcon = Root + "/powers/shard_copy_power.png";
             public const string ArmToTeethPowerIcon = Root + "/powers/arm_to_teeth_power.png";
             public const string EternalMelodyPowerIcon = Root + "/powers/eternal_melody_power.png";
+            public const string MagicOverloadedPowerIcon = Root + "/powers/magic_overloaded_power.png";
 
-            
+
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
             //Card
@@ -138,20 +139,21 @@ namespace STS2_WineFox
             public const string CardIronZombie = Root + "/cards/card_ironzombie.png";
             public const string CardCrushingWheel = Root + "/cards/card_crushingwheel.png";
             public const string CardEnmergencyRepair = Root + "/cards/card_enmergency_repair.png";
-            public const string CardLightAssault = Root + "/cards/card_test.png";
+            public const string CardLightAssault = Root + "/cards/card_light_assault.png";
             public const string CardEasyPeasy = Root + "/cards/card_easy_peasy.png";
             public const string CardAllItem = Root + "/cards/card_allitem.png";
             public const string CardAllItemUpgraded = Root + "/cards/card_allitem_upgraded.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
             public const string CardAlternator = Root + "/cards/card_alternator.png";
-            public const string CardNothing = Root + "/cards/card_nothing.png";
+            public const string CardEmptyStrikes = Root + "/cards/card_empty_strikes.png";
+            public const string CardEmptyParries = Root + "/cards/card_empty_parries.png";
             public const string CardWoodenPickaxe = Root + "/cards/card_woodenpickaxe.png";
             public const string CardWoodenArmor = Root + "/cards/card_woodenarmor.png";
             public const string CardNetheritePickaxe = Root + "/cards/card_netherite_pickaxe.png";
             public const string CardCobblestoneGenerator = Root + "/cards/card_cobblestone_generator.png";
             public const string CardShieldAttack = Root + "/cards/card_shield_attack.png";
-            public const string CardSpinningHand = Root + "/cards/card_test.png";
-            public const string CardProductionDocument = Root + "/cards/card_test.png";
+            public const string CardSpinningHand = Root + "/cards/card_spinning_hand.png";
+            public const string CardProductionDocument = Root + "/cards/card_production_document.png";
             public const string CardMilk = Root + "/cards/card_milk.png";
             public const string CardVacantDomain = Root + "/cards/card_vacantdomain.png";
             public const string CardRecordPlayer = Root + "/cards/card_record_player.png";
@@ -181,6 +183,9 @@ namespace STS2_WineFox
 
             public const string CardWirelessTerminalRainbowFrameMat =
                 Root + "/materials/wireless_terminal_frame_rainbow_mat.tres";
+
+            public const string CardEternalMelodyCosmicStarsFrameMat =
+                Root + "/materials/eternal_melody_cosmic_stars_mat.tres";
 
             public const string CardGoldenSword = Root + "/cards/card_golden_sword.png";
             public const string CardHellGift = Root + "/cards/card_hell_gift.png";
@@ -233,12 +238,14 @@ namespace STS2_WineFox
             public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
             public const string CardHoardingHabit = Root + "/cards/card_hoarding_habit.png";
             public const string CardLogistics = Root + "/cards/card_logistics.png";
-            public const string CardSweep = Root + "/cards/card_test.png";
+            public const string CardSweep = Root + "/cards/card_sweep.png";
             public const string CardArmToTeeth = Root + "/cards/card_arm_to_teeth.png";
             public const string CardEssenceReconstruction = Root + "/cards/card_essence_reconstruction.png";
             public const string CardMagicOverloaded = Root + "/cards/card_magic_overloaded.png";
             public const string CardEternalMelody = Root + "/cards/card_eternal_melody.png";
-            
+            public const string CardManaSurge = Root + "/cards/card_mana_surge.png";
+            public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
+
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
             public const string EnchantmentSweepingEdgeIcon = Root + "/enchantments/sweeping_edge_icon.png";
@@ -272,6 +279,12 @@ namespace STS2_WineFox
             public const string Cake = Root + "/potions/foods/cake.png";
             public const string GlisteringMelon = Root + "/potions/foods/glistering_melon.png";
             public const string GoldenCarrot = Root + "/potions/foods/golden_carrot.png";
+            
+            //VFX
+            public const string DripstoneVfx = ScenesRoot + "/vfx/vfx_dripstones_fall.tscn";
+            public const string BasicMineVfx = ScenesRoot + "/vfx/vfx_basic_mine.tscn";
+            public const string DrinkMilkVfx = ScenesRoot + "/vfx/vfx_milk_drink.tscn";
+            public const string HoldWToPonderVfx = ScenesRoot + "/vfx/vfx_hold_w_to_ponder.tscn";
         }
 
         public static class Audio
@@ -281,6 +294,13 @@ namespace STS2_WineFox
             public const string Attack = "event:/sfx/characters/silent/silent_attack";
             public const string Cast = "event:/sfx/characters/silent/silent_cast";
             public const string Death = "event:/sfx/characters/silent/silent_die";
+
+
+            //CardSFX
+            public const string Dripstone = "event:/sfx/cards/dripstone";
+            public const string Drink = "event:/sfx/cards/drink_1";
+            public const string PickUp = "event:/sfx/cards/pickup";
+            public const string IdleSet1 = "event:/sfx/common/idle_rand_set_1";
         }
     }
 }

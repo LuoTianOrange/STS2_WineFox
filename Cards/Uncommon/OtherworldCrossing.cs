@@ -11,7 +11,8 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     /// <summary>
     ///     异界跨越 - 1 cost Power Uncommon.
-    ///     每回合开始时，将你选择一张手牌，将一张虚无消耗复制品加入到你的手牌。
+    ///     每2回合开始时，选择手牌并将其虚无消耗复制品加入到你的手牌。
+    ///     每层增加1张可复制数量。
     ///     升级：附加固有。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]

@@ -3,7 +3,7 @@
     <Import Project="$(RitsuLibDir)\Sts2PathDiscovery.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\Sts2PathDiscovery.props')" />
 
     <PropertyGroup Label="STS2 compile references (API signature pack)">
-        <Sts2ApiCompat>0.103.2</Sts2ApiCompat>
+        <Sts2ApiCompat>0.103.3</Sts2ApiCompat>
         <Sts2ApiSignatureRoot Condition="'$(Sts2ApiSignatureRoot)' == ''">$(MSBuildThisFileDirectory)..\sts2-api-signatures</Sts2ApiSignatureRoot>
         <Sts2ApiSignatureDir>$(Sts2ApiSignatureRoot)\$(Sts2ApiCompat)</Sts2ApiSignatureDir>
         <Sts2DataDir>$(Sts2ApiSignatureDir)</Sts2DataDir>
@@ -67,6 +67,7 @@
     <ItemGroup>
         <Compile Remove=".godot\**" />
         <Compile Remove="STS2-RitsuLib\**" />
+        <Compile Remove="Telemetry\**" />
         <None Remove=".godot\**" />
         <Content Remove=".godot\**" />
         <EmbeddedResource Remove=".godot\**" />

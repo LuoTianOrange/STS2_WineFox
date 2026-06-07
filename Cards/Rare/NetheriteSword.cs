@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     /// <summary>
     ///     下界合金剑 - 2 cost Attack Rare.
-    ///     将你消耗牌堆中的所有剑（木剑、石剑、铁剑、钻石剑）打出。
+    ///     将你消耗牌堆中的所有剑（木剑、石剑、铁剑、金剑、钻石剑）打出。
     ///     升级效果：将消耗牌堆中的所有剑升级后打出。
     /// </summary>
     [RegisterCard(typeof(WineFoxCardPool))]

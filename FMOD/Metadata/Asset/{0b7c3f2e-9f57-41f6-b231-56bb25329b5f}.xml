@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{0b7c3f2e-9f57-41f6-b231-56bb25329b5f}">
+		<property name="assetPath">
+			<value>ai/</value>
+		</property>
+	</object>
+</objects>

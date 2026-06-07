@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards;
 using STS2_WineFox.Combat.Magic;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -11,8 +12,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Powers
 {
     [RegisterPower]
-    public class ChantPower : WineFoxPower, IMagicDamageModifier
-    {       
+    public class ChantPower : WineFoxPower, IMagicDamageModifier, IMagicBlockModifier
+    {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
 
@@ -30,14 +31,56 @@ namespace STS2_WineFox.Powers
             return Amount;
         }
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public decimal ModifyMagicBlockAdditive(
+            Creature defender,
+            decimal baseAmount,
+            CardModel cardSource)
+        {
+            if (defender != Owner) return 0m;
+            if (!cardSource.IsMagic()) return 0m;
+
+            return Amount;
+        }
+
+        public override Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
+        {
+            return Task.CompletedTask;
+        }
+
+        public override Task BeforeSideTurnStart(
+            PlayerChoiceContext choiceContext,
+            CombatSide side,
+            CombatState combatState)
+        {
+            return Task.CompletedTask;
+        }
+
+        public override Task AfterPowerAmountChanged(
+            PowerModel power,
+            decimal amount,
+            Creature? applier,
+            CardModel? cardSource)
+        {
+            return Task.CompletedTask;
+        }
+
+        public override async Task AfterTurnEndLate(
+            PlayerChoiceContext choiceContext,
+            CombatSide side)
         {
             if (side != Owner.Side) return;
 
-            if (Owner.GetPowerAmount<EternalMelodyRetentionPower>() > 0m && Amount > 0m)
+            var halved = Math.Floor(Amount / 2m);
+            if (halved == Amount)
                 return;
 
-            await PowerCmd.Remove(this);
+            if (halved == 0m)
+            {
+                await PowerCmd.Remove(this);
+                return;
+            }
+
+            await PowerCmd.Apply<ChantPower>(Owner, halved - Amount, Owner, null);
         }
     }
 }

@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh2yiqjmjmwy0"]
+
+[ext_resource type="Texture2D" uid="uid://bfrdbpn72b4l" path="res://STS2_WineFox/images/mc_texture/Milk_Bucket_JE2_BE2.png" id="1_6m3ry"]
+
+[sub_resource type="Animation" id="Animation_6m3ry"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.53333336, 0.7, 0.7947778, 0.8920869, 0.99477774, 1.0826721, 1.1718926, 1.2615044, 1.3380485),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(154.1, 89.57), Vector2(10, -12), Vector2(10, -12), Vector2(-6, -1.000001), Vector2(15, -22), Vector2(-7.000004, 9.000002), Vector2(24, -32), Vector2(-10, -2), Vector2(22, -23), Vector2(-8.000002, 7), Vector2(5.999999, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.21690698, -0.9213035, -0.9213035]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1.3333334, 1.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l15bo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(326.99994, 153.00012)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.21690698]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wvqm"]
+_data = {
+&"RESET": SubResource("Animation_l15bo"),
+&"default": SubResource("Animation_6m3ry")
+}
+
+[node name="VfxMilkDrink" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(326.99994, 153.00012)
+rotation = -0.21690698
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("1_6m3ry")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_3wvqm")
+}
+autoplay = "default"

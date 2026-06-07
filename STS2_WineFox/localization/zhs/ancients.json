@@ -5,5 +5,38 @@
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "你又回来了。",
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.next": "继续",
   "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-1r.char": "主人，等着我",
-  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both"
+  "THE_ARCHITECT.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-attack": "Both",
+
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "..外...来...者...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "..另一种...复活...的...力量...多么...美妙",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "..建筑师...罪魁...祸首...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.next": "继续",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.ancient": "..杀...死...他...",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.next": "继续",
+  "NEOW.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-2r.ancient": "..我...给予...赐福...",
+
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "不属于这个世界的小家伙，你是来寻求帮助的吗",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "孩子，让我的火焰帮你照亮前路吧！",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "小家伙，喜欢食物的小家伙……",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.next": "继续",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.ancient": "我为你准备了更多……",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-1r.next": "继续",
+  "TEZCATARA.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-2r.ancient": "希望我做的你会喜欢",
+
+  "PAEL.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0r.ancient": "可怜的小家伙……",
+  "PAEL.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "去找我的父亲吧，他一定能解答你的问题",
+
+  "OROBAS.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "外来的生物？？耳朵尖尖！！好可爱！！",
+  "OROBAS.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "小可爱！！小可爱！！这些给你！！亮闪闪！！",
+
+  "NONUPEIPE.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "异界的客人，将此间疯狂的主人解决，你就能回到你的世界",
+  "NONUPEIPE.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "又失败了？莫非是你的力量还不适应这个世界？来试试这些吧",
+
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "又一个橙色的小家伙！！你一定很强大！",
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "好奇怪的武器！和我战斗一场！让我见识见识！",
+  "TANX.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "你果然很强大！竟然会用这么多种武器！拿上这个！",
+
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.0-0.ancient": "异界的旅者！你们的世界有什么新奇玩意儿吗？",
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.1-0r.ancient": "啊，你又回来了，我们来交换藏品吧！你们的世界有好多我从未见过的东西，真想全部加入我的收藏！",
+  "DARV.talk.STS2_WINE_FOX_CHARACTER_WINE_FOX.2-0r.ancient": "这些好东西你们那边肯定没有，带上试试吧！"
 }

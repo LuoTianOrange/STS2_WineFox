@@ -1,20 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://fc5x7hciyofl"]
+[gd_scene load_steps=4 format=3 uid="uid://fc5x7hciyofl"]
 
 [ext_resource type="Script" uid="uid://dvfj1roil6fve" path="res://Scripts/WineFoxRestSite.cs" id="1_f8q18"]
-[ext_resource type="Texture2D" uid="uid://dnf7glm48u2jv" path="res://STS2_WineFox/winefox/winefox_rest.png" id="2_p6k48"]
+[ext_resource type="Texture2D" uid="uid://dnlljm7yt4r4m" path="res://STS2_WineFox/winefox/restsite/酒狐篝火.png" id="2_f8q18"]
 [ext_resource type="Script" uid="uid://drwphpjvrbi1b" path="res://Scripts/WineFoxSelectionReticle.cs" id="3_f8q18"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2sij4"]
-atlas = ExtResource("2_p6k48")
-
 [node name="winefoxRestSite" type="Node2D"]
-position = Vector2(-2, 42)
-scale = Vector2(0.45, 0.45)
+position = Vector2(0, -80)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_f8q18")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(82.22222, -182.22223)
-texture = SubResource("AtlasTexture_2sij4")
+scale = Vector2(0.99999976, 0.99999976)
+texture = ExtResource("2_f8q18")
 
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3
@@ -22,30 +19,33 @@ anchors_preset = 0
 
 [node name="SelectionReticle" type="Control" parent="ControlRoot"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -294.2857
+offset_top = -481.42853
+offset_right = 295.71423
+offset_bottom = 497.14276
+pivot_offset = Vector2(126, 84)
 script = ExtResource("3_f8q18")
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -155.0
-offset_top = -351.0
-offset_right = 266.0
-offset_bottom = 332.0
+offset_left = -317.14288
+offset_top = -488.57144
+offset_right = 307.14282
+offset_bottom = 487.1428
 
 [node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = 209.209
+offset_left = 132.659
 offset_top = -317.103
-offset_right = 209.209
+offset_right = 132.659
 offset_bottom = -317.103
 
 [node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -73.6836
+offset_left = -260.679
 offset_top = -324.997
-offset_right = -73.6836
+offset_right = -260.679
 offset_bottom = -324.997

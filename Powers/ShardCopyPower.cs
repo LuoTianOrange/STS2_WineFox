@@ -1,8 +1,10 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -11,36 +13,36 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public class ShardCopyPower : WineFoxPower
     {
-        private bool _reacting;
+        private CardModel? _initialSourceCard;
+        private bool _skipInitialSourceCardPlay;
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ShardCopyPowerIcon);
 
-        public override async Task AfterPowerAmountChanged(
-            PowerModel power,
-            decimal amount,
-            Creature? applier,
-            CardModel? cardSource)
+        public override Task AfterApplied(Creature? applier, CardModel? cardSource)
         {
-            if (_reacting) return;
-            if (power.Owner != Owner) return;
-            if (power is not ChantPower) return;
-            if (amount <= 0m) return;
+            _initialSourceCard = cardSource;
+            _skipInitialSourceCardPlay = cardSource != null;
+            return Task.CompletedTask;
+        }
 
-            var extraChant = Amount;
-            if (extraChant <= 0m) return;
+        public override async Task AfterCardPlayedLate(PlayerChoiceContext context, CardPlay cardPlay)
+        {
+            var card = cardPlay.Card;
 
-            _reacting = true;
-            try
+            if (_skipInitialSourceCardPlay && ReferenceEquals(card, _initialSourceCard))
             {
-                Flash();
-                await PowerCmd.Apply<ChantPower>(Owner, extraChant, Owner, cardSource);
+                _skipInitialSourceCardPlay = false;
+                return;
             }
-            finally
-            {
-                _reacting = false;
-            }
+
+            if (card.Owner.Creature != Owner) return;
+            if (!card.IsMagic()) return;
+            if (Amount <= 0m) return;
+
+            Flash();
+            await PowerCmd.Apply<ChantPower>(Owner, Amount, Owner, card);
         }
     }
 }

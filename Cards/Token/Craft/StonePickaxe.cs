@@ -7,6 +7,7 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
@@ -16,11 +17,7 @@ namespace STS2_WineFox.Cards.Token.Craft
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStonePickaxe);
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Wood, WineFoxKeywords.Stone];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<DiggingPower>("Digging", 2m), new PowerVar<WoodPower>(2m), new PowerVar<StonePower>(2m)];
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dxx1hpukj434n"
+path="res://.godot/imported/酒狐局内角色.atlas-7ef14c87b282de7a135d1c5756e2f14c.spatlas"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/combat/酒狐局内角色/酒狐局内角色.atlas"
+dest_files=["res://.godot/imported/酒狐局内角色.atlas-7ef14c87b282de7a135d1c5756e2f14c.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

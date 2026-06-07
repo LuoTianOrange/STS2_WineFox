@@ -4,6 +4,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -13,9 +14,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override bool HasEnergyCostX => true;
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Craft];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBatchCraft);
 
         protected override bool IsPlayable =>
@@ -26,14 +25,18 @@ namespace STS2_WineFox.Cards.Rare
             CardPlay play)
         {
             var x = ResolveEnergyXValue();
-            if (x <= 0)
-                return;
+            var productCount = x <= 0
+                ? IsUpgraded ? 1 : 0
+                : IsUpgraded ? x + 1 : x;
+            var craftCount = x <= 0
+                ? IsUpgraded ? 1 : 0
+                : x;
 
             await CraftCmd.CraftIntoHandMultipleFromSingleCost(
                 choiceContext,
                 this,
-                IsUpgraded ? x + 1 : x,
-                x);
+                productCount,
+                craftCount);
         }
 
         protected override void OnUpgrade()

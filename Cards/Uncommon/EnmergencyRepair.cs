@@ -7,6 +7,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -14,9 +15,7 @@ namespace STS2_WineFox.Cards.Uncommon
     public class EnmergencyRepair() : WineFoxCard(
         1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Stress];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(6m, ValueProp.Move), new BlockVar(5, ValueProp.Move), new("Repair", 2m)];
 

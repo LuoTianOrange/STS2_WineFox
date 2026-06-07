@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +24,9 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.None;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.LiberationPowerIcon);
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterTurnEndLate(
+            PlayerChoiceContext choiceContext,
+            CombatSide side)
         {
             if (side != Owner.Side) return;
 
@@ -54,4 +57,3 @@ namespace STS2_WineFox.Powers
         }
     }
 }
-

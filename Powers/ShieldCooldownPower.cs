@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -14,7 +15,9 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ShieldCooldownPowerIcon);
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterTurnEndLate(
+            PlayerChoiceContext choiceContext,
+            CombatSide side)
         {
             if (side != Owner.Side) return;
             await PowerCmd.Decrement(this);

@@ -1,13 +1,18 @@
 shader_type canvas_item;
 
-uniform vec2 frame_center = vec2(0.5, 0.5);
-/// 沿外周绕几圈完整色相（>1 时窄边框上也能看到明显色差）。
-uniform float perimeter_cycles : hint_range(0.5, 12.0) = 4.0;
-/// 用 UV 额外拉开色相，避免实际绘制区域在角度上挤在一小段里时整框看起来一个色。
-uniform float uv_hue_weight : hint_range(0.0, 2.0) = 0.45;
+/// 横向完整色相循环次数。
+uniform float horizontal_cycles : hint_range(0.5, 8.0) = 2.0;
+/// 轻微引入纵向变化，避免纯横条纹过于生硬。
+uniform float vertical_hue_weight : hint_range(0.0, 1.0) = 0.12;
 uniform float scroll_speed : hint_range(-3.0, 3.0) = 0.55;
-uniform float s : hint_range(0.0, 5.0) = 1.5;
-uniform float v = 1.2;
+/// 饱和度缩放（<1 更淡）。
+uniform float s : hint_range(0.0, 2.0) = 0.6;
+/// 亮度缩放。
+uniform float v : hint_range(0.5, 1.5) = 1.0;
+/// 彩虹效果混合强度（更低更淡）。
+uniform float rainbow_strength : hint_range(0.0, 1.0) = 0.5;
+/// 额外提亮到白色，营造偏粉彩质感。
+uniform float pastel_lift : hint_range(0.0, 0.5) = 0.12;
 
 varying vec4 modulate_color;
 
@@ -24,11 +29,10 @@ void fragment() {
 		vec3(0.5870, -0.2774, -0.5229),
 		vec3(0.1140, -0.3216, 0.3114));
 
-	vec2 d = UV - frame_center;
-	float ang = atan(d.y, d.x);
+	vec3 base_rgb = col.rgb;
 	float h = fract(
-		ang * 0.15915494309 * perimeter_cycles
-		+ dot(UV, vec2(0.73, 1.07)) * uv_hue_weight
+		UV.x * horizontal_cycles
+		+ UV.y * vertical_hue_weight
 		+ TIME * scroll_speed);
 
 	col.rgb = RGB_to_YIQ * col.rgb;
@@ -52,7 +56,8 @@ void fragment() {
 	col.rgb = mix(vec3(0.0, 0.0, 0.0), col.rgb, v);
 
 	col.rgb = inverse(RGB_to_YIQ) * col.rgb;
-	col.rgb = mix(texture(TEXTURE, UV).rgb, col.rgb, alpha_mask);
+	col.rgb = mix(col.rgb, vec3(1.0), pastel_lift);
+	col.rgb = mix(base_rgb, col.rgb, alpha_mask * rainbow_strength);
 	COLOR = col;
 	COLOR *= modulate_color;
 }

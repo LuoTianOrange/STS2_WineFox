@@ -120,7 +120,17 @@ namespace STS2_WineFox.Cards
 
         private static decimal GetChantAmount(CardModel card)
         {
-            return card._owner?.Creature.Powers.OfType<ChantPower>().FirstOrDefault()?.Amount ?? 0m;
+            var owner = card._owner?.Creature;
+            if (owner == null)
+                return 0m;
+
+            var chantAmount = owner.GetPowerAmount<ChantPower>();
+            if (!card.IsMagic())
+                return chantAmount;
+
+            var extraRate = owner.GetPowerAmount<MagicOverloadedPower>();
+            var extraChant = MagicOverloadedPower.CalculateExtraChantFromPercent(chantAmount, extraRate);
+            return chantAmount + extraChant;
         }
     }
 }

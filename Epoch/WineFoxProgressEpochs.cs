@@ -1,7 +1,6 @@
 using MegaCrit.Sts2.Core.Timeline;
 using STS2_WineFox.Cards.Ancient;
 using STS2_WineFox.Cards.Common;
-using STS2_WineFox.Cards.Deleted;
 using STS2_WineFox.Cards.Rare;
 using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Character;
@@ -18,7 +17,6 @@ namespace STS2_WineFox.Epoch
     [AutoTimelineSlot(EpochEra.Blight2)]
     [RegisterEpochCards(
         typeof(Traditionalist),
-        typeof(RecordPlayer),
         typeof(WorkbenchBackpack))]
     public sealed class WineFoxVictoryEpoch : PackDeclaredCardUnlockEpochTemplate
     {

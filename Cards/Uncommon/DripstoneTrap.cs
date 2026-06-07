@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -5,10 +6,13 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Utils;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -25,8 +29,7 @@ namespace STS2_WineFox.Cards.Uncommon
             ModCardVars.Computed("Hits", 0m, CalcHits),
         ];
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Stone];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StoneKeyword];
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<VulnerablePower>()];
         
@@ -42,6 +45,17 @@ namespace STS2_WineFox.Cards.Uncommon
                 var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
                 return stone > 0;
             }
+        }
+
+        protected async void FallDripstone(Vector2 position)
+        {
+            VFXUtil.PlaySimple(Const.Paths.DripstoneVfx, position);
+            await VFXUtil.Wait(0.06f);
+            VFXUtil.PlaySFXSimple(Const.Audio.Dripstone);
+            await VFXUtil.Wait(0.08f);
+            VFXUtil.PlaySFXSimple(Const.Audio.Dripstone);
+            await VFXUtil.Wait(0.09f);
+            VFXUtil.PlaySFXSimple(Const.Audio.Dripstone);
         }
 
         protected override async Task OnPlay(
@@ -60,10 +74,17 @@ namespace STS2_WineFox.Cards.Uncommon
             {
                 var target = combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
                 if (target == null) break;
+                var nTarget = NCombatRoom.Instance?.GetCreatureNode(target);
 
                 await DamageCmd.Attack(DynamicVars["Damage"].BaseValue)
                     .FromCard(this)
                     .Targeting(target)
+                    .BeforeDamage(async delegate
+                    {
+                        if (nTarget == null) return;
+                        FallDripstone(nTarget.GlobalPosition);
+                        await VFXUtil.Wait(0.1f);
+                    })
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
                 await PowerCmd.Apply<VulnerablePower>(target, 1m, owner, this);

@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cx8jj5cfrtvnp"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dxx1hpukj434n" path="res://STS2_WineFox/scenes/combat/酒狐局内角色/酒狐局内角色.atlas" id="1_ttrgf"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cwtscw7sdxkg2" path="res://STS2_WineFox/scenes/combat/酒狐局内角色/酒狐表情拆分0514_tospine.skel" id="2_4x07r"]
+
+[resource]
+atlas_res = ExtResource("1_ttrgf")
+skeleton_file_res = ExtResource("2_4x07r")

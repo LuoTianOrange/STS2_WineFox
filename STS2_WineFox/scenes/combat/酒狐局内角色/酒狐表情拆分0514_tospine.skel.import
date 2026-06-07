@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://cwtscw7sdxkg2"
+path="res://.godot/imported/酒狐表情拆分0514_tospine.skel-3301b78d6c4904c6d92ea93c31fd551a.spskel"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/combat/酒狐局内角色/酒狐表情拆分0514_tospine.skel"
+dest_files=["res://.godot/imported/酒狐表情拆分0514_tospine.skel-3301b78d6c4904c6d92ea93c31fd551a.spskel"]
+
+[params]
+

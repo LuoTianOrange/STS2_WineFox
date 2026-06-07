@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{0cb065a6-214b-4db6-a214-8589ff56dcd4}">
+		<property name="assetPath">
+			<value>ai/Dripstone_step1.ogg.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.5485714285714286</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aa864338-a582-4286-9df3-132b1c18f066}</destination>
+		</relationship>
+	</object>
+</objects>

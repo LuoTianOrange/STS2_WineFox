@@ -8,6 +8,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Basic
 {
@@ -17,15 +18,12 @@ namespace STS2_WineFox.Cards.Basic
     public class BasicCraft() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self),
         ICraftingCard
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Craft, WineFoxKeywords.Material];
-
         public override bool GainsBlock => true;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(5, ValueProp.Move)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, WineFoxKeywords.CraftKeyword, WineFoxKeywords.MaterialKeyword];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBasicCraft);
 

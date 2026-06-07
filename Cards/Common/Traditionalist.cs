@@ -7,6 +7,7 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -14,9 +15,7 @@ namespace STS2_WineFox.Cards.Common
     public class Traditionalist() : WineFoxCard(
         0, CardType.Skill, CardRarity.Common, TargetType.None), ICraftingCard
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Craft];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(1)];
 

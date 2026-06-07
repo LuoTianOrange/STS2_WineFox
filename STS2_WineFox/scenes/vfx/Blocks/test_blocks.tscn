@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bucheyc1i0n31"]
+
+[ext_resource type="PackedScene" uid="uid://io4twnf6i367" path="res://STS2_WineFox/scenes/vfx/Blocks/mc_block.tscn" id="1_ns7u0"]
+[ext_resource type="Texture2D" uid="uid://c2ltjhhg8qht4" path="res://STS2_WineFox/images/mc_texture/Cobblestone_(texture)_JE5_BE3.png" id="3_ui7rm"]
+
+[node name="TestBlocks" type="Node2D"]
+
+[node name="McBlock" parent="." instance=ExtResource("1_ns7u0")]
+position = Vector2(57, 86)
+BlockTexture = ExtResource("3_ui7rm")
+
+[node name="McBlock2" parent="." instance=ExtResource("1_ns7u0")]
+position = Vector2(145, 61)

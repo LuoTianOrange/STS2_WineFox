@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{208ce778-c1dd-4d44-8173-335416c92a69}">
+		<property name="assetPath">
+			<value>minecraft_raw/Dripstone_step1.ogg.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.5485714285714286</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aa864338-a582-4286-9df3-132b1c18f066}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -33,7 +33,7 @@ namespace STS2_WineFox.Patches
             foreach (var animation in animations)
             {
                 var name = new MegaAnimation(animation).GetName();
-                if (name != preferredAnimation) continue;
+                if (!string.Equals(name, preferredAnimation, StringComparison.OrdinalIgnoreCase)) continue;
 
                 animationToPlay = name;
                 break;

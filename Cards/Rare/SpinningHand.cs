@@ -17,9 +17,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         private int _appliedCraftsThisCombat;
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Craft];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(20m, ValueProp.Move)];
 

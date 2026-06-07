@@ -24,5 +24,7 @@
   "STS2_WINE_FOX_KEYWORD_CRAFT.title": "Craft",
   "STS2_WINE_FOX_KEYWORD_CRAFT.description": "Based on how many [gold]Materials[/gold] you have, show the options, spend the matching [gold]Materials[/gold], and [gold]choose[/gold] a card.",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.title": "Exchange",
-  "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "Common = Cobblestone, Uncommon = Iron Ingot\nRare = Diamond, Curse/Status = Plank"
+  "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "Common = Cobblestone, Uncommon = Iron Ingot\nRare = Diamond, Curse/Status = Plank",
+  "STS2_WINE_FOX_KEYWORD_MAGIC.title": "Magic",
+  "STS2_WINE_FOX_KEYWORD_MAGIC.description": "Magic Skill cards are affected by [gold]Chant[/gold] bonuses."
 }

@@ -61,7 +61,9 @@ namespace STS2_WineFox.Cards
         public static readonly IReadOnlyList<CraftRecipe> All =
         [
             //空手打击
-            new(typeof(Nothing), (state, owner) => state.CreateCard<Nothing>(owner)),
+            new(typeof(EmptyStrikes), (state, owner) => state.CreateCard<EmptyStrikes>(owner)),
+            //招架
+            new(typeof(EmptyParries), (state, owner) => state.CreateCard<EmptyParries>(owner)),
 
             //木镐
             new(typeof(WoodenPickaxe), (state, owner) => state.CreateCard<WoodenPickaxe>(owner),

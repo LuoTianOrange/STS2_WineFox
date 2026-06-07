@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
@@ -40,8 +41,8 @@ namespace STS2_WineFox.Events
             return
             [
                 new(this, Chest1, ModOptionKey("2", "CHEST1")),
-                new(this, Chest2, ModOptionKey("2", "CHEST2")),
-                new(this, Chest3, ModOptionKey("2", "CHEST3")),
+                new(this, Chest2, ModOptionKey("2", "CHEST2"), HoverTipFactory.FromEnchantment<FireAspect>()),
+                new(this, Chest3, ModOptionKey("2", "CHEST3"), HoverTipFactory.FromEnchantment<SweepingEdge>()),
             ];
         }
 

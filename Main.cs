@@ -1,15 +1,17 @@
 using System.Reflection;
-using MegaCrit.Sts2.Core.Logging;
+using Godot;
 using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Patches;
+using STS2_WineFox.Utils;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
 using STS2RitsuLib.Patching.Core;
 using STS2RitsuLib.Unlocks;
+using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace STS2_WineFox
 {
@@ -48,7 +50,7 @@ namespace STS2_WineFox
 
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
-
+                
                 var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
                 RitsuLibFramework.GetContentRegistry(Const.ModId)
                     .RegisterCardLibraryCompendiumSharedPoolFilter<WineFoxCraftingCardPool>(
@@ -63,6 +65,7 @@ namespace STS2_WineFox
                         ]);
                 ModTypeDiscoveryHub.RegisterModAssembly(Const.ModId, assembly);
                 MaterialPowerRegistry.RegisterWineFoxDefaults();
+                VFXCache.LoadScenes();
                 IsModActive = true;
                 Logger.Info("Mod initialization complete - Mod is now ACTIVE");
             }
@@ -89,7 +92,8 @@ namespace STS2_WineFox
             if (!IsAndroid())
                 patcher.RegisterPatch<WineFoxCreatureLoseHpFlashPatch>();
             else
-                Logger.Warn("[WineFoxVfx] Skipping LoseHpInternal flash patch on Android; hit-trigger flash remains available.");
+                Logger.Warn(
+                    "[WineFoxVfx] Skipping LoseHpInternal flash patch on Android; hit-trigger flash remains available.");
             patcher.RegisterPatch<WineFoxCreatureHitTriggerFlashPatch>();
             patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
             patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
@@ -119,13 +123,12 @@ namespace STS2_WineFox
 
         private static bool IsAndroid()
         {
-            return Godot.OS.GetName().Equals("Android", StringComparison.OrdinalIgnoreCase);
+            return OS.GetName().Equals("Android", StringComparison.OrdinalIgnoreCase);
         }
 
         private static void DisableModOnRequiredPatcherFailure()
         {
             IsModActive = false;
         }
-
     }
 }

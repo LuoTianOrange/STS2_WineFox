@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://bujoaiyvg0tjt"]
+
+[ext_resource type="Texture2D" uid="uid://ctb5jhrtvwv66" path="res://STS2_WineFox/images/vfx/dripstones.png" id="1_eaoj2"]
+[ext_resource type="Script" uid="uid://m4r771q65mo5" path="res://Scripts/Effects/NParticlesAutoPlayer.cs" id="1_l1bj7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1bj7"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yyq6n"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -600, 0)
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 459.13
+initial_velocity_max = 538.5
+gravity = Vector3(0, 399.125, 0)
+scale_min = 0.7
+scale_max = 0.7
+anim_offset_max = 1.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.1
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eaoj2"]
+closed = false
+polygon = PackedVector2Array(0, 0, 500, 0, 500, 100, 0, 100)
+
+[node name="VfxDripstonesFall" type="Node2D"]
+script = ExtResource("1_l1bj7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_l1bj7")
+emitting = false
+amount = 5
+texture = ExtResource("1_eaoj2")
+lifetime = 1.8
+one_shot = true
+preprocess = 0.1
+speed_scale = 3.17
+process_material = SubResource("ParticleProcessMaterial_yyq6n")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-250, 0)
+occluder = SubResource("OccluderPolygon2D_eaoj2")

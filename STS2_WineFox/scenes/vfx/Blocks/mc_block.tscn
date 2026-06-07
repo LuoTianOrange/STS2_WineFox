@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://io4twnf6i367"]
+
+[ext_resource type="Script" uid="uid://ded0bewhig3om" path="res://Scripts/Effects/McBlock.cs" id="1_8j1w6"]
+[ext_resource type="Texture2D" uid="uid://dmlwgp8liv8bc" path="res://STS2_WineFox/images/mc_texture/Oak_Planks_(texture)_JE6_BE3.png" id="2_liqoe"]
+
+[sub_resource type="Environment" id="Environment_liqoe"]
+
+[sub_resource type="World3D" id="World3D_p1kdu"]
+environment = SubResource("Environment_liqoe")
+
+[sub_resource type="Environment" id="Environment_mcblock"]
+background_mode = 2
+background_color = Color(0, 0, 0, 0)
+ambient_light_source = 2
+ambient_light_color = Color(0.6255971, 0.6255971, 0.62559694, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i00ob"]
+albedo_texture = ExtResource("2_liqoe")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_liqoe"]
+albedo_texture = ExtResource("2_liqoe")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1kdu"]
+material = SubResource("StandardMaterial3D_liqoe")
+
+[node name="McBlock" type="Node2D"]
+script = ExtResource("1_8j1w6")
+BlockTexture = ExtResource("2_liqoe")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_p1kdu")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.95495266, 0.29675823, 0, -0.29675823, 0.95495266, 0, 1.5190666, 5.046259)
+projection = 1
+fov = 14.8
+size = 1.785
+near = 0.006
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.7071069, -0.49999982, 0.49999997, 0, 0.7071069, 0.70710665, -0.70710665, -0.49999997, 0.5000002, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_mcblock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.29988566, 0, -0.95387834, 0, 1, 0, 0.95387834, 0, -0.29988566, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_i00ob")
+mesh = SubResource("BoxMesh_p1kdu")

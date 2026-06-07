@@ -49,7 +49,7 @@ namespace STS2_WineFox.Content.Descriptors
                     .Single("die", Const.Paths.CharacterDeathPortrait)
                     // 可选：防止 revive 后仍停在死亡图
                     .Single("revive", Const.Paths.CharacterAlivePortrait)
-                    .Single("idle",   Const.Paths.CharacterAlivePortrait)
+                    .Single("idle", Const.Paths.CharacterAlivePortrait)
                     .Build())
             .WithAudio(new(
                 Const.Audio.CharacterSelect,
@@ -57,6 +57,5 @@ namespace STS2_WineFox.Content.Descriptors
                 Const.Audio.Attack,
                 Const.Audio.Cast,
                 Const.Audio.Death));
-        
     }
 }

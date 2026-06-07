@@ -6,15 +6,14 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class SteamEngine() : WineFoxCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Stress];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Steam", 1m)];
 

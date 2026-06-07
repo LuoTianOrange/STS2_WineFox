@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
-using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Utils;
@@ -19,9 +18,7 @@ namespace STS2_WineFox.Cards.Uncommon
         private static readonly AttachedState<CardModel, StressConsumeSeriesState> StressConsumeSeriesStates =
             new(() => new());
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Stress];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(8m, ValueProp.Move), new IntVar("BonusDamage", 7m)];
 
@@ -41,12 +38,13 @@ namespace STS2_WineFox.Cards.Uncommon
             if (play.IsFirstInSeries)
             {
                 consumedStressThisSeries = false;
-                if (!MaterialCmd.IsFreePlay(play))
+                if (MaterialCmd.IsFreePlay(play))
                 {
-                    if (await StressCmd.ConsumeOne(owner, this))
-                    {
-                        consumedStressThisSeries = true;
-                    }
+                    consumedStressThisSeries = true;
+                }
+                else if (await StressCmd.ConsumeOne(owner, this))
+                {
+                    consumedStressThisSeries = true;
                 }
 
                 state.ConsumedStress = consumedStressThisSeries;

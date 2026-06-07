@@ -24,6 +24,8 @@
   "STS2_WINE_FOX_KEYWORD_CRAFT.title": "合成",
   "STS2_WINE_FOX_KEYWORD_CRAFT.description": "根据拥有的[gold]材料[/gold]数量，展示并花费对应[gold]材料[/gold][gold]选择[/gold]一张卡牌。",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.title": "交换",
-  "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "白卡=圆石,蓝卡=铁锭\n金卡=钻石,诅咒/状态=木板。"
+  "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "白卡=圆石,蓝卡=铁锭\n金卡=钻石,诅咒/状态=木板。",
+  "STS2_WINE_FOX_KEYWORD_MAGIC.title": "魔法",
+  "STS2_WINE_FOX_KEYWORD_MAGIC.description": "魔法类技能牌会受到[gold]咏唱[/gold]增益影响。"
   
 }

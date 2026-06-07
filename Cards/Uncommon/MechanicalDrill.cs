@@ -9,15 +9,14 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class MechanicalDrill() : WineFoxCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Iron, WineFoxKeywords.Stress];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.IronKeyword, WineFoxKeywords.StressKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(2m, ValueProp.Move),

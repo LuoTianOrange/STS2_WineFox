@@ -15,13 +15,11 @@ namespace STS2_WineFox.Cards.Uncommon
     [RegisterCard(typeof(WineFoxCardPool))]
     public class FullAttack() : WineFoxCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Material];
-
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MaterialKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CalculationBaseVar(0m),
-            new ExtraDamageVar(4m),
+            new ExtraDamageVar(3m),
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) => GetTotalMaterials(card)),
         ];
 

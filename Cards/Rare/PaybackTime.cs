@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,9 +23,7 @@ namespace STS2_WineFox.Cards.Rare
             new CalculatedDamageVar(ValueProp.Move).WithMultiplier(MaterialGainedMultiplier),
         ];
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [WineFoxKeywords.Material];
-        
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MaterialKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPaybackTime);
 
         protected override async Task OnPlay(

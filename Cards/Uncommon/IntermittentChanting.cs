@@ -13,6 +13,7 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     /// <summary>
     ///     间隙咏唱 - 1 cost Power Uncommon.
+    ///     失去 2 点力量。
     ///     获得 TrackingPower（每当你使敌人失去生命时，敌人获得 1 点格挡，你获得 2 点格挡）。
     ///     升级：你获得 3 点格挡。
     /// </summary>
@@ -24,7 +25,7 @@ namespace STS2_WineFox.Cards.Uncommon
             [new IntVar("Block", 2m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<WeakPower>()];
+            [HoverTipFactory.FromPower<StrengthPower>()];
         
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIntermittentChanting);
 
@@ -33,7 +34,7 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             var creature = Owner.Creature;
-            await PowerCmd.Apply<WeakPower>(creature, 1m, creature, this);
+            await PowerCmd.Apply<StrengthPower>(creature, -2m, creature, this);
             await PowerCmd.Apply<TrackingPower>(creature, DynamicVars["Block"].BaseValue, creature, this);
         }
 
@@ -43,4 +44,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-
