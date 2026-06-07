@@ -192,7 +192,7 @@
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.title": "Redemption Strike",
   "STS2_WINE_FOX_CARD_REDEMPTION_STRIKE.description": "Deal {Damage:diff()} damage. Heal ALL characters for {Heal:diff()} HP.",
   "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.title": "Anticipate Advantage",
-  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "If any enemy intends to attack, gain {Dex:diff()} [gold]Dexterity[/gold].",
+  "STS2_WINE_FOX_CARD_ANTICIPATE_ADVANTAGE.description": "{IfUpgraded:show:For each enemy that intends to attack, gain|If any enemy intends to attack, gain} {Dex:diff()} [gold]Dexterity[/gold].",
   "STS2_WINE_FOX_CARD_RECUPERATE.title": "Recuperate",
   "STS2_WINE_FOX_CARD_RECUPERATE.description": "Draw {Cards:diff()} cards. Discard ALL Attack{IfUpgraded:show:, Curse, Quest, and Status|} cards in your hand.",
   "STS2_WINE_FOX_CARD_SPIRIT_FOX_FORM.title": "Spirit Fox Form",
