@@ -131,7 +131,7 @@
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title":"量产",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title":"无线合成终端",
-  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[purple]绝[/purple][red]对[/red][gold]天[/gold][green]马[/green][blue]行[/blue][blue]空[/blue][purple]的[/purple][red]想[/red][gold]象[/gold][green]能[/green][blue]力[/blue]来使用它",
+  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[sine][rainbow freq=0.3 sat=0.8 val=1]绝对天马行空的想象能力[/rainbow][/sine]来使用它",
   "STS2_WINE_FOX_CARD_HELL_GIFT.title": "地狱馈赠",
   "STS2_WINE_FOX_CARD_HELL_GIFT.description": "将一张随机[gold]{IfUpgraded:show:升级过的|}[/gold]金质装备卡牌加入你的[gold]手牌[/gold]。",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "金剑",

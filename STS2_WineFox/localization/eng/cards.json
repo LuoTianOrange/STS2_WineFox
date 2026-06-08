@@ -131,7 +131,7 @@
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title": "Mass Production",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description": "When you [gold]Craft[/gold] this turn, give ALL allies a copy of the crafted card.",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title": "Wireless Terminal",
-  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description": "[gold]Craft[/gold].\nReturn this card to your [gold]hand[/gold].",
+  "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description": "[gold]Craft[/gold].\nReturn this card to your [gold]hand[/gold].\nYou need [sine][rainbow freq=0.3 sat=0.8 val=1]a wildly imaginative mind[/rainbow][/sine] to use it.",
   "STS2_WINE_FOX_CARD_HELL_GIFT.title": "Hell's Gift",
   "STS2_WINE_FOX_CARD_HELL_GIFT.description": "Add a random [gold]{IfUpgraded:show:Upgraded |}[/gold]golden equipment card to your [gold]hand[/gold].",
   "STS2_WINE_FOX_CARD_GOLDEN_SWORD.title": "Golden Sword",
