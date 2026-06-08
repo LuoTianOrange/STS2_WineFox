@@ -139,7 +139,7 @@
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.title": "Snowball to the Face",
   "STS2_WINE_FOX_CARD_SNOW_BALL_OVERWHELMING.description": "Deal {Damage:diff()} damage{IfUpgraded:show: twice|}.\nThe next [gold]Skill[/gold] you play this turn costs 0.",
   "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.title": "Diamond Pickaxe",
-  "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.description": "Every card you [gold]Craft[/gold] is Upgraded.[gold]{IfUpgraded:show:\nCraft.|}[/gold]{CraftRecipeSuffix}",
+  "STS2_WINE_FOX_CARD_DIAMOND_PICKAXE.description": "Every card you [gold]Craft[/gold] is Upgraded.[gold]{IfUpgraded:show:\nCraft three times.|}[/gold]{CraftRecipeSuffix}",
   "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.title": "Golden Pickaxe",
   "STS2_WINE_FOX_CARD_GOLDEN_PICKAXE.description": "Whenever you gain [gold]Materials[/gold], gain that much [gold]Block[/gold] and deal damage to a random enemy equal to {IfUpgraded:show:3|2} times that amount.",
   "STS2_WINE_FOX_CARD_BUCKET.title": "Bucket",
