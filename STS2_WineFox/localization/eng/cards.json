@@ -265,5 +265,11 @@
   "STS2_WINE_FOX_CARD_MANA_SURGE.description": "Gain[purple]{ChantPower:diff()}[/purple][gold]Chant[/gold] (up to {IfUpgraded:show:[blue]6[/blue]|[blue]4[/blue]}). Draw {Cards:diff()} cards.",
 
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "Triune Blessing",
-  "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "All players gain [blue]1[/blue] [gold]Strength[/gold], [blue]1[/blue] [gold]Dexterity[/gold], and [blue]1[/blue] [gold]Focus[/gold]. Consume up to {MaxConsume:diff()} [gold]Chant[/gold]. For each Chant consumed, gain +1 Strength and +1 Dexterity. For every 2 Chant consumed, gain +1 Focus."
+  "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "All players gain [blue]1[/blue] [gold]Strength[/gold], [blue]1[/blue] [gold]Dexterity[/gold], and [blue]1[/blue] [gold]Focus[/gold]. Consume up to {MaxConsume:diff()} [gold]Chant[/gold]. For each Chant consumed, gain +1 Strength and +1 Dexterity. For every 2 Chant consumed, gain +1 Focus.",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "Blade Master",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "Can only be played if you've played at least 4 different [gold]Sword[/gold] cards this combat. Deal {Damage:diff()} damage to ALL enemies.",
+  "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "Cyclic Process",
+  "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "Deal {Damage:diff()} damage {Hits:diff()} times.\n[gold]Craft[/gold].\nPut this card back into your [gold]Draw Pile[/gold].",
+  "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "Nothing Wasted",
+  "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "Whenever you consume 1 [gold]Material[/gold], gain {Block:diff()} [gold]Block[/gold]."
 }

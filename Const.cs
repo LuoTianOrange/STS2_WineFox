@@ -111,6 +111,7 @@ namespace STS2_WineFox
             public const string ArmToTeethPowerIcon = Root + "/powers/arm_to_teeth_power.png";
             public const string EternalMelodyPowerIcon = Root + "/powers/eternal_melody_power.png";
             public const string MagicOverloadedPowerIcon = Root + "/powers/magic_overloaded_power.png";
+            public const string NothingWastedPowerIcon = Root + "/powers/nothing_wasted_power.png";
 
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
@@ -236,6 +237,9 @@ namespace STS2_WineFox
             public const string CardLiberation = Root + "/cards/card_liberation.png";
             public const string CardObtainStress = Root + "/cards/card_wind_crank.png";
             public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
+            public const string CardBladeMaster = Root + "/cards/card_test.png";
+            public const string CardCyclicProcess = Root + "/cards/card_test.png";
+            public const string CardNothingWasted = Root + "/cards/card_test.png";
             public const string CardHoardingHabit = Root + "/cards/card_hoarding_habit.png";
             public const string CardLogistics = Root + "/cards/card_logistics.png";
             public const string CardSweep = Root + "/cards/card_sweep.png";

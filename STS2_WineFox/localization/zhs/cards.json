@@ -266,4 +266,11 @@
 
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "三相祝福",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "所有玩家获得[blue]1[/blue]点[gold]力量[/gold]、[blue]1[/blue]点[gold]敏捷[/gold]和[blue]1[/blue]点[gold]集中[/gold]。\n消耗最多{MaxConsume:diff()}点[gold]咏唱[/gold]。\n每消耗1点，额外获得1点力量和1点敏捷。\n每消耗2点，额外获得1点集中。"
+  ,
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "剑术大师",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "只有你打出过至少四种[gold]剑[/gold]卡牌时才能打出。对所有敌人造成{Damage:diff()}点伤害。",
+  "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "循环工序",
+  "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "造成{Damage:diff()}点伤害{Hits:diff()}次。\n[gold]合成[/gold]。\n将这张牌放回你的[gold]抽牌堆[/gold]。",
+  "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "物尽其用",
+  "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "你每消耗一份[gold]材料[/gold]，就获得{Block:diff()}点[gold]格挡[/gold]。"
 }
