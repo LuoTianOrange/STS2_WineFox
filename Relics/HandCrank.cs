@@ -30,7 +30,7 @@ namespace STS2_WineFox.Relics
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
             if (player != Owner) return;
-            if (Owner.Creature.CombatState?.RoundNumber > 1) return;
+            if (player.PlayerCombatState?.TurnNumber != 1) return;
 
             var combatState = Owner.Creature.CombatState;
             if (combatState == null) return;
