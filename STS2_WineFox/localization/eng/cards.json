@@ -167,7 +167,7 @@
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.title": "Highly Focused",
   "STS2_WINE_FOX_CARD_HIGHLY_FOCUSED.description": "This turn, double your current [gold]Strength[/gold].",
   "STS2_WINE_FOX_CARD_SWEET_DREAM.title": "Sweet Dream",
-  "STS2_WINE_FOX_CARD_SWEET_DREAM.description": "Shuffle ALL cards from your hand into your draw pile, then draw that many cards.",
+  "STS2_WINE_FOX_CARD_SWEET_DREAM.description": "Shuffle all of your unplayed cards into your [gold]draw pile[/gold], then draw that many cards.",
   "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.title": "Full-Force Ram",
   "STS2_WINE_FOX_CARD_FULL_FORCE_COLLISION.description": "Deal {Damage:diff()} damage to ALL enemies. Shuffle a [gold]Dazed[/gold] into your draw pile.",
   "STS2_WINE_FOX_CARD_GOLDEN_ARMOR.title": "Golden Armor",
