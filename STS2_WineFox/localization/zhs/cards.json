@@ -272,5 +272,7 @@
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "循环工序",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "造成{Damage:diff()}点伤害{Hits:diff()}次。\n[gold]合成[/gold]。\n将这张牌放回你的[gold]抽牌堆[/gold]。",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "物尽其用",
-  "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "你每消耗一份[gold]材料[/gold]，就获得{Block:diff()}点[gold]格挡[/gold]。"
+  "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "你每消耗一份[gold]材料[/gold]，就获得{Block:diff()}点[gold]格挡[/gold]。",
+  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.title": "便携工作台",
+  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]合成[/gold]。在下个回合开始时[gold]合成[/gold]。"
 }

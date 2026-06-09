@@ -157,5 +157,8 @@
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_PLUS_POWER.smartDescription": "每当你打出[gold]魔法[/gold]牌时，随机一名敌人失去2点生命上限。每拥有1点[gold]咏唱[/gold]，额外失去[blue]2[/blue]点生命上限。",
   "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.title": "物尽其用",
   "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.description": "你每消耗1份[gold]材料[/gold]，就获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
-  "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.smartDescription": "你每消耗1份[gold]材料[/gold]，就获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
+  "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.smartDescription": "你每消耗1份[gold]材料[/gold]，就获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.title": "便携工作台",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.description": "在下个回合开始时[gold]合成[/gold]。",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.smartDescription": "在下个回合开始时[gold]合成[/gold]。"
 }

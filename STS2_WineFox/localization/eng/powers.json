@@ -157,5 +157,8 @@
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_PLUS_POWER.smartDescription": "Whenever you play a [gold]Magic[/gold] card, a random enemy loses [blue]2[/blue] Max HP. For every [blue]1[/blue] [gold]Chant[/gold], it loses an additional [blue]2[/blue] Max HP.",
   "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.title": "Nothing Wasted",
   "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.description": "Whenever you consume 1 [gold]Material[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
-  "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.smartDescription": "Whenever you consume 1 [gold]Material[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.smartDescription": "Whenever you consume 1 [gold]Material[/gold], gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.title": "Portable Workbench",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.description": "At the start of next turn, [gold]Craft[/gold].",
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.smartDescription": "At the start of next turn, [gold]Craft[/gold]."
 }

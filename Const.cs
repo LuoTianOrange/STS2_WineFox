@@ -112,6 +112,7 @@ namespace STS2_WineFox
             public const string EternalMelodyPowerIcon = Root + "/powers/eternal_melody_power.png";
             public const string MagicOverloadedPowerIcon = Root + "/powers/magic_overloaded_power.png";
             public const string NothingWastedPowerIcon = Root + "/powers/nothing_wasted_power.png";
+            public const string PortableWorkbenchPowerIcon = Root + "/powers/portable_workbench_power.png";
 
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
@@ -249,6 +250,7 @@ namespace STS2_WineFox
             public const string CardEternalMelody = Root + "/cards/card_eternal_melody.png";
             public const string CardManaSurge = Root + "/cards/card_mana_surge.png";
             public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
+            public const string CardPortableWorkbench = Root + "/cards/card_portable_workbench.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
