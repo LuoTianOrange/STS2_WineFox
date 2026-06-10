@@ -275,5 +275,18 @@
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.title": "Portable Workbench",
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Craft[/gold]. At the start of next turn, [gold]Craft[/gold].",
   "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.title": "Accumulating Grudges",
-  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "Deal {Damage:diff()} damage. For each time you've Crafted this combat, deal damage an additional time.{InCombat:\n(Deals damage {TotalHits} times total)|}"
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "Deal {Damage:diff()} damage. For each time you've Crafted this combat, deal damage an additional time.{InCombat:\n(Deals damage {TotalHits} times total)|}",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING.title": "Object Sorting",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Shuffle a card from your [gold]hand[/gold] into your [gold]Draw Pile[/gold].",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING_CHOOSE": "Choose a card to shuffle into your Draw Pile",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST.title": "Ender Chest",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST.description": "Choose {Cards:diff()} {Cards:plural:card|cards} from your [gold]Discard Pile[/gold] to add to your [gold]hand[/gold]. They gain [gold]Retain[/gold]. End your turn. At the start of next turn, gain {Energy:energyIcons()}.",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE": "Choose {Amount} {Amount:plural:card|cards} to add to your hand",
+  "STS2_WINE_FOX_CARD_RECYCLING.title": "Recycling",
+  "STS2_WINE_FOX_CARD_RECYCLING.description": "Choose and [gold]Exhaust[/gold] a card in your hand. Randomly gain [blue]{Count}[/blue] Materials.",
+  "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE": "Choose a card to Exhaust",
+  "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "Adapt to Circumstances",
+  "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "Deal {Damage:diff()} damage. If the enemy intends to attack, apply [blue]{Debuff:diff()}[/blue] [gold]Weak[/gold]. Otherwise, apply [blue]{Debuff:diff()}[/blue] [gold]Vulnerable[/gold].",
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "Upgrade Gear",
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "Gain {Block:diff()} [gold]Block[/gold]. Randomly upgrade [blue]{Count:diff()}[/blue] cards in your [gold]Draw Pile[/gold]."
 }

@@ -252,6 +252,11 @@ namespace STS2_WineFox
             public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
             public const string CardPortableWorkbench = Root + "/cards/card_portable_workbench.png";
             public const string CardAccumulatingGrudges = Root + "/cards/card_accumulating_grudges.png";
+            public const string CardObjectSorting = Root + "/cards/card_object_sorting.png";
+            public const string CardEnderChest = Root + "/cards/card_ender_chest.png";
+            public const string CardRecycling = Root + "/cards/card_recycling.png";
+            public const string CardAdaptToCircumstances = Root + "/cards/card_adapt_to_circumstances.png";
+            public const string CardUpgradeGear = Root + "/cards/card_upgrade_gear.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

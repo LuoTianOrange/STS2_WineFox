@@ -276,5 +276,18 @@
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.title": "便携工作台",
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]合成[/gold]。在下个回合开始时[gold]合成[/gold]。",
   "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.title": "积怨已久",
-  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "造成{Damage:diff()}点伤害。在本场战斗每合成一次，额外造成一次伤害。{InCombat:\n（共造成{TotalHits}次伤害）|}"
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "造成{Damage:diff()}点伤害。在本场战斗每合成一次，额外造成一次伤害。{InCombat:\n（共造成{TotalHits}次伤害）|}",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING.title": "物品分类",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING.description": "抽{Cards:diff()}张牌。将你[gold]手牌[/gold]中的一张牌洗回[gold]抽牌堆[/gold]。",
+  "STS2_WINE_FOX_CARD_OBJECT_SORTING_CHOOSE": "选择一张要洗回抽牌堆的牌",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST.title": "末影箱",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST.description": "选择[gold]弃牌堆[/gold]中的{Cards:diff()}张牌加入[gold]手牌[/gold]，并将其[gold]保留[/gold]。结束你的回合。在下个回合获得{Energy:energyIcons()}。",
+  "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE": "选择{Amount}张要加入手牌的牌",
+  "STS2_WINE_FOX_CARD_RECYCLING.title": "回收利用",
+  "STS2_WINE_FOX_CARD_RECYCLING.description": "选择并[gold]消耗[/gold]1张手牌，随机获得[blue]{Count}[/blue]个材料。",
+  "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE": "选择一张要消耗的牌",
+  "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "随机应变",
+  "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "造成{Damage:diff()}点伤害。如果敌人意图为攻击，给予[blue]{Debuff:diff()}[/blue]层[gold]虚弱[/gold]。否则，给予[blue]{Debuff:diff()}[/blue]层[gold]易伤[/gold]。",
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "升级装备",
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "获得{Block:diff()}点格挡，随机升级你[gold]抽牌堆[/gold]的[blue]{Count:diff()}[/blue]张牌。"
 }
