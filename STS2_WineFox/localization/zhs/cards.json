@@ -274,5 +274,7 @@
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "物尽其用",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "你每消耗一份[gold]材料[/gold]，就获得{Block:diff()}点[gold]格挡[/gold]。",
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.title": "便携工作台",
-  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]合成[/gold]。在下个回合开始时[gold]合成[/gold]。"
+  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]合成[/gold]。在下个回合开始时[gold]合成[/gold]。",
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.title": "积怨已久",
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "造成{Damage:diff()}点伤害。在本场战斗每合成一次，额外造成一次伤害。{InCombat:\n（共造成{TotalHits}次伤害）|}"
 }

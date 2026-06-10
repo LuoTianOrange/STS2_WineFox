@@ -1,3 +1,4 @@
+/*
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -6,31 +7,40 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
-    public class ShardCopy() : WineFoxCard(
-        1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public class EternalMelody() : WineFoxCard(
+        2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardShardCopy);
-
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<ChantPower>()];
-        
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MagicKeyword];
+        public override CardAssetProfile AssetProfile => new(
+            Const.Paths.CardEternalMelody,
+            Const.Paths.CardEternalMelody,
+            FrameMaterialPath: Const.Paths.CardEternalMelodyCosmicStarsFrameMat);
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<ShardCopyPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+            var owner = Owner.Creature;
+            if (IsUpgraded)
+                await PowerCmd.Apply<EternalMelodyPlusPower>(choiceContext, owner, 1m, owner, this);
+            else
+                await PowerCmd.Apply<EternalMelodyRetentionPower>(choiceContext, owner, 2m, owner, this);
         }
 
         protected override void OnUpgrade()
         {
-            EnergyCost.UpgradeBy(-1);
         }
     }
 }
+*/
 
+namespace STS2_WineFox.Cards.Deleted.Magic
+{
+}

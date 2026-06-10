@@ -251,6 +251,7 @@ namespace STS2_WineFox
             public const string CardManaSurge = Root + "/cards/card_mana_surge.png";
             public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
             public const string CardPortableWorkbench = Root + "/cards/card_portable_workbench.png";
+            public const string CardAccumulatingGrudges = Root + "/cards/card_accumulating_grudges.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

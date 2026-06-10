@@ -273,5 +273,7 @@
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "Nothing Wasted",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.description": "Whenever you consume 1 [gold]Material[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.title": "Portable Workbench",
-  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Craft[/gold]. At the start of next turn, [gold]Craft[/gold]."
+  "STS2_WINE_FOX_CARD_PORTABLE_WORKBENCH.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Craft[/gold]. At the start of next turn, [gold]Craft[/gold].",
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.title": "Accumulating Grudges",
+  "STS2_WINE_FOX_CARD_ACCUMULATING_GRUDGES.description": "Deal {Damage:diff()} damage. For each time you've Crafted this combat, deal damage an additional time.{InCombat:\n(Deals damage {TotalHits} times total)|}"
 }

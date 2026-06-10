@@ -1,3 +1,4 @@
+/*
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -69,4 +70,9 @@ namespace STS2_WineFox.Cards.Uncommon
             DynamicVars["Stones"].UpgradeValueBy(2m);
         }
     }
+}
+*/
+
+namespace STS2_WineFox.Cards.Deleted.Magic
+{
 }

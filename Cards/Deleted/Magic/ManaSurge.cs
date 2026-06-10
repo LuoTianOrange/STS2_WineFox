@@ -1,3 +1,4 @@
+/*
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -8,7 +9,6 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -52,4 +52,8 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
+*/
 
+namespace STS2_WineFox.Cards.Deleted.Magic
+{
+}
