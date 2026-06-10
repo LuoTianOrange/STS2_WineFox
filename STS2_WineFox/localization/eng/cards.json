@@ -234,7 +234,7 @@
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.description": "The first time you spend [gold]Stress[/gold] each turn, gain {Energy:energyIcons()}.",
 
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.title": "Planning Expert",
-  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "Discarded [gold]Skill[/gold] cards gain [gold]Retain[/gold].",
+  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "At the end of your turn, choose up to {Cards:diff()} {Cards:plural:card|cards} in your hand. It gains [gold]Retain[/gold].",
 
   "STS2_WINE_FOX_CARD_LIBERATION.title": "Liberation",
   "STS2_WINE_FOX_CARD_LIBERATION.description": "At the end of your turn, play a copy of each [gold]Retained[/gold] card in your [gold]Hand[/gold].",

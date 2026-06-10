@@ -1,8 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -12,69 +15,30 @@ namespace STS2_WineFox.Powers
     public class PlanningExpertPower : WineFoxPower
     {
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.None;
+        public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.PlanningExpertPowerIcon);
 
-        public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
-        {
-            TryGrantRetain(card);
-
-            return Task.CompletedTask;
-        }
-
-        public override Task AfterCardChangedPilesLate(CardModel card, PileType oldPile, AbstractModel? source)
-        {
-            if (oldPile != PileType.Hand)
-                return Task.CompletedTask;
-            if (card.Pile?.Type != PileType.Discard)
-                return Task.CompletedTask;
-
-            TryGrantRetain(card);
-            return Task.CompletedTask;
-        }
-
-        public override Task AfterFlush(
+        public override async Task BeforeSideTurnEndEarly(
             PlayerChoiceContext choiceContext,
-            Player player,
-            IReadOnlyCollection<CardModel> flushedCards,
-            IReadOnlyCollection<CardModel> retainedCards)
+            CombatSide side,
+            IEnumerable<Creature> participants)
         {
-            if (player.Creature != Owner)
-                return Task.CompletedTask;
+            if (side != Owner.Side) return;
+            if (Owner.Player == null) return;
 
-            foreach (var card in flushedCards)
-            {
-                if (!CanGrantRetain(card))
-                    continue;
+            var player = Owner.Player;
+            var handCount = PileType.Hand.GetPile(player).Cards.Count;
+            if (handCount == 0) return;
 
-                TryGrantRetain(card);
-            }
+            var maxSelect = Math.Min(Amount, handCount);
+            var prompt = new LocString("powers", "STS2_WINE_FOX_POWER_PLANNING_EXPERT_CHOOSE");
+            var prefs = new CardSelectorPrefs(prompt, 0, maxSelect);
+            var selectedList = await CardSelectCmd.FromHandForDiscard(choiceContext, player, prefs, null, null!);
 
-            return Task.CompletedTask;
-        }
-
-        private void TryGrantRetain(CardModel card)
-        {
-            if (!CanGrantRetain(card))
-                return;
-
-            card.AddKeyword(CardKeyword.Retain);
             Flash();
-        }
-
-        private bool CanGrantRetain(CardModel card)
-        {
-            if (card.Owner.Creature != Owner)
-                return false;
-            if (card.Type != CardType.Skill)
-                return false;
-            if (card.HasBeenRemovedFromState)
-                return false;
-            if (card.Keywords.Contains(CardKeyword.Retain))
-                return false;
-
-            return true;
+            foreach (var card in selectedList)
+                card.AddKeyword(CardKeyword.Retain);
         }
     }
 }

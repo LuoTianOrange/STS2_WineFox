@@ -234,7 +234,7 @@
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.description": "每回合第一次消耗[gold]应力[/gold]时，获得{Energy:energyIcons()}。",
 
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.title": "规划专家",
-  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "被丢弃的技能牌获得[gold]保留[/gold]。",
+  "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "在你的回合结束时，选择最多{Cards:diff()}张手牌，其获得[gold]保留[/gold]。",
 
   "STS2_WINE_FOX_CARD_LIBERATION.title": "解放",
   "STS2_WINE_FOX_CARD_LIBERATION.description": "回合结束时，触发你手牌中每张被[gold]保留[/gold]的牌。",
@@ -284,12 +284,12 @@
   "STS2_WINE_FOX_CARD_ENDER_CHEST.description": "选择[gold]弃牌堆[/gold]中的{Cards:diff()}张牌加入[gold]手牌[/gold]，并将其[gold]保留[/gold]。结束你的回合。在下个回合获得{Energy:energyIcons()}。",
   "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE": "选择{Amount}张要加入手牌的牌",
   "STS2_WINE_FOX_CARD_RECYCLING.title": "回收利用",
-  "STS2_WINE_FOX_CARD_RECYCLING.description": "选择并[gold]消耗[/gold]1张手牌，随机获得[blue]{Count}[/blue]个材料。",
+  "STS2_WINE_FOX_CARD_RECYCLING.description": "选择并[gold]消耗[/gold]1张手牌，随机获得[blue]{Count}[/blue]个材料。\n[sine][rainbow freq=0.3 sat=0.8 val=1]可能发现钻石！[/rainbow][/sine]",
   "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE": "选择一张要消耗的牌",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "随机应变",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "造成{Damage:diff()}点伤害。如果敌人意图为攻击，给予[blue]{Debuff:diff()}[/blue]层[gold]虚弱[/gold]。否则，给予[blue]{Debuff:diff()}[/blue]层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "升级装备",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "获得{Block:diff()}点格挡，随机升级你[gold]抽牌堆[/gold]的[blue]{Count:diff()}[/blue]张牌。",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "炒俩菜",
-  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "获得两个随机烹饪过的食物。"
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "随机获得两个烹饪过的食物。"
 }
