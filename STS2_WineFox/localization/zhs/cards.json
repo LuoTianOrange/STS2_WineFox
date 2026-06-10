@@ -289,5 +289,7 @@
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "随机应变",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "造成{Damage:diff()}点伤害。如果敌人意图为攻击，给予[blue]{Debuff:diff()}[/blue]层[gold]虚弱[/gold]。否则，给予[blue]{Debuff:diff()}[/blue]层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "升级装备",
-  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "获得{Block:diff()}点格挡，随机升级你[gold]抽牌堆[/gold]的[blue]{Count:diff()}[/blue]张牌。"
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "获得{Block:diff()}点格挡，随机升级你[gold]抽牌堆[/gold]的[blue]{Count:diff()}[/blue]张牌。",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "炒俩菜",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "获得两个随机烹饪过的食物。"
 }

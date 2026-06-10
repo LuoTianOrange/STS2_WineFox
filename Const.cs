@@ -257,6 +257,7 @@ namespace STS2_WineFox
             public const string CardRecycling = Root + "/cards/card_recycling.png";
             public const string CardAdaptToCircumstances = Root + "/cards/card_adapt_to_circumstances.png";
             public const string CardUpgradeGear = Root + "/cards/card_upgrade_gear.png";
+            public const string CardLittleCooking = Root + "/cards/card_little_cooking.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

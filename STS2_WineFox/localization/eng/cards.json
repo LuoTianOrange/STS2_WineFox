@@ -288,5 +288,7 @@
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "Adapt to Circumstances",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "Deal {Damage:diff()} damage. If the enemy intends to attack, apply [blue]{Debuff:diff()}[/blue] [gold]Weak[/gold]. Otherwise, apply [blue]{Debuff:diff()}[/blue] [gold]Vulnerable[/gold].",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "Upgrade Gear",
-  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "Gain {Block:diff()} [gold]Block[/gold]. Randomly upgrade [blue]{Count:diff()}[/blue] cards in your [gold]Draw Pile[/gold]."
+  "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "Gain {Block:diff()} [gold]Block[/gold]. Randomly upgrade [blue]{Count:diff()}[/blue] cards in your [gold]Draw Pile[/gold].",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "Stir-fry Two Dishes",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "Gain 2 random cooked foods."
 }

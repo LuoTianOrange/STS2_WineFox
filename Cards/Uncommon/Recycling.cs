@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -50,19 +51,22 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await CardPileCmd.Add(selected, PileType.Exhaust);
 
+            var stressConsumed = await StressCmd.ConsumeOne(owner.Creature, this);
+            var mult = stressConsumed ? 2m : 1m;
+
             var rng = owner.RunState.Rng.CombatCardGeneration;
             var count = DynamicVars["Count"].IntValue;
             for (var i = 0; i < count; i++)
             {
                 var roll = rng.NextInt(0, 100); // 0–99
                 if (roll < 30)
-                    await MaterialCmd.GainMaterial<WoodPower>(this, 1m);
+                    await MaterialCmd.GainMaterial<WoodPower>(this, 1m * mult, applyStress: false);
                 else if (roll < 60)
-                    await MaterialCmd.GainMaterial<StonePower>(this, 1m);
+                    await MaterialCmd.GainMaterial<StonePower>(this, 1m * mult, applyStress: false);
                 else if (roll < 90)
-                    await MaterialCmd.GainMaterial<IronPower>(this, 1m);
+                    await MaterialCmd.GainMaterial<IronPower>(this, 1m * mult, applyStress: false);
                 else
-                    await MaterialCmd.GainMaterial<DiamondPower>(this, 1m);
+                    await MaterialCmd.GainMaterial<DiamondPower>(this, 1m * mult, applyStress: false);
             }
         }
 
