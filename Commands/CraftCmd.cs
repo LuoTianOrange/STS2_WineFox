@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Hooks;
 using STS2RitsuLib.Utils;
@@ -22,7 +21,7 @@ namespace STS2_WineFox.Commands
         internal static void MarkCraftProduct(CardModel card, CraftDeliveryMode deliveryMode)
         {
             ArgumentNullException.ThrowIfNull(card);
-            CraftProductMarkers.Set(card, new CraftProductInfo(deliveryMode));
+            CraftProductMarkers.Set(card, new(deliveryMode));
         }
 
         public static bool IsCraftProduct(CardModel card)
@@ -55,15 +54,28 @@ namespace STS2_WineFox.Commands
             return CraftRecipeRegistry.All.Any(recipe => recipe.CanCraft(creature));
         }
 
-        public static IReadOnlyList<CraftOption> GetOptions(ICombatState state, Player owner)
+        public static IReadOnlyList<CraftOption> GetOptions(
+            ICombatState state,
+            Player owner,
+            Creature? crafter = null,
+            Creature? applier = null,
+            CardModel? cardSource = null,
+            CraftDeliveryMode? deliveryModeOverride = null,
+            Creature? autoPlayTarget = null,
+            bool isBonusCraft = false)
         {
             ArgumentNullException.ThrowIfNull(state);
             ArgumentNullException.ThrowIfNull(owner);
 
-            return CraftRecipeRegistry.All
-                .Where(recipe => recipe.CanCraft(owner.Creature))
-                .Select(recipe => new CraftOption(recipe, recipe.Factory(state, owner)))
-                .ToList();
+            crafter ??= owner.Creature;
+
+            var context = CreateOptionsContext(state, owner, crafter, applier, cardSource, deliveryModeOverride,
+                autoPlayTarget, isBonusCraft);
+            foreach (var recipe in CraftRecipeRegistry.All.Where(recipe => recipe.CanCraft(crafter)))
+                context.Options.Add(context.CreateOption(recipe));
+
+            ModifyCraftOptions(context);
+            return context.Options.ToList();
         }
 
         public static CardSelectorPrefs CreateSelectionPrefs()
@@ -84,7 +96,8 @@ namespace STS2_WineFox.Commands
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(crafter);
 
-            return CraftInternal(choiceContext, crafter, applier, cardSource, prefs, deliveryModeOverride, autoPlayTarget,
+            return CraftInternal(choiceContext, crafter, applier, cardSource, prefs, deliveryModeOverride,
+                autoPlayTarget,
                 isBonusCraft);
         }
 
@@ -138,12 +151,13 @@ namespace STS2_WineFox.Commands
             var combatState = crafter.CombatState ??
                               throw new InvalidOperationException("Crafter is not in combat.");
 
-            var selectedOption = await SelectOption(choiceContext, owner, prefs);
+            var selectedOption = await SelectOption(choiceContext, owner, prefs, crafter, applier, cardSource,
+                isBonusCraft: true);
             if (selectedOption == null)
                 return [];
 
             if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource,
-                    countTowardsCraftTracker: false))
+                    false))
             {
                 selectedOption.Card.RemoveFromState();
                 return [];
@@ -155,7 +169,16 @@ namespace STS2_WineFox.Commands
             {
                 var product = i == 0
                     ? selectedOption.Card
-                    : selectedOption.Recipe.Factory(combatState, owner);
+                    : CreateModifiedOption(
+                        combatState,
+                        owner,
+                        crafter,
+                        applier,
+                        cardSource,
+                        selectedOption.Recipe,
+                        null,
+                        null,
+                        true).Card;
 
                 products.Add(product);
 
@@ -196,8 +219,16 @@ namespace STS2_WineFox.Commands
                 cardSource, prefs);
         }
 
-        public static async Task<CraftOption?> SelectOption(PlayerChoiceContext choiceContext, Player owner,
-            CardSelectorPrefs? prefs = null)
+        public static async Task<CraftOption?> SelectOption(
+            PlayerChoiceContext choiceContext,
+            Player owner,
+            CardSelectorPrefs? prefs = null,
+            Creature? crafter = null,
+            Creature? applier = null,
+            CardModel? cardSource = null,
+            CraftDeliveryMode? deliveryModeOverride = null,
+            Creature? autoPlayTarget = null,
+            bool isBonusCraft = false)
         {
             ArgumentNullException.ThrowIfNull(choiceContext);
             ArgumentNullException.ThrowIfNull(owner);
@@ -205,7 +236,15 @@ namespace STS2_WineFox.Commands
             if (owner.Creature.CombatState is not { } combatState)
                 return null;
 
-            var options = GetOptions(combatState, owner);
+            var options = GetOptions(
+                combatState,
+                owner,
+                crafter,
+                applier,
+                cardSource,
+                deliveryModeOverride,
+                autoPlayTarget,
+                isBonusCraft);
             if (options.Count == 0)
                 return null;
 
@@ -307,12 +346,13 @@ namespace STS2_WineFox.Commands
             var combatState = crafter.CombatState ??
                               throw new InvalidOperationException("Crafter is not in combat.");
 
-            var selectedOption = await SelectOption(choiceContext, owner, prefs);
+            var selectedOption = await SelectOption(choiceContext, owner, prefs, crafter, applier, cardSource,
+                deliveryModeOverride, autoPlayTarget, isBonusCraft);
             if (selectedOption == null)
                 return null;
 
             if (!await TryConsumeMaterials(crafter, selectedOption.Recipe, applier, cardSource,
-                    countTowardsCraftTracker: !isBonusCraft))
+                    !isBonusCraft))
             {
                 selectedOption.Card.RemoveFromState();
                 return null;
@@ -370,6 +410,57 @@ namespace STS2_WineFox.Commands
             }
 
             await CraftHook.AfterCraftProductDelivered(combatState, deliveryContext);
+        }
+
+        private static CraftOptionsContext CreateOptionsContext(
+            ICombatState combatState,
+            Player owner,
+            Creature crafter,
+            Creature? applier,
+            CardModel? cardSource,
+            CraftDeliveryMode? deliveryModeOverride,
+            Creature? autoPlayTarget,
+            bool isBonusCraft)
+        {
+            return new()
+            {
+                CombatState = combatState,
+                Owner = owner,
+                Crafter = crafter,
+                Applier = applier,
+                SourceCard = cardSource,
+                DeliveryModeOverride = deliveryModeOverride,
+                AutoPlayTarget = autoPlayTarget,
+                IsBonusCraft = isBonusCraft,
+            };
+        }
+
+        private static CraftOption CreateModifiedOption(
+            ICombatState combatState,
+            Player owner,
+            Creature crafter,
+            Creature? applier,
+            CardModel? cardSource,
+            CraftRecipe recipe,
+            CraftDeliveryMode? deliveryModeOverride,
+            Creature? autoPlayTarget,
+            bool isBonusCraft)
+        {
+            var context = CreateOptionsContext(combatState, owner, crafter, applier, cardSource,
+                deliveryModeOverride, autoPlayTarget, isBonusCraft);
+            var option = context.CreateOption(recipe);
+            context.Options.Add(option);
+            ModifyCraftOptions(context);
+            return context.Options.FirstOrDefault(candidate => ReferenceEquals(candidate.Recipe, recipe))
+                   ?? context.Options.FirstOrDefault()
+                   ?? option;
+        }
+
+        private static void ModifyCraftOptions(CraftOptionsContext context)
+        {
+            foreach (var model in context.CombatState.IterateHookListeners())
+                if (model is ICraftOptionsModifier modifier)
+                    modifier.ModifyCraftOptions(context);
         }
 
         private static void AddByType(
