@@ -33,5 +33,11 @@
   "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.flavor": "It can spin all by itself!",
   "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.title": "Orange Tiger Cake Roll",
   "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.description": "When picked up, gain [blue]8[/blue] Max HP, [blue]2[/blue] random foods, [blue]1[/blue] card reward set, and [blue]50[/blue] Gold.",
-  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "Wow! A golden legend, meow! Delicious little cake."
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "Wow! A golden legend, meow! Delicious little cake.",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.title": "Nimble Fabric",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.description": "At the start of each combat, gain [blue]1[/blue] [gold]Buffer[/gold].",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.flavor": "Dodged!",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.title": "Cat Bomb",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.description": "At the start of each combat, deal [blue]30[/blue] damage to ALL enemies after 3 turns.",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.flavor": "It's about to blow!"
 }

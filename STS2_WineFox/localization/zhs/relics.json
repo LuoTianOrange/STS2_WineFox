@@ -33,6 +33,11 @@
   "STS2_WINE_FOX_RELIC_CREATIVE_MOTOR.flavor": "它自己就可以转起来！",
   "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.title": "橘子虎皮蛋糕卷",
   "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.description": "拾取时获得[blue]8[/blue]点最大生命值、[blue]2[/blue]个随机食物、[blue]1[/blue]组卡牌奖励和[blue]50[/blue]金币。",
-  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "哇偶！金色传说喵！美味的小蛋糕。"
-  
+  "STS2_WINE_FOX_RELIC_ORANGE_TIGER_CAKE.flavor": "哇偶！金色传说喵！美味的小蛋糕。",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.title": "闪避布",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.description": "在每场战斗开始时，获得[blue]1[/blue]层[gold]缓冲[/gold]。",
+  "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.flavor": "我闪！",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.title": "猫雷",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.description": "每场战斗开始时，3回合后对全体敌人造成[blue]30[/blue]伤害。",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.flavor": "马上就要爆了!"
 }

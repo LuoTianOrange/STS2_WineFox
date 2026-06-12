@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
-using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -18,15 +17,11 @@ namespace STS2_WineFox.Cards.Uncommon
         1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Count", 2m)];
+            [new IntVar("Count", 3m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
             WineFoxKeywords.MaterialKeyword,
-            WineFoxKeywords.WoodKeyword,
-            WineFoxKeywords.StoneKeyword,
-            WineFoxKeywords.IronKeyword,
-            WineFoxKeywords.DiamondKeyword,
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRecycling);
@@ -72,7 +67,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Count"].UpgradeValueBy(1m); // 2 → 3
+            DynamicVars["Count"].UpgradeValueBy(1m); // 3 → 4
         }
     }
 }

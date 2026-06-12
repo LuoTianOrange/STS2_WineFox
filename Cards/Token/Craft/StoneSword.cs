@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(2m)];
+            [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(1m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.StrengthKeyword];
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStoneSword);
