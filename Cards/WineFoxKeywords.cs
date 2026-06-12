@@ -14,7 +14,6 @@ namespace STS2_WineFox.Cards
         public const string IronKey = "iron";
         public const string PlantKey = "plant";
         public const string SteamKey = "steam";
-        public const string StrengthKey = "strength";
         public const string PlatingKey = "plating";
         public const string DiamondKey = "diamond";
         public const string MaterialKey = "material";
@@ -31,7 +30,6 @@ namespace STS2_WineFox.Cards
         public static readonly string Iron = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, IronKey);
         public static readonly string Plant = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, PlantKey);
         public static readonly string Steam = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SteamKey);
-        public static readonly string Strength = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, StrengthKey);
         public static readonly string Plating = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, PlatingKey);
         public static readonly string Diamond = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, DiamondKey);
         public static readonly string Material = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MaterialKey);
@@ -51,7 +49,6 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword IronKeyword = Iron.GetModCardKeyword();
         public static readonly CardKeyword PlantKeyword = Plant.GetModCardKeyword();
         public static readonly CardKeyword SteamKeyword = Steam.GetModCardKeyword();
-        public static readonly CardKeyword StrengthKeyword = Strength.GetModCardKeyword();
         public static readonly CardKeyword PlatingKeyword = Plating.GetModCardKeyword();
         public static readonly CardKeyword DiamondKeyword = Diamond.GetModCardKeyword();
         public static readonly CardKeyword MaterialKeyword = Material.GetModCardKeyword();
@@ -96,11 +93,6 @@ namespace STS2_WineFox.Cards
             public bool IsSteam()
             {
                 return card.HasModKeyword(SteamKeyword);
-            }
-
-            public bool IsStrength()
-            {
-                return card.HasModKeyword(StrengthKeyword);
             }
 
             public bool IsPlating()

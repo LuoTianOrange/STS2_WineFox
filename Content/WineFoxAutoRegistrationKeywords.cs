@@ -37,10 +37,6 @@ namespace STS2_WineFox.Content
             IconPath = Const.Paths.DiamondPowerIcon)]
         private sealed class Diamond;
 
-        [RegisterOwnedCardKeyword(WineFoxKeywords.StrengthKey,
-            IconPath = "res://images/powers/strength_power.png")]
-        private sealed class Strength;
-
         [RegisterOwnedCardKeyword(WineFoxKeywords.PlatingKey,
             IconPath = "res://images/powers/plating_power.png")]
         private sealed class Plating;
