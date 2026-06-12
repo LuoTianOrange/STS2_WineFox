@@ -291,5 +291,7 @@
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "升级装备",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "获得{Block:diff()}点格挡，随机升级你[gold]抽牌堆[/gold]的[blue]{Count:diff()}[/blue]张牌。",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "炒俩菜",
-  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "随机获得两个烹饪过的食物。"
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "随机获得两个烹饪过的食物。",
+  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "“等价”交换",
+  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "消耗所有其他[gold]手牌[/gold]。每消耗一张牌，将1张随机{IfUpgraded:show:已升级的|}[gold]稀有[/gold]牌加入你的[gold]手牌[/gold]。"
 }
