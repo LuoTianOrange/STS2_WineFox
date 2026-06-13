@@ -19,8 +19,14 @@ namespace STS2_WineFox.Powers
             PlayerChoiceContext choiceContext, Player player)
         {
             if (player.Creature != Owner) return;
+
+            Flash();
+
             await CraftCmd.CraftIntoHand(choiceContext, Owner, Owner);
-            await PowerCmd.Remove(this);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, null);
+
+            if (Amount <= 0m)
+                await PowerCmd.Remove(this);
         }
     }
 }

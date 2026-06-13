@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class LittleCooking() : WineFoxCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
@@ -51,7 +51,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            EnergyCost.UpgradeBy(-1); // 1 → 0
+            EnergyCost.UpgradeBy(-1); // 2 → 1
         }
     }
 }

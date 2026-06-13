@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -31,21 +32,22 @@ namespace STS2_WineFox.Cards.Rare
             if (handCards.Count == 0) return;
 
             foreach (var card in handCards)
-                await CardPileCmd.Add(card, PileType.Exhaust);
+                await CardCmd.Exhaust(choiceContext, card);
 
             var rng = owner.RunState.Rng.CombatCardGeneration;
+            var generatedCards = new List<CardModel>();
             for (var i = 0; i < handCards.Count; i++)
             {
                 var creator = rng.NextItem(RareCardCreators);
                 if (creator == null) continue;
 
-                var card = creator(combatState, owner);
-                if (IsUpgraded && !card.IsUpgraded)
-                    CardCmd.Upgrade(card);
-
-                var instance = await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, owner);
-                CardCmd.PreviewCardPileAdd(instance);
+                generatedCards.Add(creator(combatState, owner));
             }
+
+            if (IsUpgraded)
+                CardCmd.Upgrade(generatedCards, CardPreviewStyle.None);
+
+            await CardPileCmd.AddGeneratedCardsToCombat(generatedCards, PileType.Hand, owner);
         }
 
         protected override void OnUpgrade()
@@ -65,7 +67,6 @@ namespace STS2_WineFox.Cards.Rare
             (state, owner) => state.CreateCard<HellGift>(owner),
             (state, owner) => state.CreateCard<LessHoliday>(owner),
             (state, owner) => state.CreateCard<Liberation>(owner),
-            (state, owner) => state.CreateCard<MaidSupport>(owner),
             (state, owner) => state.CreateCard<Milk>(owner),
             (state, owner) => state.CreateCard<MiningGems>(owner),
             (state, owner) => state.CreateCard<NetheriteChestPlate>(owner),

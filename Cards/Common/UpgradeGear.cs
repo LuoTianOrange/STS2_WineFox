@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -32,15 +33,15 @@ namespace STS2_WineFox.Cards.Common
 
             await CreatureCmd.GainBlock(creature, DynamicVars.Block, play);
 
-            var drawPile = PileType.Draw.GetPile(owner).Cards;
-            if (drawPile.Count == 0) return;
+            var upgradedCards = PileType.Draw.GetPile(owner).Cards
+                .Where(c => c.IsUpgradable)
+                .TakeRandom(DynamicVars["Count"].IntValue, owner.RunState.Rng.CombatCardSelection);
 
-            var count = Math.Min(DynamicVars["Count"].IntValue, drawPile.Count);
-            var rng = owner.RunState.Rng.CombatCardGeneration;
-            var shuffled = drawPile.OrderBy(_ => rng.NextInt(0, int.MaxValue)).ToList();
-
-            for (var i = 0; i < count; i++)
-                CardCmd.Upgrade(shuffled[i]);
+            foreach (var card in upgradedCards)
+            {
+                CardCmd.Upgrade(card);
+                CardCmd.Preview(card);
+            }
         }
 
         protected override void OnUpgrade()
