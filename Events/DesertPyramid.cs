@@ -133,7 +133,7 @@ namespace STS2_WineFox.Events
 
             if (card != null)
             {
-                CardCmd.Enchant<FireAspect>(card, 1m);
+                CardCmd.Enchant<FireAspect>(card, 5m);
 
                 var vfx = NCardEnchantVfx.Create(card);
                 if (vfx != null)

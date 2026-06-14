@@ -115,6 +115,8 @@ namespace STS2_WineFox
             public const string MagicOverloadedPowerIcon = Root + "/powers/magic_overloaded_power.png";
             public const string NothingWastedPowerIcon = Root + "/powers/nothing_wasted_power.png";
             public const string PortableWorkbenchPowerIcon = Root + "/powers/portable_workbench_power.png";
+            public const string FineProcessingPowerIcon = Root + "/powers/fine_processing_power.png";
+            public const string ScrapRecyclingPowerIcon = Root + "/powers/scrap_recycling_power.png";
 
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
@@ -241,7 +243,7 @@ namespace STS2_WineFox
             public const string CardObtainStress = Root + "/cards/card_wind_crank.png";
             public const string CardObtainMaterials = Root + "/cards/card_obtain_materials.png";
             public const string CardBladeMaster = Root + "/cards/card_blade_master.png";
-            public const string CardCyclicProcess = Root + "/cards/card_test.png";
+            public const string CardCyclicProcess = Root + "/cards/card_cyclic_process.png";
             public const string CardNothingWasted = Root + "/cards/card_nothing_wasted.png";
             public const string CardHoardingHabit = Root + "/cards/card_hoarding_habit.png";
             public const string CardLogistics = Root + "/cards/card_logistics.png";
@@ -261,6 +263,11 @@ namespace STS2_WineFox
             public const string CardUpgradeGear = Root + "/cards/card_upgrade_gear.png";
             public const string CardLittleCooking = Root + "/cards/card_little_cooking.png";
             public const string CardInequivalentExchange = Root + "/cards/card_inequivalent_exchange.png";
+            public const string CardMultiMachinery = Root + "/cards/card_multi_machinery.png";
+            public const string CardFineProcessing = Root + "/cards/card_fine_processing.png";
+            public const string CardRawMaterialProcessing = Root + "/cards/card_raw_material_processing.png";
+            public const string CardScrapRecycling = Root + "/cards/card_scrap_recycling.png";
+            public const string CardReforge = Root + "/cards/card_reforge.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

@@ -292,5 +292,17 @@
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "Stir-fry Two Dishes",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "Gain 2 random cooked foods.",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "\"Equivalent\" Exchange",
-  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "Exhaust all other cards in your [gold]hand[/gold]. For each card Exhausted, add 1 random {IfUpgraded:show:upgraded |}[gold]Rare[/gold] card to your [gold]hand[/gold]."
+  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "Exhaust all other cards in your [gold]hand[/gold]. For each card Exhausted, add 1 random {IfUpgraded:show:upgraded |}[gold]Rare[/gold] card to your [gold]hand[/gold].",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "Multi Machinery",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "Consume 2 [gold]Stress[/gold]. [gold]Choose[/gold] a mode.",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_CHOOSE": "Choose a mode",
+  "STS2_WINE_FOX_CARD_FINE_PROCESSING.title": "Fine Processing",
+  "STS2_WINE_FOX_CARD_FINE_PROCESSING.description": "Upgrade the next {Count:diff()} [gold]Craft[/gold] products.",
+  "STS2_WINE_FOX_CARD_RAW_MATERIAL_PROCESSING.title": "Raw Material Processing",
+  "STS2_WINE_FOX_CARD_RAW_MATERIAL_PROCESSING.description": "Your existing [gold]Materials[/gold] each +{Amount:diff()}.",
+  "STS2_WINE_FOX_CARD_SCRAP_RECYCLING.title": "Scrap Recycling",
+  "STS2_WINE_FOX_CARD_SCRAP_RECYCLING.description": "Refund the [gold]Materials[/gold] spent on the next {Count:diff()} [gold]Crafts[/gold].",
+  "STS2_WINE_FOX_CARD_REFORGE.title": "Reforge",
+  "STS2_WINE_FOX_CARD_REFORGE.description": "Choose 1 card in your hand. It gains {IfUpgraded:show:[gold]Replay[/gold] and |}[gold]Exhaust[/gold].",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "Choose a card"
 }

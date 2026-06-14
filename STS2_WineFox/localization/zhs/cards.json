@@ -293,5 +293,17 @@
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "炒俩菜",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "随机获得两个烹饪过的食物。",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "“等价”交换",
-  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "消耗所有其他[gold]手牌[/gold]。每消耗一张牌，将1张随机{IfUpgraded:show:已升级的|}[gold]稀有[/gold]牌加入你的[gold]手牌[/gold]。"
+  "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "消耗所有[gold]手牌[/gold]。每消耗一张牌，将1张随机{IfUpgraded:show:已升级的|}[gold]稀有[/gold]牌加入你的[gold]手牌[/gold]。",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "多功能机械",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "消耗2层[gold]应力[/gold]。[gold]选择[/gold]一种模式。",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_CHOOSE": "选择一种模式",
+  "STS2_WINE_FOX_CARD_FINE_PROCESSING.title": "精细加工",
+  "STS2_WINE_FOX_CARD_FINE_PROCESSING.description": "将下{Count:diff()}个[gold]合成[/gold]产物升级。",
+  "STS2_WINE_FOX_CARD_RAW_MATERIAL_PROCESSING.title": "原料处理",
+  "STS2_WINE_FOX_CARD_RAW_MATERIAL_PROCESSING.description": "你已有的每种[gold]材料[/gold]+{Amount:diff()}。",
+  "STS2_WINE_FOX_CARD_SCRAP_RECYCLING.title": "废料回收",
+  "STS2_WINE_FOX_CARD_SCRAP_RECYCLING.description": "返还下{Count:diff()}次[gold]合成[/gold]花费的[gold]材料[/gold]。",
+  "STS2_WINE_FOX_CARD_REFORGE.title": "回炉重造",
+  "STS2_WINE_FOX_CARD_REFORGE.description": "选择1张手牌，使其获得{IfUpgraded:show:[gold]重放[/gold]和|}[gold]消耗[/gold]。",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "选择一张牌"
 }

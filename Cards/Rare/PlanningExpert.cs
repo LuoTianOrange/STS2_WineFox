@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class PlanningExpert() : WineFoxCard(
-        2, CardType.Power, CardRarity.Rare, TargetType.Self)
+       1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(1)];

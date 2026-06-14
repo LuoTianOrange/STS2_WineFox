@@ -18,8 +18,6 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new IntVar("Cards", 1m), new EnergyVar(1)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnderChest);
 
         protected override async Task OnPlay(

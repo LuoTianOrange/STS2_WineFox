@@ -161,5 +161,11 @@
   "STS2_WINE_FOX_POWER_NOTHING_WASTED_POWER.smartDescription": "你每消耗1份[gold]材料[/gold]，就获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
   "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.title": "便携工作台",
   "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.description": "在下个回合开始时[gold]合成[/gold]。",
-  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.smartDescription": "在下个回合开始时[gold]合成[/gold]。"
+  "STS2_WINE_FOX_POWER_PORTABLE_WORKBENCH_POWER.smartDescription": "在下个回合开始时[gold]合成[/gold]。",
+  "STS2_WINE_FOX_POWER_FINE_PROCESSING_POWER.title": "精细加工",
+  "STS2_WINE_FOX_POWER_FINE_PROCESSING_POWER.description": "升级接下来的[gold]合成[/gold]产物。",
+  "STS2_WINE_FOX_POWER_FINE_PROCESSING_POWER.smartDescription": "升级接下来的{Amount}个[gold]合成[/gold]产物。",
+  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.title": "废料回收",
+  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.description": "返还接下来[gold]合成[/gold]花费的[gold]材料[/gold]。",
+  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.smartDescription": "返还接下来{Amount}次[gold]合成[/gold]花费的[gold]材料[/gold]。"
 }
