@@ -17,19 +17,6 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.BrushStoneFormPowerIcon);
 
-        public override int DisplayAmount => Amount + GetInternalData<Data>().Amount;
-
-        public override bool IsInstanced => true;
-
-        protected override object InitInternalData()
-        {
-            return new Data
-            {
-                Amount = 0,
-                Increment = CountIncrement,
-            };
-        }
-
         protected override async Task OnAfterPlayerTurnStart(
             PlayerChoiceContext choiceContext, Player player)
         {
@@ -37,18 +24,8 @@ namespace STS2_WineFox.Powers
 
             Flash();
 
-            var data = GetInternalData<Data>();
-            var amount = Amount + data.Amount;
-            await PowerCmd.Apply<StonePower>(Owner, amount, Owner, null);
-            data.Amount += data.Increment;
-            InvokeDisplayAmountChanged();
-        }
-
-        private class Data
-        {
-            public int Amount;
-
-            public int Increment;
+            await PowerCmd.Apply<StonePower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<BrushStoneFormPower>(Owner, CountIncrement, Owner, null);
         }
     }
 }

@@ -13,8 +13,6 @@
   "STS2_WINE_FOX_KEYWORD_STRESS.description": "When you gain resources, spend 1 Stress to double that gain.",
   "STS2_WINE_FOX_KEYWORD_IRON.title": "Iron Ingot",
   "STS2_WINE_FOX_KEYWORD_IRON.description": "An advanced material, usable in crafting.",
-  "STS2_WINE_FOX_KEYWORD_STRENGTH.title": "Strength",
-  "STS2_WINE_FOX_KEYWORD_STRENGTH.description": "Strength increases damage dealt by Attack cards.",
   "STS2_WINE_FOX_KEYWORD_PLATING.title": "Plating",
   "STS2_WINE_FOX_KEYWORD_PLATING.description": "Gain Block at the end of your turn. [gold]Plating[/gold] loses [blue]1[/blue] stack at the start of your turn.",
   "STS2_WINE_FOX_KEYWORD_DIAMOND.title": "Diamond",

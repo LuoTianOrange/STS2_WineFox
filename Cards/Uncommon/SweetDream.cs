@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -30,8 +31,11 @@ namespace STS2_WineFox.Cards.Uncommon
                 return;
 
             foreach (var card in handCards)
-                await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Random);
+            {
+                CardPileAddResult cardPileAddResult = await CardPileCmd.Add(card, PileType.Draw);
+            }
 
+            await CardPileCmd.Shuffle(choiceContext, owner);
             await CardPileCmd.Draw(choiceContext, count, owner);
         }
 

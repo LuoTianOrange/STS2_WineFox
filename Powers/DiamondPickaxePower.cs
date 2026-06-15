@@ -1,27 +1,31 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using STS2_WineFox.Cards;
-using STS2_WineFox.Commands;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
     [RegisterPower]
-    public class DiamondPickaxePower : WineFoxPower
+    public class DiamondPickaxePower : WineFoxPower, ICraftOptionsModifier
     {
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.None;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.DiamondPickaxePowerIcon);
 
-        public override Task BeforeCraftProductDelivered(CraftExecutionContext context)
+        public void ModifyCraftOptions(CraftOptionsContext context)
         {
-            if (context.Crafter != Owner) return Task.CompletedTask;
-            if (context.Product == null) return Task.CompletedTask;
-            if (!CraftRecipeRegistry.TryGetRecipe(context.Product.GetType(), out _)) return Task.CompletedTask;
+            if (context.Crafter != Owner) return;
 
-            CardCmd.Upgrade(context.Product);
-            return Task.CompletedTask;
+            foreach (var option in context.Options)
+                UpgradeCraftProduct(option.Card);
+        }
+
+        private static void UpgradeCraftProduct(CardModel card)
+        {
+            if (card.IsUpgraded) return;
+            CardCmd.Upgrade(card, CardPreviewStyle.None);
         }
     }
 }

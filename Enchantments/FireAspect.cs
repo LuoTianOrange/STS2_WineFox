@@ -13,7 +13,7 @@ namespace STS2_WineFox.Enchantments
     {
         public override EnchantmentAssetProfile AssetProfile => new(Const.Paths.EnchantmentFireAspectIcon);
 
-        public override bool ShowAmount => false;
+        public override bool ShowAmount => true;
 
         public override bool CanEnchantCardType(CardType cardType)
         {
@@ -29,7 +29,7 @@ namespace STS2_WineFox.Enchantments
             if (ownerCreature == null)
                 return;
 
-            const decimal burnStacks = 5m;
+            var burnStacks = Amount > 0 ? Amount : 5m;
 
             var explicitTarget = cardPlay.Target;
             if (explicitTarget != null)

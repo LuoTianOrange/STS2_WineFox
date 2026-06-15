@@ -18,7 +18,6 @@ namespace STS2_WineFox.Cards.Token.Craft
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenArmor);
 
         public override bool GainsBlock => true;
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7m, ValueProp.Move)];
 
         protected override async Task OnPlay(

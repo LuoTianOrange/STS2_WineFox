@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
         1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new IntVar("Dex", 3m)];
+            [new IntVar("Dex", 2m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<DexterityPower>()];
@@ -34,15 +34,19 @@ namespace STS2_WineFox.Cards.Uncommon
             var combatState = Owner.Creature.CombatState;
             if (combatState == null) return;
 
-            if (!combatState.HittableEnemies.Any(e => e.Monster?.IntendsToAttack == true)) return;
+            var attackingEnemyCount = combatState.HittableEnemies.Count(e => e.Monster?.IntendsToAttack == true);
+            if (attackingEnemyCount <= 0) return;
 
-            await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars["Dex"].BaseValue,
+            var dexGain = IsUpgraded
+                ? DynamicVars["Dex"].BaseValue * attackingEnemyCount
+                : DynamicVars["Dex"].BaseValue;
+
+            await PowerCmd.Apply<DexterityPower>(Owner.Creature, dexGain,
                 Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Dex"].UpgradeValueBy(1m); // 3 → 4
         }
     }
 }

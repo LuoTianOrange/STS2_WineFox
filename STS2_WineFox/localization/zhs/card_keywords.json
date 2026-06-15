@@ -13,8 +13,6 @@
   "STS2_WINE_FOX_KEYWORD_STRESS.description": "获得资源时，消耗 1 应力，使该次获得的资源翻倍。",
   "STS2_WINE_FOX_KEYWORD_IRON.title": "铁锭",
   "STS2_WINE_FOX_KEYWORD_IRON.description": "一种高级材料，可用于合成。",
-  "STS2_WINE_FOX_KEYWORD_STRENGTH.title": "力量",
-  "STS2_WINE_FOX_KEYWORD_STRENGTH.description": "力量会增加攻击牌造成的伤害。",
   "STS2_WINE_FOX_KEYWORD_PLATING.title": "覆甲",
   "STS2_WINE_FOX_KEYWORD_PLATING.description": "在你的回合结束时获得格挡。[gold]覆甲[/gold]会在你的回合开始时减少[blue]1[/blue]层。",
   "STS2_WINE_FOX_KEYWORD_DIAMOND.title": "钻石",

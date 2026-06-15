@@ -1,7 +1,11 @@
+using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 using STS2_WineFox.Cards;
@@ -57,6 +61,7 @@ namespace STS2_WineFox.Screens
             screen.Name = "NWineFoxCraftingCodexScreen";
 
             OverrideBottomLabel(screen);
+            ConnectCardDetails(screen, pile);
             return screen;
         }
 
@@ -129,6 +134,30 @@ namespace STS2_WineFox.Screens
                 card = null!;
                 return false;
             }
+        }
+
+        private static void ConnectCardDetails(NCardPileScreen screen, CardPile pile)
+        {
+            var grid = screen.GetNodeOrNull<NCardGrid>("CardGrid");
+            if (grid == null)
+                return;
+
+            grid.Connect(NCardGrid.SignalName.HolderAltPressed, Callable.From<NCardHolder>(holder =>
+            {
+                if (holder.CardModel is not { } card)
+                    return;
+
+                var cards = pile.Cards.ToList();
+                var index = cards.IndexOf(card);
+                if (index < 0)
+                    return;
+
+                var game = NGame.Instance;
+                if (game == null)
+                    return;
+
+                game.GetInspectCardScreen().Open(cards, index);
+            }));
         }
 
         /// <summary>

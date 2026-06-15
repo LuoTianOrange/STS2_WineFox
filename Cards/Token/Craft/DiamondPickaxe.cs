@@ -25,7 +25,10 @@ namespace STS2_WineFox.Cards.Token.Craft
                 Owner.Creature, this);
             
             if (IsUpgraded)
-                await CraftCmd.CraftIntoHand(choiceContext, this);
+            {
+                for (var i = 0; i < 3; i++)
+                    await CraftCmd.CraftIntoHand(choiceContext, this);
+            }
         }
 
         protected override void OnUpgrade()
