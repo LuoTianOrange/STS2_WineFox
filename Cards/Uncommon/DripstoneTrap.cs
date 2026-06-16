@@ -14,6 +14,7 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Utils;
 using STS2RitsuLib.Cards.DynamicVars;
+using STS2RitsuLib.Combat.AttackHits;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -21,7 +22,7 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class DripstoneTrap() : WineFoxCard(
-        2, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
+        2, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy), IAttackHitHookListener
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -30,9 +31,10 @@ namespace STS2_WineFox.Cards.Uncommon
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StoneKeyword];
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<VulnerablePower>()];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDripstoneTrap);
 
         protected override bool IsPlayable
@@ -45,6 +47,26 @@ namespace STS2_WineFox.Cards.Uncommon
                 var stone = creature.Powers.OfType<StonePower>().FirstOrDefault()?.Amount ?? 0;
                 return stone > 0;
             }
+        }
+
+        public async Task BeforeAttackHit(AttackHitContext context)
+        {
+            if (!ReferenceEquals(context.CardSource, this) ||
+                context.SingleTarget is not { } target ||
+                NCombatRoom.Instance?.GetCreatureNode(target) is not { } nTarget)
+                return;
+
+            FallDripstone(nTarget.GlobalPosition);
+            await VFXUtil.Wait(0.1f);
+        }
+
+        public async Task AfterAttackHit(AttackHitContext context)
+        {
+            if (!ReferenceEquals(context.CardSource, this))
+                return;
+
+            foreach (var target in context.Targets)
+                await PowerCmd.Apply<VulnerablePower>(target, 1m, context.Dealer, this);
         }
 
         protected async void FallDripstone(Vector2 position)
@@ -70,25 +92,12 @@ namespace STS2_WineFox.Cards.Uncommon
             var totalHits = (int)stoneAmountDecimal;
             if (totalHits <= 0) return;
 
-            for (var i = 0; i < totalHits; i++)
-            {
-                var target = combatState.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
-                if (target == null) break;
-                var nTarget = NCombatRoom.Instance?.GetCreatureNode(target);
-
-                await DamageCmd.Attack(DynamicVars["Damage"].BaseValue)
-                    .FromCard(this)
-                    .Targeting(target)
-                    .BeforeDamage(async delegate
-                    {
-                        if (nTarget == null) return;
-                        FallDripstone(nTarget.GlobalPosition);
-                        await VFXUtil.Wait(0.1f);
-                    })
-                    .WithHitFx("vfx/vfx_attack_slash")
-                    .Execute(choiceContext);
-                await PowerCmd.Apply<VulnerablePower>(target, 1m, owner, this);
-            }
+            await DamageCmd.Attack(DynamicVars["Damage"].BaseValue)
+                .FromCard(this)
+                .TargetingRandomOpponents(combatState)
+                .WithHitCount(totalHits)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext);
         }
 
         protected override void OnUpgrade()
