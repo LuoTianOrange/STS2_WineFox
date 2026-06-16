@@ -15,6 +15,8 @@ namespace STS2_WineFox.Cards.Uncommon
     public class RiclearPowerPlant() : WineFoxCard(
         2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        public override bool GainsBlock => true;
+        
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(13, ValueProp.Move), new("Stress", 2m)];
 

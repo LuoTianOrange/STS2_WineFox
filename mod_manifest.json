@@ -12,7 +12,7 @@
   "dependencies": [
     {
       "id": "STS2-RitsuLib",
-      "min_version": "0.4.10"
+      "min_version": "0.4.20"
     }
   ]
 }
