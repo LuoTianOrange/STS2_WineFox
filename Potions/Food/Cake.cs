@@ -35,8 +35,7 @@ namespace STS2_WineFox.Potions
         {
             await CreatureCmd.GainMaxHp(Owner.Creature, 14);
 
-            var upgradable = Owner.Deck.Cards.Where(card => !card.IsUpgraded).ToList();
-            var candidates = upgradable.Count > 0 ? upgradable : Owner.Deck.Cards.ToList();
+            var candidates = Owner.Deck.Cards.Where(card => card.IsUpgradable).ToList();
             if (candidates.Count == 0)
                 return;
 
@@ -46,4 +45,3 @@ namespace STS2_WineFox.Potions
         }
     }
 }
-
