@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using System.Collections.Generic;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +14,7 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public class GoldenArmorPower : WineFoxPower
     {
-        private decimal _pendingBufferedDamage;
+        private readonly Queue<decimal> _pendingHeals = new();
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.None;
@@ -33,7 +34,7 @@ namespace STS2_WineFox.Powers
 
             var postBlockDamage = Math.Max(amount - Owner.Block, 0m);
             if (postBlockDamage > 0m)
-                _pendingBufferedDamage = postBlockDamage;
+                _pendingHeals.Enqueue(postBlockDamage);
 
             return Task.CompletedTask;
         }
@@ -48,11 +49,9 @@ namespace STS2_WineFox.Powers
             if (power.Owner != Owner) return;
             if (power is not BufferPower) return;
             if (amount >= 0m) return;
-            if (_pendingBufferedDamage <= 0m) return;
+            if (!_pendingHeals.TryDequeue(out var healAmount)) return;
 
             Flash();
-            var healAmount = _pendingBufferedDamage;
-            _pendingBufferedDamage = 0m;
             await CreatureCmd.Heal(Owner, healAmount);
         }
     }

@@ -15,7 +15,6 @@ namespace STS2_WineFox.Cards.Token.Craft
     )
     {
         public override bool GainsBlock => true;
-        protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
         protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(1m, ValueProp.Move)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Ethereal];
 
