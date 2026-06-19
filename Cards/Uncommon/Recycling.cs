@@ -52,18 +52,21 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var rng = owner.RunState.Rng.CombatCardGeneration;
             var count = DynamicVars["Count"].IntValue;
+            var gains = new List<(Type Type, decimal Amount)>();
             for (var i = 0; i < count; i++)
             {
                 var roll = rng.NextInt(0, 100); // 0–99
-                if (roll < 30)
-                    await MaterialCmd.GainMaterial<WoodPower>(this, 1m * mult, applyStress: false);
-                else if (roll < 60)
-                    await MaterialCmd.GainMaterial<StonePower>(this, 1m * mult, applyStress: false);
-                else if (roll < 90)
-                    await MaterialCmd.GainMaterial<IronPower>(this, 1m * mult, applyStress: false);
-                else
-                    await MaterialCmd.GainMaterial<DiamondPower>(this, 1m * mult, applyStress: false);
+                var type = roll switch
+                {
+                    < 30 => typeof(WoodPower),
+                    < 60 => typeof(StonePower),
+                    < 90 => typeof(IronPower),
+                    _ => typeof(DiamondPower),
+                };
+                gains.Add((type, 1m * mult));
             }
+
+            await MaterialCmd.GainMaterials(this, gains, applyStress: false);
         }
 
         protected override void OnUpgrade()

@@ -303,6 +303,9 @@ namespace STS2_WineFox
             public const string GlisteringMelon = Root + "/potions/foods/glistering_melon.png";
             public const string GoldenCarrot = Root + "/potions/foods/golden_carrot.png";
             
+            //Epoch
+            public const string WineFoxCharacterEpoche = Root + "/epoch/wine_fox_character_epoche.png";
+            
             //VFX
             public const string DripstoneVfx = ScenesRoot + "/vfx/vfx_dripstones_fall.tscn";
             public const string BasicMineVfx = ScenesRoot + "/vfx/vfx_basic_mine.tscn";
