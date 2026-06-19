@@ -35,16 +35,17 @@ namespace STS2_WineFox.Cards.Uncommon
                 .Where(c => !ReferenceEquals(c, this))
                 .ToList();
 
-            if (handCards.Count == 0) return;
+            if (handCards.Count > 0)
+            {
+                var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE");
+                var prefs = new CardSelectorPrefs(prompt, 1);
+                var selected = (await CardSelectCmd.FromHand(choiceContext, owner, prefs,
+                        c => handCards.Contains(c), this))
+                    .FirstOrDefault();
 
-            var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 1);
-            var selected = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, c => !ReferenceEquals(c, this), this))
-                .FirstOrDefault();
-
-            if (selected == null) return;
-
-            await CardPileCmd.Add(selected, PileType.Exhaust);
+                if (selected != null)
+                    await CardPileCmd.Add(selected, PileType.Exhaust);
+            }
 
             var stressConsumed = await StressCmd.ConsumeOne(owner.Creature, this);
             var mult = stressConsumed ? 2m : 1m;

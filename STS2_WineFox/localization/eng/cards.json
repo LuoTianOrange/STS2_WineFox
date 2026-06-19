@@ -283,7 +283,7 @@
   "STS2_WINE_FOX_CARD_ENDER_CHEST.description": "Choose {Cards:diff()} {Cards:plural:card|cards} from your [gold]Discard Pile[/gold] to add to your [gold]hand[/gold]. They gain [gold]Retain[/gold]. End your turn. At the start of next turn, gain {Energy:energyIcons()}.",
   "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE": "Choose {Amount} {Amount:plural:card|cards} to add to your hand",
   "STS2_WINE_FOX_CARD_RECYCLING.title": "Recycling",
-  "STS2_WINE_FOX_CARD_RECYCLING.description": "Choose and [gold]Exhaust[/gold] a card in your hand. Randomly gain {Count} Materials.",
+  "STS2_WINE_FOX_CARD_RECYCLING.description": "[gold]Exhaust[/gold] 1 card. Randomly gain {Count:diff()} Materials.\n[sine][rainbow freq=0.3 sat=0.8 val=1]You might find Diamond![/rainbow][/sine]",
   "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE": "Choose a card to Exhaust",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "Adapt to Circumstances",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "Deal {Damage:diff()} damage. If the enemy intends to attack, apply {Debuff:diff()} [gold]Weak[/gold]. Otherwise, apply {Debuff:diff()} [gold]Vulnerable[/gold].",

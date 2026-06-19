@@ -284,7 +284,7 @@
   "STS2_WINE_FOX_CARD_ENDER_CHEST.description": "选择[gold]弃牌堆[/gold]中的{Cards:diff()}张牌加入[gold]手牌[/gold]，并将其[gold]保留[/gold]。结束你的回合。在下个回合获得{Energy:energyIcons()}。",
   "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE": "选择{Amount}张要加入手牌的牌",
   "STS2_WINE_FOX_CARD_RECYCLING.title": "回收利用",
-  "STS2_WINE_FOX_CARD_RECYCLING.description": "选择并[gold]消耗[/gold]1张手牌，随机获得{Count}个材料。\n[sine][rainbow freq=0.3 sat=0.8 val=1]可能发现钻石！[/rainbow][/sine]",
+  "STS2_WINE_FOX_CARD_RECYCLING.description": "[gold]消耗[/gold]1张牌。随机获得{Count:diff()}个材料。\n[sine][rainbow freq=0.3 sat=0.8 val=1]可能发现钻石！[/rainbow][/sine]",
   "STS2_WINE_FOX_CARD_RECYCLING_CHOOSE": "选择一张要消耗的牌",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.title": "随机应变",
   "STS2_WINE_FOX_CARD_ADAPT_TO_CIRCUMSTANCES.description": "造成{Damage:diff()}点伤害。如果敌人意图为攻击，给予{Debuff:diff()}层[gold]虚弱[/gold]。否则，给予{Debuff:diff()}层[gold]易伤[/gold]。",

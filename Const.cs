@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2-WineFox";
         public const string Name = "WineFox";
-        public const string Version = "1.1.21";
+        public const string Version = "1.2.6";
 
         /// <summary>
         ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
