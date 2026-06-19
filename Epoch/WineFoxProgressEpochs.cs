@@ -50,7 +50,7 @@ namespace STS2_WineFox.Epoch
     [AutoTimelineSlot(EpochEra.Flourish0)]
     [RegisterEpochCards(
         typeof(CobblestoneGenerator),
-        typeof(NetheritePickaxe),
+        typeof(BladeMaster),
         typeof(RiclearPowerPlant))]
     public sealed class WineFoxBossEpoch : PackDeclaredCardUnlockEpochTemplate
     {
@@ -68,7 +68,7 @@ namespace STS2_WineFox.Epoch
     [RegisterEpochCards(
         typeof(SlashBladeWood),
         typeof(DripstoneTrap),
-        typeof(Forging))]
+        typeof(NoMoreFalchion))]
     public sealed class WineFoxAscensionOneEpoch : PackDeclaredCardUnlockEpochTemplate
     {
         public override string Id => WineFoxTimelineKeys.AscensionOneEpochId;

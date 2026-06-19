@@ -44,13 +44,6 @@ namespace STS2_WineFox.Content.Descriptors
                     new Vector2(1.05f, 1.0f),
                     new Color(1f, 0.9568627f, 0.9843137f, 0.9f),
                     new Vector2(0.82f, 0.82f))))
-            .WithVisualCues(
-                ModVisualCues.CueSet()
-                    .Single("die", Const.Paths.CharacterDeathPortrait)
-                    // 可选：防止 revive 后仍停在死亡图
-                    .Single("revive", Const.Paths.CharacterAlivePortrait)
-                    .Single("idle", Const.Paths.CharacterAlivePortrait)
-                    .Build())
             .WithAudio(new(
                 Const.Audio.CharacterSelect,
                 Const.Audio.CharacterTransition,
