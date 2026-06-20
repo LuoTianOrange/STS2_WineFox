@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Rare
         3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Plating", 7m)];
+            [new("Plating", 9m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<PlatingPower>()];

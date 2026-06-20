@@ -17,11 +17,11 @@ namespace STS2_WineFox.Powers
 
         public override async Task AfterMaterialGain(MaterialGainEvent evt)
         {
-            if (evt.Creature != Owner || Amount <= 0m)
+            if (evt.Creature != Owner || evt.SourceCard == null || Amount <= 0m)
                 return;
 
             Flash();
-            await PowerCmd.Apply<IronPower>(new ThrowingPlayerChoiceContext(), Owner, 4m, Owner, evt.SourceCard);
+            await PowerCmd.Apply<IronPower>(new ThrowingPlayerChoiceContext(), Owner, 6m, Owner, evt.SourceCard);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, evt.SourceCard);
             if (Amount <= 0m)
                 await PowerCmd.Remove(this);

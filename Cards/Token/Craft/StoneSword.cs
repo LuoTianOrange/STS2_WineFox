@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(1m)];
+            [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(2m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
@@ -46,7 +46,7 @@ namespace STS2_WineFox.Cards.Token.Craft
 
         protected override void OnUpgrade()
         {
-            DynamicVars["StrengthPower"].UpgradeValueBy(1m);
+            DynamicVars["StrengthPower"].UpgradeValueBy(2m);
         }
     }
 }

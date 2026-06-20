@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         0, CardType.Power, CardRarity.Token, TargetType.None)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new("Armor", 7m), new("StoneArmor", 1m)];
+            [new("Armor", 9m), new("StoneArmor", 1m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStoneArmor);
 

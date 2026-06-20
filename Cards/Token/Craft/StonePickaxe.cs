@@ -18,7 +18,7 @@ namespace STS2_WineFox.Cards.Token.Craft
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<DiggingPower>("Digging", 2m), new PowerVar<WoodPower>(2m), new PowerVar<StonePower>(2m)];
+            [new PowerVar<DiggingPower>("Digging", 3m), new PowerVar<WoodPower>(3m), new PowerVar<StonePower>(3m)];
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,

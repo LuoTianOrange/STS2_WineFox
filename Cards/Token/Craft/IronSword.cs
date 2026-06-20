@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(14m, ValueProp.Move), new("Echoes", 1m)];
+            [new DamageVar(14m, ValueProp.Move), new("Echoes", 2m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
