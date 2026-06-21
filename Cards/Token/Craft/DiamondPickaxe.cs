@@ -13,8 +13,6 @@ namespace STS2_WineFox.Cards.Token.Craft
     public class DiamondPickaxe() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.Self)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDiamondPickaxe);
 
         protected override async Task OnPlay(

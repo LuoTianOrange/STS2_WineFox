@@ -14,8 +14,6 @@ namespace STS2_WineFox.Cards.Token.Craft
     public class DiamondArmor() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.None)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Armor", 7m)];
 

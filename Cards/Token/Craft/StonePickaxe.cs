@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Token.Craft
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStonePickaxe);
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<DiggingPower>("Digging", 2m), new PowerVar<WoodPower>(2m), new PowerVar<StonePower>(2m)];
 

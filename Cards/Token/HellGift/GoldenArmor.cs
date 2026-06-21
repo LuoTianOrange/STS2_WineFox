@@ -14,8 +14,6 @@ namespace STS2_WineFox.Cards.Token.HellGift
     public class GoldenArmor() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.None)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Buffer", 1m)];
 
