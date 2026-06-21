@@ -1,4 +1,8 @@
 ﻿using Godot;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Unlocks;
+using STS2_WineFox.Cards.Uncommon;
+using STS2_WineFox.Settings;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
@@ -15,5 +19,13 @@ namespace STS2_WineFox.Character
         public override Color DeckEntryCardColor => new("d2a15a");
         public override Color EnergyOutlineColor => new("8d4b24");
         public override bool IsColorless => false;
+
+        protected override IEnumerable<CardModel> FilterThroughEpochs(UnlockState unlockState, IEnumerable<CardModel> cards)
+        {
+            var result = base.FilterThroughEpochs(unlockState, cards);
+            return WineFoxRuntimeSettings.FoodEnabled
+                ? result
+                : result.Where(card => card is not LittleCooking);
+        }
     }
 }

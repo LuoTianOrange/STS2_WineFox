@@ -51,13 +51,16 @@ namespace STS2_WineFox.Powers
             if (SourcePlayer == null || CombatState.RunState.CurrentRoom is not CombatRoom room)
                 return;
 
-            var options = CardCreationOptions
-                .ForNonCombatWithUniformOdds(
-                    [SourcePlayer.Character.CardPool],
-                    card => card.Rarity == rarity)
-                .WithFlags(CardCreationFlags.NoRarityModification);
+            foreach (var player in CombatState.RunState.Players)
+            {
+                var options = CardCreationOptions
+                    .ForNonCombatWithUniformOdds(
+                        [player.Character.CardPool],
+                        card => card.Rarity == rarity)
+                    .WithFlags(CardCreationFlags.NoRarityModification);
 
-            room.AddExtraReward(SourcePlayer, new CardReward(options, 3, SourcePlayer));
+                room.AddExtraReward(player, new CardReward(options, 3, player));
+            }
         }
     }
 }

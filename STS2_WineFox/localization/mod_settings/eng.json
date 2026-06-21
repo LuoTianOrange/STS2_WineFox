@@ -1,0 +1,16 @@
+{
+  "winefox.settings.page.title": "WineFox Settings",
+  "winefox.settings.mod.displayName": "WineFox",
+  "winefox.settings.section.content.title": "Content",
+  "winefox.settings.events.label": "Enable WineFox events",
+  "winefox.settings.events.description": "Allow WineFox-specific events to appear in future event rolls.",
+  "winefox.settings.potions.label": "Enable WineFox potions",
+  "winefox.settings.potions.description": "Allow WineFox normal potions to appear in future potion rolls.",
+  "winefox.settings.food.label": "Enable WineFox food",
+  "winefox.settings.food.description": "Allow WineFox food rewards and food-generating effects.",
+  "winefox.settings.publicRelics.label": "Enable public WineFox relics",
+  "winefox.settings.publicRelics.description": "Allow selected WineFox relics to appear in shared relic rewards.",
+  "winefox.settings.restoreDefaults.label": "Restore defaults",
+  "winefox.settings.restoreDefaults.button": "Restore",
+  "winefox.settings.restoreDefaults.description": "Restore all WineFox content settings to their default enabled state."
+}

@@ -13,6 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
+    [RegisterRelic(typeof(WineFoxSharedRelicPool))]
     public class TotemofUndying : WineFoxRelic
     {
         public bool _wasUsed;

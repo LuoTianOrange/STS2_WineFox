@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Patches;
+using STS2_WineFox.Settings;
 using STS2_WineFox.Telemetry;
 using STS2_WineFox.Utils;
 using STS2RitsuLib;
@@ -48,6 +49,10 @@ namespace STS2_WineFox
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 if (!EnsureRequiredRuntimePatches())
                     return;
+
+                WineFoxModSettingsStore.Initialize();
+                WineFoxRuntimeSettings.Initialize();
+                WineFoxModSettingsPage.Register();
 
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
@@ -99,6 +104,7 @@ namespace STS2_WineFox
             patcher.RegisterPatch<WineFoxCreatureHitTriggerFlashPatch>();
             patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
             patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
+            WineFoxMultiplayerSettingsSyncPatches.AddTo(patcher);
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
             return patcher;
         }

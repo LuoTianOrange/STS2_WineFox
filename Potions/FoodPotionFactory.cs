@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Random;
 using STS2_WineFox.Character;
+using STS2_WineFox.Settings;
 
 namespace STS2_WineFox.Potions
 {
@@ -16,6 +17,9 @@ namespace STS2_WineFox.Potions
 
         public static PotionModel? CreateRandomFoodPotionForReward(Player player, Rng rng, IEnumerable<PotionModel>? blacklist = null)
         {
+            if (!WineFoxRuntimeSettings.FoodEnabled)
+                return null;
+
             blacklist ??= Array.Empty<PotionModel>();
 
             var options = ModelDb

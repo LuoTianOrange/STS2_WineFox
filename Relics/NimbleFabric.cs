@@ -10,6 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
+    [RegisterRelic(typeof(WineFoxSharedRelicPool))]
     public class NimbleFabric : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Rare;

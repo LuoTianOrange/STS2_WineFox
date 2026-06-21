@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
+using STS2_WineFox.Settings;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -28,7 +29,8 @@ namespace STS2_WineFox.Events
 
         public override bool IsAllowed(IRunState runState)
         {
-            return base.IsAllowed(runState)
+            return WineFoxRuntimeSettings.EventsEnabled
+                   && base.IsAllowed(runState)
                    && runState.Players.Any(player => player.Character is WineFox);
         }
 

@@ -1,29 +1,25 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Unlocks;
 using STS2_WineFox.Settings;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
 {
-    // 药水池子
-    public class WineFoxPotionPool : TypeListPotionPoolModel
+    [RegisterSharedRelicPool]
+    public sealed class WineFoxSharedRelicPool : TypeListRelicPoolModel
     {
         public override string EnergyColorName => Const.EnergyColorName;
         public override string? BigEnergyIconPath => Const.Paths.EnergyIconCake;
         public override string? TextEnergyIconPath => Const.Paths.EnergyIconCake;
         public override Color LabOutlineColor => WineFox.Color;
 
-        public override IEnumerable<PotionModel> GetUnlockedPotions(UnlockState unlockState)
+        public override IEnumerable<RelicModel> GetUnlockedRelics(UnlockState unlockState)
         {
-            return WineFoxRuntimeSettings.PotionsEnabled
-                ? base.GetUnlockedPotions(unlockState)
+            return WineFoxRuntimeSettings.PublicRelicsEnabled
+                ? base.GetUnlockedRelics(unlockState)
                 : [];
-        }
-
-        public static PotionAssetProfile Art(string imagePath, string? outlinePath = null)
-        {
-            return new(imagePath, outlinePath ?? imagePath);
         }
     }
 }

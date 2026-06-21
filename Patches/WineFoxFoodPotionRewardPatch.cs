@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using STS2_WineFox.Potions;
+using STS2_WineFox.Settings;
 using STS2RitsuLib.Patching.Models;
 using STS2RitsuLib.Utils;
 
@@ -31,6 +32,9 @@ namespace STS2_WineFox.Patches
         // ReSharper disable once InconsistentNaming
         public static void Postfix(RewardsSet __instance, AbstractRoom room)
         {
+            if (!WineFoxRuntimeSettings.FoodEnabled)
+                return;
+
             if (room is not CombatRoom)
                 return;
 
