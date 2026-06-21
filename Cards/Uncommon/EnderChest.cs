@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Models.Capabilities;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
@@ -42,7 +43,7 @@ namespace STS2_WineFox.Cards.Uncommon
             foreach (var card in selected)
             {
                 await CardPileCmd.Add(card, PileType.Hand);
-                card.AddKeyword(CardKeyword.Retain);
+                card.GetOrCreateCapability<TemporaryRetainCapability>();
             }
 
             PlayerCmd.EndTurn(owner, false);

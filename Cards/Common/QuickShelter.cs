@@ -17,6 +17,7 @@ namespace STS2_WineFox.Cards.Common
     public class QuickShelter() : WineFoxCard(
         1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        public override bool GainsBlock => true;
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
