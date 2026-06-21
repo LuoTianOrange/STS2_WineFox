@@ -167,5 +167,17 @@
   "STS2_WINE_FOX_POWER_FINE_PROCESSING_POWER.smartDescription": "Upgrade the next {Amount} [gold]Craft[/gold] products.",
   "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.title": "Scrap Recycling",
   "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.description": "Refund the [gold]Materials[/gold] spent on upcoming [gold]Crafts[/gold].",
-  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.smartDescription": "Refund the [gold]Materials[/gold] spent on the next {Amount} [gold]Crafts[/gold]."
+  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.smartDescription": "Refund the [gold]Materials[/gold] spent on the next {Amount} [gold]Crafts[/gold].",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.title": "Oozing",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.description": "On death, spawn [blue]2[/blue] medium Slimes. Add an extra [gold]Rare[/gold] card reward after combat.",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.smartDescription": "On death, spawn [blue]2[/blue] medium Slimes. Add an extra [gold]Rare[/gold] card reward after combat.",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.title": "Infested",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.description": "On death, spawn [blue]2[/blue] Wrigglers. Add an extra [gold]Uncommon[/gold] card reward after combat.",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.smartDescription": "On death, spawn [blue]2[/blue] Wrigglers. Add an extra [gold]Uncommon[/gold] card reward after combat.",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.title": "Wind Charged",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.description": "On death, deal [blue]20[/blue] damage to all other enemies.",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.smartDescription": "On death, deal [blue]20[/blue] damage to all other enemies.",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.title": "Weaving",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.description": "On death, apply [blue]3[/blue] [gold]Weak[/gold] to all other enemies.",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "On death, apply [blue]3[/blue] [gold]Weak[/gold] to all other enemies."
 }

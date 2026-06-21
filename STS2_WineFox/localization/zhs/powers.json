@@ -167,5 +167,17 @@
   "STS2_WINE_FOX_POWER_FINE_PROCESSING_POWER.smartDescription": "升级接下来的{Amount}个[gold]合成[/gold]产物。",
   "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.title": "废料回收",
   "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.description": "返还接下来[gold]合成[/gold]花费的[gold]材料[/gold]。",
-  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.smartDescription": "返还接下来{Amount}次[gold]合成[/gold]花费的[gold]材料[/gold]。"
+  "STS2_WINE_FOX_POWER_SCRAP_RECYCLING_POWER.smartDescription": "返还接下来{Amount}次[gold]合成[/gold]花费的[gold]材料[/gold]。",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.title": "渗浆",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.description": "死亡时，生成[blue]2[/blue]只中型史莱姆。战斗结束后额外掉落一组[gold]稀有[/gold]卡牌奖励。",
+  "STS2_WINE_FOX_POWER_OOZING_POWER.smartDescription": "死亡时，生成[blue]2[/blue]只中型史莱姆。战斗结束后额外掉落一组[gold]稀有[/gold]卡牌奖励。",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.title": "虫蚀",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.description": "死亡时，生成[blue]2[/blue]只扭动虫。战斗结束后额外掉落一组[gold]罕见[/gold]卡牌奖励。",
+  "STS2_WINE_FOX_POWER_INFESTED_POWER.smartDescription": "死亡时，生成[blue]2[/blue]只扭动虫。战斗结束后额外掉落一组[gold]罕见[/gold]卡牌奖励。",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.title": "蓄风",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.description": "死亡时，对其他所有敌人造成[blue]20[/blue]点伤害。",
+  "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.smartDescription": "死亡时，对其他所有敌人造成[blue]20[/blue]点伤害。",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.title": "盘丝",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.description": "死亡时，给予其他所有敌人[blue]3[/blue]层[gold]虚弱[/gold]。",
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "死亡时，给予其他所有敌人[blue]3[/blue]层[gold]虚弱[/gold]。"
 }

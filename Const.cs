@@ -117,7 +117,10 @@ namespace STS2_WineFox
             public const string PortableWorkbenchPowerIcon = Root + "/powers/portable_workbench_power.png";
             public const string FineProcessingPowerIcon = Root + "/powers/fine_processing_power.png";
             public const string ScrapRecyclingPowerIcon = Root + "/powers/scrap_recycling_power.png";
-
+            public const string OozingPowerIcon = Root + "/powers/oozing_power.png";
+            public const string InfestedPowerIcon = Root + "/powers/infested_power.png";
+            public const string WindChargedPowerIcon = Root + "/powers/wind_charged_power.png";
+            public const string WeavingPowerIcon = Root + "/powers/weaving_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -277,6 +280,20 @@ namespace STS2_WineFox
             public const string WineFoxBank = Root + "/sfx/characters/WineFox.bank";
             public const string WineFoxGuidsFile = Root + "/sfx/characters/WineFox.guids.txt";
             
+            //Potions
+            public const string HealingPotion = Root + "/potions/healing_potion.png";
+            public const string InvisibilityPotion = Root + "/potions/invisibility_potion.png";
+            public const string FireResistancePotion = Root + "/potions/fire_resistance_potion.png";
+            public const string PoisonPotion = Root + "/potions/poison_potion.png";
+            public const string HarmingPotion = Root + "/potions/harming_potion.png";
+            public const string SlownessPotion = Root + "/potions/slowness_potion.png";
+            public const string WindChargedPotion = Root + "/potions/wind_charged_potion.png";
+            public const string OozingPotion = Root + "/potions/oozing_potion.png";
+            public const string WeavingPotion = Root + "/potions/weaving_potion.png";
+            public const string InfestedPotion = Root + "/potions/infested_potion.png";
+            public const string TurtleMasterPotion = Root + "/potions/turtle_master_potion.png";
+            public const string StressPotion = Root + "/potions/stress_potion.png";
+
             //Food
             public const string Apple = Root + "/potions/foods/apple.png";
             public const string GoldenApple = Root + "/potions/foods/golden_apple.png";
