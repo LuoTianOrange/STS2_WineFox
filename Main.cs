@@ -66,7 +66,10 @@ namespace STS2_WineFox
                         ]);
                 ModTypeDiscoveryHub.RegisterModAssembly(Const.ModId, assembly);
                 MaterialPowerRegistry.RegisterWineFoxDefaults();
-                WineFoxTelemetryBootstrap.Initialize();
+                if (Const.EnableTelemetry)
+                    WineFoxTelemetryBootstrap.Initialize();
+                else
+                    Logger.Info("WineFox telemetry is disabled for this build.");
                 VFXCache.LoadScenes();
                 IsModActive = true;
                 Logger.Info("Mod initialization complete - Mod is now ACTIVE");

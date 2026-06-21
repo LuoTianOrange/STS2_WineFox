@@ -4,13 +4,18 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2-WineFox";
         public const string Name = "WineFox";
-        public const string Version = "1.2.7-creative.1";
+        public const string Version = "1.2.7-creative.2";
 
         /// <summary>
         ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
         ///     timeline progress).
         /// </summary>
         public const bool IgnoreEpochRequirements = true;
+
+        /// <summary>
+        ///     Disabled on the create-mode branch so local creative-mode runs do not contribute to WineFox telemetry datasets.
+        /// </summary>
+        public static readonly bool EnableTelemetry = false;
 
         public const string EnergyColorName = "winefox";
 

@@ -17,6 +17,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
+    [RegisterCharacterStarterRelic(typeof(WineFox))]
     public class SophisticatedBackpack : WineFoxRelic, ICraftListener
     {
         private readonly Dictionary<string, int> _effectStateInts = new();
