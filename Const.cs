@@ -122,6 +122,7 @@ namespace STS2_WineFox
             public const string InfestedPowerIcon = Root + "/powers/infested_power.png";
             public const string WindChargedPowerIcon = Root + "/powers/wind_charged_power.png";
             public const string WeavingPowerIcon = Root + "/powers/weaving_power.png";
+            public const string ResistancePowerIcon = Root + "/powers/resistance_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 

@@ -68,7 +68,7 @@
   "STS2_WINE_FOX_POTION_INFESTED_POTION.title": "虫蚀药水",
   "STS2_WINE_FOX_POTION_INFESTED_POTION.description": "使一名敌人获得[gold]虫蚀[/gold]。",
   "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.title": "神龟药水",
-  "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.description": "失去[blue]2[/blue]点敏捷，获得[blue]{PlatingPower}[/blue]层[gold]覆甲[/gold]。",
+  "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.description": "获得[blue]4[/blue]层[gold]抗性提升[/gold]，持续[blue]2[/blue]回合。",
   "STS2_WINE_FOX_POTION_STRESS_POTION.title": "应力药水",
   "STS2_WINE_FOX_POTION_STRESS_POTION.description": "获得[blue]{StressPower}[/blue]层[gold]应力[/gold]。"
 }

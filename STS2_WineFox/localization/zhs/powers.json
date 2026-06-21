@@ -179,5 +179,9 @@
   "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.smartDescription": "死亡时，对其他所有敌人造成[blue]20[/blue]点伤害。",
   "STS2_WINE_FOX_POWER_WEAVING_POWER.title": "盘丝",
   "STS2_WINE_FOX_POWER_WEAVING_POWER.description": "死亡时，给予其他所有敌人[blue]3[/blue]层[gold]虚弱[/gold]。",
-  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "死亡时，给予其他所有敌人[blue]3[/blue]层[gold]虚弱[/gold]。"
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "死亡时，给予其他所有敌人[blue]3[/blue]层[gold]虚弱[/gold]。",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.title": "抗性提升",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.description": "受到的伤害减少[blue]{Reduction}%[/blue]，无法从卡牌中获得格挡。",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.smartDescription": "受到的伤害减少[blue]{Reduction}%[/blue]，无法从卡牌中获得格挡。还剩[blue]{RemainingTurns}[/blue]回合。",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription": "受到的伤害减少[blue]20%[/blue]，无法从卡牌中获得格挡。持续[blue]2[/blue]回合。"
 }

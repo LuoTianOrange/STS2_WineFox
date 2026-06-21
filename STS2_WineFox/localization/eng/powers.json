@@ -179,5 +179,9 @@
   "STS2_WINE_FOX_POWER_WIND_CHARGED_POWER.smartDescription": "On death, deal [blue]20[/blue] damage to all other enemies.",
   "STS2_WINE_FOX_POWER_WEAVING_POWER.title": "Weaving",
   "STS2_WINE_FOX_POWER_WEAVING_POWER.description": "On death, apply [blue]3[/blue] [gold]Weak[/gold] to all other enemies.",
-  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "On death, apply [blue]3[/blue] [gold]Weak[/gold] to all other enemies."
+  "STS2_WINE_FOX_POWER_WEAVING_POWER.smartDescription": "On death, apply [blue]3[/blue] [gold]Weak[/gold] to all other enemies.",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.title": "Resistance Boost",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.description": "Take [blue]{Reduction}%[/blue] less damage. Cannot gain Block from cards.",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.smartDescription": "Take [blue]{Reduction}%[/blue] less damage. Cannot gain Block from cards. [blue]{RemainingTurns}[/blue] turns remaining.",
+  "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription": "Take [blue]20%[/blue] less damage. Cannot gain Block from cards. Lasts [blue]2[/blue] turns."
 }

@@ -68,7 +68,7 @@
   "STS2_WINE_FOX_POTION_INFESTED_POTION.title": "Infested Potion",
   "STS2_WINE_FOX_POTION_INFESTED_POTION.description": "Apply [gold]Infested[/gold] to an enemy.",
   "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.title": "Turtle Master Potion",
-  "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.description": "Lose [blue]2[/blue] Dexterity. Gain [blue]{PlatingPower}[/blue] [gold]Plating[/gold].",
+  "STS2_WINE_FOX_POTION_TURTLE_MASTER_POTION.description": "Gain [blue]4[/blue] [gold]Resistance Boost[/gold] for [blue]2[/blue] turns.",
   "STS2_WINE_FOX_POTION_STRESS_POTION.title": "Stress Potion",
   "STS2_WINE_FOX_POTION_STRESS_POTION.description": "Gain [blue]{StressPower}[/blue] [gold]Stress[/gold]."
 }

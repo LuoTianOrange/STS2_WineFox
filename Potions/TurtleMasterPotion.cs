@@ -4,10 +4,11 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -19,14 +20,23 @@ namespace STS2_WineFox.Potions
         public override PotionRarity Rarity => PotionRarity.Rare;
         public override TargetType TargetType => TargetType.AnyPlayer;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.TurtleMasterPotion);
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<DexterityPower>(-2m), new PowerVar<PlatingPower>(12m)];
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<DexterityPower>(), HoverTipFactory.FromPower<PlatingPower>()];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<TurtleMasterPower>(4m), new IntVar("Duration", TurtleMasterPower.Duration)];
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips => [new HoverTip(
+            ModelDb.Power<TurtleMasterPower>(),
+            new LocString("powers", "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription").GetFormattedText(),
+            false)];
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
             PotionModel.AssertValidForTargetedPotion(target);
-            await PowerCmd.Apply<DexterityPower>(choiceContext, target, DynamicVars.Dexterity.BaseValue, Owner.Creature, null);
-            await PowerCmd.Apply<PlatingPower>(choiceContext, target, DynamicVars["PlatingPower"].BaseValue, Owner.Creature, null);
+            var existing = target.Powers.OfType<TurtleMasterPower>().FirstOrDefault();
+            if (existing != null)
+            {
+                existing.RemainingTurns += (int)DynamicVars["Duration"].BaseValue;
+                return;
+            }
+
+            await PowerCmd.Apply<TurtleMasterPower>(choiceContext, target, DynamicVars["TurtleMasterPower"].BaseValue, Owner.Creature, null);
         }
     }
 }
