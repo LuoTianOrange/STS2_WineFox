@@ -30,8 +30,7 @@ namespace STS2_WineFox.Events
         public override bool IsAllowed(IRunState runState)
         {
             return WineFoxRuntimeSettings.EventsEnabled
-                   && base.IsAllowed(runState)
-                   && runState.Players.Any(player => player.Character is WineFox);
+                   && base.IsAllowed(runState);
         }
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
