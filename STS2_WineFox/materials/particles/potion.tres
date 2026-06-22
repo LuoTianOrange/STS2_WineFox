@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://clagg6ekc6eg5"]
+
+[ext_resource type="Texture2D" uid="uid://b2cdoplsixg5x" path="res://STS2_WineFox/images/particles/base_updated.png" id="1_jwr6a"]
+
+[resource]
+atlas = ExtResource("1_jwr6a")
+region = Rect2(0, 64, 72, 8)
