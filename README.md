@@ -7,12 +7,13 @@
 <img src="https://img.shields.io/badge/-Godot-478CBF?style=for-the-badge&logo=godotengine&logoColor=white" alt="Godot"/> 
 <img src="https://img.shields.io/badge/-Slay%20the%20Spire%202-8B0000?style=for-the-badge&logoColor=white" alt="Slay the Spire 2"/> 
 <a href="https://github.com/BAKAOLC/STS2-RitsuLib"><img src="https://img.shields.io/badge/-STS2--RitsuLib-5538DD?style=for-the-badge&logo=github&logoColor=white" alt="STS2-RitsuLib"/></a> 
-<img src="https://img.shields.io/badge/version-1.2.1-ffaf50?style=for-the-badge" alt="Version"/>
+<img src="https://img.shields.io/badge/version-1.2.9-ffaf50?style=for-the-badge" alt="Version"/>
 </div>
   <div>
     <b>简体中文</b> | <a href="README_EN.md">English</a>
   </div>
 </div>
+
 
 
 WineFox（酒狐）是一个出自于Minecraft模组[车万女仆](https://modrinth.com/mod/touhou-little-maid)的角色，现在作为杀戮尖塔2的一个自定义角色Mod，围绕**材料合成**与**资源管理**的玩法设计。通过获取木板、圆石、铁锭、钻石等材料，利用合成、应力等机制打出强力组合。
@@ -488,6 +489,7 @@ STS2_WineFox/
 - 程序员：OLC，灯火橘
 - 数值策划，卡牌设计：IAmNotFood，明风OuO，晓月漓风，末影酱安德Channel
 - 卡面制作：灯火橘，钩ハ
+- Spine动画：Mr-susu呀，Vitech
 - 画师：穰雀，Linger铃
 
 

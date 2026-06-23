@@ -38,6 +38,6 @@
   "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.description": "在每场战斗开始时，获得[blue]1[/blue]层[gold]缓冲[/gold]。",
   "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.flavor": "我闪！",
   "STS2_WINE_FOX_RELIC_CAT_BOMB.title": "猫雷",
-  "STS2_WINE_FOX_RELIC_CAT_BOMB.description": "每场战斗开始时，3回合后对全体敌人造成[blue]30[/blue]伤害。",
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.description": "在第[blue]3[/blue]回合结束时，对所有敌人造成[blue]30[/blue]点伤害。",
   "STS2_WINE_FOX_RELIC_CAT_BOMB.flavor": "马上就要爆了!"
 }

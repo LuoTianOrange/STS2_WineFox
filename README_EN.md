@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<div align="center">
+﻿﻿<div align="center">
 <img style="width: 256px; height: auto; border-radius: 12px;" src="STS2_WineFox/mod_image.png" alt="WineFox Mod"/>
 <h1>STS2 WineFox Mod</h1>
 <div style="display: flex;flex-direction: row;justify-content: center;">
@@ -7,10 +7,11 @@
 <img src="https://img.shields.io/badge/-Godot-478CBF?style=for-the-badge&logo=godotengine&logoColor=white" alt="Godot"/> 
 <img src="https://img.shields.io/badge/-Slay%20the%20Spire%202-8B0000?style=for-the-badge&logoColor=white" alt="Slay the Spire 2"/> 
 <a href="https://github.com/BAKAOLC/STS2-RitsuLib"><img src="https://img.shields.io/badge/-STS2--RitsuLib-5538DD?style=for-the-badge&logo=github&logoColor=white" alt="STS2-RitsuLib"/></a> 
-<img src="https://img.shields.io/badge/version-1.2.1-ffaf50?style=for-the-badge" alt="Version"/>
+<img src="https://img.shields.io/badge/version-1.2.9-ffaf50?style=for-the-badge" alt="Version"/>
 </div>
 <div><a href="README.md">简体中文</a> | <b>English</b></div>
 </div>
+
 
 WineFox is a character originating from the Minecraft mod *[Touhou Little Maid](https://modrinth.com/mod/touhou-little-maid)*, now brought to Slay the Spire 2 as a custom character mod. Her playstyle revolves around **crafting** and **resource management** — gather Planks, Cobblestone, Iron Ingots, and Diamonds, then leverage Craft, Stress, and powerful combos to dominate combat.
 
@@ -481,6 +482,7 @@ After building, the mod is automatically copied to `{STS2Dir}\mods\STS2_WineFox\
 - Programmer: OLC, 灯火橘
 - Numerical Planner, Card Design: IAmNotFood, 明风OuO, 晓月漓风, 末影酱安德Channel
 - Card Artwork Design：灯火橘，钩ハ
+- Spine：Mr-susu呀，Vitech
 - Artist: 穰雀, Linger铃
 
 
