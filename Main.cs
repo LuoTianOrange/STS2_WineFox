@@ -47,6 +47,7 @@ namespace STS2_WineFox
 
                 var assembly = Assembly.GetExecutingAssembly();
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
+                WineFoxFoodPotionRewardPatch.InitializeSavedData();
                 if (!EnsureRequiredRuntimePatches())
                     return;
 
