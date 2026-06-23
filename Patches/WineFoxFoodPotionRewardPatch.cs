@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Rooms;
 using STS2_WineFox.Potions;
 using STS2_WineFox.Settings;
 using STS2RitsuLib.Patching.Models;
-using STS2RitsuLib.Utils;
+using STS2RitsuLib.RunData;
 
 namespace STS2_WineFox.Patches
 {
@@ -16,9 +16,17 @@ namespace STS2_WineFox.Patches
         private const float IncrementStep = 0.1f;
         private const float LoseStep = 0.2f;
 
-        // SavedAttachedState doesn't support float, so store as basis points (0..10000).
-        private static readonly SavedAttachedState<Player, int> FoodOddsBasisPoints =
-            new("winefox_food_potion_reward_odds_bp", () => (int)(BaseOdds * 10000));
+        // 该概率会影响后续奖励 RNG 消耗，必须写入当前局存档，避免 SL 后重置。
+        private static readonly PlayerRunSavedData<FoodPotionRewardSaveState> FoodRewardState =
+            RunSavedDataStore.For(Const.ModId).RegisterPerPlayer<FoodPotionRewardSaveState>(
+                "food_potion_reward_odds",  // RitsuLib 已做隔离，不需要在此手动加前缀
+                () => new FoodPotionRewardSaveState(),
+                new() { WritePolicy = RunSavedDataWritePolicy.WhenNonDefault });
+
+        internal static void InitializeSavedData()
+        {
+            _ = FoodRewardState;
+        }
 
         public static string PatchId => "winefox_food_potion_reward_roll";
         public static bool IsCritical => true;
@@ -58,8 +66,7 @@ namespace STS2_WineFox.Patches
 
             var rng = player.PlayerRng.Rewards;
 
-            var currentBp = FoodOddsBasisPoints.GetValueOrDefault(player, (int)(BaseOdds * 10000));
-            var current = currentBp / 10000f;
+            var current = FoodRewardState.Get(player).Odds;
             var roll = rng.NextFloat();
 
             var bonus = room.RoomType == RoomType.Elite ? EliteBonus : 0f;
@@ -67,7 +74,7 @@ namespace STS2_WineFox.Patches
 
             if (!success)
             {
-                FoodOddsBasisPoints[player] = NormalizeOddValue(current + IncrementStep);
+                SetFoodOdds(player, current + IncrementStep);
                 return;
             }
 
@@ -76,12 +83,23 @@ namespace STS2_WineFox.Patches
                 return;
 
             __instance.Rewards.Add(new PotionReward(potion, player));
-            FoodOddsBasisPoints[player] = NormalizeOddValue(current - LoseStep);
+            SetFoodOdds(player, current - LoseStep);
         }
 
-        private static int NormalizeOddValue(float value)
+        private static void SetFoodOdds(Player player, float value)
         {
-            return Math.Clamp((int)MathF.Round(value * 10000f), 0, 10000);
+            var normalized = NormalizeOdds(value);
+            FoodRewardState.Modify(player, data => data.Odds = normalized);
+        }
+
+        private static float NormalizeOdds(float value)
+        {
+            return Math.Clamp(value, 0f, 1f);
+        }
+
+        public sealed class FoodPotionRewardSaveState
+        {
+            public float Odds { get; set; } = BaseOdds;
         }
     }
 }
