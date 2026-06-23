@@ -1,9 +1,8 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Powers;
 
 namespace STS2_WineFox.Utils
@@ -34,36 +33,27 @@ namespace STS2_WineFox.Utils
             Creature applierCreature,
             CardModel? cardSource)
         {
-            switch (power)
+            if (power is not ITemporaryPower temporaryPower)
             {
-                case TemporaryStrengthPower tsp:
-                {
-                    var amt = tsp.Amount;
-                    var sign = tsp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
-                    await PowerCmd.Remove(tsp);
-                    await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
-                    return;
-                }
-                case TemporaryDexterityPower tdp:
-                {
-                    var amt = tdp.Amount;
-                    var sign = tdp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
-                    await PowerCmd.Remove(tdp);
-                    await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
-                    return;
-                }
-                case TemporaryFocusPower tfp:
-                {
-                    var amt = tfp.Amount;
-                    var sign = tfp.TypeForCurrentAmount == PowerType.Debuff ? -1 : 1;
-                    await PowerCmd.Remove(tfp);
-                    await PowerCmd.Apply<FocusPower>(new ThrowingPlayerChoiceContext(), owner, -sign * amt, applierCreature, cardSource, true);
-                    return;
-                }
-                default:
-                    await PowerCmd.Remove(power);
-                    return;
+                await PowerCmd.Remove(power);
+                return;
             }
+
+            var internalPower = temporaryPower.InternallyAppliedPower.ToMutable();
+            var amount = power.Amount;
+            var revertAmount = internalPower.GetTypeForAmount(amount) == PowerType.Debuff
+                ? -amount
+                : amount;
+
+            await PowerCmd.Remove(power);
+            await PowerCmd.Apply(
+                new ThrowingPlayerChoiceContext(),
+                internalPower,
+                owner,
+                revertAmount,
+                applierCreature,
+                cardSource,
+                true);
         }
     }
 }

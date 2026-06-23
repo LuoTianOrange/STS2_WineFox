@@ -56,7 +56,7 @@ namespace STS2_WineFox
 
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
-                
+
                 var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
                 RitsuLibFramework.GetContentRegistry(Const.ModId)
                     .RegisterCardLibraryCompendiumSharedPoolFilter<WineFoxCraftingCardPool>(
@@ -106,6 +106,7 @@ namespace STS2_WineFox
             patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
             WineFoxMultiplayerSettingsSyncPatches.AddTo(patcher);
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
+            patcher.RegisterPatch<WineFoxPredeterminedPotionRewardSavePatch>();
             return patcher;
         }
 

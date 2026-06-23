@@ -1,7 +1,10 @@
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2_WineFox.Potions;
+using STS2_WineFox.Rewards;
 using STS2_WineFox.Settings;
 using STS2RitsuLib.Patching.Models;
 using STS2RitsuLib.Utils;
@@ -75,13 +78,38 @@ namespace STS2_WineFox.Patches
             if (potion == null)
                 return;
 
-            __instance.Rewards.Add(new PotionReward(potion, player));
+            __instance.Rewards.Add(new FoodPotionReward(potion, player));
             FoodOddsBasisPoints[player] = NormalizeOddValue(current - LoseStep);
         }
 
         private static int NormalizeOddValue(float value)
         {
             return Math.Clamp((int)MathF.Round(value * 10000f), 0, 10000);
+        }
+    }
+
+    public sealed class WineFoxPredeterminedPotionRewardSavePatch : IPatchMethod
+    {
+        public static string PatchId => "winefox_predetermined_potion_reward_save";
+        public static bool IsCritical => true;
+
+        public static string Description =>
+            "Restores serialized predetermined potion rewards without rerolling rewards rng";
+
+        public static ModPatchTarget[] GetTargets()
+        {
+            return [new(typeof(Reward), nameof(Reward.FromSerializable))];
+        }
+
+        // ReSharper disable once InconsistentNaming
+        public static bool Prefix(SerializableReward save, Player player, ref Reward __result)
+        {
+            if (save.RewardType != RewardType.Potion || save.PredeterminedModelId == ModelId.none)
+                return true;
+
+            var potion = ModelDb.GetById<PotionModel>(save.PredeterminedModelId).ToMutable();
+            __result = new PotionReward(potion, player);
+            return false;
         }
     }
 }
