@@ -330,6 +330,7 @@ namespace STS2_WineFox
             public const string BasicMineVfx = ScenesRoot + "/vfx/vfx_basic_mine.tscn";
             public const string DrinkMilkVfx = ScenesRoot + "/vfx/vfx_milk_drink.tscn";
             public const string HoldWToPonderVfx = ScenesRoot + "/vfx/vfx_hold_w_to_ponder.tscn";
+            public const string PotionVfx = ScenesRoot + "/vfx/BedrockParticles/potion_1.tscn";
         }
 
         public static class Audio
