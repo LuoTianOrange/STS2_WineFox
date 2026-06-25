@@ -1,9 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -13,15 +14,14 @@ namespace STS2_WineFox.Powers
     ///     Applied by Memory (回忆).
     ///     Tracks the last Skill card played each turn.
     ///     At the start of your turn, adds an Exhaust copy of the last Skill played last turn.
-    ///     Amount >= 2 means upgraded: copy also gets Retain.
     /// </summary>
     [RegisterPower]
     public class MemoryPower : WineFoxPower
     {
-        protected CardModel? LastSkillCard;
+        private CardModel? LastSkillCard;
 
         public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.None;
+        public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.MemoryPowerIcon);
 
@@ -32,15 +32,18 @@ namespace STS2_WineFox.Powers
             if (LastSkillCard == null) return;
 
             Flash();
-            var clone = LastSkillCard.CreateClone();
-            clone.AddKeyword(CardKeyword.Exhaust);
-            ConfigureClone(clone);
+            var copyCount = Math.Max(0, (int)Amount);
+            for (var i = 0; i < copyCount; i++)
+            {
+                var clone = LastSkillCard.CreateClone();
+                clone.AddKeyword(CardKeyword.Exhaust);
+                ConfigureClone(clone);
 
-            var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, player);
-            CardCmd.PreviewCardPileAdd(cardInstance);
+                var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, player);
+                CardCmd.PreviewCardPileAdd(cardInstance);
+            }
         }
 
-        /// <summary>Subclasses can override to add extra keywords to the generated clone.</summary>
         protected virtual void ConfigureClone(CardModel clone) { }
 
         public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

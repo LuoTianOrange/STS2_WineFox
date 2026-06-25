@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -22,22 +22,15 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
-        
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
             if (IsUpgraded)
-            {
-                var existing = Owner.Creature.Powers.OfType<MemoryPower>().FirstOrDefault();
-                if (existing != null)
-                    await PowerCmd.Remove(existing);
                 await PowerCmd.Apply<MemoryPowerUpgraded>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
-            }
             else
-            {
                 await PowerCmd.Apply<MemoryPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
-            }
         }
 
         protected override void OnUpgrade() { }
