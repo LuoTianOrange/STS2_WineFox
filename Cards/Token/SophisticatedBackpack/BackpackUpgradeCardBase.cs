@@ -11,6 +11,7 @@ namespace STS2_WineFox.Cards.Token.SophisticatedBackpack
     {
         public override bool CanBeGeneratedInCombat => false;
         public override int MaxUpgradeLevel => 0;
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.SophisticatedBackpackKeyword];
         public override CardAssetProfile AssetProfile => Art(artPath);
 
         public Task OnCraftChosen(CraftExecutionContext context)

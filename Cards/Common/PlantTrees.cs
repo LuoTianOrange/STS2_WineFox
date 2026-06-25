@@ -9,7 +9,6 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -21,7 +20,7 @@ namespace STS2_WineFox.Cards.Common
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(5, ValueProp.Move),
+            new BlockVar(7, ValueProp.Move),
             ModCardVars.Computed("Plant", 4m, _ => DynamicVars["Plant"].BaseValue,
                 WineFoxCardVarFactory.StressDoubledDynamicVar("Plant")),
         ];
@@ -42,7 +41,7 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Block"].UpgradeValueBy(2m); // 5 → 7
+            DynamicVars["Block"].UpgradeValueBy(2m); // 7 → 9
             DynamicVars["Plant"].UpgradeValueBy(2m);
         }
     }

@@ -22,6 +22,7 @@ namespace STS2_WineFox.Cards
         public const string CraftKey = "craft";
         public const string ExchangeKey = "exchange";
         public const string MagicKey = "magic";
+        public const string SophisticatedBackpackKey = "sophisticated_backpack";
 
         public static readonly string Stress = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, StressKey);
         public static readonly string Digging = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, DiggingKey);
@@ -41,6 +42,8 @@ namespace STS2_WineFox.Cards
         public static readonly string Craft = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CraftKey);
         public static readonly string Exchange = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ExchangeKey);
         public static readonly string Magic = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MagicKey);
+        public static readonly string SophisticatedBackpack =
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
 
         public static readonly CardKeyword StressKeyword = Stress.GetModCardKeyword();
         public static readonly CardKeyword DiggingKeyword = Digging.GetModCardKeyword();
@@ -57,6 +60,7 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword CraftKeyword = Craft.GetModCardKeyword();
         public static readonly CardKeyword ExchangeKeyword = Exchange.GetModCardKeyword();
         public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
+        public static readonly CardKeyword SophisticatedBackpackKeyword = SophisticatedBackpack.GetModCardKeyword();
 
         extension(CardModel card)
         {
@@ -133,6 +137,11 @@ namespace STS2_WineFox.Cards
             public bool IsMagic()
             {
                 return card.HasModKeyword(MagicKeyword);
+            }
+
+            public bool IsSophisticatedBackpack()
+            {
+                return card.HasModKeyword(SophisticatedBackpackKeyword);
             }
         }
     }

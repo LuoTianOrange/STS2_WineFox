@@ -25,6 +25,8 @@ namespace STS2_WineFox.Cards.Rare
             }),
         ];
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAccumulatingGrudges);
 
         protected override async Task OnPlay(

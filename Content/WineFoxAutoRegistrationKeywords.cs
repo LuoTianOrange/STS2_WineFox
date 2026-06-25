@@ -52,5 +52,9 @@ namespace STS2_WineFox.Content
 
         [RegisterOwnedCardKeyword(WineFoxKeywords.MagicKey)]
         private sealed class Magic;
+
+        [RegisterOwnedCardKeyword(WineFoxKeywords.SophisticatedBackpackKey,
+            IconPath = Const.Paths.SophisticatedBackpack)]
+        private sealed class SophisticatedBackpack;
     }
 }
