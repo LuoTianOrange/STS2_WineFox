@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,12 +20,14 @@ namespace STS2_WineFox.Potions
         public override PotionRarity Rarity => PotionRarity.Rare;
         public override TargetType TargetType => TargetType.AnyPlayer;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.InvisibilityPotion);
+        protected override Color PotionParticleColor => new("c7c7ff");
         protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<IntangiblePower>(1m)];
         protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<IntangiblePower>()];
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
             PotionModel.AssertValidForTargetedPotion(target);
+            ShowPotionHitVfx(target);
             await PowerCmd.Apply<IntangiblePower>(choiceContext, target, DynamicVars["IntangiblePower"].BaseValue, Owner.Creature, null);
         }
     }

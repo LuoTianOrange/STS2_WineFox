@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -20,6 +21,7 @@ namespace STS2_WineFox.Potions
         public override PotionRarity Rarity => PotionRarity.Rare;
         public override TargetType TargetType => TargetType.AnyPlayer;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.TurtleMasterPotion);
+        protected override Color PotionParticleColor => new("2e7d32");
         protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<TurtleMasterPower>(4m), new IntVar("Duration", TurtleMasterPower.Duration)];
         protected override IEnumerable<IHoverTip> AdditionalHoverTips => [new HoverTip(
             ModelDb.Power<TurtleMasterPower>(),
@@ -29,6 +31,7 @@ namespace STS2_WineFox.Potions
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
             PotionModel.AssertValidForTargetedPotion(target);
+            ShowPotionHitVfx(target);
             var existing = target.Powers.OfType<TurtleMasterPower>().FirstOrDefault();
             if (existing != null)
             {

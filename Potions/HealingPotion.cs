@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,11 +18,13 @@ namespace STS2_WineFox.Potions
         public override PotionRarity Rarity => PotionRarity.Uncommon;
         public override TargetType TargetType => TargetType.AnyPlayer;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.HealingPotion);
+        protected override Color PotionParticleColor => new("f82423");
         protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(12m)];
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
             PotionModel.AssertValidForTargetedPotion(target);
+            ShowPotionHitVfx(target);
             await CreatureCmd.Heal(target, DynamicVars.Heal.BaseValue);
         }
     }

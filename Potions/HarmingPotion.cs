@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,11 +18,14 @@ namespace STS2_WineFox.Potions
         public override PotionRarity Rarity => PotionRarity.Common;
         public override TargetType TargetType => TargetType.AllEnemies;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.HarmingPotion);
+        protected override Color PotionParticleColor => new("b71c1c");
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Unpowered)];
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
-            await CreatureCmd.Damage(choiceContext, Owner.Creature.CombatState.HittableEnemies, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, null);
+            var targets = GetEnemyPotionTargets(target);
+            ShowEnemyPotionHitVfx(target);
+            await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, null);
         }
     }
 }
