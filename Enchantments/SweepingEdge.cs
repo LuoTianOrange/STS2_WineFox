@@ -86,10 +86,8 @@ namespace STS2_WineFox.Enchantments
 
         private bool IsAttackFromEnchantedCard(AttackCommand command)
         {
-            if (command.ModelSource == Card) return true;
-            if (command.ModelSource is not CardModel sourceCard) return false;
+            return command.ModelSource == Card;
 
-            return sourceCard.Owner == Card.Owner && sourceCard.Id == Card.Id;
         }
     }
 }
