@@ -60,6 +60,9 @@ namespace STS2_WineFox
             public const string OrangeTigerCakeRelicIcon = Root + "/relics/relic_orange_tiger_cake.png";
             public const string NimbleFabricRelicIcon = Root + "/relics/relic_nimble_fabric.png";
             public const string CatBombRelicIcon = Root + "/relics/relic_cat_bomb.png";
+            public const string ElytraRelicIcon = Root + "/relics/relic_elytra.png";
+            public const string BrokenElytraRelicIcon = Root + "/relics/relic_broken_elytra.png";
+            public const string OilyBeanCurdRelicIcon = Root + "/relics/relic_oily_bean_curd.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";

@@ -39,5 +39,11 @@
   "STS2_WINE_FOX_RELIC_NIMBLE_FABRIC.flavor": "我闪！",
   "STS2_WINE_FOX_RELIC_CAT_BOMB.title": "猫雷",
   "STS2_WINE_FOX_RELIC_CAT_BOMB.description": "在第[blue]3[/blue]回合结束时，对所有敌人造成[blue]30[/blue]点伤害。",
-  "STS2_WINE_FOX_RELIC_CAT_BOMB.flavor": "马上就要爆了!"
+  "STS2_WINE_FOX_RELIC_CAT_BOMB.flavor": "马上就要爆了!",
+  "STS2_WINE_FOX_RELIC_ELYTRA.title": "鞘翅",
+  "STS2_WINE_FOX_RELIC_ELYTRA.description": "你在选择下一层的房间时有[blue]{Rooms}[/blue]次机会可以无视当前的路线。击败一名精英敌人后补充[blue]1[/blue]次。",
+  "STS2_WINE_FOX_RELIC_ELYTRA.flavor": "天空即为极限",
+  "STS2_WINE_FOX_RELIC_OILY_BEAN_CURD.title": "油豆腐",
+  "STS2_WINE_FOX_RELIC_OILY_BEAN_CURD.description": "每食用[blue]5[/blue]个食物，获得[blue]2[/blue]点生命上限。",
+  "STS2_WINE_FOX_RELIC_OILY_BEAN_CURD.flavor": "没有狐可以拒绝油豆腐！没有！"
 }
