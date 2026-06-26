@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dras3yw1heac3"]
+
+[ext_resource type="Texture2D" uid="uid://c80in2ljhov1h" path="res://STS2_WineFox/images/particles/potion.png" id="1_eyeni"]
+[ext_resource type="Script" uid="uid://bbkyqfcbum66v" path="res://Scripts/Effects/VfxPotion.cs" id="1_n35w1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eyeni"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eyeni"]
+lifetime_randomness = 0.78
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.6
+initial_velocity_max = 95.65
+gravity = Vector3(0, -70, 0)
+radial_accel_min = -33.510002
+radial_accel_max = -21.190002
+tangential_accel_min = -18.54
+tangential_accel_max = 17.229998
+damping_min = 46.128002
+damping_max = 66.165
+anim_speed_min = -4.0
+anim_speed_max = -0.7
+anim_offset_min = 0.5
+anim_offset_max = 0.5
+
+[node name="Potion1" type="Node2D" node_paths=PackedStringArray("_particles")]
+script = ExtResource("1_n35w1")
+_particles = NodePath("GPUParticles2D")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_eyeni")
+scale = Vector2(3, 3)
+emitting = false
+amount = 166
+texture = ExtResource("1_eyeni")
+lifetime = 4.8
+one_shot = true
+explosiveness = 0.97
+randomness = 0.84
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_eyeni")
