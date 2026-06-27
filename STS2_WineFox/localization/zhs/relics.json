@@ -62,6 +62,6 @@
   "STS2_WINE_FOX_RELIC_ANCHOR_CORE.description": "在每场战斗开始时，获得[blue]1[/blue]层[gold]人工制品[/gold]。",
   "STS2_WINE_FOX_RELIC_ANCHOR_CORE.flavor": "“稳定现实的锚”",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "烬血之戒",
-  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "根据已损失生命值的百分比提高造成的攻击伤害，最多[blue]50%[/blue]。",
+  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "根据自身已损失生命值的百分比提高造成的攻击伤害，最多[blue]50%[/blue]。",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "邀诸位共赴死亡。"
 }
