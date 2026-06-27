@@ -49,6 +49,8 @@ namespace STS2_WineFox
             public const string DefaultTrailScene = "res://scenes/vfx/card_trail_silent.tscn";
 
             public const string EventDesertPyramid = Root + "/events/desert_pyramid.png";
+            public const string EventHiddenCherryBlossomGrove = Root + "/events/hidden_cherry_blossom_grove.png";
+            public const string EventHiddenRetreat = Root + "/events/hidden_retreat.png";
 
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
@@ -63,6 +65,12 @@ namespace STS2_WineFox
             public const string ElytraRelicIcon = Root + "/relics/relic_elytra.png";
             public const string BrokenElytraRelicIcon = Root + "/relics/relic_broken_elytra.png";
             public const string OilyBeanCurdRelicIcon = Root + "/relics/relic_oily_bean_curd.png";
+            public const string WoundRimeBladeRelicIcon = Root + "/relics/relic_wound_rime_blade.png";
+            public const string BleedingHeartRelicIcon = Root + "/relics/relic_bleeding_heart.png";
+            public const string FlowCoreRelicIcon = Root + "/relics/relic_flow_core.png";
+            public const string SilverCercisCrownRelicIcon = Root + "/relics/relic_silver_cercis_crown.png";
+            public const string AnchorCoreRelicIcon = Root + "/relics/relic_anchor_core.png";
+            public const string RingofBurningBloodRelicIcon = Root + "/relics/relic_ring_of_burning_blood.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
@@ -276,6 +284,7 @@ namespace STS2_WineFox
             public const string CardRawMaterialProcessing = Root + "/cards/card_raw_material_processing.png";
             public const string CardScrapRecycling = Root + "/cards/card_scrap_recycling.png";
             public const string CardReforge = Root + "/cards/card_reforge.png";
+            public const string CardSeekingWindBell = Root + "/cards/card_seeking_wind_bell.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

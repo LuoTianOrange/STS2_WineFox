@@ -1,4 +1,4 @@
-﻿{
+{
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.title": "Desert Temple",
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.description": "A vast desert suddenly appears before you, with a temple at its center. Sand trickles from cracks in the ceiling, and the air feels ancient and dangerous. You spot a dark sandstone platform at the bottom with several chests and a pressure plate. Go down and take a look?",
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.INITIAL.options.THOROUGH_EXPLORATION.title": "Go down",
@@ -14,6 +14,36 @@
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.title": "Open the second chest",
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST2.description": "Enchant 1 Attack card with \"Fire Aspect\".",
   "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.title": "Open the third chest",
-  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.description": "Enchant 1 Attack card with \"Sweeping Edge\"."
-}
+  "STS2_WINE_FOX_EVENT_DESERT_PYRAMID.pages.2.options.CHEST3.description": "Enchant 1 Attack card with \"Sweeping Edge\".",
 
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.title": "Hidden Cherry Blossom Grove",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.INITIAL.description": "You arrive in a grove where cherry blossoms drift through the air. You think you hear the sound of a wind bell, and a gentle breeze carries the petals as if guiding you somewhere. Your intuition tells you to follow.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.INITIAL.options.TRUST_INTUITION.title": "Trust your intuition",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.INITIAL.options.TRUST_INTUITION.description": "Gain [gold]Seeking Wind Bell[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.INITIAL.options.LEAVE_CAREFULLY.title": "Leave carefully",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.INITIAL.options.LEAVE_CAREFULLY.description": "Lose all Gold. Gain a card removal reward.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.TRUST_INTUITION.description": "Deep within the cherry grove, you find an enormous cherry tree. Before a shrine inside its hollow rests a golden bell, tied with a red cord. Almost without thinking, you pick it up. It points you toward a new direction.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_CHERRY_BLOSSOM_GROVE.pages.LEAVE_CAREFULLY.description": "You hesitate and choose to leave carefully. After a moment of dizziness, the cherry grove from just now is gone. You feel somehow lighter, though for reasons unknown, you feel as if you missed something.",
+
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.title": "Hidden Retreat",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.INITIAL.description": "\"Ring the bell, the blossoms wake\nIn silent woods the soft winds break\nAn old friend waits with flowers in hand\"\nAfter a long trek, you arrive at a hidden retreat. It is an even larger cherry blossom grove, with signs of life in the dwelling at its center. You pat the little fox by the door, step inside, and see her seated in the middle of the room.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.INITIAL.options.OFFER_BELL.title": "Offer Seeking Wind Bell",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.INITIAL.options.OFFER_BELL.description": "Choose 1 of 3 relics to obtain.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.INITIAL.options.LEAVE.title": "Leave",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.INITIAL.options.LEAVE.description": "Gain 1 rare card reward.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.description": "The bell's chime echoes through the room. The scent of cherry blossoms gathers into three different gifts. Which will you accept?",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.WOUND_RIME_BLADE.title": "Choose Wound-Rime Blade",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.WOUND_RIME_BLADE.description": "Gain [gold]Wound-Rime Blade[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.BLEEDING_HEART.title": "Choose Bleeding Heart",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.BLEEDING_HEART.description": "Gain [gold]Bleeding Heart[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.FLOW_CORE.title": "Choose Flow Core",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.FLOW_CORE.description": "Gain [gold]Flow Core[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.SILVER_CERCIS_CROWN.title": "Choose Silver Cercis Crown",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.SILVER_CERCIS_CROWN.description": "Gain [gold]Silver Cercis Crown[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.ANCHOR_CORE.title": "Choose Anchor Core",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.ANCHOR_CORE.description": "Gain [gold]Anchor Core[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.title": "Choose Ring of Burning Blood",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.description": "Gain [gold]Ring of Burning Blood[/gold].",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.OFFER_BELL.description": "You hand the Seeking Wind Bell to her. The golden bell rings with a clear echo. Cherry blossoms drift on the wind, and a return gift settles quietly into your hands.",
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "You choose not to disturb the peace of this place and turn to leave. As you step out of the grove, several cards carried by cherry petals float before you."
+}

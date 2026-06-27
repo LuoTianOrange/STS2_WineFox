@@ -305,5 +305,7 @@
   "STS2_WINE_FOX_CARD_SCRAP_RECYCLING.description": "返还下{Count:diff()}次[gold]合成[/gold]花费的[gold]材料[/gold]。",
   "STS2_WINE_FOX_CARD_REFORGE.title": "回炉重造",
   "STS2_WINE_FOX_CARD_REFORGE.description": "选择1张手牌，使其获得{IfUpgraded:show:[gold]重放[/gold]和|}[gold]消耗[/gold]。",
-  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "选择一张牌"
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "选择一张牌",
+  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "寻风之铃",
+  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "[gold]任务。[/gold]\n它正指引着你走向某处。"
 }
