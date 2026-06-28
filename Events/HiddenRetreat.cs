@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
@@ -53,7 +54,8 @@ namespace STS2_WineFox.Events
             where T : RelicModel
         {
             ArgumentNullException.ThrowIfNull(Owner);
-            return new EventOption(this, () => ChooseRelic<T>(), ModOptionKey("RELICS", optionName))
+            return new EventOption(this, () => ChooseRelic<T>(), ModOptionKey("RELICS", optionName),
+                    HoverTipFactory.FromRelic<T>())
                 .WithRelic<T>(Owner);
         }
 

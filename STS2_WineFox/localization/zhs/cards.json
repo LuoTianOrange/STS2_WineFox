@@ -307,5 +307,5 @@
   "STS2_WINE_FOX_CARD_REFORGE.description": "选择1张手牌，使其获得{IfUpgraded:show:[gold]重放[/gold]和|}[gold]消耗[/gold]。",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "选择一张牌",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "寻风之铃",
-  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "[gold]任务。[/gold]\n它正指引着你走向某处。"
+  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "[gold]「铃声引你道路，微风献上祝福」[/gold]\n抽{Cards:diff()}张牌。在下一阶段解锁一个特殊事件。"
 }
