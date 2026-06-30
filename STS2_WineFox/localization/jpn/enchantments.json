@@ -1,0 +1,6 @@
+{
+  "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.title": "火炎付加",
+  "STS2_WINE_FOX_ENCHANTMENT_FIRE_ASPECT.description": "さらに対象に{Amount}の[gold]炎上[/gold]を与える。",
+  "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.title": "薙ぎ払いの刃",
+  "STS2_WINE_FOX_ENCHANTMENT_SWEEPING_EDGE.description": "他の敵に、このヒットのダメージの半分に等しいダメージを与える。"
+}

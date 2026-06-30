@@ -1,0 +1,16 @@
+{
+  "winefox.settings.page.title": "주호 설정",
+  "winefox.settings.mod.displayName": "주호",
+  "winefox.settings.section.content.title": "콘텐츠",
+  "winefox.settings.events.label": "주호 이벤트 활성화",
+  "winefox.settings.events.description": "이후 이벤트 무작위 결과에 주호 전용 이벤트가 등장하도록 허용합니다.",
+  "winefox.settings.potions.label": "주호 포션 활성화",
+  "winefox.settings.potions.description": "이후 포션 무작위 결과에 일반 주호 포션이 등장하도록 허용합니다.",
+  "winefox.settings.food.label": "주호 음식 활성화",
+  "winefox.settings.food.description": "주호 음식 보상과 음식을 생성하는 효과를 허용합니다.",
+  "winefox.settings.publicRelics.label": "공용 주호 유물 활성화",
+  "winefox.settings.publicRelics.description": "선택된 주호 유물이 공유 유물 보상에 등장하도록 허용합니다.",
+  "winefox.settings.restoreDefaults.label": "기본값 복원",
+  "winefox.settings.restoreDefaults.button": "복원",
+  "winefox.settings.restoreDefaults.description": "모든 주호 콘텐츠 설정을 기본 활성화 상태로 되돌립니다."
+}

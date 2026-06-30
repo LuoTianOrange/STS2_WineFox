@@ -1,0 +1,21 @@
+{
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "주호",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.titleObject": "주호",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.description": "다른 세계에서 온 신비로운 메이드로, 여러 종류의 무기를 능숙하게 다룹니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.flavor": "다른 세계에서 온 신비로운 메이드로, 여러 종류의 무기를 능숙하게 다룹니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.selectMessage": "먼저 필요한 것들을 준비해 두겠습니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.victoryMessage": "정리했습니다. 계속 전진하죠.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.defeatMessage": "아직 더 좋은 도구가 필요한 것 같습니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounObject": "그녀를",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.possessiveAdjective": "그녀의",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounPossessive": "그녀의 것",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounSubject": "그녀는",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.goldMonologue": "자금은 조금 더 있어도 나쁠 것 없습니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.eventDeathPrevention": "아직 끝나지 않았습니다. 저는 계속할 수 있습니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.aromaPrinciple": "메이드라면 어느 정도 인내심이 필요합니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierTitle": "주호 카드",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierDescription": "이제 보상과 상점에 주호 카드가 등장할 수 있습니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.alive.endTurnPing": "당신 차례입니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.dead.endTurnPing": "저는 물러나겠습니다. 부탁드립니다.",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.unlockText": "[pink]{Prerequisite}[/pink](으)로 한 번 승리하여 이 캐릭터를 해금하세요."
+}

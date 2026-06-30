@@ -1,0 +1,21 @@
+{
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "酒狐",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.titleObject": "酒狐",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.description": "異世界から来た謎めいたメイド。多種多様な武器の扱いに長けている。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.flavor": "異世界から来た謎めいたメイド。多種多様な武器の扱いに長けている。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.selectMessage": "まず必要なものを準備しておきましょう。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.victoryMessage": "片付きました。先へ進みましょう。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.defeatMessage": "まだもっと良い道具が必要なようです。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounObject": "彼女",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.possessiveAdjective": "彼女の",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounPossessive": "彼女のもの",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.pronounSubject": "彼女",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.goldMonologue": "資金は少し多いくらいで困りません。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.eventDeathPrevention": "まだ終わりではありません。私はまだ続けられます。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.aromaPrinciple": "メイドたるもの、相応の忍耐が必要です。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierTitle": "酒狐カード",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.cardsModifierDescription": "酒狐のカードが報酬やショップに出現するようになる。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.alive.endTurnPing": "あなたの番です。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.banter.dead.endTurnPing": "私は下がります。あとはお願いします。",
+  "STS2_WINE_FOX_CHARACTER_WINE_FOX.unlockText": "このキャラクターをアンロックするには[pink]{Prerequisite}[/pink]で一度クリアする。"
+}
