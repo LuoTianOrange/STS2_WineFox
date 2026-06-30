@@ -1,6 +1,7 @@
 {
   "STS2_WINE_FOX_KEYWORD_DIGGING.title": "挖掘",
   "STS2_WINE_FOX_KEYWORD_DIGGING.description": "当你打出攻击时,获得资源。",
+  "PERIOD": "。",
   "STS2_WINE_FOX_KEYWORD_WOOD.title": "木板",
   "STS2_WINE_FOX_KEYWORD_WOOD.description": "一种基础材料，可用于合成。",
   "STS2_WINE_FOX_KEYWORD_STONE.title": "圆石",
@@ -27,5 +28,4 @@
   "STS2_WINE_FOX_KEYWORD_MAGIC.description": "魔法类技能牌会受到[gold]咏唱[/gold]增益影响。",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "精妙背包",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "稀有遗物。持有时提供额外的合成卡牌。"
-
 }
