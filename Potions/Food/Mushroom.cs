@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,7 +17,6 @@ namespace STS2_WineFox.Potions
     {
         protected override int SellGold => 5;
         public override PotionRarity Rarity => PotionRarity.Common;
-        protected override TargetType CombatTargetType => TargetType.Self;
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.Mushroom);
@@ -26,8 +25,9 @@ namespace STS2_WineFox.Potions
         
         protected override async Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
         {
-            await PowerCmd.Apply<PoisonPower>(choiceContext, Owner.Creature, 1, Owner.Creature, cardSource: null);
-            await PowerCmd.Apply<DexterityPower>(choiceContext, Owner.Creature, 1, Owner.Creature, cardSource: null);
+            var targetCreature = GetCombatTarget(target);
+            await PowerCmd.Apply<PoisonPower>(choiceContext, targetCreature, 1, Owner.Creature, cardSource: null);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, targetCreature, 1, Owner.Creature, cardSource: null);
         }
 
         protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) => Task.CompletedTask;

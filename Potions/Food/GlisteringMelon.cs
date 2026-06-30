@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,7 +16,6 @@ namespace STS2_WineFox.Potions
     {
         protected override int SellGold => 12;
         public override PotionRarity Rarity => PotionRarity.Uncommon;
-        protected override TargetType CombatTargetType => TargetType.Self;
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.GlisteringMelon);
@@ -26,8 +25,11 @@ namespace STS2_WineFox.Potions
 
         protected override async Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
         {
-            await CreatureCmd.Heal(Owner.Creature, 6);
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+            var targetCreature = GetCombatTarget(target);
+            await CreatureCmd.Heal(targetCreature, 6);
+
+            if (targetCreature.Player != null)
+                await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, targetCreature.Player);
         }
 
         protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) =>

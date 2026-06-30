@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,26 +16,29 @@ namespace STS2_WineFox.Potions
     {
         protected override int SellGold => 100;
         public override PotionRarity Rarity => PotionRarity.Rare;
-        protected override TargetType CombatTargetType => TargetType.Self;
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.Cake);
 
         protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
         {
-            return ApplyCakeEffects();
+            var targetCreature = GetCombatTarget(target);
+            return targetCreature.Player == null
+                ? Task.CompletedTask
+                : ApplyCakeEffects(targetCreature);
         }
 
         protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
         {
-            return ApplyCakeEffects();
+            return ApplyCakeEffects(Owner.Creature);
         }
 
-        private async Task ApplyCakeEffects()
+        private async Task ApplyCakeEffects(Creature targetCreature)
         {
-            await CreatureCmd.GainMaxHp(Owner.Creature, 14);
+            await CreatureCmd.GainMaxHp(targetCreature, 14);
 
-            var candidates = Owner.Deck.Cards.Where(card => card.IsUpgradable).ToList();
+            var player = targetCreature.Player ?? Owner;
+            var candidates = player.Deck.Cards.Where(card => card.IsUpgradable).ToList();
             if (candidates.Count == 0)
                 return;
 

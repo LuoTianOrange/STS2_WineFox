@@ -35,7 +35,7 @@ namespace STS2_WineFox.Potions
                     ? CombatTargetType
                     : TargetType.Self;
 
-        protected virtual TargetType CombatTargetType => TargetType.Self;
+        protected virtual TargetType CombatTargetType => TargetType.AnyPlayer;
 
         public override bool PassesCustomUsabilityCheck =>
             CombatManager.Instance.IsInProgress
@@ -70,6 +70,12 @@ namespace STS2_WineFox.Potions
         }
 
         protected abstract Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target);
+
+        protected static Creature GetCombatTarget(Creature? target)
+        {
+            PotionModel.AssertValidForTargetedPotion(target);
+            return target!;
+        }
 
         /// <summary>
         ///     Called when this potion is used outside combat (excluding merchant selling).

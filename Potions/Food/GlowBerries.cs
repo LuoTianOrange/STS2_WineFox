@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,15 +16,19 @@ namespace STS2_WineFox.Potions
     {
         protected override int SellGold => 15;
         public override PotionRarity Rarity => PotionRarity.Uncommon;
-        protected override TargetType CombatTargetType => TargetType.Self;
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.GlowBerries);
 
         protected override async Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
         {
-            await CreatureCmd.Heal(Owner.Creature, 2);
-            var hand = PileType.Hand.GetPile(Owner).Cards;
+            var targetCreature = GetCombatTarget(target);
+            await CreatureCmd.Heal(targetCreature, 2);
+
+            if (targetCreature.Player == null)
+                return;
+
+            var hand = PileType.Hand.GetPile(targetCreature.Player).Cards;
             CardCmd.Upgrade(hand, CardPreviewStyle.None);
         }
 

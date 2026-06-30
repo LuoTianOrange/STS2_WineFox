@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,7 +16,6 @@ namespace STS2_WineFox.Potions
     {
         protected override int SellGold => 5;
         public override PotionRarity Rarity => PotionRarity.Common;
-        protected override TargetType CombatTargetType => TargetType.Self;
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.Beet);
@@ -24,7 +23,7 @@ namespace STS2_WineFox.Potions
         public PotionModel CampfireTransformResult => ModelDb.Potion<BeetSoup>();
         
         protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target) =>
-            CreatureCmd.Heal(Owner.Creature, 1);
+            CreatureCmd.Heal(GetCombatTarget(target), 1);
 
         protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) =>
             CreatureCmd.Heal(Owner.Creature, 1);
