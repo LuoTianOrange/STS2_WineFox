@@ -22,7 +22,7 @@ namespace STS2_WineFox.Relics
 
         public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
-            if (player == Owner)
+            if (player == Owner && player.Creature.CombatState != null)
                 _usedThisTurn = false;
 
             return Task.CompletedTask;
@@ -30,7 +30,7 @@ namespace STS2_WineFox.Relics
 
         public async Task OnStressConsumed(Creature creature)
         {
-            if (creature != Owner.Creature || _usedThisTurn)
+            if (creature != Owner.Creature || creature.CombatState == null || _usedThisTurn)
                 return;
 
             _usedThisTurn = true;

@@ -46,7 +46,7 @@ namespace STS2_WineFox.Relics.Event
 
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
-            if (player != Owner)
+            if (player != Owner || player.Creature.CombatState == null)
                 return;
 
             HpLostThisTurn = 0;
@@ -65,7 +65,7 @@ namespace STS2_WineFox.Relics.Event
             Creature? dealer,
             CardModel? cardSource)
         {
-            if (target != Owner.Creature)
+            if (target != Owner.Creature || target.CombatState == null)
                 return amount;
 
             var remaining = MaxHpLossPerTurn - HpLostThisTurn;
@@ -80,7 +80,7 @@ namespace STS2_WineFox.Relics.Event
             Creature? dealer,
             CardModel? cardSource)
         {
-            if (target == Owner.Creature && result.UnblockedDamage > 0)
+            if (target == Owner.Creature && target.CombatState != null && result.UnblockedDamage > 0)
                 HpLostThisTurn += result.UnblockedDamage;
 
             return Task.CompletedTask;
