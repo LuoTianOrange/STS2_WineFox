@@ -43,7 +43,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 choiceContext ?? new ThrowingPlayerChoiceContext(),
                 creature,
                 hpLoss,
-                ValueProp.Unblockable | ValueProp.Unpowered,
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
                 creature,
                 this);
 
