@@ -205,7 +205,7 @@ namespace STS2_WineFox.Commands
                 state.AllMaterialsAmount = totalAmount;
                 state.HasAllMaterialsSnapshot = true;
 
-                if (state.IsFreePlay || totalAmount <= 0m) return totalAmount;
+                if (state.IsNoSpendPlay || totalAmount <= 0m) return totalAmount;
                 {
                     var consumeEvent = new MaterialConsumeEvent
                     {
@@ -233,7 +233,7 @@ namespace STS2_WineFox.Commands
                 return totalAmount;
             }
 
-            if (state.IsFreePlay)
+            if (state.IsNoSpendPlay)
                 return GetTotalMaterials(owner);
 
             return state.HasAllMaterialsSnapshot ? state.AllMaterialsAmount : 0m;
@@ -256,7 +256,7 @@ namespace STS2_WineFox.Commands
                 var amount = power?.Amount ?? 0m;
                 state.MaterialTypeAmounts[materialType] = amount;
 
-                if (state.IsFreePlay || amount <= 0m || power == null) return amount;
+                if (state.IsNoSpendPlay || amount <= 0m || power == null) return amount;
                 var consumeEvent = new MaterialConsumeEvent
                 {
                     Creature = owner,
@@ -280,7 +280,7 @@ namespace STS2_WineFox.Commands
                 return amount;
             }
 
-            if (state.IsFreePlay)
+            if (state.IsNoSpendPlay)
                 return owner.Powers.OfType<T>().FirstOrDefault()?.Amount ?? 0m;
 
             return state.MaterialTypeAmounts.GetValueOrDefault(materialType, 0m);
@@ -420,7 +420,7 @@ namespace STS2_WineFox.Commands
         {
             var state = MaterialConsumeSeriesStates.GetOrCreate(card);
             if (play.IsFirstInSeries || !state.Initialized)
-                state.Reset(IsFreePlay(play));
+                state.Reset(IsNoSpendPlay(play));
 
             return state;
         }
@@ -442,6 +442,11 @@ namespace STS2_WineFox.Commands
                    || resolution.IsRegisteredDetectorFree;
         }
 
+        private static bool IsNoSpendPlay(CardPlay play)
+        {
+            return FreePlayBindingRegistry.Resolve(play).IsAutoPlayNoSpend;
+        }
+
         private static decimal GetTotalMaterials(Creature creature)
         {
             return creature.Powers
@@ -454,15 +459,15 @@ namespace STS2_WineFox.Commands
             public bool Initialized { get; private set; }
 
             // ReSharper disable once MemberHidesStaticFromOuterClass
-            public bool IsFreePlay { get; private set; }
+            public bool IsNoSpendPlay { get; private set; }
             public bool HasAllMaterialsSnapshot { get; set; }
             public decimal AllMaterialsAmount { get; set; }
             public Dictionary<Type, decimal> MaterialTypeAmounts { get; } = new();
 
-            public void Reset(bool isFreePlay)
+            public void Reset(bool isNoSpendPlay)
             {
                 Initialized = true;
-                IsFreePlay = isFreePlay;
+                IsNoSpendPlay = isNoSpendPlay;
                 HasAllMaterialsSnapshot = false;
                 AllMaterialsAmount = 0m;
                 MaterialTypeAmounts.Clear();
