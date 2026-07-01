@@ -17,6 +17,8 @@ namespace STS2_WineFox.Cards.Common
     public class VacantDomain() : WineFoxCard(
         3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        public override bool GainsBlock => true;
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StoneKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

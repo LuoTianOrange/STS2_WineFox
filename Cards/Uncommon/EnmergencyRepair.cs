@@ -15,6 +15,8 @@ namespace STS2_WineFox.Cards.Uncommon
     public class EnmergencyRepair() : WineFoxCard(
         1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        public override bool GainsBlock => true;
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(6m, ValueProp.Move), new BlockVar(5, ValueProp.Move), new("Repair", 2m)];

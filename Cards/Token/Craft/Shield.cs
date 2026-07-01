@@ -14,6 +14,8 @@ namespace STS2_WineFox.Cards.Token.Craft
     public class Shield() : WineFoxCard(
         0, CardType.Skill, CardRarity.Token, TargetType.AnyPlayer)
     {
+        public override bool GainsBlock => IsUpgraded;
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
