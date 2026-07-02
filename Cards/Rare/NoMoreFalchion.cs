@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -47,10 +48,29 @@ namespace STS2_WineFox.Cards.Rare
             }
 
             // 消耗1个铁锭，永久+1次数
-            var ironPower = Owner.Creature.Powers.OfType<IronPower>().FirstOrDefault(p => p.Amount > 0m);
+            var creature = Owner.Creature;
+            var ironPower = creature.Powers.OfType<IronPower>().FirstOrDefault(p => p.Amount > 0m);
             if (ironPower != null)
             {
+                var consumeEvent = new MaterialConsumeEvent
+                {
+                    Creature = creature,
+                    SourceCard = this,
+                    Deltas = [new(typeof(IronPower), 1m)],
+                    TotalAmount = 1m,
+                };
+                await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
                 await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), ironPower, -1m, null, this);
+                await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
+                await MaterialEventFlow.DispatchAfterResolved(new()
+                {
+                    Creature = consumeEvent.Creature,
+                    SourceCard = consumeEvent.SourceCard,
+                    Deltas = consumeEvent.Deltas,
+                    TotalAmount = consumeEvent.TotalAmount,
+                    Kind = MaterialChangeKind.Consume,
+                    AppliedStressMultiplier = false,
+                });
                 DynamicVars["Hits"].BaseValue += 1m;
             }
         }
