@@ -18,6 +18,8 @@ namespace STS2_WineFox.Cards.Rare
     public class NetheriteSword() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.SwordKeyword];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNetheriteSword);
 
         protected override async Task OnPlay(

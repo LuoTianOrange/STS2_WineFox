@@ -27,5 +27,7 @@
   "STS2_WINE_FOX_KEYWORD_MAGIC.title": "마법",
   "STS2_WINE_FOX_KEYWORD_MAGIC.description": "마법 스킬 카드는 [gold]영창[/gold] 보너스의 영향을 받습니다.",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "정교한 배낭",
-  "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "희귀 유물. 보유 중일 때 제작 가능한 카드를 추가로 제공합니다."
+  "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "희귀 유물. 보유 중일 때 제작 가능한 카드를 추가로 제공합니다.",
+  "STS2_WINE_FOX_KEYWORD_SWORD.title": "검",
+  "STS2_WINE_FOX_KEYWORD_SWORD.description": "[gold]나무 검[/gold], [gold]돌 검[/gold], [gold]철 검[/gold], [gold]금 검[/gold], [gold]다이아몬드 검[/gold], [gold]네더라이트 검[/gold]을 포함합니다."
 }

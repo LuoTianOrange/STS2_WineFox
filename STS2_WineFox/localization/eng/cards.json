@@ -267,7 +267,7 @@
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "Triune Blessing",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "All players gain 1 [gold]Strength[/gold], 1 [gold]Dexterity[/gold], and 1 [gold]Focus[/gold]. Consume up to {MaxConsume:diff()} [gold]Chant[/gold]. For each Chant consumed, gain +1 Strength and +1 Dexterity. For every 2 Chant consumed, gain +1 Focus.",
   "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "Blade Master",
-  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "Can only be played if you've played at least 4 different [gold]Sword[/gold] cards this combat. Deal {Damage:diff()} damage to ALL enemies.",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "Deal {CalculatedDamage:diff()} damage to ALL enemies. For each type of [gold]Sword[/gold] card you've played this combat, increase this damage by {ExtraDamage:diff()}.",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "Cyclic Process",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "Deal {Damage:diff()} damage {Hits:diff()} times.\n[gold]Craft[/gold].\nPut this card back into your [gold]Draw Pile[/gold].",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "Nothing Wasted",

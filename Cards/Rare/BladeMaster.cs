@@ -1,12 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Cards.Token.Craft;
-using STS2_WineFox.Cards.Token.HellGift;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -18,14 +17,17 @@ namespace STS2_WineFox.Cards.Rare
         0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(60m, ValueProp.Move)];
+        [
+            new CalculationBaseVar(8m),
+            new ExtraDamageVar(8m),
+            new CalculatedDamageVar(ValueProp.Move).WithMultiplier(PlayedSwordTypeCount),
+        ];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.SwordKeyword];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBladeMaster);
 
-        protected override bool IsPlayable =>
-            Owner.Creature.CombatState != null && GetPlayedSwordTypeCount() >= 4;
-
-        protected override bool ShouldGlowGoldInternal => GetPlayedSwordTypeCount() >= 4;
+        protected override bool ShouldGlowGoldInternal => GetPlayedSwordTypeCount() > 0;
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
@@ -33,7 +35,7 @@ namespace STS2_WineFox.Cards.Rare
         {
             if (Owner.Creature.CombatState is not { } combatState) return;
 
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage)
                 .FromCard(this, play)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
@@ -42,7 +44,13 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(15m); // 60 -> 75
+            DynamicVars.CalculationBase.UpgradeValueBy(2m); // 8 -> 10
+            DynamicVars.ExtraDamage.UpgradeValueBy(2m); // 8 -> 10
+        }
+
+        private static decimal PlayedSwordTypeCount(CardModel card, Creature? _)
+        {
+            return card is BladeMaster bladeMaster ? bladeMaster.GetPlayedSwordTypeCount() : 0m;
         }
 
         private int GetPlayedSwordTypeCount()
@@ -61,10 +69,7 @@ namespace STS2_WineFox.Cards.Rare
 
         private static bool IsSwordCard(CardModel card)
         {
-            return card is WoodenSword or StoneSword or IronSword or DiamondSword or GoldenSword or NetheriteSword;
+            return card.IsSword() && card is not BladeMaster;
         }
     }
 }
-
-
-

@@ -16,6 +16,8 @@ namespace STS2_WineFox.Cards.Token.HellGift
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new EnergyVar(1)];
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.SwordKeyword];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardGoldenSword);
 
         protected override async Task OnPlay(

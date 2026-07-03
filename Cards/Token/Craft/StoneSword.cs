@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(1m)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<StrengthPower>()];

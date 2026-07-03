@@ -252,7 +252,7 @@
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "삼위 축복",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "모든 플레이어가 1점 [gold]힘[/gold], 1점 [gold]민첩[/gold], 1점 [gold]집중[/gold]을 얻습니다.\n최대 {MaxConsume:diff()}점 [gold]영창[/gold]을 소모합니다.\n1점을 소모할 때마다 추가로 힘 1점과 민첩 1점을 얻습니다.\n2점을 소모할 때마다 추가로 집중 1점을 얻습니다.",
   "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "검의 달인",
-  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "이번 전투에서 서로 다른 [gold]검[/gold] 카드를 최소 4장 사용했을 때만 사용할 수 있습니다. 모든 적에게 {Damage:diff()} 피해를 줍니다.",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "모든 적에게 {CalculatedDamage:diff()} 피해를 줍니다. 이번 전투에서 사용한 [gold]검[/gold] 카드 종류 하나당 이 피해가 {ExtraDamage:diff()} 증가합니다."
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "순환 공정",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "{Damage:diff()} 피해를 {Hits:diff()}번 줍니다.\n[gold]제작[/gold].\n이 카드를 당신의 [gold]뽑을 카드 더미[/gold]에 되돌려 놓습니다.",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "낭비는 없다",

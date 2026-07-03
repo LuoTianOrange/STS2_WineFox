@@ -252,7 +252,7 @@
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "三位の祝福",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "すべてのプレイヤーは1[gold]筋力[/gold]、1[gold]敏捷性[/gold]、1[gold]集中[/gold]を得る。\n最大{MaxConsume:diff()}[gold]詠唱[/gold]を消費する。\n消費した詠唱1につき、+1筋力と+1敏捷性を得る。\n消費した詠唱2ごとに、+1集中を得る。",
   "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "剣の達人",
-  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "この戦闘で少なくとも4種類の[gold]剣[/gold]カードをプレイしている場合にのみプレイできる。すべての敵に{Damage:diff()}ダメージを与える。",
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "すべての敵に{CalculatedDamage:diff()}ダメージを与える。この戦闘でプレイした[gold]剣[/gold]カードの種類1つにつき、このダメージを{ExtraDamage:diff()}増やす。"
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "循環工程",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "{Damage:diff()}ダメージを{Hits:diff()}回与える。\n[gold]クラフト[/gold]。\nこのカードをあなたの[gold]山札[/gold]に戻す。",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "無駄なし",

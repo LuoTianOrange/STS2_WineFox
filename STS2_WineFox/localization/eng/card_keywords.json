@@ -27,5 +27,7 @@
   "STS2_WINE_FOX_KEYWORD_MAGIC.title": "Magic",
   "STS2_WINE_FOX_KEYWORD_MAGIC.description": "Magic Skill cards are affected by [gold]Chant[/gold] bonuses.",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "Sophisticated Backpack",
-  "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "Rare relic. Provides extra craftable cards while held."
+  "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "Rare relic. Provides extra craftable cards while held.",
+  "STS2_WINE_FOX_KEYWORD_SWORD.title": "Sword",
+  "STS2_WINE_FOX_KEYWORD_SWORD.description": "Includes [gold]Wooden Sword[/gold], [gold]Stone Sword[/gold], [gold]Iron Sword[/gold], [gold]Golden Sword[/gold], [gold]Diamond Sword[/gold], and [gold]Netherite Sword[/gold]."
 }
