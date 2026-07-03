@@ -18,6 +18,7 @@ namespace STS2_WineFox.Cards.Uncommon
             [new IntVar("Block", 1m)];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNothingWasted);
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MaterialKeyword];
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,

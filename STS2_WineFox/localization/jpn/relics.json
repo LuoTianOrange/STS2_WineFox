@@ -63,5 +63,6 @@
   "STS2_WINE_FOX_RELIC_ANCHOR_CORE.flavor": "「現実を安定させる錨。」",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "燃える血の指輪",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "失ったHPの割合に応じて攻撃ダメージを増加させる。最大[blue]50%[/blue]。",
-  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "すべてを死へと招く。"
+  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "すべてを死へと招く。",
+  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "酒狐グラス"
 }

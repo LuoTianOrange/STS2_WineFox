@@ -63,5 +63,6 @@
   "STS2_WINE_FOX_RELIC_ANCHOR_CORE.flavor": "\"현실을 안정시키는 닻.\"",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "타오르는 피의 반지",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "잃은 체력의 비율에 따라 공격 피해가 증가하며, 최대 [blue]50%[/blue]까지 증가합니다.",
-  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "모두를 죽음으로 함께 초대합니다."
+  "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "모두를 죽음으로 함께 초대합니다.",
+  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "술여우 유리"
 }
