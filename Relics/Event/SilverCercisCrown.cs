@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -38,6 +38,7 @@ namespace STS2_WineFox.Relics.Event
                 result.TotalDamage,
                 ValueProp.Unblockable | ValueProp.Unpowered,
                 Owner.Creature,
+                null,
                 null);
         }
     }

@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -18,7 +18,7 @@ namespace STS2_WineFox.Powers
             if (targets.Count == 0)
                 return;
 
-            await CreatureCmd.Damage(choiceContext, targets, 20m, ValueProp.Unpowered, Applier, null);
+            await CreatureCmd.Damage(choiceContext, targets, 20m, ValueProp.Unpowered, Applier, null, null);
         }
     }
 }

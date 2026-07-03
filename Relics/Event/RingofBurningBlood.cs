@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -26,7 +26,8 @@ namespace STS2_WineFox.Relics.Event
             decimal amount,
             ValueProp props,
             Creature? dealer,
-            CardModel? cardSource)
+            CardModel? cardSource,
+            CardPlay? cardPlay)
         {
             if (!props.IsPoweredAttack())
                 return 1m;

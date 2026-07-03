@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Uncommon
             var hits = DynamicVars["Hits"].IntValue;
             for (var i = 0; i < hits; i++)
                 await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                    .FromCard(this)
+                    .FromCard(this, play)
                     .Targeting(play.Target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);

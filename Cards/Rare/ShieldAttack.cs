@@ -55,7 +55,7 @@ namespace STS2_WineFox.Cards.Rare
             }
 
             await DamageCmd.Attack(damage)
-                .FromCard(this)
+                .FromCard(this, play)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
@@ -111,6 +111,7 @@ namespace STS2_WineFox.Cards.Rare
                 baseDamage,
                 ValueProp.Move,
                 card,
+                null,
                 ModifyDamageHookType.All,
                 previewMode,
                 out _);

@@ -34,7 +34,7 @@ namespace STS2_WineFox.Cards.Rare
             if (Owner.Creature.CombatState is not { } combatState) return;
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCard(this, play)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

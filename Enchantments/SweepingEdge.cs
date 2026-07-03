@@ -72,7 +72,7 @@ namespace STS2_WineFox.Enchantments
 
                     await DamageCmd.Attack(totalSweepDamage)
                         .Unpowered()
-                        .FromCard(Card)
+                        .FromCard(Card, command.CardPlay)
                         .Targeting(enemy)
                         .WithHitFx("vfx/vfx_attack_slash")
                         .Execute(choiceContext);

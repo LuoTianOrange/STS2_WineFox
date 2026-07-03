@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -25,7 +25,7 @@ namespace STS2_WineFox.Potions
         {
             var targets = GetEnemyPotionTargets(target);
             ShowEnemyPotionHitVfx(target);
-            await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, null);
+            await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, null, null);
         }
     }
 }

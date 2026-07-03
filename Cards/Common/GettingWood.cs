@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -37,7 +37,7 @@ namespace STS2_WineFox.Cards.Common
             await MaterialCmd.GainMaterial<WoodPower>(this, woodAmount, false);
 
             await DamageCmd.Attack(woodAmount)
-                .FromCard(this)
+                .FromCard(this, play)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

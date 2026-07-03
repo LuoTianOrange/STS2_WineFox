@@ -51,7 +51,7 @@ namespace STS2_WineFox.Cards.Uncommon
             ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
 
             await DamageCmd.Attack(DynamicVars.CalculatedDamage)
-                .FromCard(this)
+                .FromCard(this, play)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
