@@ -44,7 +44,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await DamageCmd.Attack(damage)
                 .WithHitCount(hits)
-                .FromCard(this, play)
+                .FromCard(this)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
@@ -99,7 +99,6 @@ namespace STS2_WineFox.Cards.Uncommon
                         damagePerHit,
                         ValueProp.Move,
                         nonNullCard,
-                        null,
                         ModifyDamageHookType.All,
                         previewMode,
                         out _);

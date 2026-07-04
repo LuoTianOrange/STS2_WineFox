@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -21,8 +20,7 @@ namespace STS2_WineFox.Powers
             decimal amount,
             ValueProp props,
             Creature? dealer,
-            CardModel? cardSource,
-            CardPlay? cardPlay)
+            CardModel? cardSource)
         {
             if (!props.IsPoweredAttack() ||
                 cardSource == null ||

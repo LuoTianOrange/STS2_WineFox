@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -36,8 +36,7 @@ namespace STS2_WineFox.Powers
                 totalAmount * Amount,
                 ValueProp.Unpowered,
                 Owner,
-                evt.SourceCard,
-                null);
+                evt.SourceCard);
         }
     }
 }

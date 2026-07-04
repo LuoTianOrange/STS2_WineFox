@@ -32,7 +32,7 @@ namespace STS2_WineFox.Cards.Common
             if (Owner.Creature.CombatState is not { } combatState) return;
 
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, play)
+                .FromCard(this)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

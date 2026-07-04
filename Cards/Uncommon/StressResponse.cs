@@ -45,8 +45,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 hpLoss,
                 ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
                 creature,
-                this,
-                play);
+                this);
 
             await PlayerCmd.GainEnergy(energyGain, owner);
 

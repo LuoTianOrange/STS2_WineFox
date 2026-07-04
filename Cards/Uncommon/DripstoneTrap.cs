@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -94,7 +94,7 @@ namespace STS2_WineFox.Cards.Uncommon
             if (totalHits <= 0) return;
 
             await DamageCmd.Attack(DynamicVars["Damage"].BaseValue)
-                .FromCard(this, play)
+                .FromCard(this)
                 .TargetingRandomOpponents(combatState)
                 .WithHitCount(totalHits)
                 .WithHitFx("vfx/vfx_attack_slash")

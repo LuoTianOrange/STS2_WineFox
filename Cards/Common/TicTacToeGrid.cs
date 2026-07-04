@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -30,7 +30,7 @@ namespace STS2_WineFox.Cards.Common
         {
             ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, play)
+                .FromCard(this)
                 .Targeting(play.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

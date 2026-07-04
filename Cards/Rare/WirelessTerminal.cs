@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
@@ -18,10 +18,10 @@ namespace STS2_WineFox.Cards.Rare
             Const.Paths.CardWirelessTerminal,
             FrameMaterialPath: Const.Paths.CardWirelessTerminalRainbowFrameMat);
 
-        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+        protected override PileType GetResultPileTypeForCardPlay()
         {
-            var (pileType, position) = base.GetResultPileTypeAndPositionForCardPlay();
-            return pileType != PileType.Discard ? (pileType, position) : (PileType.Hand, CardPilePosition.Bottom);
+            var result = base.GetResultPileTypeForCardPlay();
+            return result != PileType.Discard ? result : PileType.Hand;
         }
 
         protected override async Task OnPlay(
