@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Event
 
         protected override void OnUpgrade()
         {
-            AddKeyword(CardKeyword.Innate);
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }
