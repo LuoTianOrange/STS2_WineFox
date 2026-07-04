@@ -2,7 +2,7 @@ namespace STS2_WineFox
 {
     public static class Const
     {
-        public const string ModId = "STS2-WineFox";
+        public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox";
         public const string Version = "1.2.11+1";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
