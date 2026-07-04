@@ -43,5 +43,16 @@
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.title": "燃血の指輪を選ぶ",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.description": "[gold]燃血の指輪[/gold]を得る。",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.OFFER_BELL.description": "尋風の鈴を彼女に手渡した。金色の鈴が澄んだ音を響かせる。桜の花びらが風に舞い、返礼の品が静かにあなたの手へ収まった。",
-  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "この場所の静けさを乱さず、立ち去ることにした。桜林を出ると、桜の花びらに運ばれた数枚のカードが目の前に漂ってきた。"
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "この場所の静けさを乱さず、立ち去ることにした。桜林を出ると、桜の花びらに運ばれた数枚のカードが目の前に漂ってきた。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.title": "天外の隕石",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.description": "空を裂くような轟音が響き、大地が震えた。音の方へ目を向けると、遠くに砂煙の柱が立ち、炎はまだ消えきっていない。全体が焦げ黒く、角張った隕石が地面に深く突き刺さっている。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.title": "隕石を開く",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.description": "[red]{HpLossPercent}%[/red]HPを失う。[gold]クラフトストレージ[/gold]を得る。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.title": "サンプルを採取する",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.description": "[red]{HpLossPercent}%[/red]HPを失う。無色カード報酬を1つ得る。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.title": "立ち去る",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.description": "[blue]{MinGold}-{MaxGold}[/blue][gold]ゴールド[/gold]を得る。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.OPEN_METEORITE.description": "灼熱の隕石が手を焼いたが、収穫はあった。この異星の技術部品は、複雑なクラフト作業を処理する能力を大きく高めてくれる。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.TAKE_SAMPLE.description": "灼熱の隕石が手を焼いたが、収穫はあった。隕石の外殻は鍛造に向いた良い素材だ。",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.LEAVE.description": "未知の怪物かもしれない。触れない方がよさそうだ。"
 }

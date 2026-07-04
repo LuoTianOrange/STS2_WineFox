@@ -51,6 +51,7 @@ namespace STS2_WineFox
             public const string EventDesertPyramid = Root + "/events/desert_pyramid.png";
             public const string EventHiddenCherryBlossomGrove = Root + "/events/hidden_cherry_blossom_grove.png";
             public const string EventHiddenRetreat = Root + "/events/hidden_retreat.png";
+            public const string EventCelestialMeteorite = Root + "/events/celestial_meteorite.png";
 
             //Relics
             public const string HandCrankRelicIcon = Root + "/relics/relic_hand_crank.png";
@@ -134,6 +135,7 @@ namespace STS2_WineFox
             public const string WindChargedPowerIcon = Root + "/powers/wind_charged_power.png";
             public const string WeavingPowerIcon = Root + "/powers/weaving_power.png";
             public const string ResistancePowerIcon = Root + "/powers/resistance_power.png";
+            public const string CraftingStoragePowerIcon = Root + "/powers/crafting_storage_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -285,6 +287,7 @@ namespace STS2_WineFox
             public const string CardScrapRecycling = Root + "/cards/card_scrap_recycling.png";
             public const string CardReforge = Root + "/cards/card_reforge.png";
             public const string CardSeekingWindBell = Root + "/cards/card_seeking_wind_bell.png";
+            public const string CardCraftingStorage = Root + "/cards/card_crafting_storage.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

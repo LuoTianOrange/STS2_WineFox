@@ -252,7 +252,7 @@
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "삼위 축복",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "모든 플레이어가 1점 [gold]힘[/gold], 1점 [gold]민첩[/gold], 1점 [gold]집중[/gold]을 얻습니다.\n최대 {MaxConsume:diff()}점 [gold]영창[/gold]을 소모합니다.\n1점을 소모할 때마다 추가로 힘 1점과 민첩 1점을 얻습니다.\n2점을 소모할 때마다 추가로 집중 1점을 얻습니다.",
   "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "검의 달인",
-  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "모든 적에게 {CalculatedDamage:diff()} 피해를 줍니다. 이번 전투에서 사용한 [gold]검[/gold] 카드 종류 하나당 이 피해가 {ExtraDamage:diff()} 증가합니다."
+  "STS2_WINE_FOX_CARD_BLADE_MASTER.description": "모든 적에게 {CalculatedDamage:diff()} 피해를 줍니다. 이번 전투에서 사용한 [gold]검[/gold] 카드 종류 하나당 이 피해가 {ExtraDamage:diff()} 증가합니다.",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.title": "순환 공정",
   "STS2_WINE_FOX_CARD_CYCLIC_PROCESS.description": "{Damage:diff()} 피해를 {Hits:diff()}번 줍니다.\n[gold]제작[/gold].\n이 카드를 당신의 [gold]뽑을 카드 더미[/gold]에 되돌려 놓습니다.",
   "STS2_WINE_FOX_CARD_NOTHING_WASTED.title": "낭비는 없다",
@@ -291,5 +291,7 @@
   "STS2_WINE_FOX_CARD_REFORGE.description": "손패 1장을 선택합니다. 그 카드는 {IfUpgraded:show:[gold]Replay[/gold] and |}[gold]소멸[/gold]을 얻습니다.",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "카드를 선택하세요",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "바람을 찾는 방울",
-  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "\"방울 소리는 당신의 길을 이끌고, 산들바람은 축복을 바친다.\"\n카드 {Cards:diff()}장을 뽑습니다. 다음 단계에서 특별 이벤트를 해금합니다."
+  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "\"방울 소리는 당신의 길을 이끌고, 산들바람은 축복을 바친다.\"\n카드 {Cards:diff()}장을 뽑습니다. 다음 단계에서 특별 이벤트를 해금합니다.",
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "제작 저장소",
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "당신의 턴 시작 시, 지난 턴의 모든 [gold]제작[/gold] 결과물의 복사본을 1장씩 손패에 추가합니다."
 }

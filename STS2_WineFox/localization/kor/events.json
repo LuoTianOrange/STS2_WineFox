@@ -43,5 +43,16 @@
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.title": "타오르는 피의 반지 선택",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.description": "[gold]타오르는 피의 반지[/gold]를 얻습니다.",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.OFFER_BELL.description": "바람찾이 방울을 그녀에게 건넵니다. 금빛 방울이 맑은 울림을 냅니다. 벚꽃잎이 바람에 흩날리고, 답례품 하나가 조용히 손안에 내려앉습니다.",
-  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "이곳의 평온을 방해하지 않고 돌아서서 떠납니다. 벚꽃 숲을 벗어나자, 벚꽃잎에 실린 카드 몇 장이 눈앞에 떠오릅니다."
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "이곳의 평온을 방해하지 않고 돌아서서 떠납니다. 벚꽃 숲을 벗어나자, 벚꽃잎에 실린 카드 몇 장이 눈앞에 떠오릅니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.title": "천상의 운석",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.description": "하늘을 찢는 듯한 굉음과 함께 대지가 흔들립니다. 소리가 난 곳을 바라보자, 멀리 먼지 기둥이 솟아 있고 불길은 아직 사그라지지 않았습니다. 온통 검게 그을리고 각진 운석 하나가 땅속 깊이 박혀 있습니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.title": "운석을 연다",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.description": "HP를 [red]{HpLossPercent}%[/red] 잃습니다. [gold]제작 저장소[/gold]를 얻습니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.title": "샘플을 채취한다",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.description": "HP를 [red]{HpLossPercent}%[/red] 잃습니다. 무색 카드 보상을 1개 얻습니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.title": "떠난다",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.description": "[blue]{MinGold}-{MaxGold}[/blue] [gold]골드[/gold]를 얻습니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.OPEN_METEORITE.description": "뜨거운 운석이 손을 데었지만, 그래도 수확은 있었습니다. 이 외계 기술 부품은 복잡한 제작 작업을 처리하는 능력을 크게 높여 줄 수 있습니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.TAKE_SAMPLE.description": "뜨거운 운석이 손을 데었지만, 그래도 수확은 있었습니다. 운석의 외피는 훌륭한 단조 재료입니다.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.LEAVE.description": "알 수 없는 괴물일지도 모릅니다. 건드리지 않는 편이 좋겠습니다."
 }

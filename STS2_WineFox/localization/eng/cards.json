@@ -306,5 +306,7 @@
   "STS2_WINE_FOX_CARD_REFORGE.description": "Choose 1 card in your hand. It gains {IfUpgraded:show:[gold]Replay[/gold] and |}[gold]Exhaust[/gold].",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_REFORGE_CHOOSE": "Choose a card",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "Seeking Wind Bell",
-  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "\"The bell guides your road; the breeze offers its blessing.\"\nDraw {Cards:diff()} card. Unlock a special event in the next stage."
+  "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "\"The bell guides your road; the breeze offers its blessing.\"\nDraw {Cards:diff()} card. Unlock a special event in the next stage.",
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "Crafting Storage",
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "At the start of your turn, add a copy of each [gold]Craft[/gold] product from last turn to your hand."
 }

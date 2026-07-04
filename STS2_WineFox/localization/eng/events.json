@@ -45,5 +45,17 @@
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.title": "Choose Ring of Burning Blood",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.RELICS.options.RING_OF_BURNING_BLOOD.description": "Gain [gold]Ring of Burning Blood[/gold].",
   "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.OFFER_BELL.description": "You hand the Seeking Wind Bell to her. The golden bell rings with a clear echo. Cherry blossoms drift on the wind, and a return gift settles quietly into your hands.",
-  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "You choose not to disturb the peace of this place and turn to leave. As you step out of the grove, several cards carried by cherry petals float before you."
+  "STS2_WINE_FOX_EVENT_HIDDEN_RETREAT.pages.LEAVE.description": "You choose not to disturb the peace of this place and turn to leave. As you step out of the grove, several cards carried by cherry petals float before you.",
+
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.title": "Celestial Meteorite",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.description": "A thunderous crash tears through the sky, and the earth trembles beneath it. Looking toward the sound, you see a pillar of dust in the distance. The flames have not yet faded, and a charred, angular meteorite lies buried deep in the ground.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.title": "Open the meteorite",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.OPEN_METEORITE.description": "Lose [red]{HpLossPercent}%[/red] HP. Gain [gold]Crafting Storage[/gold].",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.title": "Take a sample",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.TAKE_SAMPLE.description": "Lose [red]{HpLossPercent}%[/red] HP. Gain a colorless card reward.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.title": "Leave",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.INITIAL.options.LEAVE.description": "Gain [blue]{MinGold}-{MaxGold}[/blue] [gold]Gold[/gold].",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.OPEN_METEORITE.description": "The scorching meteorite burns your hand, but at least you found something worthwhile. This alien technological component can greatly improve your ability to handle complex crafting tasks.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.TAKE_SAMPLE.description": "The scorching meteorite burns your hand, but at least you found something worthwhile. Its outer shell should make fine forging material.",
+  "STS2_WINE_FOX_EVENT_CELESTIAL_METEORITE.pages.LEAVE.description": "It might be some unknown monster. Better not touch it."
 }
