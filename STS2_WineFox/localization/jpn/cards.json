@@ -275,7 +275,7 @@
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "装備強化",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。あなたの[gold]山札[/gold]のカードをランダムに{Count:diff()}枚アップグレードする。",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "二品炒め",
-  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "ランダムな調理済み食料を2つ得る。",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "ランダムな[gold]調理済み食料[/gold]を2つ得る。",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "「等価」交換",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "あなたの[gold]手札[/gold]の他のすべてのカードを廃棄する。廃棄したカード1枚につき、ランダムな{IfUpgraded:show:upgraded |}[gold]レア[/gold]カードを1枚あなたの[gold]手札[/gold]に加える。",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "多機能機械",

@@ -29,5 +29,7 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "Sophisticated Backpack",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "Rare relic. Provides extra craftable cards while held.",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "Sword",
-  "STS2_WINE_FOX_KEYWORD_SWORD.description": "Includes [gold]Wooden Sword[/gold], [gold]Stone Sword[/gold], [gold]Iron Sword[/gold], [gold]Golden Sword[/gold], [gold]Diamond Sword[/gold], and [gold]Netherite Sword[/gold]."
+  "STS2_WINE_FOX_KEYWORD_SWORD.description": "Includes [gold]Wooden Sword[/gold], [gold]Stone Sword[/gold], [gold]Iron Sword[/gold], [gold]Golden Sword[/gold], [gold]Diamond Sword[/gold], and [gold]Netherite Sword[/gold].",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "Cooked Food",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "Includes [gold]Baked Potato[/gold], [gold]Bread[/gold], [gold]Pumpkin Pie[/gold], [gold]Beetroot Soup[/gold], and [gold]Smoked Carrot[/gold]."
 }

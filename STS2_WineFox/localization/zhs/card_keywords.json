@@ -29,5 +29,7 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "精妙背包",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "稀有遗物。持有时提供额外的合成卡牌。",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "剑牌",
-  "STS2_WINE_FOX_KEYWORD_SWORD.description": "包括[gold]木剑[/gold]、[gold]石剑[/gold]、[gold]铁剑[/gold]、[gold]金剑[/gold]、[gold]钻石剑[/gold]和[gold]下界合金剑[/gold]。"
+  "STS2_WINE_FOX_KEYWORD_SWORD.description": "包括[gold]木剑[/gold]、[gold]石剑[/gold]、[gold]铁剑[/gold]、[gold]金剑[/gold]、[gold]钻石剑[/gold]和[gold]下界合金剑[/gold]。",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "烹饪过的食物",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "包括[gold]烤马铃薯[/gold]、[gold]面包[/gold]、[gold]南瓜派[/gold]、[gold]甜菜汤[/gold]和[gold]烟熏胡萝卜[/gold]。"
 }

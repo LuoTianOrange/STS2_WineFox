@@ -275,7 +275,7 @@
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "장비 강화",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다. 당신의 [gold]뽑을 카드 더미[/gold]에 있는 카드 {Count:diff()}장을 무작위로 강화합니다.",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "두 가지 볶음 요리",
-  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "무작위 조리 음식 2개를 얻습니다.",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "무작위 [gold]조리 음식[/gold] 2개를 얻습니다.",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "\"등가\" 교환",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "당신의 [gold]손[/gold]에 있는 다른 모든 카드를 소멸시킵니다. 소멸한 카드 1장마다 무작위 {IfUpgraded:show:upgraded |}[gold]희귀[/gold] 카드 1장을 당신의 [gold]손[/gold]에 추가합니다.",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "다기능 기계",

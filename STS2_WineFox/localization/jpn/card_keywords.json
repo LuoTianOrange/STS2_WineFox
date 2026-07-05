@@ -29,5 +29,7 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "精巧なバックパック",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "レアレリック。所持している間、クラフト可能なカードを追加で提供する。",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "剣",
-  "STS2_WINE_FOX_KEYWORD_SWORD.description": "[gold]木の剣[/gold]、[gold]石の剣[/gold]、[gold]鉄の剣[/gold]、[gold]金の剣[/gold]、[gold]ダイヤモンドの剣[/gold]、[gold]ネザライトの剣[/gold]を含む。"
+  "STS2_WINE_FOX_KEYWORD_SWORD.description": "[gold]木の剣[/gold]、[gold]石の剣[/gold]、[gold]鉄の剣[/gold]、[gold]金の剣[/gold]、[gold]ダイヤモンドの剣[/gold]、[gold]ネザライトの剣[/gold]を含む。",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "調理済み食料",
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]ベイクドポテト[/gold]、[gold]パン[/gold]、[gold]パンプキンパイ[/gold]、[gold]ビートルートスープ[/gold]、[gold]燻製ニンジン[/gold]を含む。"
 }

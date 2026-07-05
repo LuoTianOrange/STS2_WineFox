@@ -8,7 +8,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Event
 {
-    [RegisterCard(typeof(WineFoxCardPool))]
+    [RegisterCard(typeof(WineFoxEventCardPool))]
     public class CraftingStorage() : WineFoxCard(
         1, CardType.Power, CardRarity.Event, TargetType.Self)
     {

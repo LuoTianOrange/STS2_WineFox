@@ -290,7 +290,7 @@
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.title": "Upgrade Gear",
   "STS2_WINE_FOX_CARD_UPGRADE_GEAR.description": "Gain {Block:diff()} [gold]Block[/gold]. Randomly upgrade {Count:diff()} cards in your [gold]Draw Pile[/gold].",
   "STS2_WINE_FOX_CARD_LITTLE_COOKING.title": "Stir-fry Two Dishes",
-  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "Gain 2 random cooked foods.",
+  "STS2_WINE_FOX_CARD_LITTLE_COOKING.description": "Gain 2 random [gold]cooked foods[/gold].",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "\"Equivalent\" Exchange",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "Exhaust all other cards in your [gold]hand[/gold]. For each card Exhausted, add 1 random {IfUpgraded:show:upgraded |}[gold]Rare[/gold] card to your [gold]hand[/gold].",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "Multi Machinery",
