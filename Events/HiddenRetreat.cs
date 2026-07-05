@@ -17,7 +17,6 @@ namespace STS2_WineFox.Events
     [RegisterSharedEvent]
     public sealed class HiddenRetreat : ModEventTemplate
     {
-        public override bool IsShared => true;
         public override EventAssetProfile AssetProfile => new(InitialPortraitPath: Const.Paths.EventHiddenRetreat);
 
         public override bool IsAllowed(IRunState runState)
@@ -27,11 +26,20 @@ namespace STS2_WineFox.Events
 
         protected override IReadOnlyList<EventOption> GenerateInitialOptions()
         {
+            var offerBell = HasSeekingWindBell()
+                ? new EventOption(this, OfferBell, InitialOptionKey("OFFER_BELL"))
+                : new EventOption(this, null!, InitialOptionKey("OFFER_BELL_LOCKED"));
+
             return
             [
-                new(this, OfferBell, InitialOptionKey("OFFER_BELL")),
+                offerBell,
                 new(this, Leave, InitialOptionKey("LEAVE")),
             ];
+        }
+
+        private bool HasSeekingWindBell()
+        {
+            return Owner?.Deck.Cards.Any(c => c is SeekingWindBell) == true;
         }
 
         private IReadOnlyList<EventOption> RelicOptions()
