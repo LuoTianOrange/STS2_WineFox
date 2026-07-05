@@ -40,6 +40,8 @@ namespace STS2_WineFox.Powers
                         CardPilePosition.Bottom);
                     CardCmd.PreviewCardPileAdd(cardInstance);
                 }
+
+            PreviousTurnProducts.Clear();
         }
 
         public override Task AfterCraftProductDelivered(CraftExecutionContext context)
