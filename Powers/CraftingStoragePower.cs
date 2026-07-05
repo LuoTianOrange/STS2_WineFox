@@ -33,7 +33,11 @@ namespace STS2_WineFox.Powers
                 for (var i = 0; i < Amount; i++)
                 {
                     var clone = product.CreateClone();
-                    var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, player);
+                    var cardInstance = await CardPileCmd.AddGeneratedCardToCombat(
+                        clone,
+                        PileType.Hand,
+                        player,
+                        CardPilePosition.Bottom);
                     CardCmd.PreviewCardPileAdd(cardInstance);
                 }
         }
