@@ -129,7 +129,7 @@
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.title":"应激",
   "STS2_WINE_FOX_CARD_STRESS_RESPONSE.description":"失去6点生命值，获得1点最大生命值，获得{Energy:energyIcons()}并抽2张牌。",
   "STS2_WINE_FOX_CARD_MASS_PRODUCTION.title":"量产",
-  "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给你的每个队友。",
+  "STS2_WINE_FOX_CARD_MASS_PRODUCTION.description":"当你在本回合[gold]合成[/gold]时，将1张合成物的复制品分给所有玩家。",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.title":"无线合成终端",
   "STS2_WINE_FOX_CARD_WIRELESS_TERMINAL.description":"[gold]合成[/gold]。\n将这张牌返回你的[gold]手牌[/gold]。\n你需要[sine][rainbow freq=0.3 sat=0.8 val=1]绝对天马行空的想象能力[/rainbow][/sine]来使用它",
   "STS2_WINE_FOX_CARD_HELL_GIFT.title": "地狱馈赠",
@@ -252,7 +252,7 @@
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "获得{Wood:diff()}个[gold]木头[/gold]和{Stone:diff()}个[gold]圆石[/gold]。在下个回合开始时获得{NextTurnMaterial:diff()}个[gold]木头[/gold]和{NextTurnMaterial:diff()}个[gold]圆石[/gold]。"
   ,
   "STS2_WINE_FOX_CARD_LOGISTICS.title": "物流",
-  "STS2_WINE_FOX_CARD_LOGISTICS.description": "选择{IfUpgraded:show:任意|一}张手牌并将其[gold]消耗[/gold]，将该牌的一份复制品加入一名队友的手牌。",
+  "STS2_WINE_FOX_CARD_LOGISTICS.description": "选择{IfUpgraded:show:任意|一}张手牌并将其[gold]消耗[/gold]，将该牌的一份复制品加入另一名玩家的手牌。",
   "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "选择要消耗并送出的牌",
 
   "STS2_WINE_FOX_CARD_SWEEP.title": "横扫",
@@ -309,5 +309,7 @@
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "寻风之铃",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "[gold]「铃声引你道路，微风献上祝福」[/gold]\n抽{Cards:diff()}张牌。在下一阶段解锁一个特殊事件。",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "合成存储器",
-  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "在你的回合开始时，将上一回合所有[gold]合成[/gold]产物的一份复制品加入你的手牌。"
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "在你的回合开始时，将上一回合所有[gold]合成[/gold]产物的一份复制品加入你的手牌。",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "协同采掘",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "每当其他玩家打出[gold]能力[/gold]牌后，获得1个[gold]木板[/gold]、1个[gold]圆石[/gold]、1个[gold]铁锭[/gold]和1个[gold]钻石[/gold]。"
 }

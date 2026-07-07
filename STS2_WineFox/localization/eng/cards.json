@@ -308,5 +308,7 @@
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "Seeking Wind Bell",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "\"The bell guides your road; the breeze offers its blessing.\"\nDraw {Cards:diff()} card. Unlock a special event in the next stage.",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "Crafting Storage",
-  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "At the start of your turn, add a copy of each [gold]Craft[/gold] product from last turn to your hand."
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "At the start of your turn, add a copy of each [gold]Craft[/gold] product from last turn to your hand.",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "Collaborative Mining",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "Whenever another player plays a [gold]Power[/gold] card, gain 1 [gold]Plank[/gold], 1 [gold]Cobblestone[/gold], 1 [gold]Iron Ingot[/gold], and 1 [gold]Diamond[/gold]."
 }

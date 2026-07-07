@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.2.12+3";
+        public const string Version = "1.2.13";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -136,6 +136,7 @@ namespace STS2_WineFox
             public const string WeavingPowerIcon = Root + "/powers/weaving_power.png";
             public const string ResistancePowerIcon = Root + "/powers/resistance_power.png";
             public const string CraftingStoragePowerIcon = Root + "/powers/crafting_storage_power.png";
+            public const string CollaborativeMiningPowerIcon = Root + "/powers/collaborative_mining_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -288,6 +289,7 @@ namespace STS2_WineFox
             public const string CardReforge = Root + "/cards/card_reforge.png";
             public const string CardSeekingWindBell = Root + "/cards/card_seeking_wind_bell.png";
             public const string CardCraftingStorage = Root + "/cards/card_crafting_storage.png";
+            public const string CardCollaborativeMining = Root + "/cards/card_collaborative_mining.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

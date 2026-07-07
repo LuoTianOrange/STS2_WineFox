@@ -293,5 +293,7 @@
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.title": "尋風の鈴",
   "STS2_WINE_FOX_CARD_SEEKING_WIND_BELL.description": "「鈴はあなたの道を導き、そよ風は祝福を捧げる」\n{Cards:diff()}枚のカードを引く。次のステージで特別なイベントを解放する。",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "クラフトストレージ",
-  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "あなたのターン開始時、前のターンのすべての[gold]クラフト[/gold]産物のコピーを1枚ずつ手札に加える。"
+  "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "あなたのターン開始時、前のターンのすべての[gold]クラフト[/gold]産物のコピーを1枚ずつ手札に加える。",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "協同採掘",
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "他のプレイヤーが[gold]パワー[/gold]カードをプレイするたび、[gold]木板[/gold]1個、[gold]丸石[/gold]1個、[gold]鉄インゴット[/gold]1個、[gold]ダイヤモンド[/gold]1個を得る。"
 }
