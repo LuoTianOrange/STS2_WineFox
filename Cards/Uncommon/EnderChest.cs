@@ -28,22 +28,23 @@ namespace STS2_WineFox.Cards.Uncommon
             var owner = Owner;
             var discardPile = PileType.Discard.GetPile(owner);
 
-            if (discardPile.Cards.Count <= 0) return;
-
-            var toSelect = Math.Min((int)DynamicVars["Cards"].BaseValue, discardPile.Cards.Count);
-            var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, toSelect);
-
-            var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                discardPile.Cards,
-                owner,
-                prefs);
-
-            foreach (var card in selected)
+            if (discardPile.Cards.Count > 0)
             {
-                await CardPileCmd.Add(card, PileType.Hand);
-                card.GetOrCreateCapability<TemporaryRetainCapability>();
+                var toSelect = Math.Min((int)DynamicVars["Cards"].BaseValue, discardPile.Cards.Count);
+                var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_ENDER_CHEST_CHOOSE");
+                var prefs = new CardSelectorPrefs(prompt, toSelect);
+
+                var selected = await CardSelectCmd.FromSimpleGrid(
+                    choiceContext,
+                    discardPile.Cards,
+                    owner,
+                    prefs);
+
+                foreach (var card in selected)
+                {
+                    await CardPileCmd.Add(card, PileType.Hand);
+                    card.GetOrCreateCapability<TemporaryRetainCapability>();
+                }
             }
 
             PlayerCmd.EndTurn(owner, false);
