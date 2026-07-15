@@ -72,6 +72,7 @@ namespace STS2_WineFox
             public const string SilverCercisCrownRelicIcon = Root + "/relics/relic_silver_cercis_crown.png";
             public const string AnchorCoreRelicIcon = Root + "/relics/relic_anchor_core.png";
             public const string RingofBurningBloodRelicIcon = Root + "/relics/relic_ring_of_burning_blood.png";
+            public const string BonusChestRelicIcon = Root + "/relics/relic_bonus_chest.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";

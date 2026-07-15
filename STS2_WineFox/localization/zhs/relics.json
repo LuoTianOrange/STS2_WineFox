@@ -64,5 +64,8 @@
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "烬血之戒",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "根据自身已损失生命值的百分比提高造成的攻击伤害，最多[blue]50%[/blue]。",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "邀诸位共赴死亡。",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "奖励箱",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "每场战斗开始时，获得[blue]{Iron}[/blue]个[gold]铁锭[/gold]。",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "打开它，里面装着一些足以改变状况的物资。",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "灵狐玻璃"
 }
