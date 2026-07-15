@@ -9,13 +9,13 @@ position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_f8q18")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.99999976, 0.99999976)
-texture = ExtResource("2_f8q18")
-
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="Visuals" type="Sprite2D" parent="ControlRoot"]
+scale = Vector2(0.9999996, 0.9999996)
+texture = ExtResource("2_f8q18")
 
 [node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_f8q18")]
 unique_name_in_owner = true
