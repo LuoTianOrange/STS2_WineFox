@@ -41,10 +41,21 @@ namespace STS2_WineFox.Powers
             if (target.Side == Owner.Side) return;
             if (result.UnblockedDamage <= 0) return;
 
-            Flash();
-            var targetBlock = GetEnemyBlockAmount();
-            await CreatureCmd.GainBlock(target, targetBlock, ValueProp.Unpowered, null);
-            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+            var data = GetInternalData<Data>();
+            if (data.IsResolvingDamageTrigger) return;
+
+            data.IsResolvingDamageTrigger = true;
+            try
+            {
+                Flash();
+                var targetBlock = GetEnemyBlockAmount();
+                await CreatureCmd.GainBlock(target, targetBlock, ValueProp.Unpowered, null);
+                await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
+            }
+            finally
+            {
+                data.IsResolvingDamageTrigger = false;
+            }
         }
 
         protected override object InitInternalData()
@@ -143,6 +154,7 @@ namespace STS2_WineFox.Powers
         private class Data
         {
             public bool IsInitialized;
+            public bool IsResolvingDamageTrigger;
             public decimal LastKnownAmount;
             public int ApplicationCount;
             public event Action? ExtraLabelsInvalidated;
