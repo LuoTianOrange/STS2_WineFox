@@ -108,6 +108,9 @@ namespace STS2_WineFox
             WineFoxMultiplayerSettingsSyncPatches.AddTo(patcher);
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
             patcher.RegisterPatch<WineFoxPredeterminedPotionRewardSavePatch>();
+            patcher.RegisterPatch<NCombatUiActivateMaterialInventoryHudPatch>();
+            patcher.RegisterPatch<NCombatUiAnimOutMaterialInventoryHudPatch>();
+            patcher.RegisterPatch<NCombatUiDeactivateMaterialInventoryHudPatch>();
             return patcher;
         }
 
