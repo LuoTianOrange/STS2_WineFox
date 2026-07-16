@@ -126,7 +126,7 @@ namespace STS2_WineFox.Patches
                 return true;
 
             var potion = ModelDb.GetById<PotionModel>(save.PredeterminedModelId).ToMutable();
-            __result = new PotionReward(potion, player);
+            __result = new FoodPotionReward(potion, player);
             return false;
         }
     }

@@ -51,16 +51,26 @@ namespace STS2_WineFox.Powers
             if (SourcePlayer == null || CombatState.RunState.CurrentRoom is not CombatRoom room)
                 return;
 
-            foreach (var player in CombatState.RunState.Players)
-            {
-                var options = CardCreationOptions
-                    .ForNonCombatWithUniformOdds(
-                        [player.Character.CardPool],
-                        card => card.Rarity == rarity)
-                    .WithFlags(CardCreationFlags.NoRarityModification);
+            var player = SourcePlayer;
+            var options = CardCreationOptions
+                .ForNonCombatWithUniformOdds(
+                    [player.Character.CardPool],
+                    card => card.Rarity == rarity && IsMultiplayerConstraintSatisfied(card, player))
+                .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
 
-                room.AddExtraReward(player, new CardReward(options, 3, player));
-            }
+            room.AddExtraReward(player, new CardReward(options, 3, player));
+        }
+
+        private static bool IsMultiplayerConstraintSatisfied(CardModel card, Player player)
+        {
+            return card.MultiplayerConstraint switch
+            {
+                CardMultiplayerConstraint.SingleplayerOnly =>
+                    player.RunState.CardMultiplayerConstraint != CardMultiplayerConstraint.MultiplayerOnly,
+                CardMultiplayerConstraint.MultiplayerOnly =>
+                    player.RunState.CardMultiplayerConstraint != CardMultiplayerConstraint.SingleplayerOnly,
+                _ => true,
+            };
         }
     }
 }

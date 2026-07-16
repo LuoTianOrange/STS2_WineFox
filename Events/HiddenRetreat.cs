@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using STS2_WineFox.Cards.Quest;
+using STS2_WineFox.Relics;
 using STS2_WineFox.Relics.Event;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -52,6 +53,7 @@ namespace STS2_WineFox.Events
                 CreateRelicOption<SilverCercisCrown>("SILVER_CERCIS_CROWN"),
                 CreateRelicOption<AnchorCore>("ANCHOR_CORE"),
                 CreateRelicOption<RingofBurningBlood>("RING_OF_BURNING_BLOOD"),
+                CreateRelicOption<SophisticatedBackpack>("SOPHISTICATED_BACKPACK"),
             };
 
             Shuffle(options);

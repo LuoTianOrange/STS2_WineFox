@@ -3,8 +3,8 @@ namespace STS2_WineFox
     public static class Const
     {
         public const string ModId = "STS2_WineFox";
-        public const string Name = "WineFox";
-        public const string Version = "1.2.12+2";
+        public const string Name = "WineFox/酒狐";
+        public const string Version = "1.2.13";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -30,6 +30,7 @@ namespace STS2_WineFox
             public const string CharacterSelectIcon = Root + "/packed/character_select/char_select_wine_fox.png";
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
             public const string CraftingCodexTopBarButtonIcon = Root + "/ui/crafting_codex_top_bar_button.png";
+            public const string MaterialInventoryBox = Root + "/ui/Inventorybox.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
@@ -72,6 +73,7 @@ namespace STS2_WineFox
             public const string SilverCercisCrownRelicIcon = Root + "/relics/relic_silver_cercis_crown.png";
             public const string AnchorCoreRelicIcon = Root + "/relics/relic_anchor_core.png";
             public const string RingofBurningBloodRelicIcon = Root + "/relics/relic_ring_of_burning_blood.png";
+            public const string BonusChestRelicIcon = Root + "/relics/relic_bonus_chest.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
@@ -136,6 +138,7 @@ namespace STS2_WineFox
             public const string WeavingPowerIcon = Root + "/powers/weaving_power.png";
             public const string ResistancePowerIcon = Root + "/powers/resistance_power.png";
             public const string CraftingStoragePowerIcon = Root + "/powers/crafting_storage_power.png";
+            public const string CollaborativeMiningPowerIcon = Root + "/powers/collaborative_mining_power.png";
 
             public const string BurningIcon = Root + "/powers/burning_power.png";
 
@@ -288,6 +291,7 @@ namespace STS2_WineFox
             public const string CardReforge = Root + "/cards/card_reforge.png";
             public const string CardSeekingWindBell = Root + "/cards/card_seeking_wind_bell.png";
             public const string CardCraftingStorage = Root + "/cards/card_crafting_storage.png";
+            public const string CardCollaborativeMining = Root + "/cards/card_collaborative_mining.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

@@ -64,5 +64,8 @@
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "Ring of Burning Blood",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "Increase attack damage based on the percentage of HP you have lost, up to [blue]50%[/blue].",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "Inviting all to share in death.",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "Bonus Chest",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "At the start of each combat, gain [blue]{Iron}[/blue] [gold]Iron Ingots[/gold].",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "Open it, and inside are supplies enough to turn the situation around.",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Winefox Glass"
 }

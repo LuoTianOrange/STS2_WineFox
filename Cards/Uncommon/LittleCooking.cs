@@ -15,7 +15,8 @@ namespace STS2_WineFox.Cards.Uncommon
     public class LittleCooking() : WineFoxCard(
         2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Exhaust, WineFoxKeywords.CookedFoodKeyword];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLittleCooking);
 

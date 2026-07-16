@@ -2,37 +2,36 @@
 
 [ext_resource type="Script" uid="uid://dvfj1roil6fve" path="res://Scripts/WineFoxRestSite.cs" id="1_f8q18"]
 [ext_resource type="Texture2D" uid="uid://dnlljm7yt4r4m" path="res://STS2_WineFox/winefox/restsite/酒狐篝火.png" id="2_f8q18"]
-[ext_resource type="Script" uid="uid://drwphpjvrbi1b" path="res://Scripts/WineFoxSelectionReticle.cs" id="3_f8q18"]
+[ext_resource type="PackedScene" uid="uid://cxqg7fr6h3sr0" path="res://STS2_WineFox/scenes/ui/selection_reticle.tscn" id="3_f8q18"]
 
 [node name="winefoxRestSite" type="Node2D"]
 position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_f8q18")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.99999976, 0.99999976)
-texture = ExtResource("2_f8q18")
-
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="SelectionReticle" type="Control" parent="ControlRoot"]
-anchors_preset = 0
-offset_left = -294.2857
-offset_top = -481.42853
-offset_right = 295.71423
-offset_bottom = 497.14276
-pivot_offset = Vector2(126, 84)
-script = ExtResource("3_f8q18")
+[node name="Visuals" type="Sprite2D" parent="ControlRoot"]
+scale = Vector2(0.9999996, 0.9999996)
+texture = ExtResource("2_f8q18")
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_f8q18")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -292.85715
+offset_top = -471.42853
+offset_right = 292.8571
+offset_bottom = 505.7143
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -317.14288
-offset_top = -488.57144
-offset_right = 307.14282
-offset_bottom = 487.1428
+offset_left = -295.7143
+offset_top = -472.85715
+offset_right = 295.71423
+offset_bottom = 509.9999
 
 [node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true

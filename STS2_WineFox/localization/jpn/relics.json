@@ -64,5 +64,8 @@
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.title": "燃える血の指輪",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.description": "失ったHPの割合に応じて攻撃ダメージを増加させる。最大[blue]50%[/blue]。",
   "STS2_WINE_FOX_RELIC_RINGOF_BURNING_BLOOD.flavor": "すべてを死へと招く。",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "ボーナスチェスト",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "各戦闘開始時、[blue]{Iron}[/blue]の[gold]鉄インゴット[/gold]を得る。",
+  "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "開けると、中には状況を変えるのに十分な物資が入っている。",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "酒狐グラス"
 }

@@ -15,3 +15,4 @@ godot.log
 *.cache
 .DS_Store
 AGENTS.md
+.claude
