@@ -60,7 +60,7 @@ namespace STS2_WineFox.Cards.Rare
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
 
-            if (blockToLose > 0m) await CreatureCmd.LoseBlock(creature, blockToLose);
+            if (blockToLose > 0m) await CreatureCmd.LoseBlock(choiceContext, creature, blockToLose, creature);
 
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);
         }

@@ -39,7 +39,7 @@ namespace STS2_WineFox.Cards.Rare
 
             foreach (var sword in swords)
             {
-                var copy = sword.CreateDupe();
+                var copy = sword.CreateDupe(owner);
                 if (IsUpgraded && !copy.IsUpgraded)
                     CardCmd.Upgrade(copy);
 

@@ -18,10 +18,12 @@ namespace STS2_WineFox.Cards.Rare
             Const.Paths.CardWirelessTerminal,
             FrameMaterialPath: Const.Paths.CardWirelessTerminalRainbowFrameMat);
 
-        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+        protected override CardLocation GetResultLocationForCardPlay()
         {
-            var (pileType, position) = base.GetResultPileTypeAndPositionForCardPlay();
-            return pileType != PileType.Discard ? (pileType, position) : (PileType.Hand, CardPilePosition.Bottom);
+            var location = base.GetResultLocationForCardPlay();
+            return location.pileType != PileType.Discard
+                ? location
+                : new CardLocation(location.player, PileType.Hand, CardPilePosition.Bottom);
         }
 
         protected override async Task OnPlay(

@@ -48,7 +48,7 @@ namespace STS2_WineFox.Powers
             foreach (var card in handCards)
             {
                 var hookChoiceContext = new HookPlayerChoiceContext(this, localNetId.Value, combatState, GameActionType.Combat);
-                var dupe = card.CreateDupe();
+                var dupe = card.CreateDupe(player);
                 var autoPlayTask = CardCmd.AutoPlay(hookChoiceContext, dupe, null);
                 if (!(await hookChoiceContext.AssignTaskAndWaitForPauseOrCompletion(autoPlayTask)))
                 {

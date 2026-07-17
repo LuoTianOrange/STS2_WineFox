@@ -23,10 +23,12 @@ namespace STS2_WineFox.Cards.Rare
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNoMoreFalchion);
 
         // 打出后返回手牌
-        protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+        protected override CardLocation GetResultLocationForCardPlay()
         {
-            var (pileType, position) = base.GetResultPileTypeAndPositionForCardPlay();
-            return pileType != PileType.Discard ? (pileType, position) : (PileType.Hand, CardPilePosition.Bottom);
+            var location = base.GetResultLocationForCardPlay();
+            return location.pileType != PileType.Discard
+                ? location
+                : new CardLocation(location.player, PileType.Hand, CardPilePosition.Bottom);
         }
 
         protected override async Task OnPlay(
