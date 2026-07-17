@@ -4,6 +4,8 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Saves;
+using MegaCrit.Sts2.Core.Settings;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -22,6 +24,7 @@ namespace STS2_WineFox.Combat
 
         private static readonly Vector2 FallbackHudPosition = new(335f, 630f);
         private static readonly Vector2 HudOffsetFromCreatureStateDisplay = new(-145f, -120f);
+        private static readonly Vector2 HudAnimOffset = new(0f, 20f);
         private static readonly Vector2 HudSize = new(100f, 100f);
         private static readonly Vector2 SourceImageSize = new(198f, 190f);
         private static readonly Vector2 IconSize = new(30f, 30f);
@@ -104,9 +107,12 @@ namespace STS2_WineFox.Combat
             private readonly MaterialSlot[] _slots = new MaterialSlot[SlotDefinitions.Length];
             private readonly Callable _focusCallable;
             private readonly Callable _unfocusCallable;
+            private Tween? _showHideTween;
             private NCreature? _creatureNode;
+            private Vector2 _originalPosition;
             private bool _isHoverConnected;
             private bool _isHovered;
+            private bool _targetVisible;
 
             public MaterialInventoryPanel(Player player)
             {
@@ -144,6 +150,7 @@ namespace STS2_WineFox.Combat
 
             public override void _ExitTree()
             {
+                _showHideTween?.Kill();
                 DisconnectHoverSignals();
                 base._ExitTree();
             }
@@ -158,7 +165,7 @@ namespace STS2_WineFox.Combat
 
                 UpdateCreatureAttachment();
                 UpdateHudPosition();
-                Visible = ShouldStayVisible() && ShouldBeVisibleForFocus();
+                UpdateVisibility(ShouldStayVisible() && ShouldBeVisibleForFocus());
                 if (!Visible) return;
 
                 for (var i = 0; i < _slots.Length; i++)
@@ -202,7 +209,62 @@ namespace STS2_WineFox.Combat
                 var stateDisplay = creatureNode.GetNodeOrNull<Control>("%HealthBar")
                                    ?? creatureNode.GetNodeOrNull<Control>("HealthBar")
                                    ?? creatureNode;
-                GlobalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
+                _originalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
+                if (_showHideTween == null || !_showHideTween.IsRunning())
+                    GlobalPosition = _targetVisible ? _originalPosition : _originalPosition + HudAnimOffset;
+            }
+
+            private void UpdateVisibility(bool shouldBeVisible)
+            {
+                if (_targetVisible == shouldBeVisible) return;
+
+                _targetVisible = shouldBeVisible;
+                if (shouldBeVisible) AnimateIn();
+                else AnimateOut();
+            }
+
+            private void AnimateIn()
+            {
+                _showHideTween?.Kill();
+                if (SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant)
+                {
+                    Modulate = Modulate with { A = 0.9f };
+                    GlobalPosition = _originalPosition;
+                    Visible = true;
+                    return;
+                }
+
+                Visible = true;
+                Modulate = Modulate with { A = 0f };
+                GlobalPosition = _originalPosition + HudAnimOffset;
+                _showHideTween = CreateTween().SetParallel();
+                _showHideTween.TweenProperty(this, "modulate:a", 0.9f, 0.15)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Sine);
+                _showHideTween.TweenProperty(this, "global_position", _originalPosition, 0.15)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Quad);
+            }
+
+            private void AnimateOut()
+            {
+                _showHideTween?.Kill();
+                if (SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant)
+                {
+                    Modulate = Modulate with { A = 0f };
+                    GlobalPosition = _originalPosition + HudAnimOffset;
+                    Visible = false;
+                    return;
+                }
+
+                _showHideTween = CreateTween().SetParallel();
+                _showHideTween.TweenProperty(this, "modulate:a", 0f, 0.5)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Sine);
+                _showHideTween.TweenProperty(this, "global_position", _originalPosition + HudAnimOffset, 0.25)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Quad);
+                _showHideTween.Chain().TweenCallback(Callable.From(() => Visible = false));
             }
 
             private bool ShouldBeVisibleForFocus()
