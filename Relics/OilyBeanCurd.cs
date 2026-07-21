@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2_WineFox.Character;
 using STS2_WineFox.Potions;
@@ -18,6 +20,8 @@ namespace STS2_WineFox.Relics
     {
         private const int Threshold = 5;
         private const int HpGain = 2;
+        private const float ScaleGain = 0.05f;
+        private const float MaxScale = 5f;
 
         public override RelicRarity Rarity => RelicRarity.Common;
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.OilyBeanCurdRelicIcon);
@@ -83,6 +87,24 @@ namespace STS2_WineFox.Relics
             FoodsEaten = 0;
             Flash();
             await CreatureCmd.GainMaxHp(Owner.Creature, HpGain);
+            Grow();
+        }
+
+        public override Task AfterRoomEntered(AbstractRoom room)
+        {
+            Grow();
+            return Task.CompletedTask;
+        }
+
+        private void Grow()
+        {
+            var node = NCombatRoom.Instance?.GetCreatureNode(Owner.Creature);
+            if (node == null)
+                return;
+
+            var growthCount = TotalFoodsEaten / Threshold;
+            var nextScale = Math.Min(MaxScale, 1f + growthCount * ScaleGain);
+            node.ScaleTo(nextScale, 0.0);
         }
     }
 }
