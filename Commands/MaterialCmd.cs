@@ -435,11 +435,7 @@ namespace STS2_WineFox.Commands
 
         public static bool IsFreePlay(CardPlay play)
         {
-            var resolution = FreePlayBindingRegistry.Resolve(play);
-            return resolution.IsAutoPlayNoSpend
-                   || resolution.IsCardBindingFree
-                   || resolution.IsDualResourceModelFree
-                   || resolution.IsRegisteredDetectorFree;
+            return FreePlayBindingRegistry.Resolve(play).IsFree;
         }
 
         private static bool IsNoSpendPlay(CardPlay play)
