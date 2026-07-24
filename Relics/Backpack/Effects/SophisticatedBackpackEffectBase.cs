@@ -62,7 +62,7 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             decimal count,
             decimal bonus)
         {
-            if (player != backpack.Owner || player.Creature.CombatState.RoundNumber > 1)
+            if (player != backpack.Owner || player.PlayerCombatState?.TurnNumber != 1)
                 return count;
 
             if (bonus == 0m)

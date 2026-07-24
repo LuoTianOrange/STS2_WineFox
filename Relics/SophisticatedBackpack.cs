@@ -207,8 +207,6 @@ namespace STS2_WineFox.Relics
 
         public override async Task AfterCombatEnd(CombatRoom room)
         {
-            _effectStateInts.Clear();
-
             _pendingEffectFlash = false;
             foreach (var effect in SophisticatedBackpackEffects.All)
             {
@@ -218,6 +216,8 @@ namespace STS2_WineFox.Relics
                 await effect.AfterCombatEnd(this, room);
             }
 
+            _effectStateInts.Clear();
+            RefreshDescriptionText();
             FlushPendingEffectFlash();
         }
 

@@ -5,9 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
+using STS2_WineFox.Rewards;
 
 namespace STS2_WineFox.Powers
 {
@@ -52,25 +51,7 @@ namespace STS2_WineFox.Powers
                 return;
 
             var player = SourcePlayer;
-            var options = CardCreationOptions
-                .ForNonCombatWithUniformOdds(
-                    [player.Character.CardPool],
-                    card => card.Rarity == rarity && IsMultiplayerConstraintSatisfied(card, player))
-                .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
-
-            room.AddExtraReward(player, new CardReward(options, 3, player));
-        }
-
-        private static bool IsMultiplayerConstraintSatisfied(CardModel card, Player player)
-        {
-            return card.MultiplayerConstraint switch
-            {
-                CardMultiplayerConstraint.SingleplayerOnly =>
-                    player.RunState.CardMultiplayerConstraint != CardMultiplayerConstraint.MultiplayerOnly,
-                CardMultiplayerConstraint.MultiplayerOnly =>
-                    player.RunState.CardMultiplayerConstraint != CardMultiplayerConstraint.SingleplayerOnly,
-                _ => true,
-            };
+            room.AddExtraReward(player, PotionCardReward.Create(rarity, player));
         }
     }
 }
