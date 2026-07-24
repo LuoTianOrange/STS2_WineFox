@@ -246,7 +246,7 @@
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]. At the start of next turn, gain {NextTurnMaterial:diff()} [gold]Plank[/gold] and {NextTurnMaterial:diff()} [gold]Cobblestone[/gold].",
 
   "STS2_WINE_FOX_CARD_LOGISTICS.title": "Logistics",
-  "STS2_WINE_FOX_CARD_LOGISTICS.description": "Choose {IfUpgraded:show:any|a} card in your hand and [gold]Exhaust[/gold] it. Add a copy of it to a teammate's hand.",
+  "STS2_WINE_FOX_CARD_LOGISTICS.description": "Choose {IfUpgraded:show:any number of cards|a card} in your hand and [gold]Exhaust[/gold] {IfUpgraded:show:them|it}. Add {IfUpgraded:show:copies of them|a copy of it} to another player's hand.",
   "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "Choose a card to exhaust and send",
 
   "STS2_WINE_FOX_CARD_SWEEP.title": "Sweep",

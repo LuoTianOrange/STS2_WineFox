@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Patches;
+using STS2_WineFox.Rewards;
 using STS2_WineFox.Settings;
 using STS2_WineFox.Telemetry;
 using STS2_WineFox.Utils;
@@ -48,6 +49,7 @@ namespace STS2_WineFox
                 var assembly = Assembly.GetExecutingAssembly();
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 WineFoxFoodPotionRewardPatch.InitializeSavedData();
+                PotionCardReward.InitializeRegistration();
                 if (!EnsureRequiredRuntimePatches())
                     return;
 

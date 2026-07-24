@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.2.13";
+        public const string Version = "1.2.15";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -169,7 +169,6 @@ namespace STS2_WineFox
             public const string CardLightAssault = Root + "/cards/card_light_assault.png";
             public const string CardEasyPeasy = Root + "/cards/card_easy_peasy.png";
             public const string CardAllItem = Root + "/cards/card_allitem.png";
-            public const string CardAllItemUpgraded = Root + "/cards/card_allitem_upgraded.png";
             public const string CardRiclearPowerPlant = Root + "/cards/card_riclear_power_plant.png";
             public const string CardAlternator = Root + "/cards/card_alternator.png";
             public const string CardEmptyStrikes = Root + "/cards/card_empty_strikes.png";
@@ -183,7 +182,7 @@ namespace STS2_WineFox
             public const string CardProductionDocument = Root + "/cards/card_production_document.png";
             public const string CardMilk = Root + "/cards/card_milk.png";
             public const string CardVacantDomain = Root + "/cards/card_vacantdomain.png";
-            public const string CardRecordPlayer = Root + "/cards/card_record_player.png";
+            // public const string CardRecordPlayer = Root + "/cards/card_record_player.png";
             public const string CardPressWToThink = Root + "/cards/card_press_w_to_think.png";
             public const string CardBackupCrafting = Root + "/cards/card_backup_crafting.png";
             public const string CardTicTacToeGrid = Root + "/cards/card_tic_tac_toe_grid.png";
@@ -200,7 +199,7 @@ namespace STS2_WineFox
             public const string CardFoxBite = Root + "/cards/card_fox_bite.png";
             public const string CardMaidSupport = Root + "/cards/card_maid_support.png";
             public const string CardForging = Root + "/cards/card_forgeing.png";
-            public const string CardEquivalentExchange = Root + "/cards/card_equivalent_exchange.png";
+            // public const string CardEquivalentExchange = Root + "/cards/card_equivalent_exchange.png";
             public const string CardQuickShelter = Root + "/cards/card_quick_shelter.png";
             public const string CardBlueprintPrinting = Root + "/cards/card_blueprint_printing.png";
             public const string CardStressResponse = Root + "/cards/card_stress_response.png";

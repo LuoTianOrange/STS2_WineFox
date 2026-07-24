@@ -237,7 +237,7 @@
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.title": "溜め込み癖",
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "{Wood:diff()}個の[gold]木材[/gold]と{Stone:diff()}個の[gold]丸石[/gold]を得る。次のターン開始時、{NextTurnMaterial:diff()}個の[gold]木材[/gold]と{NextTurnMaterial:diff()}個の[gold]丸石[/gold]を得る。",
   "STS2_WINE_FOX_CARD_LOGISTICS.title": "物流",
-  "STS2_WINE_FOX_CARD_LOGISTICS.description": "手札のカードを{IfUpgraded:show:any|a}枚選び、それを[gold]廃棄[/gold]する。そのコピーをチームメイトの手札に加える。",
+  "STS2_WINE_FOX_CARD_LOGISTICS.description": "手札から{IfUpgraded:show:任意の枚数のカード|カード1枚}を選び、それを[gold]廃棄[/gold]する。そのコピーを別のプレイヤーの手札に加える。",
   "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "廃棄して送るカードを選択",
   "STS2_WINE_FOX_CARD_SWEEP.title": "一掃",
   "STS2_WINE_FOX_CARD_SWEEP.description": "すべての敵に{Damage:diff()}ダメージを与える。あなたにブロックがない場合、追加でもう1回ダメージを与える。",

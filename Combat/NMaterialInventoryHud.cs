@@ -1,9 +1,12 @@
 using System.Globalization;
 using Godot;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Saves;
+using MegaCrit.Sts2.Core.Settings;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -22,6 +25,7 @@ namespace STS2_WineFox.Combat
 
         private static readonly Vector2 FallbackHudPosition = new(335f, 630f);
         private static readonly Vector2 HudOffsetFromCreatureStateDisplay = new(-145f, -120f);
+        private static readonly Vector2 HudAnimOffset = new(0f, 20f);
         private static readonly Vector2 HudSize = new(100f, 100f);
         private static readonly Vector2 SourceImageSize = new(198f, 190f);
         private static readonly Vector2 IconSize = new(30f, 30f);
@@ -70,7 +74,6 @@ namespace STS2_WineFox.Combat
 
                 var panel = new MaterialInventoryPanel(player);
                 _panels.Add(panel);
-                AddChild(panel);
                 panel.Refresh();
             }
 
@@ -103,14 +106,26 @@ namespace STS2_WineFox.Combat
         private partial class MaterialInventoryPanel : Control
         {
             private readonly MaterialSlot[] _slots = new MaterialSlot[SlotDefinitions.Length];
+            private readonly Callable _focusCallable;
+            private readonly Callable _unfocusCallable;
+            private Tween? _showHideTween;
+            private NCreature? _creatureNode;
+            private Vector2 _originalPosition;
+            private bool _isHoverConnected;
+            private bool _isHovered;
+            private bool _targetVisible;
 
             public MaterialInventoryPanel(Player player)
             {
                 Player = player;
+                _focusCallable = Callable.From(OnFocus);
+                _unfocusCallable = Callable.From(OnUnfocus);
                 MouseFilter = MouseFilterEnum.Ignore;
                 Size = HudSize;
                 CustomMinimumSize = HudSize;
-                ZIndex = 0;
+                ZAsRelative = true;
+                ZIndex = 1;
+                Visible = false;
 
                 var background = new TextureRect // 物品栏底图。
                 {
@@ -134,6 +149,13 @@ namespace STS2_WineFox.Combat
 
             public Player Player { get; }
 
+            public override void _ExitTree()
+            {
+                _showHideTween?.Kill();
+                DisconnectHoverSignals();
+                base._ExitTree();
+            }
+
             public void Refresh()
             {
                 if (Player.Creature == null)
@@ -142,8 +164,9 @@ namespace STS2_WineFox.Combat
                     return;
                 }
 
+                UpdateCreatureAttachment();
                 UpdateHudPosition();
-                Visible = ShouldStayVisible();
+                UpdateVisibility(ShouldStayVisible() && ShouldBeVisibleForFocus());
                 if (!Visible) return;
 
                 for (var i = 0; i < _slots.Length; i++)
@@ -162,9 +185,22 @@ namespace STS2_WineFox.Combat
                        SlotDefinitions.Any(slot => GetMaterialAmount(slot.PowerType) > 0m);
             }
 
-            private void UpdateHudPosition()
+            private void UpdateCreatureAttachment()
             {
                 var creatureNode = Player.Creature.GetCreatureNode();
+                if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode)) return;
+                if (ReferenceEquals(_creatureNode, creatureNode) && GetParent() == creatureNode) return;
+
+                DisconnectHoverSignals();
+                GetParent()?.RemoveChild(this);
+                creatureNode.AddChild(this);
+                _creatureNode = creatureNode;
+                ConnectHoverSignals();
+            }
+
+            private void UpdateHudPosition()
+            {
+                var creatureNode = _creatureNode;
                 if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
                 {
                     Position = FallbackHudPosition;
@@ -174,7 +210,101 @@ namespace STS2_WineFox.Combat
                 var stateDisplay = creatureNode.GetNodeOrNull<Control>("%HealthBar")
                                    ?? creatureNode.GetNodeOrNull<Control>("HealthBar")
                                    ?? creatureNode;
-                GlobalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
+                _originalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
+                if (_showHideTween == null || !_showHideTween.IsRunning())
+                    GlobalPosition = _targetVisible ? _originalPosition : _originalPosition + HudAnimOffset;
+            }
+
+            private void UpdateVisibility(bool shouldBeVisible)
+            {
+                if (_targetVisible == shouldBeVisible) return;
+
+                _targetVisible = shouldBeVisible;
+                if (shouldBeVisible) AnimateIn();
+                else AnimateOut();
+            }
+
+            private void AnimateIn()
+            {
+                _showHideTween?.Kill();
+                if (SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant)
+                {
+                    Modulate = Modulate with { A = 0.9f };
+                    GlobalPosition = _originalPosition;
+                    Visible = true;
+                    return;
+                }
+
+                Visible = true;
+                Modulate = Modulate with { A = 0f };
+                GlobalPosition = _originalPosition + HudAnimOffset;
+                _showHideTween = CreateTween().SetParallel();
+                _showHideTween.TweenProperty(this, "modulate:a", 0.9f, 0.15)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Sine);
+                _showHideTween.TweenProperty(this, "global_position", _originalPosition, 0.15)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Quad);
+            }
+
+            private void AnimateOut()
+            {
+                _showHideTween?.Kill();
+                if (SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant)
+                {
+                    Modulate = Modulate with { A = 0f };
+                    GlobalPosition = _originalPosition + HudAnimOffset;
+                    Visible = false;
+                    return;
+                }
+
+                _showHideTween = CreateTween().SetParallel();
+                _showHideTween.TweenProperty(this, "modulate:a", 0f, 0.5)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Sine);
+                _showHideTween.TweenProperty(this, "global_position", _originalPosition + HudAnimOffset, 0.25)
+                    .SetEase(Tween.EaseType.Out)
+                    .SetTrans(Tween.TransitionType.Quad);
+                _showHideTween.Chain().TweenCallback(Callable.From(() => Visible = false));
+            }
+
+            private bool ShouldBeVisibleForFocus()
+            {
+                if (LocalContext.IsMe(Player.Creature)) return true;
+                return _isHovered || _creatureNode?.IsFocused == true;
+            }
+
+            private void ConnectHoverSignals()
+            {
+                if (_creatureNode?.Hitbox == null || _isHoverConnected) return;
+
+                _creatureNode.Hitbox.Connect(Control.SignalName.MouseEntered, _focusCallable);
+                _creatureNode.Hitbox.Connect(Control.SignalName.MouseExited, _unfocusCallable);
+                _creatureNode.Hitbox.Connect(Control.SignalName.FocusEntered, _focusCallable);
+                _creatureNode.Hitbox.Connect(Control.SignalName.FocusExited, _unfocusCallable);
+                _isHoverConnected = true;
+            }
+
+            private void DisconnectHoverSignals()
+            {
+                if (_creatureNode?.Hitbox == null || !_isHoverConnected) return;
+
+                _creatureNode.Hitbox.Disconnect(Control.SignalName.MouseEntered, _focusCallable);
+                _creatureNode.Hitbox.Disconnect(Control.SignalName.MouseExited, _unfocusCallable);
+                _creatureNode.Hitbox.Disconnect(Control.SignalName.FocusEntered, _focusCallable);
+                _creatureNode.Hitbox.Disconnect(Control.SignalName.FocusExited, _unfocusCallable);
+                _isHoverConnected = false;
+                _isHovered = false;
+            }
+
+            private void OnFocus()
+            {
+                _isHovered = true;
+            }
+
+            private void OnUnfocus()
+            {
+                _isHovered = false;
             }
         }
 

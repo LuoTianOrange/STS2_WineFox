@@ -51,7 +51,7 @@
 
     <ItemGroup>
         <ProjectReference Include="$(RitsuLibDir)\STS2-RitsuLib.csproj" Condition="'$(UseNuGetRitsuLib)' != 'true'"/>
-        <PackageReference Include="STS2.RitsuLib" Version="0.4.33" Condition="'$(UseNuGetRitsuLib)' == 'true'" />
+        <PackageReference Include="STS2.RitsuLib.Compat.0.107.1" Version="0.4.47" Condition="'$(UseNuGetRitsuLib)' == 'true'" />
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
