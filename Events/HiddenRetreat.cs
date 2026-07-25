@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
@@ -45,28 +46,59 @@ namespace STS2_WineFox.Events
 
         private IReadOnlyList<EventOption> RelicOptions()
         {
-            var options = new List<EventOption>
-            {
-                CreateRelicOption<WoundRimeBlade>("WOUND_RIME_BLADE"),
-                CreateRelicOption<BleedingHeart>("BLEEDING_HEART"),
-                CreateRelicOption<FlowCore>("FLOW_CORE"),
-                CreateRelicOption<SilverCercisCrown>("SILVER_CERCIS_CROWN"),
-                CreateRelicOption<AnchorCore>("ANCHOR_CORE"),
-                CreateRelicOption<RingofBurningBlood>("RING_OF_BURNING_BLOOD"),
-                CreateRelicOption<SophisticatedBackpack>("SOPHISTICATED_BACKPACK"),
-            };
+            var options = new List<EventOption>();
+            AddRelicOptionIfAllowed<WoundRimeBlade>(options, "WOUND_RIME_BLADE");
+            AddRelicOptionIfAllowed<BleedingHeart>(options, "BLEEDING_HEART");
+            AddRelicOptionIfAllowed<FlowCore>(options, "FLOW_CORE");
+            AddRelicOptionIfAllowed<SilverCercisCrown>(options, "SILVER_CERCIS_CROWN");
+            AddRelicOptionIfAllowed<AnchorCore>(options, "ANCHOR_CORE");
+            AddRelicOptionIfAllowed<RingofBurningBlood>(options, "RING_OF_BURNING_BLOOD");
+            AddRelicOptionIfAllowed<SophisticatedBackpack>(options, "SOPHISTICATED_BACKPACK");
 
             Shuffle(options);
             return options.Take(3).ToList();
+        }
+
+        private void AddRelicOptionIfAllowed<T>(List<EventOption> options, string optionName)
+            where T : RelicModel
+        {
+            ArgumentNullException.ThrowIfNull(Owner);
+            if (!ModelDb.Relic<T>().IsAllowed(Owner.RunState))
+                return;
+
+            options.Add(CreateRelicOption<T>(optionName));
         }
 
         private EventOption CreateRelicOption<T>(string optionName)
             where T : RelicModel
         {
             ArgumentNullException.ThrowIfNull(Owner);
+            var relic = ModelDb.Relic<T>().ToMutable();
+            relic.Owner = Owner;
             return new EventOption(this, () => ChooseRelic<T>(), ModOptionKey("RELICS", optionName),
-                    HoverTipFactory.FromRelic<T>())
-                .WithRelic<T>(Owner);
+                CreateRelicHoverTips(relic));
+        }
+
+        private static IHoverTip[] CreateRelicHoverTips(RelicModel relic)
+        {
+            try
+            {
+                return HoverTipFactory.FromRelic(relic).ToArray();
+            }
+            catch (InvalidOperationException)
+            {
+                var relicKey = $"STS2_WINE_FOX_RELIC_{relic.Id.Entry}";
+                var description = new LocString("relics", $"{relicKey}.description");
+                foreach (var dynamicVar in relic.DynamicVars.Values)
+                    description.Add(dynamicVar);
+
+                return
+                [
+                    new HoverTip(
+                        new LocString("relics", $"{relicKey}.title"),
+                        description),
+                ];
+            }
         }
 
         private void Shuffle<T>(IList<T> list)
