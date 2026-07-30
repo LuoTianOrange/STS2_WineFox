@@ -13,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
-    [RegisterRelic(typeof(WineFoxSharedRelicPool))]
+    [WineFoxPublicRelic]
     public sealed class Elytra : WineFoxRelic
     {
         private const string RoomsKey = "Rooms";
