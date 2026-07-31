@@ -30,6 +30,8 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "レアレリック。所持している間、クラフト可能なカードを追加で提供する。",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "剣",
   "STS2_WINE_FOX_KEYWORD_SWORD.description": "[gold]木の剣[/gold]、[gold]石の剣[/gold]、[gold]鉄の剣[/gold]、[gold]金の剣[/gold]、[gold]ダイヤモンドの剣[/gold]、[gold]ネザライトの剣[/gold]を含む。",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.title": "調理可能な食料",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.description": "[gold]ジャガイモ[/gold]：HPを1得て、ブロックを3得る。\n[gold]ニンジン[/gold]：HPを2得て、筋力を1得る。\n[gold]ビートルート[/gold]：HPを1得る。\n[gold]小麦[/gold]：戦闘中の効果はない。\n[gold]キノコ[/gold]：毒を1得て、敏捷性を1得る。\n[gold]カボチャ[/gold]：HPを4得る。",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "調理済み食料",
-  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]ベイクドポテト[/gold]、[gold]パン[/gold]、[gold]パンプキンパイ[/gold]、[gold]ビートルートスープ[/gold]、[gold]燻製ニンジン[/gold]を含む。"
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]ベイクドポテト[/gold]：HPを5得て、ブロックを6得る。\n[gold]燻製ニンジン[/gold]：HPを4得て、筋力を2得る。\n[gold]ビートスープ[/gold]：HPを6得て、プレートアーマーを2得る。\n[gold]パン[/gold]：HPを5得る。カードを1枚引く。\n[gold]キノコシチュー[/gold]：HPを6得て、敏捷性を2得る。\n[gold]パンプキンパイ[/gold]：HPを8得て、アーティファクトを1得る。"
 }

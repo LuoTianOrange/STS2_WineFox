@@ -30,6 +30,8 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "희귀 유물. 보유 중일 때 제작 가능한 카드를 추가로 제공합니다.",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "검",
   "STS2_WINE_FOX_KEYWORD_SWORD.description": "[gold]나무 검[/gold], [gold]돌 검[/gold], [gold]철 검[/gold], [gold]금 검[/gold], [gold]다이아몬드 검[/gold], [gold]네더라이트 검[/gold]을 포함합니다.",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.title": "조리 가능한 음식",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.description": "[gold]감자[/gold]: 체력을 1 얻고 방어도를 3 얻습니다.\n[gold]당근[/gold]: 체력을 2 얻고 힘을 1 얻습니다.\n[gold]비트[/gold]: 체력을 1 얻습니다.\n[gold]밀[/gold]: 전투 효과가 없습니다.\n[gold]버섯[/gold]: 독을 1 얻고 민첩을 1 얻습니다.\n[gold]호박[/gold]: 체력을 4 얻습니다.",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "조리된 음식",
-  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]구운 감자[/gold], [gold]빵[/gold], [gold]호박 파이[/gold], [gold]비트 수프[/gold], [gold]훈제 당근[/gold]을 포함합니다."
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]구운 감자[/gold]: 체력을 5 얻고 방어도를 6 얻습니다.\n[gold]훈제 당근[/gold]: 체력을 4 얻고 힘을 2 얻습니다.\n[gold]비트 수프[/gold]: 체력을 6 얻고 판금 갑옷을 2 얻습니다.\n[gold]빵[/gold]: 체력을 5 얻습니다. 카드를 1장 뽑습니다.\n[gold]버섯 스튜[/gold]: 체력을 6 얻고 민첩을 2 얻습니다.\n[gold]호박 파이[/gold]: 체력을 8 얻고 인공물을 1 얻습니다."
 }

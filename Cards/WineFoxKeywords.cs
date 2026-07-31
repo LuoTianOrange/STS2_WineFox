@@ -24,6 +24,7 @@ namespace STS2_WineFox.Cards
         public const string MagicKey = "magic";
         public const string SophisticatedBackpackKey = "sophisticated_backpack";
         public const string SwordKey = "sword";
+        public const string CookableFoodKey = "cookable_food";
         public const string CookedFoodKey = "cooked_food";
 
         public static readonly string Stress = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, StressKey);
@@ -47,6 +48,7 @@ namespace STS2_WineFox.Cards
         public static readonly string SophisticatedBackpack =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
         public static readonly string Sword = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SwordKey);
+        public static readonly string CookableFood = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookableFoodKey);
         public static readonly string CookedFood = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookedFoodKey);
 
         public static readonly CardKeyword StressKeyword = Stress.GetModCardKeyword();
@@ -66,6 +68,7 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
         public static readonly CardKeyword SophisticatedBackpackKeyword = SophisticatedBackpack.GetModCardKeyword();
         public static readonly CardKeyword SwordKeyword = Sword.GetModCardKeyword();
+        public static readonly CardKeyword CookableFoodKeyword = CookableFood.GetModCardKeyword();
         public static readonly CardKeyword CookedFoodKeyword = CookedFood.GetModCardKeyword();
 
         extension(CardModel card)
@@ -153,6 +156,11 @@ namespace STS2_WineFox.Cards
             public bool IsSword()
             {
                 return card.HasModKeyword(SwordKeyword);
+            }
+
+            public bool IsCookableFood()
+            {
+                return card.HasModKeyword(CookableFoodKeyword);
             }
 
             public bool IsCookedFood()

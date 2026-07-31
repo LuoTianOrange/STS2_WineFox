@@ -30,6 +30,8 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "稀有遗物。持有时提供额外的合成卡牌。",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "剑牌",
   "STS2_WINE_FOX_KEYWORD_SWORD.description": "包括[gold]木剑[/gold]、[gold]石剑[/gold]、[gold]铁剑[/gold]、[gold]金剑[/gold]、[gold]钻石剑[/gold]和[gold]下界合金剑[/gold]。",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.title": "可烹饪的食物",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.description": "[gold]马铃薯[/gold]：获得1点生命值，3点格挡。\n[gold]胡萝卜[/gold]：获得2点生命值，1层力量。\n[gold]甜菜根[/gold]：获得1点生命值。\n[gold]小麦[/gold]：没有战斗效果。\n[gold]蘑菇[/gold]：获得1层中毒，1点敏捷。\n[gold]南瓜[/gold]：获得4点生命值。",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "烹饪过的食物",
-  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "包括[gold]烤马铃薯[/gold]、[gold]面包[/gold]、[gold]南瓜派[/gold]、[gold]甜菜汤[/gold]和[gold]烟熏胡萝卜[/gold]。"
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]烤马铃薯[/gold]：获得5点生命值，6点格挡。\n[gold]烟熏胡萝卜[/gold]：获得4点生命值，2层力量。\n[gold]甜菜汤[/gold]：获得6点生命值，2层覆甲。\n[gold]面包[/gold]：获得5点生命值。抽1张牌。\n[gold]蘑菇煲[/gold]：获得6点生命值，2点敏捷。\n[gold]南瓜派[/gold]：获得8点生命值，1层人工制品。"
 }
