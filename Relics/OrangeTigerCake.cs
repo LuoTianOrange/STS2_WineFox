@@ -11,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
-    [RegisterRelic(typeof(WineFoxSharedRelicPool))]
+    [WineFoxPublicRelic]
     public sealed class OrangeTigerCake : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Rare;
@@ -65,6 +65,4 @@ namespace STS2_WineFox.Relics
         }
     }
 }
-
-
 

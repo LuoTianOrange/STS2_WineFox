@@ -30,6 +30,8 @@
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "Rare relic. Provides extra craftable cards while held.",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "Sword",
   "STS2_WINE_FOX_KEYWORD_SWORD.description": "Includes [gold]Wooden Sword[/gold], [gold]Stone Sword[/gold], [gold]Iron Sword[/gold], [gold]Golden Sword[/gold], [gold]Diamond Sword[/gold], and [gold]Netherite Sword[/gold].",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.title": "Cookable Food",
+  "STS2_WINE_FOX_KEYWORD_COOKABLE_FOOD.description": "Includes [gold]Potato[/gold]: Gain 1 HP and 3 Block.\n[gold]Carrot[/gold]: Gain 2 HP and 1 Strength.\n[gold]Beet[/gold]: Gain 1 HP.\n[gold]Wheat[/gold]: No combat effect.\n[gold]Mushroom[/gold]: Gain 1 Poison and 1 Dexterity.\n[gold]Pumpkin[/gold]: Gain 4 HP.",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "Cooked Food",
-  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "Includes [gold]Baked Potato[/gold], [gold]Bread[/gold], [gold]Pumpkin Pie[/gold], [gold]Beetroot Soup[/gold], and [gold]Smoked Carrot[/gold]."
+  "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "Includes [gold]Baked Potato[/gold]: Gain 5 HP and 6 Block.\n[gold]Smoked Carrot[/gold]: Gain 4 HP and 2 Strength.\n[gold]Beet Soup[/gold]: Gain 6 HP and 2 Plated Armor.\n[gold]Bread[/gold]: Gain 5 HP. Draw 1 card.\n[gold]Mushroom Stew[/gold]: Gain 6 HP and 2 Dexterity.\n[gold]Pumpkin Pie[/gold]: Gain 8 HP and 1 Artifact."
 }

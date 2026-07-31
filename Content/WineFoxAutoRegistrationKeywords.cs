@@ -60,6 +60,9 @@ namespace STS2_WineFox.Content
         [RegisterOwnedCardKeyword(WineFoxKeywords.SwordKey)]
         private sealed class Sword;
 
+        [RegisterOwnedCardKeyword(WineFoxKeywords.CookableFoodKey)]
+        private sealed class CookableFood;
+
         [RegisterOwnedCardKeyword(WineFoxKeywords.CookedFoodKey)]
         private sealed class CookedFood;
     }

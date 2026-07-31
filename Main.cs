@@ -108,6 +108,7 @@ namespace STS2_WineFox
             patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
             patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
             WineFoxMultiplayerSettingsSyncPatches.AddTo(patcher);
+            patcher.RegisterPatch<WineFoxPublicRelicRewardPoolPatch>();
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
             patcher.RegisterPatch<WineFoxPredeterminedPotionRewardSavePatch>();
             patcher.RegisterPatch<NCombatUiActivateMaterialInventoryHudPatch>();

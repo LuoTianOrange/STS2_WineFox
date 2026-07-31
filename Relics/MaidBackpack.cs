@@ -8,7 +8,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(WineFoxRelicPool))]
-    [RegisterRelic(typeof(WineFoxSharedRelicPool))]
+    [WineFoxPublicRelic]
     public class MaidBackpack : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Uncommon;
