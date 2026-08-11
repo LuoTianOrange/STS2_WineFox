@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djuhwrcr6cgtq"
-path="res://.godot/imported/sakura.png-8d001af132fbbcd2654d59678c8507e9.ctex"
+uid="uid://26ti4tbf5bq6"
+path="res://.godot/imported/123.png-740dbc7e07bfb02da8ee08b77b97217f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/scenes/char_select/sakura.png"
-dest_files=["res://.godot/imported/sakura.png-8d001af132fbbcd2654d59678c8507e9.ctex"]
+source_file="res://STS2_WineFox/scenes/char_select/magic_winefox/123.png"
+dest_files=["res://.godot/imported/123.png-740dbc7e07bfb02da8ee08b77b97217f.ctex"]
 
 [params]
 

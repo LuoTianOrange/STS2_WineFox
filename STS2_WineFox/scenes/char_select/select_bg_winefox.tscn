@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c6rw7txbr6pl4"]
 
-[ext_resource type="SpineSkeletonDataResource" uid="uid://curh1aldwhahw" path="res://STS2_WineFox/scenes/char_select/char_select_bg_wine_fox.tres" id="2_4f6ch"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://curh1aldwhahw" path="res://STS2_WineFox/scenes/char_select/winefox/char_select_bg_wine_fox.tres" id="2_4f6ch"]
 [ext_resource type="Script" uid="uid://brfjr1drkdvsh" path="res://Patches/SpineAutoPlayer.cs" id="3_vso88"]
-[ext_resource type="Texture2D" uid="uid://djuhwrcr6cgtq" path="res://STS2_WineFox/scenes/char_select/sakura.png" id="4_4m41m"]
+[ext_resource type="Texture2D" uid="uid://djuhwrcr6cgtq" path="res://STS2_WineFox/scenes/char_select/winefox/sakura.png" id="4_4m41m"]
 [ext_resource type="Shader" uid="uid://6ww4w3bhsllj" path="res://STS2_WineFox/shaders/sunlight_glow.gdshader" id="6_sunlight_shader"]
 [ext_resource type="Script" uid="uid://kr3o7m2v5oii" path="res://Scripts/SakuraWindController.cs" id="7_wind_ctrl"]
-[ext_resource type="Script" path="res://Scripts/ThrottledShaderViewport.cs" id="8_throttled_light"]
+[ext_resource type="Script" uid="uid://cwf6n02hpkr6" path="res://Scripts/ThrottledShaderViewport.cs" id="8_throttled_light"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_525j6"]
 

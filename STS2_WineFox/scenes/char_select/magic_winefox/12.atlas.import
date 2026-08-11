@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://nbuijwwwnrtl"
+path="res://.godot/imported/12.atlas-9899b37f77069bce3dfd70627b99c785.spatlas"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/char_select/magic_winefox/12.atlas"
+dest_files=["res://.godot/imported/12.atlas-9899b37f77069bce3dfd70627b99c785.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

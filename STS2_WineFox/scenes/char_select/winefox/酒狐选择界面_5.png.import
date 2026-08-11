@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl0eoioyjca1w"
-path="res://.godot/imported/酒狐选择界面.png-5d65194e83592a37fa2d943ccd1b59bd.ctex"
+uid="uid://chtxbuombolyq"
+path="res://.godot/imported/酒狐选择界面_5.png-f2f997f6efd4f155b29bae2c20b95a15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/scenes/char_select/酒狐选择界面.png"
-dest_files=["res://.godot/imported/酒狐选择界面.png-5d65194e83592a37fa2d943ccd1b59bd.ctex"]
+source_file="res://STS2_WineFox/scenes/char_select/winefox/酒狐选择界面_5.png"
+dest_files=["res://.godot/imported/酒狐选择界面_5.png-f2f997f6efd4f155b29bae2c20b95a15.ctex"]
 
 [params]
 

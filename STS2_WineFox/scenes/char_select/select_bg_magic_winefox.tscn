@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://5w8p3oku5ovy"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://d58rd08fy44v" path="res://STS2_WineFox/scenes/char_select/magic_winefox/mgaic_winefox_select.tres" id="1_2h45a"]
+[ext_resource type="Script" uid="uid://brfjr1drkdvsh" path="res://Patches/SpineAutoPlayer.cs" id="2_h1606"]
+
+[node name="MagicWineFoxBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_2h45a")
+preview_skin = "default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(1050, 700)
+scale = Vector2(0.256, 0.256)
+
+[node name="NSpineAutoPlayer" type="Node" parent="SpineSprite"]
+script = ExtResource("2_h1606")

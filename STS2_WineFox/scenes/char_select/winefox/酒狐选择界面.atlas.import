@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://br058ndfmb68d"
+path="res://.godot/imported/酒狐选择界面.atlas-ad0e00ddcd2344ccf23607b00bc2a386.spatlas"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/char_select/winefox/酒狐选择界面.atlas"
+dest_files=["res://.godot/imported/酒狐选择界面.atlas-ad0e00ddcd2344ccf23607b00bc2a386.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

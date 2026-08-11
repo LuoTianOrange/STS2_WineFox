@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blmmy31l0cb56"
-path="res://.godot/imported/sakura2.png-38aa51b854fd9bb33ef8c949327ad859.ctex"
+uid="uid://cf8sngtcaoefx"
+path="res://.godot/imported/酒狐选择界面_3.png-91565a4237acaaaa61bfb7eba3596d76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://STS2_WineFox/scenes/char_select/sakura2.png"
-dest_files=["res://.godot/imported/sakura2.png-38aa51b854fd9bb33ef8c949327ad859.ctex"]
+source_file="res://STS2_WineFox/scenes/char_select/winefox/酒狐选择界面_3.png"
+dest_files=["res://.godot/imported/酒狐选择界面_3.png-91565a4237acaaaa61bfb7eba3596d76.ctex"]
 
 [params]
 
