@@ -67,5 +67,8 @@
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "보너스 상자",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "각 전투 시작 시, [blue]{Iron}[/blue] [gold]철 주괴[/gold]를 얻습니다.",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "열어 보면, 상황을 바꿀 만큼 충분한 물자가 들어 있습니다.",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.title": "마법서",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.description": "효과 없음.",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.flavor": "마법 메모로 가득한 오래된 책. 진정으로 펼쳐질 때를 기다리고 있습니다.",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "술여우 유리"
 }

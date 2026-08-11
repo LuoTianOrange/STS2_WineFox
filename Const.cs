@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.2.16";
+        public const string Version = "1.2.17";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -75,6 +75,7 @@ namespace STS2_WineFox
             public const string AnchorCoreRelicIcon = Root + "/relics/relic_anchor_core.png";
             public const string RingofBurningBloodRelicIcon = Root + "/relics/relic_ring_of_burning_blood.png";
             public const string BonusChestRelicIcon = Root + "/relics/relic_bonus_chest.png";
+            public const string SpellBookRelicIcon = Root + "/relics/relic_spell_book.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";

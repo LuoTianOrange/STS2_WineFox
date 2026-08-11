@@ -67,5 +67,8 @@
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "Bonus Chest",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "At the start of each combat, gain [blue]{Iron}[/blue] [gold]Iron Ingots[/gold].",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "Open it, and inside are supplies enough to turn the situation around.",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.title": "Spell Book",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.description": "No effect.",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.flavor": "An old book filled with magical notes, waiting to be truly opened.",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Winefox Glass"
 }

@@ -67,5 +67,8 @@
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "ボーナスチェスト",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "各戦闘開始時、[blue]{Iron}[/blue]の[gold]鉄インゴット[/gold]を得る。",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "開けると、中には状況を変えるのに十分な物資が入っている。",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.title": "魔法書",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.description": "効果なし。",
+  "STS2_WINE_FOX_RELIC_SPELL_BOOK.flavor": "魔法の覚え書きで満たされた古い本。真に開かれる時を待っている。",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "酒狐グラス"
 }
