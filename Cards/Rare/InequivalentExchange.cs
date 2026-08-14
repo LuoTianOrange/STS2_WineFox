@@ -32,7 +32,7 @@ namespace STS2_WineFox.Cards.Rare
             if (handCards.Count == 0) return;
 
             foreach (var card in handCards)
-                await CardCmd.Exhaust(choiceContext, card);
+                await CardPileCmd.Add(card, PileType.Exhaust);
 
             var rng = owner.RunState.Rng.CombatCardGeneration;
             var generatedCards = new List<CardModel>();

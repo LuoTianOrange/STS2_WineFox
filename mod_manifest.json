@@ -8,7 +8,7 @@
   "has_pck": true,
   "has_dll": true,
   "affects_gameplay": true,
-  "min_game_version": "0.110.0",
+  "min_game_version": "0.111.0",
   "dependencies": [
     {
       "id": "STS2-RitsuLib",
