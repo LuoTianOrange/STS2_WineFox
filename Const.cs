@@ -44,6 +44,11 @@ namespace STS2_WineFox
             public const string CharacterSelectLockedIcon =
                 Root + "/winefox/char_select_wine_fox_locked.png";
 
+            public const string MagicWineFoxSelectIcon =
+                Root + "/packed/character_select/char_select_magic_winefox.png";
+            public const string MagicWineFoxSelectLockedIcon =
+                Root + "/packed/character_select/char_select_magic_winefox_locked.png";
+
             public const string MapMarker = Root + "/packed/map/icons/map_marker_wine_fox.png";
 
             public const string DefaultTransitionMaterial = "res://materials/transitions/silent_transition_mat.tres";
@@ -75,7 +80,8 @@ namespace STS2_WineFox
             public const string AnchorCoreRelicIcon = Root + "/relics/relic_anchor_core.png";
             public const string RingofBurningBloodRelicIcon = Root + "/relics/relic_ring_of_burning_blood.png";
             public const string BonusChestRelicIcon = Root + "/relics/relic_bonus_chest.png";
-            public const string SpellBookRelicIcon = Root + "/relics/relic_spell_book.png";
+            public const string MaidBeaconRelicIcon = Root + "/relics/relic_maid_beacon.png";
+            public const string ShrineRelicIcon = Root + "/relics/relic_shrine.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
@@ -148,6 +154,8 @@ namespace STS2_WineFox
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
             public const string CardWineFoxDefend = Root + "/cards/card_winefoxdefend.png";
             public const string CardWineFoxStrike = Root + "/cards/card_winefoxstrike.png";
+            public const string CardMagicWineFoxStrike = Root + "/cards/card_magicwinefoxstrike.png";
+            public const string CardMagicWineFoxDefend = Root + "/cards/card_magicwinefoxdefend.png";
             public const string CardBasicCraft = Root + "/cards/card_basiccraft.png";
             public const string CardBaseMine = Root + "/cards/card_basemine.png";
             public const string CardFullAttack = Root + "/cards/card_fullattack.png";

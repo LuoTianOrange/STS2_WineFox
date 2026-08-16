@@ -8,11 +8,20 @@ namespace STS2_WineFox.Content.Descriptors
     {
         private static readonly CharacterAssetProfile BaseProfile = CharacterAssetProfiles.Ironclad();
 
-        internal static CharacterAssetProfile Profile { get; } = CreateProfile(Const.Paths.CharacterSelectBgScene);
+        internal static CharacterAssetProfile Profile { get; } = CreateProfile(
+            Const.Paths.CharacterSelectBgScene,
+            Const.Paths.CharacterSelectIcon,
+            Const.Paths.CharacterSelectLockedIcon);
 
-        internal static CharacterAssetProfile MagicProfile { get; } = CreateProfile(Const.Paths.MagicWineFoxSelectBgScene);
+        internal static CharacterAssetProfile MagicProfile { get; } = CreateProfile(
+            Const.Paths.MagicWineFoxSelectBgScene,
+            Const.Paths.MagicWineFoxSelectIcon,
+            Const.Paths.MagicWineFoxSelectLockedIcon);
 
-        private static CharacterAssetProfile CreateProfile(string characterSelectBgPath)
+        private static CharacterAssetProfile CreateProfile(
+            string characterSelectBgPath,
+            string characterSelectIconPath,
+            string characterSelectLockedIconPath)
         {
             return BaseProfile
                 .WithScenes(BaseProfile.Scenes! with
@@ -27,8 +36,8 @@ namespace STS2_WineFox.Content.Descriptors
                     Const.Paths.CharacterIconOutline,
                     Const.Paths.CharacterIconScene,
                     characterSelectBgPath,
-                    Const.Paths.CharacterSelectIcon,
-                    Const.Paths.CharacterSelectLockedIcon,
+                    characterSelectIconPath,
+                    characterSelectLockedIconPath,
                     Const.Paths.DefaultTransitionMaterial,
                     Const.Paths.MapMarker))
                 .WithMultiplayer(new(

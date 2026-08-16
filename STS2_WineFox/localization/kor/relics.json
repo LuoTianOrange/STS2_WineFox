@@ -67,8 +67,11 @@
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "보너스 상자",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "각 전투 시작 시, [blue]{Iron}[/blue] [gold]철 주괴[/gold]를 얻습니다.",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "열어 보면, 상황을 바꿀 만큼 충분한 물자가 들어 있습니다.",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.title": "마법서",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.description": "효과 없음.",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.flavor": "마법 메모로 가득한 오래된 책. 진정으로 펼쳐질 때를 기다리고 있습니다.",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.title": "신사 등불",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.description": "각 전투 시작 시, 에너지 [blue]1[/blue]을 얻고 카드 [blue]1[/blue]장을 뽑습니다.",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.flavor": "신사 정원의 석등이 밤길을 걷는 여우의 앞길을 밝힙니다.",
+  "STS2_WINE_FOX_RELIC_SHRINE.title": "신감",
+  "STS2_WINE_FOX_RELIC_SHRINE.description": "각 전투 시작 시, 에너지 [blue]3[/blue]을 얻고 카드 [blue]3[/blue]장을 뽑습니다.",
+  "STS2_WINE_FOX_RELIC_SHRINE.flavor": "석등이 신감으로 자라나, 앞으로 나아가는 여우에게 넘치는 축복을 내립니다.",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "술여우 유리"
 }

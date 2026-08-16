@@ -67,8 +67,11 @@
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.title": "奖励箱",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.description": "每场战斗开始时，获得[blue]{Iron}[/blue]个[gold]铁锭[/gold]。",
   "STS2_WINE_FOX_RELIC_BONUS_CHEST.flavor": "打开它，里面装着一些足以改变状况的物资。",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.title": "法术书",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.description": "无效果。",
-  "STS2_WINE_FOX_RELIC_SPELL_BOOK.flavor": "写满魔法笔记的旧书，等待被真正翻开。",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.title": "神社庭灯",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.description": "在每场战斗开始时，获得[blue]1[/blue]点能量，抽[blue]1[/blue]张牌。",
+  "STS2_WINE_FOX_RELIC_MAID_BEACON.flavor": "神社庭院里的一盏石灯，为夜行的狐照亮前路。",
+  "STS2_WINE_FOX_RELIC_SHRINE.title": "神龛",
+  "STS2_WINE_FOX_RELIC_SHRINE.description": "在每场战斗开始时，获得[blue]3[/blue]点能量，抽[blue]3[/blue]张牌。",
+  "STS2_WINE_FOX_RELIC_SHRINE.flavor": "石灯化作了神龛，福泽满溢，庇佑着前行的狐。",
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "灵狐玻璃"
 }
