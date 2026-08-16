@@ -6,7 +6,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
-    [RegisterRelic(typeof(MagicWineFoxRelicPool))]
+    // [RegisterRelic(typeof(MagicWineFoxRelicPool))]
     public class Shrine : MaidBeacon
     {
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.ShrineRelicIcon);

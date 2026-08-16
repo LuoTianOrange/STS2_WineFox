@@ -9,8 +9,8 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Basic
 {
-    [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 4)]
+    // [RegisterCard(typeof(MagicWineFoxCardPool))]
+    // [RegisterCharacterStarterCard(typeof(MagicWineFox), 4)]
     public class MagicWineFoxDefend() : WineFoxCard(1,
         CardType.Skill, CardRarity.Basic,
         TargetType.Self)

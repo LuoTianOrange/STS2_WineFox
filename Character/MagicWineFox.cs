@@ -8,8 +8,8 @@ using STS2RitsuLib.Scaffolding.Characters;
 
 namespace STS2_WineFox.Character
 {
-    [RegisterCharacter]
-    [RevealAscensionAfterEpoch(typeof(WineFoxVictoryEpoch))]
+    // [RegisterCharacter]
+    // [RevealAscensionAfterEpoch(typeof(WineFoxVictoryEpoch))]
     public class MagicWineFox : ModCharacterTemplate<MagicWineFoxCardPool, MagicWineFoxRelicPool, WineFoxPotionPool>
     {
         public static readonly Color Color = new("b66bff");

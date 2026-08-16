@@ -9,9 +9,9 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
 {
-    [RegisterRelic(typeof(MagicWineFoxRelicPool))]
-    [RegisterCharacterStarterRelic(typeof(MagicWineFox))]
-    [RegisterTouchOfOrobasRefinement(typeof(Shrine))]
+    // [RegisterRelic(typeof(MagicWineFoxRelicPool))]
+    // [RegisterCharacterStarterRelic(typeof(MagicWineFox))]
+    // [RegisterTouchOfOrobasRefinement(typeof(Shrine))]
     public class MaidBeacon : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Starter;
