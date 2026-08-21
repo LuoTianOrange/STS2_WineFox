@@ -24,9 +24,6 @@ namespace STS2_WineFox.Powers
             Flash();
             await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner, -2m, Owner, null);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, null);
-
-            if (Amount <= 0m)
-                await PowerCmd.Remove(this);
         }
     }
 }

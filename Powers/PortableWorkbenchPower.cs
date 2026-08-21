@@ -24,9 +24,6 @@ namespace STS2_WineFox.Powers
 
             await CraftCmd.CraftIntoHand(choiceContext, Owner, Owner);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, null);
-
-            if (Amount <= 0m)
-                await PowerCmd.Remove(this);
         }
     }
 }

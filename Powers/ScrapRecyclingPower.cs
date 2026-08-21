@@ -26,8 +26,6 @@ namespace STS2_WineFox.Powers
                 context.SourceCard,
                 applyStress: false);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, context.SourceCard);
-            if (Amount <= 0m)
-                await PowerCmd.Remove(this);
         }
     }
 }

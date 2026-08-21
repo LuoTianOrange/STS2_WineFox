@@ -24,8 +24,6 @@ namespace STS2_WineFox.Powers
             Flash();
             CardCmd.Upgrade(context.Product, CardPreviewStyle.None);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, context.SourceCard);
-            if (Amount <= 0m)
-                await PowerCmd.Remove(this);
         }
     }
 }

@@ -73,9 +73,6 @@ namespace STS2_WineFox.Powers
             var newAmount = Math.Ceiling(Amount / 2m);
             var reduction = Amount - newAmount;
             if (reduction > 0m) await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -reduction, null, null);
-
-            if (newAmount <= 0m)
-                await PowerCmd.Remove(this);
         }
 
         private int GetTickDamageAfterHooks()
