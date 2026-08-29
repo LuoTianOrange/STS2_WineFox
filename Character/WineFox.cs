@@ -11,11 +11,6 @@ namespace STS2_WineFox.Character
     [RegisterCharacter]
     [RequireEpoch(typeof(WineFoxCharacterEpoch))]
     [UnlockEpochAfterRunAs(typeof(WineFoxCardEpoch))]
-    [UnlockEpochAfterWinAs(typeof(WineFoxVictoryEpoch))]
-    [UnlockEpochAfterEliteVictories(typeof(WineFoxEliteEpoch))]
-    [UnlockEpochAfterBossVictories(typeof(WineFoxBossEpoch))]
-    [UnlockEpochAfterAscensionOneWin(typeof(WineFoxAscensionOneEpoch))]
-    [RevealAscensionAfterEpoch(typeof(WineFoxVictoryEpoch))]
     public class WineFox : ModCharacterTemplate<WineFoxCardPool, WineFoxRelicPool, WineFoxPotionPool>
     {
         public static readonly Color Color = new("ffaf50");

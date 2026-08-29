@@ -27,14 +27,6 @@ namespace STS2_WineFox.Epoch
 
         internal const string CardEpochId = "WINEFOX_CARD_EPOCH";
 
-        internal const string VictoryEpochId = "WINEFOX_VICTORY_EPOCH";
-
-        internal const string EliteMilestoneEpochId = "WINEFOX_ELITE_MILESTONE_EPOCH";
-
-        internal const string BossMilestoneEpochId = "WINEFOX_BOSS_MILESTONE_EPOCH";
-
-        internal const string AscensionOneEpochId = "WINEFOX_ASCENSION_ONE_EPOCH";
-
         /// <summary>
         ///     Normalized public entry for <see cref="WineFox" /> from <see cref="ModContentRegistry.GetFixedPublicEntry" />
         ///     (already upper-case segments). Must match runtime <c>character.Id.Entry</c> for

@@ -26,10 +26,6 @@ namespace STS2_WineFox.Epoch
             typeof(WineFoxAct1Epoch),
             typeof(WineFoxAct2Epoch),
             typeof(WineFoxAct3Epoch),
-            typeof(WineFoxVictoryEpoch),
-            typeof(WineFoxEliteEpoch),
-            typeof(WineFoxBossEpoch),
-            typeof(WineFoxAscensionOneEpoch),
         ];
     }
 }
