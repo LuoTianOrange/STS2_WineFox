@@ -10,7 +10,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Basic
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 4)]
+    [RegisterCharacterStarterCard(typeof(MagicWineFox), 2)]
     public class MagicWineFoxStrike() : WineFoxCard(1,
         CardType.Attack, CardRarity.Basic,
         TargetType.AnyEnemy)

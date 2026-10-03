@@ -315,5 +315,13 @@
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "合成存储器",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "在你的回合开始时，将上一回合所有[gold]合成[/gold]产物的一份复制品加入你的手牌。",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "协同采掘",
-  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "每当其他玩家打出[gold]能力[/gold]牌后，获得1个[gold]木板[/gold]、1个[gold]圆石[/gold]、1个[gold]铁锭[/gold]和1个[gold]钻石[/gold]。"
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "每当其他玩家打出[gold]能力[/gold]牌后，获得1个[gold]木板[/gold]、1个[gold]圆石[/gold]、1个[gold]铁锭[/gold]和1个[gold]钻石[/gold]。",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "灵狐火",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]装填[/gold]：将本牌放入法杖。回合结束时[gold]释放[/gold]，造成[blue]6[/blue]点伤害。",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.title": "灵能弹",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]（费用[blue]0[/blue]）：将本牌放入法杖。回合结束时[gold]释放[/gold]，造成[blue]4[/blue]点伤害。",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "奥术屏障",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "获得[blue]6[/blue]点格挡。不可[gold]装填[/gold]。",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "双重释放符",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]修正符[/gold]。序列中紧随其后的法术额外释放[blue]1[/blue]次，且这次额外释放不占用[gold]释放[/gold]名额。"
 }

@@ -10,11 +10,11 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(MagicWineFoxRelicPool))]
-    [RegisterCharacterStarterRelic(typeof(MagicWineFox))]
+    // 起始遗物改为【狐火杖】(MagicWineFoxWand)；MaidBeacon 保留在遗物池中作为普通遗物。
     [RegisterTouchOfOrobasRefinement(typeof(Shrine))]
     public class MaidBeacon : WineFoxRelic
     {
-        public override RelicRarity Rarity => RelicRarity.Starter;
+        public override RelicRarity Rarity => RelicRarity.Common;
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.MaidBeaconRelicIcon);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>

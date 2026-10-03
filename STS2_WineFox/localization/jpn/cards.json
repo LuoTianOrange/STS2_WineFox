@@ -299,5 +299,13 @@
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "クラフトストレージ",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "あなたのターン開始時、前のターンのすべての[gold]クラフト[/gold]産物のコピーを1枚ずつ手札に加える。",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "協同採掘",
-  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "他のプレイヤーが[gold]パワー[/gold]カードをプレイするたび、[gold]木板[/gold]1個、[gold]丸石[/gold]1個、[gold]鉄インゴット[/gold]1個、[gold]ダイヤモンド[/gold]1個を得る。"
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "他のプレイヤーが[gold]パワー[/gold]カードをプレイするたび、[gold]木板[/gold]1個、[gold]丸石[/gold]1個、[gold]鉄インゴット[/gold]1個、[gold]ダイヤモンド[/gold]1個を得る。",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "狐火弾",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]装填[/gold]：このカードを杖に込める。ターン終了時に[gold]解放[/gold]され、[blue]6[/blue]ダメージを与える。",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.title": "霊能弾",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]（コスト[blue]0[/blue]）：このカードを杖に込める。ターン終了時に[gold]解放[/gold]され、[blue]4[/blue]ダメージを与える。",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "秘術の障壁",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[blue]6[/blue]ブロックを得る。[gold]装填[/gold]できない。",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "二重解放符",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]修正符[/gold]。次に続く術は追加で[blue]1[/blue]回[gold]解放[/gold]される。この追加解放は解放枠を消費しない。"
 }

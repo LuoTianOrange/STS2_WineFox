@@ -314,5 +314,13 @@
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.title": "Crafting Storage",
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "At the start of your turn, add a copy of each [gold]Craft[/gold] product from last turn to your hand.",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "Collaborative Mining",
-  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "Whenever another player plays a [gold]Power[/gold] card, gain 1 [gold]Plank[/gold], 1 [gold]Cobblestone[/gold], 1 [gold]Iron Ingot[/gold], and 1 [gold]Diamond[/gold]."
+  "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "Whenever another player plays a [gold]Power[/gold] card, gain 1 [gold]Plank[/gold], 1 [gold]Cobblestone[/gold], 1 [gold]Iron Ingot[/gold], and 1 [gold]Diamond[/gold].",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "Foxfire Bolt",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]Load[/gold]: place this into your wand. When [gold]released[/gold] at the end of your turn, deal [blue]6[/blue] damage.",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.title": "Mind Bolt",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]Load[/gold] (costs [blue]0[/blue]): place this into your wand. When [gold]released[/gold], deal [blue]4[/blue] damage.",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "Arcane Barrier",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "Gain [blue]6[/blue] Block. Cannot be [gold]loaded[/gold].",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "Double Release Sigil",
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]Modifier[/gold]. The next spell in the sequence triggers [blue]1[/blue] extra time, and that extra trigger costs no [gold]release[/gold] budget."
 }

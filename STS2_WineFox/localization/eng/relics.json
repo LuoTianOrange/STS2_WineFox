@@ -73,5 +73,8 @@
   "STS2_WINE_FOX_RELIC_SHRINE.title": "Shrine",
   "STS2_WINE_FOX_RELIC_SHRINE.description": "At the start of each combat, gain [blue]3[/blue] Energy and draw [blue]3[/blue] cards.",
   "STS2_WINE_FOX_RELIC_SHRINE.flavor": "The stone lantern has become a shrine, its blessings overflowing for the fox that walks onward.",
-  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Winefox Glass"
+  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Winefox Glass",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.title": "Foxfire Wand",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.description": "At the start of each combat, gain [blue]1[/blue] [gold]Double Release Sigil[/gold] loaded into your wand. Your first [gold]load[/gold] each turn costs no Energy.",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "A wand that still smells faintly of rice wine. The fox never casts twice the same way."
 }

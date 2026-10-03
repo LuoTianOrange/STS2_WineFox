@@ -22,6 +22,7 @@ namespace STS2_WineFox.Cards
         public const string CraftKey = "craft";
         public const string ExchangeKey = "exchange";
         public const string MagicKey = "magic";
+        public const string SpellKey = "spell";
         public const string SophisticatedBackpackKey = "sophisticated_backpack";
         public const string SwordKey = "sword";
         public const string CookableFoodKey = "cookable_food";
@@ -45,6 +46,7 @@ namespace STS2_WineFox.Cards
         public static readonly string Craft = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CraftKey);
         public static readonly string Exchange = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ExchangeKey);
         public static readonly string Magic = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MagicKey);
+        public static readonly string Spell = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SpellKey);
         public static readonly string SophisticatedBackpack =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
         public static readonly string Sword = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SwordKey);
@@ -66,6 +68,7 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword CraftKeyword = Craft.GetModCardKeyword();
         public static readonly CardKeyword ExchangeKeyword = Exchange.GetModCardKeyword();
         public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
+        public static readonly CardKeyword SpellKeyword = Spell.GetModCardKeyword();
         public static readonly CardKeyword SophisticatedBackpackKeyword = SophisticatedBackpack.GetModCardKeyword();
         public static readonly CardKeyword SwordKeyword = Sword.GetModCardKeyword();
         public static readonly CardKeyword CookableFoodKeyword = CookableFood.GetModCardKeyword();
@@ -146,6 +149,11 @@ namespace STS2_WineFox.Cards
             public bool IsMagic()
             {
                 return card.HasModKeyword(MagicKeyword);
+            }
+
+            public bool IsSpell()
+            {
+                return card.HasModKeyword(SpellKeyword);
             }
 
             public bool IsSophisticatedBackpack()

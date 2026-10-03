@@ -73,5 +73,8 @@
   "STS2_WINE_FOX_RELIC_SHRINE.title": "신감",
   "STS2_WINE_FOX_RELIC_SHRINE.description": "각 전투 시작 시, 에너지 [blue]3[/blue]을 얻고 카드 [blue]3[/blue]장을 뽑습니다.",
   "STS2_WINE_FOX_RELIC_SHRINE.flavor": "석등이 신감으로 자라나, 앞으로 나아가는 여우에게 넘치는 축복을 내립니다.",
-  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "술여우 유리"
+  "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "술여우 유리",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.title": "여우불 지팡이",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.description": "각 전투 시작 시, 장전된 [gold]이중 해방 부적[/gold]을 [blue]1[/blue]장 얻습니다. 매 턴 첫 [gold]장전[/gold]은 에너지를 소모하지 않습니다.",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "옅은 술 향기가 남아 있는 지팡이. 술여우는 같은 방식으로 두 번 주문을 쓰지 않습니다."
 }
