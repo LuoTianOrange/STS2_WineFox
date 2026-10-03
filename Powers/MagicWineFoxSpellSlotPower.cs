@@ -33,7 +33,11 @@ namespace STS2_WineFox.Powers
         /// <summary>HUD 上显示已装填数量（槽位容量由 <see cref="PowerModel.Amount" /> 表示）。</summary>
         public override int DisplayAmount => LoadedCount;
 
-        protected override bool IsVisibleInternal => true;
+        /// <summary>
+        ///     不在 HUD 的权力图标里显示——槽位状态改由法杖预览条（<c>NSpellSlotBar</c>）可视化。
+        ///     与材料类 Power（<c>MaterialPower</c>）同样的隐藏方式。
+        /// </summary>
+        protected override bool IsVisibleInternal => false;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards;
+using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Spell
@@ -24,8 +25,14 @@ namespace STS2_WineFox.Cards.Spell
         CardRarity rarity,
         TargetType target,
         bool showInCardLibrary = true)
-        : WineFoxCard(baseCost, type, rarity, target, showInCardLibrary)
+        : WineFoxCard(baseCost, type, rarity, target, showInCardLibrary), IMagicWineFoxSpellIconProvider
     {
+        /// <summary>
+        ///     法杖槽位预览条中显示的小图标。
+        ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。
+        /// </summary>
+        public virtual string SpellIconPath => string.Empty;
+
         /// <summary>
         ///     卡牌关键字：可装填时带「装填」+「释放」，构成法杖体系的一对；
         ///     不可装填时两者都不带（如奥术屏障，只直接释放）。

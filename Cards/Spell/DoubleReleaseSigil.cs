@@ -24,7 +24,9 @@ namespace STS2_WineFox.Cards.Spell
     public class DoubleReleaseSigil() : MagicWineFoxSpellCard(
         0, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
     {
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDoubleReleaseSigil);
+
+        public override string SpellIconPath => Const.Paths.SpellIconDoubleReleaseSigil;
 
         /// <summary>修正符本身不需要施放，也不装填——它由遗物/效果直接放入槽位。</summary>
         public override bool IsLoadable => false;

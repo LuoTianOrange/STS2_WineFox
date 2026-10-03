@@ -308,7 +308,7 @@
   "STS2_WINE_FOX_CARD_MIND_BOLT.title": "魔法飞弹",
   "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]。\n造成[blue]4[/blue]点伤害。\n在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "奥术屏障",
-  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]。\n获得[blue]6[/blue]点格挡。",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]。获得[blue]6[/blue]点格挡。\n在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "双重释放",
-  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]法术修正[/gold]。\n下一个法术额外[gold]释放[gold][blue]1[/blue]次。"
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]法术修正[/gold]。\n下一个法术额外[gold]释放[/gold][blue]1[/blue]次。"
 }

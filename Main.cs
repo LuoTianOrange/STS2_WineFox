@@ -114,6 +114,9 @@ namespace STS2_WineFox
             patcher.RegisterPatch<NCombatUiActivateMaterialInventoryHudPatch>();
             patcher.RegisterPatch<NCombatUiAnimOutMaterialInventoryHudPatch>();
             patcher.RegisterPatch<NCombatUiDeactivateMaterialInventoryHudPatch>();
+            patcher.RegisterPatch<NCombatUiActivateSpellSlotBarPatch>();
+            patcher.RegisterPatch<NCombatUiAnimOutSpellSlotBarPatch>();
+            patcher.RegisterPatch<NCombatUiDeactivateSpellSlotBarPatch>();
             return patcher;
         }
 

@@ -38,6 +38,15 @@ namespace STS2_WineFox
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
             public const string CraftingCodexTopBarButtonIcon = Root + "/ui/crafting_codex_top_bar_button.png";
             public const string MaterialInventoryBox = Root + "/ui/Inventorybox.png";
+
+            /// <summary>法杖槽位边框。</summary>
+            public const string SpellSlotOutline = Root + "/ui/spell_slot_outline.png";
+
+            /// <summary>法术槽位图标（法杖预览条中显示）。</summary>
+            public const string SpellIconFoxfireBolt = Root + "/ui/spell_icons/spell_foxfire_bolt.png";
+            public const string SpellIconMindBolt = Root + "/ui/spell_icons/spell_mind_bolt.png";
+            public const string SpellIconArcaneBarrier = Root + "/ui/spell_icons/spell_arcane_barrier.png";
+            public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
@@ -307,6 +316,10 @@ namespace STS2_WineFox
             public const string CardSeekingWindBell = Root + "/cards/card_seeking_wind_bell.png";
             public const string CardCraftingStorage = Root + "/cards/card_crafting_storage.png";
             public const string CardCollaborativeMining = Root + "/cards/card_collaborative_mining.png";
+            
+            //spell
+            public const string CardDoubleReleaseSigil = Root + "/cards/card_double_cast.png";
+            public const string CardFoxfireBolt = Root + "/cards/card_spark_bolt.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

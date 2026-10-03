@@ -23,6 +23,8 @@ namespace STS2_WineFox.Cards.Spell
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
 
+        public override string SpellIconPath => Const.Paths.SpellIconMindBolt;
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);

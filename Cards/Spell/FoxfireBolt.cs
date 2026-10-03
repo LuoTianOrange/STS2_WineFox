@@ -28,7 +28,9 @@ namespace STS2_WineFox.Cards.Spell
             new DamageVar(6m, ValueProp.Move)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicWineFoxStrike);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFoxfireBolt);
+
+        public override string SpellIconPath => Const.Paths.SpellIconFoxfireBolt;
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
