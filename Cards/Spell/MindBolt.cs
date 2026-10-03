@@ -11,17 +11,10 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Spell
 {
-    /// <summary>
-    ///     灵能弹 —— 0 费攻击法术（无色/起始弹药）。
-    ///     <para>
-    ///         0 费让序列不必占用能量预算，是「不启动慢」的第四道保险：
-    ///         抽到它就能免费往法杖里塞一发弹药。
-    ///     </para>
-    /// </summary>
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     [RegisterCharacterStarterCard(typeof(MagicWineFox), 1)]
     public class MindBolt() : MagicWineFoxSpellCard(
-        0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IMagicWineFoxSpellCard
+        0, CardType.Attack, CardRarity.Basic, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -37,11 +30,12 @@ namespace STS2_WineFox.Cards.Spell
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Target == null) return;
+            var target = ResolveSpellTarget(context);
+            if (target == null) return;
 
             await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
                 .FromCard(context.SourceCard, null)
-                .Targeting(context.Target)
+                .Targeting(target)
                 .Execute(context.ChoiceContext);
         }
 

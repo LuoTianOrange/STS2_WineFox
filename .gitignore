@@ -16,3 +16,8 @@ godot.log
 .DS_Store
 AGENTS.md
 .claude
+addons
+
+# 本地临时产物：备份归档、隔离的损坏文件
+_backup_*.zip
+_quarantine_loc/

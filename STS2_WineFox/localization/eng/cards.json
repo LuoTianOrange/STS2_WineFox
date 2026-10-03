@@ -223,51 +223,36 @@
   "STS2_WINE_FOX_CARD_EXPLOSION_MAGIC.description": "Apply [purple]{Burn:diff()}[/purple] [gold]Burning[/gold] to ALL enemies {Hits:diff()} times.\nLose 3 [gold]Chant[/gold].",
   "STS2_WINE_FOX_CARD_EROSION.title": "Erosion",
   "STS2_WINE_FOX_CARD_EROSION.description": "Apply [purple]{Stacks:diff()}[/purple] [gold]Disintegration[/gold] to an enemy. ALL enemies with [gold]Disintegration[/gold] lose HP equal to their stacks.\nGain [purple]{ChantPower:diff()}[/purple] [gold]Chant[/gold].",
-
   "STS2_WINE_FOX_CARD_MEMORY.title": "Memory",
   "STS2_WINE_FOX_CARD_MEMORY.description": "At the start of your turn, add a copy of the last [gold]Skill[/gold] you played last turn. It gains [gold]Exhaust[/gold]{IfUpgraded:show: and [gold]Retain[/gold]|}.",
-
   "STS2_WINE_FOX_CARD_OTHERWORLD_CROSSING.title": "Otherworld Crossing",
   "STS2_WINE_FOX_CARD_OTHERWORLD_CROSSING.description": "At the start of every 2nd turn, choose a card in your hand. Add a copy of it to your hand with [gold]Ethereal[/gold] and [gold]Exhaust[/gold].",
   "STS2_WINE_FOX_POWER_OTHERWORLD_CROSSING_CHOOSE": "Choose card(s) to copy",
-
   "STS2_WINE_FOX_CARD_PETRIFICATION_SPELL.title": "Petrification",
   "STS2_WINE_FOX_CARD_PETRIFICATION_SPELL.description": "Gain [purple]{Stones:diff()}[/purple] [gold]Cobblestone[/gold]. ALL enemies lose HP equal to the [gold]Cobblestone[/gold] you gained this turn.\nGain [purple]{ChantPower:diff()}[/purple] [gold]Chant[/gold].",
-
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.title": "Launch Platform",
   "STS2_WINE_FOX_CARD_LAUNCH_PLATFORM.description": "The first time you spend [gold]Stress[/gold] each turn, gain {Energy:energyIcons()}.",
-
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.title": "Planning Expert",
   "STS2_WINE_FOX_CARD_PLANNING_EXPERT.description": "At the end of your turn, choose up to {Cards:diff()} {Cards:plural:card|cards} in your hand. It gains [gold]Retain[/gold].",
-
   "STS2_WINE_FOX_CARD_LIBERATION.title": "Liberation",
   "STS2_WINE_FOX_CARD_LIBERATION.description": "At the end of your turn, play a copy of each [gold]Retained[/gold] card in your [gold]Hand[/gold].",
-
   "STS2_WINE_FOX_CARD_NETHERITE_SWORD.title": "Netherite Sword",
   "STS2_WINE_FOX_CARD_NETHERITE_SWORD.description": "{IfUpgraded:show: Upgrade and play|Play} all other [gold]Sword[/gold] cards in your [gold]Exhaust Pile[/gold].",
-
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.title": "Hoarding Habit",
   "STS2_WINE_FOX_CARD_HOARDING_HABIT.description": "Gain {Wood:diff()} [gold]Plank[/gold] and {Stone:diff()} [gold]Cobblestone[/gold]. At the start of next turn, gain {NextTurnMaterial:diff()} [gold]Plank[/gold] and {NextTurnMaterial:diff()} [gold]Cobblestone[/gold].",
-
   "STS2_WINE_FOX_CARD_LOGISTICS.title": "Logistics",
   "STS2_WINE_FOX_CARD_LOGISTICS.description": "Choose {IfUpgraded:show:any number of cards|a card} in your hand and [gold]Exhaust[/gold] {IfUpgraded:show:them|it}. Add {IfUpgraded:show:copies of them|a copy of it} to another player's hand.",
   "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE": "Choose a card to exhaust and send",
-
   "STS2_WINE_FOX_CARD_SWEEP.title": "Sweep",
   "STS2_WINE_FOX_CARD_SWEEP.description": "Deal {Damage:diff()} damage to ALL enemies. If you have no Block, deal damage one additional time.",
-
   "STS2_WINE_FOX_CARD_OBTAIN_STRESS.title": "Obtain Stress",
   "STS2_WINE_FOX_CARD_OBTAIN_STRESS.description": "Gain {Stress:diff()} [gold]Stress[/gold].",
-
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "Obtain Materials",
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "Gain {Wood:diff()} [gold]Plank[/gold] {IfUpgraded:show:|and }{Stone:diff()} [gold]Cobblestone[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}.",
-
   "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "Eternal Melody",
   "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "Whenever you play a [gold]Magic[/gold] card, a random enemy loses 2 Max HP. For every {IfUpgraded:show:1|2} [gold]Chant[/gold], it loses an additional 2 Max HP.",
-
   "STS2_WINE_FOX_CARD_MANA_SURGE.title": "Mana Surge",
   "STS2_WINE_FOX_CARD_MANA_SURGE.description": "Gain[purple]{ChantPower:diff()}[/purple][gold]Chant[/gold] (up to {IfUpgraded:show:6|4}). Draw {Cards:diff()} cards.",
-
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "Triune Blessing",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.description": "All players gain 1 [gold]Strength[/gold], 1 [gold]Dexterity[/gold], and 1 [gold]Focus[/gold]. Consume up to {MaxConsume:diff()} [gold]Chant[/gold]. For each Chant consumed, gain +1 Strength and +1 Dexterity. For every 2 Chant consumed, gain +1 Focus.",
   "STS2_WINE_FOX_CARD_BLADE_MASTER.title": "Blade Master",
@@ -316,11 +301,11 @@
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "Collaborative Mining",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "Whenever another player plays a [gold]Power[/gold] card, gain 1 [gold]Plank[/gold], 1 [gold]Cobblestone[/gold], 1 [gold]Iron Ingot[/gold], and 1 [gold]Diamond[/gold].",
   "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "Foxfire Bolt",
-  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]Load[/gold]: place this into your wand. When [gold]released[/gold] at the end of your turn, deal [blue]6[/blue] damage.",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "Deal [blue]6[/blue] damage.\n[gold]Released[/gold] at the end of your turn.",
   "STS2_WINE_FOX_CARD_MIND_BOLT.title": "Mind Bolt",
-  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]Load[/gold] (costs [blue]0[/blue]): place this into your wand. When [gold]released[/gold], deal [blue]4[/blue] damage.",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "Deal [blue]4[/blue] damage.\n[gold]Released[/gold] at the end of your turn.",
   "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "Arcane Barrier",
-  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "Gain [blue]6[/blue] Block. Cannot be [gold]loaded[/gold].",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "Gain [blue]6[/blue] Block.",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "Double Release Sigil",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]Modifier[/gold]. The next spell in the sequence triggers [blue]1[/blue] extra time, and that extra trigger costs no [gold]release[/gold] budget."
 }

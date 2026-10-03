@@ -189,5 +189,8 @@
   "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription": "受到的伤害减少[blue]20%[/blue]，无法从卡牌中获得格挡。持续[blue]2[/blue]回合。",
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.title": "协同采掘",
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.description": "每当其他玩家打出[gold]能力[/gold]牌后，获得[blue]{Amount}[/blue]个[gold]木板[/gold]、[blue]{Amount}[/blue]个[gold]圆石[/gold]、[blue]{Amount}[/blue]个[gold]铁锭[/gold]和[blue]{Amount}[/blue]个[gold]钻石[/gold]。",
-  "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "每当其他玩家打出[gold]能力[/gold]牌后，获得[blue]{Amount}[/blue]个[gold]木板[/gold]、[blue]{Amount}[/blue]个[gold]圆石[/gold]、[blue]{Amount}[/blue]个[gold]铁锭[/gold]和[blue]{Amount}[/blue]个[gold]钻石[/gold]。"
+  "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "每当其他玩家打出[gold]能力[/gold]牌后，获得[blue]{Amount}[/blue]个[gold]木板[/gold]、[blue]{Amount}[/blue]个[gold]圆石[/gold]、[blue]{Amount}[/blue]个[gold]铁锭[/gold]和[blue]{Amount}[/blue]个[gold]钻石[/gold]。",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "法杖槽位",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "你的法杖用于存放已装填的法术。层数 = 槽位容量；显示的数字 = 当前已装填数量。",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 个法杖槽位。"
 }

@@ -22,7 +22,8 @@ namespace STS2_WineFox.Cards
         public const string CraftKey = "craft";
         public const string ExchangeKey = "exchange";
         public const string MagicKey = "magic";
-        public const string SpellKey = "spell";
+        public const string LoadKey = "load";
+        public const string ReleaseKey = "release";
         public const string SophisticatedBackpackKey = "sophisticated_backpack";
         public const string SwordKey = "sword";
         public const string CookableFoodKey = "cookable_food";
@@ -46,7 +47,8 @@ namespace STS2_WineFox.Cards
         public static readonly string Craft = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CraftKey);
         public static readonly string Exchange = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ExchangeKey);
         public static readonly string Magic = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MagicKey);
-        public static readonly string Spell = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SpellKey);
+        public static readonly string Load = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, LoadKey);
+        public static readonly string Release = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ReleaseKey);
         public static readonly string SophisticatedBackpack =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
         public static readonly string Sword = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SwordKey);
@@ -68,7 +70,8 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword CraftKeyword = Craft.GetModCardKeyword();
         public static readonly CardKeyword ExchangeKeyword = Exchange.GetModCardKeyword();
         public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
-        public static readonly CardKeyword SpellKeyword = Spell.GetModCardKeyword();
+        public static readonly CardKeyword LoadKeyword = Load.GetModCardKeyword();
+        public static readonly CardKeyword ReleaseKeyword = Release.GetModCardKeyword();
         public static readonly CardKeyword SophisticatedBackpackKeyword = SophisticatedBackpack.GetModCardKeyword();
         public static readonly CardKeyword SwordKeyword = Sword.GetModCardKeyword();
         public static readonly CardKeyword CookableFoodKeyword = CookableFood.GetModCardKeyword();
@@ -151,9 +154,16 @@ namespace STS2_WineFox.Cards
                 return card.HasModKeyword(MagicKeyword);
             }
 
-            public bool IsSpell()
+            /// <summary>是否为可装填的法术（带「装填」关键字）。</summary>
+            public bool IsLoadable()
             {
-                return card.HasModKeyword(SpellKeyword);
+                return card.HasModKeyword(LoadKeyword);
+            }
+
+            /// <summary>是否为带「释放」关键字的牌。</summary>
+            public bool IsReleasing()
+            {
+                return card.HasModKeyword(ReleaseKeyword);
             }
 
             public bool IsSophisticatedBackpack()

@@ -14,14 +14,14 @@ namespace STS2_WineFox.Cards.Spell
     /// <summary>
     ///     灵狐火 —— 1 费攻击法术（白/基础）。
     ///     <para>
-    ///         打出时**装填**进法杖；回合结束时由释放结算，造成 6 点伤害（升级 9）。
-    ///         设计文档 v0.2.6 的起始卡组为 4 张。
+    ///         打出时**装填**进法杖；回合结束时由释放造成 6 点伤害（升级 9）。
+    ///         起始卡组 2 张。
     ///     </para>
     /// </summary>
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     [RegisterCharacterStarterCard(typeof(MagicWineFox), 2)]
     public class FoxfireBolt() : MagicWineFoxSpellCard(
-        1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IMagicWineFoxSpellCard
+        1, CardType.Attack, CardRarity.Basic, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -37,11 +37,12 @@ namespace STS2_WineFox.Cards.Spell
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Target == null) return;
+            var target = ResolveSpellTarget(context);
+            if (target == null) return;
 
             await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
                 .FromCard(context.SourceCard, null)
-                .Targeting(context.Target)
+                .Targeting(target)
                 .Execute(context.ChoiceContext);
         }
 

@@ -8,20 +8,40 @@ namespace STS2_WineFox.Content.Descriptors
     {
         private static readonly CharacterAssetProfile BaseProfile = CharacterAssetProfiles.Ironclad();
 
+        /// <summary>普通酒狐（WineFox）档案。</summary>
         internal static CharacterAssetProfile Profile { get; } = CreateProfile(
             Const.Paths.CharacterSelectBgScene,
             Const.Paths.CharacterSelectIcon,
-            Const.Paths.CharacterSelectLockedIcon);
+            Const.Paths.CharacterSelectLockedIcon,
+            Const.Paths.CharacterIcon,
+            Const.Paths.CharacterIconOutline,
+            Const.Paths.CharacterIconScene);
 
+        /// <summary>魔法酒狐（MagicWineFox）档案。</summary>
         internal static CharacterAssetProfile MagicProfile { get; } = CreateProfile(
             Const.Paths.MagicWineFoxSelectBgScene,
             Const.Paths.MagicWineFoxSelectIcon,
-            Const.Paths.MagicWineFoxSelectLockedIcon);
+            Const.Paths.MagicWineFoxSelectLockedIcon,
+            Const.Paths.MagicWineFoxIcon,
+            Const.Paths.MagicWineFoxIconOutline,
+            Const.Paths.MagicWineFoxIconScene);
 
+        /// <summary>
+        ///     创建角色档案。
+        /// </summary>
+        /// <param name="characterSelectBgPath">角色选择界面背景场景。</param>
+        /// <param name="characterSelectIconPath">角色选择界面立绘/图标。</param>
+        /// <param name="characterSelectLockedIconPath">未解锁时的选择界面图标。</param>
+        /// <param name="characterIconPath">角色头像（地图/队伍等处使用）。</param>
+        /// <param name="characterIconOutlinePath">角色头像描边。</param>
+        /// <param name="characterIconScenePath">角色头像场景（图标 + 描边的组合场景）。</param>
         private static CharacterAssetProfile CreateProfile(
             string characterSelectBgPath,
             string characterSelectIconPath,
-            string characterSelectLockedIconPath)
+            string characterSelectLockedIconPath,
+            string characterIconPath,
+            string characterIconOutlinePath,
+            string characterIconScenePath)
         {
             return BaseProfile
                 .WithScenes(BaseProfile.Scenes! with
@@ -32,9 +52,9 @@ namespace STS2_WineFox.Content.Descriptors
                     MerchantAnimPath = Const.Paths.CharacterMerchantAnimScene,
                 })
                 .WithUi(new(
-                    Const.Paths.CharacterIcon,
-                    Const.Paths.CharacterIconOutline,
-                    Const.Paths.CharacterIconScene,
+                    characterIconPath,
+                    characterIconOutlinePath,
+                    characterIconScenePath,
                     characterSelectBgPath,
                     characterSelectIconPath,
                     characterSelectLockedIconPath,

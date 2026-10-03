@@ -1,6 +1,11 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
     <Import Project="$(RitsuLibDir)\Sts2PathDiscovery.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\Sts2PathDiscovery.props')"/>
+    
+    <PropertyGroup>
+        <UseNuGetRitsuLib Condition="'$(UseNuGetRitsuLib)' == ''">true</UseNuGetRitsuLib>
+    </PropertyGroup>
+
     <PropertyGroup>
         <RootNamespace>STS2_WineFox</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>

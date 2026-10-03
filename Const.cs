@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.2.18";
+        public const string Version = "1.3.0";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -22,13 +22,19 @@ namespace STS2_WineFox
 
             public const string EnergyIconCake = Root + "/winefox/winefox_energy_icon.png";
             public const string CharacterVisualsScene = ScenesRoot + "/combat/winefox_combat.tscn";
-            public const string CharacterIconScene = ScenesRoot + "/ui/character_icons/wine_fox_icon.tscn";
-            public const string MagicWineFoxSelectBgScene = ScenesRoot + "/char_select/select_bg_magic_winefox.tscn";
-            public const string CharacterSelectBgScene = ScenesRoot + "/char_select/select_bg_winefox.tscn";
+            public const string CharacterIconScene = ScenesRoot + "/winefox/wine_fox_icon.tscn";
+            public const string MagicWineFoxIconScene = ScenesRoot + "/magic_winefox/magic_wine_fox_icon.tscn";
+            public const string MagicWineFoxSelectBgScene = ScenesRoot + "/magic_winefox/select_bg_magic_winefox.tscn";
+            public const string CharacterSelectBgScene = ScenesRoot + "/winefox/select_bg_winefox.tscn";
             public const string CharacterRestSiteAnimScene = ScenesRoot + "/rest_site/winefox_rest_site.tscn";
             public const string CharacterIcon = Root + "/winefox/character_icon_wine_fox.png";
+            public const string MagicWineFoxIcon = Root + "/magic_winefox/character_select/character_icon_magic_wine_fox.png";
             public const string CharacterIconOutline = Root + "/winefox/character_icon_wine_fox_outline.png";
-            public const string CharacterSelectIcon = Root + "/packed/character_select/char_select_wine_fox.png";
+
+            /// <summary>魔狐专用角色头像描边。</summary>
+            public const string MagicWineFoxIconOutline = Root + "/magic_winefox/character_select/character_icon_magic_wine_fox_outline.png";
+            public const string CharacterSelectIcon =
+                Root + "/winefox/character_select/char_select_wine_fox.png";
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
             public const string CraftingCodexTopBarButtonIcon = Root + "/ui/crafting_codex_top_bar_button.png";
             public const string MaterialInventoryBox = Root + "/ui/Inventorybox.png";
@@ -42,14 +48,14 @@ namespace STS2_WineFox
 
 
             public const string CharacterSelectLockedIcon =
-                Root + "/winefox/char_select_wine_fox_locked.png";
+                Root + "/winefox/character_select/char_select_wine_fox_locked.png";
 
             public const string MagicWineFoxSelectIcon =
-                Root + "/packed/character_select/char_select_magic_winefox.png";
+                Root + "/magic_winefox/character_select/char_select_magic_winefox.png";
             public const string MagicWineFoxSelectLockedIcon =
-                Root + "/packed/character_select/char_select_magic_winefox_locked.png";
+                Root + "/magic_winefox/character_select/char_select_magic_winefox_locked.png";
 
-            public const string MapMarker = Root + "/packed/map/icons/map_marker_wine_fox.png";
+            public const string MapMarker = Root + "/map/icons/map_marker_wine_fox.png";
 
             public const string DefaultTransitionMaterial = "res://materials/transitions/silent_transition_mat.tres";
 

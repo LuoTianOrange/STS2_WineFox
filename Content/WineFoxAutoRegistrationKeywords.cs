@@ -54,14 +54,21 @@ namespace STS2_WineFox.Content
         private sealed class Magic;
 
         /// <summary>
-        ///     法杖/法术体系的关键字（v0.2.6 法杖构筑版）。
-        ///     与既有 <c>magic</c>（魔法/咏唱管线）刻意分开：法术走自己的装填-铸法链，
-        ///     不参与 <c>MagicDamage</c>/<c>ChantPower</c> 那条咏唱管线。
-        ///     图标暂用奥术能量色占位，等美术资源到位再替换。
+        ///     「装填」关键字：把牌放入法杖，回合结束时释放。
+        ///     可装填的法术自动带此关键字，因此卡面文案不必重复解释装填的含义。
         /// </summary>
-        [RegisterOwnedCardKeyword(WineFoxKeywords.SpellKey,
+        [RegisterOwnedCardKeyword(WineFoxKeywords.LoadKey,
             IconPath = Const.Paths.EnergyIconCake)]
-        private sealed class Spell;
+        private sealed class Load;
+
+        /// <summary>
+        ///     「释放」关键字：回合结束时，法杖中已装填的法术依次结算。
+        ///     与「装填」成对出现，构成法杖体系的两半。
+        /// </summary>
+        [RegisterOwnedCardKeyword(WineFoxKeywords.ReleaseKey,
+            IconPath = Const.Paths.EnergyIconCake)]
+        private sealed class Release;
+
         [RegisterOwnedCardKeyword(WineFoxKeywords.SophisticatedBackpackKey,
             IconPath = Const.Paths.SophisticatedBackpack)]
         private sealed class SophisticatedBackpack;

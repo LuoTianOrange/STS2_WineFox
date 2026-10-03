@@ -189,5 +189,8 @@
   "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription": "Take [blue]20%[/blue] less damage. Cannot gain Block from cards. Lasts [blue]2[/blue] turns.",
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.title": "Collaborative Mining",
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.description": "Whenever another player plays a [gold]Power[/gold] card, gain [blue]{Amount}[/blue] [gold]Plank[/gold], [blue]{Amount}[/blue] [gold]Cobblestone[/gold], [blue]{Amount}[/blue] [gold]Iron Ingot[/gold], and [blue]{Amount}[/blue] [gold]Diamond[/gold].",
-  "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "Whenever another player plays a [gold]Power[/gold] card, gain [blue]{Amount}[/blue] [gold]Plank[/gold], [blue]{Amount}[/blue] [gold]Cobblestone[/gold], [blue]{Amount}[/blue] [gold]Iron Ingot[/gold], and [blue]{Amount}[/blue] [gold]Diamond[/gold]."
+  "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "Whenever another player plays a [gold]Power[/gold] card, gain [blue]{Amount}[/blue] [gold]Plank[/gold], [blue]{Amount}[/blue] [gold]Cobblestone[/gold], [blue]{Amount}[/blue] [gold]Iron Ingot[/gold], and [blue]{Amount}[/blue] [gold]Diamond[/gold].",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "Wand Slots",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "Your wand holds loaded spells. Amount = slot capacity; the displayed number = spells currently loaded.",
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] wand slot(s)."
 }

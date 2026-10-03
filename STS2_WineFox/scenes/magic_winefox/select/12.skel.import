@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://ds7wkpp8iua87"
+path="res://.godot/imported/12.skel-7103869b5081e4cc70358e65fce2c270.spskel"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/magic_winefox/select/12.skel"
+dest_files=["res://.godot/imported/12.skel-7103869b5081e4cc70358e65fce2c270.spskel"]
+
+[params]
+

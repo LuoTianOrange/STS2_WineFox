@@ -12,8 +12,7 @@ namespace STS2_WineFox.Cards.Spell
     /// <summary>
     ///     奥术屏障 —— 1 费防御法术（白/防御），获得 6 点格挡（升级 9）。
     ///     <para>
-    ///         <b>不可装填</b>：它只能直接释放。防御牌走法杖会破坏「装填=抢节奏」的取舍，
-    ///         因此按 v0.2.6 的「不可装填」规则处理。
+    ///         仅通过不带「装填」关键字来表达。
     ///     </para>
     /// </summary>
     [RegisterCard(typeof(MagicWineFoxCardPool))]
