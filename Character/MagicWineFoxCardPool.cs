@@ -1,10 +1,8 @@
 using Godot;
-using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character
 {
-    [RegisterSharedCardPool]
     public class MagicWineFoxCardPool : TypeListCardPoolModel
     {
         public override string Title => Const.EnergyColorName;

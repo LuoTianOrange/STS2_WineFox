@@ -72,8 +72,11 @@ namespace STS2_WineFox.Nodes
             // Power 由遗物在战斗回合开始时创建，可能晚于本节点绑定，因此惰性解析。
             _power ??= MagicWineFoxSpellCmd.GetPower(_boundPlayer);
 
-            if (!AttachToCreature())
+            if (!ResolveCreatureNode())
+            {
+                Visible = false;
                 return;
+            }
 
             if (_power == null || _power.SlotCapacity <= 0)
             {
@@ -91,7 +94,7 @@ namespace STS2_WineFox.Nodes
         {
             _boundPlayer = player;
             _power = player == null ? null : MagicWineFoxSpellCmd.GetPower(player);
-            _creatureNode = null; // 重新挂到新的角色节点上。
+            _creatureNode = null;
             _signature = string.Empty;
 
             if (player == null)
@@ -104,74 +107,44 @@ namespace STS2_WineFox.Nodes
         }
 
         /// <summary>
-        ///     把本节点挂到玩家角色节点下，使其随角色移动。
-        ///     参考 <c>NMaterialInventoryHud.UpdateCreatureAttachment</c> 的做法。
+        ///     记录玩家角色节点，仅用于读取其屏幕坐标。
+        ///     <para>
+        ///         刻意**不**把本节点挂到角色节点下：那会与 RitsuLib 的节点附件系统冲突——
+        ///         附件系统仍认为本节点归属于 NCombatUi，随后会尝试重新挂载并报
+        ///         「child already belongs to NCreature」。因此这里保持 NCombatUi 子节点身份，
+        ///         改为每帧按角色的全局坐标定位，视觉上同样跟随角色。
+        ///     </para>
         /// </summary>
-        private bool AttachToCreature()
+        private bool ResolveCreatureNode()
         {
             var creatureNode = _boundPlayer?.Creature?.GetCreatureNode();
             if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
                 return false;
 
-            if (ReferenceEquals(_creatureNode, creatureNode) && GetParent() == creatureNode)
-                return true;
-
-            GetParent()?.RemoveChild(this);
-            creatureNode.AddChild(this);
             _creatureNode = creatureNode;
             return true;
         }
 
-        /// <summary>
-        ///     整排水平居中到锚点上方。
-        ///     本节点已是角色节点的子节点，因此这里用的是相对角色的**局部坐标**。
-        /// </summary>
+        /// <summary>整排水平居中到角色头顶上方（屏幕坐标）。</summary>
         private void ApplyLayout()
         {
-            var width = ResolveBarWidth();
-            var anchorY = ResolveAnchorY();
-
-            Position = new Vector2(-width * 0.5f, anchorY + BarOffsetFromAnchor.Y);
-
-            LogAnchorOnce(anchorY, width);
+            var anchor = ResolveAnchor();
+            Position = new Vector2(
+                anchor.X - ResolveBarWidth() * 0.5f,
+                anchor.Y + BarOffsetFromAnchor.Y);
         }
 
-        /// <summary>锚点取血条底边的局部 Y；取不到则回落到 0。</summary>
-        private float ResolveAnchorY()
+        /// <summary>锚点取血条的屏幕坐标；取不到则用角色节点自身。</summary>
+        private Vector2 ResolveAnchor()
         {
             var creatureNode = _creatureNode;
             if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
-                return 0f;
+                return Vector2.Zero;
 
             var stateDisplay = creatureNode.GetNodeOrNull<Control>("%HealthBar")
                                ?? creatureNode.GetNodeOrNull<Control>("HealthBar");
 
-            return stateDisplay == null ? 0f : stateDisplay.Position.Y + stateDisplay.Size.Y;
-        }
-
-        private bool _anchorLogged;
-
-        /// <summary>
-        ///     临时诊断：同时打印「局部坐标」与「屏幕全局坐标」，用于精确校准偏移量。
-        ///     只有拿到屏幕坐标才能确定换算比例，避免反复试错。定位完成后删除。
-        /// </summary>
-        private void LogAnchorOnce(float anchorY, float width)
-        {
-            if (_anchorLogged)
-                return;
-
-            _anchorLogged = true;
-
-            var creature = _creatureNode;
-            var healthBar = creature?.GetNodeOrNull<Control>("%HealthBar")
-                            ?? creature?.GetNodeOrNull<Control>("HealthBar");
-
-            Main.Logger.Info(
-                $"[SlotBar] viewport={GetViewportRect().Size} " +
-                $"creatureGlobal={creature?.GlobalPosition.ToString() ?? "?"} " +
-                $"健康条Global={healthBar?.GlobalPosition.ToString() ?? "?"} " +
-                $"条LocalPos={Position} 条GlobalPos={GlobalPosition} " +
-                $"锚点Y={anchorY} 排宽={width} 容量={_power?.SlotCapacity}");
+            return stateDisplay?.GlobalPosition ?? creatureNode.GlobalPosition;
         }
 
         private float ResolveBarWidth()
