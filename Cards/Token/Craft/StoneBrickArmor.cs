@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -11,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Token.Craft
 {
     [RegisterCard(typeof(WineFoxCraftingCardPool))]
-    public class StoneArmor() : WineFoxCard(
+    public class StoneBrickArmor() : WineFoxCard(
         0, CardType.Power, CardRarity.Token, TargetType.None)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -172,7 +172,7 @@ Token 牌由合成配方或特定卡牌在战斗中生成，不进入奖励池�
 | IronPickaxe（铁镐） | 1 木板 + 3 铁锭 | **消耗**；接下来数次获得资源时，额外获得 3 个铁锭。 |
 | DiamondPickaxe（钻石镐） | 1 木板 + 3 钻石 | **消耗**；当你合成一张牌时，将其升级。升级后：合成。 |
 | WoodenArmor（木甲） | 4 木板 | **消耗**；获得格挡。 |
-| StoneArmor（砖石甲） | 8 圆石 | **消耗**；获得覆甲，每回合开始时失去 1 点敏捷。 |
+| StoneBrickArmor（砖石甲） | 8 圆石 | **消耗**；获得覆甲，每回合开始时失去 1 点敏捷。 |
 | IronArmor（铁甲） | 8 铁锭 | **消耗**；获得覆甲。你的覆甲层数不会降低。 |
 | DiamondArmor（钻石甲） | 8 钻石 | **消耗**；获得覆甲。如果回合结束时你还有覆甲，就在本回合保留你的格挡。 |
 | Shield（盾牌） | 6 木板 + 1 铁锭 | **消耗**；选择一名角色在本回合获得敏捷。此牌在本回合与下一回合不能再次打出。升级后：仅本回合不能再次打出。 |
@@ -255,7 +255,7 @@ Token 牌由合成配方或特定卡牌在战斗中生成，不进入奖励池�
 | OtherworldCrossingPower（异界跨越） | Buff Counter | 每回合开始时，选择一张手牌，将其一张虚无、消耗的复制品加入到你的手牌。 |
 | PlanningExpertPower（规划专家） | Buff None | 每当你打出一张技能牌时，该牌获得保留。 |
 | SpiritFoxFormPower（灵狐形态） | Buff None | 每当你打出一张攻击牌时，对目标施加 1 层缓慢。 |
-| TrackingPower（间隙咏唱） | Buff Counter | 每当你使敌人失去生命时，该敌人获得 1 点格挡，你获得 N 点格挡。 |
+| IntermittentChantingPower（间隙咏唱） | Buff Counter | 每当你使敌人失去生命时，该敌人获得 1 点格挡，你获得 N 点格挡。 |
 | HighlyFocusedPower（高度专注） | Buff Counter | 在本回合翻倍你已有的力量。 |
 | AnticipateAdvantageDexPower（预判先机） | Buff Counter | 本回合获得 N 点敏捷，回合结束时消失。 |
 | MassProductionPower（量产） | Buff Counter | 本回合中的合成产物将复制给其他玩家 N 张。回合结束消除。 |

@@ -13,12 +13,12 @@ using System.Globalization;
 namespace STS2_WineFox.Powers
 {
     /// <summary>
-    ///     Tracking power applied to the player by IntermittentChanting.
+    ///     Chant-tracking power applied to the player by IntermittentChanting.
     ///     Whenever the owner causes an enemy to lose HP (Unblockable damage),
     ///     the target gains 1 block and the owner gains Amount block.
     /// </summary>
     [RegisterPower]
-    public class TrackingPower : WineFoxPower,
+    public class IntermittentChantingPower : WineFoxPower,
         IPowerExtraIconAmountLabelSpecsProvider,
         IPowerExtraIconAmountLabelsChangeSource
     {
@@ -145,7 +145,7 @@ namespace STS2_WineFox.Powers
 
             private decimal Calculate()
             {
-                return _owner is TrackingPower power
+                return _owner is IntermittentChantingPower power
                     ? power.GetEnemyBlockAmount()
                     : 1m;
             }

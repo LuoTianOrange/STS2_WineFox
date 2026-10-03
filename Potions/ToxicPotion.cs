@@ -14,7 +14,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Potions
 {
     [RegisterPotion(typeof(WineFoxPotionPool))]
-    public sealed class PoisonPotion : WineFoxPotion
+    public sealed class ToxicPotion : WineFoxPotion
     {
         public override PotionRarity Rarity => PotionRarity.Common;
         public override TargetType TargetType => TargetType.AllEnemies;

@@ -23,6 +23,7 @@ namespace STS2_WineFox.Relics
 
             Flash();
             var bomb = await PowerCmd.Apply<TheBombPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 3m, Owner.Creature, null);
+            if (bomb == null) return;
             bomb.SetDamage(30m);
         }
     }

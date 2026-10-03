@@ -93,7 +93,7 @@ namespace STS2_WineFox.Cards
                 new CraftCost(typeof(StonePower), 2m)
             ),
             //石甲
-            new(typeof(StoneArmor), (state, owner) => state.CreateCard<StoneArmor>(owner),
+            new(typeof(StoneBrickArmor), (state, owner) => state.CreateCard<StoneBrickArmor>(owner),
                 new CraftCost(typeof(StonePower), 8m)
             ),
 
