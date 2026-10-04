@@ -11,17 +11,9 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Spell
 {
-    /// <summary>
-    ///     奥术屏障 —— 1 费防御法术（白/防御），获得 6 点格挡（升级 9）。
-    ///     <para>
-    ///         可装填：装填后带「装填」+「释放」关键字，在回合结束的释放阶段结算格挡。
-    ///         因此它和其他法术一样有分支：直接打出立即获得格挡，装填则延后到释放时生效。
-    ///     </para>
-    /// </summary>
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 1)]
     public class ArcaneBarrier() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Basic, TargetType.Self), IMagicWineFoxSpellCard
+        1, CardType.Skill, CardRarity.Common, TargetType.Self), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

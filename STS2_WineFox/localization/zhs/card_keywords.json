@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "装填",
   "STS2_WINE_FOX_KEYWORD_LOAD.description": "将本牌放入法杖，在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "释放",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]释放[/gold]：回合结束时，法杖中已装填的法术会依次结算。"
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]释放[/gold]：回合结束时，法杖中已装填的法术会依次结算。",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "法术修正",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "装入法杖后不施放，只修改其后第一张法术的结算方式。"
 }

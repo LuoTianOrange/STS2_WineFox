@@ -23,11 +23,14 @@ namespace STS2_WineFox.Commands
     /// </summary>
     public static class MagicWineFoxSpellCmd
     {
-        /// <summary>默认槽位容量（狐火杖初始 3 槽）。</summary>
-        public const int DefaultCapacity = 3;
+        /// <summary>默认槽位容量（狐火杖初始 4 槽；「扩张」升级后为 5）。</summary>
+        public const int DefaultCapacity = 4;
 
         /// <summary>默认释放轮数。</summary>
         public const int DefaultCastCount = 1;
+
+        /// <summary>起始遗物【狐火杖】：每回合第一次装填减免的费用。</summary>
+        public const int FirstLoadDiscount = 1;
 
         public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int capacity = DefaultCapacity,
             int castCount = DefaultCastCount)
@@ -71,10 +74,16 @@ namespace STS2_WineFox.Commands
             if (power == null) return false;
 
             var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier);
-            if (power.TryLoad(snapshot)) return true;
-
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
-            return false;
+            if (!power.TryLoad(snapshot)) return false;
+
+            // 起始遗物【狐火杖】：每回合第一次装填的费用减 1（最低 0）。
+            // 减费由 MagicWineFoxSpellSlotPower.TryModifyEnergyCostInCombat 直接改写费用，
+            // 这里只负责「消费」这次减费，使其每回合仅生效一次。
+            if (power.CanDiscountFirstLoad)
+                power.ConsumeFirstLoadDiscount();
+
+            return true;
         }
 
         /// <summary>释放：按装填顺序释放全部已装填法术（受释放轮数约束的施法名额）。</summary>

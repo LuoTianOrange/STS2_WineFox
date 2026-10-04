@@ -12,32 +12,37 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 2)]
-    public class FoxfireBolt() : MagicWineFoxSpellCard(
-        1, CardType.Attack, CardRarity.Basic, TargetType.None), IMagicWineFoxSpellCard
+    public class ArcaneBomb() : MagicWineFoxSpellCard(
+        1, CardType.Attack, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(6m, ValueProp.Move)
+            new DamageVar(9m, ValueProp.Move)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFoxfireBolt);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardExplosionMagic);
 
-        public override string SpellIconPath => Const.Paths.SpellIconFoxfireBolt;
+        public override string SpellIconPath => Const.Paths.SpellIconArcaneBomb;
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
-
+        
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
+            if (context.Owner?.Creature?.CombatState is not { } combatState)
+                return;
+
+            await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
+                .FromCard(context.SourceCard, null)
+                .TargetingAllOpponents(combatState)
+                .Execute(context.ChoiceContext);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
+            DynamicVars.Damage.UpgradeValueBy(2m);
         }
     }
 }

@@ -46,6 +46,11 @@ namespace STS2_WineFox
             public const string SpellIconFoxfireBolt = Root + "/ui/spell_icons/spell_foxfire_bolt.png";
             public const string SpellIconMindBolt = Root + "/ui/spell_icons/spell_mind_bolt.png";
             public const string SpellIconArcaneBarrier = Root + "/ui/spell_icons/spell_arcane_barrier.png";
+            public const string SpellIconArcaneBomb = Root + "/ui/spell_icons/spell_arcane_bomb.png";
+            public const string SpellIconEnergyRay = Root + "/ui/spell_icons/spell_energy_ray.png";
+            public const string SpellIconCursedOrb = Root + "/ui/spell_icons/spell_cursed_orb.png";
+            public const string SpellIconSearingJolt = Root + "/ui/spell_icons/spell_searing_jolt.png";
+            public const string SpellIconPiercingBolt = Root + "/ui/spell_icons/spell_piercing_bolt.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
@@ -97,6 +102,7 @@ namespace STS2_WineFox
             public const string BonusChestRelicIcon = Root + "/relics/relic_bonus_chest.png";
             public const string MaidBeaconRelicIcon = Root + "/relics/relic_maid_beacon.png";
             public const string ShrineRelicIcon = Root + "/relics/relic_shrine.png";
+            public const string ApprenticeStaffIcon = Root + "/relics/relic_apprentice_staff.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";

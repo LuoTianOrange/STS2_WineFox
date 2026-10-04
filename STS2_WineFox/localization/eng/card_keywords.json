@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "Load",
   "STS2_WINE_FOX_KEYWORD_LOAD.description": "Place this card into your wand. It is [gold]released[/gold] at the end of your turn.",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "Release",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]Release[/gold]: at the end of your turn, the spells loaded in your wand resolve in order."
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]Release[/gold]: at the end of your turn, the spells loaded in your wand resolve in order.",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "Spell Modifier",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "Loads into your wand without being cast. It changes how the next spell resolves."
 }

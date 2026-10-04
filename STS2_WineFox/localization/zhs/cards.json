@@ -304,11 +304,21 @@
   
   
   "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "能量弹",
-  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]装填[/gold]。\n造成[blue]6[/blue]点伤害。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。\n在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_CARD_MIND_BOLT.title": "魔法飞弹",
-  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]。\n造成[blue]4[/blue]点伤害。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。\n在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "奥术屏障",
-  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]。获得[blue]6[/blue]点格挡。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]: 获得{Block:diff()}点格挡。\n在回合结束时[gold]释放[/gold]。",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "双重释放",
-  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]法术修正[/gold]。\n下一个法术额外[gold]释放[/gold][blue]1[/blue]次。"
+  "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术额外[gold]释放[/gold][blue]1[/blue]次。",
+  "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "奥术炸弹",
+  "STS2_WINE_FOX_CARD_ARCANE_BOMB.description": "[gold]装填[/gold]: 对所有敌人造成{Damage:diff()}点伤害。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.title": "高能光束",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。\n将一张[gold]碎屑[/gold]添加至你的手牌。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_CURSED_ORB.title": "诅咒之球",
+  "STS2_WINE_FOX_CARD_CURSED_ORB.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。\n给予敌人{Calamity:diff()}层[gold]灾厄[/gold]。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_SEARING_JOLT.title": "灼热冲击",
+  "STS2_WINE_FOX_CARD_SEARING_JOLT.description": "[gold]装填[/gold]: 给予敌人{Burn:diff()}层[gold]烧伤[/gold]。\n失去{HpLoss:diff()}点生命。\n在回合结束时[gold]释放[/gold]。",
+  "STS2_WINE_FOX_CARD_PIERCING_BOLT.title": "穿刺魔弹",
+  "STS2_WINE_FOX_CARD_PIERCING_BOLT.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术对所有敌人造成伤害，但是减少{DamageReduction:diff()}%伤害。"
 }

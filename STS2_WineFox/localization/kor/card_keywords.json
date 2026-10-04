@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "장전",
   "STS2_WINE_FOX_KEYWORD_LOAD.description": "이 카드를 지팡이에 넣습니다. 턴 종료 시 [gold]해방[/gold]됩니다.",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "해방",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]해방[/gold]: 턴 종료 시 지팡이에 장전된 주문이 순서대로 발동됩니다."
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]해방[/gold]: 턴 종료 시 지팡이에 장전된 주문이 순서대로 발동됩니다.",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "주문 수정",
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "지팡이에 장전되지만 발동하지 않습니다. 다음 주문의 해결 방식을 바꿉니다."
 }

@@ -69,8 +69,10 @@ namespace STS2_WineFox.Nodes
             if (_boundPlayer == null)
                 return;
 
-            // Power 由遗物在战斗回合开始时创建，可能晚于本节点绑定，因此惰性解析。
-            _power ??= MagicWineFoxSpellCmd.GetPower(_boundPlayer);
+            // 每帧重新解析当前 Power，而不是只在为 null 时解析一次。
+            // 本节点跨战斗复用（ReuseExistingByName），若缓存了上一场战斗的旧 Power 实例，
+            // 就会把旧槽位内容画到新战斗里——表现为「开局槽位里已有法术」。
+            _power = MagicWineFoxSpellCmd.GetPower(_boundPlayer);
 
             if (!ResolveCreatureNode())
             {

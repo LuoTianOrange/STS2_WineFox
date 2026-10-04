@@ -1,6 +1,9 @@
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -42,7 +45,7 @@ namespace STS2_WineFox.Powers
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("CastCount", 1m),
-            new("FirstLoadFree", 0m)
+            new("FirstLoadDiscountUsed", 0m)
         ];
 
         /// <summary>释放轮数：每回合结束时触发几轮释放。默认 1。</summary>
@@ -52,13 +55,13 @@ namespace STS2_WineFox.Powers
             private set => DynamicVars["CastCount"].BaseValue = Math.Max(1, value);
         }
 
-        /// <summary>本回合「首次装填免费」是否已被使用。</summary>
-        public bool FreeLoadUsed
+        /// <summary>本回合「首次装填费用减 1」是否已被使用。</summary>
+        public bool FirstLoadDiscountUsed
         {
-            get => DynamicVars["FirstLoadFree"].BaseValue > 0m;
+            get => DynamicVars["FirstLoadDiscountUsed"].BaseValue > 0m;
             private set
             {
-                DynamicVars["FirstLoadFree"].BaseValue = value ? 1m : 0m;
+                DynamicVars["FirstLoadDiscountUsed"].BaseValue = value ? 1m : 0m;
                 InvokeDisplayAmountChanged();
             }
         }
@@ -165,14 +168,53 @@ namespace STS2_WineFox.Powers
         }
 
         /// <summary>
-        ///     本回合首次装填是否可免能量。非消耗式查询——是否消费由 <see cref="ConsumeFreeLoad" /> 决定。
+        ///     本回合「首次装填费用减 1」是否可用。非消耗式查询——是否消费由
+        ///     <see cref="ConsumeFirstLoadDiscount" /> 决定。
         /// </summary>
-        public bool CanFreeLoad => !FreeLoadUsed;
+        public bool CanDiscountFirstLoad => !FirstLoadDiscountUsed;
 
-        public void ConsumeFreeLoad()
+        public void ConsumeFirstLoadDiscount()
         {
-            if (FreeLoadUsed) return;
-            FreeLoadUsed = true;
+            if (FirstLoadDiscountUsed) return;
+            FirstLoadDiscountUsed = true;
+        }
+
+        /// <summary>
+        ///     起始遗物【狐火杖】：本回合第一次装填的费用减 1（最低 0）。
+        ///     <para>
+        ///         用游戏原生的费用钩子改写（与 <c>SnowBallOverwhelmingPower</c> 同一套写法），
+        ///         因此卡面会直接显示减费后的数值，且能量刚好够时也能打出——
+        ///         而不是「先扣后还」。消费时机在 <c>MagicWineFoxSpellCmd.Load</c>。
+        ///     </para>
+        /// </summary>
+        public override bool TryModifyEnergyCostInCombat(
+            CardModel card,
+            decimal originalCost,
+            out decimal modifiedCost)
+        {
+            modifiedCost = originalCost;
+
+            if (!CanDiscountFirstLoad)
+                return false;
+
+            // 只影响可装填的狐火法术。
+            if (card is not MagicWineFoxSpellCard { IsLoadable: true })
+                return false;
+
+            if (card.Owner?.Creature != Owner)
+                return false;
+
+            var pile = card.Pile?.Type;
+            if (pile != PileType.Hand && pile != PileType.Play)
+                return false;
+
+            // 费用减 FirstLoadDiscount，不低于 0（0 费牌不受影响）。
+            var discounted = originalCost - STS2_WineFox.Commands.MagicWineFoxSpellCmd.FirstLoadDiscount;
+            if (discounted >= originalCost)
+                return false;
+
+            modifiedCost = Math.Max(0m, discounted);
+            return true;
         }
 
         /// <summary>
@@ -192,12 +234,12 @@ namespace STS2_WineFox.Powers
             return true;
         }
 
-        /// <summary>回合开始时重置「首次装填免费」。</summary>
+        /// <summary>回合开始时重置「首次装填费用减 1」。</summary>
         protected override Task OnAfterPlayerTurnStart(
             MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext,
             MegaCrit.Sts2.Core.Entities.Players.Player player)
         {
-            FreeLoadUsed = false;
+            FirstLoadDiscountUsed = false;
             return Task.CompletedTask;
         }
 

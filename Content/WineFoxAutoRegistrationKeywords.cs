@@ -69,6 +69,13 @@ namespace STS2_WineFox.Content
         [RegisterOwnedCardKeyword(WineFoxKeywords.ReleaseKey)]
         private sealed class Release;
 
+        /// <summary>
+        ///     「法术修正」关键字：装入法杖后不施放，只修改其后第一张法术的释放方式。
+        ///     不带图标——关键字只作文字说明。
+        /// </summary>
+        [RegisterOwnedCardKeyword(WineFoxKeywords.SpellModifierKey)]
+        private sealed class SpellModifier;
+
         [RegisterOwnedCardKeyword(WineFoxKeywords.SophisticatedBackpackKey,
             IconPath = Const.Paths.SophisticatedBackpack)]
         private sealed class SophisticatedBackpack;

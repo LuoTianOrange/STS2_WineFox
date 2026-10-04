@@ -24,6 +24,7 @@ namespace STS2_WineFox.Cards
         public const string MagicKey = "magic";
         public const string LoadKey = "load";
         public const string ReleaseKey = "release";
+        public const string SpellModifierKey = "spell_modifier";
         public const string SophisticatedBackpackKey = "sophisticated_backpack";
         public const string SwordKey = "sword";
         public const string CookableFoodKey = "cookable_food";
@@ -49,6 +50,9 @@ namespace STS2_WineFox.Cards
         public static readonly string Magic = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MagicKey);
         public static readonly string Load = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, LoadKey);
         public static readonly string Release = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ReleaseKey);
+
+        public static readonly string SpellModifier =
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SpellModifierKey);
         public static readonly string SophisticatedBackpack =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
         public static readonly string Sword = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SwordKey);
@@ -72,6 +76,8 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
         public static readonly CardKeyword LoadKeyword = Load.GetModCardKeyword();
         public static readonly CardKeyword ReleaseKeyword = Release.GetModCardKeyword();
+
+        public static readonly CardKeyword SpellModifierKeyword = SpellModifier.GetModCardKeyword();
         public static readonly CardKeyword SophisticatedBackpackKeyword = SophisticatedBackpack.GetModCardKeyword();
         public static readonly CardKeyword SwordKeyword = Sword.GetModCardKeyword();
         public static readonly CardKeyword CookableFoodKeyword = CookableFood.GetModCardKeyword();
@@ -164,6 +170,12 @@ namespace STS2_WineFox.Cards
             public bool IsReleasing()
             {
                 return card.HasModKeyword(ReleaseKeyword);
+            }
+
+            /// <summary>是否为法术修正符（带「法术修正」关键字）。</summary>
+            public bool IsSpellModifier()
+            {
+                return card.HasModKeyword(SpellModifierKeyword);
             }
 
             public bool IsSophisticatedBackpack()

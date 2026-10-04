@@ -1,9 +1,7 @@
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards;
 using STS2_WineFox.Mechanics;
-using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Spell
 {
@@ -34,13 +32,25 @@ namespace STS2_WineFox.Cards.Spell
         public virtual string SpellIconPath => string.Empty;
 
         /// <summary>
-        ///     卡牌关键字：可装填时带「装填」+「释放」，构成法杖体系的一对；
-        ///     不可装填时两者都不带（如奥术屏障，只直接释放）。
+        ///     卡牌关键字：
+        ///     可装填时带「装填」+「释放」，构成法杖体系的一对（不可装填时两者都不带）；
+        ///     实现 <see cref="IMagicWineFoxSpellModifierCard" /> 的修正符自动带「法术修正」。
+        ///     这样新增修正符时不必再手工维护关键字列表。
         /// </summary>
-        public override IEnumerable<CardKeyword> CanonicalKeywords =>
-            IsLoadable
-                ? [WineFoxKeywords.LoadKeyword, WineFoxKeywords.ReleaseKeyword]
-                : [];
+        public override IEnumerable<CardKeyword> CanonicalKeywords
+        {
+            get
+            {
+                if (IsLoadable)
+                {
+                    yield return WineFoxKeywords.LoadKeyword;
+                    yield return WineFoxKeywords.ReleaseKeyword;
+                }
+
+                if (this is IMagicWineFoxSpellModifierCard)
+                    yield return WineFoxKeywords.SpellModifierKeyword;
+            }
+        }
 
         /// <summary>
         ///     能否装填进法杖。部分法术（如防御类）设计为只能直接释放，
@@ -59,6 +69,33 @@ namespace STS2_WineFox.Cards.Spell
                 return context.Target;
 
             return context.Owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
+        }
+
+        /// <summary>
+        ///     法术伤害的统一结算入口。
+        ///     <para>
+        ///         由修正符决定目标：带【穿刺魔弹】这类「下一个法术对所有敌人造成伤害」的修正时，
+        ///         改为全体结算；否则按 <see cref="ResolveSpellTarget" /> 打单体。
+        ///         子类因此不必各自处理目标逻辑。
+        ///     </para>
+        /// </summary>
+        protected static async Task DealSpellDamage(
+            Mechanics.MagicWineFoxSpellCastContext context,
+            decimal baseDamage)
+        {
+            var attack = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
+                .FromCard(context.SourceCard, null);
+
+            if (context.TargetsAllEnemies)
+            {
+                if (context.Owner?.Creature?.CombatState is { } combatState)
+                    await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
+                return;
+            }
+
+            var target = ResolveSpellTarget(context);
+            if (target != null)
+                await attack.Targeting(target).Execute(context.ChoiceContext);
         }
     }
 }

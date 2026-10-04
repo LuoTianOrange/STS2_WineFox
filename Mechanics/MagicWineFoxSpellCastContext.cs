@@ -26,10 +26,16 @@ namespace STS2_WineFox.Mechanics
         public CardModel? CastSourceCard { get; } = castSourceCard;
         public MagicWineFoxSpellModifierState Modifiers { get; } = modifiers;
 
-        /// <summary>结算伤害时使用：基础值 + 修正符附加伤害。</summary>
+        /// <summary>本次施放是否应改为对所有敌人结算（由【穿刺魔弹】等修正符决定）。</summary>
+        public bool TargetsAllEnemies => Modifiers.TargetsAllEnemies;
+
+        /// <summary>
+        ///     结算伤害时使用：先加修正符的附加伤害，再乘伤害倍率（如穿刺魔弹的 -20%），最后取整。
+        /// </summary>
         public decimal DamageWithModifiers(decimal baseDamage)
         {
-            return Math.Max(0m, baseDamage + Modifiers.DamageBonus);
+            var raw = (baseDamage + Modifiers.DamageBonus) * Modifiers.DamageMultiplier;
+            return Math.Max(0m, Math.Round(raw, 0, MidpointRounding.AwayFromZero));
         }
     }
 }
