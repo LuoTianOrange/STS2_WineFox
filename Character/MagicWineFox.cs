@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models.Characters;
 using STS2_WineFox.Content.Descriptors;
@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Characters;
 namespace STS2_WineFox.Character
 {
     [RegisterCharacter]
-    // [RevealAscensionAfterEpoch(typeof(WineFoxVictoryEpoch))] // WineFoxVictoryEpoch 已删除（212ded5）
+    // [RevealAscensionAfterEpoch(typeof(WineFoxVictoryEpoch))]
     public class MagicWineFox : ModCharacterTemplate<MagicWineFoxCardPool, MagicWineFoxRelicPool, WineFoxPotionPool>
     {
         public static readonly Color Color = new("b66bff");

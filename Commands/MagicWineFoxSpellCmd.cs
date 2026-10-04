@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -161,11 +162,17 @@ namespace STS2_WineFox.Commands
         {
             var modifiers = new MagicWineFoxSpellModifierState();
             var used = 0;
+            var lookBehind = CollectLookBehindModifiers(spells);
 
-            foreach (var snapshot in spells)
+            for (var index = 0; index < spells.Count; index++)
             {
+                var snapshot = spells[index];
+
                 if (used >= releaseBudget)
                     break;
+
+                if (snapshot.Card is IMagicWineFoxSpellLookBehindModifierCard)
+                    continue;
 
                 if (snapshot.Card is IMagicWineFoxSpellModifierCard modifier)
                 {
@@ -179,6 +186,10 @@ namespace STS2_WineFox.Commands
                     modifiers.Reset();
                     continue;
                 }
+
+                if (lookBehind.TryGetValue(index, out var attached))
+                    foreach (var extra in attached)
+                        extra.ApplyModifier(modifiers);
 
                 var target = ResolveTarget(snapshot.Target, fallbackTarget);
 
@@ -196,9 +207,22 @@ namespace STS2_WineFox.Commands
                 var casts = modifiers.CastCount;
                 for (var i = 0; i < casts; i++)
                 {
-                    var attacked = ResolveAttackedEnemies(context).ToList();
+                    var castContext = context;
 
-                    await spellCard.CastAsSpell(context);
+                    if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
+                    {
+                        castContext = new MagicWineFoxSpellCastContext(
+                            choiceContext,
+                            owner,
+                            PickRandomEnemy(randomState),
+                            snapshot.Card,
+                            sourceCard,
+                            modifiers);
+                    }
+
+                    var attacked = ResolveAttackedEnemies(castContext).ToList();
+
+                    await spellCard.CastAsSpell(castContext);
 
                     await Powers.EternalMelodyPower.ApplyToSpellTargets(
                         choiceContext,
@@ -210,6 +234,41 @@ namespace STS2_WineFox.Commands
                 used += modifiers.BudgetCost;
                 modifiers.Reset();
             }
+        }
+
+        private static Dictionary<int, List<IMagicWineFoxSpellModifierCard>> CollectLookBehindModifiers(
+            IReadOnlyList<MagicWineFoxSpellSlotSnapshot> spells)
+        {
+            var result = new Dictionary<int, List<IMagicWineFoxSpellModifierCard>>();
+
+            for (var i = 0; i < spells.Count; i++)
+            {
+                if (spells[i].Card is not IMagicWineFoxSpellLookBehindModifierCard lookBehind)
+                    continue;
+
+                for (var j = i - 1; j >= 0; j--)
+                {
+                    if (spells[j].Card is not IMagicWineFoxSpellCard)
+                        continue;
+
+                    if (!result.TryGetValue(j, out var list))
+                        result[j] = list = [];
+
+                    list.Add(lookBehind);
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        private static Creature? PickRandomEnemy(ICombatState combatState)
+        {
+            var enemies = combatState.HittableEnemies;
+            if (enemies.Count == 0)
+                return null;
+
+            return combatState.RunState.Rng.CombatTargets.NextItem(enemies);
         }
 
         private static IEnumerable<Creature> ResolveAttackedEnemies(MagicWineFoxSpellCastContext context)

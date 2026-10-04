@@ -42,14 +42,10 @@ namespace STS2_WineFox.Cards.Spell
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             var owner = context.Owner;
-            if (owner?.Creature?.CombatState is not { } combatState)
+            if (owner?.Creature?.CombatState == null)
                 return;
 
-            var option = SpellModifierRegistry.Roll(owner.PlayerRng.Rewards);
-            var modifier = option.Factory(combatState, owner);
-
-            var instance = await CardPileCmd.AddGeneratedCardToCombat(modifier, PileType.Hand, owner);
-            CardCmd.PreviewCardPileAdd(instance);
+            await SpellModifierFactory.ChooseOneToHand(context.ChoiceContext, owner);
         }
 
         protected override void OnUpgrade()

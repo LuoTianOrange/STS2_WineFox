@@ -53,6 +53,8 @@ namespace STS2_WineFox
             public const string SpellIconPiercingBolt = Root + "/ui/spell_icons/spell_piercing_bolt.png";
             public const string SpellIconEyeOfProvidence = Root + "/ui/spell_icons/spell_eye_of_providence.png";
             public const string SpellIconCircularSaw = Root + "/ui/spell_icons/spell_circular_saw.png";
+            public const string SpellIconQuadrupleScatteringRelease = Root + "/ui/spell_icons/spell_quadruple_scattering_release.png";
+            public const string SpellIconVenomBubble = Root + "/ui/spell_icons/spell_venom_bubble.png";
 
             /// <summary>【序列回响】Power 图标。</summary>
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
@@ -331,6 +333,7 @@ namespace STS2_WineFox
             //spell
             public const string CardDoubleReleaseSigil = Root + "/cards/card_double_cast.png";
             public const string CardFoxfireBolt = Root + "/cards/card_spark_bolt.png";
+            public const string CardQuadrupleScatteringRelease = Root + "/cards/card_quadruple_scattering_release.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

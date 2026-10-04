@@ -343,5 +343,9 @@
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "シーケンスエコー",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.description": "術スロットが{SlotBonus:diff()}増える。次の術カードを消耗する。杖を解放するたび、その術を打出す。{IfUpgraded:show:\n術カードを1枚引く。|}",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "丸ノコ",
-  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを与える。超過分は自分に反撃する。"
+  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを与える。超過分は自分に反撃する。",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "四重散乱解放",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]装填[/gold]: 直前の術を追加で{ExtraCasts:diff()}回打出すが、ダメージが{DamageReduction:diff()}%減少し、対象がランダムになる。",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "毒液の泡",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]装填[/gold]: [gold]毒[/gold]を{PoisonPower:diff()}付与する。ランダムなスペル修正を1枚得る。"
 }

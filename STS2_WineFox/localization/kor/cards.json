@@ -343,5 +343,9 @@
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "시퀀스 메아리",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.description": "주문 슬롯이 {SlotBonus:diff()} 증가합니다. 다음 주문 카드를 소모합니다. 지팡이를 해방할 때마다 그 주문을 사용합니다.{IfUpgraded:show:\n주문 카드를 1장 뽑습니다.|}",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "원형 톱",
-  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]장전[/gold]: {Damage:diff()} 피해를 줍니다. 초과 피해는 자신에게 되돌아옵니다."
+  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]장전[/gold]: {Damage:diff()} 피해를 줍니다. 초과 피해는 자신에게 되돌아옵니다.",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "사중 산개 해방",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]장전[/gold]: 직전 주문을 {ExtraCasts:diff()}회 추가로 사용하지만, 피해가 {DamageReduction:diff()}% 감소하고 대상이 무작위로 선택됩니다.",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "독액 거품",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]장전[/gold]: [gold]중독[/gold]을 {PoisonPower:diff()} 부여합니다. 무작위 주문 수정을 1장 얻습니다."
 }

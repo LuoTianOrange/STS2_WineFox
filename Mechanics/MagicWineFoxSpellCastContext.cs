@@ -29,6 +29,8 @@ namespace STS2_WineFox.Mechanics
         /// <summary>本次施放是否应改为对所有敌人结算（由【穿刺魔弹】等修正符决定）。</summary>
         public bool TargetsAllEnemies => Modifiers.TargetsAllEnemies;
 
+        public bool RandomTargets => Modifiers.RandomTargets;
+
         /// <summary>
         ///     结算伤害时使用：先加修正符的附加伤害，再乘伤害倍率（如穿刺魔弹的 -20%），最后取整。
         /// </summary>

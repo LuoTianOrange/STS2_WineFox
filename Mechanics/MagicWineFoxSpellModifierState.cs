@@ -37,6 +37,8 @@ namespace STS2_WineFox.Mechanics
         /// </summary>
         public bool TargetsAllEnemies { get; private set; }
 
+        public bool RandomTargets { get; private set; }
+
         /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
         public int CastCount => 1 + Math.Max(0, ExtraCasts);
 
@@ -46,7 +48,7 @@ namespace STS2_WineFox.Mechanics
         /// <summary>累积器当前是否有任何修正（用于修正符空放时的判定与调试）。</summary>
         public bool IsEmpty =>
             DamageBonus == 0m && ExtraCasts == 0 && !ExtraCastsAreBudgetFree &&
-            DamageMultiplier == 1m && !TargetsAllEnemies;
+            DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets;
 
         public void AddDamageBonus(decimal amount)
         {
@@ -75,6 +77,11 @@ namespace STS2_WineFox.Mechanics
             TargetsAllEnemies = true;
         }
 
+        public void MarkRandomTargets()
+        {
+            RandomTargets = true;
+        }
+
         /// <summary>消费掉当前累积的修正。每施放一张法术后必须调用，否则修正会泄漏到后续法术。</summary>
         public void Reset()
         {
@@ -83,6 +90,7 @@ namespace STS2_WineFox.Mechanics
             ExtraCastsAreBudgetFree = false;
             DamageMultiplier = 1m;
             TargetsAllEnemies = false;
+            RandomTargets = false;
         }
     }
 }

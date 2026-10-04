@@ -346,5 +346,9 @@
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "序列回响",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.description": "你的法术槽加{SlotBonus:diff()}，消耗你的下一张法术卡。每当你释放法杖时，打出该法术。{IfUpgraded:show:\n抽1张法术牌。|}",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "圆锯",
-  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。溢出的伤害会伤害自己。"
+  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。溢出的伤害会伤害自己。",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "四重散射释放",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]装填[/gold]: 上一个法术额外释放{ExtraCasts:diff()}次，但减少{DamageReduction:diff()}%伤害并随机选择目标。",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "毒液泡泡",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]装填[/gold]: 给予{PoisonPower:diff()}层[gold]中毒[/gold]。获得一张随机法术修正。"
 }

@@ -343,5 +343,9 @@
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "Echoes Sequence",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.description": "Your wand gains {SlotBonus:diff()} spell slot. Exhaust your next spell card; whenever you release your wand, play that spell.{IfUpgraded:show:\nDraw 1 spell card.|}",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "Circular Saw",
-  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage. Excess damage backlashes onto you."
+  "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage. Excess damage backlashes onto you.",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "Quadruple Scattering Release",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]Load[/gold]: The previous spell is cast {ExtraCasts:diff()} additional times, but deals {DamageReduction:diff()}% less damage and its targets are chosen at random.",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "Venom Bubble",
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]Load[/gold]: Apply {PoisonPower:diff()} [gold]Poison[/gold]. Gain a random spell modifier."
 }

@@ -76,6 +76,16 @@ namespace STS2_WineFox.Cards.Spell
             return context.Owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
         }
 
+        protected static List<Creature> ResolveSpellTargets(Mechanics.MagicWineFoxSpellCastContext context)
+        {
+            if (context.TargetsAllEnemies)
+                return context.Owner?.Creature?.CombatState?.HittableEnemies
+                    .Where(enemy => enemy.IsAlive)
+                    .ToList() ?? [];
+
+            return ResolveSpellTarget(context) is { } single ? [single] : [];
+        }
+
         /// <summary>
         ///     法术伤害的统一结算入口。
         ///     <para>
