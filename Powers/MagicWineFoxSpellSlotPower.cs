@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -232,6 +233,19 @@ namespace STS2_WineFox.Powers
                 SetCastCount(CastCount + 1);
 
             return true;
+        }
+
+        /// <summary>
+        ///     Power 被施加时清空槽位——新战斗 / 读档恢复都会走到这里。
+        ///     <para>
+        ///         槽位内容属于「本场战斗内的临时状态」，绝不能被继承：否则开局法杖里
+        ///         会带着上一次已装填的法术，而且它们在释放时**真的会结算并造成伤害**。
+        ///     </para>
+        /// </summary>
+        public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+        {
+            ClearSlots();
+            return Task.CompletedTask;
         }
 
         /// <summary>回合开始时重置「首次装填费用减 1」。</summary>

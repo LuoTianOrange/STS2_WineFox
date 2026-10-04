@@ -117,6 +117,7 @@ namespace STS2_WineFox
             patcher.RegisterPatch<NCombatUiActivateSpellSlotBarPatch>();
             patcher.RegisterPatch<NCombatUiAnimOutSpellSlotBarPatch>();
             patcher.RegisterPatch<NCombatUiDeactivateSpellSlotBarPatch>();
+            patcher.RegisterPatch<EchoesSequenceSmartDescriptionPatch>();
             return patcher;
         }
 

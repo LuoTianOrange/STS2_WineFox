@@ -1,4 +1,6 @@
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -69,10 +71,25 @@ namespace STS2_WineFox.Nodes
             if (_boundPlayer == null)
                 return;
 
-            // 每帧重新解析当前 Power，而不是只在为 null 时解析一次。
-            // 本节点跨战斗复用（ReuseExistingByName），若缓存了上一场战斗的旧 Power 实例，
-            // 就会把旧槽位内容画到新战斗里——表现为「开局槽位里已有法术」。
-            _power = MagicWineFoxSpellCmd.GetPower(_boundPlayer);
+            // 用「当前战斗」的实时玩家替换绑定时的缓存对象。
+            // 存档 / 读档会重建 Player、Creature、Power 实例；若继续复用旧对象，
+            // 预览条会一直读旧 Power 的槽位列表，表现为「读档后槽位保留了之前打出的法术」。
+            var live = ResolveLivePlayer();
+            if (live != null && !ReferenceEquals(live, _boundPlayer))
+            {
+                _boundPlayer = live;
+                _signature = string.Empty; // 玩家实例更换 -> 强制重绘
+            }
+
+            // Power 实例更换（读档 / 换战斗）同样必须强制重绘：
+            // 签名只描述容量与槽内卡牌，两个不同实例的签名可能恰好相同，
+            // 此时若沿用旧签名就会跳过重绘，UI 停留在读档前的画面。
+            var power = MagicWineFoxSpellCmd.GetPower(_boundPlayer);
+            if (!ReferenceEquals(power, _power))
+            {
+                _power = power;
+                _signature = string.Empty;
+            }
 
             if (!ResolveCreatureNode())
             {
@@ -89,6 +106,20 @@ namespace STS2_WineFox.Nodes
             Visible = true;
             ApplyLayout();
             Refresh();
+        }
+
+        /// <summary>
+        ///     从**当前战斗**取本地玩家。
+        ///     <para>
+        ///         存档 / 读档会重建 Player 与 Power 实例，而本节点是跨场景复用的附件节点，
+        ///         绑定时的 <c>_boundPlayer</c> 会变成指向旧对象的悬空引用。
+        ///         这里每帧用实时对象覆盖它，从而不会显示存档前的槽位内容。
+        ///     </para>
+        /// </summary>
+        private static Player? ResolveLivePlayer()
+        {
+            var state = CombatManager.Instance?.DebugOnlyGetState();
+            return state == null ? null : LocalContext.GetMe(state);
         }
 
         /// <summary>绑定要显示其槽位的玩家；传 null 表示解绑并隐藏。</summary>

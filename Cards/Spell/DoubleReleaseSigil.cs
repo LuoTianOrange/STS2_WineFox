@@ -21,7 +21,9 @@ namespace STS2_WineFox.Cards.Spell
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
             WineFoxKeywords.LoadKeyword,
-            WineFoxKeywords.SpellModifierKeyword
+            WineFoxKeywords.SpellModifierKeyword,
+            CardKeyword.Ethereal,
+            CardKeyword.Exhaust
         ];
 
         public void ApplyModifier(MagicWineFoxSpellModifierState modifiers)

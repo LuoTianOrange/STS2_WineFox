@@ -35,9 +35,9 @@
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "조리된 음식",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]구운 감자[/gold]: 체력을 5 얻고 방어도를 6 얻습니다.\n[gold]훈제 당근[/gold]: 체력을 4 얻고 힘을 2 얻습니다.\n[gold]비트 수프[/gold]: 체력을 6 얻고 판금 갑옷을 2 얻습니다.\n[gold]빵[/gold]: 체력을 5 얻습니다. 카드를 1장 뽑습니다.\n[gold]버섯 스튜[/gold]: 체력을 6 얻고 민첩을 2 얻습니다.\n[gold]호박 파이[/gold]: 체력을 8 얻고 인공물을 1 얻습니다.",
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "장전",
-  "STS2_WINE_FOX_KEYWORD_LOAD.description": "이 카드를 지팡이에 넣습니다. 턴 종료 시 [gold]해방[/gold]됩니다.",
+  "STS2_WINE_FOX_KEYWORD_LOAD.description": "이 카드를 지팡이에 넣습니다. 턴 종료 시 지팡이에 장전된 주문이 순서대로 발동됩니다.",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "해방",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]해방[/gold]: 턴 종료 시 지팡이에 장전된 주문이 순서대로 발동됩니다.",
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]해방[/gold]: 지팡이에 장전된 주문을 해방합니다.",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "주문 수정",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "지팡이에 장전되지만 발동하지 않습니다. 다음 주문의 해결 방식을 바꿉니다."
 }

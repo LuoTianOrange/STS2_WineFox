@@ -192,5 +192,12 @@
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "Whenever another player plays a [gold]Power[/gold] card, gain [blue]{Amount}[/blue] [gold]Plank[/gold], [blue]{Amount}[/blue] [gold]Cobblestone[/gold], [blue]{Amount}[/blue] [gold]Iron Ingot[/gold], and [blue]{Amount}[/blue] [gold]Diamond[/gold].",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "Wand Slots",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "Your wand holds loaded spells. Amount = slot capacity; the displayed number = spells currently loaded.",
-  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] wand slot(s)."
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] wand slot(s).",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.title": "Echoes Sequence",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.description": "Your wand gains extra spell slots. Your next spell card is exhausted and bound; it reloads into the first slot after each release.",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "[blue]{Amount}[/blue] extra spell slot(s). {BoundSpellClause}",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "Bound spell: [gold]{SpellName}[/gold]",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "Eternal Melody",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "Whenever you release a spell, the enemies it attacks lose {Amount} Max HP.",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "Whenever you release a spell, the enemies it attacks lose [blue]{Amount}[/blue] Max HP."
 }

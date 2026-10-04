@@ -192,5 +192,12 @@
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "다른 플레이어가 [gold]능력[/gold] 카드를 사용할 때마다 [blue]{Amount}[/blue]개의 [gold]목재 판자[/gold], [blue]{Amount}[/blue]개의 [gold]조약돌[/gold], [blue]{Amount}[/blue]개의 [gold]철 주괴[/gold], [blue]{Amount}[/blue]개의 [gold]다이아몬드[/gold]를 얻습니다.",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "지팡이 슬롯",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "지팡이에 장전된 주문을 보관합니다. 수치 = 슬롯 용량, 표시되는 숫자 = 현재 장전 수.",
-  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue]개의 지팡이 슬롯."
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue]개의 지팡이 슬롯.",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.title": "시퀀스 메아리",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.description": "지팡이가 주문 슬롯을 추가로 얻습니다. 다음 주문 카드는 소모되어 바인딩되며, 해방할 때마다 첫 번째 슬롯에 자동으로 장전됩니다.",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "[blue]{Amount}[/blue]개의 추가 주문 슬롯. {BoundSpellClause}",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "바인딩된 주문: [gold]{SpellName}[/gold]",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "영원한 선율",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "주문을 해방할 때마다 그 주문이 공격한 적이 최대 HP를 {Amount} 잃습니다.",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "주문을 해방할 때마다 그 주문이 공격한 적이 최대 HP를 [blue]{Amount}[/blue] 잃습니다."
 }

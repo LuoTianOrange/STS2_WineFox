@@ -35,9 +35,9 @@
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "調理済み食料",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "[gold]ベイクドポテト[/gold]：HPを5得て、ブロックを6得る。\n[gold]燻製ニンジン[/gold]：HPを4得て、筋力を2得る。\n[gold]ビートスープ[/gold]：HPを6得て、プレートアーマーを2得る。\n[gold]パン[/gold]：HPを5得る。カードを1枚引く。\n[gold]キノコシチュー[/gold]：HPを6得て、敏捷性を2得る。\n[gold]パンプキンパイ[/gold]：HPを8得て、アーティファクトを1得る。",
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "装填",
-  "STS2_WINE_FOX_KEYWORD_LOAD.description": "このカードを杖に込める。ターン終了時に[gold]解放[/gold]される。",
+  "STS2_WINE_FOX_KEYWORD_LOAD.description": "このカードを杖に込める。ターン終了時、杖に装填された術が順に解決される。",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "解放",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]解放[/gold]：ターン終了時、杖に装填された術が順に解決される。",
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]解放[/gold]：杖に装填された術を解決する。",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "スペル修正",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "杖に装填されるが発動しない。直後の術の解決方法を変更する。"
 }

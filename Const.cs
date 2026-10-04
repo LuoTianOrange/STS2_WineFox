@@ -51,6 +51,11 @@ namespace STS2_WineFox
             public const string SpellIconCursedOrb = Root + "/ui/spell_icons/spell_cursed_orb.png";
             public const string SpellIconSearingJolt = Root + "/ui/spell_icons/spell_searing_jolt.png";
             public const string SpellIconPiercingBolt = Root + "/ui/spell_icons/spell_piercing_bolt.png";
+            public const string SpellIconEyeOfProvidence = Root + "/ui/spell_icons/spell_eye_of_providence.png";
+            public const string SpellIconCircularSaw = Root + "/ui/spell_icons/spell_circular_saw.png";
+
+            /// <summary>【序列回响】Power 图标。</summary>
+            public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";

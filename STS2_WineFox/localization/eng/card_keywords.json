@@ -35,9 +35,9 @@
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.title": "Cooked Food",
   "STS2_WINE_FOX_KEYWORD_COOKED_FOOD.description": "Includes [gold]Baked Potato[/gold]: Gain 5 HP and 6 Block.\n[gold]Smoked Carrot[/gold]: Gain 4 HP and 2 Strength.\n[gold]Beet Soup[/gold]: Gain 6 HP and 2 Plated Armor.\n[gold]Bread[/gold]: Gain 5 HP. Draw 1 card.\n[gold]Mushroom Stew[/gold]: Gain 6 HP and 2 Dexterity.\n[gold]Pumpkin Pie[/gold]: Gain 8 HP and 1 Artifact.",
   "STS2_WINE_FOX_KEYWORD_LOAD.title": "Load",
-  "STS2_WINE_FOX_KEYWORD_LOAD.description": "Place this card into your wand. It is [gold]released[/gold] at the end of your turn.",
+  "STS2_WINE_FOX_KEYWORD_LOAD.description": "Place this card into your wand. At the end of your turn, the spells loaded in your wand resolve in order.",
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "Release",
-  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]Release[/gold]: at the end of your turn, the spells loaded in your wand resolve in order.",
+  "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]Release[/gold]: resolve the spells loaded in your wand.",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "Spell Modifier",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "Loads into your wand without being cast. It changes how the next spell resolves."
 }

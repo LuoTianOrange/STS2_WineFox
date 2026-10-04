@@ -41,6 +41,16 @@ namespace STS2_WineFox.Relics
 
             var power = await MagicWineFoxSpellCmd.EnsurePower(Owner, slots, casts);
             if (power == null) return;
+
+            // 本场战斗开始：清掉可能残留的槽位。
+            // 正常情况 Power 是新建的（AfterApplied 已清空），但若实例跨战斗存活，
+            // 上一场的法术会留在槽里并在释放时真的造成伤害——这里兜底。
+            var stale = power.LoadedCount;
+            if (stale > 0)
+            {
+                Main.Logger.Info($"[SpellSlot] 战斗开始发现残留槽位 {stale} 张，已清空");
+                power.ClearSlots();
+            }
             
             var sigils = (int)DynamicVars["PreloadSigils"].BaseValue;
             for (var i = 0; i < sigils; i++)

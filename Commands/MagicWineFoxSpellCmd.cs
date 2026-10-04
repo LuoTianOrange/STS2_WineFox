@@ -74,6 +74,11 @@ namespace STS2_WineFox.Commands
             if (power == null) return false;
 
             var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier);
+
+            // 序列回响：把这张法术记为「始终释放」的法术（照常装填，不拦截）。
+            var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
+            echo?.TryBind(card);
+
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
             if (!power.TryLoad(snapshot)) return false;
 
@@ -97,9 +102,28 @@ namespace STS2_WineFox.Commands
             if (power == null) return;
 
             var spells = power.DrainLoadedSpells();
-            if (spells.Count == 0) return;
 
-            await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget);
+            if (spells.Count > 0)
+                await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget);
+
+            // 序列回响：法杖清空后自动把绑定的回响法术装回第一个槽位，
+            // 于是它永远排在序列最前——也就吃不到任何修正符加成。
+            EnsureEchoLoaded(owner);
+        }
+
+        /// <summary>把【序列回响】绑定的法术自动装回法杖（法杖已被清空，因此它落在第一个槽位）。</summary>
+        private static void EnsureEchoLoaded(Player owner)
+        {
+            var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
+            if (echo?.EchoSpell is not { } template)
+                return;
+
+            var power = GetPower(owner);
+            if (power == null)
+                return;
+
+            // 每次装回都用新的克隆，避免复用已被结算过的实例。
+            power.TryLoad(new MagicWineFoxSpellSlotSnapshot(template.CreateClone(), null, false));
         }
 
         /// <summary>释放序列中最旧的一张法术，其余保留。</summary>
@@ -157,6 +181,10 @@ namespace STS2_WineFox.Commands
                 }
 
                 var target = ResolveTarget(snapshot.Target, fallbackTarget);
+
+                if (target == null && owner?.Creature?.CombatState is { } targetState)
+                    target = targetState.HittableEnemies.FirstOrDefault();
+
                 var context = new MagicWineFoxSpellCastContext(
                     choiceContext,
                     owner,
@@ -167,11 +195,29 @@ namespace STS2_WineFox.Commands
 
                 var casts = modifiers.CastCount;
                 for (var i = 0; i < casts; i++)
+                {
+                    var attacked = ResolveAttackedEnemies(context).ToList();
+
                     await spellCard.CastAsSpell(context);
+
+                    await Powers.EternalMelodyPower.ApplyToSpellTargets(
+                        choiceContext,
+                        owner,
+                        snapshot.Card,
+                        attacked);
+                }
 
                 used += modifiers.BudgetCost;
                 modifiers.Reset();
             }
+        }
+
+        private static IEnumerable<Creature> ResolveAttackedEnemies(MagicWineFoxSpellCastContext context)
+        {
+            if (context.TargetsAllEnemies)
+                return context.Owner?.Creature?.CombatState?.HittableEnemies ?? [];
+
+            return context.Target is { IsAlive: true } target ? [target] : [];
         }
 
         private static Creature? ResolveTarget(Creature? stored, Creature? fallback)

@@ -192,5 +192,12 @@
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "每当其他玩家打出[gold]能力[/gold]牌后，获得[blue]{Amount}[/blue]个[gold]木板[/gold]、[blue]{Amount}[/blue]个[gold]圆石[/gold]、[blue]{Amount}[/blue]个[gold]铁锭[/gold]和[blue]{Amount}[/blue]个[gold]钻石[/gold]。",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "法杖槽位",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "你的法杖用于存放已装填的法术。层数 = 槽位容量；显示的数字 = 当前已装填数量。",
-  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 个法杖槽位。"
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 个法杖槽位。",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.title": "序列回响",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.description": "你的法杖额外获得法术槽。你的下一张法术卡会被消耗并绑定，每次释放法杖后自动装回第一个槽位。",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "获得[blue]{Amount}[/blue]个额外法术槽。每次释放后自动装填已绑定的法术。\n{BoundSpellClause}",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "当前绑定：[purple]{SpellName}[/purple]",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "永恒旋律",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "每次释放法术时，被法术攻击的敌人失去{Amount}点生命上限。",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "每次释放法术时，被法术攻击的敌人失去[blue]{Amount}[/blue]点生命上限。"
 }

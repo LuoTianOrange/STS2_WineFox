@@ -192,5 +192,12 @@
   "STS2_WINE_FOX_POWER_COLLABORATIVE_MINING_POWER.smartDescription": "他のプレイヤーが[gold]パワー[/gold]カードをプレイするたび、[blue]{Amount}[/blue]個の[gold]木板[/gold]、[blue]{Amount}[/blue]個の[gold]丸石[/gold]、[blue]{Amount}[/blue]個の[gold]鉄インゴット[/gold]、[blue]{Amount}[/blue]個の[gold]ダイヤモンド[/gold]を得る。",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.title": "杖のスロット",
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.description": "杖に装填された術を保持する。層数＝スロット容量、表示数＝現在の装填数。",
-  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 個の杖スロット。"
+  "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 個の杖スロット。",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.title": "シーケンスエコー",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.description": "杖が術スロットを追加で得る。次の術カードは消耗されバインドされる。解放のたびに最初のスロットへ自動で装填される。",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "追加で[blue]{Amount}[/blue]個の術スロット。{BoundSpellClause}",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "バインド中：[gold]{SpellName}[/gold]",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "エターナルメロディ",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "術を解放するたび、その術が攻撃した敵は最大HPを{Amount}失う。",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "術を解放するたび、その術が攻撃した敵は最大HPを[blue]{Amount}[/blue]失う。"
 }

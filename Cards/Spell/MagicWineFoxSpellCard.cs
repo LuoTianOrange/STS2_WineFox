@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using STS2_WineFox.Mechanics;
@@ -33,22 +34,26 @@ namespace STS2_WineFox.Cards.Spell
 
         /// <summary>
         ///     卡牌关键字：
-        ///     可装填时带「装填」+「释放」，构成法杖体系的一对（不可装填时两者都不带）；
+        ///     可装填时带「装填」（其关键字说明已涵盖「回合结束时依次结算」的完整流程）；
         ///     实现 <see cref="IMagicWineFoxSpellModifierCard" /> 的修正符自动带「法术修正」。
-        ///     这样新增修正符时不必再手工维护关键字列表。
+        ///     <para>
+        ///         「释放」关键字**不在这里**：它属于「主动触发释放」的牌（如定向爆破），
+        ///         见 <c>DirectionalBlasting</c>。
+        ///     </para>
         /// </summary>
         public override IEnumerable<CardKeyword> CanonicalKeywords
         {
             get
             {
                 if (IsLoadable)
-                {
                     yield return WineFoxKeywords.LoadKeyword;
-                    yield return WineFoxKeywords.ReleaseKeyword;
-                }
 
                 if (this is IMagicWineFoxSpellModifierCard)
+                {
                     yield return WineFoxKeywords.SpellModifierKeyword;
+                    yield return CardKeyword.Ethereal;
+                    yield return CardKeyword.Exhaust;
+                }
             }
         }
 
@@ -79,7 +84,7 @@ namespace STS2_WineFox.Cards.Spell
         ///         子类因此不必各自处理目标逻辑。
         ///     </para>
         /// </summary>
-        protected static async Task DealSpellDamage(
+        protected static async Task<AttackCommand?> DealSpellDamage(
             Mechanics.MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
@@ -89,13 +94,15 @@ namespace STS2_WineFox.Cards.Spell
             if (context.TargetsAllEnemies)
             {
                 if (context.Owner?.Creature?.CombatState is { } combatState)
-                    await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
-                return;
+                    return await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
+                return null;
             }
 
             var target = ResolveSpellTarget(context);
             if (target != null)
-                await attack.Targeting(target).Execute(context.ChoiceContext);
+                return await attack.Targeting(target).Execute(context.ChoiceContext);
+
+            return null;
         }
     }
 }
