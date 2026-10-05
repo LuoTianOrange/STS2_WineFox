@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
 
@@ -200,7 +201,9 @@ namespace STS2_WineFox.Commands
 
                 if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
                 {
-                    Main.Logger.Info($"[SpellReverse] 触发逆遍历，倒序重放 {history.Count} 条历史");
+                    // 逆遍历那一刻累积器里剩下的，是「尚未被消费」的修正符——
+                    // 它们应当继续作用于重放的第一张法术（之后回归仅整轮字段）。
+                    var replayState = modifiers.Copy();
 
                     for (var rewind = history.Count - 1; rewind >= 0; rewind--)
                     {
@@ -210,7 +213,9 @@ namespace STS2_WineFox.Commands
                             sourceCard,
                             fallbackTarget,
                             history[rewind],
-                            CreateReplayState(modifiers));
+                            replayState);
+
+                        replayState = CreateReplayState(modifiers);
                     }
 
                     return spells.Skip(index + 1).ToList();
@@ -250,6 +255,168 @@ namespace STS2_WineFox.Commands
             return [];
         }
 
+        /// <summary>
+        ///     预览本次释放：**与 <see cref="ResolveSpellChain" /> 使用同一套规则推演**，
+        ///     返回执行顺序与预估总伤害，供 UI（如遗物悬停提示）显示。
+        ///     <para>
+        ///         纯只读：不结算、不修改任何战斗状态。
+        ///     </para>
+        /// </summary>
+        public static MagicWineFoxSpellReleasePreview PreviewRelease(MagicWineFoxSpellSlotPower? power)
+        {
+            var empty = new MagicWineFoxSpellReleasePreview([], 0m);
+            if (power == null)
+                return empty;
+
+            var spells = power.Slots.Where(snapshot => snapshot != null).Select(snapshot => snapshot!).ToList();
+            if (spells.Count == 0)
+                return empty;
+
+            var modifiers = new MagicWineFoxSpellModifierState();
+            var used = 0;
+            var lookBehind = CollectLookBehindModifiers(spells);
+            var segments = new List<MagicWineFoxSpellPreviewSegment>();
+            var forward = new List<MagicWineFoxSpellPreviewStep>();
+            var pending = new List<CardModel>();
+            var cast = new List<MagicWineFoxSpellSlotSnapshot>();
+            var total = 0m;
+
+            // 全体修正（穿刺魔弹等）时，每次伤害会打到所有可命中敌人，总伤害需乘以敌人数。
+            var enemyCount = Math.Max(1, power.Owner?.CombatState?.HittableEnemies.Count ?? 1);
+
+            modifiers.SetWandModifierCount(
+                spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
+
+            foreach (var snapshot in spells)
+            {
+                if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
+                    wandModifier.ApplyModifier(modifiers);
+            }
+
+            for (var index = 0; index < spells.Count; index++)
+            {
+                var snapshot = spells[index];
+
+                if (used >= power.ReleaseBudget)
+                    break;
+
+                if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
+                {
+                    forward.Add(new MagicWineFoxSpellPreviewStep(
+                        snapshot.Card, MagicWineFoxSpellPreviewKind.Reverse, 0m, 0));
+                    segments.Add(new MagicWineFoxSpellPreviewSegment(
+                        MagicWineFoxSpellPreviewSegmentKind.Forward, forward));
+
+                    var replay = new List<MagicWineFoxSpellPreviewStep>();
+
+                    // 反向遍历：先是「尚未被消费的修正符」（按装填逆序），再是法术（逆序）。
+                    for (var back = pending.Count - 1; back >= 0; back--)
+                    {
+                        replay.Add(new MagicWineFoxSpellPreviewStep(
+                            pending[back], MagicWineFoxSpellPreviewKind.Modifier, 0m, 0));
+                    }
+
+                    var replayState = modifiers.Copy();
+
+                    for (var rewind = cast.Count - 1; rewind >= 0; rewind--)
+                    {
+                        var (replayDamage, replayHits) = EstimateDamage(cast[rewind].Card, replayState, enemyCount);
+                        total += replayDamage * replayHits;
+
+                        replay.Add(new MagicWineFoxSpellPreviewStep(
+                            cast[rewind].Card, MagicWineFoxSpellPreviewKind.Replay, replayDamage, replayHits));
+
+                        replayState = CreateReplayState(modifiers);
+                    }
+
+                    if (replay.Count > 0)
+                        segments.Add(new MagicWineFoxSpellPreviewSegment(
+                            MagicWineFoxSpellPreviewSegmentKind.Replay, replay));
+
+                    var kept = new List<MagicWineFoxSpellPreviewStep>();
+
+                    for (var rest = index + 1; rest < spells.Count; rest++)
+                    {
+                        kept.Add(new MagicWineFoxSpellPreviewStep(
+                            spells[rest].Card, MagicWineFoxSpellPreviewKind.Kept, 0m, 0));
+                    }
+
+                    if (kept.Count > 0)
+                        segments.Add(new MagicWineFoxSpellPreviewSegment(
+                            MagicWineFoxSpellPreviewSegmentKind.Kept, kept));
+
+                    return new MagicWineFoxSpellReleasePreview(segments, total);
+                }
+
+                if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
+                {
+                    if (snapshot.Card is not IMagicWineFoxSpellLookBehindModifierCard and
+                        not IMagicWineFoxSpellWandModifierCard)
+                    {
+                        modifierEntry.ApplyModifier(modifiers);
+                        pending.Add(snapshot.Card);
+                    }
+
+                    forward.Add(new MagicWineFoxSpellPreviewStep(
+                        snapshot.Card, MagicWineFoxSpellPreviewKind.Modifier, 0m, 0));
+
+                    continue;
+                }
+
+                if (snapshot.Card is not IMagicWineFoxSpellCard)
+                {
+                    modifiers.Reset();
+                    continue;
+                }
+
+                if (lookBehind.TryGetValue(index, out var attached))
+                    foreach (var extra in attached)
+                        extra.ApplyModifier(modifiers);
+
+                var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount);
+                total += damage * hits;
+
+                forward.Add(new MagicWineFoxSpellPreviewStep(
+                    snapshot.Card, MagicWineFoxSpellPreviewKind.Cast, damage, hits));
+
+                pending.Clear();
+                cast.Add(snapshot);
+                used += modifiers.BudgetCost;
+                modifiers.Reset();
+            }
+
+            if (forward.Count > 0)
+                segments.Add(new MagicWineFoxSpellPreviewSegment(
+                    MagicWineFoxSpellPreviewSegmentKind.Forward, forward));
+
+            return new MagicWineFoxSpellReleasePreview(segments, total);
+        }
+
+        private static (decimal Damage, int Hits) EstimateDamage(
+            CardModel card,
+            MagicWineFoxSpellModifierState state,
+            int enemyCount)
+        {
+            var baseDamage = card is MagicWineFoxSpellCard spell ? spell.PreviewDamage : 0m;
+            if (baseDamage <= 0m)
+                return (0m, 0);
+
+            var perHit = Math.Max(
+                0m,
+                Math.Round(
+                    (baseDamage + state.DamageBonus) * state.DamageMultiplier,
+                    0,
+                    MidpointRounding.AwayFromZero));
+
+            var hits = state.CastCount * (1 + state.ExtraDamageStrikes);
+
+            // 打全体时，每次伤害覆盖所有敌人。
+            if (state.TargetsAllEnemies)
+                hits *= enemyCount;
+
+            return (perHit, hits);
+        }
+
         private static async Task CastSpellEntry(
             PlayerChoiceContext choiceContext,
             Player owner,
@@ -276,10 +443,6 @@ namespace STS2_WineFox.Commands
 
             var casts = state.CastCount;
 
-            Main.Logger.Info(
-                $"[SpellCast] {snapshot.Card.Id.Entry} casts={casts} " +
-                $"strikes={state.ExtraDamageStrikes} mult={state.DamageMultiplier} bonus={state.DamageBonus} " +
-                $"allEnemies={state.TargetsAllEnemies} random={state.RandomTargets}");
             for (var i = 0; i < casts; i++)
             {
                 var castContext = context;

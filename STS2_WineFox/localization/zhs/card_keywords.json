@@ -39,5 +39,5 @@
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "释放",
   "STS2_WINE_FOX_KEYWORD_RELEASE.description": "立即触发已经装填的法术并清空法术槽。",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "法术修正",
-  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "装入法杖后不施放，只修改其后第一张法术的结算方式。"
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "装入法杖后不施放，只修改法术的结算方式。"
 }

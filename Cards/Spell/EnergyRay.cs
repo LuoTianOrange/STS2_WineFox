@@ -32,6 +32,8 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconEnergyRay;
 
+        public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Debris>(IsUpgraded),

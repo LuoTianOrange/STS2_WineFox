@@ -76,5 +76,7 @@
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "灵狐玻璃",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.title": "学徒法杖",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.description": "[sine][rainbow freq=0.3 sat=0.8 val=1]初始法术槽：{SlotCapacity:diff()}[/rainbow][/sine]。每场战斗开始时，获得{PreloadSigils:diff()}张[gold]双重释放[/gold]。每回合你的第一次[gold]装填[/gold]费用减{LoadDiscount:diff()}。",
-  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "魔法酒狐以前练习用的法杖。"
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "魔法酒狐以前练习用的法杖。",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_TITLE": "施法顺序",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_DAMAGE": "伤害：{Damage}"
 }

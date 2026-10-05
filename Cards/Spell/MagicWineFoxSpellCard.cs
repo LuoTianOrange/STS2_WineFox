@@ -65,6 +65,12 @@ namespace STS2_WineFox.Cards.Spell
         public virtual bool IsLoadable => true;
 
         /// <summary>
+        ///     预览用的单次基础伤害（**不参与结算**）。无伤害的法术保持 0。
+        ///     供 <c>MagicWineFoxSpellCmd.PreviewRelease</c> 估算总伤害。
+        /// </summary>
+        public virtual decimal PreviewDamage => 0m;
+
+        /// <summary>
         ///     释放时的目标回落：优先用快照记录的目标，其次回落到场上第一个可命中敌人。
         ///     <see cref="TargetType.None" /> 的法术在直接打出时没有 <c>play.Target</c>，
         ///     因此必须提供回落，否则单目标伤害会静默失效。
@@ -136,13 +142,6 @@ namespace STS2_WineFox.Cards.Spell
         {
             var commands = new List<AttackCommand>();
             var strikes = context.ExtraDamageStrikes;
-
-            if (strikes > 0)
-            {
-                Main.Logger.Info(
-                    $"[SpellStrike] 额外 {strikes} 段 base={baseDamage} " +
-                    $"每段实际={context.DamageWithModifiers(baseDamage)}");
-            }
 
             for (var i = 0; i < strikes; i++)
             {

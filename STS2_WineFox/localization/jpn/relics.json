@@ -76,5 +76,7 @@
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "酒狐グラス",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.title": "狐火の杖",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.description": "初期スロット：{SlotCapacity:diff()}。\n各戦闘開始時、[gold]二重解放[/gold]を{PreloadSigils:diff()}枚得る。毎ターン最初の[gold]装填[/gold]のコストが{LoadDiscount:diff()}減る。",
-  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "かすかに酒の香りが残る杖。酒狐は同じ術を二度は使わない。"
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "かすかに酒の香りが残る杖。酒狐は同じ術を二度は使わない。",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_TITLE": "発動順",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_DAMAGE": "ダメージ：{Damage}"
 }

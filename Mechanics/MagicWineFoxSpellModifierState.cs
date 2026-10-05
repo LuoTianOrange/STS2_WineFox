@@ -103,6 +103,30 @@ namespace STS2_WineFox.Mechanics
             RandomTargets = true;
         }
 
+        /// <summary>
+        ///     复制一份当前累积状态。
+        ///     <para>
+        ///         用于【逆遍历】的倒序重放：**逆遍历那一刻器里剩下的，正好是「尚未被消费」的修正符**
+        ///         （每次打完法术都会 <see cref="Reset" />），所以它们应当继续作用于重放的第一张法术。
+        ///         </para>
+        /// </summary>
+        public MagicWineFoxSpellModifierState Copy()
+        {
+            return new MagicWineFoxSpellModifierState
+            {
+                DamageBonus = DamageBonus,
+                ExtraCasts = ExtraCasts,
+                ExtraCastsAreBudgetFree = ExtraCastsAreBudgetFree,
+                DamageMultiplier = DamageMultiplier,
+                TargetsAllEnemies = TargetsAllEnemies,
+                RandomTargets = RandomTargets,
+                ExtraDamageStrikes = ExtraDamageStrikes,
+                DrawCount = DrawCount,
+                DrawForModifierEntries = DrawForModifierEntries,
+                WandModifierCount = WandModifierCount,
+            };
+        }
+
         /// <summary>登记本次释放时法杖内的修正符总数。</summary>
         public void SetWandModifierCount(int count)
         {

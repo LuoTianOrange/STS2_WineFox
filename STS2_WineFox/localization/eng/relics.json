@@ -76,5 +76,7 @@
   "SEA_GLASS.STS2_WINE_FOX_CHARACTER_WINE_FOX.title": "Winefox Glass",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.title": "Foxfire Wand",
   "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.description": "Initial wand slots: {SlotCapacity:diff()}.\nAt the start of each combat, gain {PreloadSigils:diff()} [gold]Double Release[/gold]. Your first [gold]load[/gold] each turn costs {LoadDiscount:diff()} less.",
-  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "A wand that still smells faintly of rice wine. The fox never casts twice the same way."
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.flavor": "A wand that still smells faintly of rice wine. The fox never casts twice the same way.",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_TITLE": "Cast Order",
+  "STS2_WINE_FOX_RELIC_MAGIC_WINE_FOX_WAND.ORDER_DAMAGE": "Damage: {Damage}"
 }

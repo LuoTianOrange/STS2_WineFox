@@ -27,6 +27,8 @@ namespace STS2_WineFox.Cards.Spell
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCursedOrb);
 
         public override string SpellIconPath => Const.Paths.SpellIconCursedOrb;
+
+        public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
         
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [

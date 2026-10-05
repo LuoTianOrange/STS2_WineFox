@@ -24,6 +24,8 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconCircularSaw;
 
+        public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
@@ -41,8 +43,6 @@ namespace STS2_WineFox.Cards.Spell
                 .SelectMany(command => command.Results)
                 .SelectMany(hits => hits)
                 .Sum(result => result.OverkillDamage);
-
-            Main.Logger.Info($"[CircularSaw] 结算完成，溢出伤害={overkill}");
 
             if (overkill <= 0m)
                 return;

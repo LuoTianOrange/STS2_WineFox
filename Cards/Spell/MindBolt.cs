@@ -24,6 +24,8 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconMindBolt;
 
+        public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);

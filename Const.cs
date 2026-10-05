@@ -46,6 +46,7 @@ namespace STS2_WineFox
             public const string SpellIconFoxfireBolt = Root + "/ui/spell_icons/spell_foxfire_bolt.png";
             public const string SpellIconMindBolt = Root + "/ui/spell_icons/spell_mind_bolt.png";
             public const string SpellIconArcaneBarrier = Root + "/ui/spell_icons/spell_arcane_barrier.png";
+            public const string SpellOrderArrow = Root + "/ui/spell_order_arrow.png";
             public const string SpellIconArcaneBomb = Root + "/ui/spell_icons/spell_arcane_bomb.png";
             public const string SpellIconEnergyRay = Root + "/ui/spell_icons/spell_energy_ray.png";
             public const string SpellIconCursedOrb = Root + "/ui/spell_icons/spell_cursed_orb.png";
