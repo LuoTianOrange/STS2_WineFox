@@ -27,7 +27,7 @@ namespace STS2_WineFox.Cards.Spell
             HoverTipFactory.FromPower<PoisonPower>()
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardVenomBubble);
 
         public override string SpellIconPath => Const.Paths.SpellIconVenomBubble;
 

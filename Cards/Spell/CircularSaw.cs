@@ -35,11 +35,10 @@ namespace STS2_WineFox.Cards.Spell
             if (owner?.Creature == null)
                 return;
 
-            var command = await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
-            if (command == null)
-                return;
+            var commands = await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
 
-            var overkill = command.Results
+            var overkill = commands
+                .SelectMany(command => command.Results)
                 .SelectMany(hits => hits)
                 .Sum(result => result.OverkillDamage);
 

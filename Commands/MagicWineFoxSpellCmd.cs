@@ -104,8 +104,15 @@ namespace STS2_WineFox.Commands
 
             var spells = power.DrainLoadedSpells();
 
-            if (spells.Count > 0)
-                await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget);
+            var preserved = spells.Count > 0
+                ? await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget)
+                : [];
+
+            // 逆遍历等修正符可能把「其后方的法术」原样退回法杖；
+            // 此时法杖已清空，因此它们会落在最前面的槽位。
+            foreach (var snapshot in preserved)
+                if (!power.TryLoad(snapshot))
+                    break;
 
             // 序列回响：法杖清空后自动把绑定的回响法术装回第一个槽位，
             // 于是它永远排在序列最前——也就吃不到任何修正符加成。
@@ -140,7 +147,17 @@ namespace STS2_WineFox.Commands
             var oldest = power.DrainOldest();
             if (oldest == null) return;
 
-            await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, [oldest], 1);
+            var preserved = await ResolveSpellChain(
+                choiceContext,
+                owner,
+                fallbackTarget,
+                sourceCard,
+                [oldest],
+                1);
+
+            foreach (var snapshot in preserved)
+                if (!power.TryLoad(snapshot))
+                    break;
         }
 
         public static void ClearLoaded(Player owner)
@@ -152,7 +169,7 @@ namespace STS2_WineFox.Commands
         ///     顺序释放：累积修正 → 遇法术按次数施放 → 清空累积器。
         ///     这是「修正符只作用于序列中紧随其后的那一张法术」的实现点。
         /// </summary>
-        private static async Task ResolveSpellChain(
+        private static async Task<IReadOnlyList<MagicWineFoxSpellSlotSnapshot>> ResolveSpellChain(
             PlayerChoiceContext choiceContext,
             Player owner,
             Creature? fallbackTarget,
@@ -163,6 +180,16 @@ namespace STS2_WineFox.Commands
             var modifiers = new MagicWineFoxSpellModifierState();
             var used = 0;
             var lookBehind = CollectLookBehindModifiers(spells);
+            var history = new List<MagicWineFoxSpellSlotSnapshot>();
+
+            modifiers.SetWandModifierCount(
+                spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
+
+            foreach (var snapshot in spells)
+            {
+                if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
+                    wandModifier.ApplyModifier(modifiers);
+            }
 
             for (var index = 0; index < spells.Count; index++)
             {
@@ -171,16 +198,37 @@ namespace STS2_WineFox.Commands
                 if (used >= releaseBudget)
                     break;
 
-                if (snapshot.Card is IMagicWineFoxSpellLookBehindModifierCard)
-                    continue;
-
-                if (snapshot.Card is IMagicWineFoxSpellModifierCard modifier)
+                if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
                 {
-                    modifier.ApplyModifier(modifiers);
+                    Main.Logger.Info($"[SpellReverse] 触发逆遍历，倒序重放 {history.Count} 条历史");
+
+                    for (var rewind = history.Count - 1; rewind >= 0; rewind--)
+                    {
+                        await CastSpellEntry(
+                            choiceContext,
+                            owner,
+                            sourceCard,
+                            fallbackTarget,
+                            history[rewind],
+                            CreateReplayState(modifiers));
+                    }
+
+                    return spells.Skip(index + 1).ToList();
+                }
+
+                if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
+                {
+                    if (snapshot.Card is not IMagicWineFoxSpellLookBehindModifierCard and
+                        not IMagicWineFoxSpellWandModifierCard)
+                        modifierEntry.ApplyModifier(modifiers);
+
+                    if (modifiers.DrawForModifierEntries && modifiers.DrawCount > 0m)
+                        await CardPileCmd.Draw(choiceContext, modifiers.DrawCount, owner);
+
                     continue;
                 }
 
-                if (snapshot.Card is not IMagicWineFoxSpellCard spellCard)
+                if (snapshot.Card is not IMagicWineFoxSpellCard)
                 {
                     // 非法术（状态牌等）：吃掉累积器，防止修正泄漏到后面的法术。
                     modifiers.Reset();
@@ -191,49 +239,93 @@ namespace STS2_WineFox.Commands
                     foreach (var extra in attached)
                         extra.ApplyModifier(modifiers);
 
-                var target = ResolveTarget(snapshot.Target, fallbackTarget);
+                history.Add(snapshot);
 
-                if (target == null && owner?.Creature?.CombatState is { } targetState)
-                    target = targetState.HittableEnemies.FirstOrDefault();
-
-                var context = new MagicWineFoxSpellCastContext(
-                    choiceContext,
-                    owner,
-                    target,
-                    snapshot.Card,
-                    sourceCard,
-                    modifiers);
-
-                var casts = modifiers.CastCount;
-                for (var i = 0; i < casts; i++)
-                {
-                    var castContext = context;
-
-                    if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
-                    {
-                        castContext = new MagicWineFoxSpellCastContext(
-                            choiceContext,
-                            owner,
-                            PickRandomEnemy(randomState),
-                            snapshot.Card,
-                            sourceCard,
-                            modifiers);
-                    }
-
-                    var attacked = ResolveAttackedEnemies(castContext).ToList();
-
-                    await spellCard.CastAsSpell(castContext);
-
-                    await Powers.EternalMelodyPower.ApplyToSpellTargets(
-                        choiceContext,
-                        owner,
-                        snapshot.Card,
-                        attacked);
-                }
+                await CastSpellEntry(choiceContext, owner, sourceCard, fallbackTarget, snapshot, modifiers);
 
                 used += modifiers.BudgetCost;
                 modifiers.Reset();
             }
+
+            return [];
+        }
+
+        private static async Task CastSpellEntry(
+            PlayerChoiceContext choiceContext,
+            Player owner,
+            CardModel? sourceCard,
+            Creature? fallbackTarget,
+            MagicWineFoxSpellSlotSnapshot snapshot,
+            MagicWineFoxSpellModifierState state)
+        {
+            if (snapshot.Card is not IMagicWineFoxSpellCard spellCard)
+                return;
+
+            var target = ResolveTarget(snapshot.Target, fallbackTarget);
+
+            if (target == null && owner?.Creature?.CombatState is { } targetState)
+                target = targetState.HittableEnemies.FirstOrDefault();
+
+            var context = new MagicWineFoxSpellCastContext(
+                choiceContext,
+                owner,
+                target,
+                snapshot.Card,
+                sourceCard,
+                state);
+
+            var casts = state.CastCount;
+
+            Main.Logger.Info(
+                $"[SpellCast] {snapshot.Card.Id.Entry} casts={casts} " +
+                $"strikes={state.ExtraDamageStrikes} mult={state.DamageMultiplier} bonus={state.DamageBonus} " +
+                $"allEnemies={state.TargetsAllEnemies} random={state.RandomTargets}");
+            for (var i = 0; i < casts; i++)
+            {
+                var castContext = context;
+
+                if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
+                {
+                    castContext = new MagicWineFoxSpellCastContext(
+                        choiceContext,
+                        owner,
+                        PickRandomEnemy(randomState),
+                        snapshot.Card,
+                        sourceCard,
+                        state);
+                }
+
+                var attacked = ResolveAttackedEnemies(castContext).ToList();
+
+                await spellCard.CastAsSpell(castContext);
+
+                await Powers.EternalMelodyPower.ApplyToSpellTargets(
+                    choiceContext,
+                    owner,
+                    snapshot.Card,
+                    attacked);
+
+                if (state.DrawCount > 0m)
+                    await CardPileCmd.Draw(choiceContext, state.DrawCount, owner);
+            }
+        }
+
+        /// <summary>
+        ///     倒序重放用的累积器：**只继承整轮保留的字段**，一次性修正一律不带。
+        ///     <para>
+        ///         修正符是「打完一张法术就消费掉」的，所以重放时若复用当次快照，
+        ///         等于让已被消费的修正再生效一次（双重释放会多放一遍、四重散射会多打一套）。
+        ///     </para>
+        /// </summary>
+        private static MagicWineFoxSpellModifierState CreateReplayState(MagicWineFoxSpellModifierState source)
+        {
+            var state = new MagicWineFoxSpellModifierState();
+            state.SetWandModifierCount(source.WandModifierCount);
+
+            if (source.DrawCount > 0m)
+                state.MarkDrawPerSpell(source.DrawCount, source.DrawForModifierEntries);
+
+            return state;
         }
 
         private static Dictionary<int, List<IMagicWineFoxSpellModifierCard>> CollectLookBehindModifiers(

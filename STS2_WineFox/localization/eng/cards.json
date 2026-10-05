@@ -345,7 +345,13 @@
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "Circular Saw",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage. Excess damage backlashes onto you.",
   "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "Quadruple Scattering Release",
-  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]Load[/gold]: The previous spell is cast {ExtraCasts:diff()} additional times, but deals {DamageReduction:diff()}% less damage and its targets are chosen at random.",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]Load[/gold]: The previous spell deals its damage {ExtraStrikes:diff()} additional times, but each deals {DamageReduction:diff()}% less damage and targets are chosen at random.",
   "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "Venom Bubble",
-  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]Load[/gold]: Apply {PoisonPower:diff()} [gold]Poison[/gold]. Gain a random spell modifier."
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]Load[/gold]: Apply {PoisonPower:diff()} [gold]Poison[/gold]. Gain a random spell modifier.",
+  "STS2_WINE_FOX_CARD_RE_CHARGE.title": "ReCharge",
+  "STS2_WINE_FOX_CARD_RE_CHARGE.description": "[gold]Load[/gold]: Each {IfUpgraded:show:|non-modifier }spell draws {Cards:diff()} card when released.",
+  "STS2_WINE_FOX_CARD_PURE_SHIELD.title": "Pure Shield",
+  "STS2_WINE_FOX_CARD_PURE_SHIELD.description": "[gold]Load[/gold]: Gain {Block:diff()} [gold]Block[/gold]. Lose {BlockLossPerModifier:diff()} Block for each [gold]Spell Modifier[/gold] in your wand.",
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.title": "Reverse Traversal",
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]Load[/gold]: When this modifier is reached, previously released spells are released again in reverse order. Spells after this modifier are not released and stay in your wand at the front."
 }

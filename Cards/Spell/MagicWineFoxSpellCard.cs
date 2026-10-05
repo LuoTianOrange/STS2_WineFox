@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using STS2_WineFox.Mechanics;
 
 namespace STS2_WineFox.Cards.Spell
@@ -93,26 +94,88 @@ namespace STS2_WineFox.Cards.Spell
         ///         改为全体结算；否则按 <see cref="ResolveSpellTarget" /> 打单体。
         ///         子类因此不必各自处理目标逻辑。
         ///     </para>
+        ///     <para>
+        ///         结算完主动伤害后，会继续处理「额外伤害段」（见 <see cref="DealExtraDamageStrikes" />），
+        ///         并把所有伤害命令一并返回，便于上层汇总（如【圆锯】统计溢出）。
+        ///     </para>
         /// </summary>
-        protected static async Task<AttackCommand?> DealSpellDamage(
+        protected static async Task<IReadOnlyList<AttackCommand>> DealSpellDamage(
             Mechanics.MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
+            var commands = new List<AttackCommand>();
             var attack = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
                 .FromCard(context.SourceCard, null);
 
             if (context.TargetsAllEnemies)
             {
                 if (context.Owner?.Creature?.CombatState is { } combatState)
-                    return await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
-                return null;
+                    commands.Add(await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
+            }
+            else
+            {
+                var target = ResolveSpellTarget(context);
+                if (target != null)
+                    commands.Add(await attack.Targeting(target).Execute(context.ChoiceContext));
             }
 
-            var target = ResolveSpellTarget(context);
-            if (target != null)
-                return await attack.Targeting(target).Execute(context.ChoiceContext);
+            commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
+            return commands;
+        }
 
-            return null;
+        /// <summary>
+        ///     只重复**伤害**的额外结算段：按 <see cref="Mechanics.MagicWineFoxSpellCastContext.ExtraDamageStrikes" />
+        ///     再打若干次伤害，伤害走同一套修正（含倍率），目标在 <c>RandomTargets</c> 时每次独立随机。
+        ///     <para>
+        ///         法术的其他效果（抽牌、上异常、生成卡牌等）**不会**重复——因为这里不重跑 <c>CastAsSpell</c>。
+        ///     </para>
+        /// </summary>
+        protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
+            Mechanics.MagicWineFoxSpellCastContext context,
+            decimal baseDamage)
+        {
+            var commands = new List<AttackCommand>();
+            var strikes = context.ExtraDamageStrikes;
+
+            if (strikes > 0)
+            {
+                Main.Logger.Info(
+                    $"[SpellStrike] 额外 {strikes} 段 base={baseDamage} " +
+                    $"每段实际={context.DamageWithModifiers(baseDamage)}");
+            }
+
+            for (var i = 0; i < strikes; i++)
+            {
+                var strike = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
+                    .FromCard(context.SourceCard, null);
+
+                if (context.TargetsAllEnemies)
+                {
+                    if (context.Owner?.Creature?.CombatState is { } combatState)
+                        commands.Add(await strike.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
+
+                    continue;
+                }
+
+                var target = context.RandomTargets
+                    ? PickRandomEnemy(context.Owner)
+                    : ResolveSpellTarget(context);
+
+                if (target != null)
+                    commands.Add(await strike.Targeting(target).Execute(context.ChoiceContext));
+            }
+
+            return commands;
+        }
+
+        private static Creature? PickRandomEnemy(Player? owner)
+        {
+            var enemies = owner?.Creature?.CombatState?.HittableEnemies;
+
+            if (enemies == null || enemies.Count == 0)
+                return null;
+
+            return owner!.Creature!.CombatState!.RunState.Rng.CombatTargets.NextItem(enemies);
         }
     }
 }

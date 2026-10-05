@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Spell
             new("Calamity", 13m)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicOverloaded);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCursedOrb);
 
         public override string SpellIconPath => Const.Paths.SpellIconCursedOrb;
         

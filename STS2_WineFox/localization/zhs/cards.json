@@ -342,13 +342,19 @@
   "STS2_WINE_FOX_CARD_DIRECTIONAL_BLASTING.title": "定向爆破",
   "STS2_WINE_FOX_CARD_DIRECTIONAL_BLASTING.description": "立即[gold]释放[/gold]法杖中已装填的法术，以该敌人为目标。\n抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE.title": "全视之眼",
-  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE.description": "[gold]装填[/gold]: 选择获得一张随机法术修正。",
+  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE.description": "[gold]装填[/gold]: 选择获得一张随机[gold]法术修正[/gold]。",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "序列回响",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.description": "你的法术槽加{SlotBonus:diff()}，消耗你的下一张法术卡。每当你释放法杖时，打出该法术。{IfUpgraded:show:\n抽1张法术牌。|}",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.title": "圆锯",
   "STS2_WINE_FOX_CARD_CIRCULAR_SAW.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。溢出的伤害会伤害自己。",
   "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.title": "四重散射释放",
-  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]装填[/gold]: 上一个法术额外释放{ExtraCasts:diff()}次，但减少{DamageReduction:diff()}%伤害并随机选择目标。",
+  "STS2_WINE_FOX_CARD_QUADRUPLE_SCATTERING_RELEASE.description": "[gold]装填[/gold]: 上一个法术额外造成{ExtraStrikes:diff()}次伤害，但伤害减少{DamageReduction:diff()}%，且目标随机。",
   "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "毒液泡泡",
-  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]装填[/gold]: 给予{PoisonPower:diff()}层[gold]中毒[/gold]。获得一张随机法术修正。"
+  "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]装填[/gold]: 给予{PoisonPower:diff()}层[gold]中毒[/gold]。获得一张随机[gold]法术修正[/gold]。",
+  "STS2_WINE_FOX_CARD_RE_CHARGE.title": "缩短充能时间",
+  "STS2_WINE_FOX_CARD_RE_CHARGE.description": "[gold]装填[/gold]: 每个{IfUpgraded:show:|非修正}法术在释放时抽{Cards:diff()}张牌。",
+  "STS2_WINE_FOX_CARD_PURE_SHIELD.title": "纯净护盾",
+  "STS2_WINE_FOX_CARD_PURE_SHIELD.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。法术槽中每有一个[gold]法术修正[/gold]，格挡减少{BlockLossPerModifier:diff()}。",
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.title": "逆遍历",
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 释放此法术时逆转结算方向直至结束。"
 }

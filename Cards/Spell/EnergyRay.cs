@@ -83,6 +83,8 @@ namespace STS2_WineFox.Cards.Spell
             else
                 await attack.Targeting(targets[0]).Execute(context.ChoiceContext);
 
+            await DealExtraDamageStrikes(context, DynamicVars.Damage.BaseValue);
+
             var debris = combatState.CreateCard<Debris>(owner);
             var instance = await CardPileCmd.AddGeneratedCardToCombat(debris, PileType.Hand, owner);
             CardCmd.PreviewCardPileAdd(instance);

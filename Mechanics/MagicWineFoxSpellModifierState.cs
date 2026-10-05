@@ -39,6 +39,26 @@ namespace STS2_WineFox.Mechanics
 
         public bool RandomTargets { get; private set; }
 
+        /// <summary>
+        ///     当前法术**额外结算几次伤害**（只重复伤害，不重跑法术的其他效果，如抽牌、上异常）。
+        ///     随 <see cref="Reset" /> 消费，因此只作用于紧随其后的那一张法术。
+        /// </summary>
+        public int ExtraDamageStrikes { get; private set; }
+
+        /// <summary>
+        ///     整轮释放持续的抽牌数：本次释放里每打出一张法术就抽这么多张。
+        ///     <para>与上面的字段不同，它**不随 <see cref="Reset" /> 清除**——对应「整轮生效」的修正符。</para>
+        /// </summary>
+        public decimal DrawCount { get; private set; }
+
+        /// <summary>整轮抽牌是否也覆盖**修正符条目**（对应本卡的升级效果）。</summary>
+        public bool DrawForModifierEntries { get; private set; }
+
+        /// <summary>
+        ///     本次释放时法杖里**装填了多少张法术修正**（整轮固定，不随 <see cref="Reset" /> 清除）。
+        /// </summary>
+        public int WandModifierCount { get; private set; }
+
         /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
         public int CastCount => 1 + Math.Max(0, ExtraCasts);
 
@@ -48,7 +68,8 @@ namespace STS2_WineFox.Mechanics
         /// <summary>累积器当前是否有任何修正（用于修正符空放时的判定与调试）。</summary>
         public bool IsEmpty =>
             DamageBonus == 0m && ExtraCasts == 0 && !ExtraCastsAreBudgetFree &&
-            DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets;
+            DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets &&
+            ExtraDamageStrikes == 0 && DrawCount == 0m && !DrawForModifierEntries;
 
         public void AddDamageBonus(decimal amount)
         {
@@ -82,6 +103,25 @@ namespace STS2_WineFox.Mechanics
             RandomTargets = true;
         }
 
+        /// <summary>登记本次释放时法杖内的修正符总数。</summary>
+        public void SetWandModifierCount(int count)
+        {
+            WandModifierCount = count;
+        }
+
+        /// <summary>登记「额外结算几次伤害」。</summary>
+        public void AddExtraDamageStrikes(int amount)
+        {
+            ExtraDamageStrikes += amount;
+        }
+
+        /// <summary>登记整轮抽牌效果。多次登记会叠加抽牌数；只要有一次升级，修正符条目也抽牌。</summary>
+        public void MarkDrawPerSpell(decimal count, bool includeModifierEntries)
+        {
+            DrawCount += count;
+            DrawForModifierEntries |= includeModifierEntries;
+        }
+
         /// <summary>消费掉当前累积的修正。每施放一张法术后必须调用，否则修正会泄漏到后续法术。</summary>
         public void Reset()
         {
@@ -91,6 +131,7 @@ namespace STS2_WineFox.Mechanics
             DamageMultiplier = 1m;
             TargetsAllEnemies = false;
             RandomTargets = false;
+            ExtraDamageStrikes = 0;
         }
     }
 }

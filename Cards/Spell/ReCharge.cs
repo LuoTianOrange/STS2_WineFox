@@ -10,27 +10,21 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxTokenCardPool))]
-    public class QuadrupleScatteringRelease() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
+    public class ReCharge() : MagicWineFoxSpellCard(
+        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellWandModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("ExtraStrikes", 3m),
-            new("DamageReduction", 75m)
+            new CardsVar(1)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuadrupleScatteringRelease);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
 
-        public override string SpellIconPath => Const.Paths.SpellIconQuadrupleScatteringRelease;
+        public override string SpellIconPath => Const.Paths.SpellIconReCharge;
 
         public void ApplyModifier(MagicWineFoxSpellModifierState modifiers)
         {
-            var strikes = (int)DynamicVars["ExtraStrikes"].BaseValue;
-            var reduction = DynamicVars["DamageReduction"].BaseValue;
-
-            modifiers.AddExtraDamageStrikes(strikes);
-            modifiers.MultiplyDamage(1m - reduction / 100m);
-            modifiers.MarkRandomTargets();
+            modifiers.MarkDrawPerSpell(DynamicVars.Cards.BaseValue, IsUpgraded);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

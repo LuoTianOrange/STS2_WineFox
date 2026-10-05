@@ -31,6 +31,10 @@ namespace STS2_WineFox.Mechanics
 
         public bool RandomTargets => Modifiers.RandomTargets;
 
+        public int ExtraDamageStrikes => Modifiers.ExtraDamageStrikes;
+
+        public int WandModifierCount => Modifiers.WandModifierCount;
+
         /// <summary>
         ///     结算伤害时使用：先加修正符的附加伤害，再乘伤害倍率（如穿刺魔弹的 -20%），最后取整。
         /// </summary>
