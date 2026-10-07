@@ -47,28 +47,14 @@ namespace STS2_WineFox.Relics
             // 上一场的法术会留在槽里并在释放时真的造成伤害——这里兜底。
             var stale = power.LoadedCount;
             if (stale > 0)
-            {
-                Main.Logger.Info($"[SpellSlot] 战斗开始发现残留槽位 {stale} 张，已清空");
                 power.ClearSlots();
-            }
             
             var sigils = (int)DynamicVars["PreloadSigils"].BaseValue;
             for (var i = 0; i < sigils; i++)
-                await SendSigilToHand(Owner);
+                await MagicWineFoxSpellCmd.GiveDoubleReleaseSigil(Owner);
 
             // 回合开始：力量等 Power 可能已变化，重新刷新法杖内卡牌的显示数值。
             MagicWineFoxSpellCmd.RefreshWandCardValues(power);
-        }
-
-        private static async Task<bool> SendSigilToHand(Player owner)
-        {
-            if (owner.Creature?.CombatState is not { } combatState)
-                return false;
-
-            var sigil = combatState.CreateCard<DoubleReleaseSigil>(owner);
-            var instance = await CardPileCmd.AddGeneratedCardToCombat(sigil, PileType.Hand, owner);
-            CardCmd.PreviewCardPileAdd(instance);
-            return true;
         }
 
         // 回合结束的释放触发已移到 MagicWineFoxSpellSlotPower.AfterSideTurnEnd：

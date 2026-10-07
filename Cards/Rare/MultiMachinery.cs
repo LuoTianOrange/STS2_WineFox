@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using STS2_WineFox.Cards.Token.MultiMachinery;
@@ -20,9 +21,14 @@ namespace STS2_WineFox.Cards.Rare
         0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
+        
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new("Stress", 1m),
+        ];
 
         protected override bool IsPlayable =>
-            Owner.Creature.Powers.OfType<StressPower>().Any(p => p.Amount >= 2m);
+            Owner.Creature.Powers.OfType<StressPower>().Any(p => p.Amount >= DynamicVars["Stress"].BaseValue);
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMultiMachinery);
 

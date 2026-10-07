@@ -359,5 +359,7 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "Hat Trick",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]Load[/gold]: If only one spell is loaded in your wand, it is released {ExtraCasts:diff()} extra times.",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "Necromantic Summoning",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]Load[/gold]: When the next spell kills an enemy, Summon {Summon:diff()}. If Osty is alive, gain [gold]Necromantic Summoning[/gold]."
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]Load[/gold]: When the next spell kills an enemy, Summon {Summon:diff()}. If Osty is alive, gain [gold]Necromantic Summoning[/gold].",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "Quick Reload",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "Draw a spell card. Gain a [gold]Double Release[/gold]."
 }

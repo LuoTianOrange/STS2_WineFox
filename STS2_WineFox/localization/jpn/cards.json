@@ -359,5 +359,7 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "ハットトリック",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]装填[/gold]: 杖に術が1つだけ装填されている場合、それを追加で{ExtraCasts:diff()}回解放する。",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "死霊召喚",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]装填[/gold]: 次の術が敵を倒した時、召喚{Summon:diff()}。オスティが生存している場合、[gold]死霊召喚[/gold]を得る。"
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]装填[/gold]: 次の術が敵を倒した時、召喚{Summon:diff()}。オスティが生存している場合、[gold]死霊召喚[/gold]を得る。",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "高速装填",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "術カードを1枚引く。[gold]二重解放[/gold]を1枚得る。"
 }

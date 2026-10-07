@@ -344,6 +344,7 @@ namespace STS2_WineFox
             public const string CardQuadrupleScatteringRelease = Root + "/cards/card_quadruple_scattering_release.png";
             public const string CardHatTrick = Root + "/cards/card_hat_trick.png";
             public const string CardNecromanticSummoning = Root + "/cards/card_necromantic_summoning.png";
+            public const string CardQuickReload = Root + "/cards/card_quick_reload.png";
             public const string CardArcaneBomb = Root + "/cards/card_arcane_bomb.png";
             public const string CardSearingJolt = Root + "/cards/card_searing_jolt.png";
             public const string CardEnergyRay = Root + "/cards/card_energy_ray.png";

@@ -41,6 +41,17 @@ namespace STS2_WineFox.Commands
             return player?.Relics.OfType<Relics.MagicWineFoxWand>().Any() == true;
         }
 
+        public static async Task<bool> GiveDoubleReleaseSigil(Player owner)
+        {
+            if (owner?.Creature?.CombatState is not { } combatState)
+                return false;
+
+            var sigil = combatState.CreateCard<DoubleReleaseSigil>(owner);
+            var instance = await CardPileCmd.AddGeneratedCardToCombat(sigil, PileType.Hand, owner);
+            CardCmd.PreviewCardPileAdd(instance);
+            return true;
+        }
+
         public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int? capacity = null,
             int castCount = DefaultCastCount)
         {

@@ -21,11 +21,11 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class EnergyRay() : MagicWineFoxSpellCard(
-        1, CardType.Attack, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
+        0, CardType.Attack, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(14m, ValueProp.Move)
+            new DamageVar(10m, ValueProp.Move)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnergyRay);
@@ -94,7 +94,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(2m);
+            DynamicVars.Damage.UpgradeValueBy(3m);
         }
     }
 }

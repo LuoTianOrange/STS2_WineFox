@@ -51,12 +51,28 @@ namespace STS2_WineFox.Nodes
         /// </summary>
         private static readonly Vector2 BarOffsetFromAnchor = new(0f, -345f);
 
+        private const float BarGapAboveVisual = 12f;
+
         private static Texture2D? _outline;
 
         private MagicWineFoxSpellSlotPower? _power;
         private Player? _boundPlayer;
         private NCreature? _creatureNode;
-        private string _signature = string.Empty;
+
+        /// <summary>
+        ///     角色可视节点的缓存：只在角色节点更换时遍历一次树（缓存为空时有限次重试，
+        ///     因为角色贴图可能比节点晚若干帧才创建），避免每帧递归子节点。
+        /// </summary>
+        private readonly List<CanvasItem> _visuals = [];
+
+        private int _visualRetryFrames;
+
+        /// <summary>上一次重绘时的槽位内容，用于**无分配**地判断是否需要重绘。</summary>
+        private readonly List<CardModel?> _lastSlots = [];
+
+        private int _lastCapacity = -1;
+        private int _lastLoaded = -1;
+        private bool _forceRedraw = true;
 
         public override void _Ready()
         {
@@ -78,17 +94,17 @@ namespace STS2_WineFox.Nodes
             if (live != null && !ReferenceEquals(live, _boundPlayer))
             {
                 _boundPlayer = live;
-                _signature = string.Empty; // 玩家实例更换 -> 强制重绘
+                _forceRedraw = true;
             }
 
             // Power 实例更换（读档 / 换战斗）同样必须强制重绘：
-            // 签名只描述容量与槽内卡牌，两个不同实例的签名可能恰好相同，
-            // 此时若沿用旧签名就会跳过重绘，UI 停留在读档前的画面。
+            // 只比较容量与槽内卡牌时，两个不同实例可能恰好相同，此时会跳过重绘、
+            // UI 停留在读档前的画面。
             var power = MagicWineFoxSpellCmd.GetPower(_boundPlayer);
             if (!ReferenceEquals(power, _power))
             {
                 _power = power;
-                _signature = string.Empty;
+                _forceRedraw = true;
             }
 
             if (!ResolveCreatureNode())
@@ -128,7 +144,8 @@ namespace STS2_WineFox.Nodes
             _boundPlayer = player;
             _power = player == null ? null : MagicWineFoxSpellCmd.GetPower(player);
             _creatureNode = null;
-            _signature = string.Empty;
+            _visuals.Clear();
+            _forceRedraw = true;
 
             if (player == null)
                 Visible = false;
@@ -154,17 +171,161 @@ namespace STS2_WineFox.Nodes
             if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
                 return false;
 
-            _creatureNode = creatureNode;
+            if (!ReferenceEquals(creatureNode, _creatureNode))
+            {
+                _creatureNode = creatureNode;
+                _visualRetryFrames = 0;
+                CacheVisuals();
+            }
+            else if (_visuals.Count == 0 && _visualRetryFrames < 120)
+            {
+                _visualRetryFrames++;
+                CacheVisuals();
+            }
+
             return true;
+        }
+
+        /// <summary>遍历一次角色子节点，缓存可能代表角色本体的可视节点。</summary>
+        private void CacheVisuals()
+        {
+            _visuals.Clear();
+
+            if (_creatureNode != null)
+                CollectVisuals(_creatureNode, _creatureNode);
+        }
+
+        /// <summary><see cref="CanvasItem" /> 本身没有 <c>GlobalPosition</c>，按具体类型取。</summary>
+        private static Vector2 VisualPosition(CanvasItem visual)
+        {
+            return visual switch
+            {
+                Control control => control.GlobalPosition,
+                Node2D node => node.GlobalPosition,
+                _ => Vector2.Zero,
+            };
+        }
+
+        private void CollectVisuals(Node? node, Node root)
+        {
+            if (node == null || !GodotObject.IsInstanceValid(node))
+                return;
+
+            if (!ReferenceEquals(node, root) && node is CanvasItem canvasItem)
+                _visuals.Add(canvasItem);
+
+            foreach (var child in node.GetChildren())
+                CollectVisuals(child, root);
         }
 
         /// <summary>整排水平居中到角色头顶上方（屏幕坐标）。</summary>
         private void ApplyLayout()
         {
             var anchor = ResolveAnchor();
+            var scale = Math.Max(1f, ResolveCreatureScale());
+            var scaledY = anchor.Y + BarOffsetFromAnchor.Y * scale;
+            var hitboxY = ResolveHitboxTop() - BarGapAboveVisual;
+            var visualY = ResolveVisualTop() - BarGapAboveVisual;
+
             Position = new Vector2(
                 anchor.X - ResolveBarWidth() * 0.5f,
-                anchor.Y + BarOffsetFromAnchor.Y);
+                Math.Min(Math.Min(scaledY, hitboxY), visualY));
+        }
+
+        /// <summary>
+        ///     角色命中框顶边——游戏自身的 <c>NCreature.GetTopOfHitbox</c>，
+        ///     随角色缩放与移动变化，是最可靠的「头顶」来源。
+        /// </summary>
+        private float ResolveHitboxTop()
+        {
+            if (_creatureNode == null || !GodotObject.IsInstanceValid(_creatureNode))
+                return float.MaxValue;
+
+            return _creatureNode.GetTopOfHitbox().Y;
+        }
+
+        /// <summary>
+        ///     角色当前的放大倍数。取角色节点自身与其可视子节点中的最大值——
+        ///     【大蘑菇】这类效果会把角色放大（1.5 倍），基准偏移必须同比放大才不会挡住。
+        /// </summary>
+        private float ResolveCreatureScale()
+        {
+            var scale = Math.Max(1f, NodeScale(_creatureNode));
+
+            // 角色是 Spine 动画：承载缩放的往往是 Visuals / Body（不是贴图子节点），
+            // 这两个必须显式读，否则【大蘑菇】那类放大读不到（会一直当成 1 倍）。
+            if (_creatureNode != null)
+            {
+                scale = Math.Max(scale, NodeScale(_creatureNode.Visuals));
+                scale = Math.Max(scale, NodeScale(_creatureNode.Body));
+            }
+
+            foreach (var visual in _visuals)
+                scale = Math.Max(scale, NodeScale(visual));
+
+            return scale;
+        }
+
+        private static float NodeScale(Node? node)
+        {
+            if (node == null || !GodotObject.IsInstanceValid(node))
+                return 1f;
+
+            return node switch
+            {
+                Node2D node2D => Math.Abs(node2D.GlobalScale.Y),
+                Control control => Math.Abs(control.Scale.Y),
+                _ => 1f,
+            };
+        }
+
+        /// <summary>
+        ///     角色可视范围的最上沿（y 越小越靠上）。按贴图实际尺寸与缩放计算，
+        ///     因此角色被放大（如【大蘑菇】放大 1.5 倍）、缩小或移动时都能跟随。
+        /// </summary>
+        private float ResolveVisualTop()
+        {
+            var top = float.MaxValue;
+
+            foreach (var visual in _visuals)
+            {
+                if (!GodotObject.IsInstanceValid(visual) || !visual.Visible)
+                    continue;
+
+                if (visual is Control control)
+                {
+                    var rect = control.GetGlobalRect();
+                    if (rect.Size.Y > 1f)
+                        top = Math.Min(top, rect.Position.Y);
+
+                    continue;
+                }
+
+                float? textureHeight = visual switch
+                {
+                    Sprite2D sprite when sprite.Texture != null
+                        => sprite.Texture.GetHeight(),
+                    AnimatedSprite2D animated when animated.SpriteFrames != null
+                        => animated.SpriteFrames.GetFrameTexture(animated.Animation, animated.Frame)?.GetHeight(),
+                    _ => null,
+                };
+
+                if (textureHeight is not { } height)
+                    continue;
+
+                var centered = visual switch
+                {
+                    Sprite2D sprite => sprite.Centered,
+                    AnimatedSprite2D animated => animated.Centered,
+                    _ => false,
+                };
+
+                var half = centered ? height * 0.5f : 0f;
+                var scale = visual is Node2D node2D ? Math.Abs(node2D.GlobalScale.Y) : 1f;
+                top = Math.Min(top, VisualPosition(visual).Y - half * scale);
+            }
+
+            return top == float.MaxValue ? _creatureNode?.GlobalPosition.Y ?? 0f : top;
         }
 
         /// <summary>锚点取血条的屏幕坐标；取不到则用角色节点自身。</summary>
@@ -188,30 +349,52 @@ namespace STS2_WineFox.Nodes
 
         private void Refresh()
         {
-            var signature = BuildSignature();
-            if (signature == _signature)
+            if (!HasContentChanged())
                 return;
 
-            _signature = signature;
             Rebuild();
         }
 
-        /// <summary>容量 / 已装填数 / 每张卡的身份——任一变化都需重绘。</summary>
-        private string BuildSignature()
+        /// <summary>
+        ///     槽位内容是否变化（容量 / 已装填数 / 每张卡的实例）。
+        ///     用引用比较与复用的列表，**不产生任何分配**——本方法每帧都会调用，
+        ///     原先的字符串签名会持续制造垃圾。
+        /// </summary>
+        private bool HasContentChanged()
         {
             if (_power == null)
-                return "none";
+                return _lastCapacity != -1;
 
-            var parts = new List<string>
+            var slots = _power.Slots;
+            var changed = _forceRedraw
+                          || _lastCapacity != _power.SlotCapacity
+                          || _lastLoaded != _power.LoadedCount
+                          || _lastSlots.Count != slots.Count;
+
+            if (!changed)
             {
-                _power.SlotCapacity.ToString(),
-                _power.LoadedCount.ToString(),
-            };
+                for (var i = 0; i < slots.Count; i++)
+                {
+                    if (ReferenceEquals(_lastSlots[i], slots[i]?.Card))
+                        continue;
 
-            foreach (var slot in _power.Slots)
-                parts.Add(slot == null ? "-" : slot.Card.GetHashCode().ToString());
+                    changed = true;
+                    break;
+                }
+            }
 
-            return string.Join('|', parts);
+            if (!changed)
+                return false;
+
+            _forceRedraw = false;
+            _lastCapacity = _power.SlotCapacity;
+            _lastLoaded = _power.LoadedCount;
+            _lastSlots.Clear();
+
+            foreach (var slot in slots)
+                _lastSlots.Add(slot?.Card);
+
+            return true;
         }
 
         private void Rebuild()

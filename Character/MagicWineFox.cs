@@ -16,7 +16,7 @@ namespace STS2_WineFox.Character
 
         public override Color NameColor => Color;
         public override Color MapDrawingColor => Color;
-        public override int StartingHp => 80;
+        public override int StartingHp => 88;
         public override int StartingGold => 99;
         public override CharacterGender Gender => CharacterGender.Neutral;
         public override CharacterAssetProfile AssetProfile => WineFoxCharacterAssets.MagicProfile;

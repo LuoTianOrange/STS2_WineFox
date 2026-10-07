@@ -39,7 +39,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            // 衍生牌不可升级。
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }

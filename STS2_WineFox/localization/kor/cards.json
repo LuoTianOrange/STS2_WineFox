@@ -359,5 +359,7 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "해트트릭",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]장전[/gold]: 지팡이에 주문이 하나만 장전되어 있으면, 그 주문을 {ExtraCasts:diff()}회 추가로 해방합니다.",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "사령 소환",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]장전[/gold]: 다음 주문이 적을 처치하면 소환 {Summon:diff()}. 오스티가 생존해 있으면 [gold]사령 소환[/gold]을 얻습니다."
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]장전[/gold]: 다음 주문이 적을 처치하면 소환 {Summon:diff()}. 오스티가 생존해 있으면 [gold]사령 소환[/gold]을 얻습니다.",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "속사 장전",
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "주문 카드를 1장 뽑습니다. [gold]이중 해방[/gold]을 1장 얻습니다."
 }
