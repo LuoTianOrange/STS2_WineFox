@@ -38,7 +38,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(2m);
+            DynamicVars.Damage.UpgradeValueBy(3m);
         }
     }
 }

@@ -28,25 +28,40 @@ namespace STS2_WineFox.Commands
         /// <summary>默认释放轮数。</summary>
         public const int DefaultCastCount = 1;
 
+        /// <summary>
+        ///     其他角色的默认槽位数。
+        /// </summary>
+        public const int NonWandDefaultCapacity = 2;
+
         /// <summary>起始遗物：每回合第一次装填减免的费用。</summary>
         public const int FirstLoadDiscount = 1;
+        
+        public static bool HasWandRelic(Player? player)
+        {
+            return player?.Relics.OfType<Relics.MagicWineFoxWand>().Any() == true;
+        }
 
-        public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int capacity = DefaultCapacity,
+        public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int? capacity = null,
             int castCount = DefaultCastCount)
         {
             if (owner?.Creature == null) return null;
 
+            var requested = Math.Clamp(
+                capacity ?? (HasWandRelic(owner) ? DefaultCapacity : NonWandDefaultCapacity),
+                0,
+                MagicWineFoxSpellSlotPower.HardSlotCap);
+
             var existing = owner.Creature.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
             if (existing != null)
             {
-                existing.EnsureCapacity(Math.Max(existing.SlotCapacity, capacity));
+                existing.EnsureCapacity(Math.Max(existing.SlotCapacity, requested));
                 return existing;
             }
 
             var applied = await PowerCmd.Apply<MagicWineFoxSpellSlotPower>(
                 new ThrowingPlayerChoiceContext(),
                 owner.Creature,
-                Math.Clamp(capacity, 0, 12),
+                requested,
                 owner.Creature,
                 null);
 
@@ -495,9 +510,12 @@ namespace STS2_WineFox.Commands
                         state);
                 }
 
-                var attacked = ResolveAttackedEnemies(castContext).ToList();
-
                 await spellCard.CastAsSpell(castContext);
+
+                // 「是否攻击到敌人」卡牌声明判定，
+                var attacked = snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true }
+                    ? ResolveAttackedEnemies(castContext).ToList()
+                    : [];
 
                 await Powers.EternalMelodyPower.ApplyToSpellTargets(
                     choiceContext,
@@ -514,7 +532,7 @@ namespace STS2_WineFox.Commands
                         snapshot.Card);
                 }
 
-                // 【死灵召唤】：授予「奥斯提横扫」能力——它每回合结束时对全体敌人造成伤害。
+                // 死灵召唤
                 if (state.OstySweepAmount > 0m && owner?.Creature is { } ownerCreature)
                 {
                     await PowerCmd.Apply<Powers.NecromanticSummoningPower>(

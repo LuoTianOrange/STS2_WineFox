@@ -26,6 +26,8 @@ namespace STS2_WineFox.Cards.Spell
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPureShield);
 
         public override string SpellIconPath => Const.Paths.SpellIconPureShield;
+        
+        public override bool TargetsEnemy => false;
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

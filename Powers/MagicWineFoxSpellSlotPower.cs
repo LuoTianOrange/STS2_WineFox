@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -5,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -26,7 +28,7 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public class MagicWineFoxSpellSlotPower : WineFoxPower
     {
-        private const int HardSlotCap = 12;
+        public const int HardSlotCap = 12;
 
         private readonly List<MagicWineFoxSpellSlotSnapshot?> _slots = [];
 
@@ -36,11 +38,7 @@ namespace STS2_WineFox.Powers
 
         /// <summary>HUD 上显示已装填数量（槽位容量由 <see cref="PowerModel.Amount" /> 表示）。</summary>
         public override int DisplayAmount => LoadedCount;
-
-        /// <summary>
-        ///     不在 HUD 的权力图标里显示——槽位状态改由法杖预览条（<c>NSpellSlotBar</c>）可视化。
-        ///     与材料类 Power（<c>MaterialPower</c>）同样的隐藏方式。
-        /// </summary>
+        
         protected override bool IsVisibleInternal => false;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -67,7 +65,7 @@ namespace STS2_WineFox.Powers
             }
         }
 
-        /// <summary>是否已执行过唯一升级（扩张/速铸二选一，整局只能升级一次）。</summary>
+        /// <summary>是否已执行过唯一升级。</summary>
         public bool Upgraded { get; private set; }
 
         public int SlotCapacity => Math.Max(0, Math.Min((int)Amount, HardSlotCap));
@@ -195,6 +193,10 @@ namespace STS2_WineFox.Powers
         {
             modifiedCost = originalCost;
 
+            // 这是**起始遗物**的效果：没有法杖的角色（跨角色使用狐火卡）不该享受。
+            if (!MagicWineFoxSpellCmd.HasWandRelic(Owner.Player))
+                return false;
+
             if (!CanDiscountFirstLoad)
                 return false;
 
@@ -257,9 +259,28 @@ namespace STS2_WineFox.Powers
             return Task.CompletedTask;
         }
 
-        // 释放触发点在遗物 MagicWineFoxWand.AfterSideTurnEnd：
-        // Power 的 Owner 是 Creature，拿不到 PlayerCombatState；遗物侧的 player 参数可以直接用。
-        // 本 Power 只做「槽位容器 + 装填 / 清空」。
+        /// <summary>
+        ///     回合结束释放：**触发条件是「拥有本能力」而不是「持有起始遗物」**，
+        ///     因此跨角色装填法术时也会正常释放。
+        ///     <para>
+        ///         时机与原遗物触发一致（<c>AfterSideTurnEnd</c>，己方回合结束时，默认释放 1 轮）。
+        ///         遗物侧的那个触发已移除，避免同一回合释放两次。
+        ///     </para>
+        /// </summary>
+        public override async Task AfterSideTurnEnd(
+            PlayerChoiceContext choiceContext,
+            CombatSide side,
+            IEnumerable<Creature> participants)
+        {
+            if (side != Owner.Side)
+                return;
+
+            // 能力的 Owner 是 Creature，这里用 .Player 取玩家（遗物的 Owner 直接就是 Player）。
+            if (Owner.Player is not { } player)
+                return;
+
+            await MagicWineFoxSpellCmd.CastAll(choiceContext, player, null, null);
+        }
 
         private void SyncSlotCount()
         {

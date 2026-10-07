@@ -14,8 +14,6 @@ namespace STS2_WineFox.Cards.Spell
     ///     法术牌基类。
     ///     <para>
     ///         「法术」= 可以装填进法杖、由回合结束的释放步骤结算的牌。
-    ///         与既有 <c>magic</c>（咏唱/魔法管线）刻意分开：法术体系的强度来自
-    ///         「释放轮数 + 槽位 + 修正符」，不参与 <c>MagicDamage</c> / <c>ChantPower</c> 的结算。
     ///     </para>
     ///     <para>
     ///         法术牌的 <see cref="TargetType" /> 一律为 <c>None</c>：它们被装填进法杖后
@@ -38,10 +36,10 @@ namespace STS2_WineFox.Cards.Spell
 
         /// <summary>
         ///     卡牌关键字：
-        ///     可装填时带「装填」（其关键字说明已涵盖「回合结束时依次结算」的完整流程）；
+        ///     可装填时带「装填」；
         ///     实现 <see cref="IMagicWineFoxSpellModifierCard" /> 的修正符自动带「法术修正」。
         ///     <para>
-        ///         「释放」关键字**不在这里**：它属于「主动触发释放」的牌（如定向爆破），
+        ///         「释放」关键字不在这里：它属于「主动触发释放」的牌（如定向爆破），
         ///         见 <c>DirectionalBlasting</c>。
         ///     </para>
         /// </summary>
@@ -63,12 +61,21 @@ namespace STS2_WineFox.Cards.Spell
 
         /// <summary>
         ///     能否装填进法杖。部分法术（如防御类）设计为只能直接释放，
-        ///     此时返回 false；卡面只写自身效果，不写「不可装填」。
+        ///     此时返回 false；卡面只写自身效果，不写不可装填。
         /// </summary>
         public virtual bool IsLoadable => true;
 
         /// <summary>
-        ///     预览用的单次基础伤害（**不参与结算**）。无伤害的法术保持 0。
+        ///     本法术是否作用于敌人。用于是否攻击到敌人的判定
+        ///     自身向法术应该返回 false。
+        ///     <para>
+        ///         由卡牌自己声明。
+        ///     </para>
+        /// </summary>
+        public virtual bool TargetsEnemy => true;
+
+        /// <summary>
+        ///     预览用的单次基础伤害（不参与结算）。无伤害的法术保持 0。
         ///     供 <c>MagicWineFoxSpellCmd.PreviewRelease</c> 估算总伤害。
         /// </summary>
         public virtual decimal PreviewDamage => 0m;
@@ -165,13 +172,17 @@ namespace STS2_WineFox.Cards.Spell
             if (context.TargetsAllEnemies)
             {
                 if (context.Owner?.Creature?.CombatState is { } combatState)
+                {
                     commands.Add(await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
+                }
             }
             else
             {
                 var target = ResolveSpellTarget(context);
                 if (target != null)
+                {
                     commands.Add(await attack.Targeting(target).Execute(context.ChoiceContext));
+                }
             }
 
             commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
@@ -179,10 +190,10 @@ namespace STS2_WineFox.Cards.Spell
         }
 
         /// <summary>
-        ///     只重复**伤害**的额外结算段：按 <see cref="Mechanics.MagicWineFoxSpellCastContext.ExtraDamageStrikes" />
+        ///     只重复伤害的额外结算段：按 <see cref="Mechanics.MagicWineFoxSpellCastContext.ExtraDamageStrikes" />
         ///     再打若干次伤害，伤害走同一套修正（含倍率），目标在 <c>RandomTargets</c> 时每次独立随机。
         ///     <para>
-        ///         法术的其他效果（抽牌、上异常、生成卡牌等）**不会**重复——因为这里不重跑 <c>CastAsSpell</c>。
+        ///         法术的其他效果（抽牌、上异常、生成卡牌等）不会重复——因为这里不重跑 <c>CastAsSpell</c>。
         ///     </para>
         /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
@@ -200,7 +211,9 @@ namespace STS2_WineFox.Cards.Spell
                 if (context.TargetsAllEnemies)
                 {
                     if (context.Owner?.Creature?.CombatState is { } combatState)
+                    {
                         commands.Add(await strike.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
+                    }
 
                     continue;
                 }
@@ -210,7 +223,9 @@ namespace STS2_WineFox.Cards.Spell
                     : ResolveSpellTarget(context);
 
                 if (target != null)
+                {
                     commands.Add(await strike.Targeting(target).Execute(context.ChoiceContext));
+                }
             }
 
             return commands;

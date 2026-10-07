@@ -70,16 +70,8 @@ namespace STS2_WineFox.Relics
             CardCmd.PreviewCardPileAdd(instance);
             return true;
         }
-        
-        public override async Task AfterSideTurnEnd(
-            PlayerChoiceContext choiceContext,
-            CombatSide side,
-            IEnumerable<Creature> participants)
-        {
-            if (Owner == null) return;
-            if (side != Owner.Creature.Side) return;
 
-            await MagicWineFoxSpellCmd.CastAll(choiceContext, Owner, null, null);
-        }
+        // 回合结束的释放触发已移到 MagicWineFoxSpellSlotPower.AfterSideTurnEnd：
+        // 触发条件从「持有本遗物」改为「拥有法术槽能力」，跨角色装填法术时才会一并释放。
     }
 }
