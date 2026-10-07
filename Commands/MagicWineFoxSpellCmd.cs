@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Monsters;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
@@ -14,24 +15,20 @@ namespace STS2_WineFox.Commands
     /// <summary>
     ///     法杖/法术系统的唯一入口命令。
     ///     <para>
-    ///         结算模型（对应设计文档 v0.2.6）：
+    ///         结算模型：
     ///         装填 = 支付卡面费用后把法术放进槽位；释放 = 回合结束按槽位顺序释放，
     ///         修正符累积、遇到法术后消费并清空。
-    ///     </para>
-    ///     <para>
-    ///         注意：法术体系**刻意不复用** <c>Combat/Magic</c> 的咏唱管线
-    ///         （<c>MagicDamage</c> / <c>ChantPower</c>），也不再引用 <c>Cards/Deleted/Magic</c> 下的任何卡。
     ///     </para>
     /// </summary>
     public static class MagicWineFoxSpellCmd
     {
-        /// <summary>默认槽位容量（狐火杖初始 4 槽；「扩张」升级后为 5）。</summary>
+        /// <summary>默认槽位容量。</summary>
         public const int DefaultCapacity = 4;
 
         /// <summary>默认释放轮数。</summary>
         public const int DefaultCastCount = 1;
 
-        /// <summary>起始遗物【狐火杖】：每回合第一次装填减免的费用。</summary>
+        /// <summary>起始遗物：每回合第一次装填减免的费用。</summary>
         public const int FirstLoadDiscount = 1;
 
         public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int capacity = DefaultCapacity,
@@ -69,31 +66,32 @@ namespace STS2_WineFox.Commands
             PlayerChoiceContext choiceContext,
             CardModel card,
             CardPlay play,
-            bool isModifier = false)
+            bool isModifier = false,
+            int xValue = 0)
         {
             var owner = card.Owner;
             var power = await EnsurePower(owner);
             if (power == null) return false;
 
-            var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier);
+            var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier, xValue);
 
-            // 序列回响：把这张法术记为「始终释放」的法术（照常装填，不拦截）。
+            // 序列回响：把这张法术记为「始终释放」的法术。
             var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
             echo?.TryBind(card);
 
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
             if (!power.TryLoad(snapshot)) return false;
-
-            // 起始遗物【狐火杖】：每回合第一次装填的费用减 1（最低 0）。
-            // 减费由 MagicWineFoxSpellSlotPower.TryModifyEnergyCostInCombat 直接改写费用，
-            // 这里只负责「消费」这次减费，使其每回合仅生效一次。
+            
             if (power.CanDiscountFirstLoad)
                 power.ConsumeFirstLoadDiscount();
+
+            // 装填后立刻刷新法杖内所有卡的显示数值（Power + 法术修正符）。
+            RefreshWandCardValues(power);
 
             return true;
         }
 
-        /// <summary>释放：按装填顺序释放全部已装填法术（受释放轮数约束的施法名额）。</summary>
+        /// <summary>释放：按装填顺序释放全部已装填法术。</summary>
         public static async Task CastAll(
             PlayerChoiceContext choiceContext,
             Player owner,
@@ -108,19 +106,16 @@ namespace STS2_WineFox.Commands
             var preserved = spells.Count > 0
                 ? await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget)
                 : [];
-
-            // 逆遍历等修正符可能把「其后方的法术」原样退回法杖；
-            // 此时法杖已清空，因此它们会落在最前面的槽位。
+            
             foreach (var snapshot in preserved)
                 if (!power.TryLoad(snapshot))
                     break;
-
-            // 序列回响：法杖清空后自动把绑定的回响法术装回第一个槽位，
-            // 于是它永远排在序列最前——也就吃不到任何修正符加成。
+            
             EnsureEchoLoaded(owner);
+            RefreshWandCardValues(power);
         }
 
-        /// <summary>把【序列回响】绑定的法术自动装回法杖（法杖已被清空，因此它落在第一个槽位）。</summary>
+        /// <summary>把【序列回响】绑定的法术自动装回法杖。</summary>
         private static void EnsureEchoLoaded(Player owner)
         {
             var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
@@ -168,7 +163,6 @@ namespace STS2_WineFox.Commands
 
         /// <summary>
         ///     顺序释放：累积修正 → 遇法术按次数施放 → 清空累积器。
-        ///     这是「修正符只作用于序列中紧随其后的那一张法术」的实现点。
         /// </summary>
         private static async Task<IReadOnlyList<MagicWineFoxSpellSlotSnapshot>> ResolveSpellChain(
             PlayerChoiceContext choiceContext,
@@ -185,11 +179,17 @@ namespace STS2_WineFox.Commands
 
             modifiers.SetWandModifierCount(
                 spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
+            modifiers.SetWandSpellCount(
+                spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellCard
+                    and not IMagicWineFoxSpellModifierCard));
 
             foreach (var snapshot in spells)
             {
                 if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
+                {
+                    modifiers.SetCurrentX(snapshot.XValue);
                     wandModifier.ApplyModifier(modifiers);
+                }
             }
 
             for (var index = 0; index < spells.Count; index++)
@@ -201,8 +201,6 @@ namespace STS2_WineFox.Commands
 
                 if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
                 {
-                    // 逆遍历那一刻累积器里剩下的，是「尚未被消费」的修正符——
-                    // 它们应当继续作用于重放的第一张法术（之后回归仅整轮字段）。
                     var replayState = modifiers.Copy();
 
                     for (var rewind = history.Count - 1; rewind >= 0; rewind--)
@@ -225,7 +223,10 @@ namespace STS2_WineFox.Commands
                 {
                     if (snapshot.Card is not IMagicWineFoxSpellLookBehindModifierCard and
                         not IMagicWineFoxSpellWandModifierCard)
+                    {
+                        modifiers.SetCurrentX(snapshot.XValue);
                         modifierEntry.ApplyModifier(modifiers);
+                    }
 
                     if (modifiers.DrawForModifierEntries && modifiers.DrawCount > 0m)
                         await CardPileCmd.Draw(choiceContext, modifiers.DrawCount, owner);
@@ -235,14 +236,16 @@ namespace STS2_WineFox.Commands
 
                 if (snapshot.Card is not IMagicWineFoxSpellCard)
                 {
-                    // 非法术（状态牌等）：吃掉累积器，防止修正泄漏到后面的法术。
                     modifiers.Reset();
                     continue;
                 }
 
                 if (lookBehind.TryGetValue(index, out var attached))
                     foreach (var extra in attached)
-                        extra.ApplyModifier(modifiers);
+                    {
+                        modifiers.SetCurrentX(extra.XValue);
+                        (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
+                    }
 
                 history.Add(snapshot);
 
@@ -258,9 +261,6 @@ namespace STS2_WineFox.Commands
         /// <summary>
         ///     预览本次释放：**与 <see cref="ResolveSpellChain" /> 使用同一套规则推演**，
         ///     返回执行顺序与预估总伤害，供 UI（如遗物悬停提示）显示。
-        ///     <para>
-        ///         纯只读：不结算、不修改任何战斗状态。
-        ///     </para>
         /// </summary>
         public static MagicWineFoxSpellReleasePreview PreviewRelease(MagicWineFoxSpellSlotPower? power)
         {
@@ -281,16 +281,22 @@ namespace STS2_WineFox.Commands
             var cast = new List<MagicWineFoxSpellSlotSnapshot>();
             var total = 0m;
 
-            // 全体修正（穿刺魔弹等）时，每次伤害会打到所有可命中敌人，总伤害需乘以敌人数。
+            // 全体修正时，每次伤害会打到所有可命中敌人，总伤害需乘以敌人数。
             var enemyCount = Math.Max(1, power.Owner?.CombatState?.HittableEnemies.Count ?? 1);
 
             modifiers.SetWandModifierCount(
                 spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
+            modifiers.SetWandSpellCount(
+                spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellCard
+                    and not IMagicWineFoxSpellModifierCard));
 
             foreach (var snapshot in spells)
             {
                 if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
+                {
+                    modifiers.SetCurrentX(snapshot.XValue);
                     wandModifier.ApplyModifier(modifiers);
+                }
             }
 
             for (var index = 0; index < spells.Count; index++)
@@ -308,8 +314,7 @@ namespace STS2_WineFox.Commands
                         MagicWineFoxSpellPreviewSegmentKind.Forward, forward));
 
                     var replay = new List<MagicWineFoxSpellPreviewStep>();
-
-                    // 反向遍历：先是「尚未被消费的修正符」（按装填逆序），再是法术（逆序）。
+                    
                     for (var back = pending.Count - 1; back >= 0; back--)
                     {
                         replay.Add(new MagicWineFoxSpellPreviewStep(
@@ -371,7 +376,10 @@ namespace STS2_WineFox.Commands
 
                 if (lookBehind.TryGetValue(index, out var attached))
                     foreach (var extra in attached)
-                        extra.ApplyModifier(modifiers);
+                    {
+                        modifiers.SetCurrentX(extra.XValue);
+                        (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
+                    }
 
                 var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount);
                 total += damage * hits;
@@ -392,6 +400,36 @@ namespace STS2_WineFox.Commands
             return new MagicWineFoxSpellReleasePreview(segments, total);
         }
 
+        /// <summary>
+        ///     把法杖内每张卡的显示数值刷成**计入法术修正符**后的结果。
+        /// </summary>
+        public static void RefreshWandCardValues(MagicWineFoxSpellSlotPower? power)
+        {
+            if (power == null)
+                return;
+
+            var preview = PreviewRelease(power);
+            var adjusted = new HashSet<CardModel>();
+
+            foreach (var segment in preview.Segments)
+            {
+                foreach (var step in segment.Steps)
+                {
+                    if (step.Card is not MagicWineFoxSpellCard spell)
+                        continue;
+                    
+                    if (step.Hits > 0 && adjusted.Add(step.Card))
+                        spell.ApplyPreviewDamage(step.DamagePerHit);
+                }
+            }
+            
+            foreach (var slot in power.Slots)
+            {
+                if (slot?.Card is MagicWineFoxSpellCard spell && !adjusted.Contains(slot.Card))
+                    spell.ClearPreviewDamage();
+            }
+        }
+
         private static (decimal Damage, int Hits) EstimateDamage(
             CardModel card,
             MagicWineFoxSpellModifierState state,
@@ -409,8 +447,7 @@ namespace STS2_WineFox.Commands
                     MidpointRounding.AwayFromZero));
 
             var hits = state.CastCount * (1 + state.ExtraDamageStrikes);
-
-            // 打全体时，每次伤害覆盖所有敌人。
+            
             if (state.TargetsAllEnemies)
                 hits *= enemyCount;
 
@@ -467,6 +504,26 @@ namespace STS2_WineFox.Commands
                     owner,
                     snapshot.Card,
                     attacked);
+                
+                if (state.SummonOnKill > 0m && attacked.Any(enemy => !enemy.IsAlive))
+                {
+                    await OstyCmd.Summon(
+                        choiceContext,
+                        owner,
+                        state.SummonOnKill,
+                        snapshot.Card);
+                }
+
+                // 【死灵召唤】：授予「奥斯提横扫」能力——它每回合结束时对全体敌人造成伤害。
+                if (state.OstySweepAmount > 0m && owner?.Creature is { } ownerCreature)
+                {
+                    await PowerCmd.Apply<Powers.NecromanticSummoningPower>(
+                        choiceContext,
+                        ownerCreature,
+                        state.OstySweepAmount,
+                        ownerCreature,
+                        snapshot.Card);
+                }
 
                 if (state.DrawCount > 0m)
                     await CardPileCmd.Draw(choiceContext, state.DrawCount, owner);
@@ -474,7 +531,7 @@ namespace STS2_WineFox.Commands
         }
 
         /// <summary>
-        ///     倒序重放用的累积器：**只继承整轮保留的字段**，一次性修正一律不带。
+        ///     倒序重放用的累积器：只继承整轮保留的字段，一次性修正一律不带。
         ///     <para>
         ///         修正符是「打完一张法术就消费掉」的，所以重放时若复用当次快照，
         ///         等于让已被消费的修正再生效一次（双重释放会多放一遍、四重散射会多打一套）。
@@ -491,14 +548,14 @@ namespace STS2_WineFox.Commands
             return state;
         }
 
-        private static Dictionary<int, List<IMagicWineFoxSpellModifierCard>> CollectLookBehindModifiers(
+        private static Dictionary<int, List<MagicWineFoxSpellSlotSnapshot>> CollectLookBehindModifiers(
             IReadOnlyList<MagicWineFoxSpellSlotSnapshot> spells)
         {
-            var result = new Dictionary<int, List<IMagicWineFoxSpellModifierCard>>();
+            var result = new Dictionary<int, List<MagicWineFoxSpellSlotSnapshot>>();
 
             for (var i = 0; i < spells.Count; i++)
             {
-                if (spells[i].Card is not IMagicWineFoxSpellLookBehindModifierCard lookBehind)
+                if (spells[i].Card is not IMagicWineFoxSpellLookBehindModifierCard)
                     continue;
 
                 for (var j = i - 1; j >= 0; j--)
@@ -509,7 +566,7 @@ namespace STS2_WineFox.Commands
                     if (!result.TryGetValue(j, out var list))
                         result[j] = list = [];
 
-                    list.Add(lookBehind);
+                    list.Add(spells[i]);
                     break;
                 }
             }

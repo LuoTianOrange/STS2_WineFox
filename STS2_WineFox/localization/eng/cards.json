@@ -353,5 +353,11 @@
   "STS2_WINE_FOX_CARD_PURE_SHIELD.title": "Pure Shield",
   "STS2_WINE_FOX_CARD_PURE_SHIELD.description": "[gold]Load[/gold]: Gain {Block:diff()} [gold]Block[/gold]. Lose {BlockLossPerModifier:diff()} Block for each [gold]Spell Modifier[/gold] in your wand.",
   "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.title": "Reverse Traversal",
-  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]Load[/gold]: When this modifier is reached, previously released spells are released again in reverse order. Spells after this modifier are not released and stay in your wand at the front."
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]Load[/gold]: When this modifier is reached, previously released spells are released again in reverse order. Spells after this modifier are not released and stay in your wand at the front.",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.title": "Blood Sacrifice",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.description": "[gold]Load[/gold]: Lose X+1 HP. Each spell released this turn gains 2X damage.",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.title": "Hat Trick",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]Load[/gold]: If only one spell is loaded in your wand, it is released {ExtraCasts:diff()} extra times.",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "Necromantic Summoning",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]Load[/gold]: When the next spell kills an enemy, Summon {Summon:diff()}. If Osty is alive, gain [gold]Necromantic Summoning[/gold]."
 }

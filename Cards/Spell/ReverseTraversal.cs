@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Spell
     public class ReverseTraversal() : MagicWineFoxSpellCard(
         2, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellReverseModifierCard
     {
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardReverseTraversal);
 
         public override string SpellIconPath => Const.Paths.SpellIconReverseTraversal;
 

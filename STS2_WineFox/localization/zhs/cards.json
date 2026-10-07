@@ -300,15 +300,12 @@
   "STS2_WINE_FOX_CARD_CRAFTING_STORAGE.description": "在你的回合开始时，将上一回合所有[gold]合成[/gold]产物的一份复制品加入你的手牌。",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.title": "协同采掘",
   "STS2_WINE_FOX_CARD_COLLABORATIVE_MINING.description": "每当其他玩家打出[gold]能力[/gold]牌后，获得1个[gold]木板[/gold]、1个[gold]圆石[/gold]、1个[gold]铁锭[/gold]和1个[gold]钻石[/gold]。",
-  
-  
-  
   "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.title": "能量弹",
   "STS2_WINE_FOX_CARD_FOXFIRE_BOLT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_MIND_BOLT.title": "魔法飞弹",
   "STS2_WINE_FOX_CARD_MIND_BOLT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_ARCANE_BARRIER.title": "奥术屏障",
-  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]: 获得{Block:diff()}点格挡。",
+  "STS2_WINE_FOX_CARD_ARCANE_BARRIER.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.title": "双重释放",
   "STS2_WINE_FOX_CARD_DOUBLE_RELEASE_SIGIL.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术额外[gold]释放[/gold][blue]1[/blue]次。",
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "奥术炸弹",
@@ -340,7 +337,7 @@
   "STS2_WINE_FOX_CARD_TEMP_POWER_RARE.title": "临时能力牌（稀有）",
   "STS2_WINE_FOX_CARD_TEMP_POWER_RARE.description": "获得{Energy:energyIcons()}，抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_DIRECTIONAL_BLASTING.title": "定向爆破",
-  "STS2_WINE_FOX_CARD_DIRECTIONAL_BLASTING.description": "立即[gold]释放[/gold]法杖中已装填的法术，以该敌人为目标。\n抽{Cards:diff()}张牌。",
+  "STS2_WINE_FOX_CARD_DIRECTIONAL_BLASTING.description": "立即[gold]释放[/gold]法术槽中已装填的法术，以该敌人为目标。\n抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE.title": "全视之眼",
   "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE.description": "[gold]装填[/gold]: 选择获得一张随机[gold]法术修正[/gold]。",
   "STS2_WINE_FOX_CARD_ECHOES_SEQUENCE.title": "序列回响",
@@ -352,9 +349,15 @@
   "STS2_WINE_FOX_CARD_VENOM_BUBBLE.title": "毒液泡泡",
   "STS2_WINE_FOX_CARD_VENOM_BUBBLE.description": "[gold]装填[/gold]: 给予{PoisonPower:diff()}层[gold]中毒[/gold]。获得一张随机[gold]法术修正[/gold]。",
   "STS2_WINE_FOX_CARD_RE_CHARGE.title": "缩短充能时间",
-  "STS2_WINE_FOX_CARD_RE_CHARGE.description": "[gold]装填[/gold]: 每个{IfUpgraded:show:|非修正}法术在释放时抽{Cards:diff()}张牌。",
+  "STS2_WINE_FOX_CARD_RE_CHARGE.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 每个{IfUpgraded:show:|非修正}法术在释放时抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_PURE_SHIELD.title": "纯净护盾",
   "STS2_WINE_FOX_CARD_PURE_SHIELD.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。法术槽中每有一个[gold]法术修正[/gold]，格挡减少{BlockLossPerModifier:diff()}。",
   "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.title": "逆遍历",
-  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 释放此法术时逆转结算方向直至结束。"
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 释放此法术时逆转结算方向直至结束。",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.title": "血之祭品",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.description": "[gold]法术修正[/gold]。\n失去X+1点生命值。\n[gold]装填[/gold]: 最终结算时使每个法术增加2X点伤害。",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.title": "帽子戏法",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 如果法术槽内只装填了一个法术，使其额外[gold]释放[/gold]{ExtraCasts:diff()}次。",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "死灵召唤",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术斩杀敌人时，召唤{Summon:diff()}。若[gold]奥斯提[/gold]存活，回合结束对所有敌人造成6点伤害。"
 }

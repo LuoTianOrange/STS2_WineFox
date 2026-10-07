@@ -13,7 +13,9 @@ namespace STS2_WineFox.Settings
         private static readonly Lazy<I18N> Localization = new(() => RitsuLibFramework.CreateModLocalization(
             Const.ModId,
             "WineFox-ModSettings",
-            pckFolders: ["res://localization/mod_settings"]));
+            // 必须带模组 id 这一层：框架按 $"{res}/{语言}.json" 原样拼接，
+            // 少一层就会拼出 PCK 里不存在的 res://localization/... 而静默退回英文兜底。
+            pckFolders: [$"res://{Const.ModId}/localization/mod_settings"]));
 
         private static bool _registered;
         private static bool _suppressSettingsPublish;

@@ -55,6 +55,9 @@ namespace STS2_WineFox.Relics
             var sigils = (int)DynamicVars["PreloadSigils"].BaseValue;
             for (var i = 0; i < sigils; i++)
                 await SendSigilToHand(Owner);
+
+            // 回合开始：力量等 Power 可能已变化，重新刷新法杖内卡牌的显示数值。
+            MagicWineFoxSpellCmd.RefreshWandCardValues(power);
         }
 
         private static async Task<bool> SendSigilToHand(Player owner)

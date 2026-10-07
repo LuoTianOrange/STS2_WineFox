@@ -353,5 +353,11 @@
   "STS2_WINE_FOX_CARD_PURE_SHIELD.title": "ピュアシールド",
   "STS2_WINE_FOX_CARD_PURE_SHIELD.description": "[gold]装填[/gold]: [gold]ブロック[/gold]を{Block:diff()}得る。杖に[gold]スペル修正[/gold]が1つあるごとに、ブロックが{BlockLossPerModifier:diff()}減少する。",
   "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.title": "逆走査",
-  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]装填[/gold]: この修正に到達すると、それまでに解放した術を逆順で再度解放する。この修正より後の術は解放されず、杖の先頭に残る。"
+  "STS2_WINE_FOX_CARD_REVERSE_TRAVERSAL.description": "[gold]装填[/gold]: この修正に到達すると、それまでに解放した術を逆順で再度解放する。この修正より後の術は解放されず、杖の先頭に残る。",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.title": "血の供物",
+  "STS2_WINE_FOX_CARD_BLOOD_SACRIFICE.description": "[gold]装填[/gold]: X+1のHPを失う。今回解放される術はすべてダメージが2X増加する。",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.title": "ハットトリック",
+  "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]装填[/gold]: 杖に術が1つだけ装填されている場合、それを追加で{ExtraCasts:diff()}回解放する。",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "死霊召喚",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]装填[/gold]: 次の術が敵を倒した時、召喚{Summon:diff()}。オスティが生存している場合、[gold]死霊召喚[/gold]を得る。"
 }

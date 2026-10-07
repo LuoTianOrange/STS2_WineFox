@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Spell
             new DamageVar(14m, ValueProp.Move)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnergyRay);
 
         public override string SpellIconPath => Const.Paths.SpellIconEnergyRay;
 

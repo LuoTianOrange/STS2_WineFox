@@ -199,5 +199,8 @@
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "当前绑定：[purple]{SpellName}[/purple]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "永恒旋律",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "每次释放法术时，被法术攻击的敌人失去{Amount}点生命上限。",
-  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "每次释放法术时，被法术攻击的敌人失去[blue]{Amount}[/blue]点生命上限。"
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "每次释放法术时，被法术攻击的敌人失去[blue]{Amount}[/blue]点生命上限。",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.title": "死灵召唤",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.description": "回合结束时，若奥斯提存活，它对所有敌人造成{OstyDamage:diff()}点伤害。",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "回合结束时，若奥斯提存活，它对所有敌人造成[blue]{OstyDamage:diff()}[/blue]点伤害。"
 }

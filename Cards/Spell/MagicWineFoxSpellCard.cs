@@ -3,6 +3,9 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Mechanics;
 
 namespace STS2_WineFox.Cards.Spell
@@ -71,9 +74,55 @@ namespace STS2_WineFox.Cards.Spell
         public virtual decimal PreviewDamage => 0m;
 
         /// <summary>
+        ///     计入法术修正符后的单次伤害（null = 未计算，按原版显示）。
+        ///     由 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 写入，
+        ///     描述渲染时由 <c>SpellCardDescriptionPreviewPatch</c> 临时换进变量。
+        /// </summary>
+        public decimal? PreviewDamageOverride { get; private set; }
+
+        /// <summary>记录计入修正符后的单次伤害。</summary>
+        public void ApplyPreviewDamage(decimal value)
+        {
+            PreviewDamageOverride = value;
+        }
+
+        /// <summary>清掉覆盖，恢复原版显示。</summary>
+        public void ClearPreviewDamage()
+        {
+            PreviewDamageOverride = null;
+        }
+
+        /// <summary>
+        ///     描述渲染开始：临时把 <c>Damage</c> 变量换成该值，返回渲染前的真实值供还原。
+        ///     返回 <c>-1</c> 表示无需还原。
+        /// </summary>
+        public decimal BeginDisplayOverride(decimal value)
+        {
+            if (!DynamicVars.TryGetValue("Damage", out var damage))
+                return -1m;
+
+            var trueBase = damage.BaseValue;
+            damage.BaseValue = value;
+            damage.PreviewValue = value;
+            return trueBase;
+        }
+
+        /// <summary>描述渲染结束：把变量还原成真实基础值。</summary>
+        public void EndDisplayOverride(decimal trueBase)
+        {
+            if (!DynamicVars.TryGetValue("Damage", out var damage))
+                return;
+
+            damage.BaseValue = trueBase;
+            damage.PreviewValue = trueBase;
+        }
+
+        /// <summary>
         ///     释放时的目标回落：优先用快照记录的目标，其次回落到场上第一个可命中敌人。
-        ///     <see cref="TargetType.None" /> 的法术在直接打出时没有 <c>play.Target</c>，
-        ///     因此必须提供回落，否则单目标伤害会静默失效。
+        ///     <para>
+        ///         <see cref="TargetType.None" /> 的法术在直接打出时没有 <c>play.Target</c>，
+        ///         因此必须提供回落，否则单目标伤害会静默失效。
+        ///     </para>
         /// </summary>
         protected static Creature? ResolveSpellTarget(Mechanics.MagicWineFoxSpellCastContext context)
         {

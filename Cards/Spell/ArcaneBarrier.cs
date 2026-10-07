@@ -17,12 +17,12 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(6m, ValueProp.Move)
+            new BlockVar(8m, ValueProp.Move)
         ];
 
         public override bool GainsBlock => true;
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicWineFoxDefend);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneBarrier);
 
         public override string SpellIconPath => Const.Paths.SpellIconArcaneBarrier;
 
@@ -31,7 +31,6 @@ namespace STS2_WineFox.Cards.Spell
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
-        /// <summary>释放阶段结算：获得格挡。防御法术无目标，直接作用于自身。</summary>
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             var owner = context.Owner?.Creature;

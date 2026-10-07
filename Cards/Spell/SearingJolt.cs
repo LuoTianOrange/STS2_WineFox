@@ -23,7 +23,7 @@ namespace STS2_WineFox.Cards.Spell
             new HpLossVar(1m),
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicOverloaded);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSearingJolt);
 
         public override string SpellIconPath => Const.Paths.SpellIconSearingJolt;
         

@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Temp
             new CardsVar(1)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardTest);
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

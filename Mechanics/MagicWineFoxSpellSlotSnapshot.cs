@@ -13,5 +13,9 @@ namespace STS2_WineFox.Mechanics
     ///         <see cref="Target" /> 记录装填时的目标；目标已死时释放方会回落到当前目标或重选。
     ///     </para>
     /// </summary>
-    public sealed record MagicWineFoxSpellSlotSnapshot(CardModel Card, Creature? Target, bool IsModifier);
+    public sealed record MagicWineFoxSpellSlotSnapshot(
+        CardModel Card,
+        Creature? Target,
+        bool IsModifier,
+        int XValue = 0);
 }

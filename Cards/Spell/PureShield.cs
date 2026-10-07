@@ -23,7 +23,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public override bool GainsBlock => true;
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicWineFoxDefend);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPureShield);
 
         public override string SpellIconPath => Const.Paths.SpellIconPureShield;
 

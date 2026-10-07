@@ -18,7 +18,7 @@ namespace STS2_WineFox.Cards.Spell
             new CardsVar(1)
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardReCharge);
 
         public override string SpellIconPath => Const.Paths.SpellIconReCharge;
 

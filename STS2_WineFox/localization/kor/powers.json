@@ -199,5 +199,8 @@
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "바인딩된 주문: [gold]{SpellName}[/gold]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "영원한 선율",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "주문을 해방할 때마다 그 주문이 공격한 적이 최대 HP를 {Amount} 잃습니다.",
-  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "주문을 해방할 때마다 그 주문이 공격한 적이 최대 HP를 [blue]{Amount}[/blue] 잃습니다."
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "주문을 해방할 때마다 그 주문이 공격한 적이 최대 HP를 [blue]{Amount}[/blue] 잃습니다.",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.title": "사령 소환",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.description": "매 턴 종료 시 오스티가 생존해 있으면 모든 적에게 {OstyDamage:diff()}의 피해를 줍니다.",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "매 턴 종료 시 오스티가 생존해 있으면 모든 적에게 [blue]{OstyDamage:diff()}[/blue]의 피해를 줍니다."
 }

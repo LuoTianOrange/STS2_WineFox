@@ -199,5 +199,8 @@
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "Bound spell: [gold]{SpellName}[/gold]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "Eternal Melody",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "Whenever you release a spell, the enemies it attacks lose {Amount} Max HP.",
-  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "Whenever you release a spell, the enemies it attacks lose [blue]{Amount}[/blue] Max HP."
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "Whenever you release a spell, the enemies it attacks lose [blue]{Amount}[/blue] Max HP.",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.title": "Necromantic Summoning",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.description": "At the end of each turn, if Osty is alive, it deals {OstyDamage:diff()} damage to all enemies.",
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "At the end of each turn, if Osty is alive, it deals [blue]{OstyDamage:diff()}[/blue] damage to all enemies."
 }

@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0";
+        public const string Version = "1.3.0-beta";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -47,6 +47,9 @@ namespace STS2_WineFox
             public const string SpellIconMindBolt = Root + "/ui/spell_icons/spell_mind_bolt.png";
             public const string SpellIconArcaneBarrier = Root + "/ui/spell_icons/spell_arcane_barrier.png";
             public const string SpellOrderArrow = Root + "/ui/spell_order_arrow.png";
+            public const string SpellIconBloodSacrifice = Root + "/ui/spell_icons/spell_blood_sacrifice.png";
+            public const string SpellIconHatTrick = Root + "/ui/spell_icons/spell_hat_trick.png";
+            public const string SpellIconNecromanticSummoning = Root + "/ui/spell_icons/spell_necromantic_summoning.png";
             public const string SpellIconArcaneBomb = Root + "/ui/spell_icons/spell_arcane_bomb.png";
             public const string SpellIconEnergyRay = Root + "/ui/spell_icons/spell_energy_ray.png";
             public const string SpellIconCursedOrb = Root + "/ui/spell_icons/spell_cursed_orb.png";
@@ -179,6 +182,7 @@ namespace STS2_WineFox
             public const string CraftingStoragePowerIcon = Root + "/powers/crafting_storage_power.png";
             public const string CollaborativeMiningPowerIcon = Root + "/powers/collaborative_mining_power.png";
             public const string BurningIcon = Root + "/powers/burning_power.png";
+            public const string NecromanticSummoningPowerIcon = Root + "/powers/necromantic_summoning_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
@@ -338,6 +342,22 @@ namespace STS2_WineFox
             public const string CardDoubleReleaseSigil = Root + "/cards/card_double_cast.png";
             public const string CardFoxfireBolt = Root + "/cards/card_spark_bolt.png";
             public const string CardQuadrupleScatteringRelease = Root + "/cards/card_quadruple_scattering_release.png";
+            public const string CardHatTrick = Root + "/cards/card_hat_trick.png";
+            public const string CardNecromanticSummoning = Root + "/cards/card_necromantic_summoning.png";
+            public const string CardArcaneBomb = Root + "/cards/card_arcane_bomb.png";
+            public const string CardSearingJolt = Root + "/cards/card_searing_jolt.png";
+            public const string CardEnergyRay = Root + "/cards/card_energy_ray.png";
+            public const string CardMindBolt = Root + "/cards/card_mind_bolt.png";
+            public const string CardCircularSaw = Root + "/cards/card_circular_saw.png";
+            public const string CardArcaneBarrier = Root + "/cards/card_arcane_barrier.png";
+            public const string CardEyeOfProvidence = Root + "/cards/card_eye_of_providence.png";
+            public const string CardPureShield = Root + "/cards/card_pure_shield.png";
+            public const string CardTest = Root + "/cards/card_test.png";
+            public const string CardEchoesSequence = Root + "/cards/card_echoes_sequence.png";
+            public const string CardBloodSacrifice = Root + "/cards/card_blood_sacrifice.png";
+            public const string CardPiercingBolt = Root + "/cards/card_piercing_bolt.png";
+            public const string CardReverseTraversal = Root + "/cards/card_reverse_traversal.png";
+            public const string CardReCharge = Root + "/cards/card_recharge.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

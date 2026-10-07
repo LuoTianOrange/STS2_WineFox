@@ -59,6 +59,38 @@ namespace STS2_WineFox.Mechanics
         /// </summary>
         public int WandModifierCount { get; private set; }
 
+        /// <summary>本次释放时法杖里装填了**多少张法术**（不含修正符），整轮固定。</summary>
+        public int WandSpellCount { get; private set; }
+
+        /// <summary>
+        ///     当前正在结算的那张修正符的 X 值（X 费卡在打出时确定，随快照传到释放阶段）。
+        ///     修正符在 <see cref="ApplyModifier" /> 里读它来换算 2X 之类的数值。
+        /// </summary>
+        public int CurrentX { get; private set; }
+
+        /// <summary>下一个法术**斩杀敌人**时要召唤的数量（0 = 不触发）。</summary>
+        public decimal SummonOnKill { get; private set; }
+
+        /// <summary>
+        ///     下一个法术结算后要授予的【奥斯提横扫】层数（0 = 不授予）。
+        ///     该能力每回合结束时让奥斯提对所有敌人造成等量伤害。
+        /// </summary>
+        public decimal OstySweepAmount { get; private set; }
+
+        /// <summary>登记「斩杀下一个法术的目标时召唤 N」。</summary>
+        public void MarkSummonOnKill(decimal amount)
+        {
+            if (amount > 0m)
+                SummonOnKill += amount;
+        }
+
+        /// <summary>登记「下一个法术结算后，授予奥斯提横扫 N 层」。</summary>
+        public void MarkOstySweepOnResolve(decimal amount)
+        {
+            if (amount > 0m)
+                OstySweepAmount += amount;
+        }
+
         /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
         public int CastCount => 1 + Math.Max(0, ExtraCasts);
 
@@ -121,6 +153,8 @@ namespace STS2_WineFox.Mechanics
                 TargetsAllEnemies = TargetsAllEnemies,
                 RandomTargets = RandomTargets,
                 ExtraDamageStrikes = ExtraDamageStrikes,
+                SummonOnKill = SummonOnKill,
+                OstySweepAmount = OstySweepAmount,
                 DrawCount = DrawCount,
                 DrawForModifierEntries = DrawForModifierEntries,
                 WandModifierCount = WandModifierCount,
@@ -131,6 +165,18 @@ namespace STS2_WineFox.Mechanics
         public void SetWandModifierCount(int count)
         {
             WandModifierCount = count;
+        }
+
+        /// <summary>登记本次释放时法杖内的法术总数（不含修正符）。</summary>
+        public void SetWandSpellCount(int count)
+        {
+            WandSpellCount = count;
+        }
+
+        /// <summary>登记当前结算条目的 X 值。</summary>
+        public void SetCurrentX(int value)
+        {
+            CurrentX = value;
         }
 
         /// <summary>登记「额外结算几次伤害」。</summary>
@@ -156,6 +202,8 @@ namespace STS2_WineFox.Mechanics
             TargetsAllEnemies = false;
             RandomTargets = false;
             ExtraDamageStrikes = 0;
+            SummonOnKill = 0m;
+            OstySweepAmount = 0m;
         }
     }
 }

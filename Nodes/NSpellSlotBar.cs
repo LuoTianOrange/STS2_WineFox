@@ -267,13 +267,22 @@ namespace STS2_WineFox.Nodes
             return box;
         }
 
-        /// <summary>悬停槽位时显示该槽位法术的卡牌提示（与 Noita 的做法一致）。</summary>
+        /// <summary>
+        ///     悬停槽位时显示该槽位法术的卡牌提示（与 Noita 的做法一致）。
+        ///     <para>
+        ///         显示前刷新一次法杖内卡牌的数值——卡面显示的是「Power + 法术修正符」
+        ///         合成后的结果，因此提示里的数字与手牌一致地受加成影响。
+        ///     </para>
+        /// </summary>
         private static void AttachHoverTip(Control slot, CardModel card)
         {
             slot.MouseEntered += () =>
             {
                 if (!GodotObject.IsInstanceValid(slot))
                     return;
+
+                if (card.Owner != null)
+                    MagicWineFoxSpellCmd.RefreshWandCardValues(MagicWineFoxSpellCmd.GetPower(card.Owner));
 
                 NHoverTipSet.Remove(slot);
                 NHoverTipSet.CreateAndShow(slot, [new CardHoverTip(card)],
