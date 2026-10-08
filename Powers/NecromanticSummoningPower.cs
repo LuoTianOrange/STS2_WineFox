@@ -11,14 +11,6 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
-    /// <summary>
-    ///     【死灵召唤】的第二段效果：**每回合结束时**，若奥斯提存活，
-    ///     由奥斯提对所有敌人造成伤害。
-    ///     <para>
-    ///         伤害由本能力自己的 <c>OstyDamage</c> 变量提供（不占用卡牌变量）；
-    ///         攻击走原版 <c>AttackCommand.FromOsty</c>，因此受原版相关修正影响。
-    ///     </para>
-    /// </summary>
     [RegisterPower]
     public class NecromanticSummoningPower : WineFoxPower
     {
