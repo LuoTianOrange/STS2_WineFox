@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Commands;
+using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -76,7 +77,8 @@ namespace STS2_WineFox.Powers
 
         private static bool IsBindable(CardModel? card)
         {
-            return card is MagicWineFoxSpellCard { IsLoadable: true };
+            return card is MagicWineFoxSpellCard { IsLoadable: true }
+                   and not IMagicWineFoxSpellModifierCard;
         }
     }
 }

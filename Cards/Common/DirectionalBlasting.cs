@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Common
     /// <summary>
     ///     定向爆破 —— 1 费攻击牌（Common）。
     ///     <para>
-    ///         不装填：打出时**立即释放**法杖中已装填的法术，并以选定敌人作为释放目标，
+    ///         不装填：打出时立即释放法杖中已装填的法术，并以选定敌人作为释放目标，
     ///         随后抽 1 张牌。升级后改为抽 2 张。
     ///     </para>
     ///     <para>
@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Common
             new CardsVar(1)
         ];
 
-        /// <summary>带「释放」关键字——这张牌主动触发法杖释放。</summary>
+        /// <summary>带释放关键字——这张牌主动触发法杖释放。</summary>
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
             WineFoxKeywords.ReleaseKeyword
