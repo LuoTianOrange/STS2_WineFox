@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -168,20 +170,53 @@ namespace STS2_WineFox.Combat
                 UpdateVisibility(ShouldStayVisible() && ShouldBeVisibleForFocus());
                 if (!Visible) return;
 
+                var amounts = GetMaterialAmounts();
                 for (var i = 0; i < _slots.Length; i++)
-                    _slots[i].SetAmount(GetMaterialAmount(SlotDefinitions[i].PowerType));
+                {
+                    var type = SlotDefinitions[i].PowerType;
+                    _slots[i].SetAmount(amounts.TryGetValue(type, out var amount) ? amount : 0m);
+                }
             }
 
-            private decimal GetMaterialAmount(Type powerType)
+            private bool HasMaterial(Type powerType)
             {
-                return Player.Creature.Powers.FirstOrDefault(power => power.GetType() == powerType)?.Amount ?? 0m;
+                return GetMaterialAmounts().ContainsKey(powerType);
             }
+
+            /// <summary>
+            ///     材料数量缓存：每次刷新只遍历一次 <c>Creature.Powers</c>。
+            ///     <para>
+            ///         原先每个槽位各调一次 <c>FirstOrDefault</c>，且 <c>ShouldStayVisible</c> 里
+            ///         还会用 <c>Any</c> 再扫一遍——每帧产生多次 LINQ 闭包分配与线性查找。
+            ///         这里改成建一次字典，随角色节点更换而失效。
+            ///     </para>
+            /// </summary>
+            private readonly Dictionary<Type, decimal> _materialAmounts = [];
+
+            private Dictionary<Type, decimal> GetMaterialAmounts()
+            {
+                if (Player.Creature is not { } creature)
+                    return _materialAmounts;
+
+                if (!ReferenceEquals(_materialAmountsOwner, creature))
+                {
+                    _materialAmounts.Clear();
+                    _materialAmountsOwner = creature;
+
+                    foreach (var power in creature.Powers)
+                        _materialAmounts[power.GetType()] = power.Amount;
+                }
+
+                return _materialAmounts;
+            }
+
+            private Creature? _materialAmountsOwner;
 
             private bool ShouldStayVisible()
             {
                 return Player.Character is WineFox ||
                        Player.Character.Id.Entry.Contains("winefox", StringComparison.OrdinalIgnoreCase) ||
-                       SlotDefinitions.Any(slot => GetMaterialAmount(slot.PowerType) > 0m);
+                       SlotDefinitions.Any(slot => HasMaterial(slot.PowerType));
             }
 
             private void UpdateCreatureAttachment()
@@ -194,6 +229,8 @@ namespace STS2_WineFox.Combat
                 GetParent()?.RemoveChild(this);
                 creatureNode.AddChild(this);
                 _creatureNode = creatureNode;
+                _healthBarNode = null;
+                _materialAmountsOwner = null;
                 ConnectHoverSignals();
             }
 
@@ -206,13 +243,21 @@ namespace STS2_WineFox.Combat
                     return;
                 }
 
-                var stateDisplay = creatureNode.GetNodeOrNull<Control>("%HealthBar")
-                                   ?? creatureNode.GetNodeOrNull<Control>("HealthBar")
-                                   ?? creatureNode;
+                // 血条节点是**字符串路径查找**，代价不低；本方法每帧都会执行，
+                // 因此缓存引用，只在角色节点更换时重新解析（原先每帧查一次）。
+                if (_healthBarNode == null || !GodotObject.IsInstanceValid(_healthBarNode))
+                {
+                    _healthBarNode = creatureNode.GetNodeOrNull<Control>("%HealthBar")
+                                     ?? creatureNode.GetNodeOrNull<Control>("HealthBar");
+                }
+
+                var stateDisplay = _healthBarNode ?? creatureNode;
                 _originalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
                 if (_showHideTween == null || !_showHideTween.IsRunning())
                     GlobalPosition = _targetVisible ? _originalPosition : _originalPosition + HudAnimOffset;
             }
+
+            private Control? _healthBarNode;
 
             private void UpdateVisibility(bool shouldBeVisible)
             {

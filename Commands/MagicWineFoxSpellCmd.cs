@@ -3,9 +3,12 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
@@ -285,7 +288,7 @@ namespace STS2_WineFox.Commands
         }
 
         /// <summary>
-        ///     预览本次释放：**与 <see cref="ResolveSpellChain" /> 使用同一套规则推演**，
+        /// 预览本次释放：与 <see cref="ResolveSpellChain" /> 使用同一套规则推演，
         ///     返回执行顺序与预估总伤害，供 UI（如遗物悬停提示）显示。
         /// </summary>
         public static MagicWineFoxSpellReleasePreview PreviewRelease(MagicWineFoxSpellSlotPower? power)
@@ -427,14 +430,27 @@ namespace STS2_WineFox.Commands
         }
 
         /// <summary>
-        ///     把法杖内每张卡的显示数值刷成**计入法术修正符**后的结果。
+        /// 把法杖内每张卡的显示数值刷成计入法术修正符后的结果。
+        /// <para>
+        /// 结果按 <see cref="MagicWineFoxSpellSlotPower.SpellPreviewVersion" /> 缓存：
+        /// 本法术链推演代价不低，而它会被槽位悬停（<c>NSpellSlotBar.AttachHoverTip</c>）
+        /// 高频触发，鼠标快速划过槽位时会连续重算导致卡顿。槽位内容不变时直接复用缓存。
+        /// </para>
         /// </summary>
         public static void RefreshWandCardValues(MagicWineFoxSpellSlotPower? power)
         {
             if (power == null)
                 return;
 
-            var preview = PreviewRelease(power);
+            var version = power.SpellPreviewVersion;
+            var preview = power.CachedSpellPreview;
+
+            if (preview == null)
+            {
+                preview = PreviewRelease(power);
+                power.CacheSpellPreview(version, preview);
+            }
+
             var adjusted = new HashSet<CardModel>();
 
             foreach (var segment in preview.Segments)
@@ -521,6 +537,10 @@ namespace STS2_WineFox.Commands
                         state);
                 }
 
+                var attackCandidates = state.SummonOnKill > 0m
+                    ? CaptureAttackCandidates(castContext)
+                    : [];
+
                 await spellCard.CastAsSpell(castContext);
 
                 // 「是否攻击到敌人」卡牌声明判定，
@@ -528,19 +548,27 @@ namespace STS2_WineFox.Commands
                     ? ResolveAttackedEnemies(castContext).ToList()
                     : [];
 
-                await Powers.EternalMelodyPower.ApplyToSpellTargets(
-                    choiceContext,
-                    owner,
-                    snapshot.Card,
-                    attacked);
-                
-                if (state.SummonOnKill > 0m && attacked.Any(enemy => !enemy.IsAlive))
-                {
-                    await OstyCmd.Summon(
+                // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 TargetsEnemy 声明，
+                // 与 CardType 无关）：纯防御/自身法术没有 attacked 目标，自然不会削上限。
+                if (attacked.Count > 0)
+                    await Powers.EternalMelodyPower.ApplyToSpellTargets(
                         choiceContext,
                         owner,
-                        state.SummonOnKill,
-                        snapshot.Card);
+                        snapshot.Card,
+                        attacked);
+
+                if (state.SummonOnKill > 0m)
+                {
+                    var kills = attackCandidates.Count(enemy => !enemy.IsAlive);
+
+                    for (var kill = 0; kill < kills; kill++)
+                    {
+                        await OstyCmd.Summon(
+                            choiceContext,
+                            owner,
+                            state.SummonOnKill,
+                            snapshot.Card);
+                    }
                 }
 
                 // 死灵召唤
@@ -561,10 +589,10 @@ namespace STS2_WineFox.Commands
 
         /// <summary>
         ///     倒序重放用的累积器：只继承整轮保留的字段，一次性修正一律不带。
-        ///     <para>
-        ///         修正符是「打完一张法术就消费掉」的，所以重放时若复用当次快照，
+        /// <para>
+        /// 修正符是打完一张法术就消费掉的，所以重放时若复用当次快照，
         ///         等于让已被消费的修正再生效一次（双重释放会多放一遍、四重散射会多打一套）。
-        ///     </para>
+        /// </para>
         /// </summary>
         private static MagicWineFoxSpellModifierState CreateReplayState(MagicWineFoxSpellModifierState source)
         {
@@ -610,6 +638,17 @@ namespace STS2_WineFox.Commands
                 return null;
 
             return combatState.RunState.Rng.CombatTargets.NextItem(enemies);
+        }
+
+        private static List<Creature> CaptureAttackCandidates(MagicWineFoxSpellCastContext context)
+        {
+            if (context.SourceCard is not MagicWineFoxSpellCard { TargetsEnemy: true })
+                return [];
+
+            if (context.TargetsAllEnemies)
+                return context.Owner?.Creature?.CombatState?.HittableEnemies.ToList() ?? [];
+
+            return context.Target is { } target ? [target] : [];
         }
 
         private static IEnumerable<Creature> ResolveAttackedEnemies(MagicWineFoxSpellCastContext context)

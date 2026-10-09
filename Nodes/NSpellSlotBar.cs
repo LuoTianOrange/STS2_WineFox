@@ -16,16 +16,16 @@ namespace STS2_WineFox.Nodes
 {
     /// <summary>
     ///     法杖槽位预览条。
-    ///     <para>
+    /// <para>
     ///         渲染一排方形槽位，按装填顺序显示 <see cref="MagicWineFoxSpellSlotPower" />
     ///         中已装填法术的图标；空槽显示占位图。
-    ///     </para>
-    ///     <para>
-    ///         视觉参考 Noita 的「法杖横排」：固定间距、整排水平居中。
+    /// </para>
+    /// <para>
+    /// 视觉参考 Noita 的法杖横排：固定间距、整排水平居中。
     ///         位置以角色节点为锚——挂到 <c>Creature.GetCreatureNode()</c> 后取血条上方，
     ///         因此会跟随角色（含多人模式下的各自站位），而不是固定在屏幕某处。
     ///         它只读取 <c>Power</c> 的槽位状态，不参与任何结算。
-    ///     </para>
+    /// </para>
     /// </summary>
     [RegisterNodeAttachment(typeof(NCombatUi), AttachmentId,
         NodeName = NodeName,
@@ -67,7 +67,24 @@ namespace STS2_WineFox.Nodes
 
         private int _visualRetryFrames;
 
-        /// <summary>上一次重绘时的槽位内容，用于**无分配**地判断是否需要重绘。</summary>
+        /// <summary>
+        /// 血条节点缓存。
+        /// </summary>
+        private Control? _healthBarNode;
+
+        /// <summary>
+        ///     角色可视范围的缓存值（缩放系数与最上沿）。
+        /// </summary>
+        private float? _cachedScale;
+
+        private float? _cachedVisualTop;
+
+        /// <summary>刷新可视范围缓存的帧间隔（60fps 下约 0.1 秒）。</summary>
+        private const int VisualCacheRefreshFrames = 6;
+
+        private int _visualRefreshCountdown;
+
+        /// <summary>上一次重绘时的槽位内容,用于无分配地判断是否需要重绘。</summary>
         private readonly List<CardModel?> _lastSlots = [];
 
         private int _lastCapacity = -1;
@@ -87,9 +104,9 @@ namespace STS2_WineFox.Nodes
             if (_boundPlayer == null)
                 return;
 
-            // 用「当前战斗」的实时玩家替换绑定时的缓存对象。
+            // 用当前战斗的实时玩家替换绑定时的缓存对象。
             // 存档 / 读档会重建 Player、Creature、Power 实例；若继续复用旧对象，
-            // 预览条会一直读旧 Power 的槽位列表，表现为「读档后槽位保留了之前打出的法术」。
+            // 预览条会一直读旧 Power 的槽位列表，表现为读档后槽位保留了之前打出的法术。
             var live = ResolveLivePlayer();
             if (live != null && !ReferenceEquals(live, _boundPlayer))
             {
@@ -125,12 +142,12 @@ namespace STS2_WineFox.Nodes
         }
 
         /// <summary>
-        ///     从**当前战斗**取本地玩家。
-        ///     <para>
+        /// 从当前战斗取本地玩家。
+        /// <para>
         ///         存档 / 读档会重建 Player 与 Power 实例，而本节点是跨场景复用的附件节点，
         ///         绑定时的 <c>_boundPlayer</c> 会变成指向旧对象的悬空引用。
         ///         这里每帧用实时对象覆盖它，从而不会显示存档前的槽位内容。
-        ///     </para>
+        /// </para>
         /// </summary>
         private static Player? ResolveLivePlayer()
         {
@@ -144,6 +161,10 @@ namespace STS2_WineFox.Nodes
             _boundPlayer = player;
             _power = player == null ? null : MagicWineFoxSpellCmd.GetPower(player);
             _creatureNode = null;
+            _healthBarNode = null;
+            _cachedScale = null;
+            _cachedVisualTop = null;
+            _visualRefreshCountdown = 0;
             _visuals.Clear();
             _forceRedraw = true;
 
@@ -158,12 +179,12 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     记录玩家角色节点，仅用于读取其屏幕坐标。
-        ///     <para>
-        ///         刻意**不**把本节点挂到角色节点下：那会与 RitsuLib 的节点附件系统冲突——
+        /// <para>
+        /// 刻意不把本节点挂到角色节点下：那会与 RitsuLib 的节点附件系统冲突——
         ///         附件系统仍认为本节点归属于 NCombatUi，随后会尝试重新挂载并报
-        ///         「child already belongs to NCreature」。因此这里保持 NCombatUi 子节点身份，
+        /// child already belongs to NCreature。因此这里保持 NCombatUi 子节点身份，
         ///         改为每帧按角色的全局坐标定位，视觉上同样跟随角色。
-        ///     </para>
+        /// </para>
         /// </summary>
         private bool ResolveCreatureNode()
         {
@@ -190,6 +211,7 @@ namespace STS2_WineFox.Nodes
         private void CacheVisuals()
         {
             _visuals.Clear();
+            CacheHealthBarNode();
 
             if (_creatureNode != null)
                 CollectVisuals(_creatureNode, _creatureNode);
@@ -221,20 +243,49 @@ namespace STS2_WineFox.Nodes
         /// <summary>整排水平居中到角色头顶上方（屏幕坐标）。</summary>
         private void ApplyLayout()
         {
+            // 缩放与"可视范围最上沿"都依赖遍历整棵角色节点树，按帧间隔重算（见字段注释）。
+            if (_cachedScale == null || _cachedVisualTop == null || _visualRefreshCountdown <= 0)
+            {
+                _cachedScale = ResolveCreatureScale();
+                _cachedVisualTop = ResolveVisualTop();
+                _visualRefreshCountdown = VisualCacheRefreshFrames;
+            }
+            else
+            {
+                _visualRefreshCountdown--;
+            }
+
             var anchor = ResolveAnchor();
-            var scale = Math.Max(1f, ResolveCreatureScale());
+            var scale = Math.Max(1f, _cachedScale.Value);
             var scaledY = anchor.Y + BarOffsetFromAnchor.Y * scale;
             var hitboxY = ResolveHitboxTop() - BarGapAboveVisual;
-            var visualY = ResolveVisualTop() - BarGapAboveVisual;
+            var visualY = _cachedVisualTop.Value - BarGapAboveVisual;
 
             Position = new Vector2(
                 anchor.X - ResolveBarWidth() * 0.5f,
                 Math.Min(Math.Min(scaledY, hitboxY), visualY));
         }
 
+        /// <summary>缓存血条节点引用（只在绑定角色/角色节点更换时调用）。</summary>
+        private void CacheHealthBarNode()
+        {
+            _healthBarNode = null;
+
+            if (_creatureNode == null || !GodotObject.IsInstanceValid(_creatureNode))
+                return;
+
+            _healthBarNode = _creatureNode.GetNodeOrNull<Control>("%HealthBar")
+                             ?? _creatureNode.GetNodeOrNull<Control>("HealthBar");
+
+            // 角色节点换了：缩放与可视上沿的缓存一并作废。
+            _cachedScale = null;
+            _cachedVisualTop = null;
+            _visualRefreshCountdown = 0;
+        }
+
         /// <summary>
         ///     角色命中框顶边——游戏自身的 <c>NCreature.GetTopOfHitbox</c>，
-        ///     随角色缩放与移动变化，是最可靠的「头顶」来源。
+        /// 随角色缩放与移动变化，是最可靠的头顶来源。
         /// </summary>
         private float ResolveHitboxTop()
         {
@@ -335,10 +386,11 @@ namespace STS2_WineFox.Nodes
             if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
                 return Vector2.Zero;
 
-            var stateDisplay = creatureNode.GetNodeOrNull<Control>("%HealthBar")
-                               ?? creatureNode.GetNodeOrNull<Control>("HealthBar");
+            var stateDisplay = _healthBarNode;
+            if (stateDisplay != null && GodotObject.IsInstanceValid(stateDisplay))
+                return stateDisplay.GlobalPosition;
 
-            return stateDisplay?.GlobalPosition ?? creatureNode.GlobalPosition;
+            return creatureNode.GlobalPosition;
         }
 
         private float ResolveBarWidth()
@@ -357,7 +409,7 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     槽位内容是否变化（容量 / 已装填数 / 每张卡的实例）。
-        ///     用引用比较与复用的列表，**不产生任何分配**——本方法每帧都会调用，
+        /// 用引用比较与复用的列表，不产生任何分配——本方法每帧都会调用，
         ///     原先的字符串签名会持续制造垃圾。
         /// </summary>
         private bool HasContentChanged()
@@ -426,7 +478,7 @@ namespace STS2_WineFox.Nodes
             var box = new Control
             {
                 // 只用 Size 定位排布，不用 CustomMinimumSize——两者混用会让实际尺寸被最小尺寸顶掉，
-                // 出现「间距按 SlotSpacing、尺寸却按别的值」的错位。
+                // 出现间距按 SlotSpacing、尺寸却按别的值的错位。
                 Position = new Vector2(index * SlotSpacing, 0f),
                 Size = side,
                 // 需要接收鼠标才能弹悬停提示；其余区域仍穿透。
@@ -452,10 +504,10 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     悬停槽位时显示该槽位法术的卡牌提示（与 Noita 的做法一致）。
-        ///     <para>
-        ///         显示前刷新一次法杖内卡牌的数值——卡面显示的是「Power + 法术修正符」
+        /// <para>
+        /// 显示前刷新一次法杖内卡牌的数值——卡面显示的是Power + 法术修正符
         ///         合成后的结果，因此提示里的数字与手牌一致地受加成影响。
-        ///     </para>
+        /// </para>
         /// </summary>
         private static void AttachHoverTip(Control slot, CardModel card)
         {
@@ -510,7 +562,7 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     解析槽位图标。
-        ///     空槽与「卡牌未实现 <see cref="IMagicWineFoxSpellIconProvider" />」都返回 null，
+        /// 空槽与卡牌未实现 <see cref="IMagicWineFoxSpellIconProvider" />都返回 null，
         ///     此时该层不贴图，槽位只剩外框。
         /// </summary>
         private static Texture2D? ResolveIcon(MagicWineFoxSpellSlotSnapshot? snapshot)
