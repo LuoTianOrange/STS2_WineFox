@@ -198,9 +198,11 @@
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "追加で[blue]{Amount}[/blue]個の術スロット。{BoundSpellClause}",
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "バインド中：[gold]{SpellName}[/gold]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "エターナルメロディ",
-  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "術を解放するたび、その術が攻撃した敵は最大HPを{Amount}失う。",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "術を解放するたび、それが攻撃した敵は最大HPを{Amount}失い、最大HPは現在HPまで下がる。",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "術を解放するたび、その術が攻撃した敵は最大HPを[blue]{Amount}[/blue]失う。",
   "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.title": "死霊召喚",
   "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.description": "各ターン終了時、オスティが生存していればすべての敵に{OstyDamage:diff()}ダメージを与える。",
-  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "各ターン終了時、オスティが生存していればすべての敵に[blue]{OstyDamage:diff()}[/blue]ダメージを与える。"
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "各ターン終了時、オスティが生存していればすべての敵に[blue]{OstyDamage:diff()}[/blue]ダメージを与える。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.title": "重力特異点",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.description": "この敵がダメージを受けるたび、他の敵も同じダメージを受ける。"
 }

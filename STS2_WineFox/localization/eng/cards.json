@@ -250,7 +250,7 @@
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "Obtain Materials",
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "Gain {Wood:diff()} [gold]Plank[/gold] {IfUpgraded:show:|and }{Stone:diff()} [gold]Cobblestone[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}.",
   "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "Eternal Melody",
-  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "Whenever you release a spell, the enemies it attacks lose {MaxHpLoss:diff()} Max HP.",
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "Whenever you release a spell, the enemies it attacks lose {MaxHpLoss:diff()} Max HP and their Max HP is lowered to their current HP.",
   "STS2_WINE_FOX_CARD_MANA_SURGE.title": "Mana Surge",
   "STS2_WINE_FOX_CARD_MANA_SURGE.description": "Gain[purple]{ChantPower:diff()}[/purple][gold]Chant[/gold] (up to {IfUpgraded:show:6|4}). Draw {Cards:diff()} cards.",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "Triune Blessing",
@@ -359,7 +359,9 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "Hat Trick",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]Load[/gold]: If only one spell is loaded in your wand, it is released {ExtraCasts:diff()} extra times.",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "Necromantic Summoning",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]Load[/gold]: When the next spell kills an enemy, Summon {Summon:diff()}. If Osty is alive, gain [gold]Necromantic Summoning[/gold].",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]Load[/gold]: When the next spell kills an enemy, Summon {Summon:diff()}.",
   "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "Quick Reload",
-  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "Draw a spell card. Gain a [gold]Double Release[/gold]."
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "Draw {Cards:diff()} spell card(s).",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.title": "Gravitational Singularity",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.description": "[gold]Exhaust[/gold].\\n[gold]Load[/gold]: Deal {Damage:diff()} damage. Whenever that enemy takes damage, other enemies take the same damage."
 }

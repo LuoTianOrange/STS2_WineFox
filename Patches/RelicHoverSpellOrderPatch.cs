@@ -15,10 +15,10 @@ namespace STS2_WineFox.Patches
 {
     /// <summary>
     ///     悬停初始遗物（<see cref="MagicWineFoxWand" />）时，在提示里追加：
-    ///     一行「伤害：xxx」文字 + 法杖内法术的**卡牌预览**（按执行顺序）。
+    ///     一行伤害：xxx文字 + 法杖内法术的卡牌预览（按执行顺序）。
     ///     <para>
     ///         全部走 RitsuLib 的公开助手（<see cref="HoverTipHelper" />），
-    ///         由它内部去写悬停集合的容器，因此**不需要反射、也不需要自己碰私有字段**。
+    ///         由它内部去写悬停集合的容器，因此不需要反射、也不需要自己碰私有字段。
     ///     </para>
     ///     <para>
     ///         <c>NHoverTipSet.CreateAndShow</c> 有重载，只给方法名会因歧义导致补丁失败，
@@ -83,7 +83,7 @@ namespace STS2_WineFox.Patches
 
         /// <summary>
         ///     每段一行：正向结算一段，逆遍历后的倒序重放另起一行。
-        ///     重放行前置「↩」、保留行前置「…」，用符号区分而不是文字，避免行内变长。
+        ///     重放行前置↩、保留行前置…，用符号区分而不是文字，避免行内变长。
         /// </summary>
         private static string BuildOrderRows(MagicWineFoxSpellReleasePreview preview)
         {

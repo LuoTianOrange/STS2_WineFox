@@ -3,12 +3,12 @@ namespace STS2_WineFox.Mechanics
     /// <summary>
     ///     一次释放过程的修正符累积器。
     ///     <para>
-    ///         这**不是** Power——它是 <c>MagicWineFoxSpellCmd</c> 在一次释放流程里 new 出来的局部变量。
-    ///         结算顺序由「装填顺序」（<c>MagicWineFoxSpellSlotPower</c> 内部的槽位列表）决定，与 Power 的获得顺序无关。
+    ///         这不是 Power——它是 <c>MagicWineFoxSpellCmd</c> 在一次释放流程里 new 出来的局部变量。
+    ///         结算顺序由装填顺序（<c>MagicWineFoxSpellSlotPower</c> 内部的槽位列表）决定，与 Power 的获得顺序无关。
     ///     </para>
     ///     <para>
     ///         消费规则：遍历槽位时，遇到修正符就累积；遇到法术就按 <see cref="CastCount" /> 施放，然后
-    ///         <see cref="Reset" />。因此修正符只作用于「序列中紧随其后的那一张法术」。
+    ///         <see cref="Reset" />。因此修正符只作用于序列中紧随其后的那一张法术。
     ///     </para>
     /// </summary>
     public class MagicWineFoxSpellModifierState
@@ -20,46 +20,46 @@ namespace STS2_WineFox.Mechanics
         public int ExtraCasts { get; private set; }
 
         /// <summary>
-        ///     本段额外释放是否**不消耗**本轮释放的施法名额。
-        ///     对应【双重释放符】的「额外释放且不占名额」。
+        ///     本段额外释放是否不消耗本轮释放的施法名额。
+        ///     对应【双重释放符】的额外释放且不占名额。
         /// </summary>
         public bool ExtraCastsAreBudgetFree { get; private set; }
 
         /// <summary>
-        ///     伤害倍率（乘法叠加，默认 1）。对应【穿刺魔弹】的「减少 20% 伤害」。
+        ///     伤害倍率（乘法叠加，默认 1）。对应【穿刺魔弹】的减少 20% 伤害。
         ///     与其他倍率相乘，因此多张修正符可以叠加。
         /// </summary>
         public decimal DamageMultiplier { get; private set; } = 1m;
 
         /// <summary>
-        ///     下一个法术是否改为**对所有敌人**结算。
-        ///     对应【穿刺魔弹】的「下一个法术对所有敌人造成伤害」。
+        ///     下一个法术是否改为对所有敌人结算。
+        ///     对应【穿刺魔弹】的下一个法术对所有敌人造成伤害。
         /// </summary>
         public bool TargetsAllEnemies { get; private set; }
 
         public bool RandomTargets { get; private set; }
 
         /// <summary>
-        ///     当前法术**额外结算几次伤害**（只重复伤害，不重跑法术的其他效果，如抽牌、上异常）。
+        ///     当前法术额外结算几次伤害（只重复伤害，不重跑法术的其他效果，如抽牌、上异常）。
         ///     随 <see cref="Reset" /> 消费，因此只作用于紧随其后的那一张法术。
         /// </summary>
         public int ExtraDamageStrikes { get; private set; }
 
         /// <summary>
         ///     整轮释放持续的抽牌数：本次释放里每打出一张法术就抽这么多张。
-        ///     <para>与上面的字段不同，它**不随 <see cref="Reset" /> 清除**——对应「整轮生效」的修正符。</para>
+        ///     <para>与上面的字段不同，它不随 <see cref="Reset" /> 清除——对应整轮生效的修正符。</para>
         /// </summary>
         public decimal DrawCount { get; private set; }
 
-        /// <summary>整轮抽牌是否也覆盖**修正符条目**（对应本卡的升级效果）。</summary>
+        /// <summary>整轮抽牌是否也覆盖修正符条目（对应本卡的升级效果）。</summary>
         public bool DrawForModifierEntries { get; private set; }
 
         /// <summary>
-        ///     本次释放时法杖里**装填了多少张法术修正**（整轮固定，不随 <see cref="Reset" /> 清除）。
+        ///     本次释放时法杖里装填了多少张法术修正（整轮固定，不随 <see cref="Reset" /> 清除）。
         /// </summary>
         public int WandModifierCount { get; private set; }
 
-        /// <summary>本次释放时法杖里装填了**多少张法术**（不含修正符），整轮固定。</summary>
+        /// <summary>本次释放时法杖里装填了多少张法术（不含修正符），整轮固定。</summary>
         public int WandSpellCount { get; private set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace STS2_WineFox.Mechanics
         /// </summary>
         public int CurrentX { get; private set; }
 
-        /// <summary>下一个法术**斩杀敌人**时要召唤的数量（0 = 不触发）。</summary>
+        /// <summary>下一个法术斩杀敌人时要召唤的数量（0 = 不触发）。</summary>
         public decimal SummonOnKill { get; private set; }
 
         /// <summary>
@@ -77,14 +77,14 @@ namespace STS2_WineFox.Mechanics
         /// </summary>
         public decimal OstySweepAmount { get; private set; }
 
-        /// <summary>登记「斩杀下一个法术的目标时召唤 N」。</summary>
+        /// <summary>登记斩杀下一个法术的目标时召唤 N。</summary>
         public void MarkSummonOnKill(decimal amount)
         {
             if (amount > 0m)
                 SummonOnKill += amount;
         }
 
-        /// <summary>登记「下一个法术结算后，授予奥斯提横扫 N 层」。</summary>
+        /// <summary>登记下一个法术结算后，授予奥斯提横扫 N 层。</summary>
         public void MarkOstySweepOnResolve(decimal amount)
         {
             if (amount > 0m)
@@ -138,7 +138,7 @@ namespace STS2_WineFox.Mechanics
         /// <summary>
         ///     复制一份当前累积状态。
         ///     <para>
-        ///         用于【逆遍历】的倒序重放：**逆遍历那一刻器里剩下的，正好是「尚未被消费」的修正符**
+        ///         用于【逆遍历】的倒序重放：逆遍历那一刻器里剩下的，正好是尚未被消费的修正符
         ///         （每次打完法术都会 <see cref="Reset" />），所以它们应当继续作用于重放的第一张法术。
         ///         </para>
         /// </summary>
@@ -179,7 +179,7 @@ namespace STS2_WineFox.Mechanics
             CurrentX = value;
         }
 
-        /// <summary>登记「额外结算几次伤害」。</summary>
+        /// <summary>登记额外结算几次伤害。</summary>
         public void AddExtraDamageStrikes(int amount)
         {
             ExtraDamageStrikes += amount;

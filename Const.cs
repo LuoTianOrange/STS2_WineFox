@@ -15,12 +15,21 @@ namespace STS2_WineFox
 
         public const string EnergyColorName = "winefox";
 
+        /// <summary>
+        /// 魔法酒狐专属的能量配色名。必须与 <see cref="EnergyColorName" /> 区分：
+        /// RitsuLib 的能量图标覆盖以该值为字典键、且是先到先得，
+        /// 两个角色共用同一个键时魔法酒狐的图标会被普通酒狐的抢占。
+        /// </summary>
+        public const string MagicEnergyColorName = "winefox_magic";
+
         public static class Paths
         {
             public const string Root = "res://STS2_WineFox";
             public const string ScenesRoot = Root + "/scenes";
 
             public const string EnergyIconCake = Root + "/winefox/winefox_energy_icon.png";
+            //魔法酒狐专用能量图标
+            public const string MagicEnergyIcon = Root + "/winefox/magic_winefox_energy_icon.png";
             public const string CharacterVisualsScene = ScenesRoot + "/combat/winefox_combat.tscn";
             public const string CharacterIconScene = ScenesRoot + "/winefox/wine_fox_icon.tscn";
             public const string MagicWineFoxIconScene = ScenesRoot + "/magic_winefox/magic_wine_fox_icon.tscn";
@@ -38,6 +47,14 @@ namespace STS2_WineFox
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
             public const string CraftingCodexTopBarButtonIcon = Root + "/ui/crafting_codex_top_bar_button.png";
             public const string MaterialInventoryBox = Root + "/ui/Inventorybox.png";
+            //魔法酒狐卡牌边框
+            public const string CardFrameMagicAttack = Root + "/frames/card_frame_attack.png";
+            public const string CardFrameMagicSkill  = Root + "/frames/card_frame_skill.png";
+            public const string CardFrameMagicPower  = Root + "/frames/card_frame_power.png";
+            public const string CardFrameMagicBanner = Root + "/frames/card_banner.png";
+            public const string CardPlaqueMagicAttack = Root + "/frames/card_plaque_attack.png";
+            public const string CardPlaqueMagicSkill  = Root + "/frames/card_plaque_skill.png";
+            public const string CardPlaqueMagicPower  = Root + "/frames/card_plaque_power.png";
 
             //法杖槽位边框
             public const string SpellSlotOutline = Root + "/ui/spell_slot_outline.png";
@@ -61,6 +78,7 @@ namespace STS2_WineFox
             public const string SpellIconVenomBubble = Root + "/ui/spell_icons/spell_venom_bubble.png";
             public const string SpellIconReCharge = Root + "/ui/spell_icons/spell_recharge.png";
             public const string SpellIconPureShield = Root + "/ui/spell_icons/spell_pure_shield.png";
+            public const string SpellIconGravitationalSingularity = Root + "/ui/spell_icons/spell_gravitational_singularity.png";
             public const string SpellIconReverseTraversal = Root + "/ui/spell_icons/spell_reverse_traversal.png";
             
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
@@ -183,6 +201,7 @@ namespace STS2_WineFox
             public const string CollaborativeMiningPowerIcon = Root + "/powers/collaborative_mining_power.png";
             public const string BurningIcon = Root + "/powers/burning_power.png";
             public const string NecromanticSummoningPowerIcon = Root + "/powers/necromantic_summoning_power.png";
+            public const string GravitationalSingularityPowerIcon = Root + "/powers/gravitational_singularity_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
@@ -316,6 +335,7 @@ namespace STS2_WineFox
             public const string CardEssenceReconstruction = Root + "/cards/card_essence_reconstruction.png";
             public const string CardMagicOverloaded = Root + "/cards/card_magic_overloaded.png";
             public const string CardEternalMelody = Root + "/cards/card_eternal_melody.png";
+            public const string CardGravitationalSingularity = Root + "/cards/card_gravitational_singularity.png";
             public const string CardManaSurge = Root + "/cards/card_mana_surge.png";
             public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
             public const string CardPortableWorkbench = Root + "/cards/card_portable_workbench.png";

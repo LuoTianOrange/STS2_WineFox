@@ -160,19 +160,19 @@ namespace STS2_WineFox.Cards
                 return card.HasModKeyword(MagicKeyword);
             }
 
-            /// <summary>是否为可装填的法术（带「装填」关键字）。</summary>
+            /// <summary>是否为可装填的法术（带装填关键字）。</summary>
             public bool IsLoadable()
             {
                 return card.HasModKeyword(LoadKeyword);
             }
 
-            /// <summary>是否为带「释放」关键字的牌。</summary>
+            /// <summary>是否为带释放关键字的牌。</summary>
             public bool IsReleasing()
             {
                 return card.HasModKeyword(ReleaseKeyword);
             }
 
-            /// <summary>是否为法术修正符（带「法术修正」关键字）。</summary>
+            /// <summary>是否为法术修正符（带法术修正关键字）。</summary>
             public bool IsSpellModifier()
             {
                 return card.HasModKeyword(SpellModifierKeyword);

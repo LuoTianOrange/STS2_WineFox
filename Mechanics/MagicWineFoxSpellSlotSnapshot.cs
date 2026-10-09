@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace STS2_WineFox.Mechanics
 {
     /// <summary>
-    ///     槽位里一张已装填法术的**快照**。
+    ///     槽位里一张已装填法术的快照。
     ///     <para>
     ///         <see cref="Card" /> 是打出时创建的克隆，不指向手牌里的那张实体卡，
     ///         因此释放过程不会影响手牌/弃牌堆的原卡。

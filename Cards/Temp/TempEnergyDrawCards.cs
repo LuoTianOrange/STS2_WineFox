@@ -9,14 +9,14 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Temp
 {
     /// <summary>
-    ///     临时占位卡基类：0 费，「获得 1 点能量，抽 1 张牌」。
+    ///     临时占位卡基类：0 费，获得 1 点能量，抽 1 张牌。
     ///     <para>
-    ///         **用途**：商店需要凑齐「2 张攻击 + 2 张技能 + 1 张能力且互不重复」，
-    ///         而魔狐卡池缺少足够的「类型 × 稀有度」组合（尤其是能力牌一张都没有），
+    ///         用途：商店需要凑齐2 张攻击 + 2 张技能 + 1 张能力且互不重复，
+    ///         而魔狐卡池缺少足够的类型 × 稀有度组合（尤其是能力牌一张都没有），
     ///         导致商店取不到牌而黑屏。这里补齐 3 类型 × 3 稀有度 = 9 张。
     ///     </para>
     ///     <para>
-    ///         正式卡牌做出来后，**整体替换本文件**即可（含四语言条目）。
+    ///         正式卡牌做出来后，整体替换本文件即可（含四语言条目）。
     ///     </para>
     /// </summary>
     public abstract class TempEnergyDrawCard(int baseCost, CardType type, CardRarity rarity)

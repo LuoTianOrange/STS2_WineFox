@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new SummonVar(15m)
+            new SummonVar(20m)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNecromanticSummoning);
@@ -25,7 +25,6 @@ namespace STS2_WineFox.Cards.Spell
         public void ApplyModifier(MagicWineFoxSpellModifierState modifiers)
         {
             modifiers.MarkSummonOnKill(DynamicVars.Summon.BaseValue);
-            modifiers.MarkOstySweepOnResolve(1m);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

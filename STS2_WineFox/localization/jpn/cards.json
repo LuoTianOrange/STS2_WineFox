@@ -250,7 +250,7 @@
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.title": "材料獲得",
   "STS2_WINE_FOX_CARD_OBTAIN_MATERIALS.description": "{Wood:diff()}個の[gold]木材[/gold] {IfUpgraded:show:|and }{Stone:diff()}個の[gold]丸石[/gold]{IfUpgraded:show: and {Iron:diff()} [gold]Iron Ingot[/gold]}を得る。",
   "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "永遠の旋律",
-  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "術を解放するたび、その術が攻撃した敵は最大HPを{MaxHpLoss:diff()}失う。",
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "術を解放するたび、それが攻撃した敵は最大HPを{MaxHpLoss:diff()}失い、最大HPは現在HPまで下がる。",
   "STS2_WINE_FOX_CARD_MANA_SURGE.title": "マナ奔流",
   "STS2_WINE_FOX_CARD_MANA_SURGE.description": "[purple]{ChantPower:diff()}[/purple][gold]詠唱[/gold]を得る（最大{IfUpgraded:show:6|4}）。\n{Cards:diff()}枚のカードを引く。",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "三位の祝福",
@@ -359,7 +359,9 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "ハットトリック",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]装填[/gold]: 杖に術が1つだけ装填されている場合、それを追加で{ExtraCasts:diff()}回解放する。",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "死霊召喚",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]装填[/gold]: 次の術が敵を倒した時、召喚{Summon:diff()}。オスティが生存している場合、[gold]死霊召喚[/gold]を得る。",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]装填[/gold]: 次の術が敵を倒した時、召喚{Summon:diff()}。",
   "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "高速装填",
-  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "術カードを1枚引く。[gold]二重解放[/gold]を1枚得る。"
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "術カードを{Cards:diff()}枚引く。",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.title": "重力特異点",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.description": "[gold]消滅[/gold]。\\n[gold]装填[/gold]: {Damage:diff()}ダメージを与える。その敵がダメージを受けるたび、他の敵も同じダメージを受ける。"
 }

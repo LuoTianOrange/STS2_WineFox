@@ -13,7 +13,7 @@ namespace STS2_WineFox.Cards.Spell
     /// <summary>
     ///     法术牌基类。
     ///     <para>
-    ///         「法术」= 可以装填进法杖、由回合结束的释放步骤结算的牌。
+    ///         法术 = 可以装填进法杖、由回合结束的释放步骤结算的牌。
     ///     </para>
     ///     <para>
     ///         法术牌的 <see cref="TargetType" /> 一律为 <c>None</c>：它们被装填进法杖后
@@ -36,10 +36,10 @@ namespace STS2_WineFox.Cards.Spell
 
         /// <summary>
         ///     卡牌关键字：
-        ///     可装填时带「装填」；
-        ///     实现 <see cref="IMagicWineFoxSpellModifierCard" /> 的修正符自动带「法术修正」。
+        ///     可装填时带装填；
+        ///     实现 <see cref="IMagicWineFoxSpellModifierCard" /> 的修正符自动带法术修正。
         ///     <para>
-        ///         「释放」关键字不在这里：它属于「主动触发释放」的牌（如定向爆破），
+        ///         释放关键字不在这里：它属于主动触发释放的牌（如定向爆破），
         ///         见 <c>DirectionalBlasting</c>。
         ///     </para>
         /// </summary>
@@ -152,12 +152,12 @@ namespace STS2_WineFox.Cards.Spell
         /// <summary>
         ///     法术伤害的统一结算入口。
         ///     <para>
-        ///         由修正符决定目标：带【穿刺魔弹】这类「下一个法术对所有敌人造成伤害」的修正时，
+        ///         由修正符决定目标：带【穿刺魔弹】这类下一个法术对所有敌人造成伤害的修正时，
         ///         改为全体结算；否则按 <see cref="ResolveSpellTarget" /> 打单体。
         ///         子类因此不必各自处理目标逻辑。
         ///     </para>
         ///     <para>
-        ///         结算完主动伤害后，会继续处理「额外伤害段」（见 <see cref="DealExtraDamageStrikes" />），
+        ///         结算完主动伤害后，会继续处理额外伤害段（见 <see cref="DealExtraDamageStrikes" />），
         ///         并把所有伤害命令一并返回，便于上层汇总（如【圆锯】统计溢出）。
         ///     </para>
         /// </summary>

@@ -8,11 +8,11 @@ using STS2RitsuLib.Patching.Models;
 namespace STS2_WineFox.Patches
 {
     /// <summary>
-    ///     让法杖内法术的**卡面数值**显示「Power + 法术修正符」的合成值。
+    ///     让法杖内法术的卡面数值显示Power + 法术修正符的合成值。
     ///     <para>
     ///         卡面描述由 <c>CardModel.GetDescriptionForPile</c> 渲染，数值从卡牌自己的
     ///         动态变量取（<c>{Damage:diff()}</c>，参数必须是变量对象，塞裸数字会打印占位符）。
-    ///         因此这里在**渲染前**把 <c>Damage</c> 变量临时换成合成值，**渲染后立刻还原**：
+    ///         因此这里在渲染前把 <c>Damage</c> 变量临时换成合成值，渲染后立刻还原：
     ///         既让卡面显示合成值，又完全不改动真实结算用的数值。
     ///     </para>
     ///     <para>
@@ -33,7 +33,7 @@ namespace STS2_WineFox.Patches
         ///         <item><c>(PileType, Creature)</c>——公开重载。</item>
         ///         <item>
         ///             <c>(PileType, DescriptionPreviewType, Creature)</c>——卡牌实际渲染走的那个；
-        ///             <c>DescriptionPreviewType</c> 是 <see cref="CardModel" /> 的**私有嵌套枚举**，
+        ///             <c>DescriptionPreviewType</c> 是 <see cref="CardModel" /> 的私有嵌套枚举，
         ///             因此只能反射取（RitsuLib 的 <c>CardDescriptionPatchTarget</c> 同样如此）。
         ///             取不到时由 <c>ignoreIfMissing</c> 安全跳过。
         ///         </item>

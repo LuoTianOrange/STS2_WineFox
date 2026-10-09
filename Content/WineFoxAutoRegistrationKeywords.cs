@@ -54,7 +54,7 @@ namespace STS2_WineFox.Content
         private sealed class Magic;
 
         /// <summary>
-        ///     「装填」关键字：把牌放入法杖，回合结束时释放。
+        ///     装填关键字：把牌放入法杖，回合结束时释放。
         ///     可装填的法术自动带此关键字，因此卡面文案不必重复解释装填的含义。
         ///     不带图标——关键字只作文字说明。
         /// </summary>
@@ -62,15 +62,15 @@ namespace STS2_WineFox.Content
         private sealed class Load;
 
         /// <summary>
-        ///     「释放」关键字：回合结束时，法杖中已装填的法术依次结算。
-        ///     与「装填」成对出现，构成法杖体系的两半。
+        ///     释放关键字：回合结束时，法杖中已装填的法术依次结算。
+        ///     与装填成对出现，构成法杖体系的两半。
         ///     不带图标——关键字只作文字说明。
         /// </summary>
         [RegisterOwnedCardKeyword(WineFoxKeywords.ReleaseKey)]
         private sealed class Release;
 
         /// <summary>
-        ///     「法术修正」关键字：装入法杖后不施放，只修改其后第一张法术的释放方式。
+        ///     法术修正关键字：装入法杖后不施放，只修改其后第一张法术的释放方式。
         ///     不带图标——关键字只作文字说明。
         /// </summary>
         [RegisterOwnedCardKeyword(WineFoxKeywords.SpellModifierKey)]

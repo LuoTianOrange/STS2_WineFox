@@ -1,7 +1,7 @@
 namespace STS2_WineFox.Mechanics
 {
     /// <summary>
-    ///     法术牌：装填进法杖后，由回合结束的「释放」按槽位顺序释放。
+    ///     法术牌：装填进法杖后，由回合结束的释放按槽位顺序释放。
     ///     实现者需要提供自己的施放逻辑，并自行读取 <c>context.Modifiers</c> 来应用修正符效果。
     /// </summary>
     public interface IMagicWineFoxSpellCard
@@ -19,7 +19,7 @@ namespace STS2_WineFox.Mechanics
     }
 
     /// <summary>
-    ///     作用于**前一张**法术的修正符：装填顺序里排在它之前、最近的那一张法术会吃到它的修正。
+    ///     作用于前一张法术的修正符：装填顺序里排在它之前、最近的那一张法术会吃到它的修正。
     ///     前面没有法术时空放（不额外处理）。
     /// </summary>
     public interface IMagicWineFoxSpellLookBehindModifierCard : IMagicWineFoxSpellModifierCard
@@ -27,10 +27,10 @@ namespace STS2_WineFox.Mechanics
     }
 
     /// <summary>
-    ///     整轮生效的修正符：效果**不被「打完一张法术」消费**，持续到本次释放结束。
+    ///     整轮生效的修正符：效果不被打完一张法术消费，持续到本次释放结束。
     ///     <para>
     ///         与 <see cref="IMagicWineFoxSpellModifierCard" />（只作用于紧随其后的那一张法术）不同，
-    ///         它在本次释放开始时统一结算一次，作用于法杖里**所有**法术，与装填顺序无关。
+    ///         它在本次释放开始时统一结算一次，作用于法杖里所有法术，与装填顺序无关。
     ///     </para>
     /// </summary>
     public interface IMagicWineFoxSpellWandModifierCard : IMagicWineFoxSpellModifierCard
@@ -38,8 +38,8 @@ namespace STS2_WineFox.Mechanics
     }
 
     /// <summary>
-    ///     逆转遍历方向的修正符：碰到它时，把**已经释放过的法术倒序重放一遍**，
-    ///     其后方的法术**不结算**，原样留在法杖里（回到前面的槽位）等待下次释放。
+    ///     逆转遍历方向的修正符：碰到它时，把已经释放过的法术倒序重放一遍，
+    ///     其后方的法术不结算，原样留在法杖里（回到前面的槽位）等待下次释放。
     /// </summary>
     public interface IMagicWineFoxSpellReverseModifierCard : IMagicWineFoxSpellModifierCard
     {

@@ -250,7 +250,7 @@
   "STS2_WINE_FOX_CARD_SWEEP.title": "横扫",
   "STS2_WINE_FOX_CARD_SWEEP.description": "对所有敌人造成{Damage:diff()}点伤害。如果你没有[gold]格挡[/gold]，额外造成一次伤害。",
   "STS2_WINE_FOX_CARD_ETERNAL_MELODY.title": "永恒旋律",
-  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "每次释放法术时，被法术攻击的敌人失去{MaxHpLoss:diff()}点生命上限，且其生命上限会降至当前生命。",
+  "STS2_WINE_FOX_CARD_ETERNAL_MELODY.description": "每次释放法术时，被攻击的敌人失去{MaxHpLoss:diff()}点生命上限，且其生命上限会降至当前生命。",
   "STS2_WINE_FOX_CARD_MANA_SURGE.title": "蓄魔涌动",
   "STS2_WINE_FOX_CARD_MANA_SURGE.description": "获得[purple]{ChantPower:diff()}[/purple]点[gold]咏唱[/gold](最多{IfUpgraded:show:6|4}点)。\n抽{Cards:diff()}张牌。",
   "STS2_WINE_FOX_CARD_TRIUNE_BLESSING.title": "三相祝福",
@@ -359,7 +359,9 @@
   "STS2_WINE_FOX_CARD_HAT_TRICK.title": "帽子戏法",
   "STS2_WINE_FOX_CARD_HAT_TRICK.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 如果法术槽内只装填了一个法术，使其额外[gold]释放[/gold]{ExtraCasts:diff()}次。",
   "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.title": "死灵召唤",
-  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术斩杀敌人时，召唤{Summon:diff()}。若[gold]奥斯提[/gold]存活，回合结束对所有敌人造成6点伤害。",
+  "STS2_WINE_FOX_CARD_NECROMANTIC_SUMMONING.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术斩杀时，召唤{Summon:diff()}。",
   "STS2_WINE_FOX_CARD_QUICK_RELOAD.title": "快速装填",
-  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "抽取一张法术牌。获得一张[gold]双重释放[/gold]。"
+  "STS2_WINE_FOX_CARD_QUICK_RELOAD.description": "抽取{Cards:diff()}张法术牌。",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.title": "引力奇点",
+  "STS2_WINE_FOX_CARD_GRAVITATIONAL_SINGULARITY.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。该敌人每次受到伤害时，其他敌人受到等同的伤害。"
 }

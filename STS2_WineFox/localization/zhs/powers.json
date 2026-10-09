@@ -198,9 +198,11 @@
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "获得[blue]{Amount}[/blue]个额外法术槽。每次释放后自动装填已绑定的法术。\n{BoundSpellClause}",
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "当前绑定：[purple]{SpellName}[/purple]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "永恒旋律",
-  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "每次释放法术时，被法术攻击的敌人失去{Amount}点生命上限。",
+  "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "每次释放法术时，被攻击的敌人失去{Amount}点生命上限，且其生命上限会降至当前生命。",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.smartDescription": "每次释放法术时，被法术攻击的敌人失去[blue]{Amount}[/blue]点生命上限。",
   "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.title": "死灵召唤",
   "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.description": "回合结束时，若奥斯提存活，它对所有敌人造成{OstyDamage:diff()}点伤害。",
-  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "回合结束时，若奥斯提存活，它对所有敌人造成[blue]{OstyDamage:diff()}[/blue]点伤害。"
+  "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "回合结束时，若奥斯提存活，它对所有敌人造成[blue]{OstyDamage:diff()}[/blue]点伤害。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.title": "引力奇点",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.description": "该敌人每次受到伤害时，其他敌人受到等同的伤害。"
 }
