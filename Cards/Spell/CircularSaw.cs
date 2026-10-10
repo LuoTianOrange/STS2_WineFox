@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(20m, ValueProp.Move)
+            new DamageVar(18m, ValueProp.Move)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCircularSaw);
@@ -58,7 +58,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(6m);
+            DynamicVars.Damage.UpgradeValueBy(3m);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta";
+        public const string Version = "1.3.0-beta2";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -14,12 +14,7 @@ namespace STS2_WineFox
         public const bool IgnoreEpochRequirements = true;
 
         public const string EnergyColorName = "winefox";
-
-        /// <summary>
-        /// 魔法酒狐专属的能量配色名。必须与 <see cref="EnergyColorName" /> 区分：
-        /// RitsuLib 的能量图标覆盖以该值为字典键、且是先到先得，
-        /// 两个角色共用同一个键时魔法酒狐的图标会被普通酒狐的抢占。
-        /// </summary>
+        
         public const string MagicEnergyColorName = "winefox_magic";
 
         public static class Paths
@@ -80,8 +75,15 @@ namespace STS2_WineFox
             public const string SpellIconPureShield = Root + "/ui/spell_icons/spell_pure_shield.png";
             public const string SpellIconGravitationalSingularity = Root + "/ui/spell_icons/spell_gravitational_singularity.png";
             public const string SpellIconReverseTraversal = Root + "/ui/spell_icons/spell_reverse_traversal.png";
+            public const string SpellIconChainLightning = Root + "/ui/spell_icons/spell_chain_lightning.png";
+            public const string SpellIconGatheringLight = Root + "/ui/spell_icons/spell_gathering_light.png";
+            public const string SpellIconSummonBoulder = Root + "/ui/spell_icons/spell_summon_boulder.png";
             
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
+            public const string ReproductionPowerIcon = Root + "/powers/reproduction_power.png";
+            public const string LoanPowerIcon = Root + "/powers/loan_power.png";
+            public const string CompressionCastingPowerIcon = Root + "/powers/compression_casting_power.png";
+            public const string SpellAshesPowerIcon = Root + "/powers/spell_ashes_power.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
@@ -183,11 +185,8 @@ namespace STS2_WineFox
             public const string LaunchPlatformPowerIcon = Root + "/powers/launch_platform_power.png";
             public const string PlanningExpertPowerIcon = Root + "/powers/planning_expert_power.png";
             public const string LiberationPowerIcon = Root + "/powers/liberation_power.png";
-            public const string ChantPowerIcon = Root + "/powers/chant_power.png";
-            public const string ShardCopyPowerIcon = Root + "/powers/shard_copy_power.png";
             public const string ArmToTeethPowerIcon = Root + "/powers/arm_to_teeth_power.png";
             public const string EternalMelodyPowerIcon = Root + "/powers/eternal_melody_power.png";
-            public const string MagicOverloadedPowerIcon = Root + "/powers/magic_overloaded_power.png";
             public const string NothingWastedPowerIcon = Root + "/powers/nothing_wasted_power.png";
             public const string PortableWorkbenchPowerIcon = Root + "/powers/portable_workbench_power.png";
             public const string FineProcessingPowerIcon = Root + "/powers/fine_processing_power.png";
@@ -202,6 +201,7 @@ namespace STS2_WineFox
             public const string BurningIcon = Root + "/powers/burning_power.png";
             public const string NecromanticSummoningPowerIcon = Root + "/powers/necromantic_summoning_power.png";
             public const string GravitationalSingularityPowerIcon = Root + "/powers/gravitational_singularity_power.png";
+            public const string QuantumLockPowerIcon = Root + "/powers/quantum_lock_power.png";
 
             //Card
             public const string CardStonePickaxe = Root + "/cards/card_stone_pickaxe.png";
@@ -333,9 +333,9 @@ namespace STS2_WineFox
             public const string CardSweep = Root + "/cards/card_sweep.png";
             public const string CardArmToTeeth = Root + "/cards/card_arm_to_teeth.png";
             public const string CardEssenceReconstruction = Root + "/cards/card_essence_reconstruction.png";
-            public const string CardMagicOverloaded = Root + "/cards/card_magic_overloaded.png";
             public const string CardEternalMelody = Root + "/cards/card_eternal_melody.png";
             public const string CardGravitationalSingularity = Root + "/cards/card_gravitational_singularity.png";
+            public const string CardQuantumLock = Root + "/cards/card_quantum_lock.png";
             public const string CardManaSurge = Root + "/cards/card_mana_surge.png";
             public const string CardTriuneBlessing = Root + "/cards/card_triune_blessing.png";
             public const string CardPortableWorkbench = Root + "/cards/card_portable_workbench.png";
@@ -375,6 +375,14 @@ namespace STS2_WineFox
             public const string CardPureShield = Root + "/cards/card_pure_shield.png";
             public const string CardTest = Root + "/cards/card_test.png";
             public const string CardEchoesSequence = Root + "/cards/card_echoes_sequence.png";
+            public const string CardReproduction = Root + "/cards/card_reproduction.png";
+            public const string CardLoan = Root + "/cards/card_loan.png";
+            public const string CardSummonBoulder = Root + "/cards/card_summon_boulder.png";
+            public const string CardEmberBurst = Root + "/cards/card_ember_burst.png";
+            public const string CardCompressionCasting = Root + "/cards/card_compression_casting.png";
+            public const string CardSpellAshes = Root + "/cards/card_spell_ashes.png";
+            public const string CardChainLightning = Root + "/cards/card_chain_lightning.png";
+            public const string CardGatheringLight = Root + "/cards/card_gathering_light.png";
             public const string CardBloodSacrifice = Root + "/cards/card_blood_sacrifice.png";
             public const string CardPiercingBolt = Root + "/cards/card_piercing_bolt.png";
             public const string CardReverseTraversal = Root + "/cards/card_reverse_traversal.png";

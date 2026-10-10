@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -29,6 +30,37 @@ namespace STS2_WineFox.Cards.Spell
         
         public override bool TargetsEnemy => false;
 
+        /// <summary>
+        ///     含 <c>IMagicBlockModifier</c> 加成的格挡显示值。
+        ///     顺序与结算一致：先扣修正符惩罚，再加格挡加成。
+        /// </summary>
+        public override decimal PreviewBlock
+        {
+            get
+            {
+                var penalty = DynamicVars["BlockLossPerModifier"].BaseValue * WandModifierCount;
+                var afterPenalty = Math.Max(0m, DynamicVars.Block.BaseValue - penalty);
+
+                return CombatState == null
+                    ? afterPenalty
+                    : MagicBlock.Resolve(this, afterPenalty);
+            }
+        }
+
+        /// <summary>法杖内已装填的修正符数量（预览用；不在战斗中时为 0）。</summary>
+        private int WandModifierCount
+        {
+            get
+            {
+                var slots = Owner?.Creature?.CombatState == null
+                    ? null
+                    : MagicWineFoxSpellCmd.GetPower(Owner);
+
+                return slots?.Slots.Count(slot =>
+                    slot?.Card is IMagicWineFoxSpellModifierCard) ?? 0;
+            }
+        }
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
@@ -41,7 +73,8 @@ namespace STS2_WineFox.Cards.Spell
                 return;
 
             var penalty = DynamicVars["BlockLossPerModifier"].BaseValue * context.WandModifierCount;
-            var block = Math.Max(0m, DynamicVars.Block.BaseValue - penalty);
+            var afterPenalty = Math.Max(0m, DynamicVars.Block.BaseValue - penalty);
+            var block = context.BlockWithModifiers(afterPenalty);
 
             if (block <= 0m)
                 return;

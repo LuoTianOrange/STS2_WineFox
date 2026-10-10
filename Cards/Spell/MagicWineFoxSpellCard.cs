@@ -81,6 +81,15 @@ namespace STS2_WineFox.Cards.Spell
         public virtual decimal PreviewDamage => 0m;
 
         /// <summary>
+        ///     预览用的基础格挡（不参与结算）。无格挡的法术保持 0。
+        ///     <para>
+        ///         供 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 把
+        ///         <c>IMagicBlockModifier</c>（如【压缩施法】）的加成算进卡面显示。
+        ///     </para>
+        /// </summary>
+        public virtual decimal PreviewBlock => 0m;
+
+        /// <summary>
         ///     计入法术修正符后的单次伤害（null = 未计算，按原版显示）。
         ///     由 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 写入，
         ///     描述渲染时由 <c>SpellCardDescriptionPreviewPatch</c> 临时换进变量。
@@ -97,6 +106,52 @@ namespace STS2_WineFox.Cards.Spell
         public void ClearPreviewDamage()
         {
             PreviewDamageOverride = null;
+        }
+
+        /// <summary>
+        ///     计入法术修正符与 <c>IMagicBlockModifier</c> 后的单次格挡（null = 未计算）。
+        ///     与 <see cref="PreviewDamageOverride" /> 同一套机制，供描述渲染时临时换值。
+        /// </summary>
+        public decimal? PreviewBlockOverride { get; private set; }
+
+        /// <summary>记录计入加成后的单次格挡。</summary>
+        public void ApplyPreviewBlock(decimal value)
+        {
+            PreviewBlockOverride = value;
+        }
+
+        /// <summary>清掉格挡覆盖，恢复原版显示。</summary>
+        public void ClearPreviewBlock()
+        {
+            PreviewBlockOverride = null;
+        }
+
+        /// <summary>
+        ///     这张法术是否带格挡变量。没有格挡的法术（如【狐火弹】只有伤害）不能走格挡覆盖，
+        ///     否则 <c>DynamicVars["Block"]</c> 会抛 KeyNotFoundException。
+        /// </summary>
+        public bool HasBlockVar => DynamicVars.TryGetValue("Block", out _);
+
+        /// <summary>描述渲染开始：临时把 <c>Block</c> 变量换成该值，返回渲染前的真实值供还原。</summary>
+        public decimal BeginBlockDisplayOverride(decimal value)
+        {
+            if (!DynamicVars.TryGetValue("Block", out var block))
+                return -1m;
+
+            var trueBase = block.BaseValue;
+            block.BaseValue = value;
+            block.PreviewValue = value;
+            return trueBase;
+        }
+
+        /// <summary>描述渲染结束：把格挡变量还原成真实基础值。</summary>
+        public void EndBlockDisplayOverride(decimal trueBase)
+        {
+            if (!DynamicVars.TryGetValue("Block", out var block))
+                return;
+
+            block.BaseValue = trueBase;
+            block.PreviewValue = trueBase;
         }
 
         /// <summary>
@@ -149,23 +204,19 @@ namespace STS2_WineFox.Cards.Spell
             return ResolveSpellTarget(context) is { } single ? [single] : [];
         }
 
-        /// <summary>
-        ///     法术伤害的统一结算入口。
-        ///     <para>
-        ///         由修正符决定目标：带【穿刺魔弹】这类下一个法术对所有敌人造成伤害的修正时，
-        ///         改为全体结算；否则按 <see cref="ResolveSpellTarget" /> 打单体。
-        ///         子类因此不必各自处理目标逻辑。
-        ///     </para>
-        ///     <para>
-        ///         结算完主动伤害后，会继续处理额外伤害段（见 <see cref="DealExtraDamageStrikes" />），
-        ///         并把所有伤害命令一并返回，便于上层汇总（如【圆锯】统计溢出）。
-        ///     </para>
-        /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealSpellDamage(
             Mechanics.MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
             var commands = new List<AttackCommand>();
+
+            if (context.IgnoresBlock)
+            {
+                await DealUnblockableDamage(context, context.DamageWithModifiers(baseDamage));
+                commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
+                return commands;
+            }
+
             var attack = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
                 .FromCard(context.SourceCard, null);
 
@@ -189,13 +240,6 @@ namespace STS2_WineFox.Cards.Spell
             return commands;
         }
 
-        /// <summary>
-        ///     只重复伤害的额外结算段：按 <see cref="Mechanics.MagicWineFoxSpellCastContext.ExtraDamageStrikes" />
-        ///     再打若干次伤害，伤害走同一套修正（含倍率），目标在 <c>RandomTargets</c> 时每次独立随机。
-        ///     <para>
-        ///         法术的其他效果（抽牌、上异常、生成卡牌等）不会重复——因为这里不重跑 <c>CastAsSpell</c>。
-        ///     </para>
-        /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
             Mechanics.MagicWineFoxSpellCastContext context,
             decimal baseDamage)
@@ -205,6 +249,12 @@ namespace STS2_WineFox.Cards.Spell
 
             for (var i = 0; i < strikes; i++)
             {
+                if (context.IgnoresBlock)
+                {
+                    await DealUnblockableDamage(context, context.DamageWithModifiers(baseDamage));
+                    continue;
+                }
+
                 var strike = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
                     .FromCard(context.SourceCard, null);
 
@@ -229,6 +279,34 @@ namespace STS2_WineFox.Cards.Spell
             }
 
             return commands;
+        }
+
+        private static async Task DealUnblockableDamage(
+            Mechanics.MagicWineFoxSpellCastContext context,
+            decimal damage)
+        {
+            const ValueProp props = ValueProp.Unblockable | ValueProp.Move;
+
+            if (context.TargetsAllEnemies)
+            {
+                if (context.Owner?.Creature?.CombatState is { } combatState)
+                {
+                    foreach (var enemy in combatState.HittableEnemies.ToList())
+                    {
+                        await CreatureCmd.Damage(
+                            context.ChoiceContext, enemy, damage, props, context.SourceCard, null);
+                    }
+                }
+
+                return;
+            }
+
+            var target = ResolveSpellTarget(context);
+            if (target != null)
+            {
+                await CreatureCmd.Damage(
+                    context.ChoiceContext, target, damage, props, context.SourceCard, null);
+            }
         }
 
         private static Creature? PickRandomEnemy(Player? owner)

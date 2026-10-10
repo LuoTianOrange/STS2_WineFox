@@ -73,7 +73,38 @@ namespace STS2_WineFox.Powers
         /// <summary>是否已执行过唯一升级。</summary>
         public bool Upgraded { get; private set; }
 
-        public int SlotCapacity => Math.Max(0, Math.Min((int)Amount, HardSlotCap));
+        /// <summary>
+        ///     临时的槽位数量偏移（负数表示本回合减少槽位）。
+        ///     <para>
+        ///         不直接改 <c>Amount</c>：那是遗物/升级给的**永久**值，
+        ///         直接在它上面做减法会在恢复时丢掉永久容量。这里用独立偏移叠加。
+        ///         </para>
+        /// </summary>
+        private int _slotCapacityOffset;
+
+        public int SlotCapacity =>
+            Math.Max(0, Math.Min((int)Amount + _slotCapacityOffset, HardSlotCap));
+
+        /// <summary>本回合临时增加/减少槽位数量（负数减少）。</summary>
+        public void ApplySlotCapacityOffset(int offset)
+        {
+            _slotCapacityOffset = offset;
+            SyncSlotCount();
+            SyncLoadedVar();
+            InvalidateSpellPreview();
+        }
+
+        /// <summary>清除临时槽位偏移，恢复永久容量。</summary>
+        public void ClearSlotCapacityOffset()
+        {
+            if (_slotCapacityOffset == 0)
+                return;
+
+            _slotCapacityOffset = 0;
+            SyncSlotCount();
+            SyncLoadedVar();
+            InvalidateSpellPreview();
+        }
 
         public int LoadedCount
         {

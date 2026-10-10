@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
+using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -23,6 +24,9 @@ namespace STS2_WineFox.Cards.Spell
         public override bool GainsBlock => true;
 
         public override bool TargetsEnemy => false;
+
+        /// <summary>含 <c>IMagicBlockModifier</c> 加成的格挡显示值。</summary>
+        public override decimal PreviewBlock => MagicBlock.Resolve(this, DynamicVars.Block.BaseValue);
         
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneBarrier);
 
@@ -42,7 +46,7 @@ namespace STS2_WineFox.Cards.Spell
 
             await CreatureCmd.GainBlock(
                 owner,
-                context.DamageWithModifiers(DynamicVars.Block.BaseValue),
+                context.BlockWithModifiers(DynamicVars.Block.BaseValue),
                 ValueProp.Unpowered,
                 null);
         }

@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
 
@@ -110,7 +111,10 @@ namespace STS2_WineFox.Commands
 
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
             if (!power.TryLoad(snapshot)) return false;
-            
+
+            // 【复现】：若它打出时法杖为空、正等待认领，则认领这张刚装填的法术。
+            owner?.Creature?.Powers.OfType<Powers.ReproductionPower>().FirstOrDefault()?.TryBind(snapshot);
+
             if (power.CanDiscountFirstLoad)
                 power.ConsumeFirstLoadDiscount();
 
@@ -470,6 +474,19 @@ namespace STS2_WineFox.Commands
                 if (slot?.Card is MagicWineFoxSpellCard spell && !adjusted.Contains(slot.Card))
                     spell.ClearPreviewDamage();
             }
+
+            // 格挡类法术：把 IMagicBlockModifier（如【压缩施法】）的加成算进显示。
+            // 没有格挡变量的法术（如【狐火弹】）必须跳过——DynamicVars["Block"] 会抛异常。
+            foreach (var slot in power.Slots)
+            {
+                if (slot?.Card is not MagicWineFoxSpellCard spell || !spell.HasBlockVar)
+                    continue;
+
+                if (spell.PreviewBlock > 0m)
+                    spell.ApplyPreviewBlock(spell.PreviewBlock);
+                else
+                    spell.ClearPreviewBlock();
+            }
         }
 
         private static (decimal Damage, int Hits) EstimateDamage(
@@ -487,6 +504,14 @@ namespace STS2_WineFox.Commands
                     (baseDamage + state.DamageBonus) * state.DamageMultiplier,
                     0,
                     MidpointRounding.AwayFromZero));
+
+            // 与 DamageWithModifiers 保持一致：把 IMagicDamageModifier（如【压缩施法】）
+            // 的加成也算进来，否则卡面/槽位预览显示不出这部分伤害。
+            if (card._owner?.Creature?.CombatState is { } combatState)
+            {
+                var previewTarget = combatState.HittableEnemies.FirstOrDefault();
+                perHit = MagicDamage.Resolve(card, perHit, previewTarget);
+            }
 
             var hits = state.CastCount * (1 + state.ExtraDamageStrikes);
             
@@ -542,6 +567,10 @@ namespace STS2_WineFox.Commands
                     : [];
 
                 await spellCard.CastAsSpell(castContext);
+
+                // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
+                if (snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true })
+                    await Powers.SpellAshesPower.ApplyToAllEnemies(choiceContext, owner, snapshot.Card);
 
                 // 「是否攻击到敌人」卡牌声明判定，
                 var attacked = snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true }

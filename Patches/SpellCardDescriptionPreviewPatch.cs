@@ -62,18 +62,41 @@ namespace STS2_WineFox.Patches
             return [.. targets];
         }
 
-        public static void Prefix(CardModel __instance, out decimal __state)
+        /// <summary>
+        ///     Harmony 只认一个名为 <c>__state</c> 的状态参数，多写一个（如 <c>__blockState</c>）
+        ///     会被当成原方法参数去匹配，导致 "Parameter ... does not contain a valid index" 补丁失败。
+        ///     因此把伤害与格挡两个还原值打包进同一个 <c>__state</c>。
+        /// </summary>
+        public static void Prefix(CardModel __instance, out (decimal Damage, decimal Block) __state)
         {
-            __state = -1m;
+            __state = (-1m, -1m);
 
-            if (__instance is MagicWineFoxSpellCard spell && spell.PreviewDamageOverride is { } value)
-                __state = spell.BeginDisplayOverride(value);
+            if (__instance is not MagicWineFoxSpellCard spell)
+                return;
+
+            var damage = -1m;
+            var block = -1m;
+
+            if (spell.PreviewDamageOverride is { } value)
+                damage = spell.BeginDisplayOverride(value);
+
+            // 只有带格挡变量的法术才做格挡覆盖：否则 DynamicVars["Block"] 会抛异常。
+            if (spell.HasBlockVar && spell.PreviewBlockOverride is { } blockValue)
+                block = spell.BeginBlockDisplayOverride(blockValue);
+
+            __state = (damage, block);
         }
 
-        public static void Postfix(CardModel __instance, decimal __state)
+        public static void Postfix(CardModel __instance, (decimal Damage, decimal Block) __state)
         {
-            if (__state >= 0m && __instance is MagicWineFoxSpellCard spell)
-                spell.EndDisplayOverride(__state);
+            if (__instance is not MagicWineFoxSpellCard spell)
+                return;
+
+            if (__state.Damage >= 0m)
+                spell.EndDisplayOverride(__state.Damage);
+
+            if (__state.Block >= 0m)
+                spell.EndBlockDisplayOverride(__state.Block);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class GravitationalSingularity() : MagicWineFoxSpellCard(
-        3, CardType.Attack, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellCard
+        2, CardType.Attack, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -66,7 +66,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            EnergyCost.UpgradeBy(-1);
+            DynamicVars.Damage.UpgradeValueBy(3);
         }
     }
 }

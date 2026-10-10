@@ -20,8 +20,15 @@ namespace STS2_WineFox.Patches
 
         public static void Postfix(PowerModel __instance, ref LocString __result)
         {
-            if (__instance is EchoesSequencePower echo)
-                echo.AddBoundSpellArg(__result);
+            switch (__instance)
+            {
+                case EchoesSequencePower echo:
+                    echo.AddBoundSpellArg(__result);
+                    break;
+                case ReproductionPower reproduction:
+                    reproduction.AddBoundSpellArg(__result);
+                    break;
+            }
         }
     }
 }
