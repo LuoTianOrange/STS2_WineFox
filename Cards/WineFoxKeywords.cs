@@ -21,7 +21,6 @@ namespace STS2_WineFox.Cards
         public const string EasyPeasyKey = "easypeasy";
         public const string CraftKey = "craft";
         public const string ExchangeKey = "exchange";
-        public const string MagicKey = "magic";
         public const string LoadKey = "load";
         public const string ReleaseKey = "release";
         public const string SpellModifierKey = "spell_modifier";
@@ -47,7 +46,6 @@ namespace STS2_WineFox.Cards
         public static readonly string EasyPeasy = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, EasyPeasyKey);
         public static readonly string Craft = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CraftKey);
         public static readonly string Exchange = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ExchangeKey);
-        public static readonly string Magic = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, MagicKey);
         public static readonly string Load = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, LoadKey);
         public static readonly string Release = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ReleaseKey);
 
@@ -73,7 +71,6 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword EasyPeasyKeyword = EasyPeasy.GetModCardKeyword();
         public static readonly CardKeyword CraftKeyword = Craft.GetModCardKeyword();
         public static readonly CardKeyword ExchangeKeyword = Exchange.GetModCardKeyword();
-        public static readonly CardKeyword MagicKeyword = Magic.GetModCardKeyword();
         public static readonly CardKeyword LoadKeyword = Load.GetModCardKeyword();
         public static readonly CardKeyword ReleaseKeyword = Release.GetModCardKeyword();
 
@@ -153,11 +150,6 @@ namespace STS2_WineFox.Cards
             public bool IsExchange()
             {
                 return card.HasModKeyword(ExchangeKeyword);
-            }
-
-            public bool IsMagic()
-            {
-                return card.HasModKeyword(MagicKeyword);
             }
 
             /// <summary>是否为可装填的法术（带装填关键字）。</summary>

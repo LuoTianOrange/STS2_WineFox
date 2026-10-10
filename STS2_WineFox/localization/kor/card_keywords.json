@@ -24,8 +24,6 @@
   "STS2_WINE_FOX_KEYWORD_CRAFT.description": "보유한 [gold]재료[/gold] 수에 따라 선택지를 표시하고, 해당 [gold]재료[/gold]를 소모한 뒤 카드를 [gold]선택[/gold]합니다.",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.title": "교환",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "일반 = 조약돌, 특별 = 철 주괴\n희귀 = 다이아몬드, 저주/상태이상 = 나무 판자",
-  "STS2_WINE_FOX_KEYWORD_MAGIC.title": "마법",
-  "STS2_WINE_FOX_KEYWORD_MAGIC.description": "마법 스킬 카드는 [gold]영창[/gold] 보너스의 영향을 받습니다.",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "정교한 배낭",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "희귀 유물. 보유 중일 때 제작 가능한 카드를 추가로 제공합니다.",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "검",

@@ -24,8 +24,6 @@
   "STS2_WINE_FOX_KEYWORD_CRAFT.description": "所持している[gold]素材[/gold]の数に応じて選択肢を表示し、対応する[gold]素材[/gold]を消費してカードを[gold]選択[/gold]する。",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.title": "交換",
   "STS2_WINE_FOX_KEYWORD_EXCHANGE.description": "コモン = 丸石、アンコモン = 鉄インゴット\nレア = ダイヤモンド、呪い/状態異常 = 板材",
-  "STS2_WINE_FOX_KEYWORD_MAGIC.title": "魔法",
-  "STS2_WINE_FOX_KEYWORD_MAGIC.description": "魔法スキルカードは[gold]詠唱[/gold]ボーナスの影響を受ける。",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.title": "精巧なバックパック",
   "STS2_WINE_FOX_KEYWORD_SOPHISTICATED_BACKPACK.description": "レアレリック。所持している間、クラフト可能なカードを追加で提供する。",
   "STS2_WINE_FOX_KEYWORD_SWORD.title": "剣",

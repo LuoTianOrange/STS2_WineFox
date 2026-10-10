@@ -50,9 +50,6 @@ namespace STS2_WineFox.Content
         [RegisterOwnedCardKeyword(WineFoxKeywords.ExchangeKey)]
         private sealed class Exchange;
 
-        [RegisterOwnedCardKeyword(WineFoxKeywords.MagicKey)]
-        private sealed class Magic;
-
         /// <summary>
         ///     装填关键字：把牌放入法杖，回合结束时释放。
         ///     可装填的法术自动带此关键字，因此卡面文案不必重复解释装填的含义。
