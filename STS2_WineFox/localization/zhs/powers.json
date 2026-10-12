@@ -196,6 +196,7 @@
   "STS2_WINE_FOX_POWER_NECROMANTIC_SUMMONING_POWER.smartDescription": "回合结束时，若奥斯提存活，它对所有敌人造成[blue]{OstyDamage:diff()}[/blue]点伤害。",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.title": "引力奇点",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.description": "该敌人每次受到伤害时，其他敌人受到等同的伤害。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "该敌人每次受到伤害时，其他敌人受到等同的伤害。",
   "STS2_WINE_FOX_POWER_REPRODUCTION_POWER.title": "复现",
   "STS2_WINE_FOX_POWER_REPRODUCTION_POWER.description": "下回合开始时，重新装填绑定的法术。",
   "STS2_WINE_FOX_POWER_REPRODUCTION_POWER.smartDescription": "下回合开始时重新装填绑定的法术。\n{BoundSpellClause}",
@@ -211,5 +212,17 @@
   "STS2_WINE_FOX_POWER_SPELL_ASHES_POWER.smartDescription": "法术槽中的攻击型法术被释放时，给予所有敌人[blue]{Amount}[/blue]层灼烧。",
   "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.title": "量子锁定",
   "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.description": "本回合你的法术无法被格挡。",
-  "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.smartDescription": "本回合你的法术无法被格挡。"
+  "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.smartDescription": "本回合你的法术无法被格挡。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.title": "解构",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.description": "本回合减少1个法术槽。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "本回合减少[blue]1[/blue]个法术槽。",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.title": "保存",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.description": "回合开始时能量不会重置。",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "你的能量在回合开始时不会重置。还剩[blue]{Amount}[/blue]回合。",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "混乱之源",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "可装填的法术费用-1，释放时目标随机。",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "所有可装填的法术费用[blue]-1[/blue]，释放时目标变为随机。",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "蓄能",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "装填攻击型法术时累积蓄能。获得格挡时消耗全部蓄能，每层使该次格挡+1。",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "每当你装填攻击型法术时，获得[blue]{Gain}[/blue]层[gold]蓄能[/gold]。每当你获得[gold]格挡[/gold]时，消耗全部蓄能，每层使该次格挡[blue]+1[/blue]。"
 }

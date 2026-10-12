@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2_WineFox.Character;
@@ -14,18 +13,13 @@ namespace STS2_WineFox.Cards.Spell
         1, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
-            base.CanonicalKeywords.Append(CardKeyword.Exhaust);
+            [CardKeyword.Exhaust];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEyeOfProvidence);
 
         public override string SpellIconPath => Const.Paths.SpellIconEyeOfProvidence;
-        
-        public override bool TargetsEnemy => false;
 
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
+        public override bool TargetsEnemy => false;
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -36,8 +30,14 @@ namespace STS2_WineFox.Cards.Spell
             await SpellModifierFactory.ChooseOneToHand(context.ChoiceContext, owner);
         }
 
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+        }
+
         protected override void OnUpgrade()
         {
+            RemoveKeyword(CardKeyword.Exhaust);
         }
     }
 }

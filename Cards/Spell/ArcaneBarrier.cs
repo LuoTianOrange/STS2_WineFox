@@ -24,8 +24,7 @@ namespace STS2_WineFox.Cards.Spell
         public override bool GainsBlock => true;
 
         public override bool TargetsEnemy => false;
-
-        /// <summary>含 <c>IMagicBlockModifier</c> 加成的格挡显示值。</summary>
+        
         public override decimal PreviewBlock => MagicBlock.Resolve(this, DynamicVars.Block.BaseValue);
         
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneBarrier);

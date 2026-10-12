@@ -47,7 +47,6 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override void OnUpgrade()
         {
-            // 升级效果写在 OnPlay 里（额外抽 1 张法术牌），无数值可加。
         }
     }
 }

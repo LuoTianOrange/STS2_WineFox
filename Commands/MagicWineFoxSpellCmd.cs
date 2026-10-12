@@ -118,6 +118,11 @@ namespace STS2_WineFox.Commands
             if (power.CanDiscountFirstLoad)
                 power.ConsumeFirstLoadDiscount();
 
+            // 【奥术电容】：装填攻击型法术时累积蓄能。
+            var capacitor = owner?.Creature?.Powers.OfType<Powers.ArcaneCapacitorPower>().FirstOrDefault();
+            if (capacitor != null)
+                await capacitor.OnSpellLoaded(choiceContext, card);
+
             // 装填后立刻刷新法杖内所有卡的显示数值（Power + 法术修正符）。
             RefreshWandCardValues(power);
 
@@ -139,6 +144,15 @@ namespace STS2_WineFox.Commands
             var preserved = spells.Count > 0
                 ? await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget)
                 : [];
+
+            if (power.ManaRefluxPending)
+            {
+                power.ManaRefluxPending = false;
+                var amount = power.SpellsCastThisTurn + power.ManaRefluxBonus;
+                if (amount > 0 && owner.Creature is { } refluxTarget)
+                    await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.EnergyNextTurnPower>(
+                        choiceContext, refluxTarget, amount, refluxTarget, sourceCard);
+            }
             
             foreach (var snapshot in preserved)
                 if (!power.TryLoad(snapshot))
@@ -514,7 +528,10 @@ namespace STS2_WineFox.Commands
             }
 
             var hits = state.CastCount * (1 + state.ExtraDamageStrikes);
-            
+
+            if (card is MagicWineFoxSpellCard multiHit)
+                hits *= multiHit.PreviewHits;
+
             if (state.TargetsAllEnemies)
                 hits *= enemyCount;
 
@@ -536,6 +553,9 @@ namespace STS2_WineFox.Commands
 
             if (target == null && owner?.Creature?.CombatState is { } targetState)
                 target = targetState.HittableEnemies.FirstOrDefault();
+
+            if (owner.Creature.Powers.OfType<Powers.SourceOfChaosPower>().Any())
+                state.MarkRandomTargets();
 
             var context = new MagicWineFoxSpellCastContext(
                 choiceContext,
@@ -567,6 +587,8 @@ namespace STS2_WineFox.Commands
                     : [];
 
                 await spellCard.CastAsSpell(castContext);
+
+                MagicWineFoxSpellCmd.GetPower(owner)?.IncrementSpellsCast();
 
                 // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
                 if (snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true })

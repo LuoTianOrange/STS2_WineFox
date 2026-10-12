@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
@@ -19,8 +18,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Burn", 4m),
-            new HpLossVar(1m),
+            new("Burn", 4m)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSearingJolt);
@@ -50,19 +48,11 @@ namespace STS2_WineFox.Cards.Spell
                 DynamicVars["Burn"].BaseValue,
                 owner.Creature,
                 context.SourceCard);
-
-            await CreatureCmd.Damage(
-                new ThrowingPlayerChoiceContext(),
-                owner.Creature,
-                DynamicVars.HpLoss.BaseValue,
-                ValueProp.Unpowered,
-                null,
-                null);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Burn"].BaseValue += 2m;
+            DynamicVars["Burn"].UpgradeValueBy(2);
         }
     }
 }

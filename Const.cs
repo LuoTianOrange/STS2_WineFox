@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta2";
+        public const string Version = "1.3.0-beta3";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -78,11 +78,21 @@ namespace STS2_WineFox
             public const string SpellIconChainLightning = Root + "/ui/spell_icons/spell_chain_lightning.png";
             public const string SpellIconGatheringLight = Root + "/ui/spell_icons/spell_gathering_light.png";
             public const string SpellIconSummonBoulder = Root + "/ui/spell_icons/spell_summon_boulder.png";
+            public const string SpellIconManaReflux = Root + "/ui/spell_icons/spell_mana_reflux.png";
+            public const string SpellIconHealingSpell = Root + "/ui/spell_icons/spell_healing_spell.png";
+            public const string SpellIconCapabilityCountermeasure = Root + "/ui/spell_icons/spell_capability_countermeasure.png";
+            public const string SpellIconRuneWard = Root + "/ui/spell_icons/spell_rune_ward.png";
+            public const string SpellIconLightsaber = Root + "/ui/spell_icons/spell_lightsaber.png";
+            public const string SpellIconRuneSiphon = Root + "/ui/spell_icons/spell_rune_siphon.png";
             
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
             public const string ReproductionPowerIcon = Root + "/powers/reproduction_power.png";
             public const string LoanPowerIcon = Root + "/powers/loan_power.png";
             public const string CompressionCastingPowerIcon = Root + "/powers/compression_casting_power.png";
+            public const string TemporarySlotLossPowerIcon = Root + "/powers/temporary_slot_loss_power.png";
+            public const string PreservedEnergyPowerIcon = Root + "/powers/preserved_energy_power.png";
+            public const string SourceOfChaosPowerIcon = Root + "/powers/source_of_chaos_power.png";
+            public const string ArcaneCapacitorPowerIcon = Root + "/powers/arcane_capacitor_power.png";
             public const string SpellAshesPowerIcon = Root + "/powers/spell_ashes_power.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
@@ -380,6 +390,18 @@ namespace STS2_WineFox
             public const string CardSummonBoulder = Root + "/cards/card_summon_boulder.png";
             public const string CardEmberBurst = Root + "/cards/card_ember_burst.png";
             public const string CardCompressionCasting = Root + "/cards/card_compression_casting.png";
+            public const string CardManaReflux = Root + "/cards/card_mana_reflux.png";
+            public const string CardHealingSpell = Root + "/cards/card_healing_spell.png";
+            public const string CardElementRecovery = Root + "/cards/card_element_recovery.png";
+            public const string CardCapabilityCountermeasure = Root + "/cards/card_capability_countermeasure.png";
+            public const string CardSourceOfChaos = Root + "/cards/card_source_of_chaos.png";
+            public const string CardRuneRubbing = Root + "/cards/card_rune_rubbing.png";
+            public const string CardDeconstructiveRecharge = Root + "/cards/card_deconstructive_recharge.png";
+            public const string CardPreservedSalvation = Root + "/cards/card_preserved_salvation.png";
+            public const string CardRuneWard = Root + "/cards/card_rune_ward.png";
+            public const string CardLightsaber = Root + "/cards/card_lightsaber.png";
+            public const string CardArcaneCapacitor = Root + "/cards/card_arcane_capacitor.png";
+            public const string CardRuneSiphon = Root + "/cards/card_rune_siphon.png";
             public const string CardSpellAshes = Root + "/cards/card_spell_ashes.png";
             public const string CardChainLightning = Root + "/cards/card_chain_lightning.png";
             public const string CardGatheringLight = Root + "/cards/card_gathering_light.png";

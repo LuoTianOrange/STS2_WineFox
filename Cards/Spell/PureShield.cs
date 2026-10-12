@@ -29,11 +29,7 @@ namespace STS2_WineFox.Cards.Spell
         public override string SpellIconPath => Const.Paths.SpellIconPureShield;
         
         public override bool TargetsEnemy => false;
-
-        /// <summary>
-        ///     含 <c>IMagicBlockModifier</c> 加成的格挡显示值。
-        ///     顺序与结算一致：先扣修正符惩罚，再加格挡加成。
-        /// </summary>
+        
         public override decimal PreviewBlock
         {
             get
@@ -46,8 +42,7 @@ namespace STS2_WineFox.Cards.Spell
                     : MagicBlock.Resolve(this, afterPenalty);
             }
         }
-
-        /// <summary>法杖内已装填的修正符数量（预览用；不在战斗中时为 0）。</summary>
+        
         private int WandModifierCount
         {
             get
@@ -84,6 +79,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
+            DynamicVars.Block.UpgradeValueBy(4);
         }
     }
 }

@@ -326,8 +326,20 @@ namespace STS2_WineFox.Powers
             MegaCrit.Sts2.Core.Entities.Players.Player player)
         {
             FirstLoadDiscountUsed = false;
+            SpellsCastThisTurn = 0;
             return Task.CompletedTask;
         }
+
+        public int SpellsCastThisTurn { get; private set; }
+
+        public void IncrementSpellsCast()
+        {
+            SpellsCastThisTurn++;
+        }
+
+        public bool ManaRefluxPending { get; set; }
+
+        public int ManaRefluxBonus { get; set; }
 
         /// <summary>
         /// 回合结束释放：触发条件是拥有本能力而不是持有起始遗物，

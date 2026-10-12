@@ -211,5 +211,18 @@
   "STS2_WINE_FOX_POWER_SPELL_ASHES_POWER.smartDescription": "呪文スロット内の攻撃呪文が解放されるたび、すべての敵に[blue]{Amount}[/blue]の燃焼を付与する。",
   "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.title": "量子ロック",
   "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.description": "このターン、自分の呪文はブロックされない。",
-  "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.smartDescription": "このターン、自分の呪文はブロックされない。"
+  "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.smartDescription": "このターン、自分の呪文はブロックされない。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.title": "解構",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.description": "このターン術スロットを1つ失う。",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.title": "保存",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.description": "ターン開始時にエネルギーがリセットされない。",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "混沌の源",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "装填可能な術のコスト -1、対象がランダムになる。",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "蓄能",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "攻撃術の装填で蓄能を溜める。ブロック獲得時に全て消費し、1層につきブロック +1。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "このターン術スロットを[blue]1[/blue]つ失う。",
+  "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "ターン開始時にエネルギーがリセットされない。残り[blue]{Amount}[/blue]ターン。",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "装填可能な術のコスト[blue]-1[/blue]、解放時に対象がランダムになる。",
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "攻撃術を装填するたび[gold]蓄能[/gold]を[blue]{Gain}[/blue]得る。ブロックを得るたび蓄能を全て消費し、1層につき[blue]+1[/blue]ブロック。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "この敵がダメージを受けるたび、他の敵も同量のダメージを受ける。"
 }

@@ -81,6 +81,12 @@ namespace STS2_WineFox.Cards.Spell
         public virtual decimal PreviewDamage => 0m;
 
         /// <summary>
+        ///     预览用的内置段数。多段法术（如【激光剑】3 段）返回实际段数，
+        ///     供 <c>MagicWineFoxSpellCmd.EstimateDamage</c> 估算总伤害。单段法术保持 1。
+        /// </summary>
+        public virtual int PreviewHits => 1;
+
+        /// <summary>
         ///     预览用的基础格挡（不参与结算）。无格挡的法术保持 0。
         ///     <para>
         ///         供 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 把
@@ -108,10 +114,6 @@ namespace STS2_WineFox.Cards.Spell
             PreviewDamageOverride = null;
         }
 
-        /// <summary>
-        ///     计入法术修正符与 <c>IMagicBlockModifier</c> 后的单次格挡（null = 未计算）。
-        ///     与 <see cref="PreviewDamageOverride" /> 同一套机制，供描述渲染时临时换值。
-        /// </summary>
         public decimal? PreviewBlockOverride { get; private set; }
 
         /// <summary>记录计入加成后的单次格挡。</summary>
@@ -120,19 +122,13 @@ namespace STS2_WineFox.Cards.Spell
             PreviewBlockOverride = value;
         }
 
-        /// <summary>清掉格挡覆盖，恢复原版显示。</summary>
         public void ClearPreviewBlock()
         {
             PreviewBlockOverride = null;
         }
-
-        /// <summary>
-        ///     这张法术是否带格挡变量。没有格挡的法术（如【狐火弹】只有伤害）不能走格挡覆盖，
-        ///     否则 <c>DynamicVars["Block"]</c> 会抛 KeyNotFoundException。
-        /// </summary>
+        
         public bool HasBlockVar => DynamicVars.TryGetValue("Block", out _);
 
-        /// <summary>描述渲染开始：临时把 <c>Block</c> 变量换成该值，返回渲染前的真实值供还原。</summary>
         public decimal BeginBlockDisplayOverride(decimal value)
         {
             if (!DynamicVars.TryGetValue("Block", out var block))
@@ -144,7 +140,6 @@ namespace STS2_WineFox.Cards.Spell
             return trueBase;
         }
 
-        /// <summary>描述渲染结束：把格挡变量还原成真实基础值。</summary>
         public void EndBlockDisplayOverride(decimal trueBase)
         {
             if (!DynamicVars.TryGetValue("Block", out var block))
@@ -154,10 +149,6 @@ namespace STS2_WineFox.Cards.Spell
             block.PreviewValue = trueBase;
         }
 
-        /// <summary>
-        ///     描述渲染开始：临时把 <c>Damage</c> 变量换成该值，返回渲染前的真实值供还原。
-        ///     返回 <c>-1</c> 表示无需还原。
-        /// </summary>
         public decimal BeginDisplayOverride(decimal value)
         {
             if (!DynamicVars.TryGetValue("Damage", out var damage))
