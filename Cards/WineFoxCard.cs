@@ -68,7 +68,9 @@ namespace STS2_WineFox.Cards
             {
                 try
                 {
-                    return Pool is MagicWineFoxCardPool or MagicWineFoxTokenCardPool;
+                    return Pool is MagicWineFoxCardPool
+                        or MagicWineFoxTokenCardPool
+                        or MagicWineFoxSpellModifierCardPool;
                 }
                 catch (InvalidProgramException)
                 {

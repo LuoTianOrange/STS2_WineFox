@@ -60,6 +60,20 @@ namespace STS2_WineFox
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
 
+                var magicWineFoxPublicEntry =
+                    ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(MagicWineFox));
+                RitsuLibFramework.GetContentRegistry(Const.ModId)
+                    .RegisterCardLibraryCompendiumSharedPoolFilter<MagicWineFoxSpellModifierCardPool>(
+                        "magic_winefox_spell_modifier",
+                        Const.Paths.SpellModifierBookIcon,
+                        [
+                            new()
+                            {
+                                ModCharacterModelIdEntry = magicWineFoxPublicEntry,
+                                Relation = CardLibraryCompendiumFilterInsertRelation.After,
+                            },
+                        ]);
+
                 var wineFoxPublicEntry = ModContentRegistry.GetFixedPublicEntry(Const.ModId, typeof(WineFox));
                 RitsuLibFramework.GetContentRegistry(Const.ModId)
                     .RegisterCardLibraryCompendiumSharedPoolFilter<WineFoxCraftingCardPool>(

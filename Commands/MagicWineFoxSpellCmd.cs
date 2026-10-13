@@ -142,7 +142,9 @@ namespace STS2_WineFox.Commands
             var spells = power.DrainLoadedSpells();
 
             var preserved = spells.Count > 0
-                ? await ResolveSpellChain(choiceContext, owner, fallbackTarget, sourceCard, spells, power.ReleaseBudget)
+                ? await ResolveSpellChain(
+                    choiceContext, owner, fallbackTarget, sourceCard, spells,
+                    power.ReleaseBudget, power.CastCount)
                 : [];
 
             if (power.ManaRefluxPending)
@@ -196,6 +198,7 @@ namespace STS2_WineFox.Commands
                 fallbackTarget,
                 sourceCard,
                 [oldest],
+                1,
                 1);
 
             foreach (var snapshot in preserved)
@@ -217,7 +220,8 @@ namespace STS2_WineFox.Commands
             Creature? fallbackTarget,
             CardModel? sourceCard,
             IReadOnlyList<MagicWineFoxSpellSlotSnapshot> spells,
-            int releaseBudget)
+            int releaseBudget,
+            int rounds)
         {
             var modifiers = new MagicWineFoxSpellModifierState();
             var used = 0;
@@ -239,67 +243,73 @@ namespace STS2_WineFox.Commands
                 }
             }
 
-            for (var index = 0; index < spells.Count; index++)
+            for (var round = 0; round < Math.Max(1, rounds); round++)
             {
-                var snapshot = spells[index];
+                for (var index = 0; index < spells.Count; index++)
+                {
+                    var snapshot = spells[index];
+
+                    if (used >= releaseBudget)
+                        break;
+
+                    if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
+                    {
+                        var replayState = modifiers.Copy();
+
+                        for (var rewind = history.Count - 1; rewind >= 0; rewind--)
+                        {
+                            await CastSpellEntry(
+                                choiceContext,
+                                owner,
+                                sourceCard,
+                                fallbackTarget,
+                                history[rewind],
+                                replayState);
+
+                            replayState = CreateReplayState(modifiers);
+                        }
+
+                        return spells.Skip(index + 1).ToList();
+                    }
+
+                    if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
+                    {
+                        if (snapshot.Card is not IMagicWineFoxSpellLookBehindModifierCard and
+                            not IMagicWineFoxSpellWandModifierCard)
+                        {
+                            modifiers.SetCurrentX(snapshot.XValue);
+                            modifierEntry.ApplyModifier(modifiers);
+                        }
+
+                        if (modifiers.DrawForModifierEntries && modifiers.DrawCount > 0m)
+                            await CardPileCmd.Draw(choiceContext, modifiers.DrawCount, owner);
+
+                        continue;
+                    }
+
+                    if (snapshot.Card is not IMagicWineFoxSpellCard)
+                    {
+                        modifiers.Reset();
+                        continue;
+                    }
+
+                    if (lookBehind.TryGetValue(index, out var attached))
+                        foreach (var extra in attached)
+                        {
+                            modifiers.SetCurrentX(extra.XValue);
+                            (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
+                        }
+
+                    history.Add(snapshot);
+
+                    await CastSpellEntry(choiceContext, owner, sourceCard, fallbackTarget, snapshot, modifiers);
+
+                    used += modifiers.BudgetCost;
+                    modifiers.Reset();
+                }
 
                 if (used >= releaseBudget)
                     break;
-
-                if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
-                {
-                    var replayState = modifiers.Copy();
-
-                    for (var rewind = history.Count - 1; rewind >= 0; rewind--)
-                    {
-                        await CastSpellEntry(
-                            choiceContext,
-                            owner,
-                            sourceCard,
-                            fallbackTarget,
-                            history[rewind],
-                            replayState);
-
-                        replayState = CreateReplayState(modifiers);
-                    }
-
-                    return spells.Skip(index + 1).ToList();
-                }
-
-                if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
-                {
-                    if (snapshot.Card is not IMagicWineFoxSpellLookBehindModifierCard and
-                        not IMagicWineFoxSpellWandModifierCard)
-                    {
-                        modifiers.SetCurrentX(snapshot.XValue);
-                        modifierEntry.ApplyModifier(modifiers);
-                    }
-
-                    if (modifiers.DrawForModifierEntries && modifiers.DrawCount > 0m)
-                        await CardPileCmd.Draw(choiceContext, modifiers.DrawCount, owner);
-
-                    continue;
-                }
-
-                if (snapshot.Card is not IMagicWineFoxSpellCard)
-                {
-                    modifiers.Reset();
-                    continue;
-                }
-
-                if (lookBehind.TryGetValue(index, out var attached))
-                    foreach (var extra in attached)
-                    {
-                        modifiers.SetCurrentX(extra.XValue);
-                        (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
-                    }
-
-                history.Add(snapshot);
-
-                await CastSpellEntry(choiceContext, owner, sourceCard, fallbackTarget, snapshot, modifiers);
-
-                used += modifiers.BudgetCost;
-                modifiers.Reset();
             }
 
             return [];
@@ -346,6 +356,9 @@ namespace STS2_WineFox.Commands
                 }
             }
 
+            for (var round = 0;
+                 round < Math.Max(1, power.CastCount) && used < power.ReleaseBudget;
+                 round++)
             for (var index = 0; index < spells.Count; index++)
             {
                 var snapshot = spells[index];

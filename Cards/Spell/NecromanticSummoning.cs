@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Spell
 {
-    [RegisterCard(typeof(MagicWineFoxTokenCardPool))]
+    [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class NecromanticSummoning() : MagicWineFoxSpellCard(
         1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
     {

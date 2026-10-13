@@ -292,7 +292,7 @@ namespace STS2_WineFox.Powers
 
         /// <summary>
         /// 唯一升级：<paramref name="expandSlots" /> 为 true 走扩张（槽位 +1），
-        /// 否则走速铸（释放轮数 +1）。已升级过则返回 false。
+        /// 否则走释放轮数（+1）。已升级过则返回 false。
         /// </summary>
         public bool TryUpgrade(bool expandSlots)
         {

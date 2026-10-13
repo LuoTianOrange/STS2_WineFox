@@ -186,7 +186,7 @@
   "STS2_WINE_FOX_POWER_MAGIC_WINE_FOX_SPELL_SLOT_POWER.smartDescription": "[blue]{Amount}[/blue] 个法杖槽位。",
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.title": "序列回响",
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.description": "你的法杖额外获得法术槽。你的下一张法术卡会被消耗并绑定，每次释放法杖后自动装回第一个槽位。",
-  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "获得[blue]{Amount}[/blue]个额外法术槽。每次释放后自动装填已绑定的法术。\n{BoundSpellClause}",
+  "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.smartDescription": "获得[blue]1[/blue]个额外法术槽。每次释放后自动装填已绑定的法术。\n{BoundSpellClause}",
   "STS2_WINE_FOX_POWER_ECHOES_SEQUENCE_POWER.boundClause": "当前绑定：[purple]{SpellName}[/purple]",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.title": "永恒旋律",
   "STS2_WINE_FOX_POWER_ETERNAL_MELODY_POWER.description": "每次释放法术时，被攻击的敌人失去{Amount}点生命上限，且其生命上限会降至当前生命。",

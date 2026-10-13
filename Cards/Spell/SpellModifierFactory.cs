@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2_WineFox.Mechanics;
-
 namespace STS2_WineFox.Cards.Spell
 {
     public static class SpellModifierFactory
@@ -50,7 +49,7 @@ namespace STS2_WineFox.Cards.Spell
 
         private static List<CardModel> GetDistinct(Player owner, int count)
         {
-            var pool = ModelDb.CardPool<MagicWineFoxTokenCardPool>()
+            var pool = ModelDb.CardPool<MagicWineFoxSpellModifierCardPool>()
                 .GetUnlockedCards(owner.UnlockState, owner.RunState.CardMultiplayerConstraint)
                 .Where(card => card is IMagicWineFoxSpellModifierCard)
                 .ToList();

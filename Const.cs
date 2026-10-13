@@ -146,6 +146,7 @@ namespace STS2_WineFox
             public const string MaidBeaconRelicIcon = Root + "/relics/relic_maid_beacon.png";
             public const string ShrineRelicIcon = Root + "/relics/relic_shrine.png";
             public const string ApprenticeStaffIcon = Root + "/relics/relic_apprentice_staff.png";
+            public const string SpellModifierBookIcon = Root + "/ui/spell_book.png";
 
             //Power
             public const string WoodPowerIcon = Root + "/powers/wood_power.png";
