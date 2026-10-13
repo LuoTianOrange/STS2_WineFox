@@ -388,5 +388,15 @@
   "STS2_WINE_FOX_CARD_LIGHTSABER.title": "激光剑",
   "STS2_WINE_FOX_CARD_LIGHTSABER.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害，共3次。每次移除敌人的[gold]格挡[/gold]时，额外造成{Bonus:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_RUNE_SIPHON.title": "符能汲取",
-  "STS2_WINE_FOX_CARD_RUNE_SIPHON.description": "[gold]装填[/gold]: 获得{Copies:diff()}张随机[gold]法术修正[/gold]，抽1张牌。"
+  "STS2_WINE_FOX_CARD_RUNE_SIPHON.description": "[gold]装填[/gold]: 获得{Copies:diff()}张随机[gold]法术修正[/gold]，抽1张牌。",
+  "STS2_WINE_FOX_CARD_COMBINED_ARMS.title": "攻防一体",
+  "STS2_WINE_FOX_CARD_COMBINED_ARMS.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 上一个法术造成伤害+{LookBehindDamage:diff()}，下一个法术获得[gold]格挡[/gold]+{NextBlock:diff()}。",
+  "STS2_WINE_FOX_CARD_MANA_SNATCH.title": "魔力夺取",
+  "STS2_WINE_FOX_CARD_MANA_SNATCH.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 下一个法术造成伤害时，获得伤害值{Ratio:diff()}%的[gold]格挡[/gold]。",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.title": "目标定位",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]法术修正[/gold]。\n[gold]装填[/gold]: 指定一个敌人，本回合所有单体攻击法术会优先以该敌人作为目标。{IfUpgraded:show:\n该敌人每次受到伤害+1。|}",
+  "STS2_WINE_FOX_CARD_ECLIPSE.title": "日全食",
+  "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。移除所有敌人{StealPercent:diff()}%的[gold]格挡[/gold]，你获得其总量作为[gold]格挡[/gold]。",
+  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜能激发",
+  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "在本回合中，获得{Slots:diff()}个临时法术槽。抽{Cards:diff()}张法术牌。"
 }

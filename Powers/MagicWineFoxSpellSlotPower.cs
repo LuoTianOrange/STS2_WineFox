@@ -79,6 +79,9 @@ namespace STS2_WineFox.Powers
         /// <summary>临时失槽来源的临时槽位偏移。</summary>
         public const string TemporaryLossSource = "temporary_slot_loss";
 
+        /// <summary>临时增槽来源的临时槽位偏移。</summary>
+        public const string TemporarySlotGainSource = "temporary_slot_gain";
+
         /// <summary>
         ///     按来源记录的临时槽位偏移。
         /// </summary>

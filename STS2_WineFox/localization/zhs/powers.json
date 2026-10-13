@@ -224,5 +224,11 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "所有可装填的法术费用[blue]-1[/blue]，释放时目标变为随机。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "蓄能",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "装填攻击型法术时累积蓄能。获得格挡时消耗全部蓄能，每层使该次格挡+1。",
-  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "每当你装填攻击型法术时，获得[blue]{Gain}[/blue]层[gold]蓄能[/gold]。每当你获得[gold]格挡[/gold]时，消耗全部蓄能，每层使该次格挡[blue]+1[/blue]。"
+  "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "每当你装填攻击型法术时，获得[blue]{Gain}[/blue]层[gold]蓄能[/gold]。每当你获得[gold]格挡[/gold]时，消耗全部蓄能，每层使该次格挡[blue]+1[/blue]。",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.title": "目标定位",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.description": "该敌人每次受到的伤害+1。",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "该敌人每次受到的伤害+1。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "潜能激发",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "本回合获得额外的临时法术槽。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "本回合获得额外的临时法术槽。"
 }

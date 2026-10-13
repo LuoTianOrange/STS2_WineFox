@@ -16,6 +16,7 @@ namespace STS2_WineFox.Relics
 {
     [RegisterRelic(typeof(MagicWineFoxRelicPool))]
     [RegisterCharacterStarterRelic(typeof(MagicWineFox))]
+    [RegisterTouchOfOrobasRefinement(typeof(MagicWineFoxMasterWand))]
     public class MagicWineFoxWand : WineFoxRelic
     {
         public override RelicRarity Rarity => RelicRarity.Starter;

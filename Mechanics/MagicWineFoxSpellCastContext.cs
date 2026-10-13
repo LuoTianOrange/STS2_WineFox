@@ -58,7 +58,8 @@ namespace STS2_WineFox.Mechanics
         
         public decimal BlockWithModifiers(decimal baseBlock)
         {
-            var raw = (baseBlock + Modifiers.DamageBonus) * Modifiers.DamageMultiplier;
+            var raw = (baseBlock + Modifiers.DamageBonus + Modifiers.BlockBonus)
+                      * Modifiers.DamageMultiplier;
             var afterModifiers = Math.Max(0m, Math.Round(raw, 0, MidpointRounding.AwayFromZero));
 
             return MagicBlock.Resolve(SourceCard, afterModifiers);

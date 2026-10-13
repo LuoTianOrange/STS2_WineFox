@@ -224,5 +224,11 @@
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "Your Energy is not reset at the start of your turn. [blue]{Amount}[/blue] turn(s) left.",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "All loadable spells cost [blue]1[/blue] less and target random enemies when released.",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "Whenever you load an Attack spell, gain [blue]{Gain}[/blue] Charge. Whenever you gain [gold]Block[/gold], consume all Charge and gain [blue]+1[/blue] Block each.",
-  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "Whenever this enemy takes damage, all other enemies take the same amount."
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "Whenever this enemy takes damage, all other enemies take the same amount.",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.title": "Target Positioning",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.description": "This enemy takes +1 damage from every hit.",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "This enemy takes +1 damage from every hit.",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "Unleashing Potential",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "Grants extra temporary spell slots this turn.",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "Grants extra temporary spell slots this turn."
 }

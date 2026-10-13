@@ -224,5 +224,11 @@
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "ターン開始時にエネルギーがリセットされない。残り[blue]{Amount}[/blue]ターン。",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "装填可能な術のコスト[blue]-1[/blue]、解放時に対象がランダムになる。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "攻撃術を装填するたび[gold]蓄能[/gold]を[blue]{Gain}[/blue]得る。ブロックを得るたび蓄能を全て消費し、1層につき[blue]+1[/blue]ブロック。",
-  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "この敵がダメージを受けるたび、他の敵も同量のダメージを受ける。"
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_SINGULARITY_POWER.smartDescription": "この敵がダメージを受けるたび、他の敵も同量のダメージを受ける。",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.title": "目標指定",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.description": "この敵は受けるダメージが毎回+1。",
+  "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "この敵は受けるダメージが毎回+1。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "潜在能力解放",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "このターン追加の一時術スロットを得る。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "このターン追加の一時術スロットを得る。"
 }

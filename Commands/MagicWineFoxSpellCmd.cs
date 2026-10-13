@@ -239,6 +239,7 @@ namespace STS2_WineFox.Commands
                 if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
                 {
                     modifiers.SetCurrentX(snapshot.XValue);
+                    modifiers.SetCurrentTarget(snapshot.Target);
                     wandModifier.ApplyModifier(modifiers);
                 }
             }
@@ -352,6 +353,7 @@ namespace STS2_WineFox.Commands
                 if (snapshot.Card is IMagicWineFoxSpellWandModifierCard wandModifier)
                 {
                     modifiers.SetCurrentX(snapshot.XValue);
+                    modifiers.SetCurrentTarget(snapshot.Target);
                     wandModifier.ApplyModifier(modifiers);
                 }
             }
@@ -565,7 +567,7 @@ namespace STS2_WineFox.Commands
             if (snapshot.Card is not IMagicWineFoxSpellCard spellCard)
                 return;
 
-            var target = ResolveTarget(snapshot.Target, fallbackTarget);
+            var target = state.ForcedTarget ?? ResolveTarget(snapshot.Target, fallbackTarget);
 
             if (target == null && owner?.Creature?.CombatState is { } targetState)
                 target = targetState.HittableEnemies.FirstOrDefault();
@@ -602,7 +604,21 @@ namespace STS2_WineFox.Commands
                     ? CaptureAttackCandidates(castContext)
                     : [];
 
+                var trackedEnemies = state.DamageToBlockRatio > 0m &&
+                                     owner?.Creature?.CombatState is { } trackingState
+                    ? trackingState.HittableEnemies.ToDictionary(enemy => enemy, enemy => enemy.CurrentHp)
+                    : null;
+
                 await spellCard.CastAsSpell(castContext);
+
+                if (trackedEnemies != null && owner?.Creature is { } snatchOwner)
+                {
+                    var dealt = trackedEnemies.Sum(pair => Math.Max(0, pair.Value - pair.Key.CurrentHp));
+                    var gained = Math.Floor(dealt * state.DamageToBlockRatio);
+
+                    if (gained > 0m)
+                        await CreatureCmd.GainBlock(snatchOwner, gained, ValueProp.Unpowered, null);
+                }
 
                 if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
                     MagicWineFoxSpellCmd.GetPower(owner)?.IncrementSpellsCast();

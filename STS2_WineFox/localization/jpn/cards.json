@@ -388,5 +388,15 @@
   "STS2_WINE_FOX_CARD_LIGHTSABER.title": "ライトセイバー",
   "STS2_WINE_FOX_CARD_LIGHTSABER.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを3回与える。敵の[gold]ブロック[/gold]を削るたび、追加で{Bonus:diff()}ダメージ。",
   "STS2_WINE_FOX_CARD_RUNE_SIPHON.title": "ルーン吸引",
-  "STS2_WINE_FOX_CARD_RUNE_SIPHON.description": "[gold]装填[/gold]: ランダムな[gold]術修正[/gold]を{Copies:diff()}枚得る。カードを1枚引く。"
+  "STS2_WINE_FOX_CARD_RUNE_SIPHON.description": "[gold]装填[/gold]: ランダムな[gold]術修正[/gold]を{Copies:diff()}枚得る。カードを1枚引く。",
+  "STS2_WINE_FOX_CARD_COMBINED_ARMS.title": "攻防一体",
+  "STS2_WINE_FOX_CARD_COMBINED_ARMS.description": "[gold]術修正[/gold]。\n[gold]装填[/gold]: 前の術のダメージ+{LookBehindDamage:diff()}、次の術は[gold]ブロック[/gold]+{NextBlock:diff()}を得る。",
+  "STS2_WINE_FOX_CARD_MANA_SNATCH.title": "マナ強奪",
+  "STS2_WINE_FOX_CARD_MANA_SNATCH.description": "[gold]術修正[/gold]。\n[gold]装填[/gold]: 次の術がダメージを与えた時、その{Ratio:diff()}%の[gold]ブロック[/gold]を得る。",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.title": "目標指定",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]術修正[/gold]。\n[gold]装填[/gold]: 敵を1体指定する。このターン、すべての単体攻撃術はその敵を優先対象にする。{IfUpgraded:show:\nその敵は受けるダメージが毎回+1。|}",
+  "STS2_WINE_FOX_CARD_ECLIPSE.title": "皆既日食",
+  "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: [gold]ブロック[/gold]を{Block:diff()}得る。すべての敵の[gold]ブロック[/gold]を{StealPercent:diff()}%除去し、その合計を[gold]ブロック[/gold]として得る。",
+  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜在能力解放",
+  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "このターン、一時的な術スロットを{Slots:diff()}つ得る。術カードを{Cards:diff()}枚引く。"
 }
