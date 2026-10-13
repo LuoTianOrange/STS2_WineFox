@@ -20,6 +20,8 @@ namespace STS2_WineFox.Cards.Spell
             new DamageVar(9m, ValueProp.Move)
         ];
 
+        public override SpellTraits Traits => new() { AreaOfEffect = true };
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneBomb);
 
         public override string SpellIconPath => Const.Paths.SpellIconArcaneBomb;
@@ -33,13 +35,7 @@ namespace STS2_WineFox.Cards.Spell
         
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Owner?.Creature?.CombatState is not { } combatState)
-                return;
-
-            await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null)
-                .TargetingAllOpponents(combatState)
-                .Execute(context.ChoiceContext);
+            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
         }
 
         protected override void OnUpgrade()

@@ -220,7 +220,7 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "装填可能な術のコスト -1、対象がランダムになる。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "蓄能",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "攻撃術の装填で蓄能を溜める。ブロック獲得時に全て消費し、1層につきブロック +1。",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "このターン術スロットを[blue]1[/blue]つ失う。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "このターン術スロットを[blue]{Amount}[/blue]つ失う。",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "ターン開始時にエネルギーがリセットされない。残り[blue]{Amount}[/blue]ターン。",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "装填可能な術のコスト[blue]-1[/blue]、解放時に対象がランダムになる。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "攻撃術を装填するたび[gold]蓄能[/gold]を[blue]{Gain}[/blue]得る。ブロックを得るたび蓄能を全て消費し、1層につき[blue]+1[/blue]ブロック。",

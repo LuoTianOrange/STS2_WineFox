@@ -52,7 +52,7 @@ namespace STS2_WineFox.Powers
 
             var bonus = Math.Max(1, (int)Amount);
             var slots = await MagicWineFoxSpellCmd.EnsurePower(player);
-            slots?.EnsureCapacity(slots.SlotCapacity + bonus);
+            slots?.ChangeBaseCapacity(bonus);
         }
 
         public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

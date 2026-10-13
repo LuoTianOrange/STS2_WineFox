@@ -29,6 +29,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override string SpellIconPath => Const.Paths.SpellIconChainLightning;
 
+        public override SpellTraits Traits => new() { BounceTargets = 1 };
+
         public override decimal PreviewDamage =>
             DynamicVars.Damage.BaseValue + DynamicVars["BounceDamage"].BaseValue;
 
@@ -41,28 +43,25 @@ namespace STS2_WineFox.Cards.Uncommon
             if (targets.Count == 0)
                 return;
 
-            var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null);
+            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
 
-            if (context.TargetsAllEnemies)
-                await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
-            else
-                await attack.Targeting(targets[0]).Execute(context.ChoiceContext);
+            for (var i = 0; i < context.BounceTargets; i++)
+            {
+                // 弹跳：从其他存活敌人里随机挑一个。
+                var others = combatState.HittableEnemies
+                    .Where(enemy => enemy.IsAlive && !targets.Contains(enemy))
+                    .ToList();
 
-            // 弹跳：从其他存活敌人里随机挑一个。
-            var others = combatState.HittableEnemies
-                .Where(enemy => enemy.IsAlive && !targets.Contains(enemy))
-                .ToList();
+                if (others.Count == 0)
+                    return;
 
-            if (others.Count == 0)
-                return;
+                var bounceTarget = others[context.Owner.RunState.Rng.CombatTargets.NextInt(others.Count)];
 
-            var bounceTarget = others[context.Owner.RunState.Rng.CombatTargets.NextInt(others.Count)];
-
-            await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars["BounceDamage"].BaseValue))
-                .FromCard(context.SourceCard, null)
-                .Targeting(bounceTarget)
-                .Execute(context.ChoiceContext);
+                await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars["BounceDamage"].BaseValue))
+                    .FromCard(context.SourceCard, null)
+                    .Targeting(bounceTarget)
+                    .Execute(context.ChoiceContext);
+            }
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override string SpellIconPath => Const.Paths.SpellIconManaReflux;
 
-        public override bool TargetsEnemy => false;
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
 
         public Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {

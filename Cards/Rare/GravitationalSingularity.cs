@@ -30,21 +30,15 @@ namespace STS2_WineFox.Cards.Rare
         
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Owner?.Creature?.CombatState is not { } combatState)
+            if (context.Owner is not { } owner)
                 return;
 
             var targets = ResolveSpellTargets(context);
             if (targets.Count == 0)
                 return;
 
-            var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null);
+            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
 
-            if (context.TargetsAllEnemies)
-                await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
-            else
-                await attack.Targeting(targets[0]).Execute(context.ChoiceContext);
-            
             foreach (var enemy in targets.Where(e => e.IsAlive).ToList())
             {
                 if (enemy.HasPower<GravitationalSingularityPower>())
@@ -54,7 +48,7 @@ namespace STS2_WineFox.Cards.Rare
                     context.ChoiceContext,
                     enemy,
                     1m,
-                    context.Owner.Creature,
+                    owner.Creature,
                     context.SourceCard);
             }
         }

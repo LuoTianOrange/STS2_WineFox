@@ -28,11 +28,21 @@ namespace STS2_WineFox.Mechanics
         public CardModel? CastSourceCard { get; } = castSourceCard;
         public MagicWineFoxSpellModifierState Modifiers { get; } = modifiers;
         
-        public bool TargetsAllEnemies => Modifiers.TargetsAllEnemies;
+        public bool TargetsAllEnemies =>
+            Modifiers.TargetsAllEnemies || Traits is { AreaOfEffect: true };
 
-        public bool RandomTargets => Modifiers.RandomTargets;
+        public bool RandomTargets =>
+            Modifiers.RandomTargets || Traits is { RandomTarget: true };
+
+        public bool TargetsSelf => Traits is { TargetSelf: true };
+
+        public bool AttackSpell => Traits is not { AttackSpell: false };
+
+        public int BounceTargets => Traits?.BounceTargets ?? 0;
 
         public int ExtraDamageStrikes => Modifiers.ExtraDamageStrikes;
+
+        private SpellTraits? Traits => (SourceCard as Cards.Spell.MagicWineFoxSpellCard)?.Traits;
 
         public int WandModifierCount => Modifiers.WandModifierCount;
         

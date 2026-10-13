@@ -220,7 +220,7 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "장전 가능한 주문의 비용 -1, 대상이 무작위가 됩니다.",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "충전",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "공격 주문을 장전하면 충전이 쌓입니다. 방어도를 얻을 때 모두 소모해 1중첩당 방어도 +1.",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "이번 턴 주문 슬롯을 [blue]1[/blue]개 잃습니다.",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "이번 턴 주문 슬롯을 [blue]{Amount}[/blue]개 잃습니다.",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "턴 시작 시 에너지가 초기화되지 않습니다. [blue]{Amount}[/blue]턴 남음.",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "장전 가능한 주문의 비용 [blue]-1[/blue], 발동 시 대상이 무작위가 됩니다.",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "공격 주문을 장전할 때마다 [gold]충전[/gold]을 [blue]{Gain}[/blue] 얻습니다. 방어도를 얻을 때 충전을 모두 소모해 1중첩당 [blue]+1[/blue] 방어도.",

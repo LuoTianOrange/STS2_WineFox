@@ -69,7 +69,7 @@ namespace STS2_WineFox.Commands
             var existing = owner.Creature.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
             if (existing != null)
             {
-                existing.EnsureCapacity(Math.Max(existing.SlotCapacity, requested));
+                existing.EnsureCapacity(Math.Max(existing.BaseSlotCapacity, requested));
                 return existing;
             }
 
@@ -540,12 +540,15 @@ namespace STS2_WineFox.Commands
                 perHit = MagicDamage.Resolve(card, perHit, previewTarget);
             }
 
-            var hits = state.CastCount * (1 + state.ExtraDamageStrikes);
+            var traits = card is MagicWineFoxSpellCard spellTraits ? spellTraits.Traits : SpellTraits.Default;
 
-            if (card is MagicWineFoxSpellCard multiHit)
-                hits *= multiHit.PreviewHits;
+            var strikeMultiplier = traits.AcceptsExtraStrikes
+                ? 1 + Math.Max(0, state.ExtraDamageStrikes)
+                : 1;
 
-            if (state.TargetsAllEnemies)
+            var hits = state.CastCount * Math.Max(0, traits.HitCount) * strikeMultiplier;
+
+            if (state.TargetsAllEnemies || traits.AreaOfEffect)
                 hits *= enemyCount;
 
             return (perHit, hits);
@@ -601,18 +604,19 @@ namespace STS2_WineFox.Commands
 
                 await spellCard.CastAsSpell(castContext);
 
-                MagicWineFoxSpellCmd.GetPower(owner)?.IncrementSpellsCast();
+                if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
+                    MagicWineFoxSpellCmd.GetPower(owner)?.IncrementSpellsCast();
 
                 // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
-                if (snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true })
+                if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
                     await Powers.SpellAshesPower.ApplyToAllEnemies(choiceContext, owner, snapshot.Card);
 
                 // 「是否攻击到敌人」卡牌声明判定，
-                var attacked = snapshot.Card is MagicWineFoxSpellCard { TargetsEnemy: true }
+                var attacked = snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true }
                     ? ResolveAttackedEnemies(castContext).ToList()
                     : [];
 
-                // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 TargetsEnemy 声明，
+                // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 Traits.AttackSpell 声明，
                 // 与 CardType 无关）：纯防御/自身法术没有 attacked 目标，自然不会削上限。
                 if (attacked.Count > 0)
                     await Powers.EternalMelodyPower.ApplyToSpellTargets(
@@ -706,7 +710,7 @@ namespace STS2_WineFox.Commands
 
         private static List<Creature> CaptureAttackCandidates(MagicWineFoxSpellCastContext context)
         {
-            if (context.SourceCard is not MagicWineFoxSpellCard { TargetsEnemy: true })
+            if (context.SourceCard is not MagicWineFoxSpellCard { Traits.AttackSpell: true })
                 return [];
 
             if (context.TargetsAllEnemies)

@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconPureShield;
         
-        public override bool TargetsEnemy => false;
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
         
         public override decimal PreviewBlock
         {

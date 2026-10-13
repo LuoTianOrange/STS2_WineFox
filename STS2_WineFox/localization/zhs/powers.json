@@ -215,7 +215,7 @@
   "STS2_WINE_FOX_POWER_QUANTUM_LOCK_POWER.smartDescription": "本回合你的法术无法被格挡。",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.title": "解构",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.description": "本回合减少1个法术槽。",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "本回合减少[blue]1[/blue]个法术槽。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "本回合减少[blue]{Amount}[/blue]个法术槽。",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.title": "保存",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.description": "回合开始时能量不会重置。",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.smartDescription": "你的能量在回合开始时不会重置。还剩[blue]{Amount}[/blue]回合。",

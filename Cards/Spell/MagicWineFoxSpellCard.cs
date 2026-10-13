@@ -60,31 +60,18 @@ namespace STS2_WineFox.Cards.Spell
         }
 
         /// <summary>
-        ///     能否装填进法杖。部分法术（如防御类）设计为只能直接释放，
-        ///     此时返回 false；卡面只写自身效果，不写不可装填。
+        ///     法术的通用属性声明。默认单体、单段、攻击型、可装填、接受修正符。
         /// </summary>
-        public virtual bool IsLoadable => true;
+        public virtual SpellTraits Traits => SpellTraits.Default;
 
-        /// <summary>
-        ///     本法术是否作用于敌人。用于是否攻击到敌人的判定
-        ///     自身向法术应该返回 false。
-        ///     <para>
-        ///         由卡牌自己声明。
-        ///     </para>
-        /// </summary>
-        public virtual bool TargetsEnemy => true;
+        /// <summary>能否装填进法杖，取自 Traits。</summary>
+        public bool IsLoadable => Traits.Loadable;
 
         /// <summary>
         ///     预览用的单次基础伤害（不参与结算）。无伤害的法术保持 0。
         ///     供 <c>MagicWineFoxSpellCmd.PreviewRelease</c> 估算总伤害。
         /// </summary>
         public virtual decimal PreviewDamage => 0m;
-
-        /// <summary>
-        ///     预览用的内置段数。多段法术（如【激光剑】3 段）返回实际段数，
-        ///     供 <c>MagicWineFoxSpellCmd.EstimateDamage</c> 估算总伤害。单段法术保持 1。
-        /// </summary>
-        public virtual int PreviewHits => 1;
 
         /// <summary>
         ///     预览用的基础格挡（不参与结算）。无格挡的法术保持 0。
@@ -187,6 +174,9 @@ namespace STS2_WineFox.Cards.Spell
 
         protected static List<Creature> ResolveSpellTargets(Mechanics.MagicWineFoxSpellCastContext context)
         {
+            if (context.TargetsSelf)
+                return [];
+
             if (context.TargetsAllEnemies)
                 return context.Owner?.Creature?.CombatState?.HittableEnemies
                     .Where(enemy => enemy.IsAlive)
@@ -195,17 +185,79 @@ namespace STS2_WineFox.Cards.Spell
             return ResolveSpellTarget(context) is { } single ? [single] : [];
         }
 
+        /// <summary>
+        ///     结算法术伤害。基础段数来自 Traits 的 HitCount，随后追加额外段数。
+        /// <para>
+        ///         额外段数乘在自家段数上，HitCount 为 3 的法术遇到三段额外段数时共 12 段。
+        ///         </para>
+        /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealSpellDamage(
             Mechanics.MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
             var commands = new List<AttackCommand>();
+            var baseHits = BaseHitCount(context);
 
+            for (var i = 0; i < baseHits; i++)
+                await ExecuteHit(context, baseDamage, commands);
+
+            commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
+            return commands;
+        }
+
+        /// <summary>
+        ///     追加修正符带来的额外段数。每份额外段数按 Traits 的 HitCount 放大。
+        /// </summary>
+        protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
+            Mechanics.MagicWineFoxSpellCastContext context,
+            decimal baseDamage)
+        {
+            var commands = new List<AttackCommand>();
+            var extraHits = ExtraHitCount(context);
+
+            for (var i = 0; i < extraHits; i++)
+                await ExecuteHit(context, baseDamage, commands);
+
+            return commands;
+        }
+
+        /// <summary>本次释放的基础段数，取自 Traits 的 HitCount。</summary>
+        protected static int BaseHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        {
+            return Math.Max(0, ResolveTraits(context).HitCount);
+        }
+
+        /// <summary>本次释放的额外段数。不吃额外段数的法术返回 0。</summary>
+        protected static int ExtraHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        {
+            var traits = ResolveTraits(context);
+
+            if (!traits.AcceptsExtraStrikes)
+                return 0;
+
+            return Math.Max(0, traits.HitCount) * Math.Max(0, context.ExtraDamageStrikes);
+        }
+
+        /// <summary>本次释放的总段数，供预览与伤害估算使用。</summary>
+        protected static int ResolveHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        {
+            return BaseHitCount(context) + ExtraHitCount(context);
+        }
+
+        private static SpellTraits ResolveTraits(Mechanics.MagicWineFoxSpellCastContext context)
+        {
+            return (context.SourceCard as MagicWineFoxSpellCard)?.Traits ?? SpellTraits.Default;
+        }
+
+        private static async Task ExecuteHit(
+            Mechanics.MagicWineFoxSpellCastContext context,
+            decimal baseDamage,
+            List<AttackCommand> commands)
+        {
             if (context.IgnoresBlock)
             {
                 await DealUnblockableDamage(context, context.DamageWithModifiers(baseDamage));
-                commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
-                return commands;
+                return;
             }
 
             var attack = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
@@ -215,61 +267,21 @@ namespace STS2_WineFox.Cards.Spell
             {
                 if (context.Owner?.Creature?.CombatState is { } combatState)
                 {
-                    commands.Add(await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
+                    commands.Add(await attack.TargetingAllOpponents(combatState)
+                        .Execute(context.ChoiceContext));
                 }
+
+                return;
             }
-            else
+
+            var target = context.RandomTargets
+                ? PickRandomEnemy(context.Owner)
+                : ResolveSpellTarget(context);
+
+            if (target != null)
             {
-                var target = ResolveSpellTarget(context);
-                if (target != null)
-                {
-                    commands.Add(await attack.Targeting(target).Execute(context.ChoiceContext));
-                }
+                commands.Add(await attack.Targeting(target).Execute(context.ChoiceContext));
             }
-
-            commands.AddRange(await DealExtraDamageStrikes(context, baseDamage));
-            return commands;
-        }
-
-        protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
-            Mechanics.MagicWineFoxSpellCastContext context,
-            decimal baseDamage)
-        {
-            var commands = new List<AttackCommand>();
-            var strikes = context.ExtraDamageStrikes;
-
-            for (var i = 0; i < strikes; i++)
-            {
-                if (context.IgnoresBlock)
-                {
-                    await DealUnblockableDamage(context, context.DamageWithModifiers(baseDamage));
-                    continue;
-                }
-
-                var strike = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
-                    .FromCard(context.SourceCard, null);
-
-                if (context.TargetsAllEnemies)
-                {
-                    if (context.Owner?.Creature?.CombatState is { } combatState)
-                    {
-                        commands.Add(await strike.TargetingAllOpponents(combatState).Execute(context.ChoiceContext));
-                    }
-
-                    continue;
-                }
-
-                var target = context.RandomTargets
-                    ? PickRandomEnemy(context.Owner)
-                    : ResolveSpellTarget(context);
-
-                if (target != null)
-                {
-                    commands.Add(await strike.Targeting(target).Execute(context.ChoiceContext));
-                }
-            }
-
-            return commands;
         }
 
         private static async Task DealUnblockableDamage(

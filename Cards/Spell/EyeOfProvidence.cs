@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconEyeOfProvidence;
 
-        public override bool TargetsEnemy => false;
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {

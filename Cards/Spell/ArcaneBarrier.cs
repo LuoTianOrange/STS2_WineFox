@@ -23,7 +23,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public override bool GainsBlock => true;
 
-        public override bool TargetsEnemy => false;
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
         
         public override decimal PreviewBlock => MagicBlock.Resolve(this, DynamicVars.Block.BaseValue);
         

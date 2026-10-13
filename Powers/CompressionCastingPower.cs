@@ -59,13 +59,14 @@ namespace STS2_WineFox.Powers
                 return;
 
             var slots = await MagicWineFoxSpellCmd.EnsurePower(player);
-            slots?.ApplySlotCapacityOffset(-count);
+            slots?.AddSlotCapacityOffset(MagicWineFoxSpellSlotPower.CompressionSource, -count);
         }
 
         public override Task AfterRemoved(Creature oldOwner)
         {
             if (oldOwner.Player is { } player)
-                MagicWineFoxSpellCmd.GetPower(player)?.ClearSlotCapacityOffset();
+                MagicWineFoxSpellCmd.GetPower(player)
+                    ?.ClearSlotCapacityOffset(MagicWineFoxSpellSlotPower.CompressionSource);
 
             return Task.CompletedTask;
         }

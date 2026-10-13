@@ -73,34 +73,61 @@ namespace STS2_WineFox.Powers
         /// <summary>是否已执行过唯一升级。</summary>
         public bool Upgraded { get; private set; }
 
+        /// <summary>压缩施法来源的临时槽位偏移。</summary>
+        public const string CompressionSource = "compression_casting";
+
+        /// <summary>临时失槽来源的临时槽位偏移。</summary>
+        public const string TemporaryLossSource = "temporary_slot_loss";
+
         /// <summary>
-        ///     临时的槽位数量偏移（负数表示本回合减少槽位）。
-        ///     <para>
-        ///         不直接改 <c>Amount</c>：那是遗物/升级给的**永久**值，
-        ///         直接在它上面做减法会在恢复时丢掉永久容量。这里用独立偏移叠加。
-        ///         </para>
+        ///     按来源记录的临时槽位偏移。
         /// </summary>
-        private int _slotCapacityOffset;
+        private readonly Dictionary<string, int> _slotCapacityOffsets = [];
+
+        /// <summary>永久槽位容量，不受临时偏移影响。</summary>
+        public int BaseSlotCapacity => Math.Max(0, (int)Amount);
+
+        private int SlotCapacityOffset => _slotCapacityOffsets.Values.Sum();
 
         public int SlotCapacity =>
-            Math.Max(0, Math.Min((int)Amount + _slotCapacityOffset, HardSlotCap));
+            Math.Max(0, Math.Min(BaseSlotCapacity + SlotCapacityOffset, HardSlotCap));
 
-        /// <summary>本回合临时增加/减少槽位数量（负数减少）。</summary>
-        public void ApplySlotCapacityOffset(int offset)
+        /// <summary>永久增减槽位容量</summary>
+        public void ChangeBaseCapacity(int delta)
         {
-            _slotCapacityOffset = offset;
+            EnsureCapacity(BaseSlotCapacity + delta);
+        }
+
+        /// <summary>按来源叠加临时槽位偏移</summary>
+        public void AddSlotCapacityOffset(string source, int delta)
+        {
+            if (delta == 0)
+                return;
+
+            _slotCapacityOffsets[source] = _slotCapacityOffsets.GetValueOrDefault(source) + delta;
             SyncSlotCount();
             SyncLoadedVar();
             InvalidateSpellPreview();
         }
 
-        /// <summary>清除临时槽位偏移，恢复永久容量。</summary>
-        public void ClearSlotCapacityOffset()
+        /// <summary>清除指定来源的临时偏移，其他来源保持不变。</summary>
+        public void ClearSlotCapacityOffset(string source)
         {
-            if (_slotCapacityOffset == 0)
+            if (!_slotCapacityOffsets.Remove(source))
                 return;
 
-            _slotCapacityOffset = 0;
+            SyncSlotCount();
+            SyncLoadedVar();
+            InvalidateSpellPreview();
+        }
+
+        /// <summary>清除全部来源的临时偏移。</summary>
+        public void ClearAllSlotCapacityOffsets()
+        {
+            if (_slotCapacityOffsets.Count == 0)
+                return;
+
+            _slotCapacityOffsets.Clear();
             SyncSlotCount();
             SyncLoadedVar();
             InvalidateSpellPreview();
@@ -120,18 +147,13 @@ namespace STS2_WineFox.Powers
 
         /// <summary>
         ///     法术链预览的缓存版本号。槽位/修正符/施放次数变化时递增。
-        ///     <para>
-        ///         悬停槽位会触发一次完整的法术链推演（<c>PreviewRelease</c>，含修正符模拟与
-        ///         多处临时集合分配）。鼠标快速划过槽位时会高频重复执行，导致明显卡顿。
-        ///         因此把推演结果按版本号缓存，槽位内容不变时直接复用。
-        ///     </para>
         /// </summary>
         public int SpellPreviewVersion { get; private set; }
 
         /// <summary>缓存住的预览结果，与 <see cref="SpellPreviewVersion" /> 配套。</summary>
         public MagicWineFoxSpellReleasePreview? CachedSpellPreview { get; private set; }
 
-        /// <summary>标记法术链预览缓存失效（槽位或修正符已变化）。</summary>
+        /// <summary>标记法术链预览缓存失效。</summary>
         public void InvalidateSpellPreview()
         {
             SpellPreviewVersion++;
@@ -156,7 +178,7 @@ namespace STS2_WineFox.Powers
             }
         }
 
-        /// <summary>装填一张法术；槽满返回 false（法杖不是避难所，装不下就是装不下）。</summary>
+        /// <summary>装填一张法术；槽满返回 false。</summary>
         public bool TryLoad(MagicWineFoxSpellSlotSnapshot snapshot)
         {
             SyncSlotCount();
@@ -174,7 +196,7 @@ namespace STS2_WineFox.Powers
             return false;
         }
 
-        /// <summary>取走最旧的一张已装填法术（从序列头部，保持装填顺序语义）。</summary>
+        /// <summary>取走最旧的一张已装填法术。</summary>
         public MagicWineFoxSpellSlotSnapshot? DrainOldest()
         {
             SyncSlotCount();
@@ -193,7 +215,7 @@ namespace STS2_WineFox.Powers
             return null;
         }
 
-        /// <summary>清空全部装填（返回被清掉的顺序列表，供结算使用）。</summary>
+        /// <summary>清空全部装填。</summary>
         public List<MagicWineFoxSpellSlotSnapshot> DrainLoadedSpells()
         {
             SyncSlotCount();
@@ -247,30 +269,20 @@ namespace STS2_WineFox.Powers
             if (FirstLoadDiscountUsed) return;
             FirstLoadDiscountUsed = true;
         }
-
-        /// <summary>
-        ///     起始遗物【狐火杖】：本回合第一次装填的费用减 1（最低 0）。
-        /// <para>
-        ///         用游戏原生的费用钩子改写（与 <c>SnowBallOverwhelmingPower</c> 同一套写法），
-        ///         因此卡面会直接显示减费后的数值，且能量刚好够时也能打出——
-        /// 而不是先扣后还。消费时机在 <c>MagicWineFoxSpellCmd.Load</c>。
-        /// </para>
-        /// </summary>
+        
         public override bool TryModifyEnergyCostInCombat(
             CardModel card,
             decimal originalCost,
             out decimal modifiedCost)
         {
             modifiedCost = originalCost;
-
-            // 这是**起始遗物**的效果：没有法杖的角色（跨角色使用狐火卡）不该享受。
+            
             if (!MagicWineFoxSpellCmd.HasWandRelic(Owner.Player))
                 return false;
 
             if (!CanDiscountFirstLoad)
                 return false;
-
-            // 只影响可装填的狐火法术。
+            
             if (card is not MagicWineFoxSpellCard { IsLoadable: true })
                 return false;
 
@@ -281,7 +293,6 @@ namespace STS2_WineFox.Powers
             if (pile != PileType.Hand && pile != PileType.Play)
                 return false;
 
-            // 费用减 FirstLoadDiscount，不低于 0（0 费牌不受影响）。
             var discounted = originalCost - STS2_WineFox.Commands.MagicWineFoxSpellCmd.FirstLoadDiscount;
             if (discounted >= originalCost)
                 return false;
@@ -290,30 +301,19 @@ namespace STS2_WineFox.Powers
             return true;
         }
 
-        /// <summary>
-        /// 唯一升级：<paramref name="expandSlots" /> 为 true 走扩张（槽位 +1），
-        /// 否则走释放轮数（+1）。已升级过则返回 false。
-        /// </summary>
         public bool TryUpgrade(bool expandSlots)
         {
             if (Upgraded) return false;
 
             Upgraded = true;
             if (expandSlots)
-                EnsureCapacity(SlotCapacity + 1);
+                ChangeBaseCapacity(1);
             else
                 SetCastCount(CastCount + 1);
 
             return true;
         }
-
-        /// <summary>
-        ///     Power 被施加时清空槽位——新战斗 / 读档恢复都会走到这里。
-        /// <para>
-        /// 槽位内容属于本场战斗内的临时状态，绝不能被继承：否则开局法杖里
-        /// 会带着上一次已装填的法术，而且它们在释放时真的会结算并造成伤害。
-        /// </para>
-        /// </summary>
+        
         public override Task AfterApplied(Creature? applier, CardModel? cardSource)
         {
             ClearSlots();

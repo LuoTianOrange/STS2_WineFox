@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Common
 
         public override string SpellIconPath => Const.Paths.SpellIconRuneSiphon;
 
-        public override bool TargetsEnemy => false;
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {

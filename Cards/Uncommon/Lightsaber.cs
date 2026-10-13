@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
 
-        public override int PreviewHits => 3;
+        public override SpellTraits Traits => new() { HitCount = 3 };
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -38,8 +38,9 @@ namespace STS2_WineFox.Cards.Uncommon
                 return;
 
             var bonus = DynamicVars["Bonus"].BaseValue;
+            var hits = ResolveHitCount(context);
 
-            for (var hit = 0; hit < 3; hit++)
+            for (var hit = 0; hit < hits; hit++)
             {
                 var blockBefore = target.Block;
 

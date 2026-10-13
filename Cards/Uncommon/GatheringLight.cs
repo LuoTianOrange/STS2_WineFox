@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Owner is not { } owner || owner.Creature?.CombatState is not { } combatState)
+            if (context.Owner is not { } owner)
                 return;
 
             var targets = ResolveSpellTargets(context);
@@ -40,16 +40,10 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var bonus = DynamicVars["BonusPerCast"].BaseValue;
 
-            var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null);
-
             if (owner.Creature is { } caster && targets[0] is { } beamTarget)
                 GatheringLightVfx.Play(caster, beamTarget);
 
-            if (context.TargetsAllEnemies)
-                await attack.TargetingAllOpponents(combatState).Execute(context.ChoiceContext);
-            else
-                await attack.Targeting(targets[0]).Execute(context.ChoiceContext);
+            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
 
             var newBase = DynamicVars.Damage.BaseValue + bonus;
             DynamicVars.Damage.BaseValue = newBase;

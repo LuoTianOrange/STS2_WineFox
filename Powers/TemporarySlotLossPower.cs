@@ -14,14 +14,15 @@ namespace STS2_WineFox.Powers
     {
         public override PowerType Type => PowerType.Buff;
 
-        public override PowerStackType StackType => PowerStackType.Single;
+        public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.TemporarySlotLossPowerIcon);
 
         public override Task AfterRemoved(Creature oldOwner)
         {
             if (oldOwner.Player is { } player)
-                MagicWineFoxSpellCmd.GetPower(player)?.ClearSlotCapacityOffset();
+                MagicWineFoxSpellCmd.GetPower(player)
+                    ?.ClearSlotCapacityOffset(MagicWineFoxSpellSlotPower.TemporaryLossSource);
 
             return Task.CompletedTask;
         }
