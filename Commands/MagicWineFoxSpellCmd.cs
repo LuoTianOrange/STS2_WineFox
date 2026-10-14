@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -56,7 +57,8 @@ namespace STS2_WineFox.Commands
             return true;
         }
 
-        public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner, int? capacity = null,
+        public static async Task<MagicWineFoxSpellSlotPower?> EnsurePower(Player owner,
+            PlayerChoiceContext? choiceContext = null, int? capacity = null,
             int castCount = DefaultCastCount)
         {
             if (owner?.Creature == null) return null;
@@ -70,11 +72,12 @@ namespace STS2_WineFox.Commands
             if (existing != null)
             {
                 existing.EnsureCapacity(Math.Max(existing.BaseSlotCapacity, requested));
+
                 return existing;
             }
 
             var applied = await PowerCmd.Apply<MagicWineFoxSpellSlotPower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext ?? new ThrowingPlayerChoiceContext(),
                 owner.Creature,
                 requested,
                 owner.Creature,
@@ -100,7 +103,7 @@ namespace STS2_WineFox.Commands
             int xValue = 0)
         {
             var owner = card.Owner;
-            var power = await EnsurePower(owner);
+            var power = await EnsurePower(owner, choiceContext);
             if (power == null) return false;
 
             var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier, xValue);
@@ -111,6 +114,7 @@ namespace STS2_WineFox.Commands
 
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
             if (!power.TryLoad(snapshot)) return false;
+
 
             // 【复现】：若它打出时法杖为空、正等待认领，则认领这张刚装填的法术。
             owner?.Creature?.Powers.OfType<Powers.ReproductionPower>().FirstOrDefault()?.TryBind(snapshot);

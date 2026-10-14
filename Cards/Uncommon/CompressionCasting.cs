@@ -38,7 +38,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 this);
 
             if (power != null)
-                await power.ReduceSlots((int)DynamicVars["SlotLoss"].BaseValue);
+                await power.ReduceSlots(choiceContext, (int)DynamicVars["SlotLoss"].BaseValue);
 
             // 加成已经生效，但法杖里的法术数值需要主动刷新才会把 +4 算进卡面。
             MagicWineFoxSpellCmd.RefreshWandCardValues(MagicWineFoxSpellCmd.GetPower(owner));

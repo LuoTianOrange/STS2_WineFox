@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class HealingSpell() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IMagicWineFoxSpellCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -40,14 +40,16 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Owner?.Creature is not { } creature)
+            if (context.Owner?.Creature is not { } caster)
                 return;
+
+            var target = context.Target ?? caster;
 
             await PowerCmd.Apply<RegenPower>(
                 context.ChoiceContext,
-                creature,
+                target,
                 DynamicVars["Regen"].BaseValue,
-                creature,
+                caster,
                 context.SourceCard);
         }
 

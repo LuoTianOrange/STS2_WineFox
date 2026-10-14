@@ -34,7 +34,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             var gained = (int)DynamicVars["Slots"].BaseValue;
 
-            var slots = await MagicWineFoxSpellCmd.EnsurePower(owner);
+            var slots = await MagicWineFoxSpellCmd.EnsurePower(owner, choiceContext);
             slots?.AddSlotCapacityOffset(
                 MagicWineFoxSpellSlotPower.TemporarySlotGainSource,
                 gained);

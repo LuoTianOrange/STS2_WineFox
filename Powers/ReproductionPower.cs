@@ -79,7 +79,7 @@ namespace STS2_WineFox.Powers
 
             if (snapshot != null)
             {
-                var slots = await MagicWineFoxSpellCmd.EnsurePower(player);
+                var slots = await MagicWineFoxSpellCmd.EnsurePower(player, choiceContext);
                 if (slots != null)
                 {
                     Flash();

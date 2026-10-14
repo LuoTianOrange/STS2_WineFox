@@ -50,6 +50,7 @@ namespace STS2_WineFox
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 WineFoxFoodPotionRewardPatch.InitializeSavedData();
                 PotionCardReward.InitializeRegistration();
+                Combat.SpellSlotCombatSetup.Initialize();
                 if (!EnsureRequiredRuntimePatches())
                     return;
 
@@ -128,9 +129,6 @@ namespace STS2_WineFox
             patcher.RegisterPatch<NCombatUiActivateMaterialInventoryHudPatch>();
             patcher.RegisterPatch<NCombatUiAnimOutMaterialInventoryHudPatch>();
             patcher.RegisterPatch<NCombatUiDeactivateMaterialInventoryHudPatch>();
-            patcher.RegisterPatch<NCombatUiActivateSpellSlotBarPatch>();
-            patcher.RegisterPatch<NCombatUiAnimOutSpellSlotBarPatch>();
-            patcher.RegisterPatch<NCombatUiDeactivateSpellSlotBarPatch>();
             patcher.RegisterPatch<EchoesSequenceSmartDescriptionPatch>();
             patcher.RegisterPatch<SpellCardDescriptionPreviewPatch>();
             patcher.RegisterPatch<RelicHoverSpellOrderPatch>();

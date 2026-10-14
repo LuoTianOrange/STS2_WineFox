@@ -53,12 +53,12 @@ namespace STS2_WineFox.Powers
             return Bonus;
         }
 
-        public async Task ReduceSlots(int count)
+        public async Task ReduceSlots(PlayerChoiceContext choiceContext, int count)
         {
             if (Owner.Player is not { } player)
                 return;
 
-            var slots = await MagicWineFoxSpellCmd.EnsurePower(player);
+            var slots = await MagicWineFoxSpellCmd.EnsurePower(player, choiceContext);
             slots?.AddSlotCapacityOffset(MagicWineFoxSpellSlotPower.CompressionSource, -count);
         }
 

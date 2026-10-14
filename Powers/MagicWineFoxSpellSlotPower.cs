@@ -35,7 +35,7 @@ namespace STS2_WineFox.Powers
     {
         public const int HardSlotCap = 12;
 
-        private readonly List<MagicWineFoxSpellSlotSnapshot?> _slots = [];
+        private List<MagicWineFoxSpellSlotSnapshot?> _slots = [];
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
@@ -319,7 +319,7 @@ namespace STS2_WineFox.Powers
         
         public override Task AfterApplied(Creature? applier, CardModel? cardSource)
         {
-            ClearSlots();
+            _slots = [];
             return Task.CompletedTask;
         }
 
