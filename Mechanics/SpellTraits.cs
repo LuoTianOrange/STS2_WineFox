@@ -19,6 +19,9 @@ namespace STS2_WineFox.Mechanics
         /// <summary>攻击型法术</summary>
         public bool AttackSpell { get; init; } = true;
 
+        /// <summary>辅助型法术。自身向法术中非防御用途的归到这一类。</summary>
+        public bool SupportSpell { get; init; }
+
         /// <summary>是否接受法术修正符修饰</summary>
         public bool AcceptsModifiers { get; init; } = true;
 

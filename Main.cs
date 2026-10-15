@@ -51,6 +51,7 @@ namespace STS2_WineFox
                 WineFoxFoodPotionRewardPatch.InitializeSavedData();
                 PotionCardReward.InitializeRegistration();
                 Combat.SpellSlotCombatSetup.Initialize();
+                RitsuLibFramework.RegisterModelCapability<Mechanics.SpellAttributeTipCapability>(Const.ModId);
                 if (!EnsureRequiredRuntimePatches())
                     return;
 

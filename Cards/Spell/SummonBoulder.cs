@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconSummonBoulder;
 
-        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
+        public override SpellTraits Traits => new() { TargetSelf = true };
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

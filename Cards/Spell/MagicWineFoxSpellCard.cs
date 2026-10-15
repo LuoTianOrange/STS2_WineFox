@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Mechanics;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace STS2_WineFox.Cards.Spell
 {
@@ -26,8 +27,13 @@ namespace STS2_WineFox.Cards.Spell
         CardRarity rarity,
         TargetType target,
         bool showInCardLibrary = true)
-        : WineFoxCard(baseCost, type, rarity, target, showInCardLibrary), IMagicWineFoxSpellIconProvider
+        : WineFoxCard(baseCost, type, rarity, target, showInCardLibrary), IMagicWineFoxSpellIconProvider,
+            IModelCapabilitySource
     {
+        void IModelCapabilitySource.BuildDefaultCapabilities(ModelCapabilityList capabilities)
+        {
+            capabilities.Add<Mechanics.SpellAttributeTipCapability>();
+        }
         /// <summary>
         ///     法杖槽位预览条中显示的小图标。
         ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。

@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override string SpellIconPath => Const.Paths.SpellIconCapabilityCountermeasure;
 
-        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
+        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true, SupportSpell = true };
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {

@@ -230,5 +230,22 @@
   "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "This enemy takes +1 damage from every hit.",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "Unleashing Potential",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "Grants extra temporary spell slots this turn.",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "Grants extra temporary spell slots this turn."
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "Grants extra temporary spell slots this turn.",
+  "STS2_WINE_FOX_SPELL_ATTR_TITLE": "Spell Attributes",
+  "STS2_WINE_FOX_SPELL_ATTR_TYPE": "Type",
+  "STS2_WINE_FOX_SPELL_ATTR_COST": "Energy Cost",
+  "STS2_WINE_FOX_SPELL_ATTR_HITS": "Hits",
+  "STS2_WINE_FOX_SPELL_ATTR_TARGET": "Spell Target",
+  "STS2_WINE_FOX_SPELL_ATTR_BOUNCE": "Bounces",
+  "STS2_WINE_FOX_SPELL_ATTR_ATTACK": "Attack Spell",
+  "STS2_WINE_FOX_SPELL_ATTR_DEFENSE": "Defense Spell",
+  "STS2_WINE_FOX_SPELL_ATTR_ALL": "All Enemies",
+  "STS2_WINE_FOX_SPELL_ATTR_SINGLE": "Single Enemy",
+  "STS2_WINE_FOX_SPELL_ATTR_RANDOM": "Random Enemy",
+  "STS2_WINE_FOX_SPELL_ATTR_SELF": "Self",
+  "STS2_WINE_FOX_SPELL_ATTR_DAMAGE": "Damage",
+  "STS2_WINE_FOX_SPELL_ATTR_LOADABLE": "Loadable",
+  "STS2_WINE_FOX_SPELL_ATTR_NO": "No",
+  "STS2_WINE_FOX_SPELL_ATTR_SUPPORT": "Support Spell",
+  "STS2_WINE_FOX_SPELL_ATTR_MODIFIER": "Spell Modifier"
 }
