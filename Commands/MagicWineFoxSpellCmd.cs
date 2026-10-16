@@ -573,8 +573,14 @@ namespace STS2_WineFox.Commands
 
             var target = state.ForcedTarget ?? ResolveTarget(snapshot.Target, fallbackTarget);
 
-            if (target == null && owner?.Creature?.CombatState is { } targetState)
-                target = targetState.HittableEnemies.FirstOrDefault();
+            if (target == null)
+            {
+                var traits = (snapshot.Card as MagicWineFoxSpellCard)?.Traits ?? SpellTraits.Default;
+
+                target = traits.TargetSelf
+                    ? owner?.Creature
+                    : owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
+            }
 
             if (owner.Creature.Powers.OfType<Powers.SourceOfChaosPower>().Any())
                 state.MarkRandomTargets();
