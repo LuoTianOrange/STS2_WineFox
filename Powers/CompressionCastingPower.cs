@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Combat.Magic;
-using STS2_WineFox.Commands;
+using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -17,15 +17,19 @@ namespace STS2_WineFox.Powers
     ///     压缩施法：本回合减少法术槽，法杖内法术的伤害与防御提高。
     /// </summary>
     [RegisterPower]
-    public class CompressionCastingPower : WineFoxPower, IMagicDamageModifier, IMagicBlockModifier
+    public class CompressionCastingPower : WineFoxPower, IMagicDamageModifier, IMagicBlockModifier,
+        ISpellSlotOffsetProvider
     {
         public override PowerType Type => PowerType.Buff;
 
-        public override PowerStackType StackType => PowerStackType.Single;
+        public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.CompressionCastingPowerIcon);
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [new("Bonus", 4m)];
+
+        /// <summary>本能力施加时以 Amount 记录扣减的槽数。</summary>
+        public int SlotCapacityOffset => -(int)Amount;
 
         private decimal Bonus =>
             DynamicVars.TryGetValue("Bonus", out var bonus) ? bonus.BaseValue : 0m;
@@ -51,24 +55,6 @@ namespace STS2_WineFox.Powers
                 return 0m;
 
             return Bonus;
-        }
-
-        public async Task ReduceSlots(PlayerChoiceContext choiceContext, int count)
-        {
-            if (Owner.Player is not { } player)
-                return;
-
-            var slots = await MagicWineFoxSpellCmd.EnsurePower(player, choiceContext);
-            slots?.AddSlotCapacityOffset(MagicWineFoxSpellSlotPower.CompressionSource, -count);
-        }
-
-        public override Task AfterRemoved(Creature oldOwner)
-        {
-            if (oldOwner.Player is { } player)
-                MagicWineFoxSpellCmd.GetPower(player)
-                    ?.ClearSlotCapacityOffset(MagicWineFoxSpellSlotPower.CompressionSource);
-
-            return Task.CompletedTask;
         }
 
         public override async Task AfterSideTurnEnd(

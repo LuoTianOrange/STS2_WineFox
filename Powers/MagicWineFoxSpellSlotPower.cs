@@ -73,24 +73,14 @@ namespace STS2_WineFox.Powers
         /// <summary>是否已执行过唯一升级。</summary>
         public bool Upgraded { get; private set; }
 
-        /// <summary>压缩施法来源的临时槽位偏移。</summary>
-        public const string CompressionSource = "compression_casting";
-
-        /// <summary>临时失槽来源的临时槽位偏移。</summary>
-        public const string TemporaryLossSource = "temporary_slot_loss";
-
-        /// <summary>临时增槽来源的临时槽位偏移。</summary>
-        public const string TemporarySlotGainSource = "temporary_slot_gain";
-
-        /// <summary>
-        ///     按来源记录的临时槽位偏移。
-        /// </summary>
-        private readonly Dictionary<string, int> _slotCapacityOffsets = [];
-
         /// <summary>永久槽位容量，不受临时偏移影响。</summary>
         public int BaseSlotCapacity => Math.Max(0, (int)Amount);
 
-        private int SlotCapacityOffset => _slotCapacityOffsets.Values.Sum();
+        /// <summary>在场能力提供的临时偏移合计。</summary>
+        private int SlotCapacityOffset =>
+            Owner == null
+                ? 0
+                : Owner.Powers.OfType<ISpellSlotOffsetProvider>().Sum(provider => provider.SlotCapacityOffset);
 
         public int SlotCapacity =>
             Math.Max(0, Math.Min(BaseSlotCapacity + SlotCapacityOffset, HardSlotCap));
@@ -101,36 +91,9 @@ namespace STS2_WineFox.Powers
             EnsureCapacity(BaseSlotCapacity + delta);
         }
 
-        /// <summary>按来源叠加临时槽位偏移</summary>
-        public void AddSlotCapacityOffset(string source, int delta)
+        /// <summary>临时偏移变化后同步槽位与预览。</summary>
+        public void RefreshSlotCapacity()
         {
-            if (delta == 0)
-                return;
-
-            _slotCapacityOffsets[source] = _slotCapacityOffsets.GetValueOrDefault(source) + delta;
-            SyncSlotCount();
-            SyncLoadedVar();
-            InvalidateSpellPreview();
-        }
-
-        /// <summary>清除指定来源的临时偏移，其他来源保持不变。</summary>
-        public void ClearSlotCapacityOffset(string source)
-        {
-            if (!_slotCapacityOffsets.Remove(source))
-                return;
-
-            SyncSlotCount();
-            SyncLoadedVar();
-            InvalidateSpellPreview();
-        }
-
-        /// <summary>清除全部来源的临时偏移。</summary>
-        public void ClearAllSlotCapacityOffsets()
-        {
-            if (_slotCapacityOffsets.Count == 0)
-                return;
-
-            _slotCapacityOffsets.Clear();
             SyncSlotCount();
             SyncLoadedVar();
             InvalidateSpellPreview();

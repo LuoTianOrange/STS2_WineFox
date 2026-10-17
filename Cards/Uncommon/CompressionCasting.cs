@@ -30,15 +30,12 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner?.Creature == null)
                 return;
 
-            var power = await PowerCmd.Apply<CompressionCastingPower>(
+            await PowerCmd.Apply<CompressionCastingPower>(
                 choiceContext,
                 owner.Creature,
-                1m,
+                DynamicVars["SlotLoss"].BaseValue,
                 owner.Creature,
                 this);
-
-            if (power != null)
-                await power.ReduceSlots(choiceContext, (int)DynamicVars["SlotLoss"].BaseValue);
 
             // 加成已经生效，但法杖里的法术数值需要主动刷新才会把 +4 算进卡面。
             MagicWineFoxSpellCmd.RefreshWandCardValues(MagicWineFoxSpellCmd.GetPower(owner));

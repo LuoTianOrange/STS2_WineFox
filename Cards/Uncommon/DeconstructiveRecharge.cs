@@ -27,8 +27,7 @@ namespace STS2_WineFox.Cards.Uncommon
             if (owner?.Creature is not { } creature)
                 return;
 
-            var slots = await MagicWineFoxSpellCmd.EnsurePower(owner, choiceContext);
-            slots?.AddSlotCapacityOffset(MagicWineFoxSpellSlotPower.TemporaryLossSource, -1);
+            await MagicWineFoxSpellCmd.EnsurePower(owner, choiceContext);
 
             await PowerCmd.Apply<TemporarySlotLossPower>(
                 choiceContext, creature, 1m, creature, this);

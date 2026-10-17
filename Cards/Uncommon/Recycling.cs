@@ -44,7 +44,7 @@ namespace STS2_WineFox.Cards.Uncommon
                     .FirstOrDefault();
 
                 if (selected != null)
-                    await CardPileCmd.Add(selected, PileType.Exhaust);
+                    await CardCmd.Exhaust(choiceContext, selected);
             }
 
             var stressConsumed = await StressCmd.ConsumeOne(owner.Creature, this);

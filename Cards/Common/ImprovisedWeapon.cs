@@ -41,7 +41,7 @@ namespace STS2_WineFox.Cards.Common
             var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
 
             foreach (var card in selected)
-                await CardPileCmd.Add(card, PileType.Exhaust);
+                await CardCmd.Exhaust(choiceContext, card);
         }
 
         protected override void OnUpgrade()

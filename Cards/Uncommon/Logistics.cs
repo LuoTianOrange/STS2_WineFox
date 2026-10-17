@@ -65,7 +65,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 if (LocalContext.IsMe(target))
                     CardCmd.PreviewCardPileAdd(instance);
 
-                await CardPileCmd.Add(chosen, PileType.Exhaust);
+                await CardCmd.Exhaust(choiceContext, chosen);
             }
         }
 

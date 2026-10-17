@@ -40,7 +40,7 @@ namespace STS2_WineFox.Cards.Common
                 return;
 
             var cost = selected.EnergyCost.Canonical;
-            await CardPileCmd.Add(selected, PileType.Exhaust);
+            await CardCmd.Exhaust(choiceContext, selected);
             await CreatureCmd.GainBlock(
                 creature,
                 cost * DynamicVars["Multiplier"].BaseValue,

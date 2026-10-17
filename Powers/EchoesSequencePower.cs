@@ -61,7 +61,7 @@ namespace STS2_WineFox.Powers
                 return;
 
             _boundCardInstance = null;
-            await CardPileCmd.Add(cardPlay.Card, PileType.Exhaust);
+            await CardCmd.Exhaust(context, cardPlay.Card);
         }
 
         public bool TryBind(CardModel card)
