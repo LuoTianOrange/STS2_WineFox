@@ -183,34 +183,20 @@ namespace STS2_WineFox.Combat
                 return GetMaterialAmounts().ContainsKey(powerType);
             }
 
-            /// <summary>
-            ///     材料数量缓存：每次刷新只遍历一次 <c>Creature.Powers</c>。
-            ///     <para>
-            ///         原先每个槽位各调一次 <c>FirstOrDefault</c>，且 <c>ShouldStayVisible</c> 里
-            ///         还会用 <c>Any</c> 再扫一遍——每帧产生多次 LINQ 闭包分配与线性查找。
-            ///         这里改成建一次字典，随角色节点更换而失效。
-            ///     </para>
-            /// </summary>
             private readonly Dictionary<Type, decimal> _materialAmounts = [];
 
             private Dictionary<Type, decimal> GetMaterialAmounts()
             {
+                _materialAmounts.Clear();
+
                 if (Player.Creature is not { } creature)
                     return _materialAmounts;
 
-                if (!ReferenceEquals(_materialAmountsOwner, creature))
-                {
-                    _materialAmounts.Clear();
-                    _materialAmountsOwner = creature;
-
-                    foreach (var power in creature.Powers)
-                        _materialAmounts[power.GetType()] = power.Amount;
-                }
+                foreach (var power in creature.Powers)
+                    _materialAmounts[power.GetType()] = power.Amount;
 
                 return _materialAmounts;
             }
-
-            private Creature? _materialAmountsOwner;
 
             private bool ShouldStayVisible()
             {
@@ -230,7 +216,6 @@ namespace STS2_WineFox.Combat
                 creatureNode.AddChild(this);
                 _creatureNode = creatureNode;
                 _healthBarNode = null;
-                _materialAmountsOwner = null;
                 ConnectHoverSignals();
             }
 
