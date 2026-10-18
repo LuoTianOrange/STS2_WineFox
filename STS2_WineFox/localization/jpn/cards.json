@@ -394,7 +394,7 @@
   "STS2_WINE_FOX_CARD_MANA_SNATCH.title": "マナ強奪",
   "STS2_WINE_FOX_CARD_MANA_SNATCH.description": "[gold]装填[/gold]: 次の術がダメージを与えた時、その{Ratio:diff()}%の[gold]ブロック[/gold]を得る。",
   "STS2_WINE_FOX_CARD_TARGET_POSITIONING.title": "目標指定",
-  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]装填[/gold]: 敵を1体指定する。このターン、すべての単体攻撃術はその敵を優先対象にする。{IfUpgraded:show:\nその敵は受けるダメージが毎回+1。|}",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]装填[/gold]: 次の術はダメージ修正を得て、この戦闘中ダメージ+{Bonus:diff()}。",
   "STS2_WINE_FOX_CARD_ECLIPSE.title": "皆既日食",
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: [gold]ブロック[/gold]を{Block:diff()}得る。すべての敵の[gold]ブロック[/gold]を{StealPercent:diff()}%除去し、その合計を[gold]ブロック[/gold]として得る。",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜在能力解放",

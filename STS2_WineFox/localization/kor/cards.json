@@ -394,7 +394,7 @@
   "STS2_WINE_FOX_CARD_MANA_SNATCH.title": "마나 강탈",
   "STS2_WINE_FOX_CARD_MANA_SNATCH.description": "[gold]장전[/gold]: 다음 주문이 피해를 줄 때, 그 {Ratio:diff()}%만큼 [gold]방어도[/gold]를 얻습니다.",
   "STS2_WINE_FOX_CARD_TARGET_POSITIONING.title": "목표 지정",
-  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]장전[/gold]: 적 하나를 지정합니다. 이번 턴 모든 단일 공격 주문이 그 적을 우선 대상으로 삼습니다.{IfUpgraded:show:\n그 적은 매번 받는 피해 +1.|}",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]장전[/gold]: 다음 주문이 피해 수정을 얻고, 이번 전투 동안 피해량 +{Bonus:diff()}.",
   "STS2_WINE_FOX_CARD_ECLIPSE.title": "개기일식",
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]장전[/gold]: [gold]방어도[/gold]를 {Block:diff()} 얻습니다. 모든 적의 [gold]방어도[/gold]를 {StealPercent:diff()}% 제거하고 그 총량을 [gold]방어도[/gold]로 얻습니다.",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "잠재력 해방",

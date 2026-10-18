@@ -394,7 +394,7 @@
   "STS2_WINE_FOX_CARD_MANA_SNATCH.title": "Mana Snatch",
   "STS2_WINE_FOX_CARD_MANA_SNATCH.description": "[gold]Load[/gold]: When the next spell deals damage, gain [gold]Block[/gold] equal to {Ratio:diff()}% of it.",
   "STS2_WINE_FOX_CARD_TARGET_POSITIONING.title": "Target Positioning",
-  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]Load[/gold]: Mark an enemy. All single-target Attack spells prioritize it this turn.{IfUpgraded:show:\nThat enemy takes +1 damage from every hit.|}",
+  "STS2_WINE_FOX_CARD_TARGET_POSITIONING.description": "[gold]Load[/gold]: The next spell gains a damage modifier, dealing +{Bonus:diff()} damage for the rest of combat.",
   "STS2_WINE_FOX_CARD_ECLIPSE.title": "Total Eclipse",
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]Load[/gold]: Gain {Block:diff()} [gold]Block[/gold]. Remove {StealPercent:diff()}% of all enemies' [gold]Block[/gold] and gain the total as [gold]Block[/gold].",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "Unleashing Potential",

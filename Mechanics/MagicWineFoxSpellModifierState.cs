@@ -113,7 +113,34 @@ namespace STS2_WineFox.Mechanics
         {
             if (target != null)
                 ForcedTarget = target;
-        }        /// <summary>
+        }
+
+        /// <summary>
+        ///     登记给下一张法术的伤害修正。装填顺序上紧随其后的那张法术的伤害值会被永久抬高，
+        ///     因此加成随卡留在本场战斗中。
+        ///     <para>
+        ///         它不随 <see cref="Reset" /> 清除，由释放方在遇到法术时显式
+        ///         <see cref="ConsumeDamageCorrection" />，否则会被后续法术重复吃下。
+        ///     </para>
+        /// </summary>
+        public decimal DamageCorrectionBonus { get; private set; }
+
+        /// <summary>登记下一张法术的伤害修正。</summary>
+        public void MarkDamageCorrection(decimal amount)
+        {
+            if (amount > 0m)
+                DamageCorrectionBonus += amount;
+        }
+
+        /// <summary>取出并清空待施加的伤害修正。</summary>
+        public decimal ConsumeDamageCorrection()
+        {
+            var amount = DamageCorrectionBonus;
+            DamageCorrectionBonus = 0m;
+            return amount;
+        }
+
+        /// <summary>
         ///     下一个法术结算后要授予的奥斯提横扫层数(0 = 不授予)。
         ///     该能力每回合结束时让奥斯提对所有敌人造成等量伤害。
         /// </summary>
@@ -143,7 +170,8 @@ namespace STS2_WineFox.Mechanics
         public bool IsEmpty =>
             DamageBonus == 0m && ExtraCasts == 0 && !ExtraCastsAreBudgetFree &&
             DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets &&
-            ExtraDamageStrikes == 0 && DrawCount == 0m && !DrawForModifierEntries;
+            ExtraDamageStrikes == 0 && DrawCount == 0m && !DrawForModifierEntries &&
+            DamageCorrectionBonus == 0m;
 
         public void AddDamageBonus(decimal amount)
         {
@@ -203,6 +231,7 @@ namespace STS2_WineFox.Mechanics
                 DamageToBlockRatio = DamageToBlockRatio,
                 ForcedTarget = ForcedTarget,
                 WandModifierCount = WandModifierCount,
+                DamageCorrectionBonus = DamageCorrectionBonus,
             };
         }
 

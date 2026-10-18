@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 2)]
+    [RegisterCharacterStarterCard(typeof(MagicWineFox), 4)]
     public class FoxfireBolt() : MagicWineFoxSpellCard(
         1, CardType.Attack, CardRarity.Basic, TargetType.None), IMagicWineFoxSpellCard
     {

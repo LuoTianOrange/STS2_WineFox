@@ -106,7 +106,8 @@ namespace STS2_WineFox.Commands
             var power = await EnsurePower(owner, choiceContext);
             if (power == null) return false;
 
-            var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier, xValue);
+            var snapshot = new MagicWineFoxSpellSlotSnapshot(
+                card.CreateClone(), play.Target, isModifier, xValue, card);
 
             // 序列回响：把这张法术记为「始终释放」的法术。
             var echo = owner?.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
@@ -180,7 +181,7 @@ namespace STS2_WineFox.Commands
                 return;
 
             // 每次装回都用新的克隆，避免复用已被结算过的实例。
-            power.TryLoad(new MagicWineFoxSpellSlotSnapshot(template.CreateClone(), null, false));
+            power.TryLoad(new MagicWineFoxSpellSlotSnapshot(template.CreateClone(), null, false, 0, template));
         }
 
         /// <summary>释放序列中最旧的一张法术，其余保留。</summary>
@@ -213,6 +214,32 @@ namespace STS2_WineFox.Commands
         public static void ClearLoaded(Player owner)
         {
             GetPower(owner)?.ClearSlots();
+        }
+
+        /// <summary>
+        ///     把修正符登记的伤害修正抬高本张法术的伤害值，并同步写到实体卡上，使加成随卡留在本场战斗。
+        /// </summary>
+        private static void ApplyDamageCorrection(
+            MagicWineFoxSpellSlotSnapshot snapshot,
+            MagicWineFoxSpellModifierState modifiers)
+        {
+            var amount = modifiers.ConsumeDamageCorrection();
+
+            if (amount <= 0m)
+                return;
+
+            RaiseDamage(snapshot.Card, amount);
+
+            if (snapshot.SourceCard is { } source && !ReferenceEquals(source, snapshot.Card))
+                RaiseDamage(source, amount);
+        }
+
+        private static void RaiseDamage(CardModel card, decimal amount)
+        {
+            if (!card.DynamicVars.TryGetValue("Damage", out var damage))
+                return;
+
+            damage.BaseValue += amount;
         }
 
         /// <summary>
@@ -304,6 +331,8 @@ namespace STS2_WineFox.Commands
                             modifiers.SetCurrentX(extra.XValue);
                             (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
                         }
+
+                    ApplyDamageCorrection(snapshot, modifiers);
 
                     history.Add(snapshot);
 
@@ -446,6 +475,11 @@ namespace STS2_WineFox.Commands
                         modifiers.SetCurrentX(extra.XValue);
                         (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
                     }
+
+                var correction = modifiers.ConsumeDamageCorrection();
+
+                if (correction > 0m)
+                    modifiers.AddDamageBonus(correction);
 
                 var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount);
                 total += damage * hits;
