@@ -17,8 +17,8 @@ namespace STS2_WineFox.Cards.Spell
     ///         法术 = 可以装填进法杖、由回合结束的释放步骤结算的牌。
     ///     </para>
     ///     <para>
-    ///         法术牌的 <see cref="TargetType" /> 一律为 <c>None</c>：它们被装填进法杖后
-    ///         由铸法释放，运行时目标来自装填时的快照；直接打出时也无需玩家点选。
+    ///         目标由 <see cref="TargetType" /> 按 Traits 派生：单体攻击法术要求玩家在装填时
+    ///         选定敌人，目标随快照传递到释放阶段；群体、自身向与辅助向法术仍取 <c>None</c>。
     ///     </para>
     /// </summary>
     public abstract class MagicWineFoxSpellCard(
@@ -33,6 +33,26 @@ namespace STS2_WineFox.Cards.Spell
         void IModelCapabilitySource.BuildDefaultCapabilities(ModelCapabilityList capabilities)
         {
             capabilities.Add<Mechanics.SpellAttributeTipCapability>();
+        }
+
+        /// <summary>
+        ///     单体攻击法术装填时需要选定目标，其余情况沿用构造传入的目标类型。
+        ///     修正符不施放，始终沿用构造传入值。
+        /// </summary>
+        public override TargetType TargetType
+        {
+            get
+            {
+                if (this is IMagicWineFoxSpellModifierCard)
+                    return base.TargetType;
+
+                var traits = Traits;
+
+                if (traits.TargetSelf || traits.AreaOfEffect || traits.RandomTarget)
+                    return base.TargetType;
+
+                return traits.AttackSpell ? TargetType.AnyEnemy : base.TargetType;
+            }
         }
         /// <summary>
         ///     法杖槽位预览条中显示的小图标。

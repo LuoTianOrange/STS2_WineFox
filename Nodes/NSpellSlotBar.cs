@@ -1,7 +1,10 @@
 using Godot;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -90,6 +93,10 @@ namespace STS2_WineFox.Nodes
         private bool _forceRedraw = true;
 
         private Tween? _hoverTween;
+
+        private const string ArrowScenePath = "res://scenes/combat/targeting_arrow.tscn";
+
+        private static NTargetingArrow? _arrowNode;
 
         /// <summary>队友的槽位默认压暗，鼠标悬浮到该角色身上时恢复原色。</summary>
         private static readonly Color RemoteModulate = new(0.55f, 0.55f, 0.6f);
@@ -363,7 +370,7 @@ namespace STS2_WineFox.Nodes
                 box.AddChild(BuildLayer(icon, IconFill, Colors.White));
 
             if (snapshot?.Card != null)
-                AttachHoverTip(box, snapshot.Card);
+                AttachHoverTip(box, snapshot);
 
             return box;
         }
@@ -375,8 +382,10 @@ namespace STS2_WineFox.Nodes
         ///         合成后的结果，因此提示里的数字与手牌一致地受加成影响。
         /// </para>
         /// </summary>
-        private static void AttachHoverTip(Control slot, CardModel card)
+        private static void AttachHoverTip(Control slot, MagicWineFoxSpellSlotSnapshot snapshot)
         {
+            var card = snapshot.Card;
+
             slot.MouseEntered += () =>
             {
                 if (!GodotObject.IsInstanceValid(slot))
@@ -388,13 +397,59 @@ namespace STS2_WineFox.Nodes
                 NHoverTipSet.Remove(slot);
                 NHoverTipSet.CreateAndShow(slot, [new CardHoverTip(card)],
                     HoverTip.GetHoverTipAlignment(slot))?.SetFollowOwner();
+
+                ShowTargetArrow(slot, snapshot.Target);
             };
 
             slot.MouseExited += () =>
             {
+                HideTargetArrow();
+
                 if (GodotObject.IsInstanceValid(slot))
                     NHoverTipSet.Remove(slot);
             };
+        }
+
+        /// <summary>
+        ///     悬停已装填法术时，从槽位画一条原生选目标箭头指向它记录的目标。
+        ///     <para>
+        ///         箭头节点首次创建后一直保留，之后只切换绘制状态：<see cref="NTargetingArrow.StopDrawing" />
+        ///         会把 <c>Visible</c> 置否并清空当前插值位置，因此停止后不再产生每帧开销；
+        ///         <see cref="NTargetingArrow.StartDrawingFrom" /> 会重置起点并重新显示，可安全重复调用。
+        ///     </para>
+        /// </summary>
+        private static void ShowTargetArrow(Control slot, Creature? target)
+        {
+            HideTargetArrow();
+
+            if (target == null || !target.IsAlive)
+                return;
+
+            var creatureNode = target.GetCreatureNode();
+            if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
+                return;
+
+            if (_arrowNode == null || !GodotObject.IsInstanceValid(_arrowNode))
+            {
+                var parent = NTargetManager.Instance;
+                if (parent == null || !GodotObject.IsInstanceValid(parent))
+                    return;
+
+                var scene = PreloadManager.Cache.GetScene(ArrowScenePath);
+                _arrowNode = scene.Instantiate<NTargetingArrow>();
+                parent.AddChildSafely(_arrowNode);
+            }
+
+            // 传 true 走「非跟随鼠标」分支：_Process 会用 Lerp 趋近我们设定的目标点，
+            // 而传 false 会每帧用鼠标位置覆盖 _toPosition，箭头就永远指着鼠标。
+            _arrowNode.StartDrawingFrom(slot, true);
+            _arrowNode.UpdateDrawingTo(creatureNode.VfxSpawnPosition);
+        }
+
+        private static void HideTargetArrow()
+        {
+            if (_arrowNode != null && GodotObject.IsInstanceValid(_arrowNode))
+                _arrowNode.StopDrawing();
         }
 
         /// <summary>

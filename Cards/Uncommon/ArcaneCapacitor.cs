@@ -14,6 +14,8 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneCapacitor);
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.ChargeKeyword];
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             if (Owner?.Creature is not { } creature)

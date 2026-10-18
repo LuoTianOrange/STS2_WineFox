@@ -85,5 +85,12 @@ namespace STS2_WineFox.Content
 
         [RegisterOwnedCardKeyword(WineFoxKeywords.CookedFoodKey)]
         private sealed class CookedFood;
+
+        /// <summary>
+        ///     蓄能关键字：装填攻击型法术时累积，获得格挡时消耗换取等量格挡。
+        ///     不带图标——关键字只作文字说明。
+        /// </summary>
+        [RegisterOwnedCardKeyword(WineFoxKeywords.ChargeKey)]
+        private sealed class Charge;
     }
 }

@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "解放",
   "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]解放[/gold]：杖に装填された術を解決する。",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "スペル修正",
-  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "杖に装填されるが発動しない。直後の術の解決方法を変更する。"
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "杖に装填されるが発動しない。直後の術の解決方法を変更する。",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.title": "蓄能",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "攻撃術を装填した時に蓄積する。[gold]ブロック[/gold]を得た時、蓄能をすべて消費し、同じ値の[gold]ブロック[/gold]を追加で得る。"
 }

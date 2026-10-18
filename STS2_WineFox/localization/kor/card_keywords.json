@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "해방",
   "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]해방[/gold]: 지팡이에 장전된 주문을 해방합니다.",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "주문 수정",
-  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "지팡이에 장전되지만 발동하지 않습니다. 다음 주문의 해결 방식을 바꿉니다."
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "지팡이에 장전되지만 발동하지 않습니다. 다음 주문의 해결 방식을 바꿉니다.",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.title": "충전",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "공격 주문을 장전할 때 누적됩니다. [gold]방어도[/gold]를 얻을 때 충전을 모두 소모하여 그만큼 [gold]방어도[/gold]를 추가로 얻습니다."
 }

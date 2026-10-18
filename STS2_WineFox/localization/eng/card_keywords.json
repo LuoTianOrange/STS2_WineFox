@@ -37,5 +37,7 @@
   "STS2_WINE_FOX_KEYWORD_RELEASE.title": "Release",
   "STS2_WINE_FOX_KEYWORD_RELEASE.description": "[gold]Release[/gold]: resolve the spells loaded in your wand.",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "Spell Modifier",
-  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "Loads into your wand without being cast. It changes how the next spell resolves."
+  "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "Loads into your wand without being cast. It changes how the next spell resolves.",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.title": "Charge",
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "Accumulates when you load an Attack spell. When you gain [gold]Block[/gold], consume all Charge to gain that much additional [gold]Block[/gold]."
 }
