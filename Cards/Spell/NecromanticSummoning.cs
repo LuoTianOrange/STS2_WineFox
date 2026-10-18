@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class NecromanticSummoning() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

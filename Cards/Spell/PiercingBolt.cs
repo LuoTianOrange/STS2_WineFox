@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class PiercingBolt() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
+        1, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

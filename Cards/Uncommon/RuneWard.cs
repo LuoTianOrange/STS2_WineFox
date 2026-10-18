@@ -35,7 +35,8 @@ namespace STS2_WineFox.Cards.Uncommon
             await CreatureCmd.GainBlock(
                 creature, context.BlockWithModifiers(DynamicVars.Block.BaseValue), ValueProp.Move, null);
 
-            var modifier = SpellModifierFactory.CreateRandom(owner);
+            var modifier = await SpellModifierFactory.ChooseOneOfRandom(
+                context.ChoiceContext, owner, Rarity);
             if (modifier == null)
                 return;
 

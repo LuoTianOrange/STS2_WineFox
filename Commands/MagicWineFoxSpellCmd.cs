@@ -109,21 +109,21 @@ namespace STS2_WineFox.Commands
             var snapshot = new MagicWineFoxSpellSlotSnapshot(card.CreateClone(), play.Target, isModifier, xValue);
 
             // 序列回响：把这张法术记为「始终释放」的法术。
-            var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
+            var echo = owner?.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
             echo?.TryBind(card);
 
             // 槽满：按设计「装不下就是装不下」，不做自动过载（充能球式的槽满转化不适用于法杖）。
             if (!power.TryLoad(snapshot)) return false;
 
 
-            // 【复现】：若它打出时法杖为空、正等待认领，则认领这张刚装填的法术。
-            owner?.Creature?.Powers.OfType<Powers.ReproductionPower>().FirstOrDefault()?.TryBind(snapshot);
+            // 复现：若它打出时法杖为空、正等待认领，则认领这张刚装填的法术。
+            owner?.Creature?.Powers.OfType<ReproductionPower>().FirstOrDefault()?.TryBind(snapshot);
 
             if (power.CanDiscountFirstLoad)
                 power.ConsumeFirstLoadDiscount();
 
-            // 【奥术电容】：装填攻击型法术时累积蓄能。
-            var capacitor = owner?.Creature?.Powers.OfType<Powers.ArcaneCapacitorPower>().FirstOrDefault();
+            // 奥术电容：装填攻击型法术时累积蓄能。
+            var capacitor = owner?.Creature?.Powers.OfType<ArcaneCapacitorPower>().FirstOrDefault();
             if (capacitor != null)
                 await capacitor.OnSpellLoaded(choiceContext, card);
 
@@ -156,7 +156,7 @@ namespace STS2_WineFox.Commands
                 power.ManaRefluxPending = false;
                 var amount = power.SpellsCastThisTurn + power.ManaRefluxBonus;
                 if (amount > 0 && owner.Creature is { } refluxTarget)
-                    await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.EnergyNextTurnPower>(
+                    await PowerCmd.Apply<EnergyNextTurnPower>(
                         choiceContext, refluxTarget, amount, refluxTarget, sourceCard);
             }
             
@@ -171,7 +171,7 @@ namespace STS2_WineFox.Commands
         /// <summary>把【序列回响】绑定的法术自动装回法杖。</summary>
         private static void EnsureEchoLoaded(Player owner)
         {
-            var echo = owner?.Creature?.Powers.OfType<Powers.EchoesSequencePower>().FirstOrDefault();
+            var echo = owner?.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
             if (echo?.EchoSpell is not { } template)
                 return;
 
@@ -582,7 +582,7 @@ namespace STS2_WineFox.Commands
                     : owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
             }
 
-            if (owner.Creature.Powers.OfType<Powers.SourceOfChaosPower>().Any())
+            if (owner.Creature.Powers.OfType<SourceOfChaosPower>().Any())
                 state.MarkRandomTargets();
 
             var context = new MagicWineFoxSpellCastContext(
@@ -635,7 +635,7 @@ namespace STS2_WineFox.Commands
 
                 // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
                 if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
-                    await Powers.SpellAshesPower.ApplyToAllEnemies(choiceContext, owner, snapshot.Card);
+                    await SpellAshesPower.ApplyToAllEnemies(choiceContext, owner, snapshot.Card);
 
                 // 「是否攻击到敌人」卡牌声明判定，
                 var attacked = snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true }
@@ -645,7 +645,7 @@ namespace STS2_WineFox.Commands
                 // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 Traits.AttackSpell 声明，
                 // 与 CardType 无关）：纯防御/自身法术没有 attacked 目标，自然不会削上限。
                 if (attacked.Count > 0)
-                    await Powers.EternalMelodyPower.ApplyToSpellTargets(
+                    await EternalMelodyPower.ApplyToSpellTargets(
                         choiceContext,
                         owner,
                         snapshot.Card,
@@ -668,7 +668,7 @@ namespace STS2_WineFox.Commands
                 // 死灵召唤
                 if (state.OstySweepAmount > 0m && owner?.Creature is { } ownerCreature)
                 {
-                    await PowerCmd.Apply<Powers.NecromanticSummoningPower>(
+                    await PowerCmd.Apply<NecromanticSummoningPower>(
                         choiceContext,
                         ownerCreature,
                         state.OstySweepAmount,

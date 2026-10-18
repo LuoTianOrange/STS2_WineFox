@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class DoubleReleaseSigil() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
+        1, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDoubleReleaseSigil);
 

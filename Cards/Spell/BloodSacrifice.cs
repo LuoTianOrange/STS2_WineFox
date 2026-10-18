@@ -13,7 +13,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class BloodSacrifice() : MagicWineFoxSpellCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellWandModifierCard
+        0, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellWandModifierCard
     {
         protected override bool HasEnergyCostX => true;
 

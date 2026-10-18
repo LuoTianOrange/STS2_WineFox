@@ -18,7 +18,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(10m, ValueProp.Move),
+            new BlockVar(14m, ValueProp.Move),
             new("StealPercent", 50m)
         ];
 

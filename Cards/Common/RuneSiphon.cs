@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Copies", 1m)
+            new("Copies", 2m)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRuneSiphon);
@@ -31,9 +31,8 @@ namespace STS2_WineFox.Cards.Common
             if (context.Owner is not { } owner)
                 return;
 
-            var copies = (int)DynamicVars["Copies"].BaseValue;
-            for (var i = 0; i < copies; i++)
-                await SpellModifierFactory.GrantRandomToHand(context.ChoiceContext, owner, context.SourceCard);
+            await SpellModifierFactory.ChooseOneOfRandomToHand(
+                context.ChoiceContext, owner, Rarity, (int)DynamicVars["Copies"].BaseValue);
 
             await CardPileCmd.Draw(context.ChoiceContext, 1, owner);
         }

@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class QuadrupleScatteringRelease() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

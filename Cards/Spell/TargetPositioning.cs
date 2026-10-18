@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class TargetPositioning() : MagicWineFoxSpellCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy), IMagicWineFoxSpellWandModifierCard
+        0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy), IMagicWineFoxSpellWandModifierCard
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardTargetPositioning);
 

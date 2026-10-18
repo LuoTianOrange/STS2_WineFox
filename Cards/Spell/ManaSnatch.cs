@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class ManaSnatch() : MagicWineFoxSpellCard(
-        2, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellModifierCard
+        2, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

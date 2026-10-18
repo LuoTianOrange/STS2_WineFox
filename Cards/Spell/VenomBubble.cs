@@ -53,7 +53,7 @@ namespace STS2_WineFox.Cards.Spell
                     context.SourceCard);
             }
 
-            await SpellModifierFactory.GrantRandomToHand(context.ChoiceContext, owner, context.SourceCard);
+            await SpellModifierFactory.ChooseOneOfRandomToHand(context.ChoiceContext, owner, Rarity);
         }
 
         protected override void OnUpgrade()

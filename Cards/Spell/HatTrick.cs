@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class HatTrick() : MagicWineFoxSpellCard(
-        0, CardType.Skill, CardRarity.Token, TargetType.None), IMagicWineFoxSpellWandModifierCard
+        0, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellWandModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
