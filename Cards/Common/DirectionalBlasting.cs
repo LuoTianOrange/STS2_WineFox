@@ -37,7 +37,7 @@ namespace STS2_WineFox.Cards.Common
             WineFoxKeywords.ReleaseKeyword
         ];
 
-        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMagicMissile);
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDirectionalBlasting);
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

@@ -399,5 +399,9 @@
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]Load[/gold]: Gain {Block:diff()} [gold]Block[/gold]. Remove {StealPercent:diff()}% of all enemies' [gold]Block[/gold] and gain the total as [gold]Block[/gold].",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "Unleashing Potential",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "Gain {Slots:diff()} temporary spell slots this turn. Draw {Cards:diff()} spell cards.",
-  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "Choose a Spell Modifier"
+  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "Choose a Spell Modifier",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "Staff Charging",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "Gain {Block:diff()} [gold]Block[/gold]. Add a [gold]Mana Regeneration{IfUpgraded:show:+|}[/gold] to your hand.",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "Mana Regeneration",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]Load[/gold]: Gain {Energy:energyIcons()}."
 }

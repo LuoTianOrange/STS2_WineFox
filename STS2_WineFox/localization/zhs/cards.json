@@ -401,5 +401,9 @@
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。移除所有敌人{StealPercent:diff()}%的[gold]格挡[/gold]，你获得其总量作为[gold]格挡[/gold]。",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜能激发",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "在本回合中，获得{Slots:diff()}个临时法术槽。抽{Cards:diff()}张法术牌。",
-  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "选择一张法术修正"
+  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "选择一张法术修正",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "法杖充能",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "获得{Block:diff()}点[gold]格挡[/gold]。获得一张[gold]法力恢复{IfUpgraded:show:+|}[/gold]。",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "法力恢复",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: 获得{Energy:energyIcons()}。"
 }

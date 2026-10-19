@@ -399,5 +399,9 @@
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: [gold]ブロック[/gold]を{Block:diff()}得る。すべての敵の[gold]ブロック[/gold]を{StealPercent:diff()}%除去し、その合計を[gold]ブロック[/gold]として得る。",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜在能力解放",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "このターン、一時的な術スロットを{Slots:diff()}つ得る。術カードを{Cards:diff()}枚引く。",
-  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "術修正を選択"
+  "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "術修正を選択",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "法杖充填",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "[gold]ブロック[/gold]を{Block:diff()}得る。[gold]マナ回復{IfUpgraded:show:+|}[/gold]を1枚得る。",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "マナ回復",
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: {Energy:energyIcons()}を得る。"
 }
