@@ -17,7 +17,6 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public sealed class ArcaneCapacitorPower : WineFoxPower, IPowerExtraIconAmountLabelsProvider
     {
-        private int _charge;
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [new("Gain", 2m)];
 
@@ -32,11 +31,11 @@ namespace STS2_WineFox.Powers
         [SavedProperty]
         public int Charge
         {
-            get => _charge;
+            get;
             set
             {
                 AssertMutable();
-                _charge = value;
+                field = value;
                 InvokeDisplayAmountChanged();
             }
         }

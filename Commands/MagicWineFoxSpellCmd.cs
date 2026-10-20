@@ -607,13 +607,15 @@ namespace STS2_WineFox.Commands
 
             var target = state.ForcedTarget ?? ResolveTarget(snapshot.Target, fallbackTarget);
 
+            if (owner?.Creature is { } caster && target == caster)
+                target = null;
+
             if (target == null)
             {
                 var traits = (snapshot.Card as MagicWineFoxSpellCard)?.Traits ?? SpellTraits.Default;
 
-                target = traits.TargetSelf
-                    ? owner?.Creature
-                    : owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
+                if (!traits.TargetSelf)
+                    target = owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
             }
 
             if (owner.Creature.Powers.OfType<SourceOfChaosPower>().Any())

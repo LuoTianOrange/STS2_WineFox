@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(6m, ValueProp.Move),
+            new DamageVar(9m, ValueProp.Move),
             new("BonusPerCast", 3m)
         ];
 

@@ -359,7 +359,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "法术余烬",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "每当法术槽中的攻击型法术被释放时，给予所有敌人{Burn:diff()}层[gold]烧伤[/gold]。",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "链式闪电",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害，然后弹跳到另一个随机敌人，造成{BounceDamage:diff()}点伤害。",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害，然后弹跳到另一个随机敌人，造成{BounceDamage:diff()}点伤害。给予被攻击的敌人1层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "汇聚之光",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。本场战斗中每释放过一次本法术，伤害+{BonusPerCast:diff()}。",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "量子锁定",
@@ -400,10 +400,10 @@
   "STS2_WINE_FOX_CARD_ECLIPSE.title": "日全食",
   "STS2_WINE_FOX_CARD_ECLIPSE.description": "[gold]装填[/gold]: 获得{Block:diff()}点[gold]格挡[/gold]。移除所有敌人{StealPercent:diff()}%的[gold]格挡[/gold]，你获得其总量作为[gold]格挡[/gold]。",
   "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.title": "潜能激发",
-  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "在本回合中，获得{Slots:diff()}个临时法术槽。抽{Cards:diff()}张法术牌。",
+  "STS2_WINE_FOX_CARD_UNLEASHING_POTENTIAL.description": "在本回合中，获得{Slots:diff()}个临时法术槽。\n抽{Cards:diff()}张法术牌。",
   "STS2_WINE_FOX_CARD_EYE_OF_PROVIDENCE_CHOOSE": "选择一张法术修正",
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "法杖充能",
-  "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "获得{Block:diff()}点[gold]格挡[/gold]。获得一张[gold]法力恢复{IfUpgraded:show:+|}[/gold]。",
+  "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得一张[gold]法力恢复{IfUpgraded:show:+|}[/gold]。",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "法力恢复",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: 获得{Energy:energyIcons()}。"
 }

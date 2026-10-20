@@ -357,7 +357,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "呪文の残燼",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "呪文スロット内の攻撃呪文が解放されるたび、すべての敵に{Burn:diff()}の[gold]燃焼[/gold]を付与する。",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "連鎖稲妻",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを与え、その後ランダムな別の敵に跳ねて{BounceDamage:diff()}ダメージを与える。",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを与え、その後ランダムな別の敵に跳ねて{BounceDamage:diff()}ダメージを与える。命中した敵に[gold]弱体[/gold]1を付与する。",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "集光",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]装填[/gold]: {Damage:diff()}ダメージを与える。この戦闘中にこの呪文を解放するたび、ダメージ+{BonusPerCast:diff()}。",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "量子ロック",

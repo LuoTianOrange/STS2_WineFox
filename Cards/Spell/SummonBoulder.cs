@@ -2,6 +2,7 @@ using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
@@ -19,6 +20,11 @@ namespace STS2_WineFox.Cards.Spell
 
         public override string SpellIconPath => Const.Paths.SpellIconSummonBoulder;
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromCard<GiantRock>(IsUpgraded)
+        ];
+
         public override SpellTraits Traits => new() { TargetSelf = true };
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -33,7 +39,12 @@ namespace STS2_WineFox.Cards.Spell
 
             var rock = combatState.CreateCard<GiantRock>(owner);
 
-            var target = context.Target ?? combatState.HittableEnemies.FirstOrDefault();
+            var enemies = combatState.HittableEnemies;
+
+            var target = context.Target is { IsAlive: true } candidate && enemies.Contains(candidate)
+                ? candidate
+                : enemies.FirstOrDefault();
+
             if (target == null)
                 return;
             

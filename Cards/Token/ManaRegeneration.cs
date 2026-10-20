@@ -27,7 +27,8 @@ namespace STS2_WineFox.Cards.Token
 
         public override string SpellIconPath => Const.Paths.SpellIconManaRegeneration;
 
-        public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
+        public override SpellTraits Traits =>
+            new() { AttackSpell = false, SupportSpell = true, TargetSelf = true };
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {

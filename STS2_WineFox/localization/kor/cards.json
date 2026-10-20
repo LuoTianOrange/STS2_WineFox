@@ -357,7 +357,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "주문 잿더미",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "주문 슬롯의 공격 주문이 방출될 때마다 모든 적에게 {Burn:diff()}의 [gold]연소[/gold]를 부여합니다.",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "연쇄 번개",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 준 후, 다른 무작위 적에게 튕겨 {BounceDamage:diff()}의 피해를 줍니다.",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 준 후, 다른 무작위 적에게 튕겨 {BounceDamage:diff()}의 피해를 줍니다. 적중한 적에게 [gold]취약[/gold] 1을 부여합니다.",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "집광",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 줍니다. 이번 전투에서 이 주문을 방출할 때마다 피해 +{BonusPerCast:diff()}.",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "양자 고정",
