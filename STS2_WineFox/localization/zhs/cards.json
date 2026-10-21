@@ -405,5 +405,13 @@
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "法杖充能",
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n获得一张[gold]法力恢复{IfUpgraded:show:+|}[/gold]。",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "法力恢复",
-  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: 获得{Energy:energyIcons()}。"
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: 获得{Energy:energyIcons()}。",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.title": "过载施法",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.description": "[gold]装填[/gold]：获得一张[gold]法术过载{IfUpgraded:show:+|}[/gold]。立即[gold]释放[/gold]法术槽中已装填的法术。",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.title": "法术过载",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.description": "[gold]装填[/gold]：抽{Cards:diff()}张牌。{IfUpgraded:show:获得1点[gold]能量[/gold]。|}释放时：对你造成等同于法杖内[gold]法术过载[/gold]数量的伤害。此法术只会在回合结束时被消耗。",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.title": "法术实验",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.description": "你每回合第一次填满法杖时，自动释放法杖。",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.title": "混乱光环",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.description": "[gold]装填[/gold]：释放时消耗所有[gold]能量[/gold]，依次对所有敌人施加{Amount:diff()}点[gold]中毒[/gold]、{Amount:diff()}点[gold]烧伤[/gold]、{Amount:diff()}点[gold]灾厄[/gold]。若消耗的能量不少于4点，则每点能量都会触发全部三种效果。"
 }

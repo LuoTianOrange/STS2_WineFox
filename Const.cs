@@ -89,6 +89,8 @@ namespace STS2_WineFox
             public const string SpellIconTargetPositioning = Root + "/ui/spell_icons/spell_target_positioning.png";
             public const string SpellIconEclipse = Root + "/ui/spell_icons/spell_eclipse.png";
             public const string SpellIconManaRegeneration = Root + "/ui/spell_icons/spell_mana_regeneration.png";
+            public const string SpellIconSpellOverload = Root + "/ui/spell_icons/spell_spell_overload.png";
+            public const string SpellIconAuraOfChaos = Root + "/ui/spell_icons/spell_aura_of_chaos.png";
 
             public const string SpellAttrTypeIcon = Root + "/ui/spell_attrs/attr_type.png";
             public const string SpellAttrCostIcon = Root + "/ui/spell_attrs/attr_cost.png";
@@ -108,6 +110,7 @@ namespace STS2_WineFox
             public const string TargetPositioningPowerIcon = Root + "/powers/target_positioning_power.png";
             public const string TemporarySlotGainPowerIcon = Root + "/powers/temporary_slot_gain_power.png";
             public const string SpellAshesPowerIcon = Root + "/powers/spell_ashes_power.png";
+            public const string SpellExperimentPowerIcon = Root + "/powers/spell_experiment_power.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
@@ -423,6 +426,10 @@ namespace STS2_WineFox
             public const string CardReCharge = Root + "/cards/card_recharge.png";
             public const string CardStaffCharging = Root + "/cards/card_staff_charging.png";
             public const string CardManaRegeneration = Root + "/cards/card_mana_regeneration.png";
+            public const string CardOverloadCasting = Root + "/cards/card_overload_casting.png";
+            public const string CardSpellOverload = Root + "/cards/card_spell_overload.png";
+            public const string CardSpellExperiment = Root + "/cards/card_spell_experiment.png";
+            public const string CardAuraOfChaos = Root + "/cards/card_aura_of_chaos.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

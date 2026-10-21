@@ -403,5 +403,13 @@
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "스태프 충전",
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다. [gold]마나 회복{IfUpgraded:show:+|}[/gold]을 1장 얻습니다.",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "마나 회복",
-  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]장전[/gold]: {Energy:energyIcons()}을 얻습니다."
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]장전[/gold]: {Energy:energyIcons()}을 얻습니다.",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.title": "과부하 시전",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.description": "[gold]장전[/gold]: [gold]주문 과부하{IfUpgraded:show:+|}[/gold] 1장. 그런 다음 지팡이를 방출합니다.",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.title": "주문 과부하",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.description": "[gold]장전[/gold]: 카드를 {Cards:diff()}장 뽑습니다. {IfUpgraded:show:[gold]에너지[/gold]를 1 얻습니다.|}방출 시: 지팡이에 장전된 [gold]주문 과부하[/gold] 수만큼 피해를 받습니다. 이 주문은 턴 종료 시에만 소모됩니다.",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.title": "주문 실험",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.description": "[gold]고유[/gold]. 매 턴 처음으로 지팡이가 가득 차면 자동으로 지팡이를 방출합니다.",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.title": "혼돈의 오라",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.description": "[gold]장전[/gold]: 방출 시 [gold]에너지[/gold]를 모두 소모하고 모든 적에게 순서대로 {Amount:diff()}의 [gold]중독[/gold], {Amount:diff()}의 [gold]화상[/gold], {Amount:diff()}의 [gold]파멸[/gold]을 부여합니다. 소모한 에너지가 4 이상이면 에너지 1점마다 세 가지 효과가 모두 발동합니다."
 }

@@ -403,5 +403,13 @@
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "Staff Charging",
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "Gain {Block:diff()} [gold]Block[/gold]. Add a [gold]Mana Regeneration{IfUpgraded:show:+|}[/gold] to your hand.",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "Mana Regeneration",
-  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]Load[/gold]: Gain {Energy:energyIcons()}."
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]Load[/gold]: Gain {Energy:energyIcons()}.",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.title": "Overload Casting",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.description": "[gold]Load[/gold]: a [gold]Spell Overload{IfUpgraded:show:+|}[/gold]. Then release your staff.",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.title": "Spell Overload",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.description": "[gold]Load[/gold]: Draw {Cards:diff()} card. {IfUpgraded:show:Gain 1 [gold]Energy[/gold].|}When released: take damage equal to the number of [gold]Spell Overloads[/gold] loaded in your staff. This spell is only consumed at the end of your turn.",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.title": "Spell Experiment",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.description": "[gold]Innate[/gold]. The first time you fill your staff each turn, release it automatically.",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.title": "Aura of Chaos",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.description": "[gold]Load[/gold]: When released, spend all your [gold]Energy[/gold] and apply {Amount:diff()} [gold]Poison[/gold], {Amount:diff()} [gold]Burning[/gold], {Amount:diff()} [gold]Doom[/gold] to all enemies in that order. If you spent 4 or more Energy, every point of Energy triggers all three effects."
 }

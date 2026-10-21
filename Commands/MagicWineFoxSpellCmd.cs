@@ -131,6 +131,10 @@ namespace STS2_WineFox.Commands
             // 装填后立刻刷新法杖内所有卡的显示数值（Power + 法术修正符）。
             RefreshWandCardValues(power);
 
+            var experiment = owner?.Creature?.Powers.OfType<SpellExperimentPower>().FirstOrDefault();
+            if (experiment != null)
+                await experiment.TryReleaseWhenStaffFull(choiceContext, owner!, power);
+
             return true;
         }
 
@@ -139,12 +143,36 @@ namespace STS2_WineFox.Commands
             PlayerChoiceContext choiceContext,
             Player owner,
             Creature? fallbackTarget,
-            CardModel? sourceCard)
+            CardModel? sourceCard,
+            bool isTurnEnd = false)
         {
             var power = GetPower(owner);
             if (power == null) return;
 
-            var spells = power.DrainLoadedSpells();
+            var loaded = power.DrainLoadedSpells();
+
+            var carried = new List<MagicWineFoxSpellSlotSnapshot>();
+            if (!isTurnEnd)
+                carried.AddRange(loaded.Where(snapshot => snapshot.Card is SpellOverload));
+
+            var overloadCount = loaded.Count(snapshot => snapshot.Card is SpellOverload);
+            if (overloadCount > 0)
+            {
+                var overloadState = new MagicWineFoxSpellModifierState();
+
+                foreach (var entry in loaded)
+                {
+                    if (entry.Card is not SpellOverload overload)
+                        continue;
+
+                    overload.OverloadCount = overloadCount;
+
+                    await overload.CastAsSpell(new MagicWineFoxSpellCastContext(
+                        choiceContext, owner, null, entry.Card, sourceCard, overloadState));
+                }
+            }
+
+            var spells = loaded;
 
             var preserved = spells.Count > 0
                 ? await ResolveSpellChain(
@@ -161,10 +189,10 @@ namespace STS2_WineFox.Commands
                         choiceContext, refluxTarget, amount, refluxTarget, sourceCard);
             }
             
-            foreach (var snapshot in preserved)
+            foreach (var snapshot in carried.Concat(preserved))
                 if (!power.TryLoad(snapshot))
                     break;
-            
+
             EnsureEchoLoaded(owner);
             RefreshWandCardValues(power);
         }
@@ -303,6 +331,9 @@ namespace STS2_WineFox.Commands
 
                         return spells.Skip(index + 1).ToList();
                     }
+
+                    if (snapshot.Card is SpellOverload)
+                        continue;
 
                     if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
                     {

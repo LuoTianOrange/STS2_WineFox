@@ -76,7 +76,7 @@ namespace STS2_WineFox.Cards.Basic
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Cards.UpgradeValueBy(1);
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }

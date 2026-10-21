@@ -327,7 +327,7 @@ namespace STS2_WineFox.Powers
             if (Owner.Player is not { } player)
                 return;
 
-            await MagicWineFoxSpellCmd.CastAll(choiceContext, player, null, null);
+            await MagicWineFoxSpellCmd.CastAll(choiceContext, player, null, null, isTurnEnd: true);
         }
 
         private void SyncSlotCount()

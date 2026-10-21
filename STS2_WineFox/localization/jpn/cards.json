@@ -403,5 +403,13 @@
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.title": "法杖充填",
   "STS2_WINE_FOX_CARD_STAFF_CHARGING.description": "[gold]ブロック[/gold]を{Block:diff()}得る。[gold]マナ回復{IfUpgraded:show:+|}[/gold]を1枚得る。",
   "STS2_WINE_FOX_CARD_MANA_REGENERATION.title": "マナ回復",
-  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: {Energy:energyIcons()}を得る。"
+  "STS2_WINE_FOX_CARD_MANA_REGENERATION.description": "[gold]装填[/gold]: {Energy:energyIcons()}を得る。",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.title": "オーバーロード詠唱",
+  "STS2_WINE_FOX_CARD_OVERLOAD_CASTING.description": "[gold]装填[/gold]：[gold]スペルオーバーロード{IfUpgraded:show:+|}[/gold]を1枚。その後、杖を解放する。",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.title": "スペルオーバーロード",
+  "STS2_WINE_FOX_CARD_SPELL_OVERLOAD.description": "[gold]装填[/gold]：カードを{Cards:diff()}枚引く。{IfUpgraded:show:[gold]エナジー[/gold]を1得る。|}解放時：杖に装填された[gold]スペルオーバーロード[/gold]の数に等しいダメージを受ける。このスペルはターン終了時にのみ消費される。",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.title": "スペル実験",
+  "STS2_WINE_FOX_CARD_SPELL_EXPERIMENT.description": "[gold]固有[/gold]。毎ターン最初に杖が満杯になった時、自動で杖を解放する。",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.title": "混沌のオーラ",
+  "STS2_WINE_FOX_CARD_AURA_OF_CHAOS.description": "[gold]装填[/gold]：解放時、[gold]エナジー[/gold]をすべて消費し、すべての敵に順に{Amount:diff()}の[gold]毒[/gold]、{Amount:diff()}の[gold]燃焼[/gold]、{Amount:diff()}の[gold]破滅[/gold]を与える。消費したエナジーが4以上なら、エナジー1点ごとに3種すべてが発動する。"
 }
