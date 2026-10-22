@@ -27,7 +27,8 @@ namespace STS2_WineFox.Cards.Spell
             if (owner?.Creature?.CombatState == null)
                 return;
 
-            await SpellModifierFactory.ChooseOneFromPoolToHand(context.ChoiceContext, owner, Rarity);
+            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
+                new PendingSpellModifierRequest(PendingSpellModifierMode.FromPool, Rarity));
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

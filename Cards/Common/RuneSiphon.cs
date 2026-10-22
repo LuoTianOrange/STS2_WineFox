@@ -31,10 +31,13 @@ namespace STS2_WineFox.Cards.Common
             if (context.Owner is not { } owner)
                 return;
 
-            await SpellModifierFactory.ChooseOneOfRandomToHand(
-                context.ChoiceContext, owner, Rarity, (int)DynamicVars["Copies"].BaseValue);
-
             await CardPileCmd.Draw(context.ChoiceContext, 1, owner);
+
+            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
+                new PendingSpellModifierRequest(
+                    PendingSpellModifierMode.RandomChoice,
+                    Rarity,
+                    (int)DynamicVars["Copies"].BaseValue));
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

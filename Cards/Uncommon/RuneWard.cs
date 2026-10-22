@@ -35,15 +35,8 @@ namespace STS2_WineFox.Cards.Uncommon
             await CreatureCmd.GainBlock(
                 creature, context.BlockWithModifiers(DynamicVars.Block.BaseValue), ValueProp.Move, null);
 
-            var modifier = await SpellModifierFactory.ChooseOneOfRandom(
-                context.ChoiceContext, owner, Rarity);
-            if (modifier == null)
-                return;
-
-            modifier.EnergyCost.AddThisCombat(-1);
-
-            CardCmd.PreviewCardPileAdd(
-                await CardPileCmd.AddGeneratedCardToCombat(modifier, PileType.Hand, owner));
+            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
+                new PendingSpellModifierRequest(PendingSpellModifierMode.RandomChoiceWithDiscount, Rarity));
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

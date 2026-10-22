@@ -286,15 +286,33 @@ namespace STS2_WineFox.Powers
             return Task.CompletedTask;
         }
 
-        /// <summary>回合开始时重置首次装填费用减 1。</summary>
-        protected override Task OnAfterPlayerTurnStart(
+        /// <summary>回合开始时重置首次装填费用减 1，并结算上回合登记的法术修正选择。</summary>
+        protected override async Task OnAfterPlayerTurnStart(
             MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext,
             MegaCrit.Sts2.Core.Entities.Players.Player player)
         {
             FirstLoadDiscountUsed = false;
             SpellsCastThisTurn = 0;
-            return Task.CompletedTask;
+
+            if (_pendingModifiers.Count > 0 && player.Creature == Owner && Owner.Player is { } owner)
+            {
+                var pending = _pendingModifiers.ToList();
+                _pendingModifiers.Clear();
+
+                foreach (var request in pending)
+                    await request.Resolve(choiceContext, owner);
+            }
         }
+
+        private readonly List<PendingSpellModifierRequest> _pendingModifiers = [];
+
+        /// <summary>登记一个延迟到下回合开始的法术修正选择。</summary>
+        public void QueueSpellModifier(PendingSpellModifierRequest request)
+        {
+            _pendingModifiers.Add(request);
+        }
+
+        public bool HasPendingSpellModifiers => _pendingModifiers.Count > 0;
 
         public int SpellsCastThisTurn { get; private set; }
 

@@ -53,7 +53,8 @@ namespace STS2_WineFox.Cards.Spell
                     context.SourceCard);
             }
 
-            await SpellModifierFactory.ChooseOneOfRandomToHand(context.ChoiceContext, owner, Rarity);
+            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
+                new PendingSpellModifierRequest(PendingSpellModifierMode.RandomChoice, Rarity));
         }
 
         protected override void OnUpgrade()
