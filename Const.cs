@@ -91,6 +91,7 @@ namespace STS2_WineFox
             public const string SpellIconManaRegeneration = Root + "/ui/spell_icons/spell_mana_regeneration.png";
             public const string SpellIconSpellOverload = Root + "/ui/spell_icons/spell_spell_overload.png";
             public const string SpellIconAuraOfChaos = Root + "/ui/spell_icons/spell_aura_of_chaos.png";
+            public const string SpellIconWeaknessCurse = Root + "/ui/spell_icons/spell_weakness_curse.png";
 
             public const string SpellAttrTypeIcon = Root + "/ui/spell_attrs/attr_type.png";
             public const string SpellAttrCostIcon = Root + "/ui/spell_attrs/attr_cost.png";
@@ -430,6 +431,7 @@ namespace STS2_WineFox
             public const string CardSpellOverload = Root + "/cards/card_spell_overload.png";
             public const string CardSpellExperiment = Root + "/cards/card_spell_experiment.png";
             public const string CardAuraOfChaos = Root + "/cards/card_aura_of_chaos.png";
+            public const string CardWeaknessCurse = Root + "/cards/card_weakness_curse.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

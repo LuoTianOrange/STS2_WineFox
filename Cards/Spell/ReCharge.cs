@@ -11,7 +11,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class ReCharge() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellWandModifierCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellWandModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

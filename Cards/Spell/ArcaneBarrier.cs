@@ -43,9 +43,11 @@ namespace STS2_WineFox.Cards.Spell
             if (owner == null)
                 return;
 
+            var extra = MagicWineFoxSpellCmd.CountLoadedSpells(context.Owner) * 3m;
+
             await CreatureCmd.GainBlock(
                 owner,
-                context.BlockWithModifiers(DynamicVars.Block.BaseValue),
+                context.BlockWithModifiers(DynamicVars.Block.BaseValue + extra),
                 ValueProp.Unpowered,
                 null);
         }

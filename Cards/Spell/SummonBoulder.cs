@@ -14,7 +14,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class SummonBoulder() : MagicWineFoxSpellCard(
-        2, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IMagicWineFoxSpellCard
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IMagicWineFoxSpellCard
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSummonBoulder);
 
@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Spell
             HoverTipFactory.FromCard<GiantRock>(IsUpgraded)
         ];
 
-        public override SpellTraits Traits => new() { TargetSelf = true };
+        public override SpellTraits Traits => new();
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

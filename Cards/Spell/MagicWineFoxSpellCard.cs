@@ -100,6 +100,11 @@ namespace STS2_WineFox.Cards.Spell
         public virtual decimal PreviewDamage => 0m;
 
         /// <summary>
+        ///     按本次释放的法术总数计算的额外预览伤害，供条件加成类法术（如能量弹）参与估算。
+        /// </summary>
+        public virtual decimal PreviewExtraDamage(int spellCount) => 0m;
+
+        /// <summary>
         ///     预览用的基础格挡（不参与结算）。无格挡的法术保持 0。
         ///     <para>
         ///         供 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 把

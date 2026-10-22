@@ -42,10 +42,15 @@ namespace STS2_WineFox.Cards.Spell
             if (owner?.Creature == null || target == null)
                 return;
 
+            var amount = DynamicVars["Burn"].BaseValue;
+
+            if (target.HasPower<BurningPower>())
+                amount += 2m;
+
             await PowerCmd.Apply<BurningPower>(
                 new ThrowingPlayerChoiceContext(),
                 target,
-                DynamicVars["Burn"].BaseValue,
+                amount,
                 owner.Creature,
                 context.SourceCard);
         }

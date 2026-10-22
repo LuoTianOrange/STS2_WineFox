@@ -316,6 +316,9 @@ namespace STS2_WineFox.Powers
 
         public int SpellsCastThisTurn { get; private set; }
 
+        /// <summary>本次法杖释放包含的法术总数，供条件类卡牌在释放期间读取。</summary>
+        public int ReleaseSpellCount { get; set; }
+
         public void IncrementSpellsCast()
         {
             SpellsCastThisTurn++;

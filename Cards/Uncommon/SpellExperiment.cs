@@ -15,11 +15,6 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpellExperiment);
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [
-            CardKeyword.Innate
-        ];
-
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<SpellExperimentPower>()
@@ -37,6 +32,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
+            AddKeyword(CardKeyword.Innate);
         }
     }
 }

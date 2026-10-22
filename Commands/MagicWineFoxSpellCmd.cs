@@ -94,6 +94,23 @@ namespace STS2_WineFox.Commands
             return owner?.Creature?.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
         }
 
+        /// <summary>本次法杖释放包含的法术总数（不含修正符）；非释放期间回落到槽内当前数量。</summary>
+        public static int CountLoadedSpells(Player? owner)
+        {
+            if (owner == null)
+                return 0;
+
+            var power = GetPower(owner);
+            if (power == null)
+                return 0;
+
+            if (power.ReleaseSpellCount > 0)
+                return power.ReleaseSpellCount;
+
+            return power.Slots.Count(
+                slot => slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+        }
+
         /// <summary>装填一张法术。返回是否成功（槽满时失败）。</summary>
         public static async Task<bool> Load(
             PlayerChoiceContext choiceContext,
@@ -151,6 +168,9 @@ namespace STS2_WineFox.Commands
 
             var loaded = power.DrainLoadedSpells();
 
+            power.ReleaseSpellCount = loaded.Count(
+                snapshot => snapshot.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+
             var carried = new List<MagicWineFoxSpellSlotSnapshot>();
             if (!isTurnEnd)
                 carried.AddRange(loaded.Where(snapshot => snapshot.Card is SpellOverload));
@@ -195,6 +215,8 @@ namespace STS2_WineFox.Commands
 
             EnsureEchoLoaded(owner);
             RefreshWandCardValues(power);
+
+            power.ReleaseSpellCount = 0;
         }
 
         /// <summary>把【序列回响】绑定的法术自动装回法杖。</summary>
@@ -225,6 +247,9 @@ namespace STS2_WineFox.Commands
             var oldest = power.DrainOldest();
             if (oldest == null) return;
 
+            power.ReleaseSpellCount = 1 + power.Slots.Count(
+                slot => slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+
             var preserved = await ResolveSpellChain(
                 choiceContext,
                 owner,
@@ -237,6 +262,8 @@ namespace STS2_WineFox.Commands
             foreach (var snapshot in preserved)
                 if (!power.TryLoad(snapshot))
                     break;
+
+            power.ReleaseSpellCount = 0;
         }
 
         public static void ClearLoaded(Player owner)
@@ -406,6 +433,9 @@ namespace STS2_WineFox.Commands
             // 全体修正时，每次伤害会打到所有可命中敌人，总伤害需乘以敌人数。
             var enemyCount = Math.Max(1, power.Owner?.CombatState?.HittableEnemies.Count ?? 1);
 
+            var previewSpellCount = spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellCard
+                and not IMagicWineFoxSpellModifierCard);
+
             modifiers.SetWandModifierCount(
                 spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
             modifiers.SetWandSpellCount(
@@ -451,7 +481,8 @@ namespace STS2_WineFox.Commands
 
                     for (var rewind = cast.Count - 1; rewind >= 0; rewind--)
                     {
-                        var (replayDamage, replayHits) = EstimateDamage(cast[rewind].Card, replayState, enemyCount);
+                        var (replayDamage, replayHits) = EstimateDamage(
+                            cast[rewind].Card, replayState, enemyCount, previewSpellCount);
                         total += replayDamage * replayHits;
 
                         replay.Add(new MagicWineFoxSpellPreviewStep(
@@ -512,7 +543,7 @@ namespace STS2_WineFox.Commands
                 if (correction > 0m)
                     modifiers.AddDamageBonus(correction);
 
-                var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount);
+                var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount, previewSpellCount);
                 total += damage * hits;
 
                 forward.Add(new MagicWineFoxSpellPreviewStep(
@@ -590,9 +621,12 @@ namespace STS2_WineFox.Commands
         private static (decimal Damage, int Hits) EstimateDamage(
             CardModel card,
             MagicWineFoxSpellModifierState state,
-            int enemyCount)
+            int enemyCount,
+            int spellCount = 0)
         {
-            var baseDamage = card is MagicWineFoxSpellCard spell ? spell.PreviewDamage : 0m;
+            var baseDamage = card is MagicWineFoxSpellCard spell
+                ? spell.PreviewDamage + spell.PreviewExtraDamage(spellCount)
+                : 0m;
             if (baseDamage <= 0m)
                 return (0m, 0);
 
