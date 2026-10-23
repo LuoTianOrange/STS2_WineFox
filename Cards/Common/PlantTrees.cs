@@ -18,6 +18,7 @@ namespace STS2_WineFox.Cards.Common
         public override bool GainsBlock => true;
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(7, ValueProp.Move),
@@ -36,7 +37,8 @@ namespace STS2_WineFox.Cards.Common
                 Owner.Creature,
                 this,
                 DynamicVars["Plant"].BaseValue);
-            await PowerCmd.Apply<PlantPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, woodNextTurn, Owner.Creature, this);
+            await PowerCmd.Apply<PlantPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, woodNextTurn,
+                Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -19,6 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
         private int _materialConsumeCountTracked;
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MaterialKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(21m, ValueProp.Move)];
 

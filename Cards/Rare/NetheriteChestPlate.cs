@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<PlatingPower>()];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNetheriteChestPlate);
 
         protected override async Task OnPlay(
@@ -28,8 +28,10 @@ namespace STS2_WineFox.Cards.Rare
             CardPlay play)
         {
             var creature = Owner.Creature;
-            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars["Plating"].BaseValue, creature, this);
-            await PowerCmd.Apply<NetheriteChestPlatePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
+            await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), creature,
+                DynamicVars["Plating"].BaseValue, creature, this);
+            await PowerCmd.Apply<NetheriteChestPlatePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature,
+                this);
         }
 
         protected override void OnUpgrade()

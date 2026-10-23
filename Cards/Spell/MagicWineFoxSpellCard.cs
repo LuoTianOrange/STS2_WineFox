@@ -3,8 +3,6 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Models.Capabilities;
@@ -30,11 +28,6 @@ namespace STS2_WineFox.Cards.Spell
         : WineFoxCard(baseCost, type, rarity, target, showInCardLibrary), IMagicWineFoxSpellIconProvider,
             IModelCapabilitySource
     {
-        void IModelCapabilitySource.BuildDefaultCapabilities(ModelCapabilityList capabilities)
-        {
-            capabilities.Add<Mechanics.SpellAttributeTipCapability>();
-        }
-
         /// <summary>
         ///     单体攻击法术装填时需要选定目标，其余情况沿用构造传入的目标类型。
         ///     修正符不施放，始终沿用构造传入值。
@@ -54,11 +47,6 @@ namespace STS2_WineFox.Cards.Spell
                 return traits.AttackSpell ? TargetType.AnyEnemy : base.TargetType;
             }
         }
-        /// <summary>
-        ///     法杖槽位预览条中显示的小图标。
-        ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。
-        /// </summary>
-        public virtual string SpellIconPath => string.Empty;
 
         /// <summary>
         ///     卡牌关键字：
@@ -100,11 +88,6 @@ namespace STS2_WineFox.Cards.Spell
         public virtual decimal PreviewDamage => 0m;
 
         /// <summary>
-        ///     按本次释放的法术总数计算的额外预览伤害，供条件加成类法术（如能量弹）参与估算。
-        /// </summary>
-        public virtual decimal PreviewExtraDamage(int spellCount) => 0m;
-
-        /// <summary>
         ///     预览用的基础格挡（不参与结算）。无格挡的法术保持 0。
         ///     <para>
         ///         供 <c>MagicWineFoxSpellCmd.RefreshWandCardValues</c> 把
@@ -120,6 +103,29 @@ namespace STS2_WineFox.Cards.Spell
         /// </summary>
         public decimal? PreviewDamageOverride { get; private set; }
 
+        public decimal? PreviewBlockOverride { get; private set; }
+
+        public bool HasBlockVar => DynamicVars.TryGetValue("Block", out _);
+
+        /// <summary>
+        ///     法杖槽位预览条中显示的小图标。
+        ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。
+        /// </summary>
+        public virtual string SpellIconPath => string.Empty;
+
+        void IModelCapabilitySource.BuildDefaultCapabilities(ModelCapabilityList capabilities)
+        {
+            capabilities.Add<SpellAttributeTipCapability>();
+        }
+
+        /// <summary>
+        ///     按本次释放的法术总数计算的额外预览伤害，供条件加成类法术（如能量弹）参与估算。
+        /// </summary>
+        public virtual decimal PreviewExtraDamage(int spellCount)
+        {
+            return 0m;
+        }
+
         /// <summary>记录计入修正符后的单次伤害。</summary>
         public void ApplyPreviewDamage(decimal value)
         {
@@ -132,8 +138,6 @@ namespace STS2_WineFox.Cards.Spell
             PreviewDamageOverride = null;
         }
 
-        public decimal? PreviewBlockOverride { get; private set; }
-
         /// <summary>记录计入加成后的单次格挡。</summary>
         public void ApplyPreviewBlock(decimal value)
         {
@@ -144,8 +148,6 @@ namespace STS2_WineFox.Cards.Spell
         {
             PreviewBlockOverride = null;
         }
-        
-        public bool HasBlockVar => DynamicVars.TryGetValue("Block", out _);
 
         public decimal BeginBlockDisplayOverride(decimal value)
         {
@@ -195,7 +197,7 @@ namespace STS2_WineFox.Cards.Spell
         ///         因此必须提供回落，否则单目标伤害会静默失效。
         ///     </para>
         /// </summary>
-        protected static Creature? ResolveSpellTarget(Mechanics.MagicWineFoxSpellCastContext context)
+        protected static Creature? ResolveSpellTarget(MagicWineFoxSpellCastContext context)
         {
             if (context.Target?.IsAlive == true)
                 return context.Target;
@@ -203,7 +205,7 @@ namespace STS2_WineFox.Cards.Spell
             return context.Owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
         }
 
-        protected static List<Creature> ResolveSpellTargets(Mechanics.MagicWineFoxSpellCastContext context)
+        protected static List<Creature> ResolveSpellTargets(MagicWineFoxSpellCastContext context)
         {
             if (context.TargetsSelf)
                 return [];
@@ -218,12 +220,12 @@ namespace STS2_WineFox.Cards.Spell
 
         /// <summary>
         ///     结算法术伤害。基础段数来自 Traits 的 HitCount，随后追加额外段数。
-        /// <para>
+        ///     <para>
         ///         额外段数乘在自家段数上，HitCount 为 3 的法术遇到三段额外段数时共 12 段。
-        ///         </para>
+        ///     </para>
         /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealSpellDamage(
-            Mechanics.MagicWineFoxSpellCastContext context,
+            MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
             var commands = new List<AttackCommand>();
@@ -240,7 +242,7 @@ namespace STS2_WineFox.Cards.Spell
         ///     追加修正符带来的额外段数。每份额外段数按 Traits 的 HitCount 放大。
         /// </summary>
         protected static async Task<IReadOnlyList<AttackCommand>> DealExtraDamageStrikes(
-            Mechanics.MagicWineFoxSpellCastContext context,
+            MagicWineFoxSpellCastContext context,
             decimal baseDamage)
         {
             var commands = new List<AttackCommand>();
@@ -253,13 +255,13 @@ namespace STS2_WineFox.Cards.Spell
         }
 
         /// <summary>本次释放的基础段数，取自 Traits 的 HitCount。</summary>
-        protected static int BaseHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        protected static int BaseHitCount(MagicWineFoxSpellCastContext context)
         {
             return Math.Max(0, ResolveTraits(context).HitCount);
         }
 
         /// <summary>本次释放的额外段数。不吃额外段数的法术返回 0。</summary>
-        protected static int ExtraHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        protected static int ExtraHitCount(MagicWineFoxSpellCastContext context)
         {
             var traits = ResolveTraits(context);
 
@@ -270,18 +272,18 @@ namespace STS2_WineFox.Cards.Spell
         }
 
         /// <summary>本次释放的总段数，供预览与伤害估算使用。</summary>
-        protected static int ResolveHitCount(Mechanics.MagicWineFoxSpellCastContext context)
+        protected static int ResolveHitCount(MagicWineFoxSpellCastContext context)
         {
             return BaseHitCount(context) + ExtraHitCount(context);
         }
 
-        private static SpellTraits ResolveTraits(Mechanics.MagicWineFoxSpellCastContext context)
+        private static SpellTraits ResolveTraits(MagicWineFoxSpellCastContext context)
         {
             return (context.SourceCard as MagicWineFoxSpellCard)?.Traits ?? SpellTraits.Default;
         }
 
         private static async Task ExecuteHit(
-            Mechanics.MagicWineFoxSpellCastContext context,
+            MagicWineFoxSpellCastContext context,
             decimal baseDamage,
             List<AttackCommand> commands)
         {
@@ -316,7 +318,7 @@ namespace STS2_WineFox.Cards.Spell
         }
 
         private static async Task DealUnblockableDamage(
-            Mechanics.MagicWineFoxSpellCastContext context,
+            MagicWineFoxSpellCastContext context,
             decimal damage)
         {
             const ValueProp props = ValueProp.Unblockable | ValueProp.Move;

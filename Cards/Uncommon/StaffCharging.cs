@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Token;
+using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -19,12 +19,12 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(7m, ValueProp.Move)
+            new BlockVar(7m, ValueProp.Move),
         ];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<ManaRegeneration>(IsUpgraded)
+            HoverTipFactory.FromCard<ManaRegeneration>(IsUpgraded),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStaffCharging);

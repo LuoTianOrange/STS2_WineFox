@@ -3,8 +3,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
@@ -19,15 +19,15 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(18m, ValueProp.Move)
+            new DamageVar(18m, ValueProp.Move),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardGravitationalSingularity);
 
         public override string SpellIconPath => Const.Paths.SpellIconGravitationalSingularity;
-        
+
         public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
-        
+
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             if (context.Owner is not { } owner)

@@ -1,14 +1,14 @@
+using System.Globalization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
-using System.Globalization;
 
 namespace STS2_WineFox.Powers
 {
@@ -26,8 +26,25 @@ namespace STS2_WineFox.Powers
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
-        
+
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.TrackingPowerIcon);
+
+        public IReadOnlyList<ExtraIconAmountLabelSpec> GetPowerExtraIconAmountLabelSpecs()
+        {
+            var enemyBlock = GetEnemyBlockAmount();
+            return
+            [
+                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomLeft, ((int)enemyBlock).ToString()),
+                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomRight,
+                    ((int)Math.Max(0m, Amount)).ToString()),
+            ];
+        }
+
+        event Action? IPowerExtraIconAmountLabelsChangeSource.PowerExtraIconAmountLabelsInvalidated
+        {
+            add => GetInternalData<Data>().ExtraLabelsInvalidated += value;
+            remove => GetInternalData<Data>().ExtraLabelsInvalidated -= value;
+        }
 
         public override async Task AfterDamageGiven(
             PlayerChoiceContext choiceContext,
@@ -77,16 +94,6 @@ namespace STS2_WineFox.Powers
             return Task.CompletedTask;
         }
 
-        public IReadOnlyList<ExtraIconAmountLabelSpec> GetPowerExtraIconAmountLabelSpecs()
-        {
-            var enemyBlock = GetEnemyBlockAmount();
-            return
-            [
-                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomLeft, ((int)enemyBlock).ToString()),
-                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomRight, ((int)Math.Max(0m, Amount)).ToString())
-            ];
-        }
-
         public override Task AfterPowerAmountChanged(
             PlayerChoiceContext choiceContext,
             PowerModel power,
@@ -110,12 +117,6 @@ namespace STS2_WineFox.Powers
             data.LastKnownAmount = Amount;
             data.NotifyExtraLabelsInvalidated();
             return Task.CompletedTask;
-        }
-
-        event Action? IPowerExtraIconAmountLabelsChangeSource.PowerExtraIconAmountLabelsInvalidated
-        {
-            add => GetInternalData<Data>().ExtraLabelsInvalidated += value;
-            remove => GetInternalData<Data>().ExtraLabelsInvalidated -= value;
         }
 
         private decimal GetEnemyBlockAmount()
@@ -153,10 +154,10 @@ namespace STS2_WineFox.Powers
 
         private class Data
         {
+            public int ApplicationCount;
             public bool IsInitialized;
             public bool IsResolvingDamageTrigger;
             public decimal LastKnownAmount;
-            public int ApplicationCount;
             public event Action? ExtraLabelsInvalidated;
 
             public void NotifyExtraLabelsInvalidated()

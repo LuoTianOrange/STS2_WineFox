@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -26,9 +25,9 @@ namespace STS2_WineFox.Events
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DynamicVar("HpLossPercent", 10m),
-            new DynamicVar("MinGold", 40m),
-            new DynamicVar("MaxGold", 60m),
+            new("HpLossPercent", 10m),
+            new("MinGold", 40m),
+            new("MaxGold", 60m),
         ];
 
         public override bool IsAllowed(IRunState runState)
@@ -58,7 +57,7 @@ namespace STS2_WineFox.Events
 
             var rewards = new List<Reward>
             {
-                new SpecialCardReward(owner.RunState.CreateCard<CraftingStorage>(owner), owner)
+                new SpecialCardReward(owner.RunState.CreateCard<CraftingStorage>(owner), owner),
             };
             await RewardsCmd.OfferCustom(owner, rewards);
         }
@@ -79,7 +78,7 @@ namespace STS2_WineFox.Events
 
             var rewards = new List<Reward>
             {
-                new CardReward(options, 3, owner)
+                new CardReward(options, 3, owner),
             };
             await RewardsCmd.OfferCustom(owner, rewards);
         }

@@ -1,6 +1,5 @@
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -19,16 +18,16 @@ namespace STS2_WineFox.Nodes
 {
     /// <summary>
     ///     法杖槽位预览条。
-    /// <para>
+    ///     <para>
     ///         渲染一排方形槽位，按装填顺序显示 <see cref="MagicWineFoxSpellSlotPower" />
     ///         中已装填法术的图标；空槽显示占位图。
-    /// </para>
-    /// <para>
-    /// 视觉参考 Noita 的法杖横排：固定间距、整排水平居中。
+    ///     </para>
+    ///     <para>
+    ///         视觉参考 Noita 的法杖横排：固定间距、整排水平居中。
     ///         位置以角色节点为锚——挂到 <c>Creature.GetCreatureNode()</c> 后取血条上方，
     ///         因此会跟随角色（含多人模式下的各自站位），而不是固定在屏幕某处。
     ///         它只读取 <c>Power</c> 的槽位状态，不参与任何结算。
-    /// </para>
+    ///     </para>
     /// </summary>
     [RegisterNodeAttachment(typeof(NCreature), AttachmentId,
         NodeName = NodeName,
@@ -48,6 +47,12 @@ namespace STS2_WineFox.Nodes
         /// <summary>法术图标占槽位的比例。</summary>
         private const float IconFill = 0.82f;
 
+
+        /// <summary>刷新可视范围缓存的帧间隔（60fps 下约 0.1 秒）。</summary>
+        private const int VisualCacheRefreshFrames = 6;
+
+        private const string ArrowScenePath = "res://scenes/combat/targeting_arrow.tscn";
+
         /// <summary>
         ///     整排相对锚点的偏移：垂直抬到角色头顶上方。
         ///     实测锚点在当地坐标 y≈-13（血条底边）。
@@ -57,10 +62,13 @@ namespace STS2_WineFox.Nodes
 
         private static Texture2D? _outline;
 
-        private MagicWineFoxSpellSlotPower? _power;
-        private Player? _boundPlayer;
-        private NCreature? _creatureNode;
-        private bool _isLocal;
+        private static NTargetingArrow? _arrowNode;
+
+        /// <summary>队友的槽位默认压暗，鼠标悬浮到该角色身上时恢复原色。</summary>
+        private static readonly Color RemoteModulate = new(0.55f, 0.55f, 0.6f);
+
+        /// <summary>上一次重绘时的槽位内容,用于无分配地判断是否需要重绘。</summary>
+        private readonly List<CardModel?> _lastSlots = [];
 
         /// <summary>
         ///     角色可视节点的缓存：只在角色节点更换时遍历一次树（缓存为空时有限次重试，
@@ -68,38 +76,30 @@ namespace STS2_WineFox.Nodes
         /// </summary>
         private readonly List<CanvasItem> _visuals = [];
 
-        private int _visualRetryFrames;
+        private Player? _boundPlayer;
 
         /// <summary>
-        /// 血条节点缓存。
+        ///     血条节点缓存。
         /// </summary>
-
         /// <summary>
         ///     角色可视范围的缓存值（缩放系数与最上沿）。
         /// </summary>
         private float? _cachedScale;
 
-
-        /// <summary>刷新可视范围缓存的帧间隔（60fps 下约 0.1 秒）。</summary>
-        private const int VisualCacheRefreshFrames = 6;
-
-        private int _visualRefreshCountdown;
-
-        /// <summary>上一次重绘时的槽位内容,用于无分配地判断是否需要重绘。</summary>
-        private readonly List<CardModel?> _lastSlots = [];
-
-        private int _lastCapacity = -1;
-        private int _lastLoaded = -1;
+        private NCreature? _creatureNode;
         private bool _forceRedraw = true;
 
         private Tween? _hoverTween;
+        private bool _isLocal;
 
-        private const string ArrowScenePath = "res://scenes/combat/targeting_arrow.tscn";
+        private int _lastCapacity = -1;
+        private int _lastLoaded = -1;
 
-        private static NTargetingArrow? _arrowNode;
+        private MagicWineFoxSpellSlotPower? _power;
 
-        /// <summary>队友的槽位默认压暗，鼠标悬浮到该角色身上时恢复原色。</summary>
-        private static readonly Color RemoteModulate = new(0.55f, 0.55f, 0.6f);
+        private int _visualRefreshCountdown;
+
+        private int _visualRetryFrames;
 
         private void OnCreatureFocus()
         {
@@ -147,7 +147,6 @@ namespace STS2_WineFox.Nodes
                 hitbox.Connect(Control.SignalName.MouseEntered, Callable.From(OnCreatureFocus));
                 hitbox.Connect(Control.SignalName.MouseExited, Callable.From(OnCreatureUnfocus));
             }
-
         }
 
         public override void _Process(double delta)
@@ -181,7 +180,7 @@ namespace STS2_WineFox.Nodes
 
         private bool ResolveCreatureNode()
         {
-            if (_creatureNode == null || !GodotObject.IsInstanceValid(_creatureNode))
+            if (_creatureNode == null || !IsInstanceValid(_creatureNode))
                 return false;
 
             if (_visuals.Count == 0 && _visualRetryFrames < 120)
@@ -205,7 +204,7 @@ namespace STS2_WineFox.Nodes
 
         private void CollectVisuals(Node? node, Node root)
         {
-            if (node == null || !GodotObject.IsInstanceValid(node))
+            if (node == null || !IsInstanceValid(node))
                 return;
 
             if (!ReferenceEquals(node, root) && node is CanvasItem canvasItem)
@@ -217,10 +216,10 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     整排水平居中到角色头顶上方。
-        /// <para>
+        ///     <para>
         ///         本节点是角色节点的子节点，因此全部使用本地坐标：锚点偏移按角色缩放同比放大，
         ///         不做任何全局坐标换算，避免与父节点变换叠加。
-        ///         </para>
+        ///     </para>
         /// </summary>
         private void ApplyLayout()
         {
@@ -234,7 +233,7 @@ namespace STS2_WineFox.Nodes
                 _visualRefreshCountdown--;
             }
 
-            Position = new Vector2(
+            Position = new(
                 -ResolveBarWidth() * 0.5f,
                 BarOffsetFromAnchor.Y * _cachedScale.Value);
         }
@@ -242,7 +241,7 @@ namespace STS2_WineFox.Nodes
         /// <summary>角色可视缩放。只取角色节点与其可视根节点，与充能球的取法一致。</summary>
         private float ResolveVisualScale()
         {
-            if (_creatureNode == null || !GodotObject.IsInstanceValid(_creatureNode))
+            if (_creatureNode == null || !IsInstanceValid(_creatureNode))
                 return 1f;
 
             var scale = Math.Max(NodeScale(_creatureNode), NodeScale(_creatureNode.Visuals));
@@ -252,7 +251,7 @@ namespace STS2_WineFox.Nodes
 
         private static float NodeScale(Node? node)
         {
-            if (node == null || !GodotObject.IsInstanceValid(node))
+            if (node == null || !IsInstanceValid(node))
                 return 1f;
 
             return node switch
@@ -262,8 +261,6 @@ namespace STS2_WineFox.Nodes
                 _ => 1f,
             };
         }
-
-
 
 
         private float ResolveBarWidth()
@@ -282,7 +279,7 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     槽位内容是否变化（容量 / 已装填数 / 每张卡的实例）。
-        /// 用引用比较与复用的列表，不产生任何分配——本方法每帧都会调用，
+        ///     用引用比较与复用的列表，不产生任何分配——本方法每帧都会调用，
         ///     原先的字符串签名会持续制造垃圾。
         /// </summary>
         private bool HasContentChanged()
@@ -352,7 +349,7 @@ namespace STS2_WineFox.Nodes
             {
                 // 只用 Size 定位排布，不用 CustomMinimumSize——两者混用会让实际尺寸被最小尺寸顶掉，
                 // 出现间距按 SlotSpacing、尺寸却按别的值的错位。
-                Position = new Vector2(index * SlotSpacing, 0f),
+                Position = new(index * SlotSpacing, 0f),
                 Size = side,
                 // 需要接收鼠标才能弹悬停提示；其余区域仍穿透。
                 MouseFilter = MouseFilterEnum.Stop,
@@ -377,10 +374,10 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>
         ///     悬停槽位时显示该槽位法术的卡牌提示（与 Noita 的做法一致）。
-        /// <para>
-        /// 显示前刷新一次法杖内卡牌的数值——卡面显示的是Power + 法术修正符
+        ///     <para>
+        ///         显示前刷新一次法杖内卡牌的数值——卡面显示的是Power + 法术修正符
         ///         合成后的结果，因此提示里的数字与手牌一致地受加成影响。
-        /// </para>
+        ///     </para>
         /// </summary>
         private static void AttachHoverTip(Control slot, MagicWineFoxSpellSlotSnapshot snapshot)
         {
@@ -388,7 +385,7 @@ namespace STS2_WineFox.Nodes
 
             slot.MouseEntered += () =>
             {
-                if (!GodotObject.IsInstanceValid(slot))
+                if (!IsInstanceValid(slot))
                     return;
 
                 if (card.Owner != null)
@@ -405,7 +402,7 @@ namespace STS2_WineFox.Nodes
             {
                 HideTargetArrow();
 
-                if (GodotObject.IsInstanceValid(slot))
+                if (IsInstanceValid(slot))
                     NHoverTipSet.Remove(slot);
             };
         }
@@ -426,13 +423,13 @@ namespace STS2_WineFox.Nodes
                 return;
 
             var creatureNode = target.GetCreatureNode();
-            if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
+            if (creatureNode == null || !IsInstanceValid(creatureNode))
                 return;
 
-            if (_arrowNode == null || !GodotObject.IsInstanceValid(_arrowNode))
+            if (_arrowNode == null || !IsInstanceValid(_arrowNode))
             {
                 var parent = NTargetManager.Instance;
-                if (parent == null || !GodotObject.IsInstanceValid(parent))
+                if (parent == null || !IsInstanceValid(parent))
                     return;
 
                 var scene = PreloadManager.Cache.GetScene(ArrowScenePath);
@@ -448,7 +445,7 @@ namespace STS2_WineFox.Nodes
 
         private static void HideTargetArrow()
         {
-            if (_arrowNode != null && GodotObject.IsInstanceValid(_arrowNode))
+            if (_arrowNode != null && IsInstanceValid(_arrowNode))
                 _arrowNode.StopDrawing();
         }
 
@@ -476,14 +473,14 @@ namespace STS2_WineFox.Nodes
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             };
 
-            rect.Position = new Vector2(inset, inset);
-            rect.Size = new Vector2(side, side);
+            rect.Position = new(inset, inset);
+            rect.Size = new(side, side);
             return rect;
         }
 
         /// <summary>
         ///     解析槽位图标。
-        /// 空槽与卡牌未实现 <see cref="IMagicWineFoxSpellIconProvider" />都返回 null，
+        ///     空槽与卡牌未实现 <see cref="IMagicWineFoxSpellIconProvider" />都返回 null，
         ///     此时该层不贴图，槽位只剩外框。
         /// </summary>
         private static Texture2D? ResolveIcon(MagicWineFoxSpellSlotSnapshot? snapshot)

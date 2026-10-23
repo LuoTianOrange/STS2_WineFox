@@ -53,4 +53,3 @@ namespace STS2_WineFox.Cards.Rare
         }
     }
 }
-

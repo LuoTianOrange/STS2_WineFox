@@ -19,7 +19,7 @@ namespace STS2_WineFox.Relics
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Iron", 3m)
+            new("Iron", 3m),
         ];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

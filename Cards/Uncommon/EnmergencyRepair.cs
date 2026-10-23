@@ -7,7 +7,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -18,6 +17,7 @@ namespace STS2_WineFox.Cards.Uncommon
         public override bool GainsBlock => true;
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(6m, ValueProp.Move), new BlockVar(5, ValueProp.Move), new("Repair", 2m)];
 
@@ -36,7 +36,8 @@ namespace STS2_WineFox.Cards.Uncommon
                 .Execute(choiceContext);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
-            await PowerCmd.Apply<RepairPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Repair"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RepairPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Repair"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

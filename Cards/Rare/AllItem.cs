@@ -7,14 +7,17 @@ using STS2_WineFox.Commands;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class AllItem() : WineFoxCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword, WineFoxKeywords.DiamondKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Exhaust, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword,
+            WineFoxKeywords.DiamondKeyword,
+        ];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

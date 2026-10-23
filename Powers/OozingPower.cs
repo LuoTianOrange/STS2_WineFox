@@ -21,7 +21,7 @@ namespace STS2_WineFox.Powers
             var slimes = new List<Creature>
             {
                 await CreatureCmd.Add<LeafSlimeM>(CombatState),
-                await CreatureCmd.Add<TwigSlimeM>(CombatState)
+                await CreatureCmd.Add<TwigSlimeM>(CombatState),
             };
 
             SpaceSpawnedSlimes(slimes, spawnPosition);

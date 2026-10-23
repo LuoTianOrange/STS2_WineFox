@@ -10,7 +10,7 @@ namespace STS2_WineFox.Mechanics
     {
         FromPool = 0,
         RandomChoice = 1,
-        RandomChoiceWithDiscount = 2
+        RandomChoiceWithDiscount = 2,
     }
 
     /// <summary>

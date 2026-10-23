@@ -1,10 +1,8 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -18,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Bonus", 0m)
+            new("Bonus", 0m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardManaReflux);

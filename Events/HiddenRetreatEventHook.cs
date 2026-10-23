@@ -1,7 +1,4 @@
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Rooms;
 using STS2_WineFox.Cards.Quest;
 using STS2RitsuLib.Interop.AutoRegistration;

@@ -22,7 +22,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<WeakPower>()];
-        
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardBucket);
@@ -41,7 +41,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
             await CreatureCmd.GainBlock(creature, blockAmount, play);
 
-            await PowerCmd.Apply<BlockNextTurnPower>(new ThrowingPlayerChoiceContext(), creature, blockAmount.BaseValue, creature, this);
+            await PowerCmd.Apply<BlockNextTurnPower>(new ThrowingPlayerChoiceContext(), creature, blockAmount.BaseValue,
+                creature, this);
 
             foreach (var ally in combatState.GetTeammatesOf(creature).Where(c => c.IsAlive))
                 await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), ally, weakAmount, creature, this);

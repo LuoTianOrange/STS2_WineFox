@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -23,7 +22,7 @@ namespace STS2_WineFox.Potions
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
-            PotionModel.AssertValidForTargetedPotion(target);
+            AssertValidForTargetedPotion(target);
             ShowPotionHitVfx(target);
             await CreatureCmd.Heal(target, DynamicVars.Heal.BaseValue);
         }

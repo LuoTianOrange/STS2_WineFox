@@ -19,7 +19,7 @@ namespace STS2_WineFox.Relics.Event
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.RingofBurningBloodRelicIcon);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DynamicVar("MaxBonus", MaxBonusPercent)];
+            [new("MaxBonus", MaxBonusPercent)];
 
         public override decimal ModifyDamageMultiplicative(
             Creature? target,

@@ -2,7 +2,9 @@ using System.Reflection;
 using Godot;
 using MegaCrit.Sts2.Core.Modding;
 using STS2_WineFox.Character;
+using STS2_WineFox.Combat;
 using STS2_WineFox.Commands;
+using STS2_WineFox.Mechanics;
 using STS2_WineFox.Patches;
 using STS2_WineFox.Rewards;
 using STS2_WineFox.Settings;
@@ -50,8 +52,8 @@ namespace STS2_WineFox
                 RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
                 WineFoxFoodPotionRewardPatch.InitializeSavedData();
                 PotionCardReward.InitializeRegistration();
-                Combat.SpellSlotCombatSetup.Initialize();
-                RitsuLibFramework.RegisterModelCapability<Mechanics.SpellAttributeTipCapability>(Const.ModId);
+                SpellSlotCombatSetup.Initialize();
+                RitsuLibFramework.RegisterModelCapability<SpellAttributeTipCapability>(Const.ModId);
                 if (!EnsureRequiredRuntimePatches())
                     return;
 

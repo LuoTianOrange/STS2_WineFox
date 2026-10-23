@@ -1,20 +1,14 @@
 ﻿using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
 using MegaCrit.Sts2.Core.TestSupport;
 using STS2RitsuLib.Audio;
-
 
 namespace STS2_WineFox.Utils
 {
@@ -27,10 +21,10 @@ namespace STS2_WineFox.Utils
         {
             return GameAudioService.Shared.PlayOneShot(AudioSource.Event(path));
         }
-        
+
         public static AudioPlayResult PlaySFXSimple(string path, float volume)
         {
-            return GameAudioService.Shared.PlayOneShot(AudioSource.Event(path), new ()
+            return GameAudioService.Shared.PlayOneShot(AudioSource.Event(path), new()
             {
                 Volume = volume,
             });
@@ -38,7 +32,7 @@ namespace STS2_WineFox.Utils
 
         public static Vector2 RandVec2(float beta)
         {
-            return new Vector2((float)GD.RandRange(-1f, 1f) * beta, (float)GD.RandRange(-1f, 1f) * beta);
+            return new((float)GD.RandRange(-1f, 1f) * beta, (float)GD.RandRange(-1f, 1f) * beta);
         }
 
         public static void FitVFX(
@@ -49,13 +43,13 @@ namespace STS2_WineFox.Utils
             Vector2 sceneEndPos
         )
         {
-            Vector2 originalVec = nodeStartPos - nodeEndPos;
-            Vector2 targetVec = sceneStartPos - sceneEndPos;
+            var originalVec = nodeStartPos - nodeEndPos;
+            var targetVec = sceneStartPos - sceneEndPos;
 
             // 计算旋转角度（弧度）
-            float angle = targetVec.Angle() - originalVec.Angle();
+            var angle = targetVec.Angle() - originalVec.Angle();
             // 计算均匀缩放因子
-            float scale = targetVec.Length() / originalVec.Length();
+            var scale = targetVec.Length() / originalVec.Length();
 
             node.Rotation = angle;
             node.Scale = Vector2.One * scale;
@@ -65,13 +59,13 @@ namespace STS2_WineFox.Utils
         {
             if (!TestMode.IsOn && NCombatRoom.Instance != null)
             {
-                Node2D node2D = GenVFXNode(scenePath);
+                var node2D = GenVFXNode(scenePath);
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(node2D);
                 node2D.GlobalPosition = position;
 
                 if (lifetime > 0f)
                 {
-                    SceneTreeTimer timer = node2D.GetTree().CreateTimer(lifetime);
+                    var timer = node2D.GetTree().CreateTimer(lifetime);
                     timer.Timeout += () =>
                     {
                         if (GodotObject.IsInstanceValid(node2D))
@@ -80,6 +74,7 @@ namespace STS2_WineFox.Utils
                         }
                     };
                 }
+
                 return node2D;
             }
 
@@ -90,11 +85,11 @@ namespace STS2_WineFox.Utils
         {
             if (!TestMode.IsOn && NCombatRoom.Instance != null)
             {
-                Node2D node2D = GenVFXNode(scenePath);
+                var node2D = GenVFXNode(scenePath);
                 NCombatRoom.Instance.BackCombatVfxContainer.AddChildSafely(node2D);
                 node2D.GlobalPosition = position;
 
-                SceneTreeTimer timer = node2D.GetTree().CreateTimer(lifetime);
+                var timer = node2D.GetTree().CreateTimer(lifetime);
                 timer.Timeout += () =>
                 {
                     if (GodotObject.IsInstanceValid(node2D))
@@ -111,28 +106,30 @@ namespace STS2_WineFox.Utils
         public static async void ShakeAfter(float time, ShakeStrength strength, ShakeDuration duration,
             float degAngle = -1f)
         {
-            await VFXUtil.Wait(time);
+            await Wait(time);
             NGame.Instance?.ScreenShake(strength, duration, degAngle);
         }
 
         //这里重写Cmd.Wait函数，是因为皮皮极速等Mod Patch了Cmd.Wait, 为了防止影响简单抄写了一遍
         public static Task Wait(float seconds, bool ignoreCombatEnd = false)
         {
-            return VFXUtil.Wait(seconds, new CancellationToken(), ignoreCombatEnd);
+            return Wait(seconds, new(), ignoreCombatEnd);
         }
 
         public static async Task Wait(float seconds, CancellationToken cancelToken, bool ignoreCombatEnd = false)
         {
-            if (NonInteractiveMode.IsActive || (double)seconds <= 0.0 || NGame.Instance != null &&
-                (SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant ||
-                 !ignoreCombatEnd && CombatManager.Instance.IsEnding))
+            if (NonInteractiveMode.IsActive || seconds <= 0.0 || (NGame.Instance != null &&
+                                                                  (SaveManager.Instance.PrefsSave.FastMode ==
+                                                                   FastModeType.Instant ||
+                                                                   (!ignoreCombatEnd &&
+                                                                    CombatManager.Instance.IsEnding))))
                 return;
-            await VFXUtil.WaitInternal(((SceneTree)Engine.GetMainLoop()).CreateTimer((double)seconds), cancelToken);
+            await WaitInternal(((SceneTree)Engine.GetMainLoop()).CreateTimer(seconds), cancelToken);
         }
 
         public static Task WaitInternal(SceneTreeTimer timer, CancellationToken cancellationToken)
         {
-            TaskCompletionSource tcs = new TaskCompletionSource();
+            var tcs = new TaskCompletionSource();
             timer.Timeout += () => { tcs.TrySetResult(); };
             if (cancellationToken.CanBeCanceled)
                 cancellationToken.Register(() => tcs.TrySetCanceled(cancellationToken));
@@ -146,15 +143,15 @@ namespace STS2_WineFox.Utils
             CancellationToken cancellationToken = default)
         {
             if (NonInteractiveMode.IsActive || SaveManager.Instance.PrefsSave.FastMode == FastModeType.Instant ||
-                !ignoreCombatEnd && CombatManager.Instance.IsEnding)
+                (!ignoreCombatEnd && CombatManager.Instance.IsEnding))
                 return;
             switch (SaveManager.Instance.PrefsSave.FastMode)
             {
                 case FastModeType.Normal:
-                    await VFXUtil.Wait(standardSeconds, cancellationToken, ignoreCombatEnd);
+                    await Wait(standardSeconds, cancellationToken, ignoreCombatEnd);
                     break;
                 case FastModeType.Fast:
-                    await VFXUtil.Wait(fastSeconds, cancellationToken, ignoreCombatEnd);
+                    await Wait(fastSeconds, cancellationToken, ignoreCombatEnd);
                     break;
                 case FastModeType.Instant:
                     break;
@@ -167,7 +164,7 @@ namespace STS2_WineFox.Utils
         {
             if (!TestMode.IsOn && NCombatRoom.Instance != null)
             {
-                T node2D = GenVFXNode<T>(scenePath);
+                var node2D = GenVFXNode<T>(scenePath);
                 NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(node2D);
                 node2D.GlobalPosition = position;
                 return node2D;
@@ -203,7 +200,7 @@ namespace STS2_WineFox.Utils
                 particles.Restart();
             }
 
-            foreach (Node child in node.GetChildren())
+            foreach (var child in node.GetChildren())
             {
                 if (child is Node2D childNode)
                 {
@@ -215,10 +212,10 @@ namespace STS2_WineFox.Utils
 
     public static class RandomHelper
     {
-        private static readonly Random _random = new Random();
+        private static readonly Random _random = new();
 
         /// <summary>
-        /// 从一个List中随机取出一个值
+        ///     从一个List中随机取出一个值
         /// </summary>
         /// <typeparam name="T">List中元素的类型</typeparam>
         /// <param name="list">源List（不能为空）</param>
@@ -226,7 +223,7 @@ namespace STS2_WineFox.Utils
         public static T VRand<T>(this List<T> list)
         {
             // 不考虑list为空的情况，直接取随机索引
-            int index = _random.Next(list.Count);
+            var index = _random.Next(list.Count);
             return list[index];
         }
     }

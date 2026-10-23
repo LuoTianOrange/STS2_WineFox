@@ -15,6 +15,15 @@ namespace STS2_WineFox.Mechanics
     /// </summary>
     public class MagicWineFoxSpellModifierState
     {
+        /// <summary>
+        ///     下一个法术的格挡加成，尚未转正。
+        ///     <para>
+        ///         由作用于上一张法术的修正符登记，在 <see cref="Reset" /> 时转正为 <see cref="BlockBonus" />，
+        ///         因此它能跨过一次重置，落在紧随其后的那张法术上。
+        ///     </para>
+        /// </summary>
+        private decimal _nextBlockBonus;
+
         /// <summary>附加伤害。交给施放方自行决定是加到伤害上还是别的用途。</summary>
         public decimal DamageBonus { get; private set; }
 
@@ -72,15 +81,6 @@ namespace STS2_WineFox.Mechanics
         /// <summary>下一个法术斩杀敌人时要召唤的数量(0 = 不触发)。</summary>
         public decimal SummonOnKill { get; private set; }
 
-        /// <summary>
-        ///     下一个法术的格挡加成，尚未转正。
-        /// <para>
-        ///         由作用于上一张法术的修正符登记，在 <see cref="Reset" /> 时转正为 <see cref="BlockBonus" />，
-        ///         因此它能跨过一次重置，落在紧随其后的那张法术上。
-        ///         </para>
-        /// </summary>
-        private decimal _nextBlockBonus;
-
         /// <summary>本轮生效的格挡加成，随 <see cref="Reset" /> 消费。</summary>
         public decimal BlockBonus { get; private set; }
 
@@ -93,6 +93,40 @@ namespace STS2_WineFox.Mechanics
         ///     本回合强制指定的单体法术目标。整轮有效，不随 <see cref="Reset" /> 清除。
         /// </summary>
         public Creature? ForcedTarget { get; private set; }
+
+        /// <summary>
+        ///     登记给下一张法术的伤害修正。装填顺序上紧随其后的那张法术的伤害值会被永久抬高，
+        ///     因此加成随卡留在本场战斗中。
+        ///     <para>
+        ///         它不随 <see cref="Reset" /> 清除，由释放方在遇到法术时显式
+        ///         <see cref="ConsumeDamageCorrection" />，否则会被后续法术重复吃下。
+        ///     </para>
+        /// </summary>
+        public decimal DamageCorrectionBonus { get; private set; }
+
+        /// <summary>
+        ///     下一个法术结算后要授予的奥斯提横扫层数(0 = 不授予)。
+        ///     该能力每回合结束时让奥斯提对所有敌人造成等量伤害。
+        /// </summary>
+        public decimal OstySweepAmount { get; private set; }
+
+        /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
+        public int CastCount => 1 + Math.Max(0, ExtraCasts);
+
+        /// <summary>本次施放是否占用施法名额(不占则只记 1 个名额)。</summary>
+        public int BudgetCost => ExtraCastsAreBudgetFree ? 1 : CastCount;
+
+        /// <summary>累积器当前是否有任何修正(用于修正符空放时的判定与调试)。</summary>
+        public bool IsEmpty =>
+            DamageBonus == 0m && ExtraCasts == 0 && !ExtraCastsAreBudgetFree &&
+            DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets &&
+            ExtraDamageStrikes == 0 && DrawCount == 0m && !DrawForModifierEntries &&
+            DamageCorrectionBonus == 0m;
+
+        /// <summary>
+        ///     当前正在结算的修正符条目所携带的目标，供整轮修正符读取。
+        /// </summary>
+        public Creature? CurrentTarget { get; private set; }
 
         /// <summary>登记下一个法术的格挡加成。</summary>
         public void MarkNextBlockBonus(decimal amount)
@@ -115,16 +149,6 @@ namespace STS2_WineFox.Mechanics
                 ForcedTarget = target;
         }
 
-        /// <summary>
-        ///     登记给下一张法术的伤害修正。装填顺序上紧随其后的那张法术的伤害值会被永久抬高，
-        ///     因此加成随卡留在本场战斗中。
-        ///     <para>
-        ///         它不随 <see cref="Reset" /> 清除，由释放方在遇到法术时显式
-        ///         <see cref="ConsumeDamageCorrection" />，否则会被后续法术重复吃下。
-        ///     </para>
-        /// </summary>
-        public decimal DamageCorrectionBonus { get; private set; }
-
         /// <summary>登记下一张法术的伤害修正。</summary>
         public void MarkDamageCorrection(decimal amount)
         {
@@ -140,12 +164,6 @@ namespace STS2_WineFox.Mechanics
             return amount;
         }
 
-        /// <summary>
-        ///     下一个法术结算后要授予的奥斯提横扫层数(0 = 不授予)。
-        ///     该能力每回合结束时让奥斯提对所有敌人造成等量伤害。
-        /// </summary>
-        public decimal OstySweepAmount { get; private set; }
-
         /// <summary>登记斩杀下一个法术的目标时召唤 N。</summary>
         public void MarkSummonOnKill(decimal amount)
         {
@@ -159,19 +177,6 @@ namespace STS2_WineFox.Mechanics
             if (amount > 0m)
                 OstySweepAmount += amount;
         }
-
-        /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
-        public int CastCount => 1 + Math.Max(0, ExtraCasts);
-
-        /// <summary>本次施放是否占用施法名额(不占则只记 1 个名额)。</summary>
-        public int BudgetCost => ExtraCastsAreBudgetFree ? 1 : CastCount;
-
-        /// <summary>累积器当前是否有任何修正(用于修正符空放时的判定与调试)。</summary>
-        public bool IsEmpty =>
-            DamageBonus == 0m && ExtraCasts == 0 && !ExtraCastsAreBudgetFree &&
-            DamageMultiplier == 1m && !TargetsAllEnemies && !RandomTargets &&
-            ExtraDamageStrikes == 0 && DrawCount == 0m && !DrawForModifierEntries &&
-            DamageCorrectionBonus == 0m;
 
         public void AddDamageBonus(decimal amount)
         {
@@ -210,11 +215,11 @@ namespace STS2_WineFox.Mechanics
         ///     <para>
         ///         用于逆遍历的倒序重放：逆遍历那一刻器里剩下的，正好是尚未被消费的修正符
         ///         (每次打完法术都会 <see cref="Reset" />)，所以它们应当继续作用于重放的第一张法术。
-        ///         </para>
+        ///     </para>
         /// </summary>
         public MagicWineFoxSpellModifierState Copy()
         {
-            return new MagicWineFoxSpellModifierState
+            return new()
             {
                 DamageBonus = DamageBonus,
                 ExtraCasts = ExtraCasts,
@@ -252,11 +257,6 @@ namespace STS2_WineFox.Mechanics
         {
             CurrentX = value;
         }
-
-        /// <summary>
-        ///     当前正在结算的修正符条目所携带的目标，供整轮修正符读取。
-        /// </summary>
-        public Creature? CurrentTarget { get; private set; }
 
         /// <summary>登记当前结算条目的目标。</summary>
         public void SetCurrentTarget(Creature? target)

@@ -58,11 +58,10 @@ namespace STS2_WineFox.Relics
 
             var rewards = new List<Reward>
             {
-                new CardReward(options, 3, Owner)
+                new CardReward(options, 3, Owner),
             };
 
             await RewardsCmd.OfferCustom(Owner, rewards);
         }
     }
 }
-

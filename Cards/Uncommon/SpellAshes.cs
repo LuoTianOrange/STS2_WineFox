@@ -14,16 +14,14 @@ namespace STS2_WineFox.Cards.Uncommon
     public class SpellAshes() : WineFoxCard(
         1, CardType.Power, CardRarity.Uncommon, TargetType.None)
     {
-        
-        
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Burn", 1m)
+            new("Burn", 1m),
         ];
-        
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<BurningPower>()
+            HoverTipFactory.FromPower<BurningPower>(),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpellAshes);

@@ -1,4 +1,3 @@
-using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,15 +21,10 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<GiantRock>(IsUpgraded)
+            HoverTipFactory.FromCard<GiantRock>(IsUpgraded),
         ];
 
         public override SpellTraits Traits => new();
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -47,13 +41,18 @@ namespace STS2_WineFox.Cards.Spell
 
             if (target == null)
                 return;
-            
+
             rock.AddKeyword(CardKeyword.Exhaust);
 
             if (IsUpgraded && !rock.IsUpgraded)
                 CardCmd.Upgrade(rock);
 
             await CardCmd.AutoPlay(context.ChoiceContext, rock, target);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

@@ -1,5 +1,4 @@
 using Godot;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes;
@@ -20,10 +19,10 @@ namespace STS2_WineFox.VFX
     /// </summary>
     public static class GatheringLightVfx
     {
+        private const string BeamSfx = "event:/sfx/characters/defect/defect_hyperbeam";
+
         /// <summary>汇聚之光的主色（青绿）。</summary>
         private static readonly Color BeamGreen = new(0.25f, 1f, 0.45f);
-
-        private const string BeamSfx = "event:/sfx/characters/defect/defect_hyperbeam";
 
         /// <summary>播放一次从施法者射向目标的绿色光束。</summary>
         public static void Play(Creature owner, Creature target)

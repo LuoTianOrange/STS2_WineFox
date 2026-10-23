@@ -20,14 +20,6 @@ namespace STS2_WineFox.Relics
 
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.CreativeMotorRelicIcon);
 
-        public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-        {
-            if (player == Owner && player.Creature.CombatState != null)
-                _usedThisTurn = false;
-
-            return Task.CompletedTask;
-        }
-
         public async Task OnStressConsumed(Creature creature)
         {
             if (creature != Owner.Creature || creature.CombatState == null || _usedThisTurn)
@@ -40,8 +32,15 @@ namespace STS2_WineFox.Relics
                 creature,
                 1m,
                 creature,
-                cardSource: null);
+                null);
+        }
+
+        public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        {
+            if (player == Owner && player.Creature.CombatState != null)
+                _usedThisTurn = false;
+
+            return Task.CompletedTask;
         }
     }
 }
-

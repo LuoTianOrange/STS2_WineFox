@@ -2,7 +2,6 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
@@ -27,7 +26,8 @@ namespace STS2_WineFox.Cards.Uncommon
             var creature = Owner.Creature;
             var strength = creature.GetPowerAmount<StrengthPower>();
 
-            await PowerCmd.Apply<HighlyFocusedTrackerPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
+            await PowerCmd.Apply<HighlyFocusedTrackerPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature,
+                this);
 
             if (strength > 0m)
             {

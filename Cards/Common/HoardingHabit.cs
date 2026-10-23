@@ -8,7 +8,6 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -21,7 +20,9 @@ namespace STS2_WineFox.Cards.Common
     public class HoardingHabit() : WineFoxCard(
         1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             ModCardVars.Computed("Wood", 1m, _ => DynamicVars["Wood"].BaseValue,
@@ -45,7 +46,7 @@ namespace STS2_WineFox.Cards.Common
                 this,
                 DynamicVars["Wood"].BaseValue * mult,
                 DynamicVars["Stone"].BaseValue * mult,
-                applyStress: false);
+                false);
 
             var materialNextTurn = DynamicVars["NextTurnMaterial"].BaseValue * mult;
             await PowerCmd.Apply<HoardingHabitPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,

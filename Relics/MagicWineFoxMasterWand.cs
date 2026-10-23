@@ -16,7 +16,7 @@ namespace STS2_WineFox.Relics
             new("SlotCapacity", MagicWineFoxSpellCmd.DefaultCapacity + 3),
             new("CastCount", MagicWineFoxSpellCmd.DefaultCastCount),
             new("PreloadSigils", 1m),
-            new("LoadDiscount", MagicWineFoxSpellCmd.FirstLoadDiscount)
+            new("LoadDiscount", MagicWineFoxSpellCmd.FirstLoadDiscount),
         ];
     }
 }

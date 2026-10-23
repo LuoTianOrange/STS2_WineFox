@@ -42,4 +42,3 @@ namespace STS2_WineFox.Patches
         }
     }
 }
-

@@ -1,6 +1,5 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,25 +16,24 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public class ReproductionPower : WineFoxPower
     {
+        private bool _awaitingSpell;
+
+        private MagicWineFoxSpellSlotSnapshot? _boundSpell;
         public override PowerType Type => PowerType.Buff;
 
         public override PowerStackType StackType => PowerStackType.Single;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ReproductionPowerIcon);
 
-        private MagicWineFoxSpellSlotSnapshot? _boundSpell;
-        
-        private bool _awaitingSpell;
-
         /// <summary>当前绑定的法术</summary>
         public CardModel? BoundSpell => _boundSpell?.Card;
-        
+
         public void Bind(MagicWineFoxSpellSlotSnapshot? snapshot)
         {
             _boundSpell = snapshot;
             _awaitingSpell = snapshot == null;
         }
-        
+
         public bool TryBind(MagicWineFoxSpellSlotSnapshot snapshot)
         {
             if (!_awaitingSpell || !IsBindable(snapshot.Card))
@@ -45,13 +43,13 @@ namespace STS2_WineFox.Powers
             _awaitingSpell = false;
             return true;
         }
-        
+
         public static bool IsBindable(CardModel? card)
         {
             return card is MagicWineFoxSpellCard { IsLoadable: true }
-                   and not IMagicWineFoxSpellModifierCard;
+                and not IMagicWineFoxSpellModifierCard;
         }
-        
+
         internal void AddBoundSpellArg(LocString description)
         {
             if (_boundSpell?.Card is not { } spell)

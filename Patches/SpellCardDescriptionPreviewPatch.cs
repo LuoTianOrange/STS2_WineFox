@@ -23,7 +23,10 @@ namespace STS2_WineFox.Patches
     internal sealed class SpellCardDescriptionPreviewPatch : IPatchMethod
     {
         public static string PatchId => "winefox_spell_card_description_preview";
-        public static string Description => "Swap winefox spell card damage to the modifier-adjusted value while rendering its description";
+
+        public static string Description =>
+            "Swap winefox spell card damage to the modifier-adjusted value while rendering its description";
+
         public static bool IsCritical => false;
 
         /// <summary>
@@ -52,7 +55,7 @@ namespace STS2_WineFox.Patches
 
             if (previewType != null)
             {
-                targets.Add(new ModPatchTarget(
+                targets.Add(new(
                     typeof(CardModel),
                     nameof(CardModel.GetDescriptionForPile),
                     [typeof(PileType), previewType, typeof(Creature)],

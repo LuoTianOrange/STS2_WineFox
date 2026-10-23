@@ -20,7 +20,7 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.SpellAshesPowerIcon);
         public decimal BurnPerCast => Amount;
-        
+
         public static async Task ApplyToAllEnemies(
             PlayerChoiceContext choiceContext,
             Player owner,

@@ -24,7 +24,7 @@ namespace STS2_WineFox.Powers
                 Owner,
                 context.Recipe.Costs.Select(cost => (cost.PowerType, cost.Amount)),
                 context.SourceCard,
-                applyStress: false);
+                false);
             await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1m, null, context.SourceCard);
         }
     }

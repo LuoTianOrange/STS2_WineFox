@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Powers;
-using STS2RitsuLib.Cards.DynamicVars;
 
 namespace STS2_WineFox.Cards
 {

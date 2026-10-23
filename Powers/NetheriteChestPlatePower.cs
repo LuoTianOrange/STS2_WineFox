@@ -17,7 +17,10 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.None;
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.NetheriteChestPlatePowerIcon);
 
-        private PlatingPower? GetPlating() => Owner.Powers.OfType<PlatingPower>().FirstOrDefault();
+        private PlatingPower? GetPlating()
+        {
+            return Owner.Powers.OfType<PlatingPower>().FirstOrDefault();
+        }
 
         public override async Task BeforeSideTurnEndEarly(
             PlayerChoiceContext choiceContext,

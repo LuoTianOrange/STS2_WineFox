@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Token
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new EnergyVar(1)
+            new EnergyVar(1),
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords =>

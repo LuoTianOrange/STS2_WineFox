@@ -60,7 +60,8 @@ namespace STS2_WineFox.Commands
 
                 Entries.Add(new(type,
                     async (creature, amount, sourceCard) =>
-                        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), creature, amount, creature, sourceCard)));
+                        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), creature, amount, creature,
+                            sourceCard)));
             }
         }
 

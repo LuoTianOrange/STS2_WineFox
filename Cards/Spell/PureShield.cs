@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Spell
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(14m, ValueProp.Move),
-            new("BlockLossPerModifier", 4m)
+            new("BlockLossPerModifier", 4m),
         ];
 
         public override bool GainsBlock => true;
@@ -27,9 +27,9 @@ namespace STS2_WineFox.Cards.Spell
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardPureShield);
 
         public override string SpellIconPath => Const.Paths.SpellIconPureShield;
-        
+
         public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
-        
+
         public override decimal PreviewBlock
         {
             get
@@ -42,7 +42,7 @@ namespace STS2_WineFox.Cards.Spell
                     : MagicBlock.Resolve(this, afterPenalty);
             }
         }
-        
+
         private int WandModifierCount
         {
             get
@@ -54,11 +54,6 @@ namespace STS2_WineFox.Cards.Spell
                 return slots?.Slots.Count(slot =>
                     slot?.Card is IMagicWineFoxSpellModifierCard) ?? 0;
             }
-        }
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
@@ -75,6 +70,11 @@ namespace STS2_WineFox.Cards.Spell
                 return;
 
             await CreatureCmd.GainBlock(owner, block, ValueProp.Unpowered, null);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

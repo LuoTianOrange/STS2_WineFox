@@ -1,13 +1,7 @@
-using Godot;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -28,7 +22,7 @@ namespace STS2_WineFox.Relics
             new("SlotCapacity", MagicWineFoxSpellCmd.DefaultCapacity),
             new("CastCount", MagicWineFoxSpellCmd.DefaultCastCount),
             new("PreloadSigils", 1m),
-            new("LoadDiscount", MagicWineFoxSpellCmd.FirstLoadDiscount)
+            new("LoadDiscount", MagicWineFoxSpellCmd.FirstLoadDiscount),
         ];
 
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

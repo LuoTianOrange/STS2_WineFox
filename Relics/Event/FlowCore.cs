@@ -1,5 +1,4 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -27,10 +26,10 @@ namespace STS2_WineFox.Relics.Event
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DynamicVar("TurnInterval", TurnInterval),
+            new("TurnInterval", TurnInterval),
             new EnergyVar(1),
             new HealVar(1m),
-            new DynamicVar("MaxHpLoss", MaxHpLossPerTurn),
+            new("MaxHpLoss", MaxHpLossPerTurn),
         ];
 
         [SavedProperty]

@@ -20,13 +20,13 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override bool HasEnergyCostX => true;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [
-                ModCardVars.Computed(
-                    "TotalDamage",
-                    0m,
-                    card => CalculateTotalDamage(card, CardPreviewMode.None, null, runGlobalHooks: true),
-                    CalculateTotalDamagePreview)
-            ];
+        [
+            ModCardVars.Computed(
+                "TotalDamage",
+                0m,
+                card => CalculateTotalDamage(card, CardPreviewMode.None, null, true),
+                CalculateTotalDamagePreview),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardScratch);
 

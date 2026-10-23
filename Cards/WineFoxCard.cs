@@ -15,31 +15,6 @@ namespace STS2_WineFox.Cards
         TargetType target,
         bool showInCardLibrary = true) : ModCardTemplate(baseCost, type, rarity, target, showInCardLibrary)
     {
-        public sealed override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
-        {
-            if (Owner == player)
-                CraftCmd.ObserveTurnStarted(choiceContext, player);
-
-            return Task.CompletedTask;
-        }
-
-        protected override void AddExtraArgsToDescription(LocString description)
-        {
-            base.AddExtraArgsToDescription(description);
-            var suffix = "";
-            if (Pile == null
-                && CraftRecipeRegistry.TryGetRecipe(GetType(), out var recipe)
-                && recipe.Costs.Length > 0)
-                suffix = CraftRecipeFormatting.ToPreviewSuffix(recipe);
-
-            description.Add("CraftRecipeSuffix", suffix);
-        }
-
-        protected static CardAssetProfile Art(string portraitPath)
-        {
-            return new(portraitPath, portraitPath);
-        }
-
         /// <summary>
         ///     魔法酒狐的卡牌边框。基类由两个角色共用，所以按卡池判定；
         ///     卡牌级覆盖优先于卡池级的 <c>CardFrameMaterialPath</c>。
@@ -77,6 +52,31 @@ namespace STS2_WineFox.Cards
                     return false;
                 }
             }
+        }
+
+        public sealed override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
+        {
+            if (Owner == player)
+                CraftCmd.ObserveTurnStarted(choiceContext, player);
+
+            return Task.CompletedTask;
+        }
+
+        protected override void AddExtraArgsToDescription(LocString description)
+        {
+            base.AddExtraArgsToDescription(description);
+            var suffix = "";
+            if (Pile == null
+                && CraftRecipeRegistry.TryGetRecipe(GetType(), out var recipe)
+                && recipe.Costs.Length > 0)
+                suffix = CraftRecipeFormatting.ToPreviewSuffix(recipe);
+
+            description.Add("CraftRecipeSuffix", suffix);
+        }
+
+        protected static CardAssetProfile Art(string portraitPath)
+        {
+            return new(portraitPath, portraitPath);
         }
 
         private static string FramePathFor(CardType type)

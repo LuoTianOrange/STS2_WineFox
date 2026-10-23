@@ -42,14 +42,14 @@ namespace STS2_WineFox.Cards.Uncommon
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_LOGISTICS_CHOOSE");
             var prefs = new CardSelectorPrefs(prompt, 0, IsUpgraded ? options.Count : 1);
 
-            var selectedList = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, c => options.Contains(c), this)).ToList();
+            var selectedList =
+                (await CardSelectCmd.FromHand(choiceContext, owner, prefs, c => options.Contains(c), this)).ToList();
             if (selectedList.Count == 0) return;
 
             var combatState = ownerCreature.CombatState;
 
             foreach (var chosen in selectedList)
             {
-
                 if (!IsUpgraded && ReferenceEquals(chosen, this))
                     continue;
 
@@ -74,5 +74,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-
-

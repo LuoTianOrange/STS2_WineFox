@@ -25,7 +25,8 @@ namespace STS2_WineFox.Potions
         {
             var targets = GetEnemyPotionTargets(target);
             ShowEnemyPotionHitVfx(target);
-            await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, null, null);
+            await CreatureCmd.Damage(choiceContext, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props,
+                Owner.Creature, null, null);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Linq;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -47,10 +46,11 @@ namespace STS2_WineFox.Powers
 
             foreach (var card in handCards)
             {
-                var hookChoiceContext = new HookPlayerChoiceContext(this, localNetId.Value, combatState, GameActionType.Combat);
+                var hookChoiceContext =
+                    new HookPlayerChoiceContext(this, localNetId.Value, combatState, GameActionType.Combat);
                 var dupe = card.CreateDupe(player);
                 var autoPlayTask = CardCmd.AutoPlay(hookChoiceContext, dupe, null);
-                if (!(await hookChoiceContext.AssignTaskAndWaitForPauseOrCompletion(autoPlayTask)))
+                if (!await hookChoiceContext.AssignTaskAndWaitForPauseOrCompletion(autoPlayTask))
                 {
                     await hookChoiceContext.GameAction!.CompletionTask;
                 }
@@ -58,4 +58,3 @@ namespace STS2_WineFox.Powers
         }
     }
 }
-

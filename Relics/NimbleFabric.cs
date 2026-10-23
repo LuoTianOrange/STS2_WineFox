@@ -22,7 +22,8 @@ namespace STS2_WineFox.Relics
             if (player.PlayerCombatState?.TurnNumber != 1) return;
 
             Flash();
-            await PowerCmd.Apply<BufferPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, null);
+            await PowerCmd.Apply<BufferPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature,
+                null);
         }
     }
 }

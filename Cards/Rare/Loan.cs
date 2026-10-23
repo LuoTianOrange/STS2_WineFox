@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Rare
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CardsVar(3),
-            new("DrawLess", 2m)
+            new("DrawLess", 2m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLoan);

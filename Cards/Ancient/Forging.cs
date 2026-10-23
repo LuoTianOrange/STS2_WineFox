@@ -7,7 +7,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Ancient
 {
@@ -16,6 +15,7 @@ namespace STS2_WineFox.Cards.Ancient
         1, CardType.Skill, CardRarity.Ancient, TargetType.Self), ICraftingCard
     {
         public override bool GainsBlock => true;
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(10m, ValueProp.Move),
@@ -23,7 +23,8 @@ namespace STS2_WineFox.Cards.Ancient
             //     WineFoxCardVarFactory.StressDoubledDynamicVar("Materials")),
         ];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, WineFoxKeywords.CraftKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Retain, WineFoxKeywords.CraftKeyword];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardForging);
 
@@ -48,4 +49,3 @@ namespace STS2_WineFox.Cards.Ancient
         }
     }
 }
-

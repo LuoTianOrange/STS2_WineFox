@@ -3,8 +3,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Slots", 2m),
-            new CardsVar(2)
+            new CardsVar(2),
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -52,8 +52,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
             for (var i = 0; i < count; i++)
             {
-                var spell = drawPile.Cards.FirstOrDefault(
-                    card => card is MagicWineFoxSpellCard { IsLoadable: true });
+                var spell = drawPile.Cards.FirstOrDefault(card => card is MagicWineFoxSpellCard { IsLoadable: true });
 
                 if (spell == null)
                     return;

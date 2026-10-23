@@ -7,10 +7,10 @@ namespace STS2_WineFox.Character
 {
     /// <summary>
     ///     魔法酒狐的法术修正符专用池。
-    /// <para>
+    ///     <para>
     ///         图鉴筛选器由 <c>Main.Initialize</c> 通过
     ///         <c>RegisterCardLibraryCompendiumSharedPoolFilter</c> 注册，不依赖此处的 <c>EnergyColorName</c>。
-    /// </para>
+    ///     </para>
     /// </summary>
     [RegisterSharedCardPool]
     public class MagicWineFoxSpellModifierCardPool : TypeListCardPoolModel

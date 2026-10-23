@@ -23,13 +23,6 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.LaunchPlatformPowerIcon);
 
-        protected override Task OnAfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-        {
-            if (player.Creature == Owner)
-                _usedThisTurn = false;
-            return Task.CompletedTask;
-        }
-
         public async Task OnStressConsumed(Creature creature)
         {
             if (creature != Owner) return;
@@ -41,6 +34,12 @@ namespace STS2_WineFox.Powers
             if (player != null)
                 await PlayerCmd.GainEnergy(Amount, player);
         }
+
+        protected override Task OnAfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        {
+            if (player.Creature == Owner)
+                _usedThisTurn = false;
+            return Task.CompletedTask;
+        }
     }
 }
-

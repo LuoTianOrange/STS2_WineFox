@@ -18,23 +18,18 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Burn", 4m)
+            new("Burn", 4m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSearingJolt);
 
         public override string SpellIconPath => Const.Paths.SpellIconSearingJolt;
-        
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<BurningPower>()
+            HoverTipFactory.FromPower<BurningPower>(),
         ];
 
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
-        
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             var owner = context.Owner;
@@ -53,6 +48,11 @@ namespace STS2_WineFox.Cards.Spell
                 amount,
                 owner.Creature,
                 context.SourceCard);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

@@ -3,8 +3,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Rare
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(14m, ValueProp.Move),
-            new("StealPercent", 50m)
+            new("StealPercent", 50m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEclipse);

@@ -33,4 +33,3 @@ namespace STS2_WineFox.Cards.Token.Craft
         }
     }
 }
-

@@ -17,7 +17,8 @@ namespace STS2_WineFox.Cards.Token.Craft
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(6m, ValueProp.Move), new("Vigorous", 4m)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenSword);
 

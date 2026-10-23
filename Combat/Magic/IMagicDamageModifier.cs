@@ -17,4 +17,3 @@ namespace STS2_WineFox.Combat.Magic
             CardModel cardSource);
     }
 }
-

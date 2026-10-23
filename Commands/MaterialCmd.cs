@@ -217,7 +217,8 @@ namespace STS2_WineFox.Commands
                     await MaterialEventFlow.DispatchBeforeConsume(consumeEvent);
                     foreach (var entry in entries)
                         if (entry.Power != null)
-                            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), entry.Power, -entry.Amount, null, card);
+                            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), entry.Power, -entry.Amount,
+                                null, card);
                     await MaterialEventFlow.DispatchAfterConsume(consumeEvent);
                     await MaterialEventFlow.DispatchAfterResolved(new()
                     {

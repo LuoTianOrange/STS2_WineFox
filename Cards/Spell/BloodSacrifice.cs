@@ -1,7 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
@@ -40,7 +39,7 @@ namespace STS2_WineFox.Cards.Spell
                 null,
                 null);
 
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, isModifier: true, xValue: x);
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, true, x);
         }
 
         protected override void OnUpgrade()

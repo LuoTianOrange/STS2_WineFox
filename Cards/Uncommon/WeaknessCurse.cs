@@ -23,7 +23,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Debuff", 1m)
+            new("Debuff", 1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWeaknessCurse);
@@ -36,11 +36,10 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<WeakPower>(),
-            HoverTipFactory.FromPower<VulnerablePower>()
+            HoverTipFactory.FromPower<VulnerablePower>(),
         ];
 
-        [SavedProperty]
-        public int UsesUsed { get; set; }
+        [SavedProperty] public int UsesUsed { get; set; }
 
         public int MaxUses => UsesLimit;
 
@@ -59,21 +58,6 @@ namespace STS2_WineFox.Cards.Uncommon
 
             UsesUsed += 1;
             return UsesUsed >= MaxUses;
-        }
-
-        protected override void AddExtraArgsToDescription(LocString description)
-        {
-            base.AddExtraArgsToDescription(description);
-
-            description.Add("Uses", IsUnlimitedUses ? "∞" : UsesRemaining.ToString());
-        }
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-
-            if (TryConsumeUse())
-                await CardCmd.Exhaust(choiceContext, this);
         }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
@@ -99,6 +83,21 @@ namespace STS2_WineFox.Cards.Uncommon
                         context.ChoiceContext, enemy, amount, caster, context.SourceCard);
                 }
             }
+        }
+
+        protected override void AddExtraArgsToDescription(LocString description)
+        {
+            base.AddExtraArgsToDescription(description);
+
+            description.Add("Uses", IsUnlimitedUses ? "∞" : UsesRemaining.ToString());
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+
+            if (TryConsumeUse())
+                await CardCmd.Exhaust(choiceContext, this);
         }
 
         protected override void OnUpgrade()

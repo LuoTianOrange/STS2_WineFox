@@ -23,9 +23,12 @@ namespace STS2_WineFox.Cards.Token.HellGift
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<BufferPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Buffer"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<ArtifactPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
-            await PowerCmd.Apply<GoldenArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<BufferPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Buffer"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<ArtifactPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature,
+                this);
+            await PowerCmd.Apply<GoldenArmorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
+                Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -24,7 +24,7 @@ namespace STS2_WineFox.Relics
         [
             new("Stress", 1m),
             new("Wood", 1m),
-            new("Stone", 3m)
+            new("Stone", 3m),
         ];
 
         public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
@@ -53,7 +53,7 @@ namespace STS2_WineFox.Relics
             return
             [
                 combatState.CreateCard(ModelDb.Card<ObtainStress>(), Owner),
-                combatState.CreateCard(ModelDb.Card<ObtainMaterials>(), Owner)
+                combatState.CreateCard(ModelDb.Card<ObtainMaterials>(), Owner),
             ];
         }
     }

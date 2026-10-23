@@ -16,7 +16,7 @@ namespace STS2_WineFox.Powers
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new OstyDamageVar(6m, ValueProp.Move)
+            new OstyDamageVar(6m, ValueProp.Move),
         ];
 
         public override PowerType Type => PowerType.Buff;
@@ -56,4 +56,3 @@ namespace STS2_WineFox.Powers
         }
     }
 }
-

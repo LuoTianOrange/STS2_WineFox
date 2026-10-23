@@ -1,5 +1,4 @@
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -25,11 +24,11 @@ namespace STS2_WineFox.Mechanics
                 return [];
 
             var tip = new HoverTip(
-                new LocString("cards", spell.Id.Entry + ".title"),
+                new("cards", spell.Id.Entry + ".title"),
                 BuildText(spell),
                 LoadIcon(spell))
             {
-                Id = TipId
+                Id = TipId,
             };
 
             return [tip];

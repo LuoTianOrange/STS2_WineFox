@@ -18,7 +18,7 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.TemporarySlotLossPowerIcon);
 
-        public int SlotCapacityOffset => -(int)Amount;
+        public int SlotCapacityOffset => -Amount;
 
         public override async Task AfterSideTurnEnd(
             PlayerChoiceContext choiceContext,

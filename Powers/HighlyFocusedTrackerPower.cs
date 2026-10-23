@@ -24,7 +24,8 @@ namespace STS2_WineFox.Powers
             _reacting = true;
             try
             {
-                await PowerCmd.Apply<HighlyFocusedPower>(new ThrowingPlayerChoiceContext(), Owner, strength, Owner, null);
+                await PowerCmd.Apply<HighlyFocusedPower>(new ThrowingPlayerChoiceContext(), Owner, strength, Owner,
+                    null);
             }
             finally
             {

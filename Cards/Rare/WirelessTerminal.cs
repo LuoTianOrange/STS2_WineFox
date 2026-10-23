@@ -4,7 +4,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -13,6 +12,7 @@ namespace STS2_WineFox.Cards.Rare
         1, CardType.Skill, CardRarity.Rare, TargetType.None), ICraftingCard
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
+
         public override CardAssetProfile AssetProfile => new(
             Const.Paths.CardWirelessTerminal,
             Const.Paths.CardWirelessTerminal,
@@ -23,7 +23,7 @@ namespace STS2_WineFox.Cards.Rare
             var location = base.GetResultLocationForCardPlay();
             return location.pileType != PileType.Discard
                 ? location
-                : new CardLocation(location.player, PileType.Hand, CardPilePosition.Bottom);
+                : new(location.player, PileType.Hand, CardPilePosition.Bottom);
         }
 
         protected override async Task OnPlay(

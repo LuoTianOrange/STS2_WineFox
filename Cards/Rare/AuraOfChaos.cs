@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Amount", 4m)
+            new("Amount", 4m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardAuraOfChaos);
@@ -31,16 +31,11 @@ namespace STS2_WineFox.Cards.Rare
         [
             HoverTipFactory.FromPower<PoisonPower>(),
             HoverTipFactory.FromPower<BurningPower>(),
-            HoverTipFactory.FromPower<DoomPower>()
+            HoverTipFactory.FromPower<DoomPower>(),
         ];
 
         public override SpellTraits Traits =>
             new() { AreaOfEffect = true };
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -78,6 +73,11 @@ namespace STS2_WineFox.Cards.Rare
                     await PowerCmd.Apply<DoomPower>(
                         context.ChoiceContext, enemies, amount, caster, context.SourceCard);
             }
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

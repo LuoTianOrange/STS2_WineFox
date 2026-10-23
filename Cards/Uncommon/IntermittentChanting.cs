@@ -26,7 +26,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<StrengthPower>()];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIntermittentChanting);
 
         protected override async Task OnPlay(
@@ -35,7 +35,8 @@ namespace STS2_WineFox.Cards.Uncommon
         {
             var creature = Owner.Creature;
             await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), creature, -2m, creature, this);
-            await PowerCmd.Apply<IntermittentChantingPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars["Block"].BaseValue, creature, this);
+            await PowerCmd.Apply<IntermittentChantingPower>(new ThrowingPlayerChoiceContext(), creature,
+                DynamicVars["Block"].BaseValue, creature, this);
         }
 
         protected override void OnUpgrade()

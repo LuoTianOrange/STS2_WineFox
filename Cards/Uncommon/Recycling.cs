@@ -66,7 +66,7 @@ namespace STS2_WineFox.Cards.Uncommon
                 gains.Add((type, 1m * mult));
             }
 
-            await MaterialCmd.GainMaterials(this, gains, applyStress: false);
+            await MaterialCmd.GainMaterials(this, gains, false);
         }
 
         protected override void OnUpgrade()

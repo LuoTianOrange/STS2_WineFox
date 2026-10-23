@@ -2,9 +2,9 @@ namespace STS2_WineFox.Mechanics
 {
     /// <summary>
     ///     法术的通用属性声明。
-    /// <para>
+    ///     <para>
     ///         属性只描述通用维度，卡牌的特殊逻辑仍留在各自的 CastAsSpell 里。
-    /// </para>
+    ///     </para>
     /// </summary>
     public sealed record SpellTraits
     {

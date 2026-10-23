@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -32,8 +31,9 @@ namespace STS2_WineFox.Potions
             CardCmd.Upgrade(hand, CardPreviewStyle.None);
         }
 
-        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) =>
-            CreatureCmd.Heal(Owner.Creature, 2);
+        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return CreatureCmd.Heal(Owner.Creature, 2);
+        }
     }
 }
-

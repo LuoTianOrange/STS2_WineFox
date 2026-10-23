@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Common
         [
             HoverTipFactory.FromCard<Dazed>(),
         ];
-        
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

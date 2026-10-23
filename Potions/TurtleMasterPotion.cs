@@ -22,15 +22,23 @@ namespace STS2_WineFox.Potions
         public override TargetType TargetType => TargetType.AnyPlayer;
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.TurtleMasterPotion);
         protected override Color PotionParticleColor => new("2e7d32");
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<TurtleMasterPower>(4m), new IntVar("Duration", TurtleMasterPower.Duration)];
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips => [new HoverTip(
-            ModelDb.Power<TurtleMasterPower>(),
-            new LocString("powers", "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription").GetFormattedText(),
-            false)];
+
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new PowerVar<TurtleMasterPower>(4m), new IntVar("Duration", TurtleMasterPower.Duration),
+        ];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            new HoverTip(
+                ModelDb.Power<TurtleMasterPower>(),
+                new LocString("powers", "STS2_WINE_FOX_POWER_TURTLE_MASTER_POWER.potionDescription").GetFormattedText(),
+                false),
+        ];
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
-            PotionModel.AssertValidForTargetedPotion(target);
+            AssertValidForTargetedPotion(target);
             ShowPotionHitVfx(target);
             var existing = target.Powers.OfType<TurtleMasterPower>().FirstOrDefault();
             if (existing != null)
@@ -39,7 +47,8 @@ namespace STS2_WineFox.Potions
                 return;
             }
 
-            await PowerCmd.Apply<TurtleMasterPower>(choiceContext, target, DynamicVars["TurtleMasterPower"].BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<TurtleMasterPower>(choiceContext, target, DynamicVars["TurtleMasterPower"].BaseValue,
+                Owner.Creature, null);
         }
     }
 }

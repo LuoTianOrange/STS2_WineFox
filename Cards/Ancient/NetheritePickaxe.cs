@@ -5,7 +5,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Ancient
 {
@@ -15,7 +14,12 @@ namespace STS2_WineFox.Cards.Ancient
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNetheritePickaxe);
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword, WineFoxKeywords.DiamondKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword,
+            WineFoxKeywords.DiamondKeyword,
+        ];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
@@ -24,7 +28,9 @@ namespace STS2_WineFox.Cards.Ancient
             if (creature == null)
                 return;
 
-            var appliedPower = await PowerCmd.Apply<NetheritePickaxePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
+            var appliedPower =
+                await PowerCmd.Apply<NetheritePickaxePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature,
+                    this);
             if (appliedPower != null) appliedPower.ExcludeCard(this);
         }
 

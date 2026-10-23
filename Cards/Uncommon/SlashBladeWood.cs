@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<VigorPower>()];
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSlashBladeWood);
 
         protected override async Task OnPlay(

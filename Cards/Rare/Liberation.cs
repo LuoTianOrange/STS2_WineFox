@@ -23,12 +23,13 @@ namespace STS2_WineFox.Cards.Rare
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
-        
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<LiberationPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<LiberationPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature,
+                this);
         }
 
         protected override void OnUpgrade()
@@ -37,4 +38,3 @@ namespace STS2_WineFox.Cards.Rare
         }
     }
 }
-

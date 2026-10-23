@@ -1,3 +1,4 @@
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib;
 
@@ -18,7 +19,12 @@ namespace STS2_WineFox.Combat
                 return;
 
             foreach (var player in combatState.RunState.Players)
+            {
+                if (player.Character is not MagicWineFox)
+                    continue;
+
                 _ = MagicWineFoxSpellCmd.EnsurePower(player);
+            }
         }
     }
 }

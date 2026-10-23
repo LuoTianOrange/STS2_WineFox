@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,7 +16,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(9m, ValueProp.Move)
+            new DamageVar(9m, ValueProp.Move),
         ];
 
         public override SpellTraits Traits => new() { AreaOfEffect = true };
@@ -28,14 +27,14 @@ namespace STS2_WineFox.Cards.Spell
 
         public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
 
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
-        
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Spell
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("LookBehindDamage", 4m),
-            new("NextBlock", 6m)
+            new("NextBlock", 6m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCombinedArms);
@@ -31,7 +31,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, isModifier: true);
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, true);
         }
 
         protected override void OnUpgrade()

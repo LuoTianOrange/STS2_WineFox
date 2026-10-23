@@ -6,7 +6,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Token.LessHoliday
 {
@@ -14,7 +13,8 @@ namespace STS2_WineFox.Cards.Token.LessHoliday
     public class WorkWork() : WineFoxCard(
         0, CardType.Skill, CardRarity.Token, TargetType.None)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.StressKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Exhaust, WineFoxKeywords.StressKeyword];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Stress", 1m), new CardsVar(0)];
@@ -25,7 +25,8 @@ namespace STS2_WineFox.Cards.Token.LessHoliday
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Stress"].BaseValue, Owner.Creature, this);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }
 

@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Powers;
 
@@ -27,7 +28,7 @@ namespace STS2_WineFox.Mechanics
         public CardModel SourceCard { get; } = sourceCard;
         public CardModel? CastSourceCard { get; } = castSourceCard;
         public MagicWineFoxSpellModifierState Modifiers { get; } = modifiers;
-        
+
         public bool TargetsAllEnemies =>
             Modifiers.TargetsAllEnemies || Traits is { AreaOfEffect: true };
 
@@ -42,20 +43,20 @@ namespace STS2_WineFox.Mechanics
 
         public int ExtraDamageStrikes => Modifiers.ExtraDamageStrikes;
 
-        private SpellTraits? Traits => (SourceCard as Cards.Spell.MagicWineFoxSpellCard)?.Traits;
+        private SpellTraits? Traits => (SourceCard as MagicWineFoxSpellCard)?.Traits;
 
         public int WandModifierCount => Modifiers.WandModifierCount;
-        
+
         public bool IgnoresBlock => QuantumLockPower.IsActiveFor(Owner?.Creature);
-        
+
         public decimal DamageWithModifiers(decimal baseDamage)
         {
             var raw = (baseDamage + Modifiers.DamageBonus) * Modifiers.DamageMultiplier;
             var afterModifiers = Math.Max(0m, Math.Round(raw, 0, MidpointRounding.AwayFromZero));
-            
+
             return MagicDamage.Resolve(SourceCard, afterModifiers, Target);
         }
-        
+
         public decimal BlockWithModifiers(decimal baseBlock)
         {
             var raw = (baseBlock + Modifiers.DamageBonus + Modifiers.BlockBonus)

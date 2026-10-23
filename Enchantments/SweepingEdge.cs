@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -87,7 +86,6 @@ namespace STS2_WineFox.Enchantments
         private bool IsAttackFromEnchantedCard(AttackCommand command)
         {
             return command.ModelSource == Card;
-
         }
     }
 }

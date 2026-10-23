@@ -2,7 +2,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -40,6 +39,16 @@ namespace STS2_WineFox.Rewards
             }
         }
 
+        public string? ToModRewardJson()
+        {
+            var payload = new PotionCardRewardSaveData
+            {
+                Rarity = _rarity,
+                OptionCount = _optionCount,
+            };
+            return JsonSerializer.Serialize(payload, PotionCardRewardJsonContext.Default.PotionCardRewardSaveData);
+        }
+
         internal static void InitializeRegistration()
         {
             if (_registeredRewardType != RewardType.None)
@@ -55,16 +64,6 @@ namespace STS2_WineFox.Rewards
         internal static PotionCardReward Create(CardRarity rarity, Player player, int optionCount = DefaultOptionCount)
         {
             return new(ValidateRarity(rarity), NormalizeOptionCount(optionCount), player);
-        }
-
-        public string? ToModRewardJson()
-        {
-            var payload = new PotionCardRewardSaveData
-            {
-                Rarity = _rarity,
-                OptionCount = _optionCount,
-            };
-            return JsonSerializer.Serialize(payload, PotionCardRewardJsonContext.Default.PotionCardRewardSaveData);
         }
 
         public override SerializableReward ToSerializable()

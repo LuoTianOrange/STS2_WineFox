@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Copies", 1m)
+            new("Copies", 1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRuneRubbing);

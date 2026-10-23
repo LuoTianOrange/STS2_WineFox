@@ -10,30 +10,30 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Powers
 {
     /// <summary>
-    /// 引力奇点（挂在敌人身上的能力）。
-    /// <para>
-    /// 该敌人每次受到伤害时，它之外的其他敌人受到等同的伤害。
-    /// </para>
+    ///     引力奇点（挂在敌人身上的能力）。
+    ///     <para>
+    ///         该敌人每次受到伤害时，它之外的其他敌人受到等同的伤害。
+    ///     </para>
     /// </summary>
     [RegisterPower]
     public class GravitationalSingularityPower : WineFoxPower
     {
+        /// <summary>
+        ///     正在转嫁的生物集合。
+        ///     <para>
+        ///         必须是静态的：如果 A、B 两个敌人各挂了一份本能力，
+        ///         A 受伤 → 转嫁 B → B 受伤 → 又转嫁回 A…… 会互相弹射成死循环。
+        ///         用实例字段只能挡住"自己这一份"，挡不住另一份的回弹。
+        ///     </para>
+        /// </summary>
+        private static readonly HashSet<Creature> Redirecting = [];
+
         public override PowerType Type => PowerType.Debuff;
 
         // Single：数值隐藏且恒为 1，重复施加不会叠层（本能力只需要"存在"这一个状态）。
         public override PowerStackType StackType => PowerStackType.Single;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.GravitationalSingularityPowerIcon);
-
-        /// <summary>
-        /// 正在转嫁的生物集合。
-        /// <para>
-        /// 必须是静态的：如果 A、B 两个敌人各挂了一份本能力，
-        /// A 受伤 → 转嫁 B → B 受伤 → 又转嫁回 A…… 会互相弹射成死循环。
-        /// 用实例字段只能挡住"自己这一份"，挡不住另一份的回弹。
-        /// </para>
-        /// </summary>
-        private static readonly HashSet<Creature> Redirecting = [];
 
         public override async Task AfterDamageReceived(
             PlayerChoiceContext choiceContext,

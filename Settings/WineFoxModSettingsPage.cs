@@ -1,5 +1,4 @@
 using MegaCrit.Sts2.Core.Multiplayer;
-using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib;
 using STS2RitsuLib.Settings;
@@ -13,7 +12,6 @@ namespace STS2_WineFox.Settings
         private static readonly Lazy<I18N> Localization = new(() => RitsuLibFramework.CreateModLocalization(
             Const.ModId,
             "WineFox-ModSettings",
-
             pckFolders: [$"res://{Const.ModId}/localization/mod_settings"]));
 
         private static bool _registered;
@@ -24,10 +22,14 @@ namespace STS2_WineFox.Settings
             if (_registered)
                 return;
 
-            var eventsBinding = Binding(settings => settings.EventsEnabled, (settings, value) => settings.EventsEnabled = value);
-            var potionsBinding = Binding(settings => settings.PotionsEnabled, (settings, value) => settings.PotionsEnabled = value);
-            var foodBinding = Binding(settings => settings.FoodEnabled, (settings, value) => settings.FoodEnabled = value);
-            var publicRelicsBinding = Binding(settings => settings.PublicRelicsEnabled, (settings, value) => settings.PublicRelicsEnabled = value);
+            var eventsBinding = Binding(settings => settings.EventsEnabled,
+                (settings, value) => settings.EventsEnabled = value);
+            var potionsBinding = Binding(settings => settings.PotionsEnabled,
+                (settings, value) => settings.PotionsEnabled = value);
+            var foodBinding = Binding(settings => settings.FoodEnabled,
+                (settings, value) => settings.FoodEnabled = value);
+            var publicRelicsBinding = Binding(settings => settings.PublicRelicsEnabled,
+                (settings, value) => settings.PublicRelicsEnabled = value);
 
             RitsuLibFramework.RegisterModSettings(Const.ModId, page => page
                 .WithTitle(T("winefox.settings.page.title", "WineFox Settings"))
@@ -39,29 +41,34 @@ namespace STS2_WineFox.Settings
                         "events_enabled",
                         T("winefox.settings.events.label", "Enable WineFox events"),
                         eventsBinding,
-                        T("winefox.settings.events.description", "Allow WineFox-specific events to appear in future event rolls."))
+                        T("winefox.settings.events.description",
+                            "Allow WineFox-specific events to appear in future event rolls."))
                     .AddToggle(
                         "potions_enabled",
                         T("winefox.settings.potions.label", "Enable WineFox potions"),
                         potionsBinding,
-                        T("winefox.settings.potions.description", "Allow WineFox normal potions to appear in future potion rolls."))
+                        T("winefox.settings.potions.description",
+                            "Allow WineFox normal potions to appear in future potion rolls."))
                     .AddToggle(
                         "food_enabled",
                         T("winefox.settings.food.label", "Enable WineFox food"),
                         foodBinding,
-                        T("winefox.settings.food.description", "Allow WineFox food rewards and food-generating effects."))
+                        T("winefox.settings.food.description",
+                            "Allow WineFox food rewards and food-generating effects."))
                     .AddToggle(
                         "public_relics_enabled",
                         T("winefox.settings.publicRelics.label", "Enable public WineFox relics"),
                         publicRelicsBinding,
-                        T("winefox.settings.publicRelics.description", "Allow selected WineFox relics to appear in shared relic rewards."))
+                        T("winefox.settings.publicRelics.description",
+                            "Allow selected WineFox relics to appear in shared relic rewards."))
                     .AddButton(
                         "restore_defaults",
                         T("winefox.settings.restoreDefaults.label", "Restore defaults"),
                         T("winefox.settings.restoreDefaults.button", "Restore"),
                         host => RestoreDefaults(host, eventsBinding, potionsBinding, foodBinding, publicRelicsBinding),
                         ModSettingsButtonTone.Danger,
-                        T("winefox.settings.restoreDefaults.description", "Restore all WineFox content settings to their default enabled state."))));
+                        T("winefox.settings.restoreDefaults.description",
+                            "Restore all WineFox content settings to their default enabled state."))));
 
             _registered = true;
         }

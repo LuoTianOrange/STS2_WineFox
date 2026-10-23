@@ -17,8 +17,8 @@ namespace STS2_WineFox.Epoch
         public override string StoryId => WineFoxTimelineKeys.TimelineStoryId;
 
         public override EpochAssetProfile AssetProfile => new(
-            PackedPortraitPath: Const.Paths.WineFoxCharacterEpoche,
-            BigPortraitPath: Const.Paths.WineFoxCharacterEpoche);
+            Const.Paths.WineFoxCharacterEpoche,
+            Const.Paths.WineFoxCharacterEpoche);
 
         protected override IEnumerable<Type> ExpansionEpochTypes =>
         [

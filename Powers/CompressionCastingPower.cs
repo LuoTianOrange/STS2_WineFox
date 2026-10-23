@@ -28,11 +28,19 @@ namespace STS2_WineFox.Powers
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [new("Bonus", 4m)];
 
-        /// <summary>本能力施加时以 Amount 记录扣减的槽数。</summary>
-        public int SlotCapacityOffset => -(int)Amount;
-
         private decimal Bonus =>
             DynamicVars.TryGetValue("Bonus", out var bonus) ? bonus.BaseValue : 0m;
+
+        public decimal ModifyMagicBlockAdditive(
+            Creature defender,
+            decimal baseAmount,
+            CardModel cardSource)
+        {
+            if (defender != Owner || cardSource is not MagicWineFoxSpellCard)
+                return 0m;
+
+            return Bonus;
+        }
 
         public decimal ModifyMagicDamageAdditive(
             Creature? target,
@@ -46,16 +54,8 @@ namespace STS2_WineFox.Powers
             return Bonus;
         }
 
-        public decimal ModifyMagicBlockAdditive(
-            Creature defender,
-            decimal baseAmount,
-            CardModel cardSource)
-        {
-            if (defender != Owner || cardSource is not MagicWineFoxSpellCard)
-                return 0m;
-
-            return Bonus;
-        }
+        /// <summary>本能力施加时以 Amount 记录扣减的槽数。</summary>
+        public int SlotCapacityOffset => -Amount;
 
         public override async Task AfterSideTurnEnd(
             PlayerChoiceContext choiceContext,

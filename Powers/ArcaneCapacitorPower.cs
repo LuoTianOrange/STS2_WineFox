@@ -17,7 +17,6 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public sealed class ArcaneCapacitorPower : WineFoxPower, IPowerExtraIconAmountLabelsProvider
     {
-
         protected override IEnumerable<DynamicVar> CanonicalVars => [new("Gain", 2m)];
 
         public override PowerType Type => PowerType.Buff;

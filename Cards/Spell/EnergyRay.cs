@@ -1,8 +1,5 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -25,7 +22,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(10m, ValueProp.Move)
+            new DamageVar(10m, ValueProp.Move),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnergyRay);
@@ -38,11 +35,6 @@ namespace STS2_WineFox.Cards.Spell
         [
             HoverTipFactory.FromCard<Debris>(IsUpgraded),
         ];
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -90,6 +82,11 @@ namespace STS2_WineFox.Cards.Spell
             var debris = combatState.CreateCard<Debris>(owner);
             var instance = await CardPileCmd.AddGeneratedCardToCombat(debris, PileType.Hand, owner);
             CardCmd.PreviewCardPileAdd(instance);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

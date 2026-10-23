@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
@@ -20,12 +19,12 @@ namespace STS2_WineFox.Powers
     {
         public const int Duration = 2;
         private const decimal ReductionPerStack = 0.2m;
+        private int _remainingTurns = Duration;
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [new ReductionVar(), new RemainingTurnsVar()];
 
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
-        private int _remainingTurns = Duration;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ResistancePowerIcon);
         public override int DisplayAmount => RemainingTurns;

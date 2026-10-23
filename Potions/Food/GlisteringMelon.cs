@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +17,7 @@ namespace STS2_WineFox.Potions
         public override bool CanBeGeneratedInCombat => false;
 
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.GlisteringMelon);
-        
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new EnergyVar(1)];
 
@@ -32,8 +30,9 @@ namespace STS2_WineFox.Potions
                 await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, targetCreature.Player);
         }
 
-        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) =>
-            CreatureCmd.Heal(Owner.Creature, 6);
+        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return CreatureCmd.Heal(Owner.Creature, 6);
+        }
     }
 }
-

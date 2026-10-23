@@ -18,24 +18,18 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(8m, ValueProp.Move)
+            new BlockVar(8m, ValueProp.Move),
         ];
 
         public override bool GainsBlock => true;
 
         public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true };
-        
+
         public override decimal PreviewBlock => MagicBlock.Resolve(this, DynamicVars.Block.BaseValue);
-        
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneBarrier);
 
         public override string SpellIconPath => Const.Paths.SpellIconArcaneBarrier;
-
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -50,6 +44,12 @@ namespace STS2_WineFox.Cards.Spell
                 context.BlockWithModifiers(DynamicVars.Block.BaseValue + extra),
                 ValueProp.Unpowered,
                 null);
+        }
+
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

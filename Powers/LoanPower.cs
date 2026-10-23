@@ -12,6 +12,7 @@ namespace STS2_WineFox.Powers
     [RegisterPower]
     public class LoanPower : WineFoxPower
     {
+        private bool _applied;
         public override PowerType Type => PowerType.Debuff;
 
         public override PowerStackType StackType => PowerStackType.Counter;
@@ -19,9 +20,7 @@ namespace STS2_WineFox.Powers
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.LoanPowerIcon);
 
         protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(0)];
-        
-        private bool _applied;
-        
+
         public override decimal ModifyHandDraw(Player player, decimal count)
         {
             if (_applied || player != Owner.Player || AmountOnTurnStart == 0)
@@ -37,7 +36,7 @@ namespace STS2_WineFox.Powers
                 Flash();
             return Task.CompletedTask;
         }
-        
+
         public override async Task AfterSideTurnStart(
             CombatSide side,
             IReadOnlyList<Creature> participants,

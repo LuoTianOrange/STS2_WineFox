@@ -29,7 +29,8 @@ namespace STS2_WineFox.Cards.Rare
             CardPlay play)
         {
             var creature = Owner.Creature;
-            await PowerCmd.Apply<CollaborativeMiningPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, this);
+            await PowerCmd.Apply<CollaborativeMiningPower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature,
+                this);
         }
 
         protected override void OnUpgrade()

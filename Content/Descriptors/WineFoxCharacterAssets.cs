@@ -1,6 +1,5 @@
 using Godot;
 using STS2RitsuLib.Scaffolding.Characters;
-using STS2RitsuLib.Scaffolding.Visuals;
 
 namespace STS2_WineFox.Content.Descriptors
 {

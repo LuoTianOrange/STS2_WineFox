@@ -42,6 +42,10 @@ namespace STS2_WineFox.Potions
             || Owner.RunState.CurrentRoom is MerchantRoom
             || CanBeUsedOutOfCombat;
 
+        public virtual PotionAssetProfile AssetProfile => PotionAssetProfile.Empty;
+        public virtual string? CustomImagePath => AssetProfile.ImagePath;
+        public virtual string? CustomOutlinePath => AssetProfile.OutlinePath;
+
         protected sealed override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
             if (Owner.RunState.CurrentRoom is MerchantRoom)
@@ -60,10 +64,6 @@ namespace STS2_WineFox.Potions
             await OnUseOutOfCombat(choiceContext);
         }
 
-        public virtual PotionAssetProfile AssetProfile => PotionAssetProfile.Empty;
-        public virtual string? CustomImagePath => AssetProfile.ImagePath;
-        public virtual string? CustomOutlinePath => AssetProfile.OutlinePath;
-
         protected static PotionAssetProfile Art(string imagePath, string? outlinePath = null)
         {
             return new(imagePath, outlinePath ?? imagePath);
@@ -73,7 +73,7 @@ namespace STS2_WineFox.Potions
 
         protected static Creature GetCombatTarget(Creature? target)
         {
-            PotionModel.AssertValidForTargetedPotion(target);
+            AssertValidForTargetedPotion(target);
             return target!;
         }
 
@@ -81,7 +81,10 @@ namespace STS2_WineFox.Potions
         ///     Called when this potion is used outside combat (excluding merchant selling).
         ///     Food should override this method and avoid applying special powers.
         /// </summary>
-        protected virtual Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) => Task.CompletedTask;
+        protected virtual Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return Task.CompletedTask;
+        }
 
         public override Task AfterRoomEntered(AbstractRoom room)
         {

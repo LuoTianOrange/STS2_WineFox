@@ -39,14 +39,16 @@ namespace STS2_WineFox.Cards.Common
                 .Execute(choiceContext);
 
             if (target.Monster?.IntendsToAttack == true)
-                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, debuffAmount, creature, this);
+                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, debuffAmount, creature,
+                    this);
             else
-                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, debuffAmount, creature, this);
+                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, debuffAmount, creature,
+                    this);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(2m);   // 8 → 10
+            DynamicVars.Damage.UpgradeValueBy(2m); // 8 → 10
             DynamicVars["Debuff"].UpgradeValueBy(1m); // 1 → 2
         }
     }

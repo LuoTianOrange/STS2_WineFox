@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,10 +19,14 @@ namespace STS2_WineFox.Potions
 
         public PotionModel CampfireTransformResult => ModelDb.Potion<Bread>();
 
-        protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target) =>
-            Task.CompletedTask;
+        protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
+        {
+            return Task.CompletedTask;
+        }
 
-        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) => Task.CompletedTask;
+        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return Task.CompletedTask;
+        }
     }
 }
-

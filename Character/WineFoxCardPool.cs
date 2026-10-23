@@ -20,7 +20,8 @@ namespace STS2_WineFox.Character
         public override Color EnergyOutlineColor => new("8d4b24");
         public override bool IsColorless => false;
 
-        protected override IEnumerable<CardModel> FilterThroughEpochs(UnlockState unlockState, IEnumerable<CardModel> cards)
+        protected override IEnumerable<CardModel> FilterThroughEpochs(UnlockState unlockState,
+            IEnumerable<CardModel> cards)
         {
             var result = base.FilterThroughEpochs(unlockState, cards);
             return WineFoxRuntimeSettings.FoodEnabled

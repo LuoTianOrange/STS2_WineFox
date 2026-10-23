@@ -19,7 +19,7 @@ namespace STS2_WineFox.Relics
             new("Stress", 3m),
             new("Wood", 3m),
             new("Stone", 3m),
-            new("Iron", 3m)
+            new("Iron", 3m),
         ];
 
         protected override List<CardModel> CreateOptions(ICombatState combatState)

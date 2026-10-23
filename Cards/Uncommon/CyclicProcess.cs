@@ -47,5 +47,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-
-

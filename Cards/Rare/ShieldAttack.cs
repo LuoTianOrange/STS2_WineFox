@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -70,15 +69,19 @@ namespace STS2_WineFox.Cards.Rare
             EnergyCost.UpgradeBy(-1);
         }
 
-        private static decimal CalcTotalDamage(CardModel? card) =>
-            ResolveTotalDamageAfterModifiers(card, CardPreviewMode.None, null, runGlobalHooks: true);
+        private static decimal CalcTotalDamage(CardModel? card)
+        {
+            return ResolveTotalDamageAfterModifiers(card, CardPreviewMode.None, null, true);
+        }
 
         private static decimal CalcTotalDamagePreview(
             CardModel? card,
             CardPreviewMode previewMode,
             Creature? target,
-            bool runGlobalHooks) =>
-            ResolveTotalDamageAfterModifiers(card, previewMode, target, runGlobalHooks);
+            bool runGlobalHooks)
+        {
+            return ResolveTotalDamageAfterModifiers(card, previewMode, target, runGlobalHooks);
+        }
 
         private static decimal ResolveTotalDamageAfterModifiers(
             CardModel? card,

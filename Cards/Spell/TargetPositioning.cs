@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Bonus", 2m)
+            new("Bonus", 2m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardTargetPositioning);
@@ -29,7 +29,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, isModifier: true);
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, true);
         }
 
         protected override void OnUpgrade()

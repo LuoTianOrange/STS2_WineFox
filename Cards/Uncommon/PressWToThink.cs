@@ -48,7 +48,6 @@ namespace STS2_WineFox.Cards.Uncommon
             var promptLocKey = new LocString("cards", "STS2_WINE_FOX_CARD_PRESS_W_TO_THINK_CHOOSE");
             var prefs = new CardSelectorPrefs(promptLocKey, 1);
 
-            
 
             IReadOnlyList<CardModel> options = topCards;
             var selectedList = await CardSelectCmd.FromSimpleGrid(choiceContext, options, owner, prefs);

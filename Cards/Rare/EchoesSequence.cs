@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -15,7 +16,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("SlotBonus", 1m)
+            new("SlotBonus", 1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEchoesSequence);
@@ -37,7 +38,7 @@ namespace STS2_WineFox.Cards.Rare
         {
             var drawPile = PileType.Draw.GetPile(Owner);
             var spell = drawPile.Cards.FirstOrDefault(card =>
-                card is Cards.Spell.MagicWineFoxSpellCard { IsLoadable: true });
+                card is MagicWineFoxSpellCard { IsLoadable: true });
 
             if (spell == null)
                 return;

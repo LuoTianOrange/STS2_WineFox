@@ -27,7 +27,8 @@ namespace STS2_WineFox.Potions
         {
             var targets = GetEnemyPotionTargets(target);
             ShowEnemyPotionHitVfx(target);
-            await PowerCmd.Apply<PoisonPower>(choiceContext, targets, DynamicVars.Poison.BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<PoisonPower>(choiceContext, targets, DynamicVars.Poison.BaseValue, Owner.Creature,
+                null);
         }
     }
 }

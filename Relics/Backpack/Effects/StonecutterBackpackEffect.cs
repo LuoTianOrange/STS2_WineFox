@@ -1,8 +1,8 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Powers;
 
 namespace STS2_WineFox.Relics.Backpack.Effects
@@ -21,7 +21,8 @@ namespace STS2_WineFox.Relics.Backpack.Effects
 
         public override string BuildDescription(SophisticatedBackpack backpack)
         {
-            var mainLine = BuildLine(backpack, "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_EFFECT_STONECUTTER", IntervalVar);
+            var mainLine = BuildLine(backpack, "STS2_WINE_FOX_RELIC_SOPHISTICATED_BACKPACK_EFFECT_STONECUTTER",
+                IntervalVar);
             var interval = Math.Max(1, backpack.DynamicVars[IntervalVar].IntValue);
             var progress = backpack.GetEffectStateInt<StonecutterBackpackEffect>(TurnCounter);
             var remaining = interval - progress;
@@ -61,7 +62,8 @@ namespace STS2_WineFox.Relics.Backpack.Effects
             backpack.SetEffectStateInt<StonecutterBackpackEffect>(TurnCounter, 0);
             backpack.RefreshDescriptionText();
             backpack.NotifyBackpackEffectTriggered();
-            await PowerCmd.Apply<StonePower>(new ThrowingPlayerChoiceContext(), backpack.Owner.Creature, currentStone, backpack.Owner.Creature, null);
+            await PowerCmd.Apply<StonePower>(new ThrowingPlayerChoiceContext(), backpack.Owner.Creature, currentStone,
+                backpack.Owner.Creature, null);
         }
     }
 }

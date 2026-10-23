@@ -24,15 +24,17 @@ namespace STS2_WineFox.Cards.Rare
         [
             HoverTipFactory.FromCard<Dazed>(),
         ];
-        
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
             DynamicVars.Energy.BaseValue = DynamicVars["EasyPeasy"].BaseValue;
 
-            await PowerCmd.Apply<EasyPeasyPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["EasyPeasy"].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<RadiationLeakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["RadiationLeak"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<EasyPeasyPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["EasyPeasy"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<RadiationLeakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["RadiationLeak"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

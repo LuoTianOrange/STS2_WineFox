@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(WineFoxCardPool))]
     public class PlanningExpert() : WineFoxCard(
-       1, CardType.Power, CardRarity.Rare, TargetType.Self)
+        1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new CardsVar(1)];
@@ -26,7 +26,8 @@ namespace STS2_WineFox.Cards.Rare
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<PlanningExpertPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<PlanningExpertPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars.Cards.BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
@@ -35,4 +36,3 @@ namespace STS2_WineFox.Cards.Rare
         }
     }
 }
-

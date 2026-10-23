@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -22,14 +19,16 @@ namespace STS2_WineFox.Relics
         private int _timesUsed;
 
         public override RelicRarity Rarity => RelicRarity.Rare;
+
         public override RelicAssetProfile AssetProfile =>
             Icons(IsUsedUp ? Const.Paths.BrokenElytraRelicIcon : Const.Paths.ElytraRelicIcon);
+
         public override bool IsUsedUp => TimesUsed >= MaxCharges;
         public override bool ShowCounter => !IsUsedUp;
         public override int DisplayAmount => MaxCharges - TimesUsed;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DynamicVar(RoomsKey, MaxCharges)];
+            [new(RoomsKey, MaxCharges)];
 
         [SavedProperty]
         public int TimesUsed
@@ -70,7 +69,7 @@ namespace STS2_WineFox.Relics
             if (runState.VisitedMapCoords.Count <= 1)
                 return Task.CompletedTask;
 
-            IReadOnlyList<MapCoord> visitedMapCoords = runState.VisitedMapCoords;
+            var visitedMapCoords = runState.VisitedMapCoords;
             var previousCoord = visitedMapCoords[visitedMapCoords.Count - 2];
             var previousPoint = runState.Map.GetPoint(previousCoord);
             if (previousPoint == null)

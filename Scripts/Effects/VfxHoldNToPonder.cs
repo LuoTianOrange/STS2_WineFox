@@ -1,31 +1,31 @@
 using Godot;
 using MegaCrit.Sts2.Core.Localization;
 
-namespace STS2_WineFox.Scripts.Effects;
-
-public partial class VfxHoldNToPonder : Node2D
+namespace STS2_WineFox.Scripts.Effects
 {
-    [Export] public Sprite2D NodeBG;
-    [Export] public Sprite2D NodeText;
-    
-    [Export] public Texture2D BGTexture_eng;
-    [Export] public Texture2D TextTexture_eng;
-    
-    public override void _Ready()
+    public partial class VfxHoldNToPonder : Node2D
     {
-        var lang = LocManager.Instance?.Language;
-        
-        if (lang != "zhs" && lang != "zht")
+        [Export] public Texture2D BGTexture_eng;
+        [Export] public Sprite2D NodeBG;
+        [Export] public Sprite2D NodeText;
+        [Export] public Texture2D TextTexture_eng;
+
+        public override void _Ready()
         {
-            if (NodeBG != null && NodeBG.Texture != null)
+            var lang = LocManager.Instance?.Language;
+
+            if (lang != "zhs" && lang != "zht")
             {
-                NodeBG.Texture = BGTexture_eng;
-            }
-            if (NodeText != null && NodeText.Texture != null)
-            {
-                NodeText.Texture = TextTexture_eng;
+                if (NodeBG != null && NodeBG.Texture != null)
+                {
+                    NodeBG.Texture = BGTexture_eng;
+                }
+
+                if (NodeText != null && NodeText.Texture != null)
+                {
+                    NodeText.Texture = TextTexture_eng;
+                }
             }
         }
     }
-
 }

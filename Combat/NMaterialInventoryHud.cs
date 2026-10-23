@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
@@ -30,14 +27,16 @@ namespace STS2_WineFox.Combat
         private static readonly Vector2 HudSize = new(100f, 100f);
         private static readonly Vector2 SourceImageSize = new(198f, 190f);
         private static readonly Vector2 IconSize = new(30f, 30f);
-        private static readonly Vector2 ScaleFromSource = new(HudSize.X / SourceImageSize.X, HudSize.Y / SourceImageSize.Y);
+
+        private static readonly Vector2 ScaleFromSource =
+            new(HudSize.X / SourceImageSize.X, HudSize.Y / SourceImageSize.Y);
 
         private static readonly MaterialSlotDefinition[] SlotDefinitions =
         [
             new(typeof(WoodPower), Const.Paths.WoodPowerIcon, new(62f, 56f)),
             new(typeof(StonePower), Const.Paths.StonePowerIcon, new(132f, 56f)),
             new(typeof(IronPower), Const.Paths.IronPowerIcon, new(62f, 126f)),
-            new(typeof(DiamondPower), Const.Paths.DiamondPowerIcon, new(132f, 126f))
+            new(typeof(DiamondPower), Const.Paths.DiamondPowerIcon, new(132f, 126f)),
         ];
 
         private readonly List<MaterialInventoryPanel> _panels = [];
@@ -106,14 +105,18 @@ namespace STS2_WineFox.Combat
 
         private partial class MaterialInventoryPanel : Control
         {
-            private readonly MaterialSlot[] _slots = new MaterialSlot[SlotDefinitions.Length];
             private readonly Callable _focusCallable;
+
+            private readonly Dictionary<Type, decimal> _materialAmounts = [];
+            private readonly MaterialSlot[] _slots = new MaterialSlot[SlotDefinitions.Length];
             private readonly Callable _unfocusCallable;
-            private Tween? _showHideTween;
             private NCreature? _creatureNode;
-            private Vector2 _originalPosition;
+
+            private Control? _healthBarNode;
             private bool _isHoverConnected;
             private bool _isHovered;
+            private Vector2 _originalPosition;
+            private Tween? _showHideTween;
             private bool _targetVisible;
 
             public MaterialInventoryPanel(Player player)
@@ -136,7 +139,7 @@ namespace STS2_WineFox.Combat
                     StretchMode = TextureRect.StretchModeEnum.Scale, // 将原图缩放到 HudSize。
                     Position = Vector2.Zero, // 从 HUD 原点开始铺满。
                     Size = HudSize, // 与 HUD 边界一致。
-                    Modulate = Colors.White with { A = 0.6f } // 仅将物品栏底图设为 60% 不透明度。
+                    Modulate = Colors.White with { A = 0.6f }, // 仅将物品栏底图设为 60% 不透明度。
                 };
                 AddChild(background);
 
@@ -183,8 +186,6 @@ namespace STS2_WineFox.Combat
                 return GetMaterialAmounts().ContainsKey(powerType);
             }
 
-            private readonly Dictionary<Type, decimal> _materialAmounts = [];
-
             private Dictionary<Type, decimal> GetMaterialAmounts()
             {
                 _materialAmounts.Clear();
@@ -208,7 +209,7 @@ namespace STS2_WineFox.Combat
             private void UpdateCreatureAttachment()
             {
                 var creatureNode = Player.Creature.GetCreatureNode();
-                if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode)) return;
+                if (creatureNode == null || !IsInstanceValid(creatureNode)) return;
                 if (ReferenceEquals(_creatureNode, creatureNode) && GetParent() == creatureNode) return;
 
                 DisconnectHoverSignals();
@@ -222,7 +223,7 @@ namespace STS2_WineFox.Combat
             private void UpdateHudPosition()
             {
                 var creatureNode = _creatureNode;
-                if (creatureNode == null || !GodotObject.IsInstanceValid(creatureNode))
+                if (creatureNode == null || !IsInstanceValid(creatureNode))
                 {
                     Position = FallbackHudPosition;
                     return;
@@ -230,7 +231,7 @@ namespace STS2_WineFox.Combat
 
                 // 血条节点是**字符串路径查找**，代价不低；本方法每帧都会执行，
                 // 因此缓存引用，只在角色节点更换时重新解析（原先每帧查一次）。
-                if (_healthBarNode == null || !GodotObject.IsInstanceValid(_healthBarNode))
+                if (_healthBarNode == null || !IsInstanceValid(_healthBarNode))
                 {
                     _healthBarNode = creatureNode.GetNodeOrNull<Control>("%HealthBar")
                                      ?? creatureNode.GetNodeOrNull<Control>("HealthBar");
@@ -241,8 +242,6 @@ namespace STS2_WineFox.Combat
                 if (_showHideTween == null || !_showHideTween.IsRunning())
                     GlobalPosition = _targetVisible ? _originalPosition : _originalPosition + HudAnimOffset;
             }
-
-            private Control? _healthBarNode;
 
             private void UpdateVisibility(bool shouldBeVisible)
             {
@@ -356,7 +355,7 @@ namespace STS2_WineFox.Combat
                     ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                     StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                     Position = center - IconSize * 0.5f,
-                    Size = IconSize
+                    Size = IconSize,
                 };
                 AddChild(icon);
 
@@ -366,7 +365,7 @@ namespace STS2_WineFox.Combat
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Bottom,
                     Position = center + new Vector2(-2f, 1f),
-                    Size = new(16f, 16f)
+                    Size = new(16f, 16f),
                 };
                 _amountLabel.AddThemeFontSizeOverride("font_size", 16);
                 _amountLabel.AddThemeColorOverride("font_color", Colors.White);

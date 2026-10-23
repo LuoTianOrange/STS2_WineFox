@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Spell
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(2m, ValueProp.Move),
-            new("Calamity", 13m)
+            new("Calamity", 13m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCursedOrb);
@@ -29,17 +29,12 @@ namespace STS2_WineFox.Cards.Spell
         public override string SpellIconPath => Const.Paths.SpellIconCursedOrb;
 
         public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
-        
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<DoomPower>()
+            HoverTipFactory.FromPower<DoomPower>(),
         ];
 
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
-        
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             var owner = context.Owner;
@@ -69,6 +64,11 @@ namespace STS2_WineFox.Cards.Spell
                     owner.Creature,
                     context.SourceCard);
             }
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

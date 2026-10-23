@@ -1,7 +1,7 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
     <Import Project="$(RitsuLibDir)\Sts2PathDiscovery.props" Condition="'$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)\Sts2PathDiscovery.props')"/>
-    
+
     <PropertyGroup>
         <UseNuGetRitsuLib Condition="'$(UseNuGetRitsuLib)' == ''">true</UseNuGetRitsuLib>
     </PropertyGroup>
@@ -56,7 +56,7 @@
 
     <ItemGroup>
         <ProjectReference Include="$(RitsuLibDir)\STS2-RitsuLib.csproj" Condition="'$(UseNuGetRitsuLib)' != 'true'"/>
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.7" Condition="'$(UseNuGetRitsuLib)' == 'true'" />
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.7" Condition="'$(UseNuGetRitsuLib)' == 'true'"/>
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">

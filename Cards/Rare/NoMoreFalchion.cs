@@ -8,7 +8,6 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -17,6 +16,7 @@ namespace STS2_WineFox.Cards.Rare
         1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.IronKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(8m, ValueProp.Move), new IntVar("Hits", 1m)];
 
@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Rare
             var location = base.GetResultLocationForCardPlay();
             return location.pileType != PileType.Discard
                 ? location
-                : new CardLocation(location.player, PileType.Hand, CardPilePosition.Bottom);
+                : new(location.player, PileType.Hand, CardPilePosition.Bottom);
         }
 
         protected override async Task OnPlay(
@@ -41,12 +41,12 @@ namespace STS2_WineFox.Cards.Rare
             if (target != null)
             {
                 var hits = DynamicVars["Hits"].IntValue;
-                    await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                        .WithHitCount(hits)
-                        .FromCard(this, play)
-                        .Targeting(target)
-                        .WithHitFx("vfx/vfx_attack_slash")
-                        .Execute(choiceContext);
+                await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                    .WithHitCount(hits)
+                    .FromCard(this, play)
+                    .Targeting(target)
+                    .WithHitFx("vfx/vfx_attack_slash")
+                    .Execute(choiceContext);
             }
 
             // 消耗1个铁锭，永久+1次数

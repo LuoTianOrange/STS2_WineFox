@@ -1,11 +1,9 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using STS2_WineFox.Cards.Quest;
@@ -75,7 +73,7 @@ namespace STS2_WineFox.Events
             ArgumentNullException.ThrowIfNull(Owner);
             var relic = ModelDb.Relic<T>().ToMutable();
             relic.Owner = Owner;
-            return new EventOption(this, () => ChooseRelic<T>(), ModOptionKey("RELICS", optionName),
+            return new(this, () => ChooseRelic<T>(), ModOptionKey("RELICS", optionName),
                 CreateRelicHoverTips(relic));
         }
 
@@ -143,7 +141,7 @@ namespace STS2_WineFox.Events
 
             var rewards = new List<Reward>
             {
-                new CardReward(options, 3, owner)
+                new CardReward(options, 3, owner),
             };
             await RewardsCmd.OfferCustom(owner, rewards);
         }

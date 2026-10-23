@@ -1,5 +1,4 @@
 using MegaCrit.Sts2.Core.Multiplayer;
-using MegaCrit.Sts2.Core.Multiplayer.Game;
 using STS2_WineFox.Settings;
 using STS2RitsuLib.Patching.Core;
 using STS2RitsuLib.Patching.Models;

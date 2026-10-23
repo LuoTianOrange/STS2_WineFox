@@ -17,6 +17,7 @@ namespace STS2_WineFox.Cards.Common
         0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.MaterialKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CalculationBaseVar(13m),

@@ -22,7 +22,8 @@ namespace STS2_WineFox.Relics
             if (player.PlayerCombatState?.TurnNumber != 1) return;
 
             Flash();
-            var bomb = await PowerCmd.Apply<TheBombPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 3m, Owner.Creature, null);
+            var bomb = await PowerCmd.Apply<TheBombPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 3m,
+                Owner.Creature, null);
             if (bomb == null) return;
             bomb.SetDamage(30m);
         }

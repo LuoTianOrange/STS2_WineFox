@@ -6,7 +6,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -21,16 +20,19 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardLaunchPlatform);
 
-        protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new EnergyVar(1)
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new EnergyVar(1),
         ];
-        
+
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<LaunchPlatformPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<LaunchPlatformPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars.Energy.BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
@@ -39,4 +41,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-

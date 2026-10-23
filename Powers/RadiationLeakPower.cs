@@ -31,7 +31,8 @@ namespace STS2_WineFox.Powers
                 CardCmd.PreviewCardPileAdd(cardInstance);
             }
 
-            if (Amount < 10) await PowerCmd.Apply<RadiationLeakPower>(new ThrowingPlayerChoiceContext(), Owner, 1m, Owner, null);
+            if (Amount < 10)
+                await PowerCmd.Apply<RadiationLeakPower>(new ThrowingPlayerChoiceContext(), Owner, 1m, Owner, null);
         }
     }
 }

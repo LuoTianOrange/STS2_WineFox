@@ -6,7 +6,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -25,7 +24,8 @@ namespace STS2_WineFox.Cards.Common
             CardPlay play)
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["StressPower"].BaseValue, Owner.Creature,
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["StressPower"].BaseValue, Owner.Creature,
                 this);
             PlayerCmd.EndTurn(Owner, false);
         }

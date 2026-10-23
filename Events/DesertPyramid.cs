@@ -13,7 +13,6 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Character;
 using STS2_WineFox.Enchantments;
 using STS2_WineFox.Settings;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -27,14 +26,14 @@ namespace STS2_WineFox.Events
     {
         public override EventAssetProfile AssetProfile => new(InitialPortraitPath: Const.Paths.EventDesertPyramid);
 
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new HpLossVar(6m)];
+
         public override bool IsAllowed(IRunState runState)
         {
             return WineFoxRuntimeSettings.EventsEnabled
                    && base.IsAllowed(runState);
         }
-
-        protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new HpLossVar(6m)];
 
         protected override IReadOnlyList<EventOption> GenerateInitialOptions()
         {
@@ -124,7 +123,6 @@ namespace STS2_WineFox.Events
                 }
             }
         }
-
 
 
         private async Task Chest2()

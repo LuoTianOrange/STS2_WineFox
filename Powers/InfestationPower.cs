@@ -48,7 +48,7 @@ namespace STS2_WineFox.Powers
             var offsets = new[]
             {
                 new Vector2(-150f, -45f),
-                new Vector2(150f, -65f)
+                new Vector2(150f, -65f),
             };
             for (var i = 0; i < wrigglers.Count; i++)
             {

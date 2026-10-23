@@ -38,7 +38,7 @@ namespace STS2_WineFox.Cards.Rare
                 VFXUtil.PlaySFXSimple(Const.Audio.Drink, .7f);
             }
             // VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_flying_slash");
-            
+
             await MilkCleanseHelper.Cleanse(creature, creature, this);
         }
 

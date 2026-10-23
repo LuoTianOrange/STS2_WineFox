@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Multiplier", 4m)
+            new("Multiplier", 4m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardElementRecovery);

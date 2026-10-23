@@ -1,62 +1,63 @@
 using Godot;
 
-namespace STS2_WineFox.Scripts.Effects;
-
-[Tool]
-public partial class McBlock : Node2D
+namespace STS2_WineFox.Scripts.Effects
 {
-    private Texture2D? _blockTexture;
-
-    [Export]
-    public Texture2D? BlockTexture
+    [Tool]
+    public partial class McBlock : Node2D
     {
-        get => _blockTexture;
-        set
+        private Texture2D? _blockTexture;
+
+        private MeshInstance3D? _mesh;
+        private double _time;
+
+        [Export]
+        public Texture2D? BlockTexture
         {
-            _blockTexture = value;
+            get => _blockTexture;
+            set
+            {
+                _blockTexture = value;
+                UpdateMaterial();
+            }
+        }
+
+        public override void _Ready()
+        {
+            _mesh = GetNode<MeshInstance3D>("SubViewportContainer/SubViewport/MeshInstance3D");
             UpdateMaterial();
         }
-    }
 
-    private MeshInstance3D? _mesh;
-    private double _time;
-
-    public override void _Ready()
-    {
-        _mesh = GetNode<MeshInstance3D>("SubViewportContainer/SubViewport/MeshInstance3D");
-        UpdateMaterial();
-    }
-
-    private void UpdateMaterial()
-    {
-        if (_mesh == null) return;
-
-        if (_blockTexture != null)
+        private void UpdateMaterial()
         {
-            var mat = new StandardMaterial3D
+            if (_mesh == null) return;
+
+            if (_blockTexture != null)
             {
-                AlbedoTexture = _blockTexture,
-                TextureFilter = BaseMaterial3D.TextureFilterEnum.Nearest,
-                Uv1Triplanar = true
-            };
-            _mesh.MaterialOverride = mat;
+                var mat = new StandardMaterial3D
+                {
+                    AlbedoTexture = _blockTexture,
+                    TextureFilter = BaseMaterial3D.TextureFilterEnum.Nearest,
+                    Uv1Triplanar = true,
+                };
+                _mesh.MaterialOverride = mat;
+            }
+            else
+            {
+                _mesh.MaterialOverride = null;
+            }
         }
-        else
+
+        public override void _Process(double delta)
         {
-            _mesh.MaterialOverride = null;
+            _time += delta;
+            if (_mesh == null) return;
+
+            _mesh.RotateY((float)delta * 2);
+            _mesh.RotationDegrees = new(
+                0,
+                _mesh.RotationDegrees.Y,
+                0
+            );
         }
-    }
-
-    public override void _Process(double delta)
-    {
-        _time += delta;
-        if (_mesh == null) return;
-
-        _mesh.RotateY((float)delta * 2);
-        _mesh.RotationDegrees = new Vector3(
-            0,
-            _mesh.RotationDegrees.Y,
-            0
-        );
     }
 }

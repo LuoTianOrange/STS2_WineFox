@@ -28,13 +28,13 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new CardsVar(1)
+            new CardsVar(1),
         ];
 
         /// <summary>带释放关键字——这张牌主动触发法杖释放。</summary>
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
-            WineFoxKeywords.ReleaseKeyword
+            WineFoxKeywords.ReleaseKeyword,
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDirectionalBlasting);

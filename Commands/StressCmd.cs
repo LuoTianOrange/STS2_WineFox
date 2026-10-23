@@ -45,4 +45,3 @@ namespace STS2_WineFox.Commands
         }
     }
 }
-

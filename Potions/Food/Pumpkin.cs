@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,12 +19,15 @@ namespace STS2_WineFox.Potions
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.Pumpkin);
 
         public PotionModel CampfireTransformResult => ModelDb.Potion<PumpkinPie>();
-        
-        protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target) =>
-            CreatureCmd.Heal(GetCombatTarget(target), 4);
 
-        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) =>
-            CreatureCmd.Heal(Owner.Creature, 4);
+        protected override Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
+        {
+            return CreatureCmd.Heal(GetCombatTarget(target), 4);
+        }
+
+        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return CreatureCmd.Heal(Owner.Creature, 4);
+        }
     }
 }
-

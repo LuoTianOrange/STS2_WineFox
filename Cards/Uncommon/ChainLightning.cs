@@ -6,8 +6,8 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Character;
 using STS2_WineFox.Cards.Spell;
+using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(9m, ValueProp.Move),
-            new("BounceDamage", 5m)
+            new("BounceDamage", 5m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardChainLightning);

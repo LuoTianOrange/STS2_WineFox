@@ -2,10 +2,8 @@ using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
-using MegaCrit.Sts2.Core.Nodes.Cards;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
@@ -29,12 +27,16 @@ namespace STS2_WineFox.Patches
     /// </summary>
     internal sealed class RelicHoverSpellOrderPatch : IPatchMethod
     {
-        public static string PatchId => "winefox_relic_hover_spell_order";
-        public static string Description => "Append damage line and spell cards to the starter relic hover tip";
-        public static bool IsCritical => false;
+        private const float CastIconSize = 36f;
+        private const float ModifierIconSize = 26f;
+        private const float ArrowWidth = 24f;
+        private const float ArrowHeight = 16f;
 
         private static readonly HashSet<Control> HandledThisFrame = [];
         private static ulong _frame;
+        public static string PatchId => "winefox_relic_hover_spell_order";
+        public static string Description => "Append damage line and spell cards to the starter relic hover tip";
+        public static bool IsCritical => false;
 
         public static ModPatchTarget[] GetTargets()
         {
@@ -77,11 +79,6 @@ namespace STS2_WineFox.Patches
             // 正文是 MegaRichTextLabel，用 Godot 的 [img] 标签绘制法术图标与箭头。
             HoverTipHelper.AddTipToOwner(owner, damageLine.GetFormattedText(), BuildOrderRows(preview));
         }
-
-        private const float CastIconSize = 36f;
-        private const float ModifierIconSize = 26f;
-        private const float ArrowWidth = 24f;
-        private const float ArrowHeight = 16f;
 
         /// <summary>
         ///     每段一行：正向结算一段，逆遍历后的倒序重放另起一行。

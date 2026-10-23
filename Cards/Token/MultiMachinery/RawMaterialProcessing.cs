@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
-using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -29,7 +28,7 @@ namespace STS2_WineFox.Cards.Token.MultiMachinery
                 .Where(type => owner.Powers.Any(power => power.GetType() == type && power.Amount > 0m))
                 .Select(type => (type, amount));
 
-            await MaterialCmd.GainMaterials(owner, gains, sourceCard, applyStress: false);
+            await MaterialCmd.GainMaterials(owner, gains, sourceCard, false);
         }
 
         protected override async Task OnPlay(

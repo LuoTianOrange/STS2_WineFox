@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -26,9 +25,10 @@ namespace STS2_WineFox.Potions
 
         protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
         {
-            PotionModel.AssertValidForTargetedPotion(target);
+            AssertValidForTargetedPotion(target);
             ShowPotionHitVfx(target);
-            await PowerCmd.Apply<IntangiblePower>(choiceContext, target, DynamicVars["IntangiblePower"].BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<IntangiblePower>(choiceContext, target, DynamicVars["IntangiblePower"].BaseValue,
+                Owner.Creature, null);
         }
     }
 }

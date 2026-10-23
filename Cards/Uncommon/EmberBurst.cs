@@ -18,14 +18,14 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(10m, ValueProp.Move),
-            new("Burn", 4m)
+            new("Burn", 4m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEmberBurst);
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<BurningPower>()
+            HoverTipFactory.FromPower<BurningPower>(),
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

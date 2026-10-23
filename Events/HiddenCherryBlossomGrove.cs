@@ -1,9 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
@@ -19,7 +16,9 @@ namespace STS2_WineFox.Events
     public sealed class HiddenCherryBlossomGrove : ModEventTemplate
     {
         public override bool IsShared => true;
-        public override EventAssetProfile AssetProfile => new(InitialPortraitPath: Const.Paths.EventHiddenCherryBlossomGrove);
+
+        public override EventAssetProfile AssetProfile =>
+            new(InitialPortraitPath: Const.Paths.EventHiddenCherryBlossomGrove);
 
         public override bool IsAllowed(IRunState runState)
         {
@@ -46,7 +45,7 @@ namespace STS2_WineFox.Events
             SetEventFinished(PageDescription("TRUST_INTUITION"));
             var rewards = new List<Reward>
             {
-                new SpecialCardReward(owner.RunState.CreateCard<SeekingWindBell>(owner), owner)
+                new SpecialCardReward(owner.RunState.CreateCard<SeekingWindBell>(owner), owner),
             };
             await RewardsCmd.OfferCustom(owner, rewards);
         }
@@ -56,11 +55,11 @@ namespace STS2_WineFox.Events
             ArgumentNullException.ThrowIfNull(Owner);
             var owner = Owner;
 
-            await PlayerCmd.LoseGold(owner.Gold, owner, GoldLossType.Lost);
+            await PlayerCmd.LoseGold(owner.Gold, owner);
 
             var rewards = new List<Reward>
             {
-                new CardRemovalReward(owner)
+                new CardRemovalReward(owner),
             };
             await RewardsCmd.OfferCustom(owner, rewards);
 

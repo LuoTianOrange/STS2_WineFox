@@ -7,7 +7,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -16,7 +15,7 @@ namespace STS2_WineFox.Cards.Uncommon
         2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         public override bool GainsBlock => true;
-        
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new BlockVar(13, ValueProp.Move), new("Stress", 2m)];
 
@@ -28,7 +27,8 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Stress"].BaseValue, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

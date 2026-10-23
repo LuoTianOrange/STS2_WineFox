@@ -20,17 +20,19 @@ namespace STS2_WineFox.Cards.Uncommon
         1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardOtherworldCrossing);
-        
+
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromKeyword(CardKeyword.Ethereal),
-            HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-            ];
-        
+        [
+            HoverTipFactory.FromKeyword(CardKeyword.Ethereal),
+            HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+        ];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<OtherworldCrossingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<OtherworldCrossingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
+                Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
@@ -39,4 +41,3 @@ namespace STS2_WineFox.Cards.Uncommon
         }
     }
 }
-

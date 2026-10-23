@@ -19,6 +19,7 @@ namespace STS2_WineFox.Cards.Uncommon
             new(() => new());
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(8m, ValueProp.Move), new IntVar("BonusDamage", 7m)];
 

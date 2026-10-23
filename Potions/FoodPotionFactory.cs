@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Models;
@@ -15,7 +12,8 @@ namespace STS2_WineFox.Potions
         private const float RareThreshold = 0.1f;
         private const float UncommonThreshold = 0.35f;
 
-        public static PotionModel? CreateRandomFoodPotionForReward(Player player, Rng rng, IEnumerable<PotionModel>? blacklist = null)
+        public static PotionModel? CreateRandomFoodPotionForReward(Player player, Rng rng,
+            IEnumerable<PotionModel>? blacklist = null)
         {
             if (!WineFoxRuntimeSettings.FoodEnabled)
                 return null;
@@ -38,9 +36,9 @@ namespace STS2_WineFox.Potions
                 PotionRarity.Common;
 
             var picked = TryPickByRarity(options, rarity, rng)
-                ?? TryPickByRarity(options, PotionRarity.Uncommon, rng)
-                ?? TryPickByRarity(options, PotionRarity.Common, rng)
-                ?? TryPickByRarity(options, PotionRarity.Rare, rng);
+                         ?? TryPickByRarity(options, PotionRarity.Uncommon, rng)
+                         ?? TryPickByRarity(options, PotionRarity.Common, rng)
+                         ?? TryPickByRarity(options, PotionRarity.Rare, rng);
 
             return picked;
         }
@@ -52,4 +50,3 @@ namespace STS2_WineFox.Potions
         }
     }
 }
-

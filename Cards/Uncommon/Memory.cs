@@ -28,11 +28,15 @@ namespace STS2_WineFox.Cards.Uncommon
             CardPlay play)
         {
             if (IsUpgraded)
-                await PowerCmd.Apply<MemoryPowerUpgraded>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+                await PowerCmd.Apply<MemoryPowerUpgraded>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
+                    Owner.Creature, this);
             else
-                await PowerCmd.Apply<MemoryPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
+                await PowerCmd.Apply<MemoryPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature,
+                    this);
         }
 
-        protected override void OnUpgrade() { }
+        protected override void OnUpgrade()
+        {
+        }
     }
 }

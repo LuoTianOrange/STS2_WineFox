@@ -1,19 +1,17 @@
-using Godot;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Relics;
 
 namespace STS2_WineFox.Commands
 {
@@ -40,10 +38,10 @@ namespace STS2_WineFox.Commands
 
         /// <summary>起始遗物：每回合第一次装填减免的费用。</summary>
         public const int FirstLoadDiscount = 1;
-        
+
         public static bool HasWandRelic(Player? player)
         {
-            return player?.Relics.OfType<Relics.MagicWineFoxWand>().Any() == true;
+            return player?.Relics.OfType<MagicWineFoxWand>().Any() == true;
         }
 
         public static async Task<bool> GiveDoubleReleaseSigil(Player owner)
@@ -107,8 +105,8 @@ namespace STS2_WineFox.Commands
             if (power.ReleaseSpellCount > 0)
                 return power.ReleaseSpellCount;
 
-            return power.Slots.Count(
-                slot => slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+            return power.Slots.Count(slot =>
+                slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
         }
 
         /// <summary>装填一张法术。返回是否成功（槽满时失败）。</summary>
@@ -168,8 +166,8 @@ namespace STS2_WineFox.Commands
 
             var loaded = power.DrainLoadedSpells();
 
-            power.ReleaseSpellCount = loaded.Count(
-                snapshot => snapshot.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+            power.ReleaseSpellCount = loaded.Count(snapshot =>
+                snapshot.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
 
             var carried = new List<MagicWineFoxSpellSlotSnapshot>();
             if (!isTurnEnd)
@@ -187,7 +185,7 @@ namespace STS2_WineFox.Commands
 
                     overload.OverloadCount = overloadCount;
 
-                    await overload.CastAsSpell(new MagicWineFoxSpellCastContext(
+                    await overload.CastAsSpell(new(
                         choiceContext, owner, null, entry.Card, sourceCard, overloadState));
                 }
             }
@@ -208,7 +206,7 @@ namespace STS2_WineFox.Commands
                     await PowerCmd.Apply<EnergyNextTurnPower>(
                         choiceContext, refluxTarget, amount, refluxTarget, sourceCard);
             }
-            
+
             foreach (var snapshot in carried.Concat(preserved))
                 if (!power.TryLoad(snapshot))
                     break;
@@ -231,7 +229,7 @@ namespace STS2_WineFox.Commands
                 return;
 
             // 每次装回都用新的克隆，避免复用已被结算过的实例。
-            power.TryLoad(new MagicWineFoxSpellSlotSnapshot(template.CreateClone(), null, false, 0, template));
+            power.TryLoad(new(template.CreateClone(), null, false, 0, template));
         }
 
         /// <summary>释放序列中最旧的一张法术，其余保留。</summary>
@@ -247,8 +245,8 @@ namespace STS2_WineFox.Commands
             var oldest = power.DrainOldest();
             if (oldest == null) return;
 
-            power.ReleaseSpellCount = 1 + power.Slots.Count(
-                slot => slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
+            power.ReleaseSpellCount = 1 + power.Slots.Count(slot =>
+                slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
 
             var preserved = await ResolveSpellChain(
                 choiceContext,
@@ -408,7 +406,7 @@ namespace STS2_WineFox.Commands
         }
 
         /// <summary>
-        /// 预览本次释放：与 <see cref="ResolveSpellChain" /> 使用同一套规则推演，
+        ///     预览本次释放：与 <see cref="ResolveSpellChain" /> 使用同一套规则推演，
         ///     返回执行顺序与预估总伤害，供 UI（如遗物悬停提示）显示。
         /// </summary>
         public static MagicWineFoxSpellReleasePreview PreviewRelease(MagicWineFoxSpellSlotPower? power)
@@ -464,16 +462,16 @@ namespace STS2_WineFox.Commands
 
                 if (snapshot.Card is IMagicWineFoxSpellReverseModifierCard)
                 {
-                    forward.Add(new MagicWineFoxSpellPreviewStep(
+                    forward.Add(new(
                         snapshot.Card, MagicWineFoxSpellPreviewKind.Reverse, 0m, 0));
-                    segments.Add(new MagicWineFoxSpellPreviewSegment(
+                    segments.Add(new(
                         MagicWineFoxSpellPreviewSegmentKind.Forward, forward));
 
                     var replay = new List<MagicWineFoxSpellPreviewStep>();
-                    
+
                     for (var back = pending.Count - 1; back >= 0; back--)
                     {
-                        replay.Add(new MagicWineFoxSpellPreviewStep(
+                        replay.Add(new(
                             pending[back], MagicWineFoxSpellPreviewKind.Modifier, 0m, 0));
                     }
 
@@ -485,29 +483,29 @@ namespace STS2_WineFox.Commands
                             cast[rewind].Card, replayState, enemyCount, previewSpellCount);
                         total += replayDamage * replayHits;
 
-                        replay.Add(new MagicWineFoxSpellPreviewStep(
+                        replay.Add(new(
                             cast[rewind].Card, MagicWineFoxSpellPreviewKind.Replay, replayDamage, replayHits));
 
                         replayState = CreateReplayState(modifiers);
                     }
 
                     if (replay.Count > 0)
-                        segments.Add(new MagicWineFoxSpellPreviewSegment(
+                        segments.Add(new(
                             MagicWineFoxSpellPreviewSegmentKind.Replay, replay));
 
                     var kept = new List<MagicWineFoxSpellPreviewStep>();
 
                     for (var rest = index + 1; rest < spells.Count; rest++)
                     {
-                        kept.Add(new MagicWineFoxSpellPreviewStep(
+                        kept.Add(new(
                             spells[rest].Card, MagicWineFoxSpellPreviewKind.Kept, 0m, 0));
                     }
 
                     if (kept.Count > 0)
-                        segments.Add(new MagicWineFoxSpellPreviewSegment(
+                        segments.Add(new(
                             MagicWineFoxSpellPreviewSegmentKind.Kept, kept));
 
-                    return new MagicWineFoxSpellReleasePreview(segments, total);
+                    return new(segments, total);
                 }
 
                 if (snapshot.Card is IMagicWineFoxSpellModifierCard modifierEntry)
@@ -519,7 +517,7 @@ namespace STS2_WineFox.Commands
                         pending.Add(snapshot.Card);
                     }
 
-                    forward.Add(new MagicWineFoxSpellPreviewStep(
+                    forward.Add(new(
                         snapshot.Card, MagicWineFoxSpellPreviewKind.Modifier, 0m, 0));
 
                     continue;
@@ -546,7 +544,7 @@ namespace STS2_WineFox.Commands
                 var (damage, hits) = EstimateDamage(snapshot.Card, modifiers, enemyCount, previewSpellCount);
                 total += damage * hits;
 
-                forward.Add(new MagicWineFoxSpellPreviewStep(
+                forward.Add(new(
                     snapshot.Card, MagicWineFoxSpellPreviewKind.Cast, damage, hits));
 
                 pending.Clear();
@@ -556,19 +554,19 @@ namespace STS2_WineFox.Commands
             }
 
             if (forward.Count > 0)
-                segments.Add(new MagicWineFoxSpellPreviewSegment(
+                segments.Add(new(
                     MagicWineFoxSpellPreviewSegmentKind.Forward, forward));
 
-            return new MagicWineFoxSpellReleasePreview(segments, total);
+            return new(segments, total);
         }
 
         /// <summary>
-        /// 把法杖内每张卡的显示数值刷成计入法术修正符后的结果。
-        /// <para>
-        /// 结果按 <see cref="MagicWineFoxSpellSlotPower.SpellPreviewVersion" /> 缓存：
-        /// 本法术链推演代价不低，而它会被槽位悬停（<c>NSpellSlotBar.AttachHoverTip</c>）
-        /// 高频触发，鼠标快速划过槽位时会连续重算导致卡顿。槽位内容不变时直接复用缓存。
-        /// </para>
+        ///     把法杖内每张卡的显示数值刷成计入法术修正符后的结果。
+        ///     <para>
+        ///         结果按 <see cref="MagicWineFoxSpellSlotPower.SpellPreviewVersion" /> 缓存：
+        ///         本法术链推演代价不低，而它会被槽位悬停（<c>NSpellSlotBar.AttachHoverTip</c>）
+        ///         高频触发，鼠标快速划过槽位时会连续重算导致卡顿。槽位内容不变时直接复用缓存。
+        ///     </para>
         /// </summary>
         public static void RefreshWandCardValues(MagicWineFoxSpellSlotPower? power)
         {
@@ -592,12 +590,12 @@ namespace STS2_WineFox.Commands
                 {
                     if (step.Card is not MagicWineFoxSpellCard spell)
                         continue;
-                    
+
                     if (step.Hits > 0 && adjusted.Add(step.Card))
                         spell.ApplyPreviewDamage(step.DamagePerHit);
                 }
             }
-            
+
             foreach (var slot in power.Slots)
             {
                 if (slot?.Card is MagicWineFoxSpellCard spell && !adjusted.Contains(slot.Card))
@@ -702,7 +700,7 @@ namespace STS2_WineFox.Commands
 
                 if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
                 {
-                    castContext = new MagicWineFoxSpellCastContext(
+                    castContext = new(
                         choiceContext,
                         owner,
                         PickRandomEnemy(randomState),
@@ -732,7 +730,7 @@ namespace STS2_WineFox.Commands
                 }
 
                 if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
-                    MagicWineFoxSpellCmd.GetPower(owner)?.IncrementSpellsCast();
+                    GetPower(owner)?.IncrementSpellsCast();
 
                 // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
                 if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
@@ -784,10 +782,10 @@ namespace STS2_WineFox.Commands
 
         /// <summary>
         ///     倒序重放用的累积器：只继承整轮保留的字段，一次性修正一律不带。
-        /// <para>
-        /// 修正符是打完一张法术就消费掉的，所以重放时若复用当次快照，
+        ///     <para>
+        ///         修正符是打完一张法术就消费掉的，所以重放时若复用当次快照，
         ///         等于让已被消费的修正再生效一次（双重释放会多放一遍、四重散射会多打一套）。
-        /// </para>
+        ///     </para>
         /// </summary>
         private static MagicWineFoxSpellModifierState CreateReplayState(MagicWineFoxSpellModifierState source)
         {

@@ -6,7 +6,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Rare
 {
@@ -16,14 +15,18 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("BrushStoneFormPower", 2m)];
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal, WineFoxKeywords.StoneKeyword];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Ethereal, WineFoxKeywords.StoneKeyword];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCobblestoneGenerator);
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
-            await PowerCmd.Apply<BrushStoneFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["BrushStoneFormPower"].BaseValue,
+            await PowerCmd.Apply<BrushStoneFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["BrushStoneFormPower"].BaseValue,
                 Owner.Creature, this);
         }
 

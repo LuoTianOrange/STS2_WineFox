@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -10,7 +7,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Potions;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop.AutoRegistration;
-using STS2RitsuLib.Lifecycle;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Relics
@@ -23,13 +19,20 @@ namespace STS2_WineFox.Relics
         private const float ScaleGain = 0.05f;
         private const float MaxScale = 5f;
 
+        private static IDisposable? _lifecycleSubscription;
+
+        private int _foodsEaten;
+        private int _totalFoodsEaten;
+
+        static OilyBeanCurd()
+        {
+            _lifecycleSubscription = RitsuLibFramework.SubscribeLifecycle<PotionUsedEvent>(OnPotionUsedGlobally);
+        }
+
         public override RelicRarity Rarity => RelicRarity.Common;
         public override RelicAssetProfile AssetProfile => Icons(Const.Paths.OilyBeanCurdRelicIcon);
         public override bool ShowCounter => true;
         public override int DisplayAmount => TotalFoodsEaten;
-
-        private int _foodsEaten;
-        private int _totalFoodsEaten;
 
         [SavedProperty]
         public int FoodsEaten
@@ -52,13 +55,6 @@ namespace STS2_WineFox.Relics
                 _totalFoodsEaten = value;
                 InvokeDisplayAmountChanged();
             }
-        }
-
-        private static IDisposable? _lifecycleSubscription;
-
-        static OilyBeanCurd()
-        {
-            _lifecycleSubscription = RitsuLibFramework.SubscribeLifecycle<PotionUsedEvent>(OnPotionUsedGlobally);
         }
 
         private static void OnPotionUsedGlobally(PotionUsedEvent evt)

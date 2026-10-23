@@ -21,15 +21,10 @@ namespace STS2_WineFox.Patches
 
         // 该概率会影响后续奖励 RNG 消耗，必须写入当前局存档，避免 SL 后重置。
         private static readonly PlayerRunSavedData<FoodPotionRewardSaveState> FoodRewardState =
-            RunSavedDataStore.For(Const.ModId).RegisterPerPlayer<FoodPotionRewardSaveState>(
-                "food_potion_reward_odds",  // RitsuLib 已做隔离，不需要在此手动加前缀
+            RunSavedDataStore.For(Const.ModId).RegisterPerPlayer(
+                "food_potion_reward_odds", // RitsuLib 已做隔离，不需要在此手动加前缀
                 () => new FoodPotionRewardSaveState(),
                 new() { WritePolicy = RunSavedDataWritePolicy.WhenNonDefault });
-
-        internal static void InitializeSavedData()
-        {
-            _ = FoodRewardState;
-        }
 
         public static string PatchId => "winefox_food_potion_reward_roll";
         public static bool IsCritical => true;
@@ -38,6 +33,11 @@ namespace STS2_WineFox.Patches
         public static ModPatchTarget[] GetTargets()
         {
             return [new(typeof(RewardsSet), nameof(RewardsSet.WithRewardsFromRoom))];
+        }
+
+        internal static void InitializeSavedData()
+        {
+            _ = FoodRewardState;
         }
 
         // ReSharper disable once InconsistentNaming

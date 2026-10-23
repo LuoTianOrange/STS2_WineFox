@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -11,14 +12,14 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.Basic
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    [RegisterCharacterStarterCard(typeof(MagicWineFox), 1)]
+    [RegisterCharacterStarterCard(typeof(MagicWineFox))]
     public class QuickReload() : WineFoxCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuickReload);
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new CardsVar(1)
+            new CardsVar(1),
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -28,7 +29,7 @@ namespace STS2_WineFox.Cards.Basic
 
             await DrawSpells(choiceContext, owner, (int)DynamicVars.Cards.BaseValue);
         }
-        
+
         private static async Task DrawSpells(
             PlayerChoiceContext choiceContext,
             Player owner,
@@ -55,7 +56,7 @@ namespace STS2_WineFox.Cards.Basic
                 var spell = spells[index];
                 spells.Remove(spell);
 
-                await CardPileCmd.Add(spell, PileType.Hand, CardPilePosition.Top, null, false);
+                await CardPileCmd.Add(spell, PileType.Hand, CardPilePosition.Top);
             }
         }
 
@@ -64,14 +65,14 @@ namespace STS2_WineFox.Cards.Basic
             return
             [
                 .. PileType.Draw.GetPile(owner).Cards
-                    .Where(card => card is Spell.MagicWineFoxSpellCard)
+                    .Where(card => card is MagicWineFoxSpellCard),
             ];
         }
 
         private static bool SpellsInDiscardPile(Player owner)
         {
             return PileType.Discard.GetPile(owner).Cards
-                .Any(card => card is Spell.MagicWineFoxSpellCard);
+                .Any(card => card is MagicWineFoxSpellCard);
         }
 
         protected override void OnUpgrade()

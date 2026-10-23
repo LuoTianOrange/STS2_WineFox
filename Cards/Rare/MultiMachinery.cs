@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Rare
         0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
-        
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Stress", 1m),

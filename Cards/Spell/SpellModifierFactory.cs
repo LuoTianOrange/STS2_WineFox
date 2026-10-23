@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Character;
 using STS2_WineFox.Mechanics;
+
 namespace STS2_WineFox.Cards.Spell
 {
     public static class SpellModifierFactory

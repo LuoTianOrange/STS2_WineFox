@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(20m, ValueProp.Move)
+            new DamageVar(20m, ValueProp.Move),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardCircularSaw);
@@ -25,11 +25,6 @@ namespace STS2_WineFox.Cards.Spell
         public override string SpellIconPath => Const.Paths.SpellIconCircularSaw;
 
         public override decimal PreviewDamage => DynamicVars.Damage.BaseValue;
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -54,6 +49,11 @@ namespace STS2_WineFox.Cards.Spell
                 ValueProp.Unpowered,
                 null,
                 null);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -32,7 +31,7 @@ namespace STS2_WineFox.Powers
             if (LastSkillCard == null) return;
 
             Flash();
-            var copyCount = Math.Max(0, (int)Amount);
+            var copyCount = Math.Max(0, Amount);
             for (var i = 0; i < copyCount; i++)
             {
                 var clone = LastSkillCard.CreateClone();
@@ -44,7 +43,9 @@ namespace STS2_WineFox.Powers
             }
         }
 
-        protected virtual void ConfigureClone(CardModel clone) { }
+        protected virtual void ConfigureClone(CardModel clone)
+        {
+        }
 
         public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
         {

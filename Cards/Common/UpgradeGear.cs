@@ -46,8 +46,8 @@ namespace STS2_WineFox.Cards.Common
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Block.UpgradeValueBy(3m);    // 8 → 11
-            DynamicVars["Count"].UpgradeValueBy(1m);  // 2 → 3
+            DynamicVars.Block.UpgradeValueBy(3m); // 8 → 11
+            DynamicVars["Count"].UpgradeValueBy(1m); // 2 → 3
         }
     }
 }

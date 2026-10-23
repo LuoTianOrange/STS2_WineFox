@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Token.Craft
         {
             await PowerCmd.Apply<DiamondPickaxePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
                 Owner.Creature, this);
-            
+
             if (IsUpgraded)
             {
                 for (var i = 0; i < 3; i++)

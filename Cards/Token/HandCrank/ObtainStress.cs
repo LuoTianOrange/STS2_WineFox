@@ -6,7 +6,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Token.HandCrank
 {
@@ -15,13 +14,16 @@ namespace STS2_WineFox.Cards.Token.HandCrank
         0, CardType.Skill, CardRarity.Token, TargetType.None), IDirectApply
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.StressKeyword];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Stress", 1m)];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardObtainStress);
-        
+
         public async Task Apply()
         {
-            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["Stress"].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StressPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars["Stress"].BaseValue, Owner.Creature, this);
         }
 
         protected override async Task OnPlay(

@@ -1,5 +1,4 @@
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Powers;
@@ -10,7 +9,10 @@ namespace STS2_WineFox.Patches
     internal sealed class EchoesSequenceSmartDescriptionPatch : IPatchMethod
     {
         public static string PatchId => "winefox_echoes_sequence_smart_description";
-        public static string Description => "Inject the bound spell's name into EchoesSequencePower's smart description";
+
+        public static string Description =>
+            "Inject the bound spell's name into EchoesSequencePower's smart description";
+
         public static bool IsCritical => false;
 
         public static ModPatchTarget[] GetTargets()

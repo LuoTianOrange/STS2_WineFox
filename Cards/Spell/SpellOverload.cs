@@ -17,7 +17,7 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new CardsVar(1)
+            new CardsVar(1),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpellOverload);
@@ -28,18 +28,13 @@ namespace STS2_WineFox.Cards.Spell
         [
             WineFoxKeywords.LoadKeyword,
             CardKeyword.Ethereal,
-            CardKeyword.Exhaust
+            CardKeyword.Exhaust,
         ];
 
         public override SpellTraits Traits =>
             new() { AttackSpell = false, SupportSpell = true, TargetSelf = true };
 
         public int OverloadCount { get; set; }
-
-        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
-        {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -62,6 +57,11 @@ namespace STS2_WineFox.Cards.Spell
                 ValueProp.Unpowered,
                 context.SourceCard,
                 null);
+        }
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
         }
 
         protected override void OnUpgrade()

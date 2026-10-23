@@ -1,5 +1,5 @@
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Commands;
 

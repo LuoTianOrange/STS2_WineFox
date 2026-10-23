@@ -6,25 +6,27 @@ using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Token.HandCrank
 {
-    
     [RegisterCard(typeof(WineFoxTokenCardPool))]
     public class ObtainMaterials() : WineFoxCard(
         0, CardType.Skill, CardRarity.Token, TargetType.None), IDirectApply
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword, WineFoxKeywords.IronKeyword,
+        ];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Wood", 1m),
             new("Stone", 3m),
-            new("Iron", 0m)
+            new("Iron", 0m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardObtainMaterials);
-        
+
         public async Task Apply()
         {
             if (IsUpgraded)
@@ -33,8 +35,8 @@ namespace STS2_WineFox.Cards.Token.HandCrank
                 [
                     (typeof(WoodPower), DynamicVars["Wood"].BaseValue),
                     (typeof(StonePower), DynamicVars["Stone"].BaseValue),
-                    (typeof(IronPower), DynamicVars["Iron"].BaseValue)
-                ], sourceCard: null, applyStress: true);
+                    (typeof(IronPower), DynamicVars["Iron"].BaseValue),
+                ], null, true);
             }
             else
             {
@@ -42,8 +44,8 @@ namespace STS2_WineFox.Cards.Token.HandCrank
                     Owner.Creature,
                     DynamicVars["Wood"].BaseValue,
                     DynamicVars["Stone"].BaseValue,
-                    sourceCard: null,
-                    applyStress: true);
+                    null,
+                    true);
             }
         }
 
@@ -61,4 +63,3 @@ namespace STS2_WineFox.Cards.Token.HandCrank
         }
     }
 }
-

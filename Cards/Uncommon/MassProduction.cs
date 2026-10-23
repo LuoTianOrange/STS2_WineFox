@@ -5,7 +5,6 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
@@ -18,12 +17,14 @@ namespace STS2_WineFox.Cards.Uncommon
         public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)
         {
             var owner = Owner;
-            await PowerCmd.Apply<MassProductionPower>(new ThrowingPlayerChoiceContext(), owner.Creature, 1m, owner.Creature, this);
+            await PowerCmd.Apply<MassProductionPower>(new ThrowingPlayerChoiceContext(), owner.Creature, 1m,
+                owner.Creature, this);
         }
 
         protected override void OnUpgrade()

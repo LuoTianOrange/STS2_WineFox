@@ -19,7 +19,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(12m, ValueProp.Move)
+            new DamageVar(12m, ValueProp.Move),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuantumLock);
@@ -28,7 +28,7 @@ namespace STS2_WineFox.Cards.Rare
         {
             if (play.Target is not { } target || Owner?.Creature is not { } caster)
                 return;
-            
+
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this, play)
                 .Targeting(target)

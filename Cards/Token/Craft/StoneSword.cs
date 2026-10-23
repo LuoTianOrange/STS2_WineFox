@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Token.Craft
 {
@@ -19,12 +18,14 @@ namespace STS2_WineFox.Cards.Token.Craft
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(9m, ValueProp.Move), new PowerVar<StrengthPower>(1m)];
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<StrengthPower>()];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardStoneSword);
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

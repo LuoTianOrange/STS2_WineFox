@@ -25,7 +25,8 @@ namespace STS2_WineFox.Powers
             Flash();
 
             await PowerCmd.Apply<StonePower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
-            await PowerCmd.Apply<BrushStoneFormPower>(new ThrowingPlayerChoiceContext(), Owner, CountIncrement, Owner, null);
+            await PowerCmd.Apply<BrushStoneFormPower>(new ThrowingPlayerChoiceContext(), Owner, CountIncrement, Owner,
+                null);
         }
     }
 }

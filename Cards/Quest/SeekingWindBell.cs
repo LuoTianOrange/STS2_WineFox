@@ -14,6 +14,11 @@ namespace STS2_WineFox.Cards.Quest
     {
         private int _targetActIndex = -1;
 
+        public SeekingWindBell()
+            : base(1, CardType.Quest, CardRarity.Quest, TargetType.None)
+        {
+        }
+
         public override int MaxUpgradeLevel => 0;
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSeekingWindBell);
 
@@ -29,11 +34,6 @@ namespace STS2_WineFox.Cards.Quest
                 AssertMutable();
                 _targetActIndex = value;
             }
-        }
-
-        public SeekingWindBell()
-            : base(1, CardType.Quest, CardRarity.Quest, TargetType.None)
-        {
         }
 
         public override void AfterCreated()

@@ -16,7 +16,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Gain", 1m)
+            new("Gain", 1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardDeconstructiveRecharge);

@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<SpellOverload>(IsUpgraded)
+            HoverTipFactory.FromCard<SpellOverload>(IsUpgraded),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardOverloadCasting);

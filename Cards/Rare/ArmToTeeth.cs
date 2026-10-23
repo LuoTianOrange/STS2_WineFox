@@ -28,7 +28,8 @@ namespace STS2_WineFox.Cards.Rare
         {
             var currentMultiplier = Owner.Creature.GetPowerAmount<ArmToTeethPower>();
             var amountToApply = currentMultiplier > 0m ? 1m : 2m;
-            await PowerCmd.Apply<ArmToTeethPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, amountToApply, Owner.Creature, this);
+            await PowerCmd.Apply<ArmToTeethPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, amountToApply,
+                Owner.Creature, this);
         }
 
         protected override void OnUpgrade()
@@ -37,4 +38,3 @@ namespace STS2_WineFox.Cards.Rare
         }
     }
 }
-

@@ -52,10 +52,15 @@ namespace STS2_WineFox.Cards
 
         public static readonly string SpellModifier =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SpellModifierKey);
+
         public static readonly string SophisticatedBackpack =
             ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SophisticatedBackpackKey);
+
         public static readonly string Sword = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, SwordKey);
-        public static readonly string CookableFood = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookableFoodKey);
+
+        public static readonly string CookableFood =
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookableFoodKey);
+
         public static readonly string CookedFood = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookedFoodKey);
         public static readonly string Charge = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ChargeKey);
 

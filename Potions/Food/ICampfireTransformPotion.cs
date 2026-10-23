@@ -7,4 +7,3 @@ namespace STS2_WineFox.Potions
         PotionModel CampfireTransformResult { get; }
     }
 }
-

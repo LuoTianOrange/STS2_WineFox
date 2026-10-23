@@ -15,6 +15,33 @@ namespace STS2_WineFox.Cards.Rare
     public class InequivalentExchange() : WineFoxCard(
         2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        private static readonly Func<ICombatState, Player, CardModel>[] RareCardCreators =
+        [
+            (state, owner) => state.CreateCard<AccumulatingGrudges>(owner),
+            (state, owner) => state.CreateCard<AllItem>(owner),
+            (state, owner) => state.CreateCard<ArmToTeeth>(owner),
+            (state, owner) => state.CreateCard<AutoCrafter>(owner),
+            (state, owner) => state.CreateCard<BatchCraft>(owner),
+            (state, owner) => state.CreateCard<BladeMaster>(owner),
+            (state, owner) => state.CreateCard<CobblestoneGenerator>(owner),
+            (state, owner) => state.CreateCard<EasyPeasy>(owner),
+            (state, owner) => state.CreateCard<HellGift>(owner),
+            (state, owner) => state.CreateCard<LessHoliday>(owner),
+            (state, owner) => state.CreateCard<Liberation>(owner),
+            (state, owner) => state.CreateCard<Milk>(owner),
+            (state, owner) => state.CreateCard<MiningGems>(owner),
+            (state, owner) => state.CreateCard<NetheriteChestPlate>(owner),
+            (state, owner) => state.CreateCard<NetheriteSword>(owner),
+            (state, owner) => state.CreateCard<NoMoreFalchion>(owner),
+            (state, owner) => state.CreateCard<PaybackTime>(owner),
+            (state, owner) => state.CreateCard<PlanningExpert>(owner),
+            (state, owner) => state.CreateCard<ShieldAttack>(owner),
+            (state, owner) => state.CreateCard<SpinningHand>(owner),
+            (state, owner) => state.CreateCard<SpiritFoxForm>(owner),
+            (state, owner) => state.CreateCard<SteamEngine>(owner),
+            (state, owner) => state.CreateCard<WirelessTerminal>(owner),
+        ];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardInequivalentExchange);
 
         protected override async Task OnPlay(
@@ -53,32 +80,5 @@ namespace STS2_WineFox.Cards.Rare
         protected override void OnUpgrade()
         {
         }
-
-        private static readonly Func<ICombatState, Player, CardModel>[] RareCardCreators =
-        [
-            (state, owner) => state.CreateCard<AccumulatingGrudges>(owner),
-            (state, owner) => state.CreateCard<AllItem>(owner),
-            (state, owner) => state.CreateCard<ArmToTeeth>(owner),
-            (state, owner) => state.CreateCard<AutoCrafter>(owner),
-            (state, owner) => state.CreateCard<BatchCraft>(owner),
-            (state, owner) => state.CreateCard<BladeMaster>(owner),
-            (state, owner) => state.CreateCard<CobblestoneGenerator>(owner),
-            (state, owner) => state.CreateCard<EasyPeasy>(owner),
-            (state, owner) => state.CreateCard<HellGift>(owner),
-            (state, owner) => state.CreateCard<LessHoliday>(owner),
-            (state, owner) => state.CreateCard<Liberation>(owner),
-            (state, owner) => state.CreateCard<Milk>(owner),
-            (state, owner) => state.CreateCard<MiningGems>(owner),
-            (state, owner) => state.CreateCard<NetheriteChestPlate>(owner),
-            (state, owner) => state.CreateCard<NetheriteSword>(owner),
-            (state, owner) => state.CreateCard<NoMoreFalchion>(owner),
-            (state, owner) => state.CreateCard<PaybackTime>(owner),
-            (state, owner) => state.CreateCard<PlanningExpert>(owner),
-            (state, owner) => state.CreateCard<ShieldAttack>(owner),
-            (state, owner) => state.CreateCard<SpinningHand>(owner),
-            (state, owner) => state.CreateCard<SpiritFoxForm>(owner),
-            (state, owner) => state.CreateCard<SteamEngine>(owner),
-            (state, owner) => state.CreateCard<WirelessTerminal>(owner),
-        ];
     }
 }

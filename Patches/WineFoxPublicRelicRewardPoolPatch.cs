@@ -21,7 +21,7 @@ namespace STS2_WineFox.Patches
                 new(
                     typeof(SharedRelicPool),
                     nameof(SharedRelicPool.GetUnlockedRelics),
-                    [typeof(UnlockState)])
+                    [typeof(UnlockState)]),
             ];
         }
 

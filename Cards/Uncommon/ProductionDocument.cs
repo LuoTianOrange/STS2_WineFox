@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
-        
+
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,
             CardPlay play)

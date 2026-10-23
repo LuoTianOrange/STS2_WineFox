@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,15 +20,17 @@ namespace STS2_WineFox.Potions
         public override PotionAssetProfile AssetProfile => Art(Const.Paths.Mushroom);
 
         public PotionModel CampfireTransformResult => ModelDb.Potion<MushroomStew>();
-        
+
         protected override async Task OnUseInCombat(PlayerChoiceContext choiceContext, Creature? target)
         {
             var targetCreature = GetCombatTarget(target);
-            await PowerCmd.Apply<PoisonPower>(choiceContext, targetCreature, 1, Owner.Creature, cardSource: null);
-            await PowerCmd.Apply<DexterityPower>(choiceContext, targetCreature, 1, Owner.Creature, cardSource: null);
+            await PowerCmd.Apply<PoisonPower>(choiceContext, targetCreature, 1, Owner.Creature, null);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, targetCreature, 1, Owner.Creature, null);
         }
 
-        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext) => Task.CompletedTask;
+        protected override Task OnUseOutOfCombat(PlayerChoiceContext choiceContext)
+        {
+            return Task.CompletedTask;
+        }
     }
 }
-

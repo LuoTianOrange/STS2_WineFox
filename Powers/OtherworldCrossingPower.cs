@@ -7,8 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
@@ -29,6 +29,18 @@ namespace STS2_WineFox.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.OtherworldCrossingPowerIcon);
+
+        public IReadOnlyList<ExtraIconAmountLabelSpec> GetPowerExtraIconAmountLabelSpecs()
+        {
+            var data = GetInternalData<Data>();
+            var turnsLeft = Math.Max(0, data.TurnsUntilTrigger);
+            var stacks = (int)Math.Max(0m, Amount);
+            return
+            [
+                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomLeft, turnsLeft.ToString()),
+                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomRight, stacks.ToString()),
+            ];
+        }
 
         event Action? IPowerExtraIconAmountLabelsChangeSource.PowerExtraIconAmountLabelsInvalidated
         {
@@ -52,20 +64,9 @@ namespace STS2_WineFox.Powers
                 data.TurnsUntilTrigger = TriggerIntervalTurns;
                 data.IsInitialized = true;
             }
+
             data.NotifyExtraLabelsInvalidated();
             return Task.CompletedTask;
-        }
-
-        public IReadOnlyList<ExtraIconAmountLabelSpec> GetPowerExtraIconAmountLabelSpecs()
-        {
-            var data = GetInternalData<Data>();
-            var turnsLeft = Math.Max(0, data.TurnsUntilTrigger);
-            var stacks = (int)Math.Max(0m, Amount);
-            return
-            [
-                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomLeft, turnsLeft.ToString()),
-                ExtraIconAmountLabelSpec.Plain(ExtraIconAmountLabelCorner.BottomRight, stacks.ToString())
-            ];
         }
 
         protected override async Task OnAfterPlayerTurnStart(

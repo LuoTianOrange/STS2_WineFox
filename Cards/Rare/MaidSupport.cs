@@ -18,8 +18,8 @@ namespace STS2_WineFox.Cards.Rare
             [new("Armor", 5m), new IntVar("Thorns", 2m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<PlatingPower>(),HoverTipFactory.FromPower<ThornsPower>()];
-        
+            [HoverTipFactory.FromPower<PlatingPower>(), HoverTipFactory.FromPower<ThornsPower>()];
+
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMaidSupport);
 
         public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -39,8 +39,10 @@ namespace STS2_WineFox.Cards.Rare
 
             foreach (var teammate in teammates)
             {
-                await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), teammate, armorAmount, owner.Creature, this);
-                await PowerCmd.Apply<ThornsPower>(new ThrowingPlayerChoiceContext(), teammate, thornsAmount, owner.Creature, this);
+                await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), teammate, armorAmount,
+                    owner.Creature, this);
+                await PowerCmd.Apply<ThornsPower>(new ThrowingPlayerChoiceContext(), teammate, thornsAmount,
+                    owner.Creature, this);
             }
         }
 

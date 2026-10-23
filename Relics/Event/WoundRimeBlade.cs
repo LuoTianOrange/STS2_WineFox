@@ -28,16 +28,6 @@ namespace STS2_WineFox.Relics.Event
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<VulnerablePower>()];
 
-        public override decimal ModifyBlockAdditive(
-            Creature target,
-            decimal block,
-            ValueProp props,
-            CardModel? cardSource,
-            CardPlay? cardPlay)
-        {
-            return IsEnemy(target) ? -block : 0m;
-        }
-
         public decimal ModifyHealAmount(HealContext context, decimal amount)
         {
             var creature = context.Creature;
@@ -46,6 +36,16 @@ namespace STS2_WineFox.Relics.Event
 
             Flash();
             return 0m;
+        }
+
+        public override decimal ModifyBlockAdditive(
+            Creature target,
+            decimal block,
+            ValueProp props,
+            CardModel? cardSource,
+            CardPlay? cardPlay)
+        {
+            return IsEnemy(target) ? -block : 0m;
         }
 
         private bool IsEnemy(Creature creature)
@@ -70,7 +70,8 @@ namespace STS2_WineFox.Relics.Event
                 return;
 
             Flash();
-            await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, DynamicVars.Vulnerable.BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, DynamicVars.Vulnerable.BaseValue,
+                Owner.Creature, null);
         }
     }
 }

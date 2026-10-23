@@ -9,7 +9,6 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
-using MegaCrit.Sts2.Core.Models;
 
 namespace STS2_WineFox.Cards.Common
 {
@@ -18,7 +17,11 @@ namespace STS2_WineFox.Cards.Common
         1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         public override bool GainsBlock => true;
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Ethereal, WineFoxKeywords.WoodKeyword, WineFoxKeywords.StoneKeyword,
+        ];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

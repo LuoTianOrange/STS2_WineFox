@@ -15,6 +15,15 @@ namespace STS2_WineFox.Settings
         public static bool FoodEnabled => Current.FoodEnabled;
         public static bool PublicRelicsEnabled => Current.PublicRelicsEnabled;
 
+        private static WineFoxModSettings Current
+        {
+            get
+            {
+                Initialize();
+                return RitsuLibFramework.GetDataStore(Const.ModId).Get<WineFoxModSettings>(DataKey);
+            }
+        }
+
         public static void Initialize()
         {
             if (_initialized)
@@ -26,21 +35,12 @@ namespace STS2_WineFox.Settings
                     DataKey,
                     FileName,
                     SaveScope.Global,
-                    defaultFactory: () => new WineFoxModSettings(),
-                    autoCreateIfMissing: true);
+                    () => new WineFoxModSettings(),
+                    true);
             }
 
             RitsuLibFramework.GetDataStore(Const.ModId).InitializeGlobal();
             _initialized = true;
-        }
-
-        private static WineFoxModSettings Current
-        {
-            get
-            {
-                Initialize();
-                return RitsuLibFramework.GetDataStore(Const.ModId).Get<WineFoxModSettings>(DataKey);
-            }
         }
     }
 }
