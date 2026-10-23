@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cx4vrdwvk0ajm"
+path="res://.godot/imported/jiuhu_1.atlas-5480371d7d35dbf4a54197a0846c0f0c.spatlas"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/combat/酒狐新立绘/jiuhu_1.atlas"
+dest_files=["res://.godot/imported/jiuhu_1.atlas-5480371d7d35dbf4a54197a0846c0f0c.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

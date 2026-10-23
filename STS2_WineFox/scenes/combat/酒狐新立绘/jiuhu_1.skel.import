@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://dppbcsvt18gw5"
+path="res://.godot/imported/jiuhu_1.skel-d6558f16e0b3044dba1fa6647eddc0a6.spskel"
+
+[deps]
+
+source_file="res://STS2_WineFox/scenes/combat/酒狐新立绘/jiuhu_1.skel"
+dest_files=["res://.godot/imported/jiuhu_1.skel-d6558f16e0b3044dba1fa6647eddc0a6.spskel"]
+
+[params]
+

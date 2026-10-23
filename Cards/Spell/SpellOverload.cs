@@ -59,7 +59,7 @@ namespace STS2_WineFox.Cards.Spell
                 new ThrowingPlayerChoiceContext(),
                 caster,
                 amount,
-                ValueProp.Unblockable | ValueProp.Unpowered,
+                ValueProp.Unpowered,
                 context.SourceCard,
                 null);
         }

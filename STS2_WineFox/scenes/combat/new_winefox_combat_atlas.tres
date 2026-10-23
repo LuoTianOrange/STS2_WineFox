@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://d42wutukv5aj"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cx4vrdwvk0ajm" path="res://STS2_WineFox/scenes/combat/酒狐新立绘/jiuhu_1.atlas" id="1_ay6w8"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dppbcsvt18gw5" path="res://STS2_WineFox/scenes/combat/酒狐新立绘/jiuhu_1.skel" id="2_3dju5"]
+
+[resource]
+atlas_res = ExtResource("1_ay6w8")
+skeleton_file_res = ExtResource("2_3dju5")
