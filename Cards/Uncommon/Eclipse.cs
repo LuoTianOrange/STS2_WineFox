@@ -10,11 +10,11 @@ using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Rare
+namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class Eclipse() : MagicWineFoxSpellCard(
-        2, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellCard
+        2, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

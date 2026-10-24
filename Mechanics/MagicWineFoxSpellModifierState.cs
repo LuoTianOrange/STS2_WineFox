@@ -90,6 +90,52 @@ namespace STS2_WineFox.Mechanics
         public decimal DamageToBlockRatio { get; private set; }
 
         /// <summary>
+        ///     下一个法术造成伤害时转化为灼烧层数的比例。0 表示不转化。
+        /// </summary>
+        public decimal DamageToBurnRatio { get; private set; }
+
+        /// <summary>
+        ///     下一个法术造成伤害时转化为中毒层数的比例。0 表示不转化。
+        /// </summary>
+        public decimal DamageToPoisonRatio { get; private set; }
+
+        /// <summary>
+        ///     下一个法术命中的敌人是否会把受到的伤害转嫁给其他敌人。
+        /// </summary>
+        public bool ShareDamageOnHit { get; private set; }
+
+        /// <summary>
+        ///     本次释放额外增加的轮数。整轮生效，不随 <see cref="Reset" /> 清除。
+        /// </summary>
+        public int ExtraRounds { get; private set; }
+
+        /// <summary>
+        ///     下一个法术新施加的负面效果层数倍率。1 表示不放大。
+        /// </summary>
+        public decimal DebuffAmplify { get; private set; } = 1m;
+
+        /// <summary>
+        ///     下一个法术对随机第二目标再释放一次时的伤害比例。0 表示不触发。
+        /// </summary>
+        public decimal SecondaryCastRatio { get; private set; }
+
+        /// <summary>
+        ///     当前这张法术是否被单体或看后修正符直接作用。随 <see cref="Reset" /> 清除。
+        /// </summary>
+        public bool ModifierApplied { get; private set; }
+
+        /// <summary>
+        ///     本次释放是否吃到整轮修正符。整轮有效，不随 <see cref="Reset" /> 清除。
+        /// </summary>
+        public bool WandModifierApplied { get; private set; }
+
+        /// <summary>
+        ///     这张法术是否被法术修正影响。判据是修正符真的作用到了它，
+        ///     而不是采信数值变化——法力转伤害消耗 0 能量时也应当算受影响。
+        /// </summary>
+        public bool AffectedByModifier => ModifierApplied || WandModifierApplied;
+
+        /// <summary>
         ///     本回合强制指定的单体法术目标。整轮有效，不随 <see cref="Reset" /> 清除。
         /// </summary>
         public Creature? ForcedTarget { get; private set; }
@@ -234,6 +280,14 @@ namespace STS2_WineFox.Mechanics
                 DrawForModifierEntries = DrawForModifierEntries,
                 BlockBonus = BlockBonus,
                 DamageToBlockRatio = DamageToBlockRatio,
+                DamageToBurnRatio = DamageToBurnRatio,
+                DamageToPoisonRatio = DamageToPoisonRatio,
+                ShareDamageOnHit = ShareDamageOnHit,
+                ExtraRounds = ExtraRounds,
+                DebuffAmplify = DebuffAmplify,
+                SecondaryCastRatio = SecondaryCastRatio,
+                ModifierApplied = ModifierApplied,
+                WandModifierApplied = WandModifierApplied,
                 ForcedTarget = ForcedTarget,
                 WandModifierCount = WandModifierCount,
                 DamageCorrectionBonus = DamageCorrectionBonus,
@@ -277,6 +331,54 @@ namespace STS2_WineFox.Mechanics
             DrawForModifierEntries |= includeModifierEntries;
         }
 
+        /// <summary>登记下一个法术的伤害转为灼烧层数的比例。</summary>
+        public void MarkDamageToBurn(decimal ratio)
+        {
+            DamageToBurnRatio = ratio;
+        }
+
+        /// <summary>登记下一个法术的伤害转为中毒层数的比例。</summary>
+        public void MarkDamageToPoison(decimal ratio)
+        {
+            DamageToPoisonRatio = ratio;
+        }
+
+        /// <summary>登记下一个法术的命中目标会转嫁伤害。</summary>
+        public void MarkShareDamageOnHit()
+        {
+            ShareDamageOnHit = true;
+        }
+
+        /// <summary>登记本次释放额外增加的轮数。</summary>
+        public void AddExtraRounds(int rounds)
+        {
+            ExtraRounds += rounds;
+        }
+
+        /// <summary>登记下一个法术新施加的负面效果放大倍率。</summary>
+        public void MultiplyDebuffs(decimal factor)
+        {
+            DebuffAmplify *= factor;
+        }
+
+        /// <summary>登记下一个法术对随机第二目标再释放一次。</summary>
+        public void MarkSecondaryCast(decimal ratio)
+        {
+            SecondaryCastRatio = ratio;
+        }
+
+        /// <summary>登记单体或看后修正符已作用到当前法术。</summary>
+        public void MarkModifierApplied()
+        {
+            ModifierApplied = true;
+        }
+
+        /// <summary>登记整轮修正符已生效。</summary>
+        public void MarkWandModifierApplied()
+        {
+            WandModifierApplied = true;
+        }
+
         /// <summary>消费掉当前累积的修正。每施放一张法术后必须调用，否则修正会泄漏到后续法术。</summary>
         public void Reset()
         {
@@ -295,6 +397,12 @@ namespace STS2_WineFox.Mechanics
             _nextBlockBonus = 0m;
 
             DamageToBlockRatio = 0m;
+            DamageToBurnRatio = 0m;
+            DamageToPoisonRatio = 0m;
+            ShareDamageOnHit = false;
+            DebuffAmplify = 1m;
+            SecondaryCastRatio = 0m;
+            ModifierApplied = false;
         }
     }
 }

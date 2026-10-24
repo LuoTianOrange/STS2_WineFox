@@ -250,5 +250,11 @@
   "STS2_WINE_FOX_SPELL_ATTR_LOADABLE": "装填可否",
   "STS2_WINE_FOX_SPELL_ATTR_NO": "不可",
   "STS2_WINE_FOX_SPELL_ATTR_SUPPORT": "補助術",
-  "STS2_WINE_FOX_SPELL_ATTR_MODIFIER": "術修正"
+  "STS2_WINE_FOX_SPELL_ATTR_MODIFIER": "術修正",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.title": "自動装填",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.description": "毎ターン終了時、手札の最も右の[gold]呪文[/gold]を自動で[gold]装填[/gold]する。",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "毎ターン終了時、手札の最も右の[gold]呪文[/gold]を自動で[gold]装填[/gold]する。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "充能呪文",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "登録された呪文を次のターン開始時に再[gold]装填[/gold]する。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "登録された呪文を次のターン開始時に再[gold]装填[/gold]する。"
 }

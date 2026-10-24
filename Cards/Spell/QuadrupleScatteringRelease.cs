@@ -11,25 +11,27 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class QuadrupleScatteringRelease() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
+        3, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("ExtraStrikes", 3m),
-            new("DamageReduction", 75m),
+            new("ExtraCasts", 3m)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardQuadrupleScatteringRelease);
 
         public override string SpellIconPath => Const.Paths.SpellIconQuadrupleScatteringRelease;
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Ethereal,
+            CardKeyword.Exhaust
+        ];
+
         public void ApplyModifier(MagicWineFoxSpellModifierState modifiers)
         {
-            var strikes = (int)DynamicVars["ExtraStrikes"].BaseValue;
-            var reduction = DynamicVars["DamageReduction"].BaseValue;
-
-            modifiers.AddExtraDamageStrikes(strikes);
-            modifiers.MultiplyDamage(1m - reduction / 100m);
+            modifiers.AddExtraCasts((int)DynamicVars["ExtraCasts"].BaseValue);
+            modifiers.MarkExtraCastsBudgetFree();
             modifiers.MarkRandomTargets();
         }
 
@@ -40,6 +42,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }

@@ -29,6 +29,14 @@ namespace STS2_WineFox.Mechanics
         public CardModel? CastSourceCard { get; } = castSourceCard;
         public MagicWineFoxSpellModifierState Modifiers { get; } = modifiers;
 
+        /// <summary>
+        ///     本次释放的伤害缩放。仅用于「再对第二个目标释放一次」这类带衰减的重复释放。
+        /// </summary>
+        public decimal DamageScale { get; init; } = 1m;
+
+        /// <summary>本次释放是否吃到了法术修正。</summary>
+        public bool IsAffectedByModifiers => Modifiers.AffectedByModifier;
+
         public bool TargetsAllEnemies =>
             Modifiers.TargetsAllEnemies || Traits is { AreaOfEffect: true };
 
@@ -51,7 +59,7 @@ namespace STS2_WineFox.Mechanics
 
         public decimal DamageWithModifiers(decimal baseDamage)
         {
-            var raw = (baseDamage + Modifiers.DamageBonus) * Modifiers.DamageMultiplier;
+            var raw = (baseDamage + Modifiers.DamageBonus) * Modifiers.DamageMultiplier * DamageScale;
             var afterModifiers = Math.Max(0m, Math.Round(raw, 0, MidpointRounding.AwayFromZero));
 
             return MagicDamage.Resolve(SourceCard, afterModifiers, Target);

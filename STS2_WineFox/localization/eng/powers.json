@@ -250,5 +250,11 @@
   "STS2_WINE_FOX_SPELL_ATTR_LOADABLE": "Loadable",
   "STS2_WINE_FOX_SPELL_ATTR_NO": "No",
   "STS2_WINE_FOX_SPELL_ATTR_SUPPORT": "Support Spell",
-  "STS2_WINE_FOX_SPELL_ATTR_MODIFIER": "Spell Modifier"
+  "STS2_WINE_FOX_SPELL_ATTR_MODIFIER": "Spell Modifier",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.title": "Automatic Loading",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.description": "At the end of each turn, [gold]load[/gold] the rightmost [gold]spell[/gold] in your hand.",
+  "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "At the end of each turn, [gold]load[/gold] the rightmost [gold]spell[/gold] in your hand.",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "Recharging Spell",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "Registered spells are [gold]loaded[/gold] again at the start of your next turn.",
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "Registered spells are [gold]loaded[/gold] again at the start of your next turn."
 }

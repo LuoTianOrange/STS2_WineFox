@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -325,10 +326,11 @@ namespace STS2_WineFox.Commands
                     modifiers.SetCurrentX(snapshot.XValue);
                     modifiers.SetCurrentTarget(snapshot.Target);
                     wandModifier.ApplyModifier(modifiers);
+                    modifiers.MarkWandModifierApplied();
                 }
             }
 
-            for (var round = 0; round < Math.Max(1, rounds); round++)
+            for (var round = 0; round < Math.Max(1, rounds) + Math.Max(0, modifiers.ExtraRounds); round++)
             {
                 for (var index = 0; index < spells.Count; index++)
                 {
@@ -367,6 +369,7 @@ namespace STS2_WineFox.Commands
                         {
                             modifiers.SetCurrentX(snapshot.XValue);
                             modifierEntry.ApplyModifier(modifiers);
+                            modifiers.MarkModifierApplied();
                         }
 
                         if (modifiers.DrawForModifierEntries && modifiers.DrawCount > 0m)
@@ -386,6 +389,7 @@ namespace STS2_WineFox.Commands
                         {
                             modifiers.SetCurrentX(extra.XValue);
                             (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
+                            modifiers.MarkModifierApplied();
                         }
 
                     ApplyDamageCorrection(snapshot, modifiers);
@@ -713,20 +717,64 @@ namespace STS2_WineFox.Commands
                     ? CaptureAttackCandidates(castContext)
                     : [];
 
-                var trackedEnemies = state.DamageToBlockRatio > 0m &&
+                var trackedEnemies = (state.DamageToBlockRatio > 0m ||
+                                      state.DamageToBurnRatio > 0m ||
+                                      state.DamageToPoisonRatio > 0m) &&
                                      owner?.Creature?.CombatState is { } trackingState
                     ? trackingState.HittableEnemies.ToDictionary(enemy => enemy, enemy => enemy.CurrentHp)
                     : null;
 
+                var debuffsBefore = state.DebuffAmplify > 1m && owner?.Creature?.CombatState is { } debuffState
+                    ? SnapshotDebuffs(debuffState)
+                    : null;
+
                 await spellCard.CastAsSpell(castContext);
 
-                if (trackedEnemies != null && owner?.Creature is { } snatchOwner)
+                if (trackedEnemies != null && owner?.Creature is { } ratioOwner)
                 {
                     var dealt = trackedEnemies.Sum(pair => Math.Max(0, pair.Value - pair.Key.CurrentHp));
+
                     var gained = Math.Floor(dealt * state.DamageToBlockRatio);
 
                     if (gained > 0m)
-                        await CreatureCmd.GainBlock(snatchOwner, gained, ValueProp.Unpowered, null);
+                        await CreatureCmd.GainBlock(ratioOwner, gained, ValueProp.Unpowered, null);
+
+                    await ApplyDamageTrailDebuffs(
+                        choiceContext,
+                        ratioOwner,
+                        trackedEnemies,
+                        state,
+                        snapshot.Card);
+                }
+
+                if (debuffsBefore != null && owner?.Creature is { } amplifyOwner)
+                    await AmplifyNewDebuffs(
+                        choiceContext,
+                        amplifyOwner,
+                        debuffsBefore,
+                        state.DebuffAmplify,
+                        snapshot.Card);
+
+                if (state.SecondaryCastRatio > 0m && owner is { } secondaryOwner &&
+                    owner.Creature?.CombatState is { } secondaryState)
+                {
+                    var secondary = PickRandomEnemy(secondaryState, castContext.Target);
+
+                    if (secondary != null)
+                    {
+                        var secondaryContext = new MagicWineFoxSpellCastContext(
+                            choiceContext,
+                            secondaryOwner,
+                            secondary,
+                            snapshot.Card,
+                            sourceCard,
+                            state)
+                        {
+                            DamageScale = state.SecondaryCastRatio
+                        };
+
+                        await spellCard.CastAsSpell(secondaryContext);
+                    }
                 }
 
                 if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
@@ -749,6 +797,16 @@ namespace STS2_WineFox.Commands
                         owner,
                         snapshot.Card,
                         attacked);
+
+                if (state.ShareDamageOnHit && owner?.Creature is { } shareOwner)
+                    foreach (var enemy in attacked.Where(enemy => enemy.IsAlive &&
+                                                                  !enemy.HasPower<GravitationalSingularityPower>()))
+                        await PowerCmd.Apply<GravitationalSingularityPower>(
+                            choiceContext,
+                            enemy,
+                            1m,
+                            shareOwner,
+                            snapshot.Card);
 
                 if (state.SummonOnKill > 0m)
                 {
@@ -777,6 +835,109 @@ namespace STS2_WineFox.Commands
 
                 if (state.DrawCount > 0m)
                     await CardPileCmd.Draw(choiceContext, state.DrawCount, owner);
+            }
+        }
+
+        /// <summary>
+        ///     记录敌人当前身上的负面效果层数，供「负面效果翻倍」类修正符在法术结算后补差。
+        /// </summary>
+        private static Dictionary<Creature, Dictionary<PowerModel, int>> SnapshotDebuffs(
+            ICombatState combatState)
+        {
+            var result = new Dictionary<Creature, Dictionary<PowerModel, int>>();
+
+            foreach (var enemy in combatState.HittableEnemies)
+                result[enemy] = enemy.Powers
+                    .Where(power => power.Type == PowerType.Debuff)
+                    .ToDictionary(power => power, power => power.Amount);
+
+            return result;
+        }
+
+        /// <summary>
+        ///     把法术新施加的负面效果层数按倍率补足差额。
+        /// </summary>
+        private static async Task AmplifyNewDebuffs(
+            PlayerChoiceContext choiceContext,
+            Creature applier,
+            Dictionary<Creature, Dictionary<PowerModel, int>> before,
+            decimal factor,
+            CardModel? sourceCard)
+        {
+            if (factor <= 1m)
+                return;
+
+            foreach (var (enemy, snapshot) in before)
+            {
+                foreach (var power in enemy.Powers.Where(entry => entry.Type == PowerType.Debuff).ToList())
+                {
+                    var previous = snapshot.TryGetValue(power, out var amount) ? amount : 0m;
+                    var delta = power.Amount - previous;
+
+                    if (delta <= 0m)
+                        continue;
+
+                    var extra = Math.Floor(delta * (factor - 1m));
+
+                    if (extra <= 0m)
+                        continue;
+
+                    await PowerCmd.Apply(
+                        choiceContext,
+                        power,
+                        enemy,
+                        extra,
+                        applier,
+                        sourceCard);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     把本次法术造成的伤害按比例转为灼烧/中毒层数。
+        /// </summary>
+        private static async Task ApplyDamageTrailDebuffs(
+            PlayerChoiceContext choiceContext,
+            Creature caster,
+            Dictionary<Creature, int> tracked,
+            MagicWineFoxSpellModifierState state,
+            CardModel? sourceCard)
+        {
+            if (state.DamageToBurnRatio <= 0m && state.DamageToPoisonRatio <= 0m)
+                return;
+
+            foreach (var (enemy, hpBefore) in tracked)
+            {
+                var dealt = Math.Max(0, hpBefore - enemy.CurrentHp);
+
+                if (dealt <= 0)
+                    continue;
+
+                if (state.DamageToBurnRatio > 0m)
+                {
+                    var burn = Math.Floor(dealt * state.DamageToBurnRatio);
+
+                    if (burn > 0m)
+                        await PowerCmd.Apply<BurningPower>(
+                            choiceContext,
+                            enemy,
+                            burn,
+                            caster,
+                            sourceCard);
+                }
+
+                if (state.DamageToPoisonRatio > 0m)
+                {
+                    var poison = Math.Floor(dealt * state.DamageToPoisonRatio);
+
+                    if (poison > 0m)
+                        await PowerCmd.Apply<PoisonPower>(
+                            choiceContext,
+                            enemy,
+                            poison,
+                            caster,
+                            sourceCard);
+                }
             }
         }
 
@@ -824,9 +985,12 @@ namespace STS2_WineFox.Commands
             return result;
         }
 
-        private static Creature? PickRandomEnemy(ICombatState combatState)
+        private static Creature? PickRandomEnemy(ICombatState combatState, Creature? exclude = null)
         {
-            var enemies = combatState.HittableEnemies;
+            var enemies = exclude == null
+                ? combatState.HittableEnemies
+                : combatState.HittableEnemies.Where(enemy => enemy != exclude).ToList();
+
             if (enemies.Count == 0)
                 return null;
 
