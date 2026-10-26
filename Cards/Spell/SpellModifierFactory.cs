@@ -46,7 +46,7 @@ namespace STS2_WineFox.Cards.Spell
             if (options.Count == 1)
                 return await AddToHand(options[0], owner);
 
-            var selected = await CardSelectCmd.FromChooseACardScreen(choiceContext, options, owner, true);
+            var selected = await CardSelectCmd.FromChooseACardScreen(choiceContext, options, owner);
             if (selected == null)
                 return null;
 

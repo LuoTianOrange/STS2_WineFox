@@ -1,4 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -25,6 +27,11 @@ namespace STS2_WineFox.Cards.Token.Craft
 
         protected override bool IsPlayable =>
             !Owner.Creature.Powers.OfType<ShieldCooldownPower>().Any();
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<DexterityPower>(),
+        ];
 
         protected override async Task OnPlay(
             PlayerChoiceContext choiceContext,

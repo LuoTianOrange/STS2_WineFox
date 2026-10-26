@@ -256,5 +256,9 @@
   "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "毎ターン終了時、手札の最も右の[gold]呪文[/gold]を自動で[gold]装填[/gold]する。",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "充能呪文",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "登録された呪文を次のターン開始時に再[gold]装填[/gold]する。",
-  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "登録された呪文を次のターン開始時に再[gold]装填[/gold]する。"
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "登録された呪文を次のターン開始時に再[gold]装填[/gold]する。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "引力場の憑依",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "他の敵がダメージを受けると、この敵も同じダメージを受ける。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "他の敵がダメージを受けると、この敵も同じダメージを受ける。",
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用回数"
 }

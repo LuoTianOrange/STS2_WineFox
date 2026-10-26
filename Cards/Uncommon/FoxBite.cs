@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -17,6 +18,12 @@ namespace STS2_WineFox.Cards.Uncommon
             [new IntVar("Debuff", 4m)];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<VulnerablePower>(),
+            HoverTipFactory.FromPower<WeakPower>(),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardFoxBite);
 

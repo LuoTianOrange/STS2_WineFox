@@ -57,6 +57,9 @@ namespace STS2_WineFox.Mechanics
             if (traits.BounceTargets > 0)
                 rows.Add((Const.Paths.SpellAttrBounceIcon, Text("BOUNCE"), traits.BounceTargets.ToString()));
 
+            rows.Add((Const.Paths.SpellAttrUsesIcon, Text("USES"),
+                spell.IsUnlimitedUses ? "∞" : spell.UsesRemaining.ToString()));
+
             if (!traits.Loadable)
                 rows.Add((string.Empty, Text("LOADABLE"), Text("NO")));
 

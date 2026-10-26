@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
@@ -19,6 +20,11 @@ namespace STS2_WineFox.Cards.Token.Craft
 
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
             [CardKeyword.Exhaust, WineFoxKeywords.SwordKeyword];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<VigorPower>(),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenSword);
 

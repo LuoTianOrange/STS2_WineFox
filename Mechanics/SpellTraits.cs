@@ -42,5 +42,8 @@ namespace STS2_WineFox.Mechanics
 
         /// <summary>弹跳次数。0表示不弹跳</summary>
         public int BounceTargets { get; init; }
+
+        /// <summary>本场战斗允许的装填次数。null 表示无限次</summary>
+        public int? UsesLimit { get; init; }
     }
 }

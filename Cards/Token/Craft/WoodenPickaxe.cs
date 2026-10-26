@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -14,6 +15,12 @@ namespace STS2_WineFox.Cards.Token.Craft
         0, CardType.Skill, CardRarity.Token, TargetType.None)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<DrawCardsNextTurnPower>(),
+            HoverTipFactory.FromPower<EnergyNextTurnPower>(),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardWoodenPickaxe);
 

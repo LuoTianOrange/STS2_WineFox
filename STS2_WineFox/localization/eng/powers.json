@@ -256,5 +256,9 @@
   "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "At the end of each turn, [gold]load[/gold] the rightmost [gold]spell[/gold] in your hand.",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "Recharging Spell",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "Registered spells are [gold]loaded[/gold] again at the start of your next turn.",
-  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "Registered spells are [gold]loaded[/gold] again at the start of your next turn."
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "Registered spells are [gold]loaded[/gold] again at the start of your next turn.",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "Gravitational Possession",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "When another enemy takes damage, this enemy takes the same amount.",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "When another enemy takes damage, this enemy takes the same amount.",
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "USES"
 }

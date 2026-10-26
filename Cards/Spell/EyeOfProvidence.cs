@@ -1,5 +1,7 @@
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
@@ -23,17 +25,18 @@ namespace STS2_WineFox.Cards.Spell
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            var owner = context.Owner;
-            if (owner?.Creature?.CombatState == null)
-                return;
-
-            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
-                new(PendingSpellModifierMode.FromPool, Rarity));
+            await Task.CompletedTask;
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+
+            if (Owner is not { } owner)
+                return;
+
+            await CardPileCmd.Draw(choiceContext, 1, owner);
+            await SpellModifierFactory.ChooseOneToHand(choiceContext, owner);
         }
 
         protected override void OnUpgrade()

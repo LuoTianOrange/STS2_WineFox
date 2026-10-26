@@ -256,5 +256,9 @@
   "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "每个回合结束时，自动[gold]装填[/gold]手牌最右侧的[gold]法术[/gold]。",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "充能法术",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "下回合开始时重新[gold]装填[/gold]已登记的法术。",
-  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "下回合开始时重新[gold]装填[/gold]已登记的法术。"
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "下回合开始时重新[gold]装填[/gold]已登记的法术。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "引力场附身",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "其他敌人受到伤害时，该敌人承受同等伤害。",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "其他敌人受到伤害时，该敌人承受同等伤害。",
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用次数"
 }

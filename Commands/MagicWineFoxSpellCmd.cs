@@ -800,8 +800,8 @@ namespace STS2_WineFox.Commands
 
                 if (state.ShareDamageOnHit && owner?.Creature is { } shareOwner)
                     foreach (var enemy in attacked.Where(enemy => enemy.IsAlive &&
-                                                                  !enemy.HasPower<GravitationalSingularityPower>()))
-                        await PowerCmd.Apply<GravitationalSingularityPower>(
+                                                                  !enemy.HasPower<GravitationalFieldPossessionPower>()))
+                        await PowerCmd.Apply<GravitationalFieldPossessionPower>(
                             choiceContext,
                             enemy,
                             1m,

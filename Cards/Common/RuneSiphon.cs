@@ -1,7 +1,9 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
@@ -17,7 +19,7 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Copies", 2m),
+            new("Copies", 1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRuneSiphon);
@@ -26,23 +28,35 @@ namespace STS2_WineFox.Cards.Common
 
         public override SpellTraits Traits => new() { AttackSpell = false, TargetSelf = true, SupportSpell = true };
 
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<EnergyNextTurnPower>(),
+        ];
+
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            if (context.Owner is not { } owner)
-                return;
-
-            await CardPileCmd.Draw(context.ChoiceContext, 1, owner);
-
-            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
-                new(
-                    PendingSpellModifierMode.RandomChoice,
-                    Rarity,
-                    (int)DynamicVars["Copies"].BaseValue));
+            await Task.CompletedTask;
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+
+            if (Owner is not { } owner || owner.Creature is not { } creature)
+                return;
+
+            await PowerCmd.Apply<EnergyNextTurnPower>(
+                choiceContext,
+                creature,
+                1m,
+                creature,
+                this);
+
+            var copies = (int)DynamicVars["Copies"].BaseValue;
+            for (var i = 0; i < copies; i++)
+                await SpellModifierFactory.GrantRandomToHand(choiceContext, owner, this);
+
+            await CardPileCmd.Draw(choiceContext, 1, owner);
         }
 
         protected override void OnUpgrade()

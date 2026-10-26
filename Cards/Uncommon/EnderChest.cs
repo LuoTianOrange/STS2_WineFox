@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -18,6 +19,11 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new IntVar("Cards", 1m), new EnergyVar(1)];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<EnergyNextTurnPower>(),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnderChest);
 

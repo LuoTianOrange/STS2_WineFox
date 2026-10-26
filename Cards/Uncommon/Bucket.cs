@@ -21,7 +21,10 @@ namespace STS2_WineFox.Cards.Uncommon
             [new BlockVar(8m, ValueProp.Move), new IntVar("Weak", 2m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<WeakPower>()];
+        [
+            HoverTipFactory.FromPower<WeakPower>(),
+            HoverTipFactory.FromPower<BlockNextTurnPower>(),
+        ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

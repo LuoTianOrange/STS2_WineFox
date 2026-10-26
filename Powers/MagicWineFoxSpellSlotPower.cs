@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -318,6 +319,8 @@ namespace STS2_WineFox.Powers
                 foreach (var request in pending)
                     await request.Resolve(choiceContext, owner);
             }
+
+            await Task.CompletedTask;
         }
 
         /// <summary>登记一个延迟到下回合开始的法术修正选择。</summary>

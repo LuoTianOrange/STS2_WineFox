@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
@@ -16,6 +17,12 @@ namespace STS2_WineFox.Cards.Token.HellGift
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new("Buffer", 1m)];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<ArtifactPower>(),
+            HoverTipFactory.FromPower<BufferPower>(),
+        ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardGoldenArmor);
 

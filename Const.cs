@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta10";
+        public const string Version = "1.3.0-beta11";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -131,11 +131,14 @@ namespace STS2_WineFox
             public const string SpellAttrHitsIcon = Root + "/ui/spell_attrs/attr_hits.png";
             public const string SpellAttrTargetIcon = Root + "/ui/spell_attrs/attr_target.png";
             public const string SpellAttrBounceIcon = Root + "/ui/spell_attrs/attr_bounce.png";
+            public const string SpellAttrUsesIcon = Root + "/ui/spell_attrs/attr_uses.png";
 
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
             public const string ReproductionPowerIcon = Root + "/powers/reproduction_power.png";
             public const string AutomaticLoadingPowerIcon = Root + "/powers/automatic_loading_power.png";
             public const string RechargeSpellPowerIcon = Root + "/powers/recharge_spell_power.png";
+            public const string GravitationalFieldPossessionPowerIcon =
+                Root + "/powers/gravitational_field_possession_power.png";
             public const string LoanPowerIcon = Root + "/powers/loan_power.png";
             public const string CompressionCastingPowerIcon = Root + "/powers/compression_casting_power.png";
             public const string TemporarySlotLossPowerIcon = Root + "/powers/temporary_slot_loss_power.png";

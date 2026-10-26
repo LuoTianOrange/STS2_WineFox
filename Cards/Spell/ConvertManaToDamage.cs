@@ -12,7 +12,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class ConvertManaToDamage() : MagicWineFoxSpellCard(
-        0, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
+        0, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellLookBehindModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

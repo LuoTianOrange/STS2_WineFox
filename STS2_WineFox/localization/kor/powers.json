@@ -256,5 +256,9 @@
   "STS2_WINE_FOX_POWER_AUTOMATIC_LOADING_POWER.smartDescription": "매 턴 종료 시, 손패의 가장 오른쪽 [gold]주문[/gold]을 자동으로 [gold]장전[/gold]합니다.",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.title": "충전 주문",
   "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.description": "등록된 주문을 다음 턴 시작 시 다시 [gold]장전[/gold]합니다.",
-  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "등록된 주문을 다음 턴 시작 시 다시 [gold]장전[/gold]합니다."
+  "STS2_WINE_FOX_POWER_RECHARGE_SPELL_POWER.smartDescription": "등록된 주문을 다음 턴 시작 시 다시 [gold]장전[/gold]합니다.",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "중력장 빙의",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "다른 적이 피해를 받으면 이 적도 같은 피해를 받습니다.",
+  "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "다른 적이 피해를 받으면 이 적도 같은 피해를 받습니다.",
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "사용 횟수"
 }

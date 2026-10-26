@@ -3,6 +3,9 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Models.Capabilities;
@@ -112,6 +115,56 @@ namespace STS2_WineFox.Cards.Spell
         ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。
         /// </summary>
         public virtual string SpellIconPath => string.Empty;
+
+        /// <summary>
+        ///     本场战斗允许的装填次数。
+        ///     <para>
+        ///         优先取 <see cref="SpellTraits.UsesLimit" /> 声明的上限；
+        ///         未声明时按关键字推导：带消耗的牌只能用一次，其余视为无限。
+        ///     </para>
+        /// </summary>
+        public int? UsesLimit =>
+            Traits.UsesLimit ?? (Keywords.Contains(CardKeyword.Exhaust) ? 1 : null);
+
+        [SavedProperty] public int UsesUsed { get; set; }
+
+        /// <summary>是否处于无限使用状态（未声明上限，或遗物授予无限使用）。</summary>
+        public bool IsUnlimitedUses =>
+            UsesLimit == null ||
+            (IsMutable &&
+             Owner?.Relics?.OfType<ILimitedUseModifier>()
+                 .Any(modifier => modifier.GrantsUnlimitedUses(this)) == true);
+
+        /// <summary>剩余可用次数；无限使用时返回 <see cref="int.MaxValue" />。</summary>
+        public int UsesRemaining =>
+            IsUnlimitedUses ? int.MaxValue : Math.Max(0, UsesLimit!.Value - UsesUsed);
+
+        /// <summary>消耗一次使用次数，返回是否因此用尽。</summary>
+        public bool TryConsumeUse()
+        {
+            if (IsUnlimitedUses)
+                return false;
+
+            if (UsesUsed >= UsesLimit!.Value)
+                return true;
+
+            UsesUsed += 1;
+            return UsesUsed >= UsesLimit.Value;
+        }
+
+        /// <summary>装填后结算使用次数：用尽时把这张牌送去消耗。</summary>
+        protected async Task ConsumeUseAfterLoad(PlayerChoiceContext choiceContext)
+        {
+            if (TryConsumeUse())
+                await CardCmd.Exhaust(choiceContext, this);
+        }
+
+        protected override void AddExtraArgsToDescription(LocString description)
+        {
+            base.AddExtraArgsToDescription(description);
+
+            description.Add("Uses", IsUnlimitedUses ? "∞" : UsesRemaining.ToString());
+        }
 
         void IModelCapabilitySource.BuildDefaultCapabilities(ModelCapabilityList capabilities)
         {

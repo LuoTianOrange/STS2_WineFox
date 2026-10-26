@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
@@ -37,23 +38,25 @@ namespace STS2_WineFox.Cards.Spell
                 return;
 
             var targets = ResolveSpellTargets(context);
-            if (targets.Count > 0)
-            {
-                await PowerCmd.Apply<PoisonPower>(
-                    context.ChoiceContext,
-                    targets,
-                    DynamicVars.Poison.BaseValue,
-                    owner.Creature,
-                    context.SourceCard);
-            }
+            if (targets.Count == 0)
+                return;
 
-            MagicWineFoxSpellCmd.GetPower(owner)?.QueueSpellModifier(
-                new(PendingSpellModifierMode.RandomChoice, Rarity));
+            await PowerCmd.Apply<PoisonPower>(
+                context.ChoiceContext,
+                targets,
+                DynamicVars.Poison.BaseValue,
+                owner.Creature,
+                context.SourceCard);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+
+            if (Owner is not { } owner)
+                return;
+
+            await SpellModifierFactory.GrantRandomToHand(choiceContext, owner, this);
         }
 
         protected override void OnUpgrade()

@@ -17,9 +17,16 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class WeaknessCurse() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellCard, ILimitedUseCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellCard
     {
-        private const int UsesLimit = 3;
+        public override SpellTraits Traits =>
+            new()
+            {
+                AttackSpell = false,
+                SupportSpell = true,
+                AreaOfEffect = true,
+                UsesLimit = 3
+            };
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
@@ -30,35 +37,11 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override string SpellIconPath => Const.Paths.SpellIconWeaknessCurse;
 
-        public override SpellTraits Traits =>
-            new() { AttackSpell = false, SupportSpell = true, AreaOfEffect = true };
-
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<WeakPower>(),
             HoverTipFactory.FromPower<VulnerablePower>(),
         ];
-
-        [SavedProperty] public int UsesUsed { get; set; }
-
-        public int MaxUses => UsesLimit;
-
-        public bool IsUnlimitedUses =>
-            IsMutable &&
-            Owner?.Relics?.OfType<ILimitedUseModifier>()
-                .Any(relic => relic.GrantsUnlimitedUses(this)) == true;
-
-        public int UsesRemaining =>
-            IsUnlimitedUses ? int.MaxValue : Math.Max(0, MaxUses - UsesUsed);
-
-        public bool TryConsumeUse()
-        {
-            if (IsUnlimitedUses || UsesUsed >= MaxUses)
-                return false;
-
-            UsesUsed += 1;
-            return UsesUsed >= MaxUses;
-        }
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -85,19 +68,10 @@ namespace STS2_WineFox.Cards.Uncommon
             }
         }
 
-        protected override void AddExtraArgsToDescription(LocString description)
-        {
-            base.AddExtraArgsToDescription(description);
-
-            description.Add("Uses", IsUnlimitedUses ? "∞" : UsesRemaining.ToString());
-        }
-
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-
-            if (TryConsumeUse())
-                await CardCmd.Exhaust(choiceContext, this);
+            await ConsumeUseAfterLoad(choiceContext);
         }
 
         protected override void OnUpgrade()
