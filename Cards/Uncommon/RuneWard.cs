@@ -46,7 +46,8 @@ namespace STS2_WineFox.Cards.Uncommon
             if (Owner is not { } owner)
                 return;
 
-            var modifier = await SpellModifierFactory.GrantRandomToHand(choiceContext, owner, this);
+            var modifier = await SpellModifierFactory.ChooseOneOfRandomToHand(
+                choiceContext, owner, Rarity, exactRarity: Rarity);
             modifier?.EnergyCost.AddThisCombat(-1);
         }
 

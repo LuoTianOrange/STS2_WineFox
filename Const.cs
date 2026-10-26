@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta11";
+        public const string Version = "1.3.0-beta12";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -80,6 +80,7 @@ namespace STS2_WineFox
                 Root + "/ui/spell_icons/spell_double_scattering_release.png";
             public const string SpellIconRechargeableSpear = Root + "/ui/spell_icons/spell_rechargeable_spear.png";
             public const string SpellIconRechargeShield = Root + "/ui/spell_icons/spell_recharge_shield.png";
+            public const string SpellIconNuclearWeapon = Root + "/ui/spell_icons/spell_nuclear_weapon.png";
             public const string SpellIconHatTrick = Root + "/ui/spell_icons/spell_hat_trick.png";
 
             public const string SpellIconNecromanticSummoning =
@@ -478,6 +479,7 @@ namespace STS2_WineFox
             public const string CardHeavyScattering = Root + "/cards/card_heavy_scattering.png";
             public const string CardCatalyst = Root + "/cards/card_catalyst.png";
             public const string CardDoubleScatteringRelease = Root + "/cards/card_double_scattering_release.png";
+            public const string CardNuclearWeapon = Root + "/cards/card_nuclear_weapon.png";
             public const string CardPiercingBolt = Root + "/cards/card_piercing_bolt.png";
             public const string CardReverseTraversal = Root + "/cards/card_reverse_traversal.png";
             public const string CardReCharge = Root + "/cards/card_recharge.png";

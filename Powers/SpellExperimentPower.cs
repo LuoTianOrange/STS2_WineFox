@@ -14,7 +14,7 @@ namespace STS2_WineFox.Powers
 
         public override PowerType Type => PowerType.Buff;
 
-        public override PowerStackType StackType => PowerStackType.Counter;
+        public override PowerStackType StackType => PowerStackType.None;
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.SpellExperimentPowerIcon);
 

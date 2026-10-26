@@ -37,9 +37,10 @@ namespace STS2_WineFox.Cards.Spell
             PlayerChoiceContext choiceContext,
             Player owner,
             int optionCount = 3,
-            CardRarity maxRarity = CardRarity.Rare)
+            CardRarity maxRarity = CardRarity.Rare,
+            CardRarity? exactRarity = null)
         {
-            var options = GetDistinct(owner, optionCount, maxRarity);
+            var options = GetDistinct(owner, optionCount, maxRarity, exactRarity);
             if (options.Count == 0)
                 return null;
 
@@ -63,9 +64,11 @@ namespace STS2_WineFox.Cards.Spell
             PlayerChoiceContext choiceContext,
             Player owner,
             CardRarity maxRarity,
-            int optionCount = 3)
+            int optionCount = 3,
+            CardRarity? exactRarity = null)
         {
-            var options = GetDistinct(owner, Math.Min(optionCount, MaxChooseACardOptions), maxRarity);
+            var options = GetDistinct(
+                owner, Math.Min(optionCount, MaxChooseACardOptions), maxRarity, exactRarity);
             if (options.Count == 0)
                 return null;
 
@@ -79,9 +82,11 @@ namespace STS2_WineFox.Cards.Spell
             PlayerChoiceContext choiceContext,
             Player owner,
             CardRarity maxRarity,
-            int optionCount = 3)
+            int optionCount = 3,
+            CardRarity? exactRarity = null)
         {
-            var selected = await ChooseOneOfRandom(choiceContext, owner, maxRarity, optionCount);
+            var selected = await ChooseOneOfRandom(
+                choiceContext, owner, maxRarity, optionCount, exactRarity);
             if (selected == null)
                 return null;
 
@@ -116,12 +121,15 @@ namespace STS2_WineFox.Cards.Spell
             return await AddToHand(selected, owner);
         }
 
-        private static List<CardModel> GetPool(Player owner, CardRarity maxRarity)
+        private static List<CardModel> GetPool(
+            Player owner,
+            CardRarity maxRarity,
+            CardRarity? exactRarity = null)
         {
             return ModelDb.CardPool<MagicWineFoxSpellModifierCardPool>()
                 .GetUnlockedCards(owner.UnlockState, owner.RunState.CardMultiplayerConstraint)
                 .Where(card => card is IMagicWineFoxSpellModifierCard)
-                .Where(card => card.Rarity <= maxRarity)
+                .Where(card => exactRarity is { } exact ? card.Rarity == exact : card.Rarity <= maxRarity)
                 .ToList();
         }
 
@@ -129,9 +137,12 @@ namespace STS2_WineFox.Cards.Spell
         ///     卡池返回的是规范模型，不能直接用于战斗中的选牌与入手，
         ///     必须先转成战斗副本，否则会抛 CanonicalModelException。
         /// </summary>
-        private static List<CardModel> GetCombatPool(Player owner, CardRarity maxRarity)
+        private static List<CardModel> GetCombatPool(
+            Player owner,
+            CardRarity maxRarity,
+            CardRarity? exactRarity = null)
         {
-            var pool = GetPool(owner, maxRarity);
+            var pool = GetPool(owner, maxRarity, exactRarity);
 
             if (pool.Count == 0)
                 return [];
@@ -141,9 +152,13 @@ namespace STS2_WineFox.Cards.Spell
                 .ToList();
         }
 
-        private static List<CardModel> GetDistinct(Player owner, int count, CardRarity maxRarity)
+        private static List<CardModel> GetDistinct(
+            Player owner,
+            int count,
+            CardRarity maxRarity,
+            CardRarity? exactRarity = null)
         {
-            var pool = GetPool(owner, maxRarity);
+            var pool = GetPool(owner, maxRarity, exactRarity);
 
             if (pool.Count == 0)
                 return [];

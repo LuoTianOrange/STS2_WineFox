@@ -56,7 +56,8 @@ namespace STS2_WineFox.Cards.Spell
             if (Owner is not { } owner)
                 return;
 
-            await SpellModifierFactory.GrantRandomToHand(choiceContext, owner, this);
+            await SpellModifierFactory.ChooseOneOfRandomToHand(
+                choiceContext, owner, Rarity, exactRarity: Rarity);
         }
 
         protected override void OnUpgrade()

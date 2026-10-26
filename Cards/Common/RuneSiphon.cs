@@ -54,7 +54,8 @@ namespace STS2_WineFox.Cards.Common
 
             var copies = (int)DynamicVars["Copies"].BaseValue;
             for (var i = 0; i < copies; i++)
-                await SpellModifierFactory.GrantRandomToHand(choiceContext, owner, this);
+                await SpellModifierFactory.ChooseOneOfRandomToHand(
+                    choiceContext, owner, Rarity, exactRarity: Rarity);
 
             await CardPileCmd.Draw(choiceContext, 1, owner);
         }

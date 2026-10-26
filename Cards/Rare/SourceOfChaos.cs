@@ -6,11 +6,11 @@ using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Rare
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class SourceOfChaos() : WineFoxCard(
-        2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSourceOfChaos);
 

@@ -25,7 +25,7 @@ namespace STS2_WineFox.Cards.Uncommon
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(9m, ValueProp.Move),
-            new("BounceDamage", 5m),
+            new("BounceDamage", 9m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardChainLightning);

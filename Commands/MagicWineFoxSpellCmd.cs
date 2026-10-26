@@ -243,8 +243,28 @@ namespace STS2_WineFox.Commands
             var power = GetPower(owner);
             if (power == null) return;
 
-            var oldest = power.DrainOldest();
-            if (oldest == null) return;
+            var chain = new List<MagicWineFoxSpellSlotSnapshot>();
+
+            MagicWineFoxSpellSlotSnapshot? oldest = null;
+            while (oldest == null)
+            {
+                if (power.DrainOldest() is not { } next)
+                    break;
+
+                chain.Add(next);
+
+                if (next.Card is not IMagicWineFoxSpellModifierCard)
+                    oldest = next;
+            }
+
+            if (oldest == null)
+            {
+                foreach (var orphan in chain)
+                    power.TryLoad(orphan);
+
+                RefreshWandCardValues(power);
+                return;
+            }
 
             power.ReleaseSpellCount = 1 + power.Slots.Count(slot =>
                 slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
@@ -254,13 +274,16 @@ namespace STS2_WineFox.Commands
                 owner,
                 fallbackTarget,
                 sourceCard,
-                [oldest],
+                chain,
                 1,
                 1);
 
             foreach (var snapshot in preserved)
                 if (!power.TryLoad(snapshot))
                     break;
+
+            EnsureEchoLoaded(owner);
+            RefreshWandCardValues(power);
 
             power.ReleaseSpellCount = 0;
         }
@@ -391,6 +414,8 @@ namespace STS2_WineFox.Commands
                             (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
                             modifiers.MarkModifierApplied();
                         }
+
+                    modifiers.SetCurrentX(snapshot.XValue);
 
                     ApplyDamageCorrection(snapshot, modifiers);
 
@@ -539,6 +564,8 @@ namespace STS2_WineFox.Commands
                         modifiers.SetCurrentX(extra.XValue);
                         (extra.Card as IMagicWineFoxSpellModifierCard)?.ApplyModifier(modifiers);
                     }
+
+                modifiers.SetCurrentX(snapshot.XValue);
 
                 var correction = modifiers.ConsumeDamageCorrection();
 

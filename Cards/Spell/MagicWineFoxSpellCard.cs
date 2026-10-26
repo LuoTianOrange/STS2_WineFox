@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Models.Capabilities;
 
@@ -115,6 +116,20 @@ namespace STS2_WineFox.Cards.Spell
         ///     子类覆盖为自己的图标；返回空字符串时预览条回落到空槽占位图。
         /// </summary>
         public virtual string SpellIconPath => string.Empty;
+
+        /// <summary>
+        ///     法术槽已满时不能打出：装填会失败，卡牌白掉。
+        /// </summary>
+        protected override bool IsPlayable
+        {
+            get
+            {
+                if (MagicWineFoxSpellCmd.GetPower(Owner) is not { } power)
+                    return true;
+
+                return power.LoadedCount < power.SlotCapacity;
+            }
+        }
 
         /// <summary>
         ///     本场战斗允许的装填次数。
