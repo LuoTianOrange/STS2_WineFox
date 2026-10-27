@@ -283,7 +283,7 @@
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "\"Equivalent\" Exchange",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "Exhaust all other cards in your [gold]hand[/gold]. For each card Exhausted, add 1 random {IfUpgraded:show:upgraded |}[gold]Rare[/gold] card to your [gold]hand[/gold].",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "Multi Machinery",
-  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "Consume 2 [gold]Stress[/gold]. [gold]Choose[/gold] an {IfUpgraded:show:upgraded |}mode.",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "Consume {Stress:diff()} [gold]Stress[/gold]. [gold]Choose[/gold] an {IfUpgraded:show:upgraded |}mode.",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_CHOOSE": "Choose a mode",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.title": "Fine Processing",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.description": "Upgrade the next {Count:diff()} [gold]Craft[/gold] products.",
@@ -380,7 +380,7 @@
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.title": "Deconstructive Recharge",
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.description": "Lose a spell slot this turn. Gain {Gain:diff()}{Energy:energyIcons()}.",
   "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.title": "Preserved Salvation",
-  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "Your Energy is not reset at the start of your next {Turns:diff()} turn(s).",
+  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "Your [gold]Energy[/gold] and [gold]Block[/gold] are not reset at the start of your next {Turns:diff()} turn(s).",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.title": "Arcane Capacitor",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.description": "Whenever you load an Attack spell, gain {IfUpgraded:show:3|2} Charge. Whenever you gain [gold]Block[/gold], consume all Charge and gain 1 additional Block per Charge.",
   "STS2_WINE_FOX_CARD_RUNE_WARD.title": "Rune Ward",
@@ -437,5 +437,14 @@
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.title": "Recharge Shield",
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.description": "[gold]Load[/gold]: gain {Block:diff()} [gold]Block[/gold]. If this spell is affected by a [gold]Spell Modifier[/gold], [gold]load[/gold] it again at the start of next turn.",
   "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.title": "Tactical Nuke",
-  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]Load[/gold]: spend all your [gold]Energy[/gold], deal {Damage:diff()} damage to ALL enemies X times and apply {Burn:diff()} [gold]Burning[/gold] X times."
+  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]Load[/gold]: spend all your [gold]Energy[/gold], deal {Damage:diff()} damage to ALL enemies X times and apply {Burn:diff()} [gold]Burning[/gold] X times.",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.title": "Mana Absorption",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.description": "Deal {Damage:diff()} damage. Put a [gold]Mana Regeneration{IfUpgraded:show:+|}[/gold] into your hand.",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.title": "Emergency Procedure",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.description": "[gold]Load[/gold]: deal {Damage:diff()} damage. Draw 1 card.",
+  "STS2_WINE_FOX_CARD_SPELL_POP.title": "Spell Pop",
+  "STS2_WINE_FOX_CARD_SPELL_POP.description": "Return the frontmost spell in your spell slots to your [gold]hand[/gold]. It gains [gold]Retain[/gold] this turn.",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.title": "Spell Organization",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.description": "Discard 1 card, draw {Cards:diff()} card.",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "Choose 1 card to discard"
 }

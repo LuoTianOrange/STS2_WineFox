@@ -23,7 +23,8 @@ namespace STS2_WineFox.Content.Descriptors
             Const.Paths.MagicWineFoxSelectLockedIcon,
             Const.Paths.MagicWineFoxIcon,
             Const.Paths.MagicWineFoxIconOutline,
-            Const.Paths.MagicWineFoxIconScene);
+            Const.Paths.MagicWineFoxIconScene,
+            Const.Paths.MagicCustomEnergyCounterPath);
 
         /// <summary>
         ///     创建角色档案。
@@ -40,13 +41,14 @@ namespace STS2_WineFox.Content.Descriptors
             string characterSelectLockedIconPath,
             string characterIconPath,
             string characterIconOutlinePath,
-            string characterIconScenePath)
+            string characterIconScenePath,
+            string? energyCounterPath = null)
         {
             return BaseProfile
                 .WithScenes(BaseProfile.Scenes! with
                 {
                     VisualsPath = Const.Paths.CharacterVisualsScene,
-                    EnergyCounterPath = Const.Paths.CustomEnergyCounterPath,
+                    EnergyCounterPath = energyCounterPath ?? Const.Paths.CustomEnergyCounterPath,
                     RestSiteAnimPath = Const.Paths.CharacterRestSiteAnimScene,
                     MerchantAnimPath = Const.Paths.CharacterMerchantAnimScene,
                 })

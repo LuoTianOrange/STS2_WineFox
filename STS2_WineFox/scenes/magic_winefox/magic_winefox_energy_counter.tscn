@@ -1,0 +1,219 @@
+[gd_scene load_steps=16 format=3 uid="uid://btm3xv7msidij"]
+
+[ext_resource type="Script" uid="uid://d258vyvrg43k2" path="res://Scripts/WineFoxEnergyCounter.cs" id="1_qng8k"]
+[ext_resource type="Script" uid="uid://bwm8p2vfxk7nq" path="res://Scripts/WineFoxEnergyVfxParticles.cs" id="2_veu03"]
+[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://STS2_WineFox/winefox/canvas_item_material_additive_shared.tres" id="3_4nomt"]
+[ext_resource type="Texture2D" uid="uid://bd728ay2duur4" path="res://STS2_WineFox/ui/energy_counters/energy_orb_shine.png" id="4_7yu43"]
+[ext_resource type="Texture2D" uid="uid://e8fs7kuseag3" path="res://STS2_WineFox/winefox/energy/齿轮底部.png" id="5_cj67t"]
+[ext_resource type="Texture2D" uid="uid://d2b2fgh2swben" path="res://STS2_WineFox/winefox/magic_winefox_energy_icon.png" id="6_7jyaj"]
+[ext_resource type="Texture2D" uid="uid://vli208bj3urg" path="res://STS2_WineFox/winefox/energy/法术能量2.png" id="7_5ndhy"]
+[ext_resource type="Texture2D" uid="uid://cotxy8rnfp54j" path="res://STS2_WineFox/winefox/energy/法术能量3.png" id="8_7fsdi"]
+[ext_resource type="Texture2D" uid="uid://c73iimjk4x5qq" path="res://STS2_WineFox/ui/energy_counters/energy_orb_burst.png" id="9_0n5ht"]
+[ext_resource type="FontFile" uid="uid://y0jbxb7bhgdp" path="res://STS2_WineFox/fonts/kreon_bold.ttf" id="10_tkr5d"]
+[ext_resource type="Script" uid="uid://b8fsrj5727h6i" path="res://Scripts/WineFoxCounterLabel.cs" id="11_0e8et"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfvfx_stub"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_12wpb"]
+offsets = PackedFloat32Array(0, 0.5014493, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_go76q"]
+offsets = PackedFloat32Array(0, 0.51304346, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.7826087, 0.7826087, 0.7826087, 1, 0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_go76q"]
+base_font = ExtResource("10_tkr5d")
+spacing_glyph = 2
+
+[node name="WineFoxEnergyCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+script = ExtResource("1_qng8k")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="EnergyVfxBack" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+script = ExtResource("2_veu03")
+
+[node name="BackGpuParticles" type="GPUParticles2D" parent="EnergyVfxBack"]
+visible = false
+emitting = false
+amount = 1
+lifetime = 0.01
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wfvfx_stub")
+
+[node name="BurstBack" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = ExtResource("3_4nomt")
+position = Vector2(64, 64)
+emitting = false
+amount = 1
+texture = ExtResource("4_7yu43")
+one_shot = true
+local_coords = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
+color = Color(0.5372549, 0.40392157, 0.23921569, 1)
+color_ramp = SubResource("Gradient_12wpb")
+
+[node name="Layers" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer1" type="TextureRect" parent="Layers"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_cj67t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer4" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_7jyaj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layer2" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.4399996
+offset_top = -0.43999833
+offset_right = 0.22164917
+offset_bottom = 0.22164917
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.645, 0.645)
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("7_5ndhy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Layer3" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.475, 0.475)
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("8_7fsdi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BurstFront" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = ExtResource("3_4nomt")
+position = Vector2(64, 64)
+emitting = false
+amount = 1
+texture = ExtResource("9_0n5ht")
+lifetime = 0.5
+one_shot = true
+local_coords = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+radial_accel_max = 10.0
+angle_max = 260.0
+scale_amount_min = 0.45
+scale_amount_max = 0.45
+color = Color(0.5372549, 0.40392157, 0.23921569, 1)
+color_ramp = SubResource("Gradient_go76q")
+
+[node name="EnergyVfxFront" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+script = ExtResource("2_veu03")
+
+[node name="FrontGpuParticles" type="GPUParticles2D" parent="EnergyVfxFront"]
+visible = false
+emitting = false
+amount = 1
+lifetime = 0.01
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wfvfx_stub")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -29.0
+offset_right = -16.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
+theme_override_colors/font_outline_color = Color(0.16862746, 0.3529412, 0.65882355, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_go76q")
+theme_override_font_sizes/font_size = 36
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_0e8et")
+AutoSizeEnabled = null
+MinFontSize = null
+MaxFontSize = null

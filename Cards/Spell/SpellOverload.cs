@@ -18,6 +18,7 @@ namespace STS2_WineFox.Cards.Spell
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CardsVar(1),
+            new EnergyVar(1),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSpellOverload);

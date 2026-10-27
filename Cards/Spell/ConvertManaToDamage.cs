@@ -16,7 +16,8 @@ namespace STS2_WineFox.Cards.Spell
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Bonus", 6m)
+            new("Bonus", 6m),
+            new EnergyVar(1)
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardConvertManaToDamage);

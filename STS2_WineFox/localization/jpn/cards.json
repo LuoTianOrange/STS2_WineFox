@@ -283,7 +283,7 @@
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "「等価」交換",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "あなたの[gold]手札[/gold]の他のすべてのカードを廃棄する。廃棄したカード1枚につき、ランダムな{IfUpgraded:show:upgraded |}[gold]レア[/gold]カードを1枚あなたの[gold]手札[/gold]に加える。",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "多機能機械",
-  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "2[gold]ストレス[/gold]を消費する。[gold]選択[/gold]：{IfUpgraded:show:upgraded |}モードを選ぶ。",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "{Stress:diff()}[gold]ストレス[/gold]を消費する。[gold]選択[/gold]：{IfUpgraded:show:upgraded |}モードを選ぶ。",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_CHOOSE": "モードを選択",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.title": "精密加工",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.description": "次の{Count:diff()}個の[gold]クラフト[/gold]産物をアップグレードする。",
@@ -380,7 +380,7 @@
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.title": "解構充填",
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.description": "このターン術スロットを1つ失う。{Gain:diff()}{Energy:energyIcons()}を得る。",
   "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.title": "保存神域",
-  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "次の{Turns:diff()}ターン開始時、エネルギーがリセットされない。",
+  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "[gold]エナジー[/gold]と[gold]ブロック[/gold]は次の{Turns:diff()}ターンの開始時にリセットされない。",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.title": "アーケインキャパシタ",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.description": "攻撃術を装填するたび、[gold]蓄能[/gold]を{IfUpgraded:show:3|2}得る。ブロックを得るたび、蓄能を全て消費し、1層につきブロック +1。",
   "STS2_WINE_FOX_CARD_RUNE_WARD.title": "ルーン障壁",
@@ -437,5 +437,14 @@
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.title": "充能盾",
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.description": "[gold]装填[/gold]：{Block:diff()}の[gold]ブロック[/gold]を得る。この呪文が[gold]スペル修正[/gold]の影響を受けているなら、次のターン開始時に再[gold]装填[/gold]する。",
   "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.title": "戦術核弾頭",
-  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]装填[/gold]：[gold]エナジー[/gold]をすべて消費し、すべての敵に{Damage:diff()}のダメージをX回与え、{Burn:diff()}の[gold]燃焼[/gold]をX回付与する。"
+  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]装填[/gold]：[gold]エナジー[/gold]をすべて消費し、すべての敵に{Damage:diff()}のダメージをX回与え、{Burn:diff()}の[gold]燃焼[/gold]をX回付与する。",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.title": "マナ吸収",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.description": "{Damage:diff()}のダメージを与える。[gold]マナ回復{IfUpgraded:show:+|}[/gold]を1枚手札に加える。",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.title": "応急術式",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.description": "[gold]装填[/gold]：{Damage:diff()}のダメージを与える。カードを1枚引く。",
+  "STS2_WINE_FOX_CARD_SPELL_POP.title": "スペルポップ",
+  "STS2_WINE_FOX_CARD_SPELL_POP.description": "術スロットの最も前にあるスペル1枚を[gold]手札[/gold]に戻す。このターンの間[gold]保留[/gold]を得る。",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.title": "スペル整理",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.description": "カードを1枚捨て、カードを{Cards:diff()}枚引く。",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "捨てるカードを1枚選ぶ"
 }

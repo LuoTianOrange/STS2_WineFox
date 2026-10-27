@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta12";
+        public const string Version = "1.3.0-beta13";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -16,6 +16,8 @@ namespace STS2_WineFox
         public const string EnergyColorName = "winefox";
 
         public const string MagicEnergyColorName = "winefox_magic";
+
+        public const string EnergyIconTextSize = "16x16";
 
         public static class Paths
         {
@@ -47,6 +49,7 @@ namespace STS2_WineFox
                 Root + "/winefox/character_select/char_select_wine_fox.png";
 
             public const string CustomEnergyCounterPath = Root + "/ui/energy_counters/winefox_energy_counter.tscn";
+            public const string MagicCustomEnergyCounterPath = Root + "/scenes/magic_winefox/magic_winefox_energy_counter.tscn";
             public const string CraftingCodexTopBarButtonIcon = Root + "/ui/crafting_codex_top_bar_button.png";
 
             public const string MaterialInventoryBox = Root + "/ui/Inventorybox.png";
@@ -81,6 +84,7 @@ namespace STS2_WineFox
             public const string SpellIconRechargeableSpear = Root + "/ui/spell_icons/spell_rechargeable_spear.png";
             public const string SpellIconRechargeShield = Root + "/ui/spell_icons/spell_recharge_shield.png";
             public const string SpellIconNuclearWeapon = Root + "/ui/spell_icons/spell_nuclear_weapon.png";
+            public const string SpellIconEmergencyProcedure = Root + "/ui/spell_icons/spell_emergency_procedure.png";
             public const string SpellIconHatTrick = Root + "/ui/spell_icons/spell_hat_trick.png";
 
             public const string SpellIconNecromanticSummoning =
@@ -451,6 +455,10 @@ namespace STS2_WineFox
             public const string CardSummonBoulder = Root + "/cards/card_summon_boulder.png";
             public const string CardEmberBurst = Root + "/cards/card_ember_burst.png";
             public const string CardCompressionCasting = Root + "/cards/card_compression_casting.png";
+            public const string CardManaAbsorption = Root + "/cards/card_mana_absorption.png";
+            public const string CardEmergencyProcedure = Root + "/cards/card_emergency_procedure.png";
+            public const string CardSpellPop = Root + "/cards/card_spell_pop.png";
+            public const string CardSpellOrganization = Root + "/cards/card_spell_organization.png";
             public const string CardManaReflux = Root + "/cards/card_mana_reflux.png";
             public const string CardHealingSpell = Root + "/cards/card_healing_spell.png";
             public const string CardElementRecovery = Root + "/cards/card_element_recovery.png";

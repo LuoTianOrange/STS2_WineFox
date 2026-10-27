@@ -283,7 +283,7 @@
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.title": "\"등가\" 교환",
   "STS2_WINE_FOX_CARD_INEQUIVALENT_EXCHANGE.description": "당신의 [gold]손[/gold]에 있는 다른 모든 카드를 소멸시킵니다. 소멸한 카드 1장마다 무작위 {IfUpgraded:show:upgraded |}[gold]희귀[/gold] 카드 1장을 당신의 [gold]손[/gold]에 추가합니다.",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY.title": "다기능 기계",
-  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "[gold]응력[/gold] 2층을 소모합니다. [gold]선택[/gold]: {IfUpgraded:show:upgraded |}모드 하나를 고릅니다.",
+  "STS2_WINE_FOX_CARD_MULTI_MACHINERY.description": "[gold]응력[/gold]을 {Stress:diff()} 소모합니다. [gold]선택[/gold]: {IfUpgraded:show:upgraded |}모드 하나를 고릅니다.",
   "STS2_WINE_FOX_CARD_MULTI_MACHINERY_CHOOSE": "모드를 선택하세요",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.title": "정밀 가공",
   "STS2_WINE_FOX_CARD_FINE_PROCESSING.description": "다음 {Count:diff()}개의 [gold]제작[/gold] 결과물을 강화합니다.",
@@ -380,7 +380,7 @@
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.title": "해체 충전",
   "STS2_WINE_FOX_CARD_DECONSTRUCTIVE_RECHARGE.description": "이번 턴 주문 슬롯을 1개 잃습니다. {Gain:diff()}{Energy:energyIcons()}를 얻습니다.",
   "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.title": "보존 신역",
-  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "다음 {Turns:diff()}턴 시작 시 에너지가 초기화되지 않습니다.",
+  "STS2_WINE_FOX_CARD_PRESERVED_SALVATION.description": "[gold]에너지[/gold]와 [gold]방어도[/gold]는 다음 {Turns:diff()}턴 시작 시 초기화되지 않습니다.",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.title": "비전 축전기",
   "STS2_WINE_FOX_CARD_ARCANE_CAPACITOR.description": "공격 주문을 장전할 때마다 [gold]충전[/gold]을 {IfUpgraded:show:3|2} 얻습니다. 방어도를 얻을 때마다 충전을 모두 소모하고, 1중첩당 방어도 +1.",
   "STS2_WINE_FOX_CARD_RUNE_WARD.title": "룬 방벽",
@@ -437,5 +437,14 @@
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.title": "충전 방패",
   "STS2_WINE_FOX_CARD_RECHARGE_SHIELD.description": "[gold]장전[/gold]: [gold]방어도[/gold]를 {Block:diff()} 얻습니다. 이 주문이 [gold]주문 수정[/gold]의 영향을 받았다면 다음 턴 시작 시 다시 [gold]장전[/gold]합니다.",
   "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.title": "전술 핵탄",
-  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]장전[/gold]: [gold]에너지[/gold]를 모두 소모하고 모든 적에게 {Damage:diff()}의 피해를 X회 주며 {Burn:diff()}의 [gold]화상[/gold]을 X회 부여합니다."
+  "STS2_WINE_FOX_CARD_NUCLEAR_WEAPON.description": "[gold]장전[/gold]: [gold]에너지[/gold]를 모두 소모하고 모든 적에게 {Damage:diff()}의 피해를 X회 주며 {Burn:diff()}의 [gold]화상[/gold]을 X회 부여합니다.",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.title": "마나 흡수",
+  "STS2_WINE_FOX_CARD_MANA_ABSORPTION.description": "{Damage:diff()}의 피해를 줍니다. [gold]마나 회복{IfUpgraded:show:+|}[/gold]을 1장 패에 넣습니다.",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.title": "응급 술식",
+  "STS2_WINE_FOX_CARD_EMERGENCY_PROCEDURE.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 주고 카드를 1장 뽑습니다.",
+  "STS2_WINE_FOX_CARD_SPELL_POP.title": "주문 팝",
+  "STS2_WINE_FOX_CARD_SPELL_POP.description": "주문 슬롯의 가장 앞에 있는 주문 1장을 [gold]패[/gold]로 되돌립니다. 이번 턴 동안 [gold]보존[/gold]을 얻습니다.",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.title": "주문 정리",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.description": "카드를 1장 버리고 카드를 {Cards:diff()}장 뽑습니다.",
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "버릴 카드 1장을 선택"
 }

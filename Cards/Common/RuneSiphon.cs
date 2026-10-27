@@ -20,6 +20,7 @@ namespace STS2_WineFox.Cards.Common
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Copies", 1m),
+            new EnergyVar(1),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardRuneSiphon);
