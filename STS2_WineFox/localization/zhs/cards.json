@@ -357,7 +357,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "法术余烬",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "每当法术槽中的攻击型法术被释放时，给予所有敌人{Burn:diff()}层[gold]烧伤[/gold]。",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "链式闪电",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]：造成{Damage:diff()}点伤害，然后弹跳到另一个随机敌人，造成{BounceDamage:diff()}点伤害。给予每个被攻击的敌人{Vulnerable:diff()}层[gold]易伤[/gold]。",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]装填[/gold]：造成{Damage:diff()}点伤害，然后弹跳到另一个随机敌人，造成{BounceDamage:diff()}点伤害。给予每个被攻击的敌人{VulnerablePower:diff()}层[gold]易伤[/gold]。",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "汇聚之光",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。本场战斗中每释放过一次本法术，伤害+{BonusPerCast:diff()}。",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "量子锁定",

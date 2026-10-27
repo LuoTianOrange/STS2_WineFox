@@ -50,19 +50,16 @@ namespace STS2_WineFox.Cards.Spell
             if (!context.IsAffectedByModifiers)
                 return;
 
-            var power = await PowerCmd.Apply<Powers.RechargeSpellPower>(
+            await Powers.RechargeSpellPowerBase.RegisterAsync<Powers.RechargeShieldPower>(
                 context.ChoiceContext,
                 owner,
-                1m,
-                owner,
+                new MagicWineFoxSpellSlotSnapshot(
+                    context.SourceCard.CreateClone(),
+                    null,
+                    false,
+                    0,
+                    context.SourceCard),
                 context.CastSourceCard);
-
-            power?.Bind(new MagicWineFoxSpellSlotSnapshot(
-                context.SourceCard.CreateClone(),
-                null,
-                false,
-                0,
-                context.SourceCard));
         }
 
         protected override void OnUpgrade()

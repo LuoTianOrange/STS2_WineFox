@@ -263,5 +263,11 @@
   "STS2_WINE_FOX_SPELL_ATTR_USES": "使用回数",
   "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "多重強化",
   "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "毎ターン開始時、コスト0のランダムな[gold]スペル修正[/gold]を1枚獲得する。",
-  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "毎ターン開始時、コスト0のランダムな[gold]スペル修正[/gold]を1枚獲得する。"
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "毎ターン開始時、コスト0のランダムな[gold]スペル修正[/gold]を1枚獲得する。",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.title": "充能槍",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.description": "次のターン開始時、このスペルを[gold]装填[/gold]し直す。",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.smartDescription": "次のターン開始時、このスペルを[gold]装填[/gold]し直す。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.title": "充能盾",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.description": "次のターン開始時、このスペルを[gold]装填[/gold]し直す。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.smartDescription": "次のターン開始時、このスペルを[gold]装填[/gold]し直す。"
 }

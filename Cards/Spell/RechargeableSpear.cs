@@ -1,7 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
@@ -42,19 +41,16 @@ namespace STS2_WineFox.Cards.Spell
             if (context.Owner?.Creature is not { } ownerCreature)
                 return;
 
-            var power = await PowerCmd.Apply<Powers.RechargeSpellPower>(
+            await Powers.RechargeSpellPowerBase.RegisterAsync<Powers.RechargeableSpearPower>(
                 context.ChoiceContext,
                 ownerCreature,
-                1m,
-                ownerCreature,
+                new MagicWineFoxSpellSlotSnapshot(
+                    context.SourceCard.CreateClone(),
+                    context.Target,
+                    false,
+                    0,
+                    context.SourceCard),
                 context.CastSourceCard);
-
-            power?.Bind(new MagicWineFoxSpellSlotSnapshot(
-                context.SourceCard.CreateClone(),
-                context.Target,
-                false,
-                0,
-                context.SourceCard));
         }
 
         protected override void OnUpgrade()

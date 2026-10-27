@@ -263,5 +263,11 @@
   "STS2_WINE_FOX_SPELL_ATTR_USES": "使用次数",
   "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "多重强化",
   "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "每回合开始时，随机获得一张费用为0的[gold]法术修正[/gold]。",
-  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "每回合开始时，随机获得一张费用为0的[gold]法术修正[/gold]。"
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "每回合开始时，随机获得一张费用为0的[gold]法术修正[/gold]。",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.title": "充能长枪",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.description": "下回合开始时重新[gold]装填[/gold]这张法术。",
+  "STS2_WINE_FOX_POWER_RECHARGEABLE_SPEAR_POWER.smartDescription": "下回合开始时重新[gold]装填[/gold]这张法术。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.title": "充能护盾",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.description": "下回合开始时重新[gold]装填[/gold]这张法术。",
+  "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.smartDescription": "下回合开始时重新[gold]装填[/gold]这张法术。"
 }
