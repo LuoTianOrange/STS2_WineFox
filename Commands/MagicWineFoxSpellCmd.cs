@@ -863,6 +863,17 @@ namespace STS2_WineFox.Commands
                 if (state.DrawCount > 0m)
                     await CardPileCmd.Draw(choiceContext, state.DrawCount, owner);
             }
+
+            if (state.CopyAfterCastCount > 0 && owner is { } copyOwner)
+                for (var copyIndex = 0; copyIndex < state.CopyAfterCastCount; copyIndex++)
+                {
+                    var copy = snapshot.Card.CreateClone();
+                    copy.AddKeyword(CardKeyword.Exhaust);
+
+                    var instance = await CardPileCmd.AddGeneratedCardToCombat(
+                        copy, PileType.Hand, copyOwner);
+                    CardCmd.PreviewCardPileAdd(instance);
+                }
         }
 
         /// <summary>

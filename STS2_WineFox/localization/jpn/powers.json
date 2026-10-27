@@ -260,5 +260,8 @@
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "引力場の憑依",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "他の敵がダメージを受けると、この敵も同じダメージを受ける。",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "他の敵がダメージを受けると、この敵も同じダメージを受ける。",
-  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用回数"
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用回数",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "多重強化",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "毎ターン開始時、コスト0のランダムな[gold]スペル修正[/gold]を1枚獲得する。",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "毎ターン開始時、コスト0のランダムな[gold]スペル修正[/gold]を1枚獲得する。"
 }

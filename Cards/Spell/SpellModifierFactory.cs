@@ -103,9 +103,10 @@ namespace STS2_WineFox.Cards.Spell
             PlayerChoiceContext choiceContext,
             Player owner,
             CardRarity maxRarity,
-            LocString? prompt = null)
+            LocString? prompt = null,
+            CardRarity? exactRarity = null)
         {
-            var options = GetCombatPool(owner, maxRarity);
+            var options = GetCombatPool(owner, maxRarity, exactRarity);
             if (options.Count == 0)
                 return null;
 

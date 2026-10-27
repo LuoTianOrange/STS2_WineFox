@@ -260,5 +260,8 @@
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "Gravitational Possession",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "When another enemy takes damage, this enemy takes the same amount.",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "When another enemy takes damage, this enemy takes the same amount.",
-  "STS2_WINE_FOX_SPELL_ATTR_USES": "USES"
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "USES",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "Multiple Reinforcement",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "At the start of each turn, gain a random [gold]Spell Modifier[/gold] with its cost set to 0.",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "At the start of each turn, gain a random [gold]Spell Modifier[/gold] with its cost set to 0."
 }

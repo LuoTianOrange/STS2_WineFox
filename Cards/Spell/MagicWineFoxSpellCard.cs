@@ -117,6 +117,9 @@ namespace STS2_WineFox.Cards.Spell
         /// </summary>
         public virtual string SpellIconPath => string.Empty;
 
+        /// <summary>本张法术按 X 费结算，提示栏与卡面费用显示为 X。</summary>
+        public bool IsXCost => HasEnergyCostX;
+
         /// <summary>
         ///     法术槽已满时不能打出：装填会失败，卡牌白掉。
         /// </summary>

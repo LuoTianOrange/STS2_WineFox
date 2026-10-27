@@ -120,6 +120,11 @@ namespace STS2_WineFox.Mechanics
         public decimal SecondaryCastRatio { get; private set; }
 
         /// <summary>
+        ///     本次释放的法术结算后复制几张带消耗的复制品入手牌。0 表示不复制，随 <see cref="Reset" /> 清除。
+        /// </summary>
+        public int CopyAfterCastCount { get; private set; }
+
+        /// <summary>
         ///     当前这张法术是否被单体或看后修正符直接作用。随 <see cref="Reset" /> 清除。
         /// </summary>
         public bool ModifierApplied { get; private set; }
@@ -283,6 +288,7 @@ namespace STS2_WineFox.Mechanics
                 DamageToBurnRatio = DamageToBurnRatio,
                 DamageToPoisonRatio = DamageToPoisonRatio,
                 ShareDamageOnHit = ShareDamageOnHit,
+                CopyAfterCastCount = CopyAfterCastCount,
                 ExtraRounds = ExtraRounds,
                 DebuffAmplify = DebuffAmplify,
                 SecondaryCastRatio = SecondaryCastRatio,
@@ -349,6 +355,13 @@ namespace STS2_WineFox.Mechanics
             ShareDamageOnHit = true;
         }
 
+        /// <summary>登记本次释放后复制几张入手牌。</summary>
+        public void AddCopyAfterCast(int count)
+        {
+            if (count > 0)
+                CopyAfterCastCount += count;
+        }
+
         /// <summary>登记本次释放额外增加的轮数。</summary>
         public void AddExtraRounds(int rounds)
         {
@@ -400,6 +413,7 @@ namespace STS2_WineFox.Mechanics
             DamageToBurnRatio = 0m;
             DamageToPoisonRatio = 0m;
             ShareDamageOnHit = false;
+            CopyAfterCastCount = 0;
             DebuffAmplify = 1m;
             SecondaryCastRatio = 0m;
             ModifierApplied = false;

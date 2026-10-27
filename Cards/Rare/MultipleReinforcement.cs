@@ -1,0 +1,47 @@
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
+using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
+
+namespace STS2_WineFox.Cards.Rare
+{
+    [RegisterCard(typeof(MagicWineFoxCardPool))]
+    public class MultipleReinforcement() : WineFoxCard(
+        2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    {
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new PowerVar<MultipleReinforcementPower>(1m),
+        ];
+
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMultipleReinforcement);
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<MultipleReinforcementPower>(),
+        ];
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
+        {
+            if (Owner?.Creature is not { } creature)
+                return;
+
+            await PowerCmd.Apply<MultipleReinforcementPower>(
+                choiceContext,
+                creature,
+                DynamicVars[nameof(MultipleReinforcementPower)].BaseValue,
+                creature,
+                this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars[nameof(MultipleReinforcementPower)].UpgradeValueBy(1m);
+        }
+    }
+}

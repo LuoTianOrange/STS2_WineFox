@@ -36,8 +36,8 @@ namespace STS2_WineFox.Cards.Spell
                 return;
 
             await CardPileCmd.Draw(choiceContext, 1, owner);
-            await SpellModifierFactory.ChooseOneToHand(
-                choiceContext, owner, exactRarity: Rarity);
+            await SpellModifierFactory.ChooseOneFromPoolToHand(
+                choiceContext, owner, Rarity, null, Rarity);
         }
 
         protected override void OnUpgrade()

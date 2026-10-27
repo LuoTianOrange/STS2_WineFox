@@ -15,7 +15,7 @@ namespace STS2_WineFox.Cards.Rare
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("MaxHpLoss", 2m),
+            new("MaxHpLoss", 3m),
         ];
 
         public override CardAssetProfile AssetProfile => new(

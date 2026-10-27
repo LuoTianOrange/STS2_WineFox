@@ -42,7 +42,7 @@ namespace STS2_WineFox.Mechanics
             {
                 (Const.Paths.SpellAttrTypeIcon, Text("TYPE"), TypeText(spell)),
                 (Const.Paths.SpellAttrCostIcon, Text("COST"),
-                    spell.EnergyCost.Canonical.ToString()),
+                    spell.IsXCost ? "X" : spell.EnergyCost.Canonical.ToString()),
             };
 
             if (spell.PreviewDamage > 0m)

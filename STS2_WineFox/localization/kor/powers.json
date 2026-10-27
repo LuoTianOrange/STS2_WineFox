@@ -260,5 +260,8 @@
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "중력장 빙의",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "다른 적이 피해를 받으면 이 적도 같은 피해를 받습니다.",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "다른 적이 피해를 받으면 이 적도 같은 피해를 받습니다.",
-  "STS2_WINE_FOX_SPELL_ATTR_USES": "사용 횟수"
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "사용 횟수",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "다중 강화",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "매 턴 시작 시 비용이 0인 무작위 [gold]주문 수정[/gold]을 1장 얻습니다.",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "매 턴 시작 시 비용이 0인 무작위 [gold]주문 수정[/gold]을 1장 얻습니다."
 }

@@ -260,5 +260,8 @@
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.title": "引力场附身",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.description": "其他敌人受到伤害时，该敌人承受同等伤害。",
   "STS2_WINE_FOX_POWER_GRAVITATIONAL_FIELD_POSSESSION_POWER.smartDescription": "其他敌人受到伤害时，该敌人承受同等伤害。",
-  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用次数"
+  "STS2_WINE_FOX_SPELL_ATTR_USES": "使用次数",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.title": "多重强化",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.description": "每回合开始时，随机获得一张费用为0的[gold]法术修正[/gold]。",
+  "STS2_WINE_FOX_POWER_MULTIPLE_REINFORCEMENT_POWER.smartDescription": "每回合开始时，随机获得一张费用为0的[gold]法术修正[/gold]。"
 }

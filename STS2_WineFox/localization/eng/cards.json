@@ -357,7 +357,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "Spell Ashes",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "Whenever an attack spell in your spell slots is cast, apply {Burn:diff()} [gold]Burning[/gold] to all enemies.",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "Chain Lightning",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage, then bounce to another random enemy for {BounceDamage:diff()} damage. Apply 1 [gold]Vulnerable[/gold] to each enemy hit.",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]Load[/gold]: deal {Damage:diff()} damage, then bounce to another random enemy for {BounceDamage:diff()} damage. Apply {Vulnerable:diff()} [gold]Vulnerable[/gold] to each enemy hit.",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "Gathering Light",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage. Deal {BonusPerCast:diff()} more for each time this spell was cast this combat.",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "Quantum Lock",
@@ -446,5 +446,9 @@
   "STS2_WINE_FOX_CARD_SPELL_POP.description": "Return the frontmost spell in your spell slots to your [gold]hand[/gold]. It gains [gold]Retain[/gold] this turn.",
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.title": "Spell Organization",
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.description": "Discard 1 card, draw {Cards:diff()} card.",
-  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "Choose 1 card to discard"
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "Choose 1 card to discard",
+  "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "Multiple Reinforcement",
+  "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "Gain {MultipleReinforcementPower:diff()} [gold]spell slot(s)[/gold]. At the start of each turn, gain a random [gold]Spell Modifier[/gold] and set its cost to 0.",
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "Afterimage",
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]Spell Modifier[/gold].\n[gold]Load[/gold]: after the next spell is released, add {Copies:diff()} [gold]Exhaust[/gold]ing copies of it into your [gold]hand[/gold]."
 }

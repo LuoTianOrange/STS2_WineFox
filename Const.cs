@@ -85,6 +85,7 @@ namespace STS2_WineFox
             public const string SpellIconRechargeShield = Root + "/ui/spell_icons/spell_recharge_shield.png";
             public const string SpellIconNuclearWeapon = Root + "/ui/spell_icons/spell_nuclear_weapon.png";
             public const string SpellIconEmergencyProcedure = Root + "/ui/spell_icons/spell_emergency_procedure.png";
+            public const string SpellIconAfterimage = Root + "/ui/spell_icons/spell_afterimage.png";
             public const string SpellIconHatTrick = Root + "/ui/spell_icons/spell_hat_trick.png";
 
             public const string SpellIconNecromanticSummoning =
@@ -141,6 +142,7 @@ namespace STS2_WineFox
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
             public const string ReproductionPowerIcon = Root + "/powers/reproduction_power.png";
             public const string AutomaticLoadingPowerIcon = Root + "/powers/automatic_loading_power.png";
+            public const string MultipleReinforcementPowerIcon = Root + "/powers/multiple_reinforcement_power.png";
             public const string RechargeSpellPowerIcon = Root + "/powers/recharge_spell_power.png";
             public const string GravitationalFieldPossessionPowerIcon =
                 Root + "/powers/gravitational_field_possession_power.png";
@@ -455,6 +457,8 @@ namespace STS2_WineFox
             public const string CardSummonBoulder = Root + "/cards/card_summon_boulder.png";
             public const string CardEmberBurst = Root + "/cards/card_ember_burst.png";
             public const string CardCompressionCasting = Root + "/cards/card_compression_casting.png";
+            public const string CardMultipleReinforcement = Root + "/cards/card_multiple_reinforcement.png";
+            public const string CardAfterimage = Root + "/cards/card_afterimage.png";
             public const string CardManaAbsorption = Root + "/cards/card_mana_absorption.png";
             public const string CardEmergencyProcedure = Root + "/cards/card_emergency_procedure.png";
             public const string CardSpellPop = Root + "/cards/card_spell_pop.png";

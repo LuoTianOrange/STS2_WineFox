@@ -357,7 +357,7 @@
   "STS2_WINE_FOX_CARD_SPELL_ASHES.title": "주문 잿더미",
   "STS2_WINE_FOX_CARD_SPELL_ASHES.description": "주문 슬롯의 공격 주문이 방출될 때마다 모든 적에게 {Burn:diff()}의 [gold]연소[/gold]를 부여합니다.",
   "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.title": "연쇄 번개",
-  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 준 후, 다른 무작위 적에게 튕겨 {BounceDamage:diff()}의 피해를 줍니다. 적중한 적에게 [gold]취약[/gold] 1을 부여합니다.",
+  "STS2_WINE_FOX_CARD_CHAIN_LIGHTNING.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 준 뒤 다른 무작위 적에게 튕겨 {BounceDamage:diff()}의 피해를 줍니다. 공격한 각 적에게 [gold]취약[/gold]을 {Vulnerable:diff()} 부여합니다.",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.title": "집광",
   "STS2_WINE_FOX_CARD_GATHERING_LIGHT.description": "[gold]장전[/gold]: {Damage:diff()}의 피해를 줍니다. 이번 전투에서 이 주문을 방출할 때마다 피해 +{BonusPerCast:diff()}.",
   "STS2_WINE_FOX_CARD_QUANTUM_LOCK.title": "양자 고정",
@@ -446,5 +446,9 @@
   "STS2_WINE_FOX_CARD_SPELL_POP.description": "주문 슬롯의 가장 앞에 있는 주문 1장을 [gold]패[/gold]로 되돌립니다. 이번 턴 동안 [gold]보존[/gold]을 얻습니다.",
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.title": "주문 정리",
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION.description": "카드를 1장 버리고 카드를 {Cards:diff()}장 뽑습니다.",
-  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "버릴 카드 1장을 선택"
+  "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "버릴 카드 1장을 선택",
+  "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "다중 강화",
+  "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "[gold]주문 슬롯[/gold]을 {MultipleReinforcementPower:diff()}개 얻습니다. 매 턴 시작 시 무작위 [gold]주문 수정[/gold]을 1장 얻고 그 비용을 0으로 만듭니다.",
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "잔상",
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]주문 수정[/gold].\n[gold]장전[/gold]: 다음 주문 방출 후 [gold]소모[/gold]가 붙은 복사본 {Copies:diff()}장을 [gold]패[/gold]에 넣습니다."
 }

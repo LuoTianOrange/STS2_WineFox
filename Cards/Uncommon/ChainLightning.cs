@@ -24,8 +24,9 @@ namespace STS2_WineFox.Cards.Uncommon
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(9m, ValueProp.Move),
-            new("BounceDamage", 9m),
+            new DamageVar(13m, ValueProp.Move),
+            new("BounceDamage", 6m),
+            new PowerVar<VulnerablePower>(1m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardChainLightning);
@@ -76,7 +77,7 @@ namespace STS2_WineFox.Cards.Uncommon
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(),
                 attacked,
-                1m,
+                DynamicVars.Vulnerable.BaseValue,
                 ownerCreature,
                 context.SourceCard);
         }
@@ -88,7 +89,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars["BounceDamage"].UpgradeValueBy(2m);
+            DynamicVars.Damage.UpgradeValueBy(3m);
+            DynamicVars.Vulnerable.UpgradeValueBy(1m);
         }
     }
 }
