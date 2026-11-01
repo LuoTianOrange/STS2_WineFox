@@ -21,7 +21,7 @@ namespace STS2_WineFox.Cards.Token
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
-            [.. base.CanonicalKeywords, CardKeyword.Exhaust];
+            [.. base.CanonicalKeywords, CardKeyword.Exhaust, CardKeyword.Retain];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardManaRegeneration);
 

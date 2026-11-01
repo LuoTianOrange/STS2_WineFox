@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/card_blade_master.png-89e0c6c10bb95add92d744f
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

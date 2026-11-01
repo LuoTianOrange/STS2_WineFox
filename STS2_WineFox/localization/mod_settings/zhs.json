@@ -12,5 +12,18 @@
   "winefox.settings.publicRelics.description": "允许选定的酒狐遗物出现在共享遗物奖励中。",
   "winefox.settings.restoreDefaults.label": "恢复默认设置",
   "winefox.settings.restoreDefaults.button": "恢复",
-  "winefox.settings.restoreDefaults.description": "将所有酒狐内容设置恢复为默认启用状态。"
+  "winefox.settings.restoreDefaults.description": "将所有酒狐内容设置恢复为默认启用状态。",
+  "winefox.cardArt.subpage.title": "魔法酒狐卡面画风",
+  "winefox.cardArt.subpage.description": "切换魔法酒狐（MagicWineFox）卡牌的插画风格：完整版或扁平版。",
+  "winefox.cardArt.section.style.title": "整体画风",
+  "winefox.cardArt.default.label": "默认使用扁平卡面",
+  "winefox.cardArt.default.description": "魔法酒狐卡牌默认显示扁平版插画，可被下面的单卡设置覆盖。",
+  "winefox.cardArt.all.label": "全部切换为扁平卡面",
+  "winefox.cardArt.all.button": "全部切换",
+  "winefox.cardArt.all.description": "清除单卡设置，所有魔法酒狐卡面改用扁平版。",
+  "winefox.cardArt.restore.label": "还原为完整卡面",
+  "winefox.cardArt.restore.button": "还原",
+  "winefox.cardArt.restore.description": "清除单卡设置，所有魔法酒狐卡面恢复完整版。",
+  "winefox.cardArt.section.cards.title": "单卡覆盖",
+  "winefox.cardArt.card.description": "这张魔法酒狐卡使用扁平版卡面。"
 }

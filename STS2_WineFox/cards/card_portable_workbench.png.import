@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/card_portable_workbench.png-7fa96b7c8a6b857c0
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

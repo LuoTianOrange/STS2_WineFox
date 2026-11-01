@@ -12,5 +12,18 @@
   "winefox.settings.publicRelics.description": "선택된 주호 유물이 공유 유물 보상에 등장하도록 허용합니다.",
   "winefox.settings.restoreDefaults.label": "기본값 복원",
   "winefox.settings.restoreDefaults.button": "복원",
-  "winefox.settings.restoreDefaults.description": "모든 주호 콘텐츠 설정을 기본 활성화 상태로 되돌립니다."
+  "winefox.settings.restoreDefaults.description": "모든 주호 콘텐츠 설정을 기본 활성화 상태로 되돌립니다.",
+  "winefox.cardArt.subpage.title": "마법주호 카드 일러스트",
+  "winefox.cardArt.subpage.description": "마법주호(MagicWineFox) 카드 일러스트를 일반판과 플랫판 사이에서 전환합니다.",
+  "winefox.cardArt.section.style.title": "전체 화풍",
+  "winefox.cardArt.default.label": "기본으로 플랫 카드 일러스트 사용",
+  "winefox.cardArt.default.description": "마법주호 카드는 기본으로 플랫 일러스트를 사용하며, 아래 카드별 설정으로 덮어쓸 수 있습니다.",
+  "winefox.cardArt.all.label": "모든 카드를 플랫으로 전환",
+  "winefox.cardArt.all.button": "모두 전환",
+  "winefox.cardArt.all.description": "카드별 설정을 지우고 모든 마법주호 카드를 플랫판으로 바꿉니다.",
+  "winefox.cardArt.restore.label": "일반 일러스트로 복원",
+  "winefox.cardArt.restore.button": "복원",
+  "winefox.cardArt.restore.description": "카드별 설정을 지우고 모든 마법주호 카드를 일반판으로 되돌립니다.",
+  "winefox.cardArt.section.cards.title": "카드별 덮어쓰기",
+  "winefox.cardArt.card.description": "이 마법주호 카드에 플랫 일러스트를 사용합니다."
 }

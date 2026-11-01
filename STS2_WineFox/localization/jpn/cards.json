@@ -372,7 +372,7 @@
   "STS2_WINE_FOX_CARD_ELEMENT_RECOVERY.description": "手札を1枚消耗する。そのコスト ×{Multiplier:diff()} の[gold]ブロック[/gold]を得る。",
   "STS2_WINE_FOX_CARD_ELEMENT_RECOVERY_CHOOSE": "消耗するカードを選ぶ。",
   "STS2_WINE_FOX_CARD_CAPABILITY_COUNTERMEASURE.title": "能力反制",
-  "STS2_WINE_FOX_CARD_CAPABILITY_COUNTERMEASURE.description": "[gold]装填[/gold]: [gold]人工物[/gold]を{Artifact:diff()}得る。",
+  "STS2_WINE_FOX_CARD_CAPABILITY_COUNTERMEASURE.description": "[gold]装填[/gold]：[gold]人工物[/gold]を{Artifact:diff()}得る。",
   "STS2_WINE_FOX_CARD_SOURCE_OF_CHAOS.title": "混沌の源",
   "STS2_WINE_FOX_CARD_SOURCE_OF_CHAOS.description": "装填可能な術のコスト -1。解放時、対象がランダムになる。",
   "STS2_WINE_FOX_CARD_RUNE_RUBBING.title": "ルーン拓本",
@@ -450,5 +450,11 @@
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "多重強化",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "[gold]術スロット[/gold]を{MultipleReinforcementPower:diff()}個得る。毎ターン開始時、ランダムな[gold]スペル修正[/gold]を1枚獲得し、そのコストを0にする。",
   "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "残影",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]スペル修正[/gold]。\n[gold]装填[/gold]：次のスペル解放後、[gold]消耗[/gold]付きのコピー{Copies:diff()}枚を[gold]手札[/gold]に加える。"
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]スペル修正[/gold]。\n[gold]装填[/gold]：次のスペル解放後、[gold]消耗[/gold]付きのコピー{Copies:diff()}枚を[gold]手札[/gold]に加える。",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "物資補給",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]装填[/gold]：カードを1枚引く。{IfUpgraded:show:\n即座にカードを1枚引く。|}",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "マナ調整",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.description": "手札の[gold]エーテル[/gold]カードを全て消滅させる。1枚消滅させるごとに{Block:diff()}の[gold]ブロック[/gold]を得てカードを1枚引く。",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.title": "調和の秘薬",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.description": "[gold]装填[/gold]：[gold]願い[/gold]を1枚[gold]手札[/gold]に加える。"
 }

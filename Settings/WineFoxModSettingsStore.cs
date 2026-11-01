@@ -15,6 +15,48 @@ namespace STS2_WineFox.Settings
         public static bool FoodEnabled => Current.FoodEnabled;
         public static bool PublicRelicsEnabled => Current.PublicRelicsEnabled;
 
+        public static bool FlatCardArtEnabled => Current.FlatCardArtEnabled;
+
+        public static bool IsFlatCardArtEnabled(string cardKey)
+        {
+            return Current.FlatCardArtOverrides.TryGetValue(cardKey, out var value)
+                ? value
+                : Current.FlatCardArtEnabled;
+        }
+
+        public static bool? GetFlatCardArtOverride(string cardKey)
+        {
+            return Current.FlatCardArtOverrides.TryGetValue(cardKey, out var value) ? value : null;
+        }
+
+        public static void SetFlatCardArtOverride(string cardKey, bool? useFlat)
+        {
+            var store = RitsuLibFramework.GetDataStore(Const.ModId);
+
+            store.Modify<WineFoxModSettings>(DataKey, settings =>
+            {
+                if (useFlat == null)
+                    settings.FlatCardArtOverrides.Remove(cardKey);
+                else
+                    settings.FlatCardArtOverrides[cardKey] = useFlat.Value;
+            });
+
+            store.Save(DataKey);
+        }
+
+        public static void SetFlatCardArtForAll(bool useFlat)
+        {
+            var store = RitsuLibFramework.GetDataStore(Const.ModId);
+
+            store.Modify<WineFoxModSettings>(DataKey, settings =>
+            {
+                settings.FlatCardArtEnabled = useFlat;
+                settings.FlatCardArtOverrides.Clear();
+            });
+
+            store.Save(DataKey);
+        }
+
         private static WineFoxModSettings Current
         {
             get

@@ -450,5 +450,11 @@
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "Multiple Reinforcement",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "Gain {MultipleReinforcementPower:diff()} [gold]spell slot(s)[/gold]. At the start of each turn, gain a random [gold]Spell Modifier[/gold] and set its cost to 0.",
   "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "Afterimage",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]Spell Modifier[/gold].\n[gold]Load[/gold]: after the next spell is released, add {Copies:diff()} [gold]Exhaust[/gold]ing copies of it into your [gold]hand[/gold]."
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]Spell Modifier[/gold].\n[gold]Load[/gold]: after the next spell is released, add {Copies:diff()} [gold]Exhaust[/gold]ing copies of it into your [gold]hand[/gold].",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "Supplies Replenishment",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]Load[/gold]: draw 1 card.{IfUpgraded:show:\nDraw 1 card immediately.|}",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "Mana Regulation",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.description": "Exhaust all [gold]Ethereal[/gold] cards in your hand. For each one exhausted, gain {Block:diff()} [gold]Block[/gold] and draw a card.",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.title": "Harmonizing Potion",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.description": "[gold]Load[/gold]: add a [gold]Wish[/gold] into your [gold]hand[/gold]."
 }

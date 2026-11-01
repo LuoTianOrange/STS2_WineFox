@@ -6,5 +6,9 @@ namespace STS2_WineFox.Settings
         public bool PotionsEnabled { get; set; } = true;
         public bool FoodEnabled { get; set; } = true;
         public bool PublicRelicsEnabled { get; set; } = true;
+
+        public bool FlatCardArtEnabled { get; set; }
+
+        public Dictionary<string, bool> FlatCardArtOverrides { get; set; } = [];
     }
 }

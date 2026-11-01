@@ -15,11 +15,17 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class CapabilityCountermeasure() : MagicWineFoxSpellCard(
-        2, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IMagicWineFoxSpellCard
+        1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Artifact", 1m),
+        ];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            .. base.CanonicalKeywords,
+            CardKeyword.Exhaust,
         ];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

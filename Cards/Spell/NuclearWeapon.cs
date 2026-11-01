@@ -49,7 +49,16 @@ namespace STS2_WineFox.Cards.Spell
             if (owner?.Creature == null)
                 return;
 
-            await DealSpellDamage(context, DynamicVars.Damage.BaseValue * x);
+            var hits = Math.Max(1, x) + Math.Max(0, context.ExtraDamageStrikes);
+
+            var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
+                .FromCard(context.SourceCard, null)
+                .WithHitCount(hits);
+
+            if (context.TargetsAllEnemies && owner.Creature.CombatState is { } damageState)
+                await attack.TargetingAllOpponents(damageState).Execute(context.ChoiceContext);
+            else if (ResolveSpellTarget(context) is { } singleTarget)
+                await attack.Targeting(singleTarget).Execute(context.ChoiceContext);
 
             if (owner.Creature.CombatState is not { } combatState)
                 return;

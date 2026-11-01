@@ -93,6 +93,55 @@ namespace STS2_WineFox.Commands
             return owner?.Creature?.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
         }
 
+        /// <summary>
+        ///     抽若干张法术牌入手牌。抽牌堆里没有可装填的法术时，若弃牌堆里还有就洗牌后继续，
+        ///     两边都没有才停止。
+        /// </summary>
+        public static async Task DrawSpellsIntoHand(
+            PlayerChoiceContext choiceContext,
+            Player owner,
+            int count,
+            bool random = false)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                var spell = DrawableSpellInDrawPile(owner);
+
+                if (spell == null)
+                {
+                    var discardHasSpell = PileType.Discard.GetPile(owner).Cards
+                        .Any(card => card is MagicWineFoxSpellCard { IsLoadable: true });
+
+                    if (!discardHasSpell)
+                        return;
+
+                    await CardPileCmd.Shuffle(choiceContext, owner);
+                    spell = DrawableSpellInDrawPile(owner);
+
+                    if (spell == null)
+                        return;
+                }
+
+                if (random)
+                {
+                    var candidates = PileType.Draw.GetPile(owner).Cards
+                        .Where(card => card is MagicWineFoxSpellCard { IsLoadable: true })
+                        .ToList();
+
+                    spell = candidates[owner.RunState.Rng.CombatCardGeneration.NextInt(candidates.Count)];
+                }
+
+                CardCmd.PreviewCardPileAdd(
+                    await CardPileCmd.Add(spell, PileType.Hand, CardPilePosition.Top));
+            }
+        }
+
+        private static CardModel? DrawableSpellInDrawPile(Player owner)
+        {
+            return PileType.Draw.GetPile(owner).Cards
+                .FirstOrDefault(card => card is MagicWineFoxSpellCard { IsLoadable: true });
+        }
+
         /// <summary>本次法杖释放包含的法术总数（不含修正符）；非释放期间回落到槽内当前数量。</summary>
         public static int CountLoadedSpells(Player? owner)
         {

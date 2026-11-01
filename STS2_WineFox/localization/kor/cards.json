@@ -450,5 +450,11 @@
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "다중 강화",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "[gold]주문 슬롯[/gold]을 {MultipleReinforcementPower:diff()}개 얻습니다. 매 턴 시작 시 무작위 [gold]주문 수정[/gold]을 1장 얻고 그 비용을 0으로 만듭니다.",
   "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "잔상",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]주문 수정[/gold].\n[gold]장전[/gold]: 다음 주문 방출 후 [gold]소모[/gold]가 붙은 복사본 {Copies:diff()}장을 [gold]패[/gold]에 넣습니다."
+  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]주문 수정[/gold].\n[gold]장전[/gold]: 다음 주문 방출 후 [gold]소모[/gold]가 붙은 복사본 {Copies:diff()}장을 [gold]패[/gold]에 넣습니다.",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "물자 보충",
+  "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]장전[/gold]: 카드를 1장 뽑습니다.{IfUpgraded:show:\n즉시 카드를 1장 뽑습니다.|}",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "마나 조절",
+  "STS2_WINE_FOX_CARD_MANA_REGULATION.description": "패에 있는 모든 [gold]에테르[/gold] 카드를 소멸시킵니다. 1장 소멸시킬 때마다 [gold]방어도[/gold]를 {Block:diff()} 얻고 카드를 1장 뽑습니다.",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.title": "조화의 비약",
+  "STS2_WINE_FOX_CARD_HARMONIZING_POTION.description": "[gold]장전[/gold]: [gold]소원[/gold]을 1장 [gold]패[/gold]에 추가합니다."
 }

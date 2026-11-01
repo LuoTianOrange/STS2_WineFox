@@ -12,5 +12,18 @@
   "winefox.settings.publicRelics.description": "選択された酒狐レリックが共有レリック報酬に出現することを許可する。",
   "winefox.settings.restoreDefaults.label": "デフォルトに戻す",
   "winefox.settings.restoreDefaults.button": "復元",
-  "winefox.settings.restoreDefaults.description": "すべての酒狐コンテンツ設定をデフォルトの有効状態に戻す。"
+  "winefox.settings.restoreDefaults.description": "すべての酒狐コンテンツ設定をデフォルトの有効状態に戻す。",
+  "winefox.cardArt.subpage.title": "魔法酒狐のカードイラスト",
+  "winefox.cardArt.subpage.description": "魔法酒狐（MagicWineFox）カードのイラストを通常版とフラット版で切り替えます。",
+  "winefox.cardArt.section.style.title": "全体の画風",
+  "winefox.cardArt.default.label": "既定でフラット版を使う",
+  "winefox.cardArt.default.description": "魔法酒狐カードは既定でフラット版を表示します。下のカード別設定で上書きできます。",
+  "winefox.cardArt.all.label": "全てフラット版に切り替え",
+  "winefox.cardArt.all.button": "全て切り替え",
+  "winefox.cardArt.all.description": "カード別設定を消し、全ての魔法酒狐カードをフラット版にします。",
+  "winefox.cardArt.restore.label": "通常版に戻す",
+  "winefox.cardArt.restore.button": "戻す",
+  "winefox.cardArt.restore.description": "カード別設定を消し、全ての魔法酒狐カードを通常版に戻します。",
+  "winefox.cardArt.section.cards.title": "カード別の上書き",
+  "winefox.cardArt.card.description": "この魔法酒狐カードにフラット版を使います。"
 }

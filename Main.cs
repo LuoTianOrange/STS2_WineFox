@@ -60,6 +60,7 @@ namespace STS2_WineFox
                 WineFoxModSettingsStore.Initialize();
                 WineFoxRuntimeSettings.Initialize();
                 WineFoxModSettingsPage.Register();
+                WineFoxCardArtSettingsPage.Register();
 
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);

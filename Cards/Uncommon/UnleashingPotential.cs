@@ -43,22 +43,8 @@ namespace STS2_WineFox.Cards.Uncommon
                 creature,
                 this);
 
-            await DrawSpells(choiceContext, owner, DynamicVars.Cards.IntValue);
-        }
-
-        private static async Task DrawSpells(PlayerChoiceContext choiceContext, Player owner, int count)
-        {
-            var drawPile = PileType.Draw.GetPile(owner);
-
-            for (var i = 0; i < count; i++)
-            {
-                var spell = drawPile.Cards.FirstOrDefault(card => card is MagicWineFoxSpellCard { IsLoadable: true });
-
-                if (spell == null)
-                    return;
-
-                CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(spell, PileType.Hand));
-            }
+            await MagicWineFoxSpellCmd.DrawSpellsIntoHand(
+                choiceContext, owner, DynamicVars.Cards.IntValue);
         }
 
         protected override void OnUpgrade()

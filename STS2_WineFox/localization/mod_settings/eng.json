@@ -12,5 +12,18 @@
   "winefox.settings.publicRelics.description": "Allow selected WineFox relics to appear in shared relic rewards.",
   "winefox.settings.restoreDefaults.label": "Restore defaults",
   "winefox.settings.restoreDefaults.button": "Restore",
-  "winefox.settings.restoreDefaults.description": "Restore all WineFox content settings to their default enabled state."
+  "winefox.settings.restoreDefaults.description": "Restore all WineFox content settings to their default enabled state.",
+  "winefox.cardArt.subpage.title": "MagicWineFox Card Art",
+  "winefox.cardArt.subpage.description": "Switch MagicWineFox card portraits between the full-art and the flat-color version.",
+  "winefox.cardArt.section.style.title": "Overall style",
+  "winefox.cardArt.default.label": "Use flat card art by default",
+  "winefox.cardArt.default.description": "MagicWineFox cards use the flat portrait unless a per-card override below says otherwise.",
+  "winefox.cardArt.all.label": "Switch every card to flat",
+  "winefox.cardArt.all.button": "Switch all",
+  "winefox.cardArt.all.description": "Clear per-card overrides and use the flat portrait for every MagicWineFox card.",
+  "winefox.cardArt.restore.label": "Restore full art",
+  "winefox.cardArt.restore.button": "Restore",
+  "winefox.cardArt.restore.description": "Clear per-card overrides and return every MagicWineFox card to the full-art version.",
+  "winefox.cardArt.section.cards.title": "Per-card override",
+  "winefox.cardArt.card.description": "Use the flat portrait for this MagicWineFox card."
 }

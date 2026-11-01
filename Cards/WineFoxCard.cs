@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Localization;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2_WineFox.Mechanics;
 
 namespace STS2_WineFox.Cards
 {
@@ -76,7 +77,9 @@ namespace STS2_WineFox.Cards
 
         protected static CardAssetProfile Art(string portraitPath)
         {
-            return new(portraitPath, portraitPath);
+            var resolved = MagicCardArt.Resolve(portraitPath);
+
+            return new(resolved, resolved);
         }
 
         private static string FramePathFor(CardType type)

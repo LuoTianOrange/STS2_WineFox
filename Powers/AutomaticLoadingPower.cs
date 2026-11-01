@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
@@ -23,6 +24,25 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.AutomaticLoadingPowerIcon);
 
+        private CardModel? _pendingSpell;
+
+        public override Task BeforeSideTurnEndEarly(
+            PlayerChoiceContext choiceContext,
+            CombatSide side,
+            IEnumerable<Creature> participants)
+        {
+            if (side != Owner.Side)
+                return Task.CompletedTask;
+
+            if (Owner.Player is not { } player)
+                return Task.CompletedTask;
+
+            _pendingSpell = PileType.Hand.GetPile(player).Cards.LastOrDefault(card =>
+                card is MagicWineFoxSpellCard { IsLoadable: true } and not IMagicWineFoxSpellModifierCard);
+
+            return Task.CompletedTask;
+        }
+
         public override async Task AfterSideTurnEnd(
             PlayerChoiceContext choiceContext,
             CombatSide side,
@@ -34,8 +54,8 @@ namespace STS2_WineFox.Powers
             if (Owner.Player is not { } player)
                 return;
 
-            var spell = PileType.Hand.GetPile(player).Cards.LastOrDefault(card =>
-                card is MagicWineFoxSpellCard { IsLoadable: true } and not IMagicWineFoxSpellModifierCard);
+            var spell = _pendingSpell;
+            _pendingSpell = null;
 
             if (spell == null)
                 return;
@@ -56,7 +76,8 @@ namespace STS2_WineFox.Powers
 
             Flash();
 
-            await CardPileCmd.Add(spell, PileType.Discard);
+            if (!PileType.Discard.GetPile(player).Cards.Contains(spell))
+                await CardPileCmd.Add(spell, PileType.Discard);
         }
     }
 }
