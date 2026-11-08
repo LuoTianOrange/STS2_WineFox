@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -28,6 +29,18 @@ namespace STS2_WineFox.Cards.Spell
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
+
+            if (!context.IsAffectedByModifiers)
+                return;
+
+            if (context.Owner?.Creature is not { } creature)
+                return;
+
+            await SpellReturnPower.RegisterAsync(
+                context.ChoiceContext,
+                creature,
+                context.SourceCard,
+                context.CastSourceCard);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -37,7 +50,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
+            DynamicVars.Damage.UpgradeValueBy(4m);
         }
     }
 }

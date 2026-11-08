@@ -248,14 +248,9 @@ namespace STS2_WineFox.Commands
                     power.ReleaseBudget, power.CastCount)
                 : [];
 
-            if (power.ManaRefluxPending)
-            {
-                power.ManaRefluxPending = false;
-                var amount = power.SpellsCastThisTurn + power.ManaRefluxBonus;
-                if (amount > 0 && owner.Creature is { } refluxTarget)
-                    await PowerCmd.Apply<EnergyNextTurnPower>(
-                        choiceContext, refluxTarget, amount, refluxTarget, sourceCard);
-            }
+            if (owner.Creature is { } refluxSource &&
+                refluxSource.Powers.OfType<ManaRefluxPower>().FirstOrDefault() is { } reflux)
+                reflux.Arm(power.SpellsCastThisTurn);
 
             foreach (var snapshot in carried.Concat(preserved))
                 if (!power.TryLoad(snapshot))
@@ -883,6 +878,15 @@ namespace STS2_WineFox.Commands
                             1m,
                             shareOwner,
                             snapshot.Card);
+
+                if (state.BlockToSummonBonus is { } blockToSummon && state.ConvertedBlock > 0m)
+                {
+                    await OstyCmd.Summon(
+                        choiceContext,
+                        owner,
+                        state.ConvertedBlock + blockToSummon,
+                        snapshot.Card);
+                }
 
                 if (state.SummonOnKill > 0m)
                 {

@@ -39,5 +39,5 @@
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "スペル修正",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "杖に装填されるが発動しない。直後の術の解決方法を変更する。",
   "STS2_WINE_FOX_KEYWORD_CHARGE.title": "蓄能",
-  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "攻撃術を装填した時に蓄積する。[gold]ブロック[/gold]を得た時、蓄能をすべて消費し、同じ値の[gold]ブロック[/gold]を追加で得る。"
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "術を装填するたびに蓄積される層。一部のカードが消費して効果に変換する（例：アーケインキャパシタはターン終了時に最大6層をブロックへ変換）。"
 }

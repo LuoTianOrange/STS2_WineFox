@@ -8,10 +8,10 @@ using STS2_WineFox.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.Uncommon
+namespace STS2_WineFox.Cards.Common
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
-    public class OverloadCasting() : WineFoxCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.None)
+    public class OverloadCasting() : WineFoxCard(0, CardType.Skill, CardRarity.Common, TargetType.None)
     {
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [

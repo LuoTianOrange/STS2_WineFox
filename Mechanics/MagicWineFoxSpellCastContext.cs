@@ -70,8 +70,13 @@ namespace STS2_WineFox.Mechanics
             var raw = (baseBlock + Modifiers.DamageBonus + Modifiers.BlockBonus)
                       * Modifiers.DamageMultiplier;
             var afterModifiers = Math.Max(0m, Math.Round(raw, 0, MidpointRounding.AwayFromZero));
+            var resolved = MagicBlock.Resolve(SourceCard, afterModifiers);
 
-            return MagicBlock.Resolve(SourceCard, afterModifiers);
+            if (Modifiers.BlockToSummonBonus == null)
+                return resolved;
+
+            Modifiers.AddConvertedBlock(resolved);
+            return 0m;
         }
     }
 }

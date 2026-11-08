@@ -68,11 +68,16 @@ namespace STS2_WineFox.Settings
             section.WithTitle(T("winefox.cardArt.section.cards.title", "Per-card override"));
 
             foreach (var (key, _, field) in MagicPortraits.Value)
+            {
+                var fieldName = field;
+                var cardKey = key;
+
                 section.AddToggle(
                     "flat_" + key,
-                    ModSettingsText.Literal(DisplayNameOf(field, key)),
+                    ModSettingsText.Dynamic(() => DisplayNameOf(fieldName, cardKey)),
                     CardBinding(key),
                     T("winefox.cardArt.card.description", "Use the flat-color portrait for this card."));
+            }
         }
 
         private static void ApplyToAll(IModSettingsUiActionHost host, bool useFlat)
@@ -159,11 +164,10 @@ namespace STS2_WineFox.Settings
                 var title = new LocString("cards", $"STS2_WINE_FOX_CARD_{snake}.title").GetFormattedText();
 
                 if (!string.IsNullOrWhiteSpace(title) && !title.StartsWith("STS2_WINE_FOX_", StringComparison.Ordinal))
-                    return title;
+                    return $"{title} ({fallbackKey})";
             }
             catch
             {
-                // 取不到本地化标题时退回卡面文件名。
             }
 
             return fallbackKey;

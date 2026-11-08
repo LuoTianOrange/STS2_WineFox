@@ -17,40 +17,43 @@ namespace STS2_WineFox.Cards.Common
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Multiplier", 4m),
+            new("Multiplier", 5m),
+            new EnergyVar(2),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardElementRecovery);
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
-            var owner = Owner;
-            if (owner?.Creature is not { } creature)
-                return;
-
-            if (PileType.Hand.GetPile(owner).Cards.Count(c => c != this) == 0)
+            if (Owner is not { Creature: { } creature } owner)
                 return;
 
             var prompt = new LocString("cards", "STS2_WINE_FOX_CARD_ELEMENT_RECOVERY_CHOOSE");
-            var prefs = new CardSelectorPrefs(prompt, 0, 1);
+            var prefs = new CardSelectorPrefs(prompt, 1);
 
             var selected = (await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this))
                 .FirstOrDefault();
+
             if (selected == null)
                 return;
 
             var cost = selected.EnergyCost.Canonical;
+            var wasStatus = selected.Type == CardType.Status;
+
             await CardCmd.Exhaust(choiceContext, selected);
             await CreatureCmd.GainBlock(
                 creature,
                 cost * DynamicVars["Multiplier"].BaseValue,
                 ValueProp.Move,
                 play);
+
+            if (wasStatus)
+                await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, owner);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Multiplier"].UpgradeValueBy(1m);
+            DynamicVars["Multiplier"].UpgradeValueBy(2m);
         }
     }
 }

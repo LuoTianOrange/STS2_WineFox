@@ -147,6 +147,7 @@ namespace STS2_WineFox
             public const string AutomaticLoadingPowerIcon = Root + "/powers/automatic_loading_power.png";
             public const string MultipleReinforcementPowerIcon = Root + "/powers/multiple_reinforcement_power.png";
             public const string RechargeSpellPowerIcon = Root + "/powers/recharge_spell_power.png";
+            public const string SpellReturnPowerIcon = Root + "/powers/spell_return_power.png";
             public const string RechargeableSpearPowerIcon = Root + "/powers/rechargeable_spear_power.png";
             public const string RechargeShieldPowerIcon = Root + "/powers/recharge_shield_power.png";
             public const string GravitationalFieldPossessionPowerIcon =

@@ -35,8 +35,14 @@ namespace STS2_WineFox.Cards.Common
                 var prefs = new CardSelectorPrefs(prompt, 1);
 
                 var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
-                if (selected.Count() > 0)
-                    await CardPileCmd.Add(selected.First(), PileType.Discard);
+
+                if (selected.FirstOrDefault() is { } card)
+                {
+                    if (card.Keywords.Contains(CardKeyword.Ethereal))
+                        await CardCmd.Exhaust(choiceContext, card);
+                    else
+                        await CardPileCmd.Add(card, PileType.Discard);
+                }
             }
 
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, owner);

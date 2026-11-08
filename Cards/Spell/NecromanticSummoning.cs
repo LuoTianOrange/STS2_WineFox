@@ -11,11 +11,11 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
     public class NecromanticSummoning() : MagicWineFoxSpellCard(
-        1, CardType.Skill, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellModifierCard
+        1, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new SummonVar(20m),
+            new("SummonBonus", 0m),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardNecromanticSummoning);
@@ -24,7 +24,7 @@ namespace STS2_WineFox.Cards.Spell
 
         public void ApplyModifier(MagicWineFoxSpellModifierState modifiers)
         {
-            modifiers.MarkSummonOnKill(DynamicVars.Summon.BaseValue);
+            modifiers.MarkBlockToSummon(DynamicVars["SummonBonus"].BaseValue);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -34,7 +34,7 @@ namespace STS2_WineFox.Cards.Spell
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Summon.UpgradeValueBy(3m);
+            DynamicVars["SummonBonus"].UpgradeValueBy(4m);
         }
     }
 }

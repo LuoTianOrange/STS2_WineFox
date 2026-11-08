@@ -39,5 +39,5 @@
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "法术修正",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "装入法杖后不施放，只修改法术的结算方式。",
   "STS2_WINE_FOX_KEYWORD_CHARGE.title": "蓄能",
-  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "装填攻击型法术时累积。你获得[gold]格挡[/gold]时消耗全部蓄能，并额外获得等量[gold]格挡[/gold]。"
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "装填法术时累积的层数。部分卡牌会消耗它转化为效果，例如[gold]奥术电容[/gold]在回合结束时把最多6层转化为格挡。"
 }

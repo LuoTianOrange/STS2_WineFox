@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -10,11 +11,17 @@ namespace STS2_WineFox.Cards.Uncommon
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class ArcaneCapacitor() : WineFoxCard(
-        2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardArcaneCapacitor);
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.ChargeKeyword];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<ChargePower>(),
+            HoverTipFactory.FromPower<ArcaneCapacitorPower>()
+        ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {

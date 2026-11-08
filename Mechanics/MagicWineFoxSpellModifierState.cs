@@ -161,6 +161,12 @@ namespace STS2_WineFox.Mechanics
         /// </summary>
         public decimal OstySweepAmount { get; private set; }
 
+        /// <summary>下一个法术的格挡改为召唤时的额外召唤量；null 表示不转换。</summary>
+        public decimal? BlockToSummonBonus { get; private set; }
+
+        /// <summary>本次施放中被子法术转换掉的格挡总量，用于结算等量召唤。</summary>
+        public decimal ConvertedBlock { get; private set; }
+
         /// <summary>本次施放实际执行几次：基础 1 次 + 额外次数。</summary>
         public int CastCount => 1 + Math.Max(0, ExtraCasts);
 
@@ -184,6 +190,19 @@ namespace STS2_WineFox.Mechanics
         {
             if (amount > 0m)
                 _nextBlockBonus += amount;
+        }
+
+        /// <summary>登记下一个法术把格挡改为等量召唤，并在等量基础上追加召唤量。</summary>
+        public void MarkBlockToSummon(decimal bonus)
+        {
+            BlockToSummonBonus = Math.Max(0m, bonus) + (BlockToSummonBonus ?? 0m);
+        }
+
+        /// <summary>累计本次施放中被转换掉的格挡。</summary>
+        public void AddConvertedBlock(decimal amount)
+        {
+            if (amount > 0m)
+                ConvertedBlock += amount;
         }
 
         /// <summary>登记下一个法术的伤害转格挡比例，多次登记取较高者。</summary>
@@ -284,6 +303,7 @@ namespace STS2_WineFox.Mechanics
                 DrawCount = DrawCount,
                 DrawForModifierEntries = DrawForModifierEntries,
                 BlockBonus = BlockBonus,
+                BlockToSummonBonus = BlockToSummonBonus,
                 DamageToBlockRatio = DamageToBlockRatio,
                 DamageToBurnRatio = DamageToBurnRatio,
                 DamageToPoisonRatio = DamageToPoisonRatio,
@@ -399,6 +419,8 @@ namespace STS2_WineFox.Mechanics
             ExtraCasts = 0;
             ExtraCastsAreBudgetFree = false;
             DamageMultiplier = 1m;
+            BlockToSummonBonus = null;
+            ConvertedBlock = 0m;
             TargetsAllEnemies = false;
             RandomTargets = false;
             ExtraDamageStrikes = 0;

@@ -1,5 +1,5 @@
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -7,17 +7,22 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Cards.Spell;
-using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
+using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Powers
 {
     [RegisterPower]
-    public sealed class ArcaneCapacitorPower : WineFoxPower, IPowerExtraIconAmountLabelsProvider
+    public sealed class ArcaneCapacitorPower : WineFoxPower, IChargeConsumer
     {
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new("Gain", 2m)];
+        private const int ConsumeCapPerCopy = 6;
+
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new("Gain", 2m),
+            new("Cap", 6m)
+        ];
 
         public override PowerType Type => PowerType.Buff;
 
@@ -25,63 +30,59 @@ namespace STS2_WineFox.Powers
 
         public override PowerAssetProfile AssetProfile => Icons(Const.Paths.ArcaneCapacitorPowerIcon);
 
-        public override int DisplayAmount => Charge;
-
         [SavedProperty]
-        public int Charge
+        public int PerChargeBlock
         {
             get;
             set
             {
                 AssertMutable();
                 field = value;
-                InvokeDisplayAmountChanged();
             }
         }
 
-        private decimal Gain =>
-            DynamicVars.TryGetValue("Gain", out var gain) ? gain.BaseValue : 2m;
+        private int ConsumeCap => Math.Max(ConsumeCapPerCopy, (int)Amount * ConsumeCapPerCopy);
 
-        public IReadOnlyList<ExtraIconAmountLabelSlot> GetPowerExtraIconAmountLabelSlots()
-        {
-            return [];
-        }
+        private decimal BlockPerCharge =>
+            PerChargeBlock > 0 ? PerChargeBlock : DynamicVars["Gain"].BaseValue;
 
         public void Configure(bool upgraded)
         {
-            DynamicVars["Gain"].BaseValue = upgraded ? 3m : 2m;
+            PerChargeBlock += upgraded ? 3 : 2;
+            SyncDisplay();
         }
 
-        public Task AddCharge(PlayerChoiceContext choiceContext, decimal amount)
+        private void SyncDisplay()
         {
-            if (amount <= 0m)
-                return Task.CompletedTask;
+            if (PerChargeBlock > 0)
+                DynamicVars["Gain"].BaseValue = PerChargeBlock;
 
-            Charge += (int)amount;
-            return Task.CompletedTask;
+            DynamicVars["Cap"].BaseValue = ConsumeCap;
         }
 
         public Task OnSpellLoaded(PlayerChoiceContext choiceContext, CardModel card)
         {
-            if (card is not MagicWineFoxSpellCard || card.Type != CardType.Attack)
+            if (Owner is not { } owner)
                 return Task.CompletedTask;
 
-            return AddCharge(choiceContext, Gain);
+            return ChargePower.Gain(choiceContext, owner, 1m, card);
         }
 
-        public override async Task BeforeBlockGained(
-            Creature creature,
-            decimal amount,
-            ValueProp props,
-            CardModel? cardSource)
+        public override async Task AfterSideTurnEnd(
+            PlayerChoiceContext choiceContext,
+            CombatSide side,
+            IEnumerable<Creature> participants)
         {
-            if (creature != Owner || Charge <= 0)
+            if (Owner is not { } owner || side != owner.Side)
                 return;
 
-            var bonus = Charge;
-            Charge = 0;
+            SyncDisplay();
 
-            await CreatureCmd.GainBlock(Owner, bonus, props, null);
+            var consumed = await ChargePower.Consume(choiceContext, owner, ConsumeCap);
+            if (consumed <= 0)
+                return;
+
+            await CreatureCmd.GainBlock(owner, consumed * BlockPerCharge, ValueProp.Move, null);
         }
     }
 }
