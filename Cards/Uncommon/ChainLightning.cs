@@ -15,17 +15,13 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards.Uncommon
 {
-    /// <summary>
-    ///     链式闪电：击中目标后弹跳到另一个随机敌人。
-    /// </summary>
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class ChainLightning() : MagicWineFoxSpellCard(
         2, CardType.Attack, CardRarity.Uncommon, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(13m, ValueProp.Move),
-            new("BounceDamage", 6m),
+            new DamageVar(10m, ValueProp.Move),
             new PowerVar<VulnerablePower>(1m),
         ];
 
@@ -33,13 +29,8 @@ namespace STS2_WineFox.Cards.Uncommon
 
         public override string SpellIconPath => Const.Paths.SpellIconChainLightning;
 
-        public override SpellTraits Traits => new() { BounceTargets = 1 };
-
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<VulnerablePower>()];
-
-        public override decimal PreviewDamage =>
-            DynamicVars.Damage.BaseValue + DynamicVars["BounceDamage"].BaseValue;
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
@@ -47,39 +38,29 @@ namespace STS2_WineFox.Cards.Uncommon
                 ownerCreature.CombatState is not { } combatState)
                 return;
 
-            var targets = ResolveSpellTargets(context);
-            if (targets.Count == 0)
-                return;
+            var repeats = 1 + Math.Max(0, MagicWineFoxSpellCmd.CountLoadedOverloads(context.Owner));
+            var rng = context.Owner.RunState.Rng.CombatTargets;
 
-            List<Creature> attacked = [.. targets];
-
-            await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
-
-            for (var i = 0; i < context.BounceTargets; i++)
+            for (var i = 0; i < repeats; i++)
             {
-                // 弹跳：从其他存活敌人里随机挑一个。
-                var others = combatState.HittableEnemies
-                    .Where(enemy => enemy.IsAlive && !attacked.Contains(enemy))
-                    .ToList();
+                var enemies = combatState.HittableEnemies.Where(enemy => enemy.IsAlive).ToList();
+                if (enemies.Count == 0)
+                    return;
 
-                if (others.Count == 0)
-                    break;
+                var target = enemies[rng.NextInt(enemies.Count)];
 
-                var bounceTarget = others[context.Owner.RunState.Rng.CombatTargets.NextInt(others.Count)];
-                attacked.Add(bounceTarget);
-
-                await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars["BounceDamage"].BaseValue))
+                await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
                     .FromCard(context.SourceCard, null)
-                    .Targeting(bounceTarget)
+                    .Targeting(target)
                     .Execute(context.ChoiceContext);
-            }
 
-            await PowerCmd.Apply<VulnerablePower>(
-                new ThrowingPlayerChoiceContext(),
-                attacked,
-                DynamicVars.Vulnerable.BaseValue,
-                ownerCreature,
-                context.SourceCard);
+                await PowerCmd.Apply<VulnerablePower>(
+                    new ThrowingPlayerChoiceContext(),
+                    target,
+                    DynamicVars.Vulnerable.BaseValue,
+                    ownerCreature,
+                    context.SourceCard);
+            }
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -89,7 +70,7 @@ namespace STS2_WineFox.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
+            DynamicVars.Damage.UpgradeValueBy(2m);
             DynamicVars.Vulnerable.UpgradeValueBy(1m);
         }
     }

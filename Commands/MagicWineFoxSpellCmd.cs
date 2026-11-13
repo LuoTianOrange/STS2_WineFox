@@ -159,6 +159,22 @@ namespace STS2_WineFox.Commands
                 slot?.Card is IMagicWineFoxSpellCard and not IMagicWineFoxSpellModifierCard);
         }
 
+        /// <summary>本次释放装填的法术过载数量；非释放期间回落到槽内当前数量。</summary>
+        public static int CountLoadedOverloads(Player? owner)
+        {
+            if (owner == null)
+                return 0;
+
+            var power = GetPower(owner);
+            if (power == null)
+                return 0;
+
+            if (power.ReleaseOverloadCount > 0)
+                return power.ReleaseOverloadCount;
+
+            return power.Slots.Count(slot => slot?.Card is SpellOverload);
+        }
+
         /// <summary>装填一张法术。返回是否成功（槽满时失败）。</summary>
         public static async Task<bool> Load(
             PlayerChoiceContext choiceContext,
@@ -224,6 +240,8 @@ namespace STS2_WineFox.Commands
                 carried.AddRange(loaded.Where(snapshot => snapshot.Card is SpellOverload));
 
             var overloadCount = loaded.Count(snapshot => snapshot.Card is SpellOverload);
+            power.ReleaseOverloadCount = overloadCount;
+
             if (overloadCount > 0)
             {
                 var overloadState = new MagicWineFoxSpellModifierState();
@@ -260,6 +278,7 @@ namespace STS2_WineFox.Commands
             RefreshWandCardValues(power);
 
             power.ReleaseSpellCount = 0;
+            power.ReleaseOverloadCount = 0;
         }
 
         /// <summary>把【序列回响】绑定的法术自动装回法杖。</summary>

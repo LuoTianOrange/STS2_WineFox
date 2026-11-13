@@ -126,6 +126,9 @@ namespace STS2_WineFox.Powers
         /// <summary>本次法杖释放包含的法术总数，供条件类卡牌在释放期间读取。</summary>
         public int ReleaseSpellCount { get; set; }
 
+        /// <summary>本次法杖释放包含的法术过载数量，供释放中的法术读取。</summary>
+        public int ReleaseOverloadCount { get; set; }
+
 
 
         /// <summary>永久增减槽位容量</summary>
