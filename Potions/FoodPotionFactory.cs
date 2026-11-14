@@ -20,11 +20,14 @@ namespace STS2_WineFox.Potions
 
             blacklist ??= Array.Empty<PotionModel>();
 
-            var options = ModelDb
-                .PotionPool<WineFoxFoodPotionPool>()
+            var pool = ModelDb.PotionPool<WineFoxFoodPotionPool>();
+            var options = pool
                 .GetUnlockedPotions(player.UnlockState)
                 .Where(p => !blacklist.Contains(p))
                 .ToList();
+
+            if (options.Count == 0)
+                options = pool.AllPotions.Where(p => !blacklist.Contains(p)).ToList();
 
             if (options.Count == 0)
                 return null;
