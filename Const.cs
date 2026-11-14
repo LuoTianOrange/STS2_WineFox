@@ -4,7 +4,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.0-beta14";
+        public const string Version = "1.3.1";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
 
         /// <summary>
@@ -141,6 +141,7 @@ namespace STS2_WineFox
             public const string SpellAttrTargetIcon = Root + "/ui/spell_attrs/attr_target.png";
             public const string SpellAttrBounceIcon = Root + "/ui/spell_attrs/attr_bounce.png";
             public const string SpellAttrUsesIcon = Root + "/ui/spell_attrs/attr_uses.png";
+            public const string SpellAttrLingerIcon = Root + "/ui/spell_attrs/attr_linger.png";
 
             public const string EchoesSequencePowerIcon = Root + "/powers/echoes_sequence_power.png";
             public const string ReproductionPowerIcon = Root + "/powers/reproduction_power.png";
@@ -158,6 +159,7 @@ namespace STS2_WineFox
             public const string PreservedEnergyPowerIcon = Root + "/powers/preserved_energy_power.png";
             public const string SourceOfChaosPowerIcon = Root + "/powers/source_of_chaos_power.png";
             public const string ArcaneCapacitorPowerIcon = Root + "/powers/arcane_capacitor_power.png";
+            public const string ThunderboltStaffPowerIcon = Root + "/powers/thunderbolt_staff_power.png";
             public const string TargetPositioningPowerIcon = Root + "/powers/target_positioning_power.png";
             public const string TemporarySlotGainPowerIcon = Root + "/powers/temporary_slot_gain_power.png";
             public const string SpellAshesPowerIcon = Root + "/powers/spell_ashes_power.png";
@@ -281,6 +283,7 @@ namespace STS2_WineFox
             public const string CollaborativeMiningPowerIcon = Root + "/powers/collaborative_mining_power.png";
             public const string BurningIcon = Root + "/powers/burning_power.png";
             public const string NecromanticSummoningPowerIcon = Root + "/powers/necromantic_summoning_power.png";
+            public const string ChargePowerIcon = Root + "/powers/charge_power.png";
 
             public const string GravitationalSingularityPowerIcon =
                 Root + "/powers/gravitational_singularity_power.png";
@@ -508,6 +511,8 @@ namespace STS2_WineFox
             public const string CardManaRegeneration = Root + "/cards/magic_winefox/magic_common/card_mana_regeneration.png";
             public const string CardOverloadCasting = Root + "/cards/magic_winefox/magic_common/card_overload_casting.png";
             public const string CardSpellOverload = Root + "/cards/magic_winefox/magic_common/card_spell_overload.png";
+            public const string CardChannelLightning = Root + "/cards/magic_winefox/magic_common/card_channel_lightning.png";
+            public const string CardThunderboltStaff = Root + "/cards/magic_winefox/magic_common/card_thunderbolt_staff.png";
             public const string CardSpellExperiment = Root + "/cards/magic_winefox/magic_common/card_spell_experiment.png";
             public const string CardAuraOfChaos = Root + "/cards/magic_winefox/magic_common/card_aura_of_chaos.png";
             public const string CardWeaknessCurse = Root + "/cards/magic_winefox/magic_common/card_weakness_curse.png";
