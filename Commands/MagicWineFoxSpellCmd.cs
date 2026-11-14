@@ -398,6 +398,7 @@ namespace STS2_WineFox.Commands
             var used = 0;
             var lookBehind = CollectLookBehindModifiers(spells);
             var history = new List<MagicWineFoxSpellSlotSnapshot>();
+            var cast = new HashSet<MagicWineFoxSpellSlotSnapshot>(ReferenceEqualityComparer.Instance);
 
             modifiers.SetWandModifierCount(
                 spells.Count(snapshot => snapshot.Card is IMagicWineFoxSpellModifierCard));
@@ -442,7 +443,7 @@ namespace STS2_WineFox.Commands
                             replayState = CreateReplayState(modifiers);
                         }
 
-                        return spells.Skip(index + 1).ToList();
+                        return [.. BuildLingeringPreserved(spells, cast), .. spells.Skip(index + 1)];
                     }
 
                     if (snapshot.Card is SpellOverload)
@@ -485,6 +486,7 @@ namespace STS2_WineFox.Commands
                     history.Add(snapshot);
 
                     await CastSpellEntry(choiceContext, owner, sourceCard, fallbackTarget, snapshot, modifiers);
+                    cast.Add(snapshot);
 
                     used += modifiers.BudgetCost;
                     modifiers.Reset();
@@ -494,7 +496,35 @@ namespace STS2_WineFox.Commands
                     break;
             }
 
-            return [];
+            return BuildLingeringPreserved(spells, cast);
+        }
+
+        /// <summary>
+        ///     结算滞留：本次真正释放过的法术各扣一次，没扣完的随释放结束后装回槽位。
+        ///     释放轮数产生的重复释放不额外扣。
+        /// </summary>
+        private static List<MagicWineFoxSpellSlotSnapshot> BuildLingeringPreserved(
+            IReadOnlyList<MagicWineFoxSpellSlotSnapshot> spells,
+            HashSet<MagicWineFoxSpellSlotSnapshot> cast)
+        {
+            var preserved = new List<MagicWineFoxSpellSlotSnapshot>();
+
+            foreach (var snapshot in spells)
+            {
+                if (!cast.Contains(snapshot))
+                    continue;
+
+                if (snapshot.Card is not MagicWineFoxSpellCard card || card.LingerCount <= 1)
+                    continue;
+
+                var remaining = (snapshot.LingerRemaining ?? card.LingerCount) - 1;
+                snapshot.LingerRemaining = Math.Max(0, remaining);
+
+                if (remaining > 0)
+                    preserved.Add(snapshot);
+            }
+
+            return preserved;
         }
 
         /// <summary>

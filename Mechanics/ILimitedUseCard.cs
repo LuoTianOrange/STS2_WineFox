@@ -21,10 +21,15 @@ namespace STS2_WineFox.Mechanics
     }
 
     /// <summary>
-    ///     无限使用的来源。卡牌或遗物实现本接口即可让指定卡牌不再消耗次数。
+    ///     使用次数的修正来源。遗物与能力实现本接口即可参与计算：
+    ///     返回无限使用，或在本场上限基础上加减。
     /// </summary>
     public interface ILimitedUseModifier
     {
+        /// <summary>是否让该卡牌不再消耗次数。</summary>
         bool GrantsUnlimitedUses(CardModel card);
+
+        /// <summary>在本场上限基础上修正允许的使用次数；不参与时原样返回 <paramref name="limit" />。</summary>
+        int ModifyUsesLimit(CardModel card, int limit);
     }
 }

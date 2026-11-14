@@ -24,13 +24,9 @@ namespace STS2_WineFox.Cards.Uncommon
                 UsesLimit = 3
             };
 
-        public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [
-            .. base.CanonicalKeywords,
-            CardKeyword.Exhaust,
-        ];
-
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardHarmonizingPotion);
+
+        public override int? UsesLimit => base.UsesLimit + (IsUpgraded ? 1 : 0);
 
         public override string SpellIconPath => Const.Paths.SpellIconHarmonizingPotion;
 

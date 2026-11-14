@@ -140,18 +140,52 @@ namespace STS2_WineFox.Cards.Spell
         ///         优先取 <see cref="SpellTraits.UsesLimit" /> 声明的上限；
         ///         未声明时按关键字推导：带消耗的牌只能用一次，其余视为无限。
         ///     </para>
+        ///     <para>
+        ///         有上限时再交给场上的 <see cref="ILimitedUseModifier" /> 依次修正，
+        ///         最后保证不低于 1。
+        ///     </para>
         /// </summary>
-        public int? UsesLimit =>
-            Traits.UsesLimit ?? (Keywords.Contains(CardKeyword.Exhaust) ? 1 : null);
+        public virtual int? UsesLimit
+        {
+            get
+            {
+                var declared = Traits.UsesLimit ??
+                               (Keywords.Contains(CardKeyword.Exhaust) ? 1 : null);
+
+                if (declared == null || !IsMutable || Owner == null)
+                    return declared;
+
+                var limit = declared.Value;
+
+                foreach (var relic in Owner.Relics ?? [])
+                {
+                    if (relic is ILimitedUseModifier modifier)
+                        limit = modifier.ModifyUsesLimit(this, limit);
+                }
+
+                foreach (var power in Owner.Creature?.Powers ?? [])
+                {
+                    if (power is ILimitedUseModifier modifier)
+                        limit = modifier.ModifyUsesLimit(this, limit);
+                }
+
+                return Math.Max(1, limit);
+            }
+        }
 
         [SavedProperty] public int UsesUsed { get; set; }
 
-        /// <summary>是否处于无限使用状态（未声明上限，或遗物授予无限使用）。</summary>
+        /// <summary>装填后可以释放的次数；用完才从法术槽移除。</summary>
+        public int LingerCount => Math.Max(1, Traits.LingerCount ?? 1);
+
+        /// <summary>是否处于无限使用状态（未声明上限，或遗物、能力授予无限使用）。</summary>
         public bool IsUnlimitedUses =>
             UsesLimit == null ||
             (IsMutable &&
-             Owner?.Relics?.OfType<ILimitedUseModifier>()
-                 .Any(modifier => modifier.GrantsUnlimitedUses(this)) == true);
+             (Owner?.Relics?.OfType<ILimitedUseModifier>()
+                  .Any(modifier => modifier.GrantsUnlimitedUses(this)) == true ||
+              Owner?.Creature?.Powers?.OfType<ILimitedUseModifier>()
+                  .Any(modifier => modifier.GrantsUnlimitedUses(this)) == true));
 
         /// <summary>剩余可用次数；无限使用时返回 <see cref="int.MaxValue" />。</summary>
         public int UsesRemaining =>

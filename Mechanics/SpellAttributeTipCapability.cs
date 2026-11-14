@@ -12,8 +12,6 @@ namespace STS2_WineFox.Mechanics
     /// </summary>
     public sealed class SpellAttributeTipCapability : CardCapability, ICardHoverTipContributor
     {
-        public const string TipId = "sts2_winefox_spell_attribute_tip";
-
         private const char FullWidthSpace = '\u3000';
 
         private const int IconSize = 24;
@@ -26,10 +24,7 @@ namespace STS2_WineFox.Mechanics
             var tip = new HoverTip(
                 new("cards", spell.Id.Entry + ".title"),
                 BuildText(spell),
-                LoadIcon(spell))
-            {
-                Id = TipId,
-            };
+                LoadIcon(spell));
 
             return [tip];
         }
@@ -59,6 +54,9 @@ namespace STS2_WineFox.Mechanics
 
             rows.Add((Const.Paths.SpellAttrUsesIcon, Text("USES"),
                 spell.IsUnlimitedUses ? "∞" : spell.UsesRemaining.ToString()));
+
+            if (spell.LingerCount > 1)
+                rows.Add((Const.Paths.SpellAttrLingerIcon, Text("LINGER"), spell.LingerCount.ToString()));
 
             if (!traits.Loadable)
                 rows.Add((string.Empty, Text("LOADABLE"), Text("NO")));

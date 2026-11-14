@@ -93,6 +93,16 @@ namespace STS2_WineFox.Powers
             }
         }
 
+        /// <summary>槽位里真正装着的法术数量，不含法术修正符。</summary>
+        public int LoadedSpellCount
+        {
+            get
+            {
+                SyncSlotCount();
+                return _slots.Count(slot => slot is { IsModifier: false });
+            }
+        }
+
         /// <summary>本次释放最多能释放几张：槽位容量 × 释放轮数。</summary>
         public int ReleaseBudget => SlotCapacity * CastCount;
 
@@ -170,6 +180,8 @@ namespace STS2_WineFox.Powers
             {
                 if (_slots[i] != null) continue;
 
+                snapshot.LingerRemaining ??= (snapshot.Card as MagicWineFoxSpellCard)?.LingerCount ?? 1;
+
                 _slots[i] = snapshot;
                 SyncLoadedVar();
                 InvalidateSpellPreview();
@@ -210,6 +222,27 @@ namespace STS2_WineFox.Powers
 
             ClearSlots();
             return spells;
+        }
+
+        /// <summary>移除槽内全部过载，返回移除的数量。</summary>
+        public int RemoveAllOverloads()
+        {
+            SyncSlotCount();
+
+            var removed = 0;
+            for (var i = 0; i < _slots.Count; i++)
+            {
+                if (_slots[i]?.Card is not SpellOverload) continue;
+
+                _slots[i] = null;
+                removed++;
+            }
+
+            if (removed == 0) return 0;
+
+            SyncLoadedVar();
+            InvalidateSpellPreview();
+            return removed;
         }
 
         public void ClearSlots()

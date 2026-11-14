@@ -20,7 +20,7 @@ namespace STS2_WineFox.Cards.Common
                 AttackSpell = false,
                 SupportSpell = true,
                 TargetSelf = true,
-                UsesLimit = 3
+                LingerCount = 3
             };
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSuppliesReplenishment);
@@ -38,7 +38,6 @@ namespace STS2_WineFox.Cards.Common
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-            await ConsumeUseAfterLoad(choiceContext);
 
             if (IsUpgraded && Owner is { } owner)
                 await CardPileCmd.Draw(choiceContext, 1, owner);

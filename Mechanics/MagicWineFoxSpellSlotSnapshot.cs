@@ -22,5 +22,9 @@ namespace STS2_WineFox.Mechanics
         Creature? Target,
         bool IsModifier,
         int XValue = 0,
-        CardModel? SourceCard = null);
+        CardModel? SourceCard = null)
+    {
+        /// <summary>滞留剩余次数；null 表示尚未初始化，装填时按卡牌的滞留上限填入。</summary>
+        public int? LingerRemaining { get; set; }
+    }
 }

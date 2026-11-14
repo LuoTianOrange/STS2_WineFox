@@ -45,5 +45,8 @@ namespace STS2_WineFox.Mechanics
 
         /// <summary>本场战斗允许的装填次数。null 表示无限次</summary>
         public int? UsesLimit { get; init; }
+
+        /// <summary>装填后可以释放的次数，用完才从法术槽移除。null 表示 1 次</summary>
+        public int? LingerCount { get; init; }
     }
 }
