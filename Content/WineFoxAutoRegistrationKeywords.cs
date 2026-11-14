@@ -52,23 +52,18 @@ namespace STS2_WineFox.Content
 
         /// <summary>
         ///     装填关键字：把牌放入法杖，回合结束时释放。
-        ///     可装填的法术自动带此关键字，因此卡面文案不必重复解释装填的含义。
-        ///     不带图标——关键字只作文字说明。
         /// </summary>
         [RegisterOwnedCardKeyword(WineFoxKeywords.LoadKey)]
         private sealed class Load;
 
         /// <summary>
         ///     释放关键字：回合结束时，法杖中已装填的法术依次结算。
-        ///     与装填成对出现，构成法杖体系的两半。
-        ///     不带图标——关键字只作文字说明。
         /// </summary>
         [RegisterOwnedCardKeyword(WineFoxKeywords.ReleaseKey)]
         private sealed class Release;
 
         /// <summary>
-        ///     法术修正关键字：装入法杖后不施放，只修改其后第一张法术的释放方式。
-        ///     不带图标——关键字只作文字说明。
+        ///     法术修正关键字：装入法杖后不施放，只修改法术的释放方式。
         /// </summary>
         [RegisterOwnedCardKeyword(WineFoxKeywords.SpellModifierKey)]
         private sealed class SpellModifier;
@@ -85,11 +80,7 @@ namespace STS2_WineFox.Content
 
         [RegisterOwnedCardKeyword(WineFoxKeywords.CookedFoodKey)]
         private sealed class CookedFood;
-
-        /// <summary>
-        ///     蓄能关键字：装填攻击型法术时累积，获得格挡时消耗换取等量格挡。
-        ///     不带图标——关键字只作文字说明。
-        /// </summary>
+        
         [RegisterOwnedCardKeyword(WineFoxKeywords.ChargeKey)]
         private sealed class Charge;
     }

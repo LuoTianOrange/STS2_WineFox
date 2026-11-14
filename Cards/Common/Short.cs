@@ -35,7 +35,7 @@ namespace STS2_WineFox.Cards.Common
                 return;
 
             var slot = creature.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
-            var loaded = slot?.LoadedCount ?? 0;
+            var loaded = slot?.LoadedSpellCount ?? 0;
             if (loaded <= 0)
                 return;
 

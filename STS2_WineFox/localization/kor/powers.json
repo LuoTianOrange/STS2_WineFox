@@ -222,8 +222,8 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "혼돈의 근원",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "장전 가능한 주문의 비용 -1, 대상이 무작위가 됩니다.",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.title": "충전",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]장전[/gold]할 때 쌓이며 턴 종료 시 사라지지 않습니다. 10중첩이 되면 10중첩을 소모해 지팡이를 해방하고 [gold]주문 과부하[/gold]를 1장 장전합니다.",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]장전[/gold]할 때 쌓이며 턴 종료 시 사라지지 않습니다. 10중첩이 되면 10중첩을 소모해 지팡이를 해방하고 [gold]주문 과부하[/gold]를 1장 장전합니다.",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]장전[/gold]할 때 쌓이며 턴 종료 시 사라지지 않습니다. 10중첩이 되면 10중첩을 소모해 지팡이를 해방하고 [gold]과부하[/gold]를 1장 장전합니다.",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]장전[/gold]할 때 쌓이며 턴 종료 시 사라지지 않습니다. 10중첩이 되면 10중첩을 소모해 지팡이를 해방하고 [gold]과부하[/gold]를 1장 장전합니다.",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "비전 축전기",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "턴 종료 시 [gold]충전[/gold]을 최대 6 소모하고, 1중첩당 [gold]방어도[/gold]를 2 얻습니다.",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "이번 턴 주문 슬롯을 [blue]{Amount}[/blue]개 잃습니다.",
@@ -236,7 +236,7 @@
   "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "이 적은 매번 받는 피해가 +1 증가합니다.",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "잠재력 해방",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "이번 턴 추가 임시 주문 슬롯을 얻습니다.",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "이번 턴 추가 임시 주문 슬롯을 얻습니다.",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "이번 턴에 임시 주문 슬롯을 [blue]{Amount}[/blue]개 추가로 얻습니다.",
   "STS2_WINE_FOX_SPELL_ATTR_TITLE": "주문 속성",
   "STS2_WINE_FOX_SPELL_ATTR_TYPE": "주문 유형",
   "STS2_WINE_FOX_SPELL_ATTR_COST": "에너지 소모",
@@ -278,5 +278,9 @@
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.smartDescription": "다음 턴 시작 시 등록된 주문을 비용 1 감소한 채 패로 되돌립니다.",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.title": "마나 환류",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.description": "다음 턴 시작 시 이번 턴에 방출한 주문 수만큼 에너지를 얻습니다.",
-  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "다음 턴 시작 시 이번 턴에 방출한 주문 수만큼 에너지를 얻습니다."
+  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "다음 턴 시작 시 이번 턴에 방출한 주문 수만큼 에너지를 얻습니다.",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.description": "자신의 턴에 받는 피해를 무효화하고 그만큼의 피해를 모든 적에게 줍니다. 턴 시작 시 {Amount}[gold]충전[/gold]을 얻습니다.",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.smartDescription": "자신의 턴에 받는 피해를 무효화하고 그만큼의 피해를 모든 적에게 줍니다. 턴 시작 시 {Amount}[gold]충전[/gold]을 얻습니다.",
+  "STS2_WINE_FOX_SPELL_ATTR_LINGER": "잔류",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "번개 지팡이"
 }

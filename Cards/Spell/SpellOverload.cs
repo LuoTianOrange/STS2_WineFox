@@ -30,7 +30,6 @@ namespace STS2_WineFox.Cards.Spell
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
             WineFoxKeywords.LoadKeyword,
-            CardKeyword.Ethereal,
             CardKeyword.Exhaust,
         ];
 

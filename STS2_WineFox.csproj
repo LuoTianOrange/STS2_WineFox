@@ -56,7 +56,7 @@
 
     <ItemGroup>
         <ProjectReference Include="$(RitsuLibDir)\STS2-RitsuLib.csproj" Condition="'$(UseNuGetRitsuLib)' != 'true'"/>
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.7" Condition="'$(UseNuGetRitsuLib)' == 'true'"/>
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.11" Condition="'$(UseNuGetRitsuLib)' == 'true'"/>
     </ItemGroup>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
@@ -68,8 +68,15 @@
 
     <Target Name="Export Mod PCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotExe)')">
         <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
+        <PropertyGroup>
+            <PckStagingPath>$(MSBuildProjectDirectory)\.godot\export\$(MSBuildProjectName).pck</PckStagingPath>
+        </PropertyGroup>
         <MakeDir Directories="$(ModOutputDir)"/>
-        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <MakeDir Directories="$([System.IO.Path]::GetDirectoryName('$(PckStagingPath)'))"/>
+        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(PckStagingPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <Error Condition="!Exists('$(PckStagingPath)')" Text="PCK export failed: '$(PckStagingPath)' was not created. Check the Godot output printed above."/>
+        <Copy SourceFiles="$(PckStagingPath)" DestinationFiles="$(ModPckPath)" ContinueOnError="true"/>
+        <Error Condition="Exists('$(ModPckPath)') and $([System.IO.File]::GetLastWriteTime('$(ModPckPath)').Ticks) &lt; $([System.IO.File]::GetLastWriteTime('$(PckStagingPath)').Ticks)" Text="Could not copy '$(PckStagingPath)' to '$(ModPckPath)'. The target is written by another process - close Slay the Spire 2 (and any Godot instance) and build again."/>
     </Target>
 
     <Target Name="Warn Missing Godot" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and !Exists('$(GodotExe)')">

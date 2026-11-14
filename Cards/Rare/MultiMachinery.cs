@@ -50,7 +50,6 @@ namespace STS2_WineFox.Cards.Rare
             if (combatState == null) return;
 
             if (!await StressCmd.ConsumeOne(creature, this)) return;
-            if (!await StressCmd.ConsumeOne(creature, this)) return;
 
             List<CardModel> options =
             [

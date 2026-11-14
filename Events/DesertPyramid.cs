@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
@@ -80,7 +80,7 @@ namespace STS2_WineFox.Events
 
             relic ??= TryPullAnyRewardRarity(RelicGrabBagPullCompat.PassAllRelics);
 
-            relic ??= RelicFactory.PullNextRelicFromFront(owner);
+            relic ??= RelicFactory.PullNextRelicForRewardFromFront(owner);
             SetEventFinished(L10NLookup($"{Id.Entry}.pages.CHEST1FINISH.description"));
             await RelicCmd.Obtain(relic.ToMutable(), owner);
             return;

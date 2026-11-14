@@ -38,12 +38,32 @@ namespace STS2_WineFox.Powers
                 AssertMutable();
                 _remainingTurns = value;
                 InvokeDisplayAmountChanged();
+                RefreshVars();
             }
         }
 
         public IReadOnlyList<ExtraIconAmountLabelSlot> GetPowerExtraIconAmountLabelSlots()
         {
             return [ExtraIconAmountLabelSlot.At(ExtraIconAmountLabelCorner.BottomLeft, Amount.ToString())];
+        }
+
+        private void RefreshVars()
+        {
+            (DynamicVars["Reduction"] as TurtleMasterVar)?.Refresh();
+            (DynamicVars["RemainingTurns"] as TurtleMasterVar)?.Refresh();
+        }
+
+        public override Task AfterPowerAmountChanged(
+            PlayerChoiceContext choiceContext,
+            PowerModel power,
+            decimal amount,
+            Creature? applier,
+            CardModel? cardSource)
+        {
+            if (power == this)
+                RefreshVars();
+
+            return Task.CompletedTask;
         }
 
         public override Task AfterApplied(Creature? applier, CardModel? cardSource)
@@ -136,9 +156,9 @@ namespace STS2_WineFox.Powers
                 return Calculate().ToString();
             }
 
-            protected override decimal GetBaseValueForIConvertible()
+            public void Refresh()
             {
-                return Calculate();
+                UpdateValues();
             }
 
             protected abstract decimal Calculate();

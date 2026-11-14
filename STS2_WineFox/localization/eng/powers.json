@@ -222,8 +222,8 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "Source of Chaos",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "Loadable spells cost 1 less and target random enemies.",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.title": "Charge",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "Accumulated when you [gold]load[/gold] spells and never lost at end of turn. At 10 Charge, spend 10 Charge to release the staff and load 1 [gold]Spell Overload[/gold].",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "Accumulated when you [gold]load[/gold] spells and never lost at end of turn. At 10 Charge, spend 10 Charge to release the staff and load 1 [gold]Spell Overload[/gold].",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "Accumulated when you [gold]load[/gold] spells and never lost at end of turn. At 10 Charge, spend 10 Charge to release the staff and load 1 [gold]Overload[/gold].",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "Accumulated when you [gold]load[/gold] spells and never lost at end of turn. At 10 Charge, spend 10 Charge to release the staff and load 1 [gold]Overload[/gold].",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "Arcane Capacitor",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "At the end of your turn, consume up to 6 [gold]Charge[/gold] and gain 2 [gold]Block[/gold] per Charge.",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "Lose [blue]{Amount}[/blue] spell slot this turn.",
@@ -236,7 +236,7 @@
   "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "This enemy takes +1 damage from every hit.",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "Unleashing Potential",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "Grants extra temporary spell slots this turn.",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "Grants extra temporary spell slots this turn.",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "Gain [blue]{Amount}[/blue] additional temporary Spell Slots this turn.",
   "STS2_WINE_FOX_SPELL_ATTR_TITLE": "Spell Attributes",
   "STS2_WINE_FOX_SPELL_ATTR_TYPE": "Type",
   "STS2_WINE_FOX_SPELL_ATTR_COST": "Energy Cost",
@@ -278,5 +278,9 @@
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.smartDescription": "At the start of your next turn, return the registered spell to your hand with its cost reduced by 1.",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.title": "Mana Reflux",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.description": "At the start of your next turn, gain Energy equal to the number of spells released this turn.",
-  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "At the start of your next turn, gain Energy equal to the number of spells released this turn."
+  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "At the start of your next turn, gain Energy equal to the number of spells released this turn.",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.description": "Prevent damage you take during your turn and deal that much damage to all enemies. At the start of your turn, gain {Amount} [gold]Charge[/gold].",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.smartDescription": "Prevent damage you take during your turn and deal that much damage to all enemies. At the start of your turn, gain {Amount} [gold]Charge[/gold].",
+  "STS2_WINE_FOX_SPELL_ATTR_LINGER": "LINGER",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "Thunderbolt Staff"
 }

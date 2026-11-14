@@ -222,8 +222,8 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "混沌の源",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "装填可能な術のコスト -1、対象がランダムになる。",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.title": "蓄能",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]装填[/gold]時に蓄積され、ターン終了時にも失われない。10層に達すると10層を消費して杖を解放し、[gold]スペルオーバーロード[/gold]を1枚装填する。",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]装填[/gold]時に蓄積され、ターン終了時にも失われない。10層に達すると10層を消費して杖を解放し、[gold]スペルオーバーロード[/gold]を1枚装填する。",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]装填[/gold]時に蓄積され、ターン終了時にも失われない。10層に達すると10層を消費して杖を解放し、[gold]オーバーロード[/gold]を1枚装填する。",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]装填[/gold]時に蓄積され、ターン終了時にも失われない。10層に達すると10層を消費して杖を解放し、[gold]オーバーロード[/gold]を1枚装填する。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "アーケインキャパシタ",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "ターン終了時、[gold]蓄能[/gold]を最大6消費し、1層ごとに[gold]ブロック[/gold]を2得る。",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.smartDescription": "このターン術スロットを[blue]{Amount}[/blue]つ失う。",
@@ -236,7 +236,7 @@
   "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "この敵は受けるダメージが毎回+1。",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "潜在能力解放",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "このターン追加の一時術スロットを得る。",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "このターン追加の一時術スロットを得る。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "このターン、追加の一時スペルスロットを[blue]{Amount}[/blue]個得る。",
   "STS2_WINE_FOX_SPELL_ATTR_TITLE": "術の属性",
   "STS2_WINE_FOX_SPELL_ATTR_TYPE": "術タイプ",
   "STS2_WINE_FOX_SPELL_ATTR_COST": "エネルギー消費",
@@ -278,5 +278,9 @@
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.smartDescription": "次のターン開始時、登録したスペルをコスト-1で手札に戻す。",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.title": "マナ還流",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.description": "次のターン開始時、このターンに解放したスペルの数に等しいエネルギーを得る。",
-  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "次のターン開始時、このターンに解放したスペルの数に等しいエネルギーを得る。"
+  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "次のターン開始時、このターンに解放したスペルの数に等しいエネルギーを得る。",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.description": "自分のターンに受けるダメージを無効にし、同じ値のダメージをすべての敵に与える。ターン開始時に{Amount}[gold]蓄能[/gold]を得る。",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.smartDescription": "自分のターンに受けるダメージを無効にし、同じ値のダメージをすべての敵に与える。ターン開始時に{Amount}[gold]蓄能[/gold]を得る。",
+  "STS2_WINE_FOX_SPELL_ATTR_LINGER": "滞留",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "雷電の杖"
 }

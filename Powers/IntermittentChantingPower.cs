@@ -91,6 +91,7 @@ namespace STS2_WineFox.Powers
 
             data.LastKnownAmount = Math.Max(data.LastKnownAmount, Amount);
             data.NotifyExtraLabelsInvalidated();
+            RefreshVars();
             return Task.CompletedTask;
         }
 
@@ -116,7 +117,13 @@ namespace STS2_WineFox.Powers
 
             data.LastKnownAmount = Amount;
             data.NotifyExtraLabelsInvalidated();
+            RefreshVars();
             return Task.CompletedTask;
+        }
+
+        private void RefreshVars()
+        {
+            (DynamicVars["EnemyBlock"] as EnemyBlockVar)?.Refresh();
         }
 
         private decimal GetEnemyBlockAmount()
@@ -139,9 +146,12 @@ namespace STS2_WineFox.Powers
                 return Calculate().ToString(CultureInfo.InvariantCulture);
             }
 
-            protected override decimal GetBaseValueForIConvertible()
+            public void Refresh()
             {
-                return Calculate();
+                var value = Calculate();
+                BaseValue = value;
+                PreviewValue = value;
+                EnchantedValue = value;
             }
 
             private decimal Calculate()

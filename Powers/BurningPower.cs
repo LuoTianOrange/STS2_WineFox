@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -50,6 +50,19 @@ namespace STS2_WineFox.Powers
         public int CalculateDamageOnNextTrigger()
         {
             return GetTickDamageAfterHooks();
+        }
+
+        public override Task AfterPowerAmountChanged(
+            PlayerChoiceContext choiceContext,
+            PowerModel power,
+            decimal amount,
+            Creature? applier,
+            CardModel? cardSource)
+        {
+            if (power == this)
+                (DynamicVars["BurnDamage"] as BurnDamageVar)?.Refresh();
+
+            return Task.CompletedTask;
         }
 
         public override async Task AfterSideTurnStart(
@@ -115,9 +128,9 @@ namespace STS2_WineFox.Powers
                 return Calculate().ToString();
             }
 
-            protected override decimal GetBaseValueForIConvertible()
+            public void Refresh()
             {
-                return Calculate();
+                UpdateValues();
             }
 
             private decimal Calculate()

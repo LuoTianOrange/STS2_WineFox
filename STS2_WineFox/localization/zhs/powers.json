@@ -226,8 +226,8 @@
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "可装填的法术费用-1，释放时目标随机。",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.smartDescription": "所有可装填的法术费用[blue]-1[/blue]，释放时目标变为随机。",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.title": "蓄能",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]装填[/gold]法术时累积，不会随回合结束消失。达到10层时消耗10层释放法杖，并装填1张[gold]法术过载[/gold]。",
-  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]装填[/gold]法术时累积，不会随回合结束消失。达到10层时消耗10层释放法杖，并装填1张[gold]法术过载[/gold]。",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]装填[/gold]法术时累积，不会随回合结束消失。达到10层时消耗10层释放法杖，并装填1张[gold]过载[/gold]。",
+  "STS2_WINE_FOX_POWER_CHARGE_POWER.smartDescription": "[gold]装填[/gold]法术时累积，不会随回合结束消失。达到10层时消耗10层释放法杖，并装填1张[gold]过载[/gold]。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.title": "奥术电容",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.description": "回合结束时消耗最多6层[gold]蓄能[/gold]，每层获得2点[gold]格挡[/gold]。",
   "STS2_WINE_FOX_POWER_ARCANE_CAPACITOR_POWER.smartDescription": "回合结束时消耗最多6层[gold]蓄能[/gold]，每层获得2点[gold]格挡[/gold]。",
@@ -236,7 +236,7 @@
   "STS2_WINE_FOX_POWER_TARGET_POSITIONING_POWER.smartDescription": "该敌人每次受到的伤害+1。",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.title": "潜能激发",
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.description": "本回合获得额外的临时法术槽。",
-  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "本回合获得额外的临时法术槽。",
+  "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_GAIN_POWER.smartDescription": "本回合获得额外的[blue]{Amount}[/blue]个临时法术槽。",
   "STS2_WINE_FOX_SPELL_ATTR_TITLE": "法术属性",
   "STS2_WINE_FOX_SPELL_ATTR_TYPE": "法术类型",
   "STS2_WINE_FOX_SPELL_ATTR_COST": "能量消耗",
@@ -278,5 +278,9 @@
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.smartDescription": "下回合开始时，把登记的法术以费用减1放回手牌。",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.title": "魔力回流",
   "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.description": "下回合开始时，获得等同于本回合释放法术次数的能量。",
-  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "下回合开始时，获得等同于本回合释放法术次数的能量。"
+  "STS2_WINE_FOX_POWER_MANA_REFLUX_POWER.smartDescription": "下回合开始时，获得等同于本回合释放法术次数的能量。",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.description": "抵消你在自己回合受到的伤害，并对所有敌人造成等量伤害。回合开始时获得{Amount}[gold]蓄能[/gold]。",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.smartDescription": "抵消你在自己回合受到的伤害，并对所有敌人造成等量伤害。回合开始时获得{Amount}[gold]蓄能[/gold]。",
+  "STS2_WINE_FOX_SPELL_ATTR_LINGER": "滞留",
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "雷电之杖"
 }
