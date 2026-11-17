@@ -25,5 +25,12 @@
   "winefox.cardArt.restore.button": "还原",
   "winefox.cardArt.restore.description": "清除单卡设置，所有魔法酒狐卡面恢复完整版。",
   "winefox.cardArt.section.cards.title": "单卡覆盖",
-  "winefox.cardArt.card.description": "这张魔法酒狐卡使用扁平版卡面。"
+  "winefox.cardArt.card.description": "这张魔法酒狐卡使用扁平版卡面。",
+  "winefox.standee.subpage.title": "酒狐立绘",
+  "winefox.standee.subpage.description": "切换酒狐（WineFox）的战斗立绘：新立绘或旧立绘。",
+  "winefox.standee.section.title": "战斗立绘",
+  "winefox.standee.variant.label": "立绘",
+  "winefox.standee.variant.description": "下次进入战斗后生效。旧立绘没有残血与死亡动画，低血量时保持待机动作，死亡时显示死亡立绘。",
+  "winefox.standee.variant.new": "新立绘",
+  "winefox.standee.variant.old": "旧立绘"
 }

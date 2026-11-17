@@ -17,6 +17,20 @@ namespace STS2_WineFox.Settings
 
         public static bool FlatCardArtEnabled => Current.FlatCardArtEnabled;
 
+        public static string StandeeVariant => WineFoxStandeeVariants.Normalize(Current.StandeeVariant);
+
+        public static bool UsesOldStandee => WineFoxStandeeVariants.IsOld(StandeeVariant);
+
+        public static void SetStandeeVariant(string? variant)
+        {
+            var normalized = WineFoxStandeeVariants.Normalize(variant);
+            var store = RitsuLibFramework.GetDataStore(Const.ModId);
+
+            store.Modify<WineFoxModSettings>(DataKey, settings => settings.StandeeVariant = normalized);
+
+            store.Save(DataKey);
+        }
+
         public static bool IsFlatCardArtEnabled(string cardKey)
         {
             return Current.FlatCardArtOverrides.TryGetValue(cardKey, out var value)

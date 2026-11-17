@@ -4,8 +4,9 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.1";
+        public const string Version = "1.3.2";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
+        public const string StandeeSyncTopic = "winefox_standee_variants";
 
         /// <summary>
         ///     When true, WineFox skips <c>RequireEpoch</c> gating for this mod’s models (full pool / character access without
@@ -29,6 +30,9 @@ namespace STS2_WineFox
             //魔法酒狐专用能量图标
             public const string MagicEnergyIcon = Root + "/winefox/magic_winefox_energy_icon.png";
             public const string CharacterVisualsScene = ScenesRoot + "/combat/winefox_combat.tscn";
+            public const string StandeeNewSkeleton = ScenesRoot + "/combat/new_winefox_combat_atlas.tres";
+            public const string StandeeOldSkeleton = ScenesRoot + "/combat/winefox_combat_atlas.tres";
+            public const string StandeeDiePortrait = Root + "/winefox/winefox_die.png";
             public const string CharacterIconScene = ScenesRoot + "/winefox/wine_fox_icon.tscn";
             public const string MagicWineFoxIconScene = ScenesRoot + "/magic_winefox/magic_wine_fox_icon.tscn";
             public const string MagicWineFoxSelectBgScene = ScenesRoot + "/magic_winefox/select_bg_magic_winefox.tscn";

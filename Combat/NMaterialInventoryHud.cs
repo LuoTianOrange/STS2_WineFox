@@ -201,6 +201,9 @@ namespace STS2_WineFox.Combat
 
             private bool ShouldStayVisible()
             {
+                if (Player.Creature is not { } creature || creature.IsDead)
+                    return false;
+
                 return Player.Character is WineFox ||
                        Player.Character.Id.Entry.Contains("winefox", StringComparison.OrdinalIgnoreCase) ||
                        SlotDefinitions.Any(slot => HasMaterial(slot.PowerType));

@@ -25,5 +25,12 @@
   "winefox.cardArt.restore.button": "戻す",
   "winefox.cardArt.restore.description": "カード別設定を消し、全ての魔法酒狐カードを通常版に戻します。",
   "winefox.cardArt.section.cards.title": "カード別の上書き",
-  "winefox.cardArt.card.description": "この魔法酒狐カードにフラット版を使います。"
+  "winefox.cardArt.card.description": "この魔法酒狐カードにフラット版を使います。",
+  "winefox.standee.subpage.title": "酒狐立ち絵",
+  "winefox.standee.subpage.description": "酒狐（WineFox）の戦闘立ち絵を新しい立ち絵と旧立ち絵で切り替える。魔法酒狐には影響しない。",
+  "winefox.standee.section.title": "戦闘立ち絵",
+  "winefox.standee.variant.label": "立ち絵",
+  "winefox.standee.variant.description": "次の戦闘から有効。旧立ち絵には低HP・死亡アニメーションが無いため、低HP時は待機モーションのまま、死亡時は倒れた画像を表示する。",
+  "winefox.standee.variant.new": "新しい立ち絵",
+  "winefox.standee.variant.old": "旧立ち絵"
 }

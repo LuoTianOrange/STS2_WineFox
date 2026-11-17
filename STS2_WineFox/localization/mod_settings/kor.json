@@ -25,5 +25,12 @@
   "winefox.cardArt.restore.button": "복원",
   "winefox.cardArt.restore.description": "카드별 설정을 지우고 모든 마법주호 카드를 일반판으로 되돌립니다.",
   "winefox.cardArt.section.cards.title": "카드별 덮어쓰기",
-  "winefox.cardArt.card.description": "이 마법주호 카드에 플랫 일러스트를 사용합니다."
+  "winefox.cardArt.card.description": "이 마법주호 카드에 플랫 일러스트를 사용합니다.",
+  "winefox.standee.subpage.title": "주호 일러스트",
+  "winefox.standee.subpage.description": "주호(WineFox)의 전투 일러스트를 새 일러스트와 구 일러스트로 전환합니다. 마법 주호에는 영향이 없습니다.",
+  "winefox.standee.section.title": "전투 일러스트",
+  "winefox.standee.variant.label": "일러스트",
+  "winefox.standee.variant.description": "다음 전투부터 적용됩니다. 구 일러스트에는 저체력·사망 애니메이션이 없어 저체력 시 대기 모션이 유지되고 사망 시 쓰러진 이미지가 표시됩니다.",
+  "winefox.standee.variant.new": "새 일러스트",
+  "winefox.standee.variant.old": "구 일러스트"
 }

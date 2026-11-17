@@ -13,6 +13,7 @@ namespace STS2_WineFox.Patches
             patcher.RegisterPatch<StartSteamHostSettingsSyncPatch>();
             patcher.RegisterPatch<HostPeerReadySettingsSyncPatch>();
             patcher.RegisterPatch<ClientInitializeSettingsResetPatch>();
+            patcher.RegisterPatch<ClientConnectedStandeePublishPatch>();
             patcher.RegisterPatch<ClientDisconnectedSettingsResetPatch>();
         }
 
@@ -27,9 +28,10 @@ namespace STS2_WineFox.Patches
                 return [new(typeof(NetHostGameService), nameof(NetHostGameService.StartENetHost))];
             }
 
-            private static void Prefix(NetHostGameService __instance)
+            private static void Postfix(NetHostGameService __instance)
             {
                 WineFoxRuntimeSettings.PublishHostSettings(__instance, "start_enet_host");
+                WineFoxStandeeSync.PublishLocal();
             }
         }
 
@@ -44,9 +46,10 @@ namespace STS2_WineFox.Patches
                 return [new(typeof(NetHostGameService), nameof(NetHostGameService.StartSteamHost))];
             }
 
-            private static void Prefix(NetHostGameService __instance)
+            private static void Postfix(NetHostGameService __instance)
             {
                 WineFoxRuntimeSettings.PublishHostSettings(__instance, "start_steam_host");
+                WineFoxStandeeSync.PublishLocal();
             }
         }
 
@@ -64,6 +67,7 @@ namespace STS2_WineFox.Patches
             private static void Postfix(NetHostGameService __instance)
             {
                 WineFoxRuntimeSettings.PublishHostSettings(__instance, "peer_ready");
+                WineFoxStandeeSync.PublishLocal();
             }
         }
 
@@ -81,11 +85,33 @@ namespace STS2_WineFox.Patches
             private static void Prefix()
             {
                 WineFoxRuntimeSettings.ClearRemoteHostSettings();
+                WineFoxStandeeSync.ResetRemote();
+            }
+
+            private static void Postfix()
+            {
+                WineFoxStandeeSync.PublishLocal();
             }
         }
 
-        private sealed class ClientDisconnectedSettingsResetPatch : IPatchMethod
+        private sealed class ClientConnectedStandeePublishPatch : IPatchMethod
         {
+            public static string PatchId => "winefox_client_connected_standee_publish";
+            public static bool IsCritical => true;
+            public static string Description => "Publish the local WineFox standee choice once the client is connected";
+
+            public static ModPatchTarget[] GetTargets()
+            {
+                return [new(typeof(NetClientGameService), nameof(NetClientGameService.OnConnectedToHost))];
+            }
+
+            private static void Postfix()
+            {
+                WineFoxStandeeSync.PublishLocal();
+            }
+        }
+
+        private sealed class ClientDisconnectedSettingsResetPatch : IPatchMethod        {
             public static string PatchId => "winefox_client_disconnected_settings_reset";
             public static bool IsCritical => true;
             public static string Description => "Clear cached WineFox host settings after client disconnect";
@@ -98,6 +124,7 @@ namespace STS2_WineFox.Patches
             private static void Postfix()
             {
                 WineFoxRuntimeSettings.ClearRemoteHostSettings();
+                WineFoxStandeeSync.ResetRemote();
             }
         }
     }

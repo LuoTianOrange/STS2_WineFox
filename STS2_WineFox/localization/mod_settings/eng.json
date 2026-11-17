@@ -25,5 +25,12 @@
   "winefox.cardArt.restore.button": "Restore",
   "winefox.cardArt.restore.description": "Clear per-card overrides and return every MagicWineFox card to the full-art version.",
   "winefox.cardArt.section.cards.title": "Per-card override",
-  "winefox.cardArt.card.description": "Use the flat portrait for this MagicWineFox card."
+  "winefox.cardArt.card.description": "Use the flat portrait for this MagicWineFox card.",
+  "winefox.standee.subpage.title": "WineFox Standee",
+  "winefox.standee.subpage.description": "Switch the WineFox battle standee between the new and the legacy skeleton. MagicWineFox is not affected.",
+  "winefox.standee.section.title": "Battle standee",
+  "winefox.standee.variant.label": "Standee",
+  "winefox.standee.variant.description": "Takes effect from the next combat. The legacy standee has no low-health or death animation, so it keeps idling at low health and shows a falling pose on death.",
+  "winefox.standee.variant.new": "New standee",
+  "winefox.standee.variant.old": "Legacy standee"
 }

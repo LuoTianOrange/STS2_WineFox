@@ -9,6 +9,8 @@ namespace STS2_WineFox.Settings
 
         public bool FlatCardArtEnabled { get; set; }
 
+        public string StandeeVariant { get; set; } = WineFoxStandeeVariants.New;
+
         public Dictionary<string, bool> FlatCardArtOverrides { get; set; } = [];
     }
 }

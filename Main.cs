@@ -5,6 +5,7 @@ using STS2_WineFox.Character;
 using STS2_WineFox.Combat;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
+using STS2_WineFox.Network;
 using STS2_WineFox.Patches;
 using STS2_WineFox.Rewards;
 using STS2_WineFox.Settings;
@@ -59,8 +60,10 @@ namespace STS2_WineFox
 
                 WineFoxModSettingsStore.Initialize();
                 WineFoxRuntimeSettings.Initialize();
+                WineFoxStandeeSync.Initialize();
                 WineFoxModSettingsPage.Register();
                 WineFoxCardArtSettingsPage.Register();
+                WineFoxStandeeSettingsPage.Register();
 
                 FmodStudioDeferredBankRegistration.RegisterBank(Const.Paths.WineFoxBank);
                 FmodStudioDeferredBankRegistration.RegisterStudioGuidMappings(Const.Paths.WineFoxGuidsFile);
@@ -124,9 +127,12 @@ namespace STS2_WineFox
                 Logger.Warn(
                     "[WineFoxVfx] Skipping LoseHpInternal flash patch on Android; hit-trigger flash remains available.");
             patcher.RegisterPatch<WineFoxCreatureHitTriggerFlashPatch>();
+            patcher.RegisterPatch<WineFoxStandeeDeathPortraitPatch>();
+            patcher.RegisterPatch<WineFoxStandeeRevivePortraitPatch>();
             patcher.RegisterPatch<WineFoxCreatureDeathSmokePlaceholderPatch>();
             patcher.RegisterPatch<WineFoxLocManagerInitializedPatch>();
             WineFoxMultiplayerSettingsSyncPatches.AddTo(patcher);
+            patcher.RegisterPatch<WineFoxStandeeTailReadPatch>();
             patcher.RegisterPatch<WineFoxPublicRelicRewardPoolPatch>();
             patcher.RegisterPatch<WineFoxFoodPotionRewardPatch>();
             patcher.RegisterPatch<WineFoxPredeterminedPotionRewardSavePatch>();
@@ -136,6 +142,7 @@ namespace STS2_WineFox
             patcher.RegisterPatch<EchoesSequenceSmartDescriptionPatch>();
             patcher.RegisterPatch<SpellCardDescriptionPreviewPatch>();
             patcher.RegisterPatch<RelicHoverSpellOrderPatch>();
+            WineFoxStandeeWire.ApplyDynamicPatches(patcher);
             return patcher;
         }
 

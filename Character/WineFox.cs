@@ -1,8 +1,12 @@
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Characters;
 using STS2_WineFox.Content.Descriptors;
 using STS2_WineFox.Epoch;
+using STS2_WineFox.Settings;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Characters;
 
@@ -25,6 +29,51 @@ namespace STS2_WineFox.Character
         public override float CastAnimDelay => 0.25f;
 
         protected override Type UnlocksAfterRunAsType => typeof(Ironclad);
+
+        public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
+        {
+            if (!WineFoxStandeeSync.UsesOldStandee(creature.Player))
+                return base.GenerateAnimator(controller, creature);
+
+            var idle = new AnimState(ResolveAnimation(controller, AnimState.idleAnim, "idle", "Idle"), isLooping: true);
+            var animator = new CreatureAnimator(idle, controller);
+
+            animator.AddAnyState("Idle", idle);
+            animator.AddAnyState("Relaxed", idle);
+            animator.AddAnyState("Dead", idle);
+
+            foreach (var (state, trigger) in AnimationStates)
+            {
+                if (!controller.HasAnimation(state.Id))
+                    continue;
+
+                state.AddNextState(idle);
+                animator.AddAnyState(trigger, state);
+            }
+
+            return animator;
+        }
+
+        private static string ResolveAnimation(MegaSprite controller, params string[] candidates)
+        {
+            foreach (var candidate in candidates)
+            {
+                if (controller.HasAnimation(candidate))
+                    return candidate;
+            }
+
+            var names = controller.GetSkeleton()?.GetData()?.GetAnimationNames();
+            if (names == null)
+                return candidates[0];
+
+            foreach (var name in names)
+            {
+                if (name.IndexOf("idle", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return name;
+            }
+
+            return names.Count > 0 ? names[0] : candidates[0];
+        }
 
         public override List<string> GetArchitectAttackVfx()
         {

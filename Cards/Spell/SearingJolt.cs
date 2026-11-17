@@ -14,7 +14,7 @@ namespace STS2_WineFox.Cards.Spell
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class SearingJolt() : MagicWineFoxSpellCard(
-        1, CardType.Attack, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
+        1, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
