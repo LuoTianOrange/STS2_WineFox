@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using STS2_WineFox.Utils;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.VFX
 {

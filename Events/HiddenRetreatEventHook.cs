@@ -1,8 +1,8 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2_WineFox.Cards.Quest;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Models;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Events
 {

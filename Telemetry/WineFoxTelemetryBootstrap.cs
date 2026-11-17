@@ -1,5 +1,6 @@
 using System.Text.Json.Nodes;
 using STS2_WineFox.Character;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Telemetry;

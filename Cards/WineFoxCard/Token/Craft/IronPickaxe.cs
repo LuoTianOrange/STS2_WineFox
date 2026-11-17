@@ -1,0 +1,40 @@
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
+using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
+
+namespace STS2_WineFox.Cards.WineFoxCard
+{
+    [RegisterCard(typeof(WineFoxCraftingCardPool))]
+    public class IronPickaxe() : WineFoxCardBase(
+        0, CardType.Skill, CardRarity.Token, TargetType.Self)
+    {
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new("Times", 2m)];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardIronPickaxe);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            var times = DynamicVars["Times"].BaseValue;
+            if (IsUpgraded)
+                await PowerCmd.Apply<IronPickaxePowerUpgraded>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                    times, Owner.Creature, this);
+            else
+                await PowerCmd.Apply<IronPickaxePower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                    times, Owner.Creature, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+        }
+    }
+}

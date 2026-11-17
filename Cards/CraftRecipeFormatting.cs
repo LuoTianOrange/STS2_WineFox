@@ -1,6 +1,7 @@
 using System.Globalization;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Cards
 {

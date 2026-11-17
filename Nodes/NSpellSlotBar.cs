@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot.NodeAttachments;
 

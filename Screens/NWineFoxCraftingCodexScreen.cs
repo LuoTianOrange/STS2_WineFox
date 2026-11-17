@@ -9,9 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 using MegaCrit.Sts2.Core.Nodes.Screens.Capstones;
 using STS2_WineFox.Cards;
-using STS2_WineFox.Cards.Token.HellGift;
-using STS2_WineFox.Cards.Token.LessHoliday;
-
+using STS2_WineFox.Cards.WineFoxCard;
 namespace STS2_WineFox.Screens
 {
     /// <summary>

@@ -1,7 +1,7 @@
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Commands;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Relics.Backpack.Effects
 {

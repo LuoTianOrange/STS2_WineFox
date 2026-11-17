@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.TestSupport;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Potions
 {

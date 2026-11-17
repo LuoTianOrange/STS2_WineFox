@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using STS2_WineFox.Utils;
+using STS2_WineFox.Cards.MagicWineFoxCard;
 
 namespace STS2_WineFox.VFX
 {

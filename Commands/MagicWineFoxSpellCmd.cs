@@ -8,11 +8,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
+using STS2_WineFox.Cards.MagicWineFoxCard;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Commands
 {

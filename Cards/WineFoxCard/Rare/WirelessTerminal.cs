@@ -1,0 +1,41 @@
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using STS2_WineFox.Character;
+using STS2_WineFox.Commands;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
+
+namespace STS2_WineFox.Cards.WineFoxCard
+{
+    [RegisterCard(typeof(WineFoxCardPool))]
+    public class WirelessTerminal() : WineFoxCardBase(
+        1, CardType.Skill, CardRarity.Rare, TargetType.None), ICraftingCard
+    {
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.CraftKeyword];
+
+        public override CardAssetProfile AssetProfile => new(
+            Const.Paths.CardWirelessTerminal,
+            Const.Paths.CardWirelessTerminal,
+            FrameMaterialPath: Const.Paths.CardWirelessTerminalRainbowFrameMat);
+
+        protected override CardLocation GetResultLocationForCardPlay()
+        {
+            var location = base.GetResultLocationForCardPlay();
+            return location.pileType != PileType.Discard
+                ? location
+                : new(location.player, PileType.Hand, CardPilePosition.Bottom);
+        }
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            await CraftCmd.CraftIntoHand(choiceContext, this);
+        }
+
+        protected override void OnUpgrade()
+        {
+            AddKeyword(CardKeyword.Retain);
+        }
+    }
+}

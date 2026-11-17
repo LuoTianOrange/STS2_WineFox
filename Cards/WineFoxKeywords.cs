@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Keywords;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Cards
 {

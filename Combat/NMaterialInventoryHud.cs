@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Settings;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Settings;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot.NodeAttachments;
 

@@ -2,9 +2,9 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards.Spell;
 using STS2_WineFox.Combat.Magic;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Cards.MagicWineFoxCard;
 
 namespace STS2_WineFox.Mechanics
 {

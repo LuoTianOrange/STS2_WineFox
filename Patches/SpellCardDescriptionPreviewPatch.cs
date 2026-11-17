@@ -2,8 +2,8 @@ using System.Reflection;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards.Spell;
 using STS2RitsuLib.Patching.Models;
+using STS2_WineFox.Cards.MagicWineFoxCard;
 
 namespace STS2_WineFox.Patches
 {

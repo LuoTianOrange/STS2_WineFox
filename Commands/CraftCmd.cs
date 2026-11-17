@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards;
 using STS2_WineFox.Hooks;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Utils;
 
 namespace STS2_WineFox.Commands

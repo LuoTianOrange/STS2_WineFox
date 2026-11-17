@@ -4,11 +4,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards.Token.Craft;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
 using STS2_WineFox.Relics;
 using STS2_WineFox.Relics.Backpack;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Cards
 {

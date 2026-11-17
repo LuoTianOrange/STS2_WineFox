@@ -7,6 +7,7 @@ using STS2RitsuLib.Settings;
 using STS2RitsuLib.Utils;
 using STS2RitsuLib.Utils.Persistence;
 using STS2_WineFox.Mechanics;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Settings
 {

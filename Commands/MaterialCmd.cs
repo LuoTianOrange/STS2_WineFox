@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Cards.FreePlay;
 using STS2RitsuLib.Utils;
 

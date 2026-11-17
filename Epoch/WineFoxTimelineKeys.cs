@@ -1,4 +1,5 @@
 using STS2_WineFox.Character;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Content;
 
 namespace STS2_WineFox.Epoch

@@ -1,5 +1,6 @@
 using Godot;
 using STS2RitsuLib.Utils;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Combat
 {

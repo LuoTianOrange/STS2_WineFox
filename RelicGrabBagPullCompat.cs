@@ -2,6 +2,7 @@ using System.Reflection;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox
 {

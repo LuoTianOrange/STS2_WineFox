@@ -1,8 +1,8 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Unlocks;
-using STS2_WineFox.Cards.Uncommon;
 using STS2_WineFox.Settings;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Character

@@ -2,8 +2,8 @@ using Godot;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
-using STS2_WineFox.Cards.Spell;
 using STS2RitsuLib.Models.Capabilities;
+using STS2_WineFox.Cards.MagicWineFoxCard;
 
 namespace STS2_WineFox.Mechanics
 {

@@ -1,0 +1,31 @@
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2_WineFox.Character;
+using STS2_WineFox.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
+
+namespace STS2_WineFox.Cards.WineFoxCard
+{
+    [RegisterCard(typeof(WineFoxTokenCardPool))]
+    public class GoldenSword() : WineFoxCardBase(
+        0, CardType.Power, CardRarity.Token, TargetType.None)
+    {
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new EnergyVar(1)];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [WineFoxKeywords.SwordKeyword];
+
+        public override CardAssetProfile AssetProfile => Art(Const.Paths.CardGoldenSword);
+
+        protected override async Task OnPlay(
+            PlayerChoiceContext choiceContext,
+            CardPlay play)
+        {
+            await PowerCmd.Apply<GoldenSwordPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
+                Owner.Creature, this);
+        }
+    }
+}

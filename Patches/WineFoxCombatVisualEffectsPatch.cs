@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2_WineFox.Character;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Patching.Models;
 
 namespace STS2_WineFox.Patches

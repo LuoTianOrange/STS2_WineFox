@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2_WineFox.Potions;
 using STS2_WineFox.Rewards;
 using STS2_WineFox.Settings;
+using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Patching.Models;
 using STS2RitsuLib.RunData;
 

@@ -1,3 +1,5 @@
+using STS2_WineFox.Cards.WineFoxCard;
+
 namespace STS2_WineFox
 {
     public static class Const

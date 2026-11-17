@@ -3,9 +3,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using STS2_WineFox.Cards;
-using STS2_WineFox.Cards.Token.SophisticatedBackpack;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Cards.WineFoxCard;
 
 namespace STS2_WineFox.Relics.Backpack
 {

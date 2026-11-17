@@ -2,8 +2,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using STS2_WineFox.Cards.Spell;
-
+using STS2_WineFox.Cards.MagicWineFoxCard;
 namespace STS2_WineFox.Mechanics
 {
     public enum PendingSpellModifierMode
