@@ -90,7 +90,16 @@ namespace STS2_WineFox.Commands
 
         public static MagicWineFoxSpellSlotPower? GetPower(Player owner)
         {
-            return owner?.Creature?.Powers.OfType<MagicWineFoxSpellSlotPower>().FirstOrDefault();
+            if (owner?.Creature is not { } creature)
+                return null;
+
+            foreach (var power in creature.Powers)
+            {
+                if (power is MagicWineFoxSpellSlotPower slotPower)
+                    return slotPower;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -284,7 +293,10 @@ namespace STS2_WineFox.Commands
         /// <summary>把【序列回响】绑定的法术自动装回法杖。</summary>
         private static void EnsureEchoLoaded(Player owner)
         {
-            var echo = owner?.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
+            if (owner is null)
+                return;
+
+            var echo = owner.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
             if (echo?.EchoSpell is not { } template)
                 return;
 
@@ -792,6 +804,9 @@ namespace STS2_WineFox.Commands
             if (snapshot.Card is not IMagicWineFoxSpellCard spellCard)
                 return;
 
+            if (owner is not { } casterPlayer)
+                return;
+
             var target = state.ForcedTarget ?? ResolveTarget(snapshot.Target, fallbackTarget);
 
             if (owner?.Creature is { } caster && target == caster)
@@ -805,7 +820,10 @@ namespace STS2_WineFox.Commands
                     target = owner?.Creature?.CombatState?.HittableEnemies.FirstOrDefault();
             }
 
-            if (owner.Creature.Powers.OfType<SourceOfChaosPower>().Any())
+            if (owner?.Creature is not { } casterCreature)
+                return;
+
+            if (casterCreature.Powers.OfType<SourceOfChaosPower>().Any())
                 state.MarkRandomTargets();
 
             var context = new MagicWineFoxSpellCastContext(
@@ -898,11 +916,11 @@ namespace STS2_WineFox.Commands
                 }
 
                 if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
-                    GetPower(owner)?.IncrementSpellsCast();
+                    GetPower(casterPlayer)?.IncrementSpellsCast();
 
                 // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
                 if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
-                    await SpellAshesPower.ApplyToAllEnemies(choiceContext, owner, snapshot.Card);
+                    await SpellAshesPower.ApplyToAllEnemies(choiceContext, casterPlayer, snapshot.Card);
 
                 // 「是否攻击到敌人」卡牌声明判定，
                 var attacked = snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true }
@@ -914,7 +932,7 @@ namespace STS2_WineFox.Commands
                 if (attacked.Count > 0)
                     await EternalMelodyPower.ApplyToSpellTargets(
                         choiceContext,
-                        owner,
+                        casterPlayer,
                         snapshot.Card,
                         attacked);
 
@@ -932,7 +950,7 @@ namespace STS2_WineFox.Commands
                 {
                     await OstyCmd.Summon(
                         choiceContext,
-                        owner,
+                        casterPlayer,
                         state.ConvertedBlock + blockToSummon,
                         snapshot.Card);
                 }
@@ -945,7 +963,7 @@ namespace STS2_WineFox.Commands
                     {
                         await OstyCmd.Summon(
                             choiceContext,
-                            owner,
+                            casterPlayer,
                             state.SummonOnKill,
                             snapshot.Card);
                     }
@@ -963,7 +981,7 @@ namespace STS2_WineFox.Commands
                 }
 
                 if (state.DrawCount > 0m)
-                    await CardPileCmd.Draw(choiceContext, state.DrawCount, owner);
+                    await CardPileCmd.Draw(choiceContext, state.DrawCount, casterPlayer);
             }
 
             if (state.CopyAfterCastCount > 0 && owner is { } copyOwner)

@@ -12,7 +12,7 @@ namespace STS2_WineFox.Settings
 {
     public static class WineFoxCardArtSettingsPage
     {
-        private const string PageId = "card_art";
+        private const string PageId = "magic_winefox";
 
         private static readonly Lazy<I18N> Localization = new(() => RitsuLibFramework.CreateModLocalization(
             Const.ModId,
@@ -25,9 +25,9 @@ namespace STS2_WineFox.Settings
         public static void Register()
         {
             RitsuLibFramework.RegisterModSettings(Const.ModId, page => page
-                .WithTitle(T("winefox.cardArt.subpage.title", "MagicWineFox Card Art"))
-                .WithDescription(T("winefox.cardArt.subpage.description",
-                    "Switch MagicWineFox card portraits between the full-art version and the flat-color version."))
+                .WithTitle(T("winefox.magicWinefox.subpage.title", "MagicWineFox Settings"))
+                .WithDescription(T("winefox.magicWinefox.subpage.description",
+                    "Tune part of the MagicWineFox module settings."))
                 .WithModDisplayName(T("winefox.settings.mod.displayName", "WineFox"))
                 .WithSortOrder(10)
                 .AddSection("style", section => BuildStyleSection(section))

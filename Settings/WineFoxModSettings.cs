@@ -11,6 +11,10 @@ namespace STS2_WineFox.Settings
 
         public string StandeeVariant { get; set; } = WineFoxStandeeVariants.New;
 
+        public int MaterialHudOffsetX { get; set; }
+
+        public int MaterialHudOffsetY { get; set; }
+
         public Dictionary<string, bool> FlatCardArtOverrides { get; set; } = [];
     }
 }

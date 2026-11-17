@@ -49,7 +49,7 @@ namespace STS2_WineFox.Powers
             Flash();
 
             await DamageCmd.Attack(damage)
-                .FromOsty(player.Osty, null, null)
+                .FromOsty(player.Osty, null!, null)
                 .TargetingAllOpponents(combatState)
                 .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3")
                 .Execute(choiceContext);

@@ -1,3 +1,4 @@
+using STS2_WineFox.Mechanics;
 using STS2RitsuLib;
 using STS2RitsuLib.Utils.Persistence;
 
@@ -20,6 +21,23 @@ namespace STS2_WineFox.Settings
         public static string StandeeVariant => WineFoxStandeeVariants.Normalize(Current.StandeeVariant);
 
         public static bool UsesOldStandee => WineFoxStandeeVariants.IsOld(StandeeVariant);
+
+        public static int MaterialHudOffsetX => Current.MaterialHudOffsetX;
+
+        public static int MaterialHudOffsetY => Current.MaterialHudOffsetY;
+
+        public static void SetMaterialHudOffset(int x, int y)
+        {
+            var store = RitsuLibFramework.GetDataStore(Const.ModId);
+
+            store.Modify<WineFoxModSettings>(DataKey, settings =>
+            {
+                settings.MaterialHudOffsetX = x;
+                settings.MaterialHudOffsetY = y;
+            });
+
+            store.Save(DataKey);
+        }
 
         public static void SetStandeeVariant(string? variant)
         {
@@ -56,6 +74,8 @@ namespace STS2_WineFox.Settings
             });
 
             store.Save(DataKey);
+            MagicCardArt.Invalidate();
+            MagicCardArt.RefreshOpenCards();
         }
 
         public static void SetFlatCardArtForAll(bool useFlat)
@@ -69,6 +89,8 @@ namespace STS2_WineFox.Settings
             });
 
             store.Save(DataKey);
+            MagicCardArt.Invalidate();
+            MagicCardArt.RefreshOpenCards();
         }
 
         private static WineFoxModSettings Current

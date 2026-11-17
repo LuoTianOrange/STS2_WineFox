@@ -95,6 +95,8 @@ namespace STS2_WineFox.Nodes
         private int _lastCapacity = -1;
         private int _lastLoaded = -1;
 
+        private Vector2? _lastLayoutPosition;
+
         private MagicWineFoxSpellSlotPower? _power;
 
         private int _visualRefreshCountdown;
@@ -233,9 +235,15 @@ namespace STS2_WineFox.Nodes
                 _visualRefreshCountdown--;
             }
 
-            Position = new(
+            var position = new Vector2(
                 -ResolveBarWidth() * 0.5f,
                 BarOffsetFromAnchor.Y * _cachedScale.Value);
+
+            if (_lastLayoutPosition == position)
+                return;
+
+            _lastLayoutPosition = position;
+            Position = position;
         }
 
         /// <summary>角色可视缩放。只取角色节点与其可视根节点，与充能球的取法一致。</summary>

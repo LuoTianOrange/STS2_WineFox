@@ -9,6 +9,14 @@ namespace STS2_WineFox.Settings
 {
     public static class WineFoxModSettingsPage
     {
+        private const string StandeeVariantId = "standee_variant";
+        private const string HudOffsetXId = "material_hud_offset_x";
+        private const string HudOffsetYId = "material_hud_offset_y";
+        private const string ResetHudOffsetId = "material_hud_offset_reset";
+        private const int HudOffsetLimit = 300;
+        private const ModSettingsHostSurface LockedSurfaces =
+            ModSettingsHostSurface.RunPause | ModSettingsHostSurface.CombatPause;
+
         private static readonly Lazy<I18N> Localization = new(() => RitsuLibFramework.CreateModLocalization(
             Const.ModId,
             "WineFox-ModSettings",
@@ -34,7 +42,6 @@ namespace STS2_WineFox.Settings
             RitsuLibFramework.RegisterModSettings(Const.ModId, page => page
                 .WithTitle(T("winefox.settings.page.title", "WineFox Settings"))
                 .WithModDisplayName(T("winefox.settings.mod.displayName", "WineFox"))
-                .WithReadOnlyOnHostSurfaces(ModSettingsHostSurface.RunPause | ModSettingsHostSurface.CombatPause)
                 .AddSection("content", section => section
                     .WithTitle(T("winefox.settings.section.content.title", "Content"))
                     .AddToggle(
@@ -68,7 +75,58 @@ namespace STS2_WineFox.Settings
                         host => RestoreDefaults(host, eventsBinding, potionsBinding, foodBinding, publicRelicsBinding),
                         ModSettingsButtonTone.Danger,
                         T("winefox.settings.restoreDefaults.description",
-                            "Restore all WineFox content settings to their default enabled state."))));
+                            "Restore all WineFox content settings to their default enabled state."))
+                    .WithEntryReadOnlyOnHostSurfaces("events_enabled", LockedSurfaces)
+                    .WithEntryReadOnlyOnHostSurfaces("potions_enabled", LockedSurfaces)
+                    .WithEntryReadOnlyOnHostSurfaces("food_enabled", LockedSurfaces)
+                    .WithEntryReadOnlyOnHostSurfaces("public_relics_enabled", LockedSurfaces)
+                    .WithEntryReadOnlyOnHostSurfaces("restore_defaults", LockedSurfaces))
+                .AddSection("standee", section => section
+                    .WithTitle(T("winefox.standee.section.title", "Battle standee"))
+                    .AddChoice(
+                        StandeeVariantId,
+                        T("winefox.standee.variant.label", "Standee"),
+                        StandeeBinding(),
+                        [
+                            new(WineFoxStandeeVariants.New, T("winefox.standee.variant.new", "New standee")),
+                            new(WineFoxStandeeVariants.Old, T("winefox.standee.variant.old", "Legacy standee")),
+                        ],
+                        T("winefox.standee.variant.description",
+                            "Takes effect from the next combat. The legacy standee has no low-health or death animation, so it keeps idling at low health and shows a falling pose on death."))
+                    )
+                .AddSection("material_hud", section => section
+                    .WithTitle(T("winefox.standee.hud.section.title", "Material HUD"))
+                    .AddIntSlider(
+                        HudOffsetXId,
+                        T("winefox.standee.hud.offset_x.label", "Horizontal offset"),
+                        HudOffsetBinding(true),
+                        -HudOffsetLimit,
+                        HudOffsetLimit,
+                        1,
+                        static value => value.ToString(),
+                        T("winefox.standee.hud.offset_x.description",
+                            "Shifts your own material HUD horizontally on the battle screen. Only affects this client."))
+                    .AddIntSlider(
+                        HudOffsetYId,
+                        T("winefox.standee.hud.offset_y.label", "Vertical offset"),
+                        HudOffsetBinding(false),
+                        -HudOffsetLimit,
+                        HudOffsetLimit,
+                        1,
+                        static value => value.ToString(),
+                        T("winefox.standee.hud.offset_y.description",
+                            "Shifts your own material HUD vertically on the battle screen. Only affects this client."))
+                    .AddButton(
+                        ResetHudOffsetId,
+                        T("winefox.standee.hud.reset.label", "Reset material HUD offset"),
+                        T("winefox.standee.hud.reset.button", "Reset"),
+                        host =>
+                        {
+                            WineFoxModSettingsStore.SetMaterialHudOffset(0, 0);
+                            host.RequestRefresh();
+                        },
+                        description: T("winefox.standee.hud.reset.description",
+                            "Sets both offsets back to 0, restoring the default material HUD position."))));
 
             _registered = true;
         }
@@ -130,6 +188,35 @@ namespace STS2_WineFox.Settings
                     if (!_suppressSettingsPublish)
                         WineFoxRuntimeSettings.PublishHostSettings("settings_changed");
                 });
+        }
+
+        private static IModSettingsValueBinding<string> StandeeBinding()
+        {
+            return ModSettingsBindings.Callback(
+                Const.ModId,
+                StandeeVariantId,
+                () => WineFoxModSettingsStore.StandeeVariant,
+                value =>
+                {
+                    if (RunManager.Instance?.IsInProgress == true)
+                        return;
+
+                    WineFoxModSettingsStore.SetStandeeVariant(value);
+                    WineFoxStandeeSync.PublishLocal();
+                },
+                static () => { });
+        }
+
+        private static IModSettingsValueBinding<int> HudOffsetBinding(bool horizontal)
+        {
+            return ModSettingsBindings.Callback(
+                Const.ModId,
+                horizontal ? HudOffsetXId : HudOffsetYId,
+                () => horizontal ? WineFoxModSettingsStore.MaterialHudOffsetX : WineFoxModSettingsStore.MaterialHudOffsetY,
+                value => WineFoxModSettingsStore.SetMaterialHudOffset(
+                    horizontal ? value : WineFoxModSettingsStore.MaterialHudOffsetX,
+                    horizontal ? WineFoxModSettingsStore.MaterialHudOffsetY : value),
+                static () => { });
         }
 
         private static bool CanEditSettings()

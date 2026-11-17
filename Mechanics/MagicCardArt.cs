@@ -1,4 +1,6 @@
+using System.Collections.Concurrent;
 using Godot;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 using STS2_WineFox.Settings;
 
 namespace STS2_WineFox.Mechanics
@@ -13,18 +15,26 @@ namespace STS2_WineFox.Mechanics
 
         public const string FlatSegment = "/magic_winefox/magic_flat/";
 
+        private static readonly ConcurrentDictionary<string, bool> FlatExistsCache = new(StringComparer.Ordinal);
+
+        private static readonly ConcurrentDictionary<string, string> ResolvedCache = new(StringComparer.Ordinal);
+
         public static string Resolve(string portraitPath)
         {
             if (string.IsNullOrEmpty(portraitPath) ||
                 !portraitPath.Contains(CommonSegment, StringComparison.Ordinal))
                 return portraitPath;
 
-            if (!WineFoxModSettingsStore.IsFlatCardArtEnabled(KeyOf(portraitPath)))
-                return portraitPath;
+            if (ResolvedCache.TryGetValue(portraitPath, out var cached))
+                return cached;
 
-            var flat = portraitPath.Replace(CommonSegment, FlatSegment, StringComparison.Ordinal);
+            var resolved = portraitPath;
+            if (WineFoxModSettingsStore.IsFlatCardArtEnabled(KeyOf(portraitPath)) &&
+                HasFlatVariant(portraitPath))
+                resolved = portraitPath.Replace(CommonSegment, FlatSegment, StringComparison.Ordinal);
 
-            return ResourceLoader.Exists(flat) ? flat : portraitPath;
+            ResolvedCache[portraitPath] = resolved;
+            return resolved;
         }
 
         public static bool HasFlatVariant(string portraitPath)
@@ -33,8 +43,37 @@ namespace STS2_WineFox.Mechanics
                 !portraitPath.Contains(CommonSegment, StringComparison.Ordinal))
                 return false;
 
-            return ResourceLoader.Exists(
-                portraitPath.Replace(CommonSegment, FlatSegment, StringComparison.Ordinal));
+            var flat = portraitPath.Replace(CommonSegment, FlatSegment, StringComparison.Ordinal);
+
+            if (FlatExistsCache.TryGetValue(flat, out var exists))
+                return exists;
+
+            exists = ResourceLoader.Exists(flat);
+            FlatExistsCache[flat] = exists;
+            return exists;
+        }
+
+        public static void Invalidate()
+        {
+            ResolvedCache.Clear();
+            FlatExistsCache.Clear();
+        }
+
+        public static void RefreshOpenCards()
+        {
+            if (Engine.GetMainLoop() is not SceneTree tree)
+                return;
+
+            RefreshNode(tree.Root);
+        }
+
+        private static void RefreshNode(Node node)
+        {
+            if (node is NCard card && card.Model is { } model)
+                card.SetPortraitTexture(model.Portrait);
+
+            foreach (var child in node.GetChildren())
+                RefreshNode(child);
         }
 
         public static string CommonPathOf(string portraitPath)

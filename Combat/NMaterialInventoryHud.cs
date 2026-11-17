@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
 using STS2_WineFox.Character;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Settings;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot.NodeAttachments;
 
@@ -60,10 +61,15 @@ namespace STS2_WineFox.Combat
             if (_panels.Count == 0)
                 return;
 
-            foreach (var panel in _panels)
+            var anyVisible = false;
+            for (var i = 0; i < _panels.Count; i++)
+            {
+                var panel = _panels[i];
                 panel.Refresh();
+                anyVisible |= panel.Visible;
+            }
 
-            Visible = _panels.Any(panel => panel.Visible);
+            Visible = anyVisible;
         }
 
         public void BindPlayers(IEnumerable<Player> players)
@@ -113,6 +119,8 @@ namespace STS2_WineFox.Combat
             private NCreature? _creatureNode;
 
             private Control? _healthBarNode;
+            private bool _characterChecked;
+            private bool _isWineFoxCharacter;
             private bool _isHoverConnected;
             private bool _isHovered;
             private Vector2 _originalPosition;
@@ -170,20 +178,15 @@ namespace STS2_WineFox.Combat
 
                 UpdateCreatureAttachment();
                 UpdateHudPosition();
-                UpdateVisibility(ShouldStayVisible() && ShouldBeVisibleForFocus());
+                var amounts = GetMaterialAmounts();
+                UpdateVisibility(ShouldStayVisible(amounts) && ShouldBeVisibleForFocus());
                 if (!Visible) return;
 
-                var amounts = GetMaterialAmounts();
                 for (var i = 0; i < _slots.Length; i++)
                 {
                     var type = SlotDefinitions[i].PowerType;
                     _slots[i].SetAmount(amounts.TryGetValue(type, out var amount) ? amount : 0m);
                 }
-            }
-
-            private bool HasMaterial(Type powerType)
-            {
-                return GetMaterialAmounts().ContainsKey(powerType);
             }
 
             private Dictionary<Type, decimal> GetMaterialAmounts()
@@ -199,14 +202,35 @@ namespace STS2_WineFox.Combat
                 return _materialAmounts;
             }
 
-            private bool ShouldStayVisible()
+            private bool ShouldStayVisible(Dictionary<Type, decimal> amounts)
             {
                 if (Player.Creature is not { } creature || creature.IsDead)
                     return false;
 
-                return Player.Character is WineFox ||
-                       Player.Character.Id.Entry.Contains("winefox", StringComparison.OrdinalIgnoreCase) ||
-                       SlotDefinitions.Any(slot => HasMaterial(slot.PowerType));
+                if (IsWineFoxCharacter())
+                    return true;
+
+                for (var i = 0; i < SlotDefinitions.Length; i++)
+                {
+                    if (amounts.ContainsKey(SlotDefinitions[i].PowerType))
+                        return true;
+                }
+
+                return false;
+            }
+
+            private bool IsWineFoxCharacter()
+            {
+                if (_characterChecked)
+                    return _isWineFoxCharacter;
+
+                if (Player.Character is not { } character)
+                    return false;
+
+                _characterChecked = true;
+                _isWineFoxCharacter = character is WineFox ||
+                                      character.Id.Entry.Contains("winefox", StringComparison.OrdinalIgnoreCase);
+                return _isWineFoxCharacter;
             }
 
             private void UpdateCreatureAttachment()
@@ -241,10 +265,13 @@ namespace STS2_WineFox.Combat
                 }
 
                 var stateDisplay = _healthBarNode ?? creatureNode;
-                _originalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay;
+                _originalPosition = stateDisplay.GlobalPosition + HudOffsetFromCreatureStateDisplay + UserOffset;
                 if (_showHideTween == null || !_showHideTween.IsRunning())
                     GlobalPosition = _targetVisible ? _originalPosition : _originalPosition + HudAnimOffset;
             }
+
+            private static Vector2 UserOffset =>
+                new(WineFoxModSettingsStore.MaterialHudOffsetX, WineFoxModSettingsStore.MaterialHudOffsetY);
 
             private void UpdateVisibility(bool shouldBeVisible)
             {
@@ -343,6 +370,8 @@ namespace STS2_WineFox.Combat
         {
             private readonly Label _amountLabel;
 
+            private decimal? _lastAmount;
+
             public MaterialSlot(MaterialSlotDefinition definition)
             {
                 MouseFilter = MouseFilterEnum.Ignore;
@@ -379,6 +408,10 @@ namespace STS2_WineFox.Combat
 
             public void SetAmount(decimal amount)
             {
+                if (_lastAmount == amount)
+                    return;
+
+                _lastAmount = amount;
                 _amountLabel.Text = FormatAmount(amount);
             }
         }

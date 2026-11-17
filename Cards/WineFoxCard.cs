@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
-using STS2RitsuLib.Scaffolding.Content;
 using STS2_WineFox.Mechanics;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace STS2_WineFox.Cards
 {
