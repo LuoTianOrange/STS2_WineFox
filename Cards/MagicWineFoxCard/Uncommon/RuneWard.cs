@@ -46,7 +46,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 return;
 
             var modifier = await SpellModifierFactory.ChooseOneOfRandomToHand(
-                choiceContext, owner, Rarity);
+                choiceContext, owner, Rarity, exactRarity: Rarity);
             modifier?.EnergyCost.AddThisCombat(-1);
         }
 

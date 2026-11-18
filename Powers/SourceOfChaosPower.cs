@@ -23,6 +23,9 @@ namespace STS2_WineFox.Powers
         {
             modifiedCost = originalCost;
 
+            if (card.Owner?.Creature != Owner)
+                return false;
+
             if (card is not MagicWineFoxSpellCard { IsLoadable: true } spell ||
                 spell is IMagicWineFoxSpellModifierCard)
                 return false;

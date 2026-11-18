@@ -18,6 +18,8 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
     public class AuraOfChaos() : MagicWineFoxSpellCard(
         0, CardType.Skill, CardRarity.Rare, TargetType.None), IMagicWineFoxSpellCard
     {
+        protected override bool HasEnergyCostX => true;
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new("Amount", 4m),
@@ -45,11 +47,9 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (owner.Creature.CombatState is not { } combatState)
                 return;
 
-            var energy = owner.PlayerCombatState?.Energy ?? 0;
+            var energy = context.Modifiers.CurrentX;
             if (energy <= 0)
                 return;
-
-            await PlayerCmd.LoseEnergy(energy, owner);
 
             var amount = DynamicVars["Amount"].BaseValue;
             var enemies = combatState.HittableEnemies.Where(enemy => enemy.IsAlive).ToList();
@@ -58,18 +58,21 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 return;
 
             var everyEffect = energy >= 4;
+            var rng = owner.RunState.Rng.CombatTargets;
 
             for (var i = 0; i < energy; i++)
             {
-                if (everyEffect || i == 0)
+                var pick = everyEffect ? -1 : rng.NextInt(3);
+
+                if (everyEffect || pick == 0)
                     await PowerCmd.Apply<PoisonPower>(
                         context.ChoiceContext, enemies, amount, caster, context.SourceCard);
 
-                if (everyEffect || i == 1)
+                if (everyEffect || pick == 1)
                     await PowerCmd.Apply<BurningPower>(
                         context.ChoiceContext, enemies, amount, caster, context.SourceCard);
 
-                if (everyEffect || i == 2)
+                if (everyEffect || pick == 2)
                     await PowerCmd.Apply<DoomPower>(
                         context.ChoiceContext, enemies, amount, caster, context.SourceCard);
             }
@@ -77,7 +80,9 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
-            await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
+            var x = ResolveEnergyXValue();
+
+            await MagicWineFoxSpellCmd.Load(choiceContext, this, play, false, x);
         }
 
         protected override void OnUpgrade()

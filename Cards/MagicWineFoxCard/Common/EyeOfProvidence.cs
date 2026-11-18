@@ -14,8 +14,6 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
     public class EyeOfProvidence() : MagicWineFoxSpellCard(
         1, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords =>
-            [CardKeyword.Exhaust];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEyeOfProvidence);
 
@@ -46,7 +44,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
-            await Task.CompletedTask;
+            await CardPileCmd.Draw(context.ChoiceContext, 1, context.Owner);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
@@ -56,7 +54,6 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (Owner is not { } owner)
                 return;
 
-            await CardPileCmd.Draw(choiceContext, 1, owner);
             await SpellModifierFactory.ChooseOneFromPoolToHand(
                 choiceContext,
                 owner,

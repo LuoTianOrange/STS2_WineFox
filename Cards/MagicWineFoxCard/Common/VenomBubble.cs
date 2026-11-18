@@ -56,7 +56,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 return;
 
             await SpellModifierFactory.ChooseOneOfRandomToHand(
-                choiceContext, owner, Rarity);
+                choiceContext, owner, Rarity, exactRarity: Rarity);
         }
 
         protected override void OnUpgrade()

@@ -18,8 +18,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<ChargePower>(),
-            HoverTipFactory.FromPower<ArcaneCapacitorPower>()
+            HoverTipFactory.FromPower<ChargePower>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

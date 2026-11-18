@@ -29,7 +29,8 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 oldest.Card.GetOrCreateCapability<TemporaryRetainCapability>();
             }
 
-            await SpellModifierFactory.ChooseOneOfRandomToHand(choiceContext, owner, Rarity);
+            await SpellModifierFactory.ChooseOneOfRandomToHand(
+                choiceContext, owner, Rarity, exactRarity: Rarity);
         }
 
         protected override void OnUpgrade()

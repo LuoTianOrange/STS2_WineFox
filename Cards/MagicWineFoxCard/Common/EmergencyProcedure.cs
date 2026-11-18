@@ -29,6 +29,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
+            await CardPileCmd.Draw(context.ChoiceContext, 1, context.Owner);
 
             if (!context.IsAffectedByModifiers)
                 return;
@@ -51,11 +52,6 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             await MagicWineFoxSpellCmd.Load(choiceContext, this, play);
-
-            if (Owner is not { } owner)
-                return;
-
-            await CardPileCmd.Draw(choiceContext, 1, owner);
         }
 
         protected override void OnUpgrade()
