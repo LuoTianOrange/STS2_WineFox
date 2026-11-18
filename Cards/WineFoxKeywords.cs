@@ -30,6 +30,7 @@ namespace STS2_WineFox.Cards
         public const string CookableFoodKey = "cookable_food";
         public const string CookedFoodKey = "cooked_food";
         public const string ChargeKey = "charge";
+        public const string LingerKey = "linger";
 
         public static readonly string Stress = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, StressKey);
         public static readonly string Digging = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, DiggingKey);
@@ -64,6 +65,7 @@ namespace STS2_WineFox.Cards
 
         public static readonly string CookedFood = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, CookedFoodKey);
         public static readonly string Charge = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, ChargeKey);
+        public static readonly string Linger = ModContentRegistry.GetQualifiedKeywordId(Const.ModId, LingerKey);
 
         public static readonly CardKeyword StressKeyword = Stress.GetModCardKeyword();
         public static readonly CardKeyword DiggingKeyword = Digging.GetModCardKeyword();
@@ -88,6 +90,7 @@ namespace STS2_WineFox.Cards
         public static readonly CardKeyword CookableFoodKeyword = CookableFood.GetModCardKeyword();
         public static readonly CardKeyword CookedFoodKeyword = CookedFood.GetModCardKeyword();
         public static readonly CardKeyword ChargeKeyword = Charge.GetModCardKeyword();
+        public static readonly CardKeyword LingerKeyword = Linger.GetModCardKeyword();
 
         extension(CardModel card)
         {

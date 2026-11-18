@@ -56,7 +56,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             var copies = (int)DynamicVars["Copies"].BaseValue;
             for (var i = 0; i < copies; i++)
                 await SpellModifierFactory.ChooseOneOfRandomToHand(
-                    choiceContext, owner, Rarity, exactRarity: Rarity);
+                    choiceContext, owner, Rarity);
 
             await CardPileCmd.Draw(choiceContext, 1, owner);
         }

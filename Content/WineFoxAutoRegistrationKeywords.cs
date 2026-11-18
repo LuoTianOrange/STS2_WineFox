@@ -83,5 +83,9 @@ namespace STS2_WineFox.Content
         
         [RegisterOwnedCardKeyword(WineFoxKeywords.ChargeKey)]
         private sealed class Charge;
+
+        [RegisterOwnedCardKeyword(WineFoxKeywords.LingerKey,
+            IconPath = Const.Paths.SpellAttrLingerIcon)]
+        private sealed class Linger;
     }
 }

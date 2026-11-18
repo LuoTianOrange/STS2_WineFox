@@ -29,6 +29,23 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
         {
             await DealSpellDamage(context, DynamicVars.Damage.BaseValue);
+
+            if (!context.IsAffectedByModifiers)
+                return;
+
+            if (context.Owner?.Creature is not { } owner)
+                return;
+
+            await Powers.RechargeSpellPowerBase.RegisterAsync<Powers.EmergencyProcedurePower>(
+                context.ChoiceContext,
+                owner,
+                new MagicWineFoxSpellSlotSnapshot(
+                    context.SourceCard.CreateClone(),
+                    context.Target,
+                    false,
+                    0,
+                    context.SourceCard),
+                context.CastSourceCard);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

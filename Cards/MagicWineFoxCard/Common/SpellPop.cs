@@ -23,11 +23,13 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 return;
 
             var power = MagicWineFoxSpellCmd.GetPower(owner);
-            if (power?.DrainOldest() is not { } oldest)
-                return;
+            if (power?.DrainOldest() is { } oldest)
+            {
+                await CardPileCmd.Add(oldest.Card, PileType.Hand);
+                oldest.Card.GetOrCreateCapability<TemporaryRetainCapability>();
+            }
 
-            await CardPileCmd.Add(oldest.Card, PileType.Hand);
-            oldest.Card.GetOrCreateCapability<TemporaryRetainCapability>();
+            await SpellModifierFactory.ChooseOneOfRandomToHand(choiceContext, owner, Rarity);
         }
 
         protected override void OnUpgrade()

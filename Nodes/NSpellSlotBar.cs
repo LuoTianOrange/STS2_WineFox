@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
 using STS2_WineFox.Powers;
+using STS2_WineFox.Cards.MagicWineFoxCard;
 using STS2_WineFox.Cards.WineFoxCard;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot.NodeAttachments;
@@ -48,6 +49,13 @@ namespace STS2_WineFox.Nodes
         /// <summary>法术图标占槽位的比例。</summary>
         private const float IconFill = 0.82f;
 
+        /// <summary>滞留次数字号与描边宽度。</summary>
+        private const int LingerBadgeFontSize = 22;
+
+        private const int LingerBadgeOutlineSize = 5;
+
+        private const string LabelFontPath = "res://themes/kreon_bold_shared.tres";
+
 
         /// <summary>刷新可视范围缓存的帧间隔（60fps 下约 0.1 秒）。</summary>
         private const int VisualCacheRefreshFrames = 6;
@@ -70,6 +78,9 @@ namespace STS2_WineFox.Nodes
 
         /// <summary>上一次重绘时的槽位内容,用于无分配地判断是否需要重绘。</summary>
         private readonly List<CardModel?> _lastSlots = [];
+
+        /// <summary>上一次重绘时各槽位的滞留剩余次数，与 <see cref="_lastSlots" /> 一一对应。</summary>
+        private readonly List<int> _lastLinger = [];
 
         /// <summary>
         ///     角色可视节点的缓存：只在角色节点更换时遍历一次树（缓存为空时有限次重试，
@@ -315,15 +326,31 @@ namespace STS2_WineFox.Nodes
             }
 
             if (!changed)
+            {
+                for (var i = 0; i < slots.Count; i++)
+                {
+                    if (_lastLinger[i] == ResolveLinger(slots[i]))
+                        continue;
+
+                    changed = true;
+                    break;
+                }
+            }
+
+            if (!changed)
                 return false;
 
             _forceRedraw = false;
             _lastCapacity = _power.SlotCapacity;
             _lastLoaded = _power.LoadedCount;
             _lastSlots.Clear();
+            _lastLinger.Clear();
 
             foreach (var slot in slots)
+            {
                 _lastSlots.Add(slot?.Card);
+                _lastLinger.Add(ResolveLinger(slot));
+            }
 
             return true;
         }
@@ -374,6 +401,10 @@ namespace STS2_WineFox.Nodes
             var icon = ResolveIcon(snapshot);
             if (icon != null)
                 box.AddChild(BuildLayer(icon, IconFill, Colors.White));
+
+            var linger = ResolveLinger(snapshot);
+            if (linger > 0)
+                box.AddChild(BuildLingerBadge(linger));
 
             if (snapshot?.Card != null)
                 AttachHoverTip(box, snapshot);
@@ -506,6 +537,54 @@ namespace STS2_WineFox.Nodes
                 return null;
 
             return ResourceLoader.Exists(path) ? ResourceLoader.Load<Texture2D>(path) : null;
+        }
+
+        /// <summary>
+        ///     槽位要显示的滞留剩余次数；0 表示该槽位不显示数字（空槽或法术不带滞留）。
+        /// </summary>
+        private static int ResolveLinger(MagicWineFoxSpellSlotSnapshot? snapshot)
+        {
+            if (snapshot?.Card is not MagicWineFoxSpellCard spell || spell.LingerCount <= 1)
+                return 0;
+
+            return Math.Max(1, snapshot.LingerRemaining ?? spell.LingerCount);
+        }
+
+        /// <summary>
+        ///     槽位右下角的滞留次数：白色加粗数字、黑色描边，靠对齐方式贴住右下角。
+        /// </summary>
+        private static Label BuildLingerBadge(int remaining)
+        {
+            var label = new Label
+            {
+                Text = remaining.ToString(),
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                MouseFilter = MouseFilterEnum.Ignore,
+                Position = new(0f, 0f),
+                Size = new(SlotSpacing - 4f, SlotSpacing - 2f),
+            };
+
+            // 字体每次现取：PreloadManager 会在战斗结束时卸载缓存资源，
+            // 静态持有 Font 会拿到已经释放的 FontVariation，给主题赋值时抛异常，
+            // 进而打断 Rebuild，表现为「少了几个槽位」。
+            var font = PreloadManager.Cache.GetAsset<Font>(LabelFontPath);
+            if (font != null && GodotObject.IsInstanceValid(font))
+            {
+                try
+                {
+                    label.AddThemeFontOverride("font", font);
+                }
+                catch (ObjectDisposedException)
+                {
+                }
+            }
+
+            label.AddThemeFontSizeOverride("font_size", LingerBadgeFontSize);
+            label.AddThemeColorOverride("font_color", Colors.White);
+            label.AddThemeColorOverride("font_outline_color", Colors.Black);
+            label.AddThemeConstantOverride("outline_size", LingerBadgeOutlineSize);
+            return label;
         }
     }
 }

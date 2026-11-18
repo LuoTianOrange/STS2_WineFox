@@ -38,6 +38,12 @@ namespace STS2_WineFox.Cards.WineFoxCard
         public override string? CustomBannerTexturePath =>
             IsMagicWineFox ? Const.Paths.CardFrameMagicBanner : null;
 
+        public virtual bool ShowsCardFrame => true;
+
+        public virtual bool ShowsTitleBanner => true;
+
+        public virtual bool ShowsTypePlaque => true;
+
         private bool IsMagicWineFox
         {
             get

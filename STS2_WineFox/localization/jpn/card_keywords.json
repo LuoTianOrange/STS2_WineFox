@@ -39,5 +39,7 @@
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "スペル修正",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "杖に装填されるが発動しない。直後の術の解決方法を変更する。",
   "STS2_WINE_FOX_KEYWORD_CHARGE.title": "蓄能",
-  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "術を装填するたびに蓄積される層。一部のカードが消費して効果に変換する（例：アーケインキャパシタはターン終了時に最大6層をブロックへ変換）。"
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "術を装填するたびに蓄積される層。一部のカードが消費して効果に変換する（例：アーケインキャパシタはターン終了時に最大6層をブロックへ変換）。",
+  "STS2_WINE_FOX_KEYWORD_LINGER.title": "滞留",
+  "STS2_WINE_FOX_KEYWORD_LINGER.description": "装填後に解放できる回数。使い切ると術スロットから取り除かれる。"
 }

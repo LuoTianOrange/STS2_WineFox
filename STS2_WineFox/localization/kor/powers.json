@@ -219,7 +219,7 @@
   "STS2_WINE_FOX_POWER_TEMPORARY_SLOT_LOSS_POWER.description": "이번 턴 주문 슬롯을 1개 잃습니다.",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.title": "보존",
   "STS2_WINE_FOX_POWER_PRESERVED_ENERGY_POWER.description": "턴 시작 시 에너지가 초기화되지 않고 방어도도 사라지지 않습니다.",
-  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "혼돈의 근원",
+  "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.title": "혼돈 형태",
   "STS2_WINE_FOX_POWER_SOURCE_OF_CHAOS_POWER.description": "장전 가능한 주문의 비용 -1, 대상이 무작위가 됩니다.",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.title": "충전",
   "STS2_WINE_FOX_POWER_CHARGE_POWER.description": "[gold]장전[/gold]할 때 쌓이며 턴 종료 시 사라지지 않습니다. 10중첩이 되면 10중첩을 소모해 지팡이를 해방하고 [gold]과부하[/gold]를 1장 장전합니다.",
@@ -273,6 +273,9 @@
   "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.title": "충전 방패",
   "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.description": "다음 턴 시작 시 이 주문을 [gold]장전[/gold]합니다.",
   "STS2_WINE_FOX_POWER_RECHARGE_SHIELD_POWER.smartDescription": "다음 턴 시작 시 이 주문을 [gold]장전[/gold]합니다.",
+  "STS2_WINE_FOX_POWER_EMERGENCY_PROCEDURE_POWER.title": "응급 술식",
+  "STS2_WINE_FOX_POWER_EMERGENCY_PROCEDURE_POWER.description": "다음 턴 시작 시 이 주문을 [gold]장전[/gold]합니다.",
+  "STS2_WINE_FOX_POWER_EMERGENCY_PROCEDURE_POWER.smartDescription": "다음 턴 시작 시 이 주문을 [gold]장전[/gold]합니다.",
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.title": "주문 회귀",
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.description": "다음 턴 시작 시 등록된 주문을 비용 1 감소한 채 패로 되돌립니다.",
   "STS2_WINE_FOX_POWER_SPELL_RETURN_POWER.smartDescription": "다음 턴 시작 시 등록된 주문을 비용 1 감소한 채 패로 되돌립니다.",
@@ -282,5 +285,8 @@
   "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.description": "자신의 턴에 받는 피해를 무효화하고 그만큼의 피해를 모든 적에게 줍니다. 턴 시작 시 {Amount}[gold]충전[/gold]을 얻습니다.",
   "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.smartDescription": "자신의 턴에 받는 피해를 무효화하고 그만큼의 피해를 모든 적에게 줍니다. 턴 시작 시 {Amount}[gold]충전[/gold]을 얻습니다.",
   "STS2_WINE_FOX_SPELL_ATTR_LINGER": "잔류",
-  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "번개 지팡이"
+  "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "번개 지팡이",
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.title": "인화",
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.description": "피해를 받을 때마다 무작위 적 1명에게 {Amount}의 [gold]연소[/gold]를 부여합니다.",
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "피해를 받을 때마다 무작위 적 1명에게 [blue]{Amount}[/blue]의 [gold]연소[/gold]를 부여합니다."
 }

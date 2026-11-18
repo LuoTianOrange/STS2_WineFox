@@ -8,11 +8,11 @@ using STS2_WineFox.Mechanics;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
-namespace STS2_WineFox.Cards.MagicWineFoxCard
+namespace STS2_WineFox.Cards.MagicWineFoxCard.Rare
 {
     [RegisterCard(typeof(MagicWineFoxCardPool))]
     public class HarmonizingPotion() : MagicWineFoxSpellCard(
-        0, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IMagicWineFoxSpellCard
+        0, CardType.Skill, CardRarity.Rare, TargetType.Self), IMagicWineFoxSpellCard
     {
         public override SpellTraits Traits =>
             new()

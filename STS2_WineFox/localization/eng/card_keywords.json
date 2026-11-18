@@ -39,5 +39,7 @@
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "Spell Modifier",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "Loads into your wand without being cast. It changes how the next spell resolves.",
   "STS2_WINE_FOX_KEYWORD_CHARGE.title": "Charge",
-  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "Layers accumulated when you load spells. Some cards consume it for their own effect — for example Arcane Capacitor turns up to 6 into Block at the end of your turn."
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "Layers accumulated when you load spells. Some cards consume it for their own effect — for example Arcane Capacitor turns up to 6 into Block at the end of your turn.",
+  "STS2_WINE_FOX_KEYWORD_LINGER.title": "Linger",
+  "STS2_WINE_FOX_KEYWORD_LINGER.description": "How many times this spell can be released after it is loaded. It leaves your spell slot once those uses run out."
 }

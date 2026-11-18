@@ -24,6 +24,9 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardSuppliesReplenishment);
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+            [.. base.CanonicalKeywords, WineFoxKeywords.LingerKeyword];
+
         public override string SpellIconPath => Const.Paths.SpellIconSuppliesReplenishment;
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)

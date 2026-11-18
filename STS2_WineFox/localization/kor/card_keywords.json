@@ -39,5 +39,7 @@
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.title": "주문 수정",
   "STS2_WINE_FOX_KEYWORD_SPELL_MODIFIER.description": "지팡이에 장전되지만 발동하지 않습니다. 다음 주문의 해결 방식을 바꿉니다.",
   "STS2_WINE_FOX_KEYWORD_CHARGE.title": "충전",
-  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "주문을 장전할 때 쌓이는 중첩. 일부 카드가 소모해 효과로 전환합니다(예: 비전 축전기는 턴 종료 시 최대 6중첩을 방어도로 전환)."
+  "STS2_WINE_FOX_KEYWORD_CHARGE.description": "주문을 장전할 때 쌓이는 중첩. 일부 카드가 소모해 효과로 전환합니다(예: 비전 축전기는 턴 종료 시 최대 6중첩을 방어도로 전환).",
+  "STS2_WINE_FOX_KEYWORD_LINGER.title": "잔류",
+  "STS2_WINE_FOX_KEYWORD_LINGER.description": "장전 후 발동할 수 있는 횟수. 모두 사용하면 주문 슬롯에서 제거됩니다."
 }

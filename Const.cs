@@ -169,8 +169,11 @@ namespace STS2_WineFox
             public const string TargetPositioningPowerIcon = Root + "/powers/target_positioning_power.png";
             public const string TemporarySlotGainPowerIcon = Root + "/powers/temporary_slot_gain_power.png";
             public const string SpellAshesPowerIcon = Root + "/powers/spell_ashes_power.png";
+            public const string InviteTheFlamePowerIcon = Root + "/powers/invite_the_flame_power.png";
             public const string SpellExperimentPowerIcon = Root + "/powers/spell_experiment_power.png";
+            public const string EmergencyProcedurePowerIcon = Root + "/powers/emergency_procedure_power.png";
             public const string SpellIconDoubleReleaseSigil = Root + "/ui/spell_icons/spell_double_release_sigil.png";
+            public const string SpellIconChainReaction = Root + "/ui/spell_icons/spell_chain_reaction.png";
             public const string CharacterMerchantAnimScene = ScenesRoot + "/shop/winefox_shop.tscn";
             public const string ArmPointingTexturePath = Root + "/winefox/arm/winefox_point.png";
             public const string ArmRockTexturePath = Root + "/winefox/arm/winefox_rock.png";
@@ -449,6 +452,8 @@ namespace STS2_WineFox
             public const string CardDoubleReleaseSigil = Root + "/cards/magic_winefox/magic_common/card_double_cast.png";
             public const string CardFoxfireBolt = Root + "/cards/magic_winefox/magic_common/card_spark_bolt.png";
             public const string CardQuadrupleScatteringRelease = Root + "/cards/magic_winefox/magic_common/card_quadruple_scattering_release.png";
+            public const string CardChainReaction = Root + "/cards/magic_winefox/magic_common/card_chain_reaction.png";
+            public const string CardMushroomIllusion = Root + "/cards/magic_winefox/magic_common/card_mushroom_illusion.png";
             public const string CardHatTrick = Root + "/cards/magic_winefox/magic_common/card_hat_trick.png";
             public const string CardNecromanticSummoning = Root + "/cards/magic_winefox/magic_common/card_necromantic_summoning.png";
             public const string CardQuickReload = Root + "/cards/magic_winefox/magic_common/card_quick_reload.png";
@@ -522,6 +527,7 @@ namespace STS2_WineFox
             public const string CardSpellExperiment = Root + "/cards/magic_winefox/magic_common/card_spell_experiment.png";
             public const string CardAuraOfChaos = Root + "/cards/magic_winefox/magic_common/card_aura_of_chaos.png";
             public const string CardWeaknessCurse = Root + "/cards/magic_winefox/magic_common/card_weakness_curse.png";
+            public const string CardInviteTheFlame = Root + "/cards/magic_winefox/magic_common/card_invite_the_flame.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";
