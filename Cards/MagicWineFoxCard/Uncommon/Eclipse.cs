@@ -37,7 +37,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 creature,
                 context.BlockWithModifiers(DynamicVars.Block.BaseValue),
                 ValueProp.Move,
-                null);
+                context.Play);
 
             var percent = DynamicVars["StealPercent"].BaseValue / 100m;
             var stolen = 0m;

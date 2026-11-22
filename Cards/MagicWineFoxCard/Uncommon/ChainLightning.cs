@@ -50,7 +50,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 var target = enemies[rng.NextInt(enemies.Count)];
 
                 await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                    .FromCard(context.SourceCard, null)
+                    .FromCard(context.SourceCard, context.Play)
                     .Targeting(target)
                     .Execute(context.ChoiceContext);
 

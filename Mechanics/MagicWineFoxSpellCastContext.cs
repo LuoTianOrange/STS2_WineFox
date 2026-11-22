@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +21,8 @@ namespace STS2_WineFox.Mechanics
         Creature? target,
         CardModel sourceCard,
         CardModel? castSourceCard,
-        MagicWineFoxSpellModifierState modifiers)
+        MagicWineFoxSpellModifierState modifiers,
+        CardPlay? play = null)
     {
         public PlayerChoiceContext ChoiceContext { get; } = choiceContext;
         public Player Owner { get; } = owner;
@@ -28,6 +30,9 @@ namespace STS2_WineFox.Mechanics
         public CardModel SourceCard { get; } = sourceCard;
         public CardModel? CastSourceCard { get; } = castSourceCard;
         public MagicWineFoxSpellModifierState Modifiers { get; } = modifiers;
+
+        /// <summary>装填这次法术时的打出记录；为 null 时按「非卡牌来源」结算。</summary>
+        public CardPlay? Play { get; } = play;
 
         /// <summary>
         ///     本次释放的伤害缩放。仅用于「再对第二个目标释放一次」这类带衰减的重复释放。

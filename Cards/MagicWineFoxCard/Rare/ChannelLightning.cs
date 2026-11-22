@@ -37,7 +37,14 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (removed < RequiredOverloads)
                 return;
 
-            await CardCmd.TransformTo<ThunderboltStaff>(this);
+            if (Owner is not { } owner || owner.Creature?.CombatState is not { } combatState)
+                return;
+
+            var staff = combatState.CreateCard<ThunderboltStaff>(owner);
+            var instance = await CardPileCmd.AddGeneratedCardToCombat(staff, PileType.Hand, owner);
+            CardCmd.PreviewCardPileAdd(instance);
+
+            await CardPileCmd.RemoveFromCombat(this);
         }
 
         protected override void OnUpgrade()

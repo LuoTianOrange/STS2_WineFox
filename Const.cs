@@ -6,7 +6,7 @@ namespace STS2_WineFox
     {
         public const string ModId = "STS2_WineFox";
         public const string Name = "WineFox/酒狐";
-        public const string Version = "1.3.2";
+        public const string Version = "1.3.3";
         public const string HostSettingsSyncTopic = "winefox_host_settings";
         public const string StandeeSyncTopic = "winefox_standee_variants";
 
@@ -528,6 +528,7 @@ namespace STS2_WineFox
             public const string CardAuraOfChaos = Root + "/cards/magic_winefox/magic_common/card_aura_of_chaos.png";
             public const string CardWeaknessCurse = Root + "/cards/magic_winefox/magic_common/card_weakness_curse.png";
             public const string CardInviteTheFlame = Root + "/cards/magic_winefox/magic_common/card_invite_the_flame.png";
+            public const string CardBattery = Root + "/cards/magic_winefox/magic_common/card_battery.png";
 
             //Enchantments
             public const string EnchantmentFireAspectIcon = Root + "/enchantments/fire_aspect_icon.png";

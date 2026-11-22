@@ -49,7 +49,10 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                     context.Target,
                     false,
                     0,
-                    context.SourceCard),
+                    context.SourceCard)
+                {
+                    SourcePlay = context.Play
+                },
                 context.CastSourceCard);
         }
 

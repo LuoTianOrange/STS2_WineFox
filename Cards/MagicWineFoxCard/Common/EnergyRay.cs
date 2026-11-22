@@ -22,7 +22,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(10m, ValueProp.Move),
+            new DamageVar(8m, ValueProp.Move),
         ];
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardEnergyRay);
@@ -33,7 +33,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<Debris>(IsUpgraded),
+            HoverTipFactory.FromCard<Battery>(IsUpgraded),
         ];
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
@@ -50,7 +50,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 return;
 
             var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null)
+                .FromCard(context.SourceCard, context.Play)
                 .WithAttackerAnim("Cast", 0.5f)
                 .BeforeDamage(async () =>
                 {
@@ -79,8 +79,8 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
             await DealExtraDamageStrikes(context, DynamicVars.Damage.BaseValue);
 
-            var debris = combatState.CreateCard<Debris>(owner);
-            var instance = await CardPileCmd.AddGeneratedCardToCombat(debris, PileType.Hand, owner);
+            var battery = combatState.CreateCard<Battery>(owner);
+            var instance = await CardPileCmd.AddGeneratedCardToCombat(battery, PileType.Hand, owner);
             CardCmd.PreviewCardPileAdd(instance);
         }
 

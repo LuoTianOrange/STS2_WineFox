@@ -69,7 +69,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (block <= 0m)
                 return;
 
-            await CreatureCmd.GainBlock(owner, block, ValueProp.Unpowered, null);
+            await CreatureCmd.GainBlock(owner, block, ValueProp.Move, context.Play);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

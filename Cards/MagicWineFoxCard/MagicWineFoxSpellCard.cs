@@ -400,7 +400,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             }
 
             var attack = DamageCmd.Attack(context.DamageWithModifiers(baseDamage))
-                .FromCard(context.SourceCard, null);
+                .FromCard(context.SourceCard, context.Play);
 
             if (context.TargetsAllEnemies)
             {
@@ -436,7 +436,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                     foreach (var enemy in combatState.HittableEnemies.ToList())
                     {
                         await CreatureCmd.Damage(
-                            context.ChoiceContext, enemy, damage, props, context.SourceCard, null);
+                            context.ChoiceContext, enemy, damage, props, context.SourceCard, context.Play);
                     }
                 }
 
@@ -447,7 +447,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (target != null)
             {
                 await CreatureCmd.Damage(
-                    context.ChoiceContext, target, damage, props, context.SourceCard, null);
+                    context.ChoiceContext, target, damage, props, context.SourceCard, context.Play);
             }
         }
 

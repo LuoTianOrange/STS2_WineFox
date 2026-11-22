@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 
@@ -26,5 +27,12 @@ namespace STS2_WineFox.Mechanics
     {
         /// <summary>滞留剩余次数；null 表示尚未初始化，装填时按卡牌的滞留上限填入。</summary>
         public int? LingerRemaining { get; set; }
+
+        /// <summary>
+        ///     装填这次法术时的那次打出记录；释放阶段把它传给格挡与伤害，
+        ///     让「按卡牌打出结算」的遗物（臂甲、帕尔的军团等）也能生效。
+        ///     自动装回的路径没有可用的打出记录，因此可能为 null。
+        /// </summary>
+        public CardPlay? SourcePlay { get; init; }
     }
 }

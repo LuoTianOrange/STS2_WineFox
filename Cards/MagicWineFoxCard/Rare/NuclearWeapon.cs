@@ -52,7 +52,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             var hits = Math.Max(1, x) + Math.Max(0, context.ExtraDamageStrikes);
 
             var attack = DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                .FromCard(context.SourceCard, null)
+                .FromCard(context.SourceCard, context.Play)
                 .WithHitCount(hits);
 
             if (context.TargetsAllEnemies && owner.Creature.CombatState is { } damageState)

@@ -35,7 +35,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 creature,
                 context.BlockWithModifiers(DynamicVars.Block.BaseValue),
                 ValueProp.Move,
-                null);
+                context.Play);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

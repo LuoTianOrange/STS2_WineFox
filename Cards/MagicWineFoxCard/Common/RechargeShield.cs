@@ -44,8 +44,8 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             await CreatureCmd.GainBlock(
                 owner,
                 context.BlockWithModifiers(DynamicVars.Block.BaseValue),
-                ValueProp.Unpowered,
-                null);
+                ValueProp.Move,
+                context.Play);
 
             if (!context.IsAffectedByModifiers)
                 return;
@@ -58,7 +58,10 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                     null,
                     false,
                     0,
-                    context.SourceCard),
+                    context.SourceCard)
+                {
+                    SourcePlay = context.Play
+                },
                 context.CastSourceCard);
         }
 

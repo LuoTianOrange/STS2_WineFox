@@ -198,7 +198,10 @@ namespace STS2_WineFox.Commands
             if (power == null) return false;
 
             var snapshot = new MagicWineFoxSpellSlotSnapshot(
-                card.CreateClone(), play.Target, isModifier, xValue, card);
+                card.CreateClone(), play.Target, isModifier, xValue, card)
+            {
+                SourcePlay = play
+            };
 
             // 序列回响：把这张法术记为「始终释放」的法术。
             var echo = owner?.Creature?.Powers.OfType<EchoesSequencePower>().FirstOrDefault();
@@ -833,156 +836,167 @@ namespace STS2_WineFox.Commands
                 target,
                 snapshot.Card,
                 sourceCard,
-                state);
+                state,
+                snapshot.SourcePlay);
 
             var casts = state.CastCount;
 
-            for (var i = 0; i < casts; i++)
+            SpellPlayParticipants.Begin();
+            try
             {
-                var castContext = context;
-
-                if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
+                for (var i = 0; i < casts; i++)
                 {
-                    castContext = new(
-                        choiceContext,
-                        owner,
-                        PickRandomEnemy(randomState),
-                        snapshot.Card,
-                        sourceCard,
-                        state);
-                }
+                    var castContext = context;
 
-                var attackCandidates = state.SummonOnKill > 0m
-                    ? CaptureAttackCandidates(castContext)
-                    : [];
-
-                var trackedEnemies = (state.DamageToBlockRatio > 0m ||
-                                      state.DamageToBurnRatio > 0m ||
-                                      state.DamageToPoisonRatio > 0m) &&
-                                     owner?.Creature?.CombatState is { } trackingState
-                    ? trackingState.HittableEnemies.ToDictionary(enemy => enemy, enemy => enemy.CurrentHp)
-                    : null;
-
-                var debuffsBefore = state.DebuffAmplify > 1m && owner?.Creature?.CombatState is { } debuffState
-                    ? SnapshotDebuffs(debuffState)
-                    : null;
-
-                await spellCard.CastAsSpell(castContext);
-
-                if (trackedEnemies != null && owner?.Creature is { } ratioOwner)
-                {
-                    var dealt = trackedEnemies.Sum(pair => Math.Max(0, pair.Value - pair.Key.CurrentHp));
-
-                    var gained = Math.Floor(dealt * state.DamageToBlockRatio);
-
-                    if (gained > 0m)
-                        await CreatureCmd.GainBlock(ratioOwner, gained, ValueProp.Unpowered, null);
-
-                    await ApplyDamageTrailDebuffs(
-                        choiceContext,
-                        ratioOwner,
-                        trackedEnemies,
-                        state,
-                        snapshot.Card);
-                }
-
-                if (debuffsBefore != null && owner?.Creature is { } amplifyOwner)
-                    await AmplifyNewDebuffs(
-                        choiceContext,
-                        amplifyOwner,
-                        debuffsBefore,
-                        state.DebuffAmplify,
-                        snapshot.Card);
-
-                if (state.SecondaryCastRatio > 0m && owner is { } secondaryOwner &&
-                    owner.Creature?.CombatState is { } secondaryState)
-                {
-                    var secondary = PickRandomEnemy(secondaryState, castContext.Target);
-
-                    if (secondary != null)
+                    if (context.RandomTargets && owner?.Creature?.CombatState is { } randomState)
                     {
-                        var secondaryContext = new MagicWineFoxSpellCastContext(
+                        castContext = new(
                             choiceContext,
-                            secondaryOwner,
-                            secondary,
+                            owner,
+                            PickRandomEnemy(randomState),
                             snapshot.Card,
                             sourceCard,
-                            state)
-                        {
-                            DamageScale = state.SecondaryCastRatio
-                        };
-
-                        await spellCard.CastAsSpell(secondaryContext);
+                            state,
+                            snapshot.SourcePlay);
                     }
-                }
 
-                if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
-                    GetPower(casterPlayer)?.IncrementSpellsCast();
+                    var attackCandidates = state.SummonOnKill > 0m
+                        ? CaptureAttackCandidates(castContext)
+                        : [];
 
-                // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
-                if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
-                    await SpellAshesPower.ApplyToAllEnemies(choiceContext, casterPlayer, snapshot.Card);
+                    var trackedEnemies = (state.DamageToBlockRatio > 0m ||
+                                          state.DamageToBurnRatio > 0m ||
+                                          state.DamageToPoisonRatio > 0m) &&
+                                         owner?.Creature?.CombatState is { } trackingState
+                        ? trackingState.HittableEnemies.ToDictionary(enemy => enemy, enemy => enemy.CurrentHp)
+                        : null;
 
-                // 「是否攻击到敌人」卡牌声明判定，
-                var attacked = snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true }
-                    ? ResolveAttackedEnemies(castContext).ToList()
-                    : [];
+                    var debuffsBefore = state.DebuffAmplify > 1m && owner?.Creature?.CombatState is { } debuffState
+                        ? SnapshotDebuffs(debuffState)
+                        : null;
 
-                // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 Traits.AttackSpell 声明，
-                // 与 CardType 无关）：纯防御/自身法术没有 attacked 目标，自然不会削上限。
-                if (attacked.Count > 0)
-                    await EternalMelodyPower.ApplyToSpellTargets(
-                        choiceContext,
-                        casterPlayer,
-                        snapshot.Card,
-                        attacked);
+                    await spellCard.CastAsSpell(castContext);
 
-                if (state.ShareDamageOnHit && owner?.Creature is { } shareOwner)
-                    foreach (var enemy in attacked.Where(enemy => enemy.IsAlive &&
-                                                                  !enemy.HasPower<GravitationalFieldPossessionPower>()))
-                        await PowerCmd.Apply<GravitationalFieldPossessionPower>(
+                    if (trackedEnemies != null && owner?.Creature is { } ratioOwner)
+                    {
+                        var dealt = trackedEnemies.Sum(pair => Math.Max(0, pair.Value - pair.Key.CurrentHp));
+
+                        var gained = Math.Floor(dealt * state.DamageToBlockRatio);
+
+                        if (gained > 0m)
+                            await CreatureCmd.GainBlock(ratioOwner, gained, ValueProp.Unpowered, null);
+
+                        await ApplyDamageTrailDebuffs(
                             choiceContext,
-                            enemy,
-                            1m,
-                            shareOwner,
+                            ratioOwner,
+                            trackedEnemies,
+                            state,
+                            snapshot.Card);
+                    }
+
+                    if (debuffsBefore != null && owner?.Creature is { } amplifyOwner)
+                        await AmplifyNewDebuffs(
+                            choiceContext,
+                            amplifyOwner,
+                            debuffsBefore,
+                            state.DebuffAmplify,
                             snapshot.Card);
 
-                if (state.BlockToSummonBonus is { } blockToSummon && state.ConvertedBlock > 0m)
-                {
-                    await OstyCmd.Summon(
-                        choiceContext,
-                        casterPlayer,
-                        state.ConvertedBlock + blockToSummon,
-                        snapshot.Card);
-                }
+                    if (state.SecondaryCastRatio > 0m && owner is { } secondaryOwner &&
+                        owner.Creature?.CombatState is { } secondaryState)
+                    {
+                        var secondary = PickRandomEnemy(secondaryState, castContext.Target);
 
-                if (state.SummonOnKill > 0m)
-                {
-                    var kills = attackCandidates.Count(enemy => !enemy.IsAlive);
+                        if (secondary != null)
+                        {
+                            var secondaryContext = new MagicWineFoxSpellCastContext(
+                                choiceContext,
+                                secondaryOwner,
+                                secondary,
+                                snapshot.Card,
+                                sourceCard,
+                                state,
+                                snapshot.SourcePlay)
+                            {
+                                DamageScale = state.SecondaryCastRatio
+                            };
 
-                    for (var kill = 0; kill < kills; kill++)
+                            await spellCard.CastAsSpell(secondaryContext);
+                        }
+                    }
+
+                    if (snapshot.Card is not MagicWineFoxSpellCard { Traits.CountsAsCast: false })
+                        GetPower(casterPlayer)?.IncrementSpellsCast();
+
+                    // 法术余烬：攻击型法术被释放时给所有敌人叠灼烧。
+                    if (snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true })
+                        await SpellAshesPower.ApplyToAllEnemies(choiceContext, casterPlayer, snapshot.Card);
+
+                    // 「是否攻击到敌人」卡牌声明判定，
+                    var attacked = snapshot.Card is MagicWineFoxSpellCard { Traits.AttackSpell: true }
+                        ? ResolveAttackedEnemies(castContext).ToList()
+                        : [];
+
+                    // 永恒旋律只在**真的攻击到敌人**的法术上触发（判据是 Traits.AttackSpell 声明，
+                    // 与 CardType 无关）：纯防御/自身法术没有 attacked 目标，自然不会削上限。
+                    if (attacked.Count > 0)
+                        await EternalMelodyPower.ApplyToSpellTargets(
+                            choiceContext,
+                            casterPlayer,
+                            snapshot.Card,
+                            attacked);
+
+                    if (state.ShareDamageOnHit && owner?.Creature is { } shareOwner)
+                        foreach (var enemy in attacked.Where(enemy => enemy.IsAlive &&
+                                                                      !enemy.HasPower<GravitationalFieldPossessionPower>()))
+                            await PowerCmd.Apply<GravitationalFieldPossessionPower>(
+                                choiceContext,
+                                enemy,
+                                1m,
+                                shareOwner,
+                                snapshot.Card);
+
+                    if (state.BlockToSummonBonus is { } blockToSummon && state.ConvertedBlock > 0m)
                     {
                         await OstyCmd.Summon(
                             choiceContext,
                             casterPlayer,
-                            state.SummonOnKill,
+                            state.ConvertedBlock + blockToSummon,
                             snapshot.Card);
                     }
-                }
 
-                // 死灵召唤
-                if (state.OstySweepAmount > 0m && owner?.Creature is { } ownerCreature)
-                {
-                    await PowerCmd.Apply<NecromanticSummoningPower>(
-                        choiceContext,
-                        ownerCreature,
-                        state.OstySweepAmount,
-                        ownerCreature,
-                        snapshot.Card);
-                }
+                    if (state.SummonOnKill > 0m)
+                    {
+                        var kills = attackCandidates.Count(enemy => !enemy.IsAlive);
 
-                if (state.DrawCount > 0m)
-                    await CardPileCmd.Draw(choiceContext, state.DrawCount, casterPlayer);
+                        for (var kill = 0; kill < kills; kill++)
+                        {
+                            await OstyCmd.Summon(
+                                choiceContext,
+                                casterPlayer,
+                                state.SummonOnKill,
+                                snapshot.Card);
+                        }
+                    }
+
+                    // 死灵召唤
+                    if (state.OstySweepAmount > 0m && owner?.Creature is { } ownerCreature)
+                    {
+                        await PowerCmd.Apply<NecromanticSummoningPower>(
+                            choiceContext,
+                            ownerCreature,
+                            state.OstySweepAmount,
+                            ownerCreature,
+                            snapshot.Card);
+                    }
+
+                    if (state.DrawCount > 0m)
+                        await CardPileCmd.Draw(choiceContext, state.DrawCount, casterPlayer);
+                }
+            }
+            finally
+            {
+                await SpellPlayParticipants.FinishAsync(choiceContext, snapshot.SourcePlay);
             }
 
             if (state.CopyAfterCastCount > 0 && owner is { } copyOwner)

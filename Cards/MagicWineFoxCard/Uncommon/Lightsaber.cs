@@ -45,7 +45,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                 var blockBefore = target.Block;
 
                 await DamageCmd.Attack(context.DamageWithModifiers(DynamicVars.Damage.BaseValue))
-                    .FromCard(context.SourceCard, null)
+                    .FromCard(context.SourceCard, context.Play)
                     .Targeting(target)
                     .Execute(context.ChoiceContext);
 
@@ -56,7 +56,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
                     continue;
 
                 await DamageCmd.Attack(context.DamageWithModifiers(bonus))
-                    .FromCard(context.SourceCard, null)
+                    .FromCard(context.SourceCard, context.Play)
                     .Targeting(target)
                     .Execute(context.ChoiceContext);
             }
