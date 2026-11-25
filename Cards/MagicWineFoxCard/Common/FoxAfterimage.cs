@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace STS2_WineFox.Cards.MagicWineFoxCard
 {
     [RegisterCard(typeof(MagicWineFoxSpellModifierCardPool))]
-    public class Afterimage() : MagicWineFoxSpellCard(
+    public class FoxAfterimage() : MagicWineFoxSpellCard(
         0, CardType.Skill, CardRarity.Common, TargetType.None), IMagicWineFoxSpellModifierCard
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords =>

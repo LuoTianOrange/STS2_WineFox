@@ -311,7 +311,7 @@
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "アーケインボム",
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.description": "[gold]装填[/gold]: 全ての敵に{Damage:diff()}ダメージを与える。",
   "STS2_WINE_FOX_CARD_ENERGY_RAY.title": "高エネルギービーム",
-  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]装填[/gold]: 敵全員に{Damage:diff()}ダメージを与える。\n手札に[gold]バッテリー[/gold]を1枚加える。",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]装填[/gold]: 敵1体に{Damage:diff()}ダメージを与える。[gold]蓄能[/gold]を3得る。",
   "STS2_WINE_FOX_CARD_CURSED_ORB.title": "呪いのオーブ",
   "STS2_WINE_FOX_CARD_CURSED_ORB.description": "[gold]装填[/gold]: 敵に{Damage:diff()}ダメージを与える。\n敵に[gold]破滅[/gold]を{Calamity:diff()}付与する。",
   "STS2_WINE_FOX_CARD_SEARING_JOLT.title": "灼熱ショック",
@@ -449,8 +449,8 @@
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "捨てるカードを1枚選ぶ",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "多重強化",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "[gold]術スロット[/gold]を{MultipleReinforcementPower:diff()}個得る。毎ターン開始時、ランダムな[gold]スペル修正[/gold]を1枚獲得し、そのコストを0にする。",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "残影",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]スペル修正[/gold]。\n[gold]装填[/gold]：次のスペル解放後、[gold]消耗[/gold]付きのコピー{Copies:diff()}枚を[gold]手札[/gold]に加える。",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.title": "残影",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.description": "[gold]スペル修正[/gold]。\n[gold]装填[/gold]：次のスペル解放後、[gold]消耗[/gold]付きのコピー{Copies:diff()}枚を[gold]手札[/gold]に加える。",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "物資補給",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]滞留[/gold]\n[gold]装填[/gold]：カードを1枚引く。{IfUpgraded:show:\n即座にカードを1枚引く。|}",
   "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "マナ調整",
@@ -471,5 +471,7 @@
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.title": "連鎖反応",
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.description": "術スロット内のすべての[gold]オーバーロード[/gold]を消費する。次に続く術は追加で同じ回数だけ[gold]解放[/gold]される。これらの追加解放は解放枠を消費しない。",
   "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.title": "キノコの幻像",
-  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "手札から1枚選び、[gold]変化[/gold]させる。そのカードがデッキにある場合、デッキ内のカードも永久に変化する。"
+  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "手札から1枚選び、[gold]変化[/gold]させる。そのカードがデッキにある場合、デッキ内のカードも永久に変化する。",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.title": "点石成金",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.description": "戦闘中に一時的に加わったカードは[gold]アップグレード[/gold]される。"
 }

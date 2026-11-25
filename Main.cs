@@ -141,6 +141,11 @@ namespace STS2_WineFox
             patcher.RegisterPatch<EchoesSequenceSmartDescriptionPatch>();
             patcher.RegisterPatch<SpellCardDescriptionPreviewPatch>();
             patcher.RegisterPatch<RelicHoverSpellOrderPatch>();
+            patcher.RegisterPatch<StressPotionGenerationPatch>();
+            patcher.RegisterPatch<CardFrameVisibilityPatch>();
+            patcher.RegisterPatch<SpellPlayParticipantsPatch>();
+            patcher.RegisterPatch<EnergyIconTextSizePatch>();
+            patcher.RegisterPatch<WineFoxStandeeRunStartPublishPatch>();
             WineFoxStandeeWire.ApplyDynamicPatches(patcher);
             return patcher;
         }

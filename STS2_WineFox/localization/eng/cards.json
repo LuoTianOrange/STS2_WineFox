@@ -311,7 +311,7 @@
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "Arcane Bomb",
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage to ALL enemies.",
   "STS2_WINE_FOX_CARD_ENERGY_RAY.title": "Energy Ray",
-  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage to ALL enemies.\nAdd a [gold]Battery[/gold] to your hand.",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage to an enemy. Gain 3 [gold]Charge[/gold].",
   "STS2_WINE_FOX_CARD_CURSED_ORB.title": "Cursed Orb",
   "STS2_WINE_FOX_CARD_CURSED_ORB.description": "[gold]Load[/gold]: Deal {Damage:diff()} damage.\nApply {Calamity:diff()} [gold]Doom[/gold] to the enemy.",
   "STS2_WINE_FOX_CARD_SEARING_JOLT.title": "Searing Jolt",
@@ -449,8 +449,8 @@
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "Choose 1 card to discard",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "Multiple Reinforcement",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "Gain {MultipleReinforcementPower:diff()} [gold]spell slot(s)[/gold]. At the start of each turn, gain a random [gold]Spell Modifier[/gold] and set its cost to 0.",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "Afterimage",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]Spell Modifier[/gold].\n[gold]Load[/gold]: after the next spell is released, add {Copies:diff()} [gold]Exhaust[/gold]ing copies of it into your [gold]hand[/gold].",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.title": "Afterimage",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.description": "[gold]Spell Modifier[/gold].\n[gold]Load[/gold]: after the next spell is released, add {Copies:diff()} [gold]Exhaust[/gold]ing copies of it into your [gold]hand[/gold].",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "Supplies Replenishment",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]Linger[/gold]\n[gold]Load[/gold]: draw 1 card.{IfUpgraded:show:\nDraw 1 card immediately.|}",
   "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "Mana Regulation",
@@ -471,5 +471,7 @@
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.title": "Chain Reaction",
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.description": "Consume all [gold]Overloads[/gold] in your spell slots. The next spell is released an equal number of additional times, and those extra releases cost no [gold]release[/gold] budget.",
   "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.title": "Mushroom Illusion",
-  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "Choose 1 card in your [gold]hand[/gold] and [gold]transform[/gold] it. If that card is in your deck, transform it there permanently as well."
+  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "Choose 1 card in your [gold]hand[/gold] and [gold]transform[/gold] it. If that card is in your deck, transform it there permanently as well.",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.title": "Midas Touch",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.description": "Cards temporarily added during combat are [gold]Upgraded[/gold]."
 }

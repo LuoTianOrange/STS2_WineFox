@@ -311,7 +311,7 @@
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "비전 폭탄",
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.description": "[gold]장전[/gold]: 모든 적에게 {Damage:diff()} 피해를 줍니다.",
   "STS2_WINE_FOX_CARD_ENERGY_RAY.title": "고에너지 광선",
-  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]장전[/gold]: 모든 적에게 {Damage:diff()} 피해를 줍니다.\n손패에 [gold]배터리[/gold]를 1장 추가합니다.",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]장전[/gold]: 적 하나에게 {Damage:diff()} 피해를 줍니다. [gold]충전[/gold]을 3 얻습니다.",
   "STS2_WINE_FOX_CARD_CURSED_ORB.title": "저주받은 구슬",
   "STS2_WINE_FOX_CARD_CURSED_ORB.description": "[gold]장전[/gold]: 적에게 {Damage:diff()} 피해를 줍니다.\n적에게 [gold]종말[/gold]을 {Calamity:diff()} 부여합니다.",
   "STS2_WINE_FOX_CARD_SEARING_JOLT.title": "작열 충격",
@@ -449,8 +449,8 @@
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "버릴 카드 1장을 선택",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "다중 강화",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "[gold]주문 슬롯[/gold]을 {MultipleReinforcementPower:diff()}개 얻습니다. 매 턴 시작 시 무작위 [gold]주문 수정[/gold]을 1장 얻고 그 비용을 0으로 만듭니다.",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "잔상",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]주문 수정[/gold].\n[gold]장전[/gold]: 다음 주문 방출 후 [gold]소모[/gold]가 붙은 복사본 {Copies:diff()}장을 [gold]패[/gold]에 넣습니다.",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.title": "잔상",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.description": "[gold]주문 수정[/gold].\n[gold]장전[/gold]: 다음 주문 방출 후 [gold]소모[/gold]가 붙은 복사본 {Copies:diff()}장을 [gold]패[/gold]에 넣습니다.",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "물자 보충",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]잔류[/gold]\n[gold]장전[/gold]: 카드를 1장 뽑습니다.{IfUpgraded:show:\n즉시 카드를 1장 뽑습니다.|}",
   "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "마나 조절",
@@ -471,5 +471,7 @@
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.title": "연쇄 반응",
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.description": "주문 슬롯의 모든 [gold]과부하[/gold]를 소모합니다. 다음 주문이 같은 횟수만큼 추가로 [gold]해방[/gold]되며, 이 추가 해방은 해방 한도를 소모하지 않습니다.",
   "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.title": "버섯 환영",
-  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "[gold]패[/gold]에서 카드 1장을 선택해 [gold]변화[/gold]시킵니다. 그 카드가 덱에 있다면 덱에 있는 카드도 영구히 변화합니다."
+  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "[gold]패[/gold]에서 카드 1장을 선택해 [gold]변화[/gold]시킵니다. 그 카드가 덱에 있다면 덱에 있는 카드도 영구히 변화합니다.",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.title": "마이다스의 손길",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.description": "전투 중 임시로 추가된 카드는 [gold]강화[/gold]됩니다."
 }

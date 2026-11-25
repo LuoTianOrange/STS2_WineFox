@@ -17,6 +17,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <GodotExportPreset>BasicExport</GodotExportPreset>
+        <DeployRitsuLib Condition="'$(DeployRitsuLib)' == ''">true</DeployRitsuLib>
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModOutputDir Condition="'$(IsOSX)' == 'true'">$(Sts2Dir)\MacOS\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
@@ -56,8 +57,14 @@
 
     <ItemGroup>
         <ProjectReference Include="$(RitsuLibDir)\STS2-RitsuLib.csproj" Condition="'$(UseNuGetRitsuLib)' != 'true'"/>
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.11" Condition="'$(UseNuGetRitsuLib)' == 'true'"/>
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.16" Condition="'$(UseNuGetRitsuLib)' == 'true'"/>
     </ItemGroup>
+
+    <Target Name="BuildRitsuLibMod" BeforeTargets="BeforeBuild" Condition="'$(BuildRitsuLibMod)' != 'false' and '$(RitsuLibDir)' != '' and Exists('$(RitsuLibDir)STS2-RitsuLib.csproj')">
+        <Message Text="Building RitsuLib and deploying it to the game mods folder..." Importance="high"/>
+        <MSBuild Projects="$(RitsuLibDir)STS2-RitsuLib.csproj" Targets="Restore" Properties="Configuration=$(Configuration)"/>
+        <MSBuild Projects="$(RitsuLibDir)STS2-RitsuLib.csproj" Targets="Build" Properties="Configuration=$(Configuration);RitsuLibCopyToGame=$(DeployRitsuLib)"/>
+    </Target>
 
     <Target Name="Copy Mod" AfterTargets="PostBuildEvent">
         <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>

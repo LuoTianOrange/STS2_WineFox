@@ -288,5 +288,8 @@
   "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "Thunderbolt Staff",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.title": "Invite the Flame",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.description": "Whenever you take damage, apply {Amount} [gold]Burning[/gold] to a random enemy.",
-  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "Whenever you take damage, apply [blue]{Amount}[/blue] [gold]Burning[/gold] to a random enemy."
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "Whenever you take damage, apply [blue]{Amount}[/blue] [gold]Burning[/gold] to a random enemy.",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.title": "Midas Touch",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.description": "Cards temporarily added during combat are [gold]Upgraded[/gold].",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.smartDescription": "Cards temporarily added during combat are [gold]Upgraded[/gold]."
 }

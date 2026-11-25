@@ -311,7 +311,7 @@
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.title": "奥术炸弹",
   "STS2_WINE_FOX_CARD_ARCANE_BOMB.description": "[gold]装填[/gold]: 对所有敌人造成{Damage:diff()}点伤害。",
   "STS2_WINE_FOX_CARD_ENERGY_RAY.title": "高能光束",
-  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]装填[/gold]: 对所有敌人造成{Damage:diff()}点伤害。\n将一张[gold]电池[/gold]添加至你的手牌。",
+  "STS2_WINE_FOX_CARD_ENERGY_RAY.description": "[gold]装填[/gold]: 对敌人造成{Damage:diff()}点伤害。获得3点[gold]蓄能[/gold]。",
   "STS2_WINE_FOX_CARD_CURSED_ORB.title": "诅咒之球",
   "STS2_WINE_FOX_CARD_CURSED_ORB.description": "[gold]装填[/gold]: 造成{Damage:diff()}点伤害。\n给予敌人{Calamity:diff()}层[gold]灾厄[/gold]。",
   "STS2_WINE_FOX_CARD_SEARING_JOLT.title": "灼热冲击",
@@ -449,8 +449,8 @@
   "STS2_WINE_FOX_CARD_SPELL_ORGANIZATION_CHOOSE": "选择 1 张手牌丢弃",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.title": "多重强化",
   "STS2_WINE_FOX_CARD_MULTIPLE_REINFORCEMENT.description": "获得{MultipleReinforcementPower:diff()}个[gold]法术槽[/gold]。每回合开始时，随机获得一张[gold]法术修正[/gold]，并使其费用变为0。",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.title": "残影",
-  "STS2_WINE_FOX_CARD_AFTERIMAGE.description": "[gold]装填[/gold]：下一个法术释放后，复制{Copies:diff()}张带[gold]消耗[/gold]的复制品加入[gold]手牌[/gold]。",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.title": "残影",
+  "STS2_WINE_FOX_CARD_FOX_AFTERIMAGE.description": "[gold]装填[/gold]：下一个法术释放后，复制{Copies:diff()}张带[gold]消耗[/gold]的复制品加入[gold]手牌[/gold]。",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.title": "物资补充",
   "STS2_WINE_FOX_CARD_SUPPLIES_REPLENISHMENT.description": "[gold]滞留[/gold]\n[gold]装填[/gold]：抽1张牌。{IfUpgraded:show:\n抽1张牌。|}",
   "STS2_WINE_FOX_CARD_MANA_REGULATION.title": "法力调节",
@@ -471,5 +471,7 @@
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.title": "连锁反应",
   "STS2_WINE_FOX_CARD_CHAIN_REACTION.description": "消耗你法术槽中的所有[gold]过载[/gold]，下一个法术额外[gold]释放[/gold]等量的次数。",
   "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.title": "菌菇幻像",
-  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "选择手中1张牌，将其[gold]变化[/gold]。如果该牌在你的牌组里，则永久变化。"
+  "STS2_WINE_FOX_CARD_MUSHROOM_ILLUSION.description": "选择手中1张牌，将其[gold]变化[/gold]。如果该牌在你的牌组里，则永久变化。",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.title": "点石成金",
+  "STS2_WINE_FOX_CARD_MIDAS_TOUCH.description": "你在战斗中临时加入的牌将被[gold]升级[/gold]。"
 }

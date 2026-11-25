@@ -20,10 +20,10 @@ namespace STS2_WineFox.Patches
         }
 
         // ReSharper disable InconsistentNaming
-        public static void Postfix(Creature __instance, DamageResult __result)
+        public static void Postfix(Creature __instance, HpLossResult __result)
             // ReSharper restore InconsistentNaming
         {
-            if (__result.UnblockedDamage <= 0)
+            if (__result.hpLost <= 0)
                 return;
             if (!WineFoxCombatVisualEffects.TryIsWineFoxInParty(__instance))
                 return;

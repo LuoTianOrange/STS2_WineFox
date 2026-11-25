@@ -288,5 +288,8 @@
   "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "雷電の杖",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.title": "引火",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.description": "ダメージを受けるたび、ランダムな敵1体に{Amount}の[gold]燃焼[/gold]を付与する。",
-  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "ダメージを受けるたび、ランダムな敵1体に[blue]{Amount}[/blue]の[gold]燃焼[/gold]を付与する。"
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "ダメージを受けるたび、ランダムな敵1体に[blue]{Amount}[/blue]の[gold]燃焼[/gold]を付与する。",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.title": "点石成金",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.description": "戦闘中に一時的に加わったカードは[gold]アップグレード[/gold]される。",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.smartDescription": "戦闘中に一時的に加わったカードは[gold]アップグレード[/gold]される。"
 }

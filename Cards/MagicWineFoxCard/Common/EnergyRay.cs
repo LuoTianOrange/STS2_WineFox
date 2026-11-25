@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2_WineFox.Character;
 using STS2_WineFox.Commands;
 using STS2_WineFox.Mechanics;
+using STS2_WineFox.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -20,6 +21,8 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
     public class EnergyRay() : MagicWineFoxSpellCard(
         0, CardType.Attack, CardRarity.Common, TargetType.None), IMagicWineFoxSpellCard
     {
+        private const decimal ChargeAmount = 3m;
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(8m, ValueProp.Move),
@@ -33,7 +36,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<Battery>(IsUpgraded),
+            HoverTipFactory.FromPower<ChargePower>(),
         ];
 
         public async Task CastAsSpell(MagicWineFoxSpellCastContext context)
@@ -79,9 +82,7 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
             await DealExtraDamageStrikes(context, DynamicVars.Damage.BaseValue);
 
-            var battery = combatState.CreateCard<Battery>(owner);
-            var instance = await CardPileCmd.AddGeneratedCardToCombat(battery, PileType.Hand, owner);
-            CardCmd.PreviewCardPileAdd(instance);
+            await ChargePower.Gain(context.ChoiceContext, owner.Creature, ChargeAmount, context.SourceCard);
         }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)

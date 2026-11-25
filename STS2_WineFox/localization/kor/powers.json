@@ -288,5 +288,8 @@
   "STS2_WINE_FOX_POWER_THUNDERBOLT_STAFF_POWER.title": "번개 지팡이",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.title": "인화",
   "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.description": "피해를 받을 때마다 무작위 적 1명에게 {Amount}의 [gold]연소[/gold]를 부여합니다.",
-  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "피해를 받을 때마다 무작위 적 1명에게 [blue]{Amount}[/blue]의 [gold]연소[/gold]를 부여합니다."
+  "STS2_WINE_FOX_POWER_INVITE_THE_FLAME_POWER.smartDescription": "피해를 받을 때마다 무작위 적 1명에게 [blue]{Amount}[/blue]의 [gold]연소[/gold]를 부여합니다.",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.title": "마이다스의 손길",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.description": "전투 중 일시적으로 추가된 카드는 [gold]업그레이드[/gold]됩니다.",
+  "STS2_WINE_FOX_POWER_MIDAS_TOUCH_POWER.smartDescription": "전투 중 일시적으로 추가된 카드는 [gold]업그레이드[/gold]됩니다."
 }
