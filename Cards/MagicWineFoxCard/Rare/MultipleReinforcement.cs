@@ -22,11 +22,6 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
 
         public override CardAssetProfile AssetProfile => Art(Const.Paths.CardMultipleReinforcement);
 
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        [
-            HoverTipFactory.FromPower<MultipleReinforcementPower>(),
-        ];
-
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
         {
             if (Owner?.Creature is not { } creature)

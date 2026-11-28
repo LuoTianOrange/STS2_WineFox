@@ -365,7 +365,7 @@
   "STS2_WINE_FOX_CARD_SUMMON_BOULDER.title": "召唤巨石",
   "STS2_WINE_FOX_CARD_SUMMON_BOULDER.description": "[gold]装填[/gold]: 释放时，对选定的敌人生成一张{IfUpgraded:show:已升级的[gold]巨石[/gold]|[gold]巨石[/gold]}并自动打出。",
   "STS2_WINE_FOX_CARD_MANA_REFLUX.title": "魔力回流",
-  "STS2_WINE_FOX_CARD_MANA_REFLUX.description": "下回合开始时，获得等同于本回合释放法术次数的[gold]能量[/gold]。{IfUpgraded:show:\n额外获得1点[gold]能量[/gold]。|}",
+  "STS2_WINE_FOX_CARD_MANA_REFLUX.description": "下回合开始时，获得等同于本回合释放法术次数{IfUpgraded:show:+1|}的[gold]能量[/gold]。",
   "STS2_WINE_FOX_CARD_HEALING_SPELL.title": "治疗术",
   "STS2_WINE_FOX_CARD_HEALING_SPELL.description": "[gold]装填[/gold]: 获得{Regen:diff()}层[gold]再生[/gold]。",
   "STS2_WINE_FOX_CARD_ELEMENT_RECOVERY.title": "元素回收",

@@ -40,11 +40,16 @@ namespace STS2_WineFox.Cards.MagicWineFoxCard
             if (deckVersion == null || deckVersion == selected || result.cardAdded == null)
                 return;
 
+            // 永恒牌在牌组里不可转化，CardTransformation 构造时会直接抛异常。
+            if (!deckVersion.IsTransformable)
+                return;
+
             var deckReplacement = deckVersion.CardScope.CreateCard(result.cardAdded.CanonicalInstance, owner);
             await CardCmd.Transform(deckVersion, deckReplacement);
         }
 
-        private bool IsSelectable(CardModel card) => card != this && card.IsTransformable;
+        private bool IsSelectable(CardModel card) =>
+            card != this && card.IsTransformable && card.IsRemovable;
 
         protected override void OnUpgrade()
         {
